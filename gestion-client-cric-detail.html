@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+
+<html lang="fr-CA">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="noindex,nofollow" name="robots"/>
+<link href="img/favicon.png" rel="icon"/>
+<title>Détail du client CRIC | MADIC</title>
+<link href="assets/style.css" rel="stylesheet"/>
+<link href="assets/cric-workspace.css" rel="stylesheet"/>
+<link href="assets/cric-navigation.css" rel="stylesheet"/>
+<link href="assets/madic-datahubz-unified.css" rel="stylesheet"/>
+<link href="assets/madic-datahubz-modules.css" rel="stylesheet"/></head>
+<body class="madic-unified" data-cric-page="client-detail">
+<div class="madic-unified-layout"><aside aria-label="Navigation du portail" class="madic-unified-sidebar"><div class="madic-unified-brand"><span class="madic-unified-monogram">M</span><span><strong>MADIC PORTAIL</strong><small>Espace professionnel</small></span></div><div class="madic-unified-caption">NAVIGATION</div><nav><a data-madic-page="cric-dashboard.html" href="cric-dashboard.html"><span aria-hidden="true">▦</span>Vue d’ensemble</a><a data-madic-page="gestion-clients-cric.html" href="gestion-clients-cric.html"><span aria-hidden="true">♙</span>Clients</a><a data-madic-page="gestion-dossiers-cric.html" href="gestion-dossiers-cric.html"><span aria-hidden="true">▤</span>Dossiers</a><a data-madic-page="demandes-documents-cric.html" href="demandes-documents-cric.html"><span aria-hidden="true">▣</span>Documents</a><a data-madic-page="echeances-cric.html" href="echeances-cric.html"><span aria-hidden="true">◷</span>Échéances</a><a data-madic-page="facturation-cric.html" href="facturation-cric.html"><span aria-hidden="true">▥</span>Facturation</a><a data-madic-page="finances-cric.html" href="finances-cric.html"><span aria-hidden="true">◈</span>Finances</a><a data-madic-page="gestion-cric.html" href="gestion-cric.html"><span aria-hidden="true">⚙</span>Cabinet CRIC</a></nav><div class="madic-unified-foot">Espace sécurisé MADIC</div></aside><div class="madic-unified-content">
+<header>
+<a href="cric-dashboard.html">MADIC PORTAIL</a>
+<nav>
+<a href="cric-dashboard.html">Espace CRIC</a> ·
+        <a href="gestion-clients-cric.html">Gestion des clients</a>
+</nav>
+</header>
+<main class="cric-shell">
+<div class="cric-heading">
+<div>
+<p class="cric-eyebrow">ESPACE PROFESSIONNEL CRIC</p>
+<h1>Détail du client</h1>
+<p id="spaceName">Vérification de votre espace…</p>
+</div>
+<a class="secondary cric-return-link" href="gestion-clients-cric.html">← Retour à la gestion des clients</a><button class="secondary" id="logout" type="button">
+          Déconnexion
+        </button>
+</div>
+<p aria-live="polite" id="message" role="status"></p>
+<div hidden="" id="workspace">
+<p id="clientDetailName">Chargement du client…</p>
+<section class="panel">
+<h2>Créer un dossier</h2>
+<p>
+            Sélectionnez un client et une catégorie. La référence unique est
+            attribuée automatiquement à la création du dossier.
+          </p>
+<form class="cric-form" id="createDossier">
+<p>Client : <strong id="dossierClientLabel">Chargement…</strong></p>
+<input id="clientSelect" type="hidden"/><label>Référence automatique
+              <input id="reference" placeholder="Attribuée à la création" readonly=""/><small class="cric-muted">Format : MADIC-AAAA-00001 (5 chiffres).</small></label><label>Catégorie *<select id="category" required="">
+<option value="">Sélectionner une catégorie</option>
+<option value="__new__">+ Créer une nouvelle catégorie</option>
+</select><small class="cric-muted" id="madic-residence-category-info" aria-live="polite"></small></label><label hidden="" id="new-category-container">Nouvelle catégorie *<input id="new-category" maxlength="100" placeholder="Saisir le nom de la catégorie"/></label><label>Statut *<select id="newStatus">
+<option value="en_attente">En attente</option>
+<option value="actif">Actif</option>
+<option value="ferme">Fermé</option>
+</select></label><button id="createButton" type="submit">Créer le dossier</button>
+</form>
+</section>
+<section class="panel" id="cricDossiersSection">
+<div class="cric-heading">
+<h2>Dossiers existants et statuts</h2>
+<button class="secondary" id="refresh" type="button">
+              Actualiser
+            </button>
+</div>
+<div class="cric-scroll">
+<table>
+<thead>
+<tr>
+<th>Référence</th>
+<th>Client</th>
+<th>Catégorie</th>
+<th>Statut</th>
+<th>Actions</th>
+</tr>
+</thead>
+<tbody id="dossiersBody"></tbody>
+</table>
+</div>
+</section>
+</div>
+</main>
+<footer>© MAD Immigration Canadienne · Portail sécurisé</footer>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="assets/config.js"></script>
+<script src="assets/cric-client-detail.js"></script>
+</div></div>
+<script src="assets/madic-datahubz-unified.js"></script>
+</body>
+</html>

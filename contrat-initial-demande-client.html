@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="fr-CA">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Nouveau contrat initial | MADIC Portail</title>
+    <link href="img/favicon.png" rel="icon" />
+    <style>
+      body {
+        font: 16px/1.5 system-ui;
+        background: #071626;
+        color: #e8f3fa;
+        margin: 0;
+      }
+      header,
+      main {
+        max-width: 1000px;
+        margin: auto;
+        padding: 20px;
+      }
+      a {
+        color: #6cdaed;
+      }
+      .panel {
+        background: #10263b;
+        border: 1px solid #29475e;
+        padding: 22px;
+        border-radius: 12px;
+        margin: 18px 0;
+      }
+      label {
+        display: block;
+        margin: 12px 0;
+      }
+      input,
+      select {
+        padding: 10px;
+        width: 100%;
+        max-width: 540px;
+        background: #fff;
+        color: #172b3d;
+        border-radius: 5px;
+        border: 1px solid #aac;
+      }
+      input[type="checkbox"] {
+        width: auto;
+      }
+      button {
+        background: #55c4d6;
+        border: 0;
+        border-radius: 7px;
+        padding: 13px 18px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+      iframe {
+        width: 100%;
+        min-height: 1200px;
+        background: white;
+        border: 0;
+      }
+      #status {
+        color: #f6d58c;
+      }
+
+      /* Accessibilite du portail client - styles locaux, sans nouvelle dependance. */
+      .madic8-skip {
+        position: absolute;
+        left: 12px;
+        top: -100px;
+        z-index: 99999;
+        padding: 12px 18px;
+        background: #fff;
+        color: #092138;
+        border-radius: 8px;
+        font-weight: 700;
+        text-decoration: none;
+      }
+      .madic8-skip:focus,
+      .madic8-skip:focus-visible {
+        top: 12px;
+      }
+      body:has(> .madic8-skip)
+        :where(button, a, input, select, textarea, [tabindex]):focus-visible {
+        outline: 3px solid #7ee6f2;
+        outline-offset: 3px;
+      }
+      body:has(> .madic8-skip) :where(img, svg, video, iframe) {
+        max-width: 100%;
+      }
+      @media (max-width: 760px) {
+        body:has(> .madic8-skip) :where(.panel, .card, main, .wrap) {
+          min-width: 0;
+          max-width: 100%;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        body:has(> .madic8-skip) *,
+        body:has(> .madic8-skip) *::before,
+        body:has(> .madic8-skip) *::after {
+          scroll-behavior: auto !important;
+          transition-duration: 0.01ms !important;
+          animation-duration: 0.01ms !important;
+        }
+      }
+      @media print {
+        .madic8-skip {
+          display: none !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="madic8-skip" href="#madic8-main">Aller au contenu principal</a>
+    <header>
+      <a href="dashboard-client-cric.html">← Mon espace client</a>
+      <h1>Contrat de consultation initiale - Client vers CRIC</h1>
+    </header>
+    <main id="madic8-main">
+      <p id="status" role="status">Chargement…</p>
+      <section class="panel" id="workspace" hidden>
+        <label>Dossier<select id="dossier"></select></label>
+        <p id="tariff"></p>
+        <p>Vérifiez attentivement les deux pages du contrat avant de signer.</p>
+        <iframe
+          id="preview"
+          sandbox="allow-same-origin"
+          title="Aperçu du contrat"
+        ></iframe>
+        <form id="signForm">
+          <h2>Signature du client</h2>
+          <label
+            >Nom complet<input id="fullName" maxlength="200" required /></label
+          ><label
+            >Initiales<input id="initials" maxlength="12" required /></label
+          ><label
+            >Ville de signature<input
+              id="city"
+              maxlength="120"
+              required /></label
+          ><label
+            ><input id="accept" type="checkbox" required /> J'ai lu le contrat
+            et j'accepte sa signature électronique.</label
+          ><button id="submit" type="submit">
+            Signer et transmettre au CRIC
+          </button>
+        </form>
+      </section>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+    <script src="assets/config.js"></script>
+    <script src="assets/madic-client-first.js"></script>
+  </body>
+</html>

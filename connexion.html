@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="fr-CA">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="robots" content="noindex,nofollow" />
+    <link rel="icon" href="img/favicon.png" />
+    <title data-i18n="client.login.title">Connexion | MADIC PORTAIL</title>
+    <link rel="stylesheet" href="assets/connexion.css" />
+    
+    
+    
+    
+  </head>
+  <body data-page="login">
+    <header>
+      <a href="connexion.html" class="brand"
+        >MADI<span>C</span>
+        <small data-i18n="common.brand.portal">PORTAIL</small></a
+      >
+      <nav class="toplinks">
+        <a href="connexion.html" data-i18n="client.login.connexion">Connexion</a
+        ><a href="connexion-cric.html"
+          ><span data-i18n="client.login.acc_s_cric">Accès CRIC</span></a
+        ><a
+          href="dashboard-client-cric.html"
+          data-i18n="client.login.mon_espace"
+          >Mon espace</a
+        >
+      </nav>
+      <div class="madic-lang-switch" aria-label="Language / Langue">
+        <button type="button" data-lang="fr" aria-pressed="true">FR</button
+        ><button type="button" data-lang="en" aria-pressed="false">EN</button>
+      </div>
+    </header>
+    <main>
+      <section class="auth panel">
+        <div class="eyebrow" data-i18n="client.login.espace_client_madic">
+          Espace client MADIC
+        </div>
+        <h1 data-i18n="client.login.connexion">Connexion</h1>
+        <p
+          class="muted"
+          data-i18n="client.login.acc_dez_vos_dossiers_et_vos_documents"
+        >
+          Accédez à vos dossiers et à vos documents.
+        </p>
+        <form id="login">
+          <label for="email"
+            ><span data-i18n="client.login.courriel">Courriel</span></label
+          ><input
+            id="email"
+            name="email"
+            type="email"
+            autocomplete="email"
+            required
+          /><label for="password"
+            ><span data-i18n="client.login.mot_de_passe"
+              >Mot de passe</span
+            ></label
+          ><input
+            id="password"
+            name="password"
+            type="password"
+            autocomplete="current-password"
+            required
+          />
+          <div class="madic-password-toggle-row">
+            <button
+              type="button"
+              id="password-toggle"
+              class="password-toggle"
+              aria-controls="password"
+              aria-pressed="false"
+              aria-label="Afficher le mot de passe"
+            >
+              <svg
+                class="icon"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Z" />
+                <circle cx="12" cy="12" r="3" />
+              </svg>
+              <span data-i18n="common.password.show">Afficher</span>
+            </button>
+          </div>
+          <div class="actions">
+            <button type="submit">
+              <span data-i18n="client.login.se_connecter"
+                >Se connecter</span
+              ></button
+            ><button
+              type="button"
+              id="forgot"
+              class="secondary"
+              data-i18n="client.login.mot_de_passe_oubli"
+            >
+              Mot de passe oublié ?
+            </button>
+          </div>
+        </form>
+        <p id="message" class="notice" role="status"></p>
+        <p class="muted" data-i18n="client.notice">
+          Accès client sur invitation uniquement. Votre consultant CRIC doit
+          vous inviter et activer votre accès avant votre première connexion.
+        </p>
+        <p class="muted">
+          <span data-i18n="client.login.consultant_cric"
+            >Consultant CRIC ?</span
+          >
+          <a
+            href="connexion-cric.html"
+            data-i18n="client.login.acc_s_professionnel"
+            >Accès professionnel</a
+          >
+        </p>
+      </section>
+    </main>
+    <footer aria-label="Pied de page MADIC / MADIC footer" class="madic-footer">
+      <div class="madic-footer-inner">
+        <div class="madic-footer-brand">
+          <div class="madic-footer-brandline">
+            <img
+              alt="Logo MADIC"
+              class="madic-footer-logo"
+              height="43"
+              src="img/logo-madic.svg"
+              width="43"
+            />
+            <div>
+              <div class="madic-footer-name">MADIC</div>
+              <div
+                class="madic-footer-subtitle"
+                data-en="MAD Immigration Canadienne"
+                data-fr="MAD Immigration Canadienne"
+              >
+                MAD Immigration Canadienne
+              </div>
+            </div>
+          </div>
+          <p
+            class="madic-footer-desc"
+            data-en="A digital platform for Canadian immigration professionals and their clients."
+            data-fr="Une plateforme numérique pour les professionnels de l'immigration canadienne et leurs clients."
+          >
+            Une plateforme numérique pour les professionnels de l'immigration
+            canadienne et leurs clients.
+          </p>
+        </div>
+        <nav aria-label="Liens du pied de page" class="madic-footer-right">
+          <a data-en="Home" data-fr="Accueil" href="index.html">Accueil</a>
+          <a
+            data-en="Privacy policy"
+            data-fr="Confidentialité"
+            href="politique-confidentialite.html"
+            >Confidentialité</a
+          >
+          <span
+            class="madic-footer-unavailable"
+            data-en="Terms of use"
+            data-fr="Conditions d'utilisation"
+            title="Page à venir / Page coming soon"
+            >Conditions d'utilisation</span
+          >
+          <span
+            class="madic-footer-unavailable"
+            data-en="Contact"
+            data-fr="Contact"
+            title="Page à venir / Page coming soon"
+            >Contact</span
+          >
+        </nav>
+      </div>
+      <div class="madic-footer-bottom">
+        © 2026 MAD Immigration Canadienne (MADIC) Inc.
+        <span data-en="All rights reserved." data-fr="Tous droits réservés."
+          >Tous droits réservés.</span
+        >
+      </div>
+    </footer>
+      <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+    <script src="assets/config.js"></script>
+    <script src="assets/connexion.js"></script>
+  </body>
+</html>

@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="fr-CA">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="robots" content="noindex,nofollow" />
+    <title>Contrat de services professionnels | MADIC Portail</title>
+    <link rel="icon" href="img/favicon.png" />
+    <style>
+      :root {
+        color-scheme: dark;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: #081b2b;
+        color: #e8f3fa;
+        font:
+          16px/1.65 system-ui,
+          -apple-system,
+          Segoe UI,
+          sans-serif;
+      }
+      header {
+        padding: 20px max(24px, calc((100vw - 960px) / 2));
+        border-bottom: 1px solid #29475e;
+        background: #10263b;
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+      header a {
+        color: #24c6c0;
+        text-decoration: none;
+      }
+      main {
+        max-width: 960px;
+        margin: 55px auto;
+        padding: 0 24px;
+      }
+      article {
+        border: 1px solid #29475e;
+        background: #10263b;
+        border-radius: 16px;
+        padding: clamp(24px, 5vw, 44px);
+      }
+      .eyebrow {
+        color: #24c6c0;
+        font-size: 0.8rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+      }
+      h1 {
+        font-size: clamp(1.5rem, 3vw, 2.25rem);
+        line-height: 1.25;
+      }
+      p {
+        color: #b7ccda;
+      }
+      .action {
+        display: inline-block;
+        margin-top: 18px;
+        padding: 12px 20px;
+        background: #24c6c0;
+        color: #052534;
+        text-decoration: none;
+        border-radius: 9px;
+        font-weight: 750;
+      }
+      .note {
+        border-left: 3px solid #24c6c0;
+        padding-left: 15px;
+        margin-top: 24px;
+      }
+    
+/* Accessibilite du portail client - styles locaux, sans nouvelle dependance. */
+.madic8-skip{position:absolute;left:12px;top:-100px;z-index:99999;padding:12px 18px;background:#fff;color:#092138;border-radius:8px;font-weight:700;text-decoration:none}
+.madic8-skip:focus,.madic8-skip:focus-visible{top:12px}
+body:has(> .madic8-skip) :where(button,a,input,select,textarea,[tabindex]):focus-visible{outline:3px solid #7ee6f2;outline-offset:3px}
+body:has(> .madic8-skip) :where(img,svg,video,iframe){max-width:100%}
+@media(max-width:760px){body:has(> .madic8-skip) :where(.panel,.card,main,.wrap){min-width:0;max-width:100%}}
+@media(prefers-reduced-motion:reduce){body:has(> .madic8-skip) *,body:has(> .madic8-skip) *::before,body:has(> .madic8-skip) *::after{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important}}
+@media print{.madic8-skip{display:none!important}}
+
+</style>
+  </head>
+  <body>
+    <a class="madic8-skip" href="#madic8-main">Aller au contenu principal</a>
+    <header>
+      <strong>MADIC PORTAIL · Espace client</strong
+      ><a href="mes-contrats.html">← Mes contrats</a>
+    </header>
+    <main id="madic8-main">
+      <article>
+        <div class="eyebrow">CONTRATS · ESPACE CLIENT</div>
+        <h1>Contrat de services professionnels</h1>
+        <p>
+          Cette page est réservée à la consultation de votre contrat lorsque
+          celui-ci a été préparé et mis à votre disposition par votre
+          consultant.
+        </p>
+        <section
+          class="note"
+          aria-label="Renseignements du formulaire préliminaire"
+        >
+          <strong>Vos renseignements déjà fournis</strong>
+          <p id="madic-client-prefill-status" role="status">
+            Chargement de votre formulaire préliminaire…
+          </p>
+          <div id="madic-client-prefill"></div>
+          <p>
+            Ces renseignements sont affichés pour vérification seulement. Ils ne
+            constituent pas un contrat signé ni publié.
+          </p>
+        </section>
+        <p class="note">
+          Aucun contrat personnel n'est affiché ici pour le moment. Consultez «
+          Mes contrats » pour accéder aux documents qui vous sont effectivement
+          attribués dans votre espace sécurisé.
+        </p>
+        <a class="action" href="mes-contrats.html">Accéder à mes contrats →</a>
+      </article>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+    <script src="assets/config.js"></script>
+    <script src="assets/madic-contrat-prefill.js"></script>
+    <script src="assets/madic-contrat-client.js"></script>
+  </body>
+</html>

@@ -1,0 +1,875 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <title>MAD Immigration Canada</title>
+    <meta
+      name="description"
+      content="MAD Immigration Canadienne inc. est une entreprise Canadienne spécialisée dans l’immigration canadienne, Forte de l’ingéniosité de son équipe d’expérience."
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="icon" href="img/favicon.png" />
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png" />
+
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/evaluation.css" />
+    <link rel="stylesheet" href="css/quebec.css" />
+    <link rel="stylesheet" href="css/madix-menu.css" />
+    <link rel="stylesheet" href="css/saskatchewan.css" />
+    <link rel="stylesheet" href="css/queries.css" />
+    <link rel="icon" href="favicon.png" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+      integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
+      crossorigin="anonymous"
+    />
+    <script defer src="js/script.js"></script>
+    <script defer src="js/evaluation.js"></script>
+    <script defer src="js/quebec.js"></script>
+    <script defer src="js/madix-menu.js"></script>
+    <script defer src="js/saskatchewan.js"></script>
+  </head>
+
+  <body>
+    <header class="header">
+      <nav class="navbar">
+        <div class="navbar__container">
+          <!-- LOGO -->
+          <a href="index.html" class="navbar__logo">
+            <img
+              src="img/logo_fr_transparent.png"
+              alt="MAD Immigration Canadienne"
+              class="logo"
+            />
+          </a>
+
+          <!-- MENU : 8 LIENS + 2 ACTIONS -->
+          <div class="navbar__content" id="navbar-content">
+            <div class="navbar__navblock">
+              <ul class="navbar__menu navbar__menu--all">
+                <li class="navbar__item">
+                  <a
+                    href="index.html"
+                    class="navbar__links"
+                    id="index"
+                    data-i18n="nav.home"
+                  >
+                    Accueil
+                  </a>
+                </li>
+
+                <li class="navbar__item">
+                  <a
+                    href="services.html"
+                    class="navbar__links"
+                    id="services-page"
+                    data-i18n="nav.services"
+                  >
+                    Nos services
+                  </a>
+                </li>
+
+                <li class="navbar__item">
+                  <a
+                    href="forfaits.html"
+                    class="navbar__links"
+                    data-i18n="nav.packages"
+                  >
+                    Nos forfaits
+                  </a>
+                </li>
+
+                <li class="navbar__item">
+                  <a
+                    href="propos.html"
+                    class="navbar__links navbar__links--secondary"
+                    id="about-page"
+                    data-i18n="nav.about"
+                  >
+                    À propos
+                  </a>
+                </li>
+
+                <li class="navbar__item">
+                  <a
+                    href="carriere.html"
+                    class="navbar__links navbar__links--secondary"
+                    id="career-page"
+                    data-i18n="nav.career"
+                  >
+                    Carrière
+                  </a>
+                </li>
+
+                <li class="navbar__item">
+                  <a
+                    href="evenements.html"
+                    class="navbar__links navbar__links--secondary"
+                    data-i18n="nav.events"
+                  >
+                    Événements
+                  </a>
+                </li>
+
+                <li class="navbar__item">
+                  <a
+                    href="blogue.html"
+                    class="navbar__links navbar__links--secondary"
+                    data-i18n="nav.blog"
+                  >
+                    Blogue
+                  </a>
+                </li>
+
+                <li class="navbar__item">
+                  <a
+                    href="joindre.html"
+                    class="navbar__links navbar__links--secondary"
+                    data-i18n="nav.contact"
+                  >
+                    Nous joindre
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <!-- ACTIONS DU MENU -->
+            <div class="navbar__actions">
+              <!-- MADIX : menu des outils, sans page intermediaire -->
+              <div class="madix-nav" id="madix-nav">
+                <button
+                  type="button"
+                  class="nav-action nav-action--outline madix-trigger"
+                  id="madix-trigger"
+                  aria-expanded="false"
+                  aria-haspopup="true"
+                  aria-controls="madix-panel"
+                >
+                  <i class="fa-solid fa-layer-group" aria-hidden="true"></i>
+                  <span>MADIX</span>
+                  <i
+                    class="fa-solid fa-chevron-down madix-chevron"
+                    aria-hidden="true"
+                  ></i>
+                </button>
+                <div class="madix-panel" id="madix-panel" hidden>
+                  <div class="madix-panel-head">
+                    <span
+                      class="madix-kicker"
+                      data-madix-fr="PLATEFORME D'OUTILS"
+                      data-madix-en="IMMIGRATION TOOLKIT"
+                      >PLATEFORME D'OUTILS</span
+                    >
+                    <strong>MADI<span class="madix-x">X</span></strong>
+                    <p
+                      data-madix-fr="Explorez nos outils d'immigration"
+                      data-madix-en="Explore our immigration tools"
+                    >
+                      Explorez nos outils d'immigration
+                    </p>
+                  </div>
+                  <div class="madix-links">
+                    <a href="quebec.html" class="madix-tool">
+                      <i
+                        class="fa-solid fa-map-location-dot"
+                        aria-hidden="true"
+                      ></i>
+                      <span
+                        ><strong data-madix-fr="Québec" data-madix-en="Quebec"
+                          >Québec</strong
+                        ><small
+                          data-madix-fr="Programmes québécois"
+                          data-madix-en="Quebec immigration programs"
+                          >Programmes québécois</small
+                        ></span
+                      >
+                      <i
+                        class="fa-solid fa-arrow-up-right-from-square madix-arrow"
+                        aria-hidden="true"
+                      ></i>
+                    </a>
+                    <a href="saskatchewan.html" class="madix-tool">
+                      <i class="fa-solid fa-map" aria-hidden="true"></i>
+                      <span
+                        ><strong>Saskatchewan</strong
+                        ><small
+                          data-madix-fr="Programme SINP"
+                          data-madix-en="SINP program"
+                          >Programme SINP</small
+                        ></span
+                      >
+                      <i
+                        class="fa-solid fa-arrow-up-right-from-square madix-arrow"
+                        aria-hidden="true"
+                      ></i>
+                    </a>
+                    <a href="evaluations.html" class="madix-tool">
+                      <i class="fa-solid fa-calculator" aria-hidden="true"></i>
+                      <span
+                        ><strong
+                          data-madix-fr="Évaluations"
+                          data-madix-en="Calculators"
+                          >Évaluations</strong
+                        ><small
+                          data-madix-fr="Simulateurs et calculateurs"
+                          data-madix-en="Assessment calculators"
+                          >Simulateurs et calculateurs</small
+                        ></span
+                      >
+                      <i
+                        class="fa-solid fa-arrow-up-right-from-square madix-arrow"
+                        aria-hidden="true"
+                      ></i>
+                    </a>
+                    <a href="formulaire.html" class="madix-tool">
+                      <i
+                        class="fa-solid fa-clipboard-check"
+                        aria-hidden="true"
+                      ></i>
+                      <span
+                        ><strong
+                          data-madix-fr="Évaluation préliminaire"
+                          data-madix-en="Preliminary assessment"
+                          >Évaluation préliminaire</strong
+                        ><small
+                          data-madix-fr="Analyse initiale de votre profil"
+                          data-madix-en="Initial profile review"
+                          >Analyse initiale de votre profil</small
+                        ></span
+                      >
+                      <i
+                        class="fa-solid fa-arrow-up-right-from-square madix-arrow"
+                        aria-hidden="true"
+                      ></i>
+                    </a>
+                  </div>
+                  <p
+                    class="madix-panel-foot"
+                    data-madix-fr="De nouveaux outils seront ajoutés prochainement."
+                    data-madix-en="More tools coming soon."
+                  >
+                    De nouveaux outils seront ajoutés prochainement.
+                  </p>
+                </div>
+              </div>
+
+              <!-- ESPACE CLIENT MADIC -->
+              <a
+                href="https://madic.ca/connexion.html"
+                class="nav-action nav-action--outline"
+                id="client-portal"
+                data-i18n="nav.clientPortal"
+              >
+                <i class="fa-solid fa-user-shield" aria-hidden="true"></i>
+                <span>Espace client</span>
+              </a>
+
+              <a
+                href="rendezvous.html"
+                class="nav-action nav-action--primary"
+                id="appointment"
+                data-i18n="nav.appointment"
+              >
+                <i class="fa-solid fa-calendar-check"></i>
+                <span>Prendre rendez-vous</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- LANGUES + MODE NUIT : TOUJOURS VISIBLES -->
+          <div class="navbar__utilities">
+            <div class="language-switcher">
+              <button
+                type="button"
+                class="lang-btn active"
+                data-lang="fr"
+                aria-label="Français"
+                title="Français"
+              >
+                <img
+                  src="img/flag-quebec.svg"
+                  width="24"
+                  height="16"
+                  alt="Drapeau du Québec"
+                  class="lang-flag"
+                />
+                <span>FR</span>
+              </button>
+
+              <button
+                type="button"
+                class="lang-btn"
+                data-lang="en"
+                aria-label="English"
+                title="English"
+              >
+                <img
+                  src="img/flag-canada.svg"
+                  width="24"
+                  height="16"
+                  alt="Canadian flag"
+                  class="lang-flag"
+                />
+                <span>EN</span>
+              </button>
+            </div>
+
+            <button
+              type="button"
+              id="theme-toggle"
+              class="theme-toggle-btn"
+              aria-label="Activer le mode nuit"
+              title="Mode nuit"
+            >
+              <i class="fa-solid fa-moon"></i>
+            </button>
+          </div>
+
+          <!-- HAMBURGER -->
+          <button
+            type="button"
+            class="navbar__toggle"
+            id="mobile-menu"
+            aria-label="Ouvrir le menu"
+            aria-expanded="false"
+            aria-controls="navbar-content"
+          >
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+          </button>
+        </div>
+      </nav>
+    </header>
+    <main class="sinp" id="sinp">
+      <header class="hero">
+        <div class="brand">MAD IMMIGRATION CANADIENNE <span>• MADIC</span></div>
+        <div class="headrow">
+          <div>
+            <p class="eyebrow">SASKATCHEWAN IMMIGRANT NOMINEE PROGRAM · 2026</p>
+            <h1>Évaluation préliminaire SINP</h1>
+            <p>
+              Découvrez les volets à examiner et estimez vos points sur la
+              grille des travailleurs qualifiés internationaux.
+            </p>
+          </div>
+        </div>
+      </header>
+      <div class="notice">
+        <strong>Important :</strong> Cet outil indépendant n'est ni un service
+        gouvernemental ni une décision d'admissibilité. Le sélecteur officiel de
+        programmes a été archivé le 2 janvier 2026. Les critères, quotas et
+        périodes de réception peuvent changer. Les réponses et pièces
+        justificatives doivent être vérifiées avant toute demande.
+      </div>
+      <form id="form">
+        <section class="panel">
+          <h2>1. Votre situation</h2>
+          <div class="fields">
+            <label
+              >Âge
+              <input
+                name="age"
+                type="number"
+                min="0"
+                max="110"
+                required
+                placeholder="Ex. 32" /></label
+            ><label
+              >Lieu de résidence<select name="location" required>
+                <option value="">Sélectionner...</option>
+                <option value="sk">En Saskatchewan</option>
+                <option value="canada">Ailleurs au Canada</option>
+                <option value="abroad">À l'extérieur du Canada</option>
+              </select></label
+            ><label
+              >Statut actuel au Canada<select name="permit">
+                <option value="">Sélectionner...</option>
+                <option value="outside">À l'extérieur du Canada</option>
+                <option value="pgwp">
+                  Permis de travail postdiplôme (PTPD)
+                </option>
+                <option value="study">Permis d'études</option>
+                <option value="lmia">Permis lié à une EIMT</option>
+                <option value="franco">Permis Mobilité francophone</option>
+                <option value="cuaet">Permis CUAET</option>
+                <option value="otherwork">Autre permis de travail</option>
+                <option value="spousal">
+                  Permis de travail ouvert pour conjoint
+                </option>
+                <option value="other">Autre statut légal</option>
+                <option value="none">Sans statut légal / à vérifier</option>
+              </select></label
+            ><label
+              >Situation relative à une demande d'asile<select
+                name="refugee"
+                required
+              >
+                <option value="">Sélectionner...</option>
+                <option value="no">Aucune demande d'asile en cours</option>
+                <option value="pending">
+                  Demande d'asile en cours au Canada
+                </option>
+                <option value="refused">
+                  Demande refusée et dossier entièrement réglé
+                </option>
+                <option value="unclear">Situation à vérifier</option>
+              </select></label
+            ><label
+              >Intention réelle de vivre et travailler en Saskatchewan<select
+                name="intent"
+                required
+              >
+                <option value="">Sélectionner...</option>
+                <option value="yes">Oui</option>
+                <option value="no">Non</option>
+                <option value="unsure">À déterminer</option>
+              </select></label
+            >
+          </div>
+          <label class="check"
+            ><input type="checkbox" name="departure" /> Si ma demande d'asile a
+            été refusée : tous les membres accompagnants et moi avons quitté le
+            Canada et je possède les documents requis (IMM 0056B ou ARC, selon
+            le cas).</label
+          >
+        </section>
+        <section class="panel">
+          <h2>2. Offre d'emploi et profession</h2>
+          <div class="fields">
+            <label
+              >Offre d'emploi permanente à temps plein d'un employeur en
+              Saskatchewan<select name="offer" required>
+                <option value="">Sélectionner...</option>
+                <option value="yes">Oui</option>
+                <option value="no">Non</option>
+              </select></label
+            ><label
+              >Employer Position Assessment (EPA) valide / approuvée<select
+                name="epa"
+              >
+                <option value="unknown">À confirmer</option>
+                <option value="yes">Oui</option>
+                <option value="no">Non</option>
+              </select></label
+            ><label
+              >Secteur de l'employeur<select name="sector" required>
+                <option value="">Sélectionner...</option>
+                <option value="health">Santé</option>
+                <option value="agri">Agriculture / agroalimentaire</option>
+                <option value="tech">Technologie / innovation</option>
+                <option value="trades">Métiers spécialisés</option>
+                <option value="energy">Énergie</option>
+                <option value="mining">Mines et minéraux</option>
+                <option value="manufacturing">Fabrication</option>
+                <option value="food">Hébergement / restauration</option>
+                <option value="trucking">Transport routier</option>
+                <option value="retail">Commerce de détail</option>
+                <option value="other">Autre</option>
+              </select></label
+            ><label
+              >Code CNP 2021 (5 chiffres)<input
+                name="noc"
+                inputmode="numeric"
+                pattern="[0-9]{5}"
+                maxlength="5"
+                placeholder="Ex. 21232" /></label
+            ><label
+              >Catégorie FEER / TEER<select name="teer" required>
+                <option value="">Sélectionner...</option>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select></label
+            ><label
+              >Profession réglementée / permis professionnel requis<select
+                name="regulated"
+              >
+                <option value="unknown">À vérifier</option>
+                <option value="yes">Oui</option>
+                <option value="no">Non</option>
+              </select></label
+            >
+          </div>
+        </section>
+        <section class="panel">
+          <h2>3. Formation et expérience</h2>
+          <div class="fields">
+            <label
+              >Plus haut diplôme reconnu / équivalence canadienne<select
+                name="education"
+                required
+              >
+                <option value="">Sélectionner...</option>
+                <option value="23">Maîtrise ou doctorat - 23 points</option>
+                <option value="20">
+                  Baccalauréat ou programme ≥ 3 ans - 20 points
+                </option>
+                <option value="20">
+                  Certificat de métier équivalent compagnon - 20 points
+                </option>
+                <option value="15">
+                  Diplôme postsecondaire de 2 ans - 15 points
+                </option>
+                <option value="12">
+                  Certificat postsecondaire ≥ 2 semestres et &lt; 2 ans - 12
+                  points
+                </option>
+                <option value="0">
+                  Secondaire ou sans diplôme reconnu - 0 point
+                </option>
+              </select></label
+            ><label
+              >Diplôme d'un établissement de la Saskatchewan<select
+                name="skgrad"
+              >
+                <option value="no">Non</option>
+                <option value="yes">Oui</option>
+              </select></label
+            ><label
+              >Études liées à l'emploi envisagé<select name="relatededu">
+                <option value="unknown">À vérifier</option>
+                <option value="yes">Oui</option>
+                <option value="no">Non</option>
+              </select></label
+            ><label
+              >Années de travail qualifié lié à la profession au cours des 5
+              dernières années<select name="exp5" required>
+                <option value="">Sélectionner...</option>
+                <option value="0">Moins d'un an</option>
+                <option value="1">1 an</option>
+                <option value="2">2 ans</option>
+                <option value="3">3 ans</option>
+                <option value="4">4 ans</option>
+                <option value="5">5 ans</option>
+              </select></label
+            ><label
+              >Années de travail qualifié lié à la profession durant les années
+              6 à 10 précédentes<select name="exp10" required>
+                <option value="">Sélectionner...</option>
+                <option value="0">Moins d'un an</option>
+                <option value="1">1 an</option>
+                <option value="2">2 ans</option>
+                <option value="3">3 ans</option>
+                <option value="4">4 ans</option>
+                <option value="5">5 ans</option>
+              </select></label
+            ><label
+              >Travail chez l'employeur offrant le poste en Saskatchewan (heures
+              admissibles)<input
+                name="employerhours"
+                type="number"
+                min="0"
+                step="1"
+                value="0" /></label
+            ><label
+              >Expérience récente (années) dans la profession offerte<input
+                name="recentyears"
+                type="number"
+                min="0"
+                max="50"
+                step="0.5"
+                value="0" /></label
+            ><label
+              >Expérience de travail admissible en Saskatchewan (12 mois dans
+              les 5 dernières années)<select name="skwork">
+                <option value="no">Non</option>
+                <option value="yes">Oui</option>
+              </select></label
+            ><label
+              >Études antérieures en Saskatchewan (une année à temps
+              plein)<select name="skstudy">
+                <option value="no">Non</option>
+                <option value="yes">Oui</option>
+              </select></label
+            >
+          </div>
+        </section>
+        <section class="panel">
+          <h2>4. Langues officielles</h2>
+          <p class="hint">
+            Indiquez le niveau le plus faible parmi les quatre compétences d'un
+            test reconnu. Le niveau doit provenir d'un test valide, et non d'une
+            autoévaluation.
+            <a
+              href="https://www.canada.ca/fr/immigration-refugies-citoyennete/services/immigrer-canada/entree-express/documents/examen-linguistique.html"
+              target="_blank"
+              rel="noopener"
+              >Tableaux officiels de conversion IRCC</a
+            >.
+          </p>
+          <div class="fields">
+            <label
+              >Première langue - test<select name="test1" required>
+                <option value="">Sélectionner...</option>
+                <option value="ielts">IELTS General Training</option>
+                <option value="celpip">CELPIP-G</option>
+                <option value="pte">PTE Core</option>
+                <option value="tef">TEF Canada</option>
+                <option value="tcf">TCF Canada</option>
+                <option value="none">Aucun test valide</option>
+              </select></label
+            ><label
+              >Plus faible CLB/NCLC des 4 compétences - première langue<select
+                name="clb1"
+                required
+              >
+                <option value="">Sélectionner...</option>
+                <option value="0">Aucun / moins de 4</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10 ou plus</option>
+              </select></label
+            ><label
+              >Deuxième langue - test<select name="test2">
+                <option value="none">Sans objet</option>
+                <option value="ielts">IELTS General Training</option>
+                <option value="celpip">CELPIP-G</option>
+                <option value="pte">PTE Core</option>
+                <option value="tef">TEF Canada</option>
+                <option value="tcf">TCF Canada</option>
+              </select></label
+            ><label
+              >Plus faible CLB/NCLC - deuxième langue<select name="clb2">
+                <option value="0">Sans objet / moins de 4</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10 ou plus</option>
+              </select></label
+            >
+          </div>
+        </section>
+        <section class="panel">
+          <h2>5. Liens avec la Saskatchewan et autres critères</h2>
+          <div class="fields">
+            <label
+              >Parent proche admissible résidant en Saskatchewan<select
+                name="relative"
+              >
+                <option value="no">Non</option>
+                <option value="yes">
+                  Oui, et les conditions de soutien sont satisfaites
+                </option>
+                <option value="unknown">À vérifier</option>
+              </select></label
+            ><label
+              >Profil Entrée express et code de validation de recherche d'emploi
+              valides<select name="ee">
+                <option value="no">Non</option>
+                <option value="yes">Oui</option>
+                <option value="unknown">À vérifier</option>
+              </select></label
+            ><label
+              >Profession sur la liste des professions exclues (sans
+              offre)<select name="excluded">
+                <option value="unknown">À vérifier</option>
+                <option value="no">Non</option>
+                <option value="yes">Oui</option>
+              </select></label
+            ><label
+              >Fonds d'établissement et plan d'établissement (volets sans
+              offre)<select name="funds">
+                <option value="unknown">À vérifier</option>
+                <option value="yes">Oui</option>
+                <option value="no">Non</option>
+              </select></label
+            >
+          </div>
+        </section>
+        <div class="actions">
+          <button type="submit">Évaluer mon profil SINP</button
+          ><button type="reset" class="secondary">Réinitialiser</button>
+        </div>
+      </form>
+      <section
+        id="results"
+        class="panel results"
+        hidden
+        aria-live="polite"
+      ></section>
+      <footer>
+        <p>
+          <strong>Sources officielles :</strong>
+          <a
+            href="https://www.saskatchewan.ca/residents/moving-to-saskatchewan/live-in-saskatchewan/by-immigrating/saskatchewan-immigrant-nominee-program/assess-your-eligibility"
+            target="_blank"
+            rel="noopener"
+            >Grille et évaluation SINP</a
+          >
+          ·
+          <a
+            href="https://www.saskatchewan.ca/residents/moving-to-saskatchewan/live-in-saskatchewan/by-immigrating/saskatchewan-immigrant-nominee-program/sinp-processing-statistics"
+            target="_blank"
+            rel="noopener"
+            >Quotas et périodes de réception 2026</a
+          >
+          ·
+          <a href="https://noc.esdc.gc.ca/" target="_blank" rel="noopener"
+            >CNP 2021</a
+          >.
+        </p>
+        <p>
+          © MAD Immigration Canadienne - outil d'orientation indépendant. Aucune
+          information n'est envoyée à un serveur par ce formulaire.
+        </p>
+      </footer>
+    </main>
+    <footer class="footer">
+      <div class="container grid--footer">
+        <div class="logo-col">
+          <a href="#" class="footer-logo">
+            <img
+              src="img/logo_fr_transparent.png"
+              alt="omnifood-logo"
+              class="logo"
+            />
+          </a>
+
+          <ul class="social-links">
+            <li>
+              <a class="footer-link" href="#"
+                ><ion-icon class="social-icon" name="logo-instagram"></ion-icon
+              ></a>
+            </li>
+            <li>
+              <a class="footer-link" href="#"
+                ><ion-icon class="social-icon" name="logo-facebook"></ion-icon
+              ></a>
+            </li>
+            <li>
+              <a class="footer-link" href="#"
+                ><ion-icon class="social-icon" name="logo-twitter"></ion-icon
+              ></a>
+            </li>
+          </ul>
+          <p class="copyright">
+            Copyright &copy;
+            <span class="year"></span>
+            Design MADMECA Inc.
+            <span data-i18n="footer.copyright">
+              Tous les droits réservés.
+            </span>
+          </p>
+        </div>
+
+        <div class="address-col">
+          <p class="footer-heading" data-i18n="footer.contact">
+            Contactez-nous
+          </p>
+          <address class="contacts">
+            <p class="address">
+              1622 Rue Barré, Bureau 202, Saint-Laurent, QC, CA
+            </p>
+            <p>
+              <a class="footer-link" href="tel:415-201-6370">514-442-3076</a
+              ><br />
+              <a class="footer-link" href="mailto:hello@omnifood.com"
+                >madimmigrationcanadienne@gmail.com</a
+              >
+            </p>
+          </address>
+        </div>
+
+        <nav class="nav-col">
+          <p class="footer-heading" data-i18n="footer.account">Compte</p>
+
+          <ul class="footer-nav">
+            <li>
+              <a class="footer-link" href="#" data-i18n="footer.createAccount">
+                Créer un compte
+              </a>
+            </li>
+
+            <li>
+              <a class="footer-link" href="#" data-i18n="footer.register">
+                S'inscrire
+              </a>
+            </li>
+
+            <li>
+              <a class="footer-link" href="#">iOS</a>
+            </li>
+
+            <li>
+              <a class="footer-link" href="#" data-i18n="footer.android">
+                Android
+              </a>
+            </li>
+          </ul>
+        </nav>
+
+        <nav class="nav-col">
+          <p class="footer-heading" data-i18n="footer.company">Compagnie</p>
+
+          <ul class="footer-nav">
+            <li>
+              <a class="footer-link" href="#" data-i18n="footer.about">
+                À propos de MADIC
+              </a>
+            </li>
+
+            <li>
+              <a class="footer-link" href="#" data-i18n="footer.business">
+                Affaires
+              </a>
+            </li>
+
+            <li>
+              <a class="footer-link" href="#" data-i18n="footer.partners">
+                Partenaires
+              </a>
+            </li>
+
+            <li>
+              <a class="footer-link" href="#" data-i18n="footer.career">
+                Carrière
+              </a>
+            </li>
+          </ul>
+        </nav>
+
+        <nav class="nav-col">
+          <p class="footer-heading" data-i18n="footer.resources">Ressources</p>
+
+          <ul class="footer-nav">
+            <li>
+              <a class="footer-link" href="#" data-i18n="footer.directory">
+                Répertoire Immigration
+              </a>
+            </li>
+
+            <li>
+              <a class="footer-link" href="#" data-i18n="footer.help">
+                Centre d'aide
+              </a>
+            </li>
+
+            <li>
+              <a class="footer-link" href="#" data-i18n="footer.privacy">
+                Confidentialité et conditions
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </footer>
+  </body>
+</html>

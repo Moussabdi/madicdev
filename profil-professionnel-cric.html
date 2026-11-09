@@ -1,0 +1,702 @@
+<!doctype html>
+<html lang="fr-CA">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="robots" content="noindex,nofollow" />
+    <title>Mon profil professionnel | MADIC</title>
+    <link href="img/favicon.png" rel="icon" />
+    <link rel="stylesheet" href="assets/style.css" />
+    <link rel="stylesheet" href="assets/cric-dashboard.css" />
+    
+    <link rel="stylesheet" href="assets/madic-datahubz-modules.css" />
+    <link rel="stylesheet" href="assets/cric-professional-profile.css" />
+    <style>
+      .madic-profile-modal[hidden] {
+        display: none !important;
+      }
+      .madic-profile-modal {
+        position: fixed;
+        inset: 0;
+        z-index: 99999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        background: rgba(5, 18, 34, 0.72);
+      }
+      .madic-profile-dialog {
+        width: min(440px, 100%);
+        background: #10263b;
+        color: #f0f7fb;
+        border: 1px solid #36536a;
+        border-radius: 14px;
+        padding: 26px;
+        box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+      }
+      .madic-profile-dialog h2 {
+        margin: 0 0 14px;
+        color: #fff;
+        font-size: 1.45rem;
+      }
+      .madic-profile-dialog p {
+        margin: 0 0 25px;
+        line-height: 1.6;
+        color: #e2edf4;
+      }
+      .madic-profile-modal-actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      .madic-profile-modal-actions button,
+      .madic-profile-modal-actions a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 42px;
+        padding: 10px 17px;
+        border-radius: 8px;
+        font: inherit;
+        font-weight: 650;
+        text-decoration: none;
+        cursor: pointer;
+      }
+      #madicProfileClose {
+        background: transparent;
+        color: #e2edf4;
+        border: 1px solid #668197;
+      }
+      .madic-profile-dashboard {
+        background: #38bfd8;
+        color: #071626 !important;
+        border: 1px solid #38bfd8;
+      }
+      @media (max-width: 430px) {
+        .madic-profile-modal-actions > * {
+          flex: 1;
+        }
+      }
+    </style>
+  <link rel="stylesheet" href="assets/madic-datahubz-unified.css"/>
+<style id="madic-i18n-language-state">
+body.madic-unified .madic-cric-standard-header .madic-lang-controls button[data-lang]{background:#eef8fc!important;color:#123553!important;cursor:pointer!important;}
+body.madic-unified .madic-cric-standard-header .madic-lang-controls button[data-lang].madic-lang-active{background:#389ec0!important;color:#fff!important;}
+</style>
+</head>
+  <body class="madic-unified" data-page="profil-professionnel-cric">
+    <div class="madic-unified-layout">
+      <aside class="madic-unified-sidebar">
+        <div class="madic-unified-brand">
+          <span class="madic-unified-monogram">M</span
+          ><span
+            ><strong>MADIC PORTAIL</strong
+            ><small>Espace professionnel</small></span
+          >
+        </div>
+        <div class="madic-unified-caption">NAVIGATION</div>
+        <nav>
+          <a href="cric-dashboard.html">▦ Vue d’ensemble</a
+          ><a href="gestion-clients-cric.html">♙ Clients</a
+          ><a href="gestion-dossiers-cric.html">▤ Outils CRIC</a
+          ><a href="messagerie-cric.html">✉ Messagerie</a
+          ><a href="demandes-documents-cric.html">▣ Documents</a
+          ><a href="echeances-cric.html">◷ Échéances</a
+          ><a href="facturation-cric.html">▥ Facturation</a
+          ><a href="finances-cric.html">◈ Finances</a
+          ><a href="profil-professionnel-cric.html" aria-current="page"
+            >▣ Mon profil professionnel</a
+          >
+        </nav>
+        <div class="madic-unified-foot">Espace sécurisé MADIC</div>
+      </aside>
+      <div class="madic-unified-content">
+        <header class="madic-cric-standard-header"><a class="brand" href="cric-dashboard.html">MADI<span>C</span> <small>PORTAIL</small></a><nav class="toplinks" aria-label="Navigation du compte"><a href="cric-dashboard.html">Mon espace</a><div class="madic-lang-controls" role="group" aria-label="Langue / Language"><button type="button" data-lang="fr" aria-label="Français" title="Français" >FR</button><button type="button" data-lang="en" aria-label="English" title="English" >EN</button></div></nav></header>
+        <main class="madic-profile-wrap" id="mainContent">
+          <p class="madic-cric-kicker">ESPACE PROFESSIONNEL CRIC</p>
+          <h1>Mon profil professionnel</h1>
+          <p>
+            Ces renseignements identifient votre cabinet dans les invitations à
+            vos clients.
+          </p>
+          <p id="profileStatus" role="status" aria-live="polite">
+            Vérification des autorisations…
+          </p>
+          <form class="panel madic-profile-form" id="profileForm" hidden>
+            <div class="madic-profile-intro"><h2>Renseignements du cabinet</h2><p class="muted">Les champs marqués d’un astérisque sont obligatoires. Vos informations sont enregistrées dans votre espace professionnel.</p></div>
+            <label
+              >Nom déclaré à l’inscription CRIC<input
+                id="registered_full_name"
+                readonly
+                aria-label="Nom déclaré lors de l’inscription" /></label
+            ><label
+              >Courriel professionnel déclaré à l’inscription<input
+                id="professional_email"
+                type="email"
+                readonly
+            /></label>
+            <p class="muted">
+              Le nom complet et le courriel proviennent de votre inscription
+              CRIC. Vérifiez la répartition prénom/nom lors du premier
+              remplissage.
+            </p>
+            <div class="madic-profile-two">
+              <label
+                >Prénom *<input
+                  id="first_name"
+                  required
+                  maxlength="120"
+                  autocomplete="given-name" /></label
+              ><label
+                >Nom *<input
+                  id="last_name"
+                  required
+                  maxlength="120"
+                  autocomplete="family-name"
+              /></label>
+            </div>
+            <div class="madic-profile-two">
+              <label
+                >Titre professionnel *<input
+                  id="professional_title"
+                  required
+                  maxlength="150"
+                  placeholder="Consultant en immigration" /></label
+              ><label
+                >Numéro de permis CRIC *<input
+                  id="license_number"
+                  required
+                  maxlength="80"
+                  autocomplete="off"
+              /></label>
+            </div>
+            <label
+              >Nom de l’entreprise *<input
+                id="business_name"
+                required
+                maxlength="200" /></label
+            ><label
+              >Site Web de l’entreprise (facultatif)<input
+                id="website_url"
+                type="url"
+                maxlength="500"
+                placeholder="https://exemple.ca"
+                inputmode="url" /></label
+            ><label
+              >Téléphone professionnel *<input
+                id="phone"
+                type="tel"
+                required
+                maxlength="50"
+                autocomplete="tel"
+            /></label>
+            <section
+              class="madic-address-section"
+              aria-labelledby="professionalAddressTitle"
+            >
+              <h2 id="professionalAddressTitle">
+                Adresse professionnelle du cabinet
+              </h2>
+              <p class="muted">
+                Renseignez les champs ci-dessous. L’ancienne adresse est
+                conservée jusqu’à votre premier enregistrement.
+              </p>
+              <div class="madic-profile-two">
+                <label
+                  >Numéro civique *<input
+                    id="address_number"
+                    required
+                    maxlength="30"
+                    autocomplete="address-line1" /></label
+                ><label
+                  >Rue *<input id="address_street" required maxlength="200"
+                /></label>
+              </div>
+              <div class="madic-profile-two">
+                <label
+                  >Bureau, suite ou local (facultatif)<input
+                    id="address_unit"
+                    maxlength="100" /></label
+                ><label
+                  >Ville *<input
+                    id="address_city"
+                    required
+                    maxlength="120"
+                    autocomplete="address-level2"
+                /></label>
+              </div>
+              <div class="madic-profile-two">
+                <label
+                  >Province, État ou district *<input
+                    id="address_region"
+                    required
+                    maxlength="120"
+                    autocomplete="address-level1" /></label
+                ><label
+                  >Code postal (facultatif)<input
+                    id="address_postal_code"
+                    maxlength="30"
+                    autocomplete="postal-code"
+                /></label>
+              </div>
+              <label
+                >Pays *<select
+                  id="address_country"
+                  required
+                  autocomplete="country-name"
+                >
+                  <option value="">Sélectionner un pays</option>
+                  <option value="Afghanistan">Afghanistan</option>
+                  <option value="Afrique du Sud">Afrique du Sud</option>
+                  <option value="Albanie">Albanie</option>
+                  <option value="Algérie">Algérie</option>
+                  <option value="Allemagne">Allemagne</option>
+                  <option value="Andorre">Andorre</option>
+                  <option value="Angola">Angola</option>
+                  <option value="Anguilla">Anguilla</option>
+                  <option value="Antarctique">Antarctique</option>
+                  <option value="Antigua-et-Barbuda">Antigua-et-Barbuda</option>
+                  <option value="Arabie saoudite">Arabie saoudite</option>
+                  <option value="Argentine">Argentine</option>
+                  <option value="Arménie">Arménie</option>
+                  <option value="Aruba">Aruba</option>
+                  <option value="Australie">Australie</option>
+                  <option value="Autriche">Autriche</option>
+                  <option value="Azerbaïdjan">Azerbaïdjan</option>
+                  <option value="Bahamas">Bahamas</option>
+                  <option value="Bahreïn">Bahreïn</option>
+                  <option value="Bangladesh">Bangladesh</option>
+                  <option value="Barbade">Barbade</option>
+                  <option value="Belgique">Belgique</option>
+                  <option value="Belize">Belize</option>
+                  <option value="Bermudes">Bermudes</option>
+                  <option value="Bhoutan">Bhoutan</option>
+                  <option value="Biélorussie">Biélorussie</option>
+                  <option value="Bolivie">Bolivie</option>
+                  <option value="Bosnie-Herzégovine">Bosnie-Herzégovine</option>
+                  <option value="Botswana">Botswana</option>
+                  <option value="Brunei">Brunei</option>
+                  <option value="Brésil">Brésil</option>
+                  <option value="Bulgarie">Bulgarie</option>
+                  <option value="Burkina Faso">Burkina Faso</option>
+                  <option value="Burundi">Burundi</option>
+                  <option value="Bénin">Bénin</option>
+                  <option value="Cambodge">Cambodge</option>
+                  <option value="Cameroun">Cameroun</option>
+                  <option value="Canada">Canada</option>
+                  <option value="Cap-Vert">Cap-Vert</option>
+                  <option value="Chili">Chili</option>
+                  <option value="Chine">Chine</option>
+                  <option value="Chypre">Chypre</option>
+                  <option value="Colombie">Colombie</option>
+                  <option value="Comores">Comores</option>
+                  <option value="Congo-Brazzaville">Congo-Brazzaville</option>
+                  <option value="Congo-Kinshasa">Congo-Kinshasa</option>
+                  <option value="Corée du Nord">Corée du Nord</option>
+                  <option value="Corée du Sud">Corée du Sud</option>
+                  <option value="Costa Rica">Costa Rica</option>
+                  <option value="Croatie">Croatie</option>
+                  <option value="Cuba">Cuba</option>
+                  <option value="Curaçao">Curaçao</option>
+                  <option value="Côte d’Ivoire">Côte d’Ivoire</option>
+                  <option value="Danemark">Danemark</option>
+                  <option value="Djibouti">Djibouti</option>
+                  <option value="Dominique">Dominique</option>
+                  <option value="Espagne">Espagne</option>
+                  <option value="Estonie">Estonie</option>
+                  <option value="Eswatini">Eswatini</option>
+                  <option value="Fidji">Fidji</option>
+                  <option value="Finlande">Finlande</option>
+                  <option value="France">France</option>
+                  <option value="Gabon">Gabon</option>
+                  <option value="Gambie">Gambie</option>
+                  <option value="Ghana">Ghana</option>
+                  <option value="Gibraltar">Gibraltar</option>
+                  <option value="Grenade">Grenade</option>
+                  <option value="Groenland">Groenland</option>
+                  <option value="Grèce">Grèce</option>
+                  <option value="Guadeloupe">Guadeloupe</option>
+                  <option value="Guam">Guam</option>
+                  <option value="Guatemala">Guatemala</option>
+                  <option value="Guernesey">Guernesey</option>
+                  <option value="Guinée">Guinée</option>
+                  <option value="Guinée équatoriale">Guinée équatoriale</option>
+                  <option value="Guinée-Bissau">Guinée-Bissau</option>
+                  <option value="Guyana">Guyana</option>
+                  <option value="Guyane française">Guyane française</option>
+                  <option value="Géorgie">Géorgie</option>
+                  <option value="Géorgie du Sud-et-les Îles Sandwich du Sud">
+                    Géorgie du Sud-et-les Îles Sandwich du Sud
+                  </option>
+                  <option value="Haïti">Haïti</option>
+                  <option value="Honduras">Honduras</option>
+                  <option value="Hongrie">Hongrie</option>
+                  <option value="Inde">Inde</option>
+                  <option value="Indonésie">Indonésie</option>
+                  <option value="Irak">Irak</option>
+                  <option value="Iran">Iran</option>
+                  <option value="Irlande">Irlande</option>
+                  <option value="Islande">Islande</option>
+                  <option value="Israël">Israël</option>
+                  <option value="Italie">Italie</option>
+                  <option value="Jamaïque">Jamaïque</option>
+                  <option value="Japon">Japon</option>
+                  <option value="Jersey">Jersey</option>
+                  <option value="Jordanie">Jordanie</option>
+                  <option value="Kazakhstan">Kazakhstan</option>
+                  <option value="Kenya">Kenya</option>
+                  <option value="Kirghizstan">Kirghizstan</option>
+                  <option value="Kiribati">Kiribati</option>
+                  <option value="Koweït">Koweït</option>
+                  <option value="La Réunion">La Réunion</option>
+                  <option value="Laos">Laos</option>
+                  <option value="Lesotho">Lesotho</option>
+                  <option value="Lettonie">Lettonie</option>
+                  <option value="Liban">Liban</option>
+                  <option value="Liberia">Liberia</option>
+                  <option value="Libye">Libye</option>
+                  <option value="Liechtenstein">Liechtenstein</option>
+                  <option value="Lituanie">Lituanie</option>
+                  <option value="Luxembourg">Luxembourg</option>
+                  <option value="Macédoine du Nord">Macédoine du Nord</option>
+                  <option value="Madagascar">Madagascar</option>
+                  <option value="Malaisie">Malaisie</option>
+                  <option value="Malawi">Malawi</option>
+                  <option value="Maldives">Maldives</option>
+                  <option value="Mali">Mali</option>
+                  <option value="Malte">Malte</option>
+                  <option value="Maroc">Maroc</option>
+                  <option value="Martinique">Martinique</option>
+                  <option value="Maurice">Maurice</option>
+                  <option value="Mauritanie">Mauritanie</option>
+                  <option value="Mayotte">Mayotte</option>
+                  <option value="Mexique">Mexique</option>
+                  <option value="Micronésie">Micronésie</option>
+                  <option value="Moldavie">Moldavie</option>
+                  <option value="Monaco">Monaco</option>
+                  <option value="Mongolie">Mongolie</option>
+                  <option value="Montserrat">Montserrat</option>
+                  <option value="Monténégro">Monténégro</option>
+                  <option value="Mozambique">Mozambique</option>
+                  <option value="Myanmar (Birmanie)">Myanmar (Birmanie)</option>
+                  <option value="Namibie">Namibie</option>
+                  <option value="Nauru">Nauru</option>
+                  <option value="Nicaragua">Nicaragua</option>
+                  <option value="Niger">Niger</option>
+                  <option value="Nigeria">Nigeria</option>
+                  <option value="Niue">Niue</option>
+                  <option value="Norvège">Norvège</option>
+                  <option value="Nouvelle-Calédonie">Nouvelle-Calédonie</option>
+                  <option value="Nouvelle-Zélande">Nouvelle-Zélande</option>
+                  <option value="Népal">Népal</option>
+                  <option value="Oman">Oman</option>
+                  <option value="Ouganda">Ouganda</option>
+                  <option value="Ouzbékistan">Ouzbékistan</option>
+                  <option value="Pakistan">Pakistan</option>
+                  <option value="Palaos">Palaos</option>
+                  <option value="Panama">Panama</option>
+                  <option value="Papouasie-Nouvelle-Guinée">
+                    Papouasie-Nouvelle-Guinée
+                  </option>
+                  <option value="Paraguay">Paraguay</option>
+                  <option value="Pays-Bas">Pays-Bas</option>
+                  <option value="Pays-Bas caribéens">Pays-Bas caribéens</option>
+                  <option value="Philippines">Philippines</option>
+                  <option value="Pologne">Pologne</option>
+                  <option value="Polynésie française">
+                    Polynésie française
+                  </option>
+                  <option value="Porto Rico">Porto Rico</option>
+                  <option value="Portugal">Portugal</option>
+                  <option value="Pérou">Pérou</option>
+                  <option value="Qatar">Qatar</option>
+                  <option value="R.A.S. chinoise de Hong Kong">
+                    R.A.S. chinoise de Hong Kong
+                  </option>
+                  <option value="R.A.S. chinoise de Macao">
+                    R.A.S. chinoise de Macao
+                  </option>
+                  <option value="Roumanie">Roumanie</option>
+                  <option value="Royaume-Uni">Royaume-Uni</option>
+                  <option value="Russie">Russie</option>
+                  <option value="Rwanda">Rwanda</option>
+                  <option value="République centrafricaine">
+                    République centrafricaine
+                  </option>
+                  <option value="République dominicaine">
+                    République dominicaine
+                  </option>
+                  <option value="Sahara occidental">Sahara occidental</option>
+                  <option value="Saint-Barthélemy">Saint-Barthélemy</option>
+                  <option value="Saint-Christophe-et-Niévès">
+                    Saint-Christophe-et-Niévès
+                  </option>
+                  <option value="Saint-Marin">Saint-Marin</option>
+                  <option value="Saint-Martin">Saint-Martin</option>
+                  <option value="Saint-Martin (partie néerlandaise)">
+                    Saint-Martin (partie néerlandaise)
+                  </option>
+                  <option value="Saint-Pierre-et-Miquelon">
+                    Saint-Pierre-et-Miquelon
+                  </option>
+                  <option value="Saint-Vincent-et-les Grenadines">
+                    Saint-Vincent-et-les Grenadines
+                  </option>
+                  <option value="Sainte-Hélène">Sainte-Hélène</option>
+                  <option value="Sainte-Lucie">Sainte-Lucie</option>
+                  <option value="Salvador">Salvador</option>
+                  <option value="Samoa">Samoa</option>
+                  <option value="Samoa américaines">Samoa américaines</option>
+                  <option value="Sao Tomé-et-Principe">
+                    Sao Tomé-et-Principe
+                  </option>
+                  <option value="Serbie">Serbie</option>
+                  <option value="Seychelles">Seychelles</option>
+                  <option value="Sierra Leone">Sierra Leone</option>
+                  <option value="Singapour">Singapour</option>
+                  <option value="Slovaquie">Slovaquie</option>
+                  <option value="Slovénie">Slovénie</option>
+                  <option value="Somalie">Somalie</option>
+                  <option value="Soudan">Soudan</option>
+                  <option value="Soudan du Sud">Soudan du Sud</option>
+                  <option value="Sri Lanka">Sri Lanka</option>
+                  <option value="Suisse">Suisse</option>
+                  <option value="Suriname">Suriname</option>
+                  <option value="Suède">Suède</option>
+                  <option value="Svalbard et Jan Mayen">
+                    Svalbard et Jan Mayen
+                  </option>
+                  <option value="Syrie">Syrie</option>
+                  <option value="Sénégal">Sénégal</option>
+                  <option value="Tadjikistan">Tadjikistan</option>
+                  <option value="Tanzanie">Tanzanie</option>
+                  <option value="Taïwan">Taïwan</option>
+                  <option value="Tchad">Tchad</option>
+                  <option value="Tchéquie">Tchéquie</option>
+                  <option value="Terres australes françaises">
+                    Terres australes françaises
+                  </option>
+                  <option value="Territoire britannique de l’océan Indien">
+                    Territoire britannique de l’océan Indien
+                  </option>
+                  <option value="Territoires palestiniens">
+                    Territoires palestiniens
+                  </option>
+                  <option value="Thaïlande">Thaïlande</option>
+                  <option value="Timor oriental">Timor oriental</option>
+                  <option value="Togo">Togo</option>
+                  <option value="Tokelau">Tokelau</option>
+                  <option value="Tonga">Tonga</option>
+                  <option value="Trinité-et-Tobago">Trinité-et-Tobago</option>
+                  <option value="Tunisie">Tunisie</option>
+                  <option value="Turkménistan">Turkménistan</option>
+                  <option value="Turquie">Turquie</option>
+                  <option value="Tuvalu">Tuvalu</option>
+                  <option value="Ukraine">Ukraine</option>
+                  <option value="Uruguay">Uruguay</option>
+                  <option value="Vanuatu">Vanuatu</option>
+                  <option value="Venezuela">Venezuela</option>
+                  <option value="Viêt Nam">Viêt Nam</option>
+                  <option value="Wallis-et-Futuna">Wallis-et-Futuna</option>
+                  <option value="Yémen">Yémen</option>
+                  <option value="Zambie">Zambie</option>
+                  <option value="Zimbabwe">Zimbabwe</option>
+                  <option value="Égypte">Égypte</option>
+                  <option value="Émirats arabes unis">
+                    Émirats arabes unis
+                  </option>
+                  <option value="Équateur">Équateur</option>
+                  <option value="Érythrée">Érythrée</option>
+                  <option value="État de la Cité du Vatican">
+                    État de la Cité du Vatican
+                  </option>
+                  <option value="États-Unis">États-Unis</option>
+                  <option value="Éthiopie">Éthiopie</option>
+                  <option value="Île Bouvet">Île Bouvet</option>
+                  <option value="Île Christmas">Île Christmas</option>
+                  <option value="Île de Man">Île de Man</option>
+                  <option value="Île Norfolk">Île Norfolk</option>
+                  <option value="Îles Caïmans">Îles Caïmans</option>
+                  <option value="Îles Cocos">Îles Cocos</option>
+                  <option value="Îles Cook">Îles Cook</option>
+                  <option value="Îles Féroé">Îles Féroé</option>
+                  <option value="Îles Heard-et-MacDonald">
+                    Îles Heard-et-MacDonald
+                  </option>
+                  <option value="Îles Malouines">Îles Malouines</option>
+                  <option value="Îles Mariannes du Nord">
+                    Îles Mariannes du Nord
+                  </option>
+                  <option value="Îles Marshall">Îles Marshall</option>
+                  <option value="Îles mineures éloignées des États-Unis">
+                    Îles mineures éloignées des États-Unis
+                  </option>
+                  <option value="Îles Pitcairn">Îles Pitcairn</option>
+                  <option value="Îles Salomon">Îles Salomon</option>
+                  <option value="Îles Turques-et-Caïques">
+                    Îles Turques-et-Caïques
+                  </option>
+                  <option value="Îles Vierges britanniques">
+                    Îles Vierges britanniques
+                  </option>
+                  <option value="Îles Vierges des États-Unis">
+                    Îles Vierges des États-Unis
+                  </option>
+                  <option value="Îles Åland">Îles Åland</option>
+                </select></label
+              ><label
+                >Adresse complète (générée automatiquement)<textarea
+                  id="business_address"
+                  required
+                  maxlength="500"
+                  rows="3"
+                  readonly
+                ></textarea>
+              </label>
+            </section>
+            <label
+              >Logo de l’entreprise * (PNG, JPG ou WebP, 5 Mo max.)<input
+                id="logo"
+                type="file"
+                accept="image/png,image/jpeg,image/webp"
+            /></label>
+            <p class="muted">
+              Lors d’une modification, le logo déjà enregistré est conservé si
+              vous ne sélectionnez pas de nouveau fichier.
+            </p>
+            <div class="madic-profile-preview">
+              <img
+                id="logoPreview"
+                alt="Aperçu du logo de l’entreprise"
+                hidden
+              />
+              <p id="logoPreviewStatus" role="status"></p>
+            </div>
+            <label
+              >Photo professionnelle (facultatif)<input
+                id="photo"
+                type="file"
+                accept="image/png,image/jpeg,image/webp"
+            /></label>
+            <div class="madic-profile-preview">
+              <img
+                id="photoPreview"
+                alt="Aperçu de la photo professionnelle"
+                hidden
+              />
+              <p id="photoPreviewStatus" role="status"></p>
+            </div>
+            <label
+              >Valeurs de l’entreprise (facultatif)<textarea
+                id="business_values"
+                rows="3"
+              ></textarea>
+            </label>
+            <section
+              class="madic-payment-section"
+              aria-labelledby="madicPaymentTitle"
+            >
+              <div class="madic-payment-heading">
+                <div>
+                  <p class="madic-payment-eyebrow">
+                    FACTURATION ET ENCAISSEMENT
+                  </p>
+                  <h2 id="madicPaymentTitle">Modes de paiement</h2>
+                  <p class="muted">
+                    Choisissez les moyens de paiement acceptés par votre
+                    cabinet. Ils seront repris automatiquement dans vos
+                    contrats.
+                  </p>
+                </div>
+              </div>
+              <div class="madic-payment-grid">
+                <div class="madic-payment-card madic-payment-card--interac">
+                  <label class="madic-payment-choice" for="payment_interac"
+                    ><input type="checkbox" id="payment_interac" /><span
+                      class="madic-payment-choice-text"
+                      ><strong>Virement Interac</strong
+                      ><small
+                        >Recevez un virement par courriel ou téléphone</small
+                      ></span
+                    ></label
+                  >
+                  <div
+                    id="payment_interac_details_wrap"
+                    class="madic-payment-detail"
+                    hidden
+                  >
+                    <label for="payment_interac_details"
+                      >Courriel ou numéro pour recevoir les virements</label
+                    ><input
+                      id="payment_interac_details"
+                      maxlength="180"
+                      placeholder="paiement@cabinet.ca ou 514 555-1234"
+                      autocomplete="off"
+                    />
+                  </div>
+                </div>
+                <div class="madic-payment-card">
+                  <label class="madic-payment-choice" for="payment_cash"
+                    ><input type="checkbox" id="payment_cash" /><span
+                      class="madic-payment-choice-text"
+                      ><strong>Espèces</strong
+                      ><small
+                        >Paiement remis directement au cabinet</small
+                      ></span
+                    ></label
+                  >
+                </div>
+                <div class="madic-payment-card">
+                  <label class="madic-payment-choice" for="payment_portal"
+                    ><input type="checkbox" id="payment_portal" /><span
+                      class="madic-payment-choice-text"
+                      ><strong>Portail MADIC</strong
+                      ><small>Option de paiement par le portail</small></span
+                    ></label
+                  >
+                </div>
+              </div>
+              <p class="madic-payment-footnote">
+                Le paiement par Portail MADIC n'est pas encore activé : cette
+                option ne déclenche aucun encaissement.
+              </p>
+              <input id="payment_details" type="hidden" />
+            </section>
+            <div class="madic-profile-savebar"><span class="madic-profile-savehint">Vos modifications ne sont enregistrées qu’après confirmation.</span><button id="profileSave" type="submit">
+              Enregistrer mon profil
+            </button></div>
+          </form>
+        </main>
+        <footer>© MAD Immigration Canadienne · Portail sécurisé</footer>
+        <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+        <script src="assets/config.js"></script>
+        <script src="assets/cric-professional-profile.js"></script>
+      </div>
+    </div>
+    <script src="assets/madic-datahubz-unified.js"></script>
+<script src="assets/madic-i18n-cric.js?v=20261102d"></script>
+    <div id="madicProfileSuccess" class="madic-profile-modal" hidden>
+      <section
+        class="madic-profile-dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="madicProfileSuccessTitle"
+        aria-describedby="madicProfileSuccessText"
+        tabindex="-1"
+      >
+        <h2 id="madicProfileSuccessTitle">Profil mis à jour</h2>
+        <p id="madicProfileSuccessText">
+          Les modifications de votre profil professionnel ont été enregistrées
+          avec succès.
+        </p>
+        <div class="madic-profile-modal-actions">
+          <button type="button" id="madicProfileClose">Fermer</button>
+          <a href="cric-dashboard.html" class="madic-profile-dashboard"
+            >Vue d'ensemble</a
+          >
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

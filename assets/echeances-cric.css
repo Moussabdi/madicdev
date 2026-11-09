@@ -1,0 +1,27 @@
+.deadline-shell{max-width:1100px;margin:35px auto;padding:0 20px 60px}.deadline-shell .panel{padding:24px;margin:20px 0}.deadline-shell form{display:grid;gap:12px;max-width:650px}.deadline-shell label{font-weight:600}.deadline-shell input,.deadline-shell select{width:100%;box-sizing:border-box;min-height:43px}.deadline-shell form button{justify-self:start}.deadline-table{overflow-x:auto}.deadline-table table{width:100%;min-width:680px;border-collapse:collapse}.deadline-table th,.deadline-table td{text-align:left;padding:12px;border-bottom:1px solid #56677c}.deadline-top{display:flex;justify-content:space-between;align-items:center;gap:12px}.deadline-tag{font-weight:700}.deadline-tag.late{color:#fda4af}.deadline-tag.soon{color:#facc15}.deadline-tag.done{color:#86efac}@media(max-width:650px){.deadline-shell{padding:0 12px}.deadline-shell .panel{padding:15px}}
+
+/* Etape 5 : structure et accessibilite des echeances. */
+.deadline-shell{min-width:0}.deadline-shell h1{line-height:1.2}.deadline-shell .panel{border-radius:16px;min-width:0}
+.deadline-shell form{grid-template-columns:minmax(0,1fr)}
+.deadline-shell form input,.deadline-shell form select{max-width:100%;border-radius:9px}
+.deadline-shell .deadline-table{max-width:100%;border-radius:12px}
+.deadline-shell .deadline-table th,.deadline-shell .deadline-table td{vertical-align:middle}
+.deadline-shell :is(button,input,select,a):focus-visible{outline:3px solid #38bfd8;outline-offset:3px}
+.deadline-shell button:disabled{opacity:.55;cursor:not-allowed}
+.deadline-shell #deadlineMessage:not(:empty){padding:10px 12px;border-left:3px solid #38bfd8}
+@media(max-width:650px){.deadline-shell .deadline-top{align-items:flex-start;flex-wrap:wrap}.deadline-shell form button{width:100%;justify-self:stretch}}
+
+/* Étape 5/9 — échéances CRIC, lisibilité et états. */
+.deadline-shell{width:100%;box-sizing:border-box}
+.deadline-shell .panel{overflow-wrap:anywhere}
+.deadline-shell .deadline-top h2{margin:0}
+.deadline-shell .deadline-table{border:1px solid #29475e;overscroll-behavior-x:contain}
+.deadline-shell .deadline-table th{white-space:nowrap}
+.deadline-shell .deadline-table td{line-height:1.45}
+.deadline-shell form label{display:block;margin-top:3px}
+.deadline-shell form button{min-height:42px}
+.deadline-shell .deadline-tag{display:inline-block;padding:4px 8px;border-radius:8px}
+.deadline-shell .deadline-tag.late{background:rgba(253,164,175,.1)}
+.deadline-shell .deadline-tag.soon{background:rgba(250,204,21,.1)}
+.deadline-shell .deadline-tag.done{background:rgba(134,239,172,.1)}
+@media(max-width:650px){.deadline-shell{margin:20px auto;padding:0 12px 45px}.deadline-shell .deadline-table{max-width:100%}}

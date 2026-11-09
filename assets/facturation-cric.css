@@ -1,0 +1,84 @@
+main {
+  max-width: 1100px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+.panel {
+  padding: 1.4rem;
+  border: 1px solid #d6dde4;
+  border-radius: 12px;
+  margin: 1.4rem 0;
+}
+form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+}
+label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+label input,
+label select,
+label textarea {
+  padding: 0.7rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+.hint {
+  font-size: 0.85rem;
+  color: #555;
+}
+.tablewrap {
+  overflow-x: auto;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+td,
+th {
+  padding: 0.65rem;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+}
+button {
+  cursor: pointer;
+  margin: 0.2rem;
+}
+@media print {
+  header,
+  form,
+  button,
+  .panel {
+    display: none !important;
+  }
+}
+
+.full {
+  grid-column: 1/-1;
+}
+#logoPreview {
+  max-width: 220px;
+  max-height: 110px;
+  object-fit: contain;
+  display: block;
+  margin: 0.6rem 0;
+}
+#logoPreview[hidden] {
+  display: none;
+}
+#itemRows input {
+  min-width: 90px;
+}
+#itemRows .item-desc {
+  min-width: 240px;
+}
+#itemRows td {
+  vertical-align: middle;
+}
+#subtotal {
+  font-weight: 700;
+  text-align: right;
+}

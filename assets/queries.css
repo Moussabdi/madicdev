@@ -1,0 +1,863 @@
+@media screen and (max-width: 1200px) {
+  body {
+    font-size: 1.6rem;
+  }
+
+  /*********************************/
+  /* HEADER */
+  /*********************************/
+  .logo {
+    height: 6rem;
+    padding: 2rem 0 0 2rem;
+  }
+  header h1 {
+    font-size: 3.5;
+  }
+  h1 {
+    font-size: 3rem;
+  }
+  h2 {
+    font-size: 2rem;
+  }
+  h3 {
+    font-size: 1.5rem;
+  }
+
+  /*********************************/
+  /* NAVIGATION*/
+  /*********************************/
+  .navbar__container {
+    height: 9.5rem;
+  }
+  .navbar__item {
+    height: 9.5rem;
+  }
+  .navbar__item .navbar__links .navbar__btn {
+    padding: 0;
+  }
+  /*********************************/
+  /* Index*/
+  /*********************************/
+  .contenu-banniere {
+    padding: 15rem 0 15rem 0;
+  }
+  .deuxcolvideotext__item {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  .deuxcolvideotext__item__contenu__text {
+    width: 100%;
+    margin-top: 2rem;
+  }
+  .deuxcolvideotext__item__video {
+    margin-top: 1rem;
+  }
+
+  /*********************************/
+  /* Propos*/
+  /*********************************/
+
+  /*********************************/
+  /* Service*/
+  /*********************************/
+
+  /*********************************/
+  /* Forfait*/
+  /*********************************/
+  td,
+  th {
+    padding: 1.5rem;
+  }
+  .th-forfait,
+  .th-prix {
+    padding: 3rem 0 3rem 0;
+    font-size: 2rem;
+  }
+
+  .td-prix__contenu {
+    font-size: 2rem;
+  }
+  .th-inclus {
+    font-size: 2rem;
+  }
+  /*********************************/
+  /* Joindre*/
+  /*********************************/
+  .map {
+    position: relative;
+    padding-bottom: 85%;
+    padding-top: 3rem;
+    height: 0;
+    overflow: hidden;
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  body {
+    font-size: 1.6rem;
+  }
+  .container {
+    max-width: max-content;
+  }
+  /*********************************/
+  /* NAVIGATION*/
+  /*********************************/
+  .navbar__item {
+    height: 5rem;
+    padding: 0;
+  }
+  .navbar__container {
+    display: flex;
+    justify-content: space-between;
+    height: 8rem;
+    z-index: 1;
+    width: 100%;
+    max-width: max-content;
+    padding: 0;
+  }
+
+  .navbar__menu {
+    display: grid;
+    grid-template-columns: auto;
+    margin: 0;
+    position: absolute;
+    top: -100rem;
+    left: 0;
+    opacity: 1;
+    transition: all 0.5s ease;
+    z-index: -1;
+    background: #fff;
+    width: 100%;
+  }
+
+  .navbar__menu.active {
+    background: rgba(255, 255, 255, 0.9);
+    top: 100%;
+    opacity: 1;
+    transition: all 0.5s ease;
+    z-index: 99;
+    height: 60vh;
+    width: 100%;
+    font-size: 1.6rem;
+  }
+
+  .navbar__toggle .bar {
+    width: 2.5rem;
+    height: 3px;
+    margin: 5px auto;
+    transition: all 0.3s ease-in-out;
+    background: #fff;
+  }
+
+  .navbar__links:link,
+  .navbar__links:visited {
+    color: #000;
+    text-align: center;
+    padding: 0;
+    width: 100%;
+    display: table;
+  }
+  .navbar__links:hover,
+  .navbar__links:active {
+    background-color: #2e4247;
+    color: #fff;
+    transition: all 0.3 ease;
+    text-decoration: none;
+  }
+  .navbar__btn {
+    padding: 0;
+  }
+
+  .button {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    height: 5rem;
+  }
+
+  #mobile-menu {
+    position: absolute;
+    top: 20%;
+    right: 5%;
+    transform: translate(5%, 20%);
+  }
+
+  .navbar__toggle .bar {
+    display: block;
+    cursor: pointer;
+  }
+
+  #mobile-menu.is-active .bar:nth-child(2) {
+    opacity: 0;
+  }
+
+  #mobile-menu.is-active .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+
+  #mobile-menu.is-active .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+  /*********************************/
+  /* Index*/
+  /*********************************/
+
+  /*********************************/
+  /* Propos*/
+  /*********************************/
+
+  /*********************************/
+  /* Service*/
+  /*********************************/
+  .grid__3__cols {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  /*********************************/
+  /* Forfait*/
+  /*********************************/
+  th {
+    display: none;
+  }
+
+  td {
+    display: block;
+  }
+  td:first-child {
+    padding-top: 2rem;
+  }
+  td:last-child {
+    padding-bottom: 1rem;
+  }
+  td {
+    display: grid;
+    align-items: center;
+    gap: 0.5rem;
+    grid-template-columns: 15ch auto;
+  }
+  td::before {
+    content: attr(td-des__item);
+    font-weight: 600;
+    text-transform: capitalize;
+  }
+  td:nth-of-type(2)::before {
+    content: "Évaluation préliminaire";
+  }
+  td:nth-of-type(3)::before {
+    content: "Immigration Économique";
+  }
+  td:nth-of-type(4)::before {
+    content: "Parrainage";
+  }
+  td:nth-of-type(5)::before {
+    content: "Résidence temporaire";
+  }
+  table {
+    border-collapse: collapse;
+    text-align: center;
+    margin: 3rem 0 5rem 0;
+  }
+  .th-forfait,
+  .th-prix {
+    padding: 1.3rem 0 1.3rem 0;
+    font-size: 1.3rem;
+  }
+
+  .td-prix__contenu {
+    font-size: 1.3rem;
+  }
+  .th-inclus {
+    font-size: 1.1rem;
+  }
+  .th-vide2 {
+    padding: 1.5rem 0 1.5rem 0;
+  }
+  .td-des__item {
+    max-height: max-content;
+  }
+  /*********************************/
+  /* Joindre*/
+  /*********************************/
+
+  .textnumero__item {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+
+  .map {
+    position: relative;
+    padding-bottom: 85%;
+    padding-top: 3rem;
+    height: 0;
+    overflow: hidden;
+  }
+  .textnumero__item1__numero a {
+    padding: 1rem 0 1rem 0;
+    font-size: 2.5rem;
+  }
+  .textnumero__item2__email a {
+    margin: 2rem 0 0 0;
+    padding: 1rem 0 1rem 0;
+    font-size: 2.5rem;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  body {
+    font-size: 1.6rem;
+  }
+  .container {
+    max-width: max-content;
+  }
+  /*********************************/
+  /* NAVIGATION*/
+  /*********************************/
+  .navbar__item {
+    height: 5rem;
+    padding: 0;
+  }
+  .navbar__container {
+    display: flex;
+    justify-content: space-between;
+    height: 8rem;
+    z-index: 1;
+    width: 100%;
+    max-width: max-content;
+    padding: 0;
+  }
+
+  .navbar__menu {
+    display: grid;
+    grid-template-columns: auto;
+    margin: 0;
+    position: absolute;
+    top: -100rem;
+    left: 0;
+    opacity: 1;
+    transition: all 0.5s ease;
+    z-index: -1;
+    background: #fff;
+    width: 100%;
+  }
+
+  .navbar__menu.active {
+    background: rgba(255, 255, 255, 0.9);
+    top: 100%;
+    opacity: 1;
+    transition: all 0.5s ease;
+    z-index: 99;
+    height: 60vh;
+    width: 100%;
+    font-size: 1.6rem;
+  }
+
+  .navbar__toggle .bar {
+    width: 2.5rem;
+    height: 3px;
+    margin: 5px auto;
+    transition: all 0.3s ease-in-out;
+    background: #fff;
+  }
+
+  .navbar__links:link,
+  .navbar__links:visited {
+    color: #000;
+    text-align: center;
+    padding: 0;
+    width: 100%;
+    display: table;
+  }
+  .navbar__links:hover,
+  .navbar__links:active {
+    background-color: #2e4247;
+    color: #fff;
+    transition: all 0.3 ease;
+    text-decoration: none;
+  }
+  .navbar__btn {
+    padding: 0;
+  }
+
+  .button {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    height: 5rem;
+  }
+
+  #mobile-menu {
+    position: absolute;
+    top: 20%;
+    right: 5%;
+    transform: translate(5%, 20%);
+  }
+
+  .navbar__toggle .bar {
+    display: block;
+    cursor: pointer;
+  }
+
+  #mobile-menu.is-active .bar:nth-child(2) {
+    opacity: 0;
+  }
+
+  #mobile-menu.is-active .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+
+  #mobile-menu.is-active .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+  /*********************************/
+  /* Index*/
+  /*********************************/
+  .positionVideo {
+    width: 52rem;
+    height: 31.5rem;
+  }
+  .deuxcolvideotext__item__contenu__text {
+    width: 95%;
+    margin-top: 2rem;
+  }
+  /*********************************/
+  /* Propos*/
+  /*********************************/
+
+  /*********************************/
+  /* Service*/
+  /*********************************/
+  .grid__3__cols {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  /*********************************/
+  /* Forfait*/
+  /*********************************/
+  th {
+    display: none;
+  }
+
+  td {
+    display: block;
+  }
+  td:first-child {
+    padding-top: 2rem;
+  }
+  td:last-child {
+    padding-bottom: 1rem;
+  }
+  td {
+    display: grid;
+    align-items: center;
+    gap: 0.5rem;
+    grid-template-columns: 15ch auto;
+  }
+  td::before {
+    content: attr(td-des__item);
+    font-weight: 600;
+    text-transform: capitalize;
+  }
+  td:nth-of-type(2)::before {
+    content: "Évaluation préliminaire";
+  }
+  td:nth-of-type(3)::before {
+    content: "Immigration Économique";
+  }
+  td:nth-of-type(4)::before {
+    content: "Parrainage";
+  }
+  td:nth-of-type(5)::before {
+    content: "Résidence temporaire";
+  }
+  table {
+    border-collapse: collapse;
+    text-align: center;
+    margin: 3rem 0 5rem 0;
+  }
+  .th-forfait,
+  .th-prix {
+    padding: 1.3rem 0 1.3rem 0;
+    font-size: 1.3rem;
+  }
+
+  .td-prix__contenu {
+    font-size: 1.3rem;
+  }
+  .th-inclus {
+    font-size: 1.1rem;
+  }
+  .th-vide2 {
+    padding: 1.5rem 0 1.5rem 0;
+  }
+  .td-des__item {
+    max-height: max-content;
+  }
+  /*********************************/
+  /* Joindre*/
+  /*********************************/
+  .textnumero__item {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+
+  .map {
+    position: relative;
+    padding-bottom: 85%;
+    padding-top: 3rem;
+    height: 0;
+    overflow: hidden;
+  }
+  .textnumero__item1__numero a {
+    padding: 1rem 0 1rem 0;
+    font-size: 2rem;
+  }
+  .textnumero__item2__email a {
+    margin: 2rem 0 0 0;
+    padding: 1rem 0 1rem 0;
+    font-size: 2rem;
+  }
+  /*********************************/
+  /* Service*/
+  /*********************************/
+  .grid__3__cols {
+    column-gap: 2rem;
+    row-gap: 4.8rem;
+    grid-template-columns: 1fr 1fr;
+  }
+  .troiscolimgtext__item__contenu:nth-of-type(4) {
+    grid-column: 2/3;
+    grid-row: 1/2;
+  }
+  /*********************************/
+  /* servicesDetail */
+  /*********************************/
+
+  /*********************************/
+  /* Footer*/
+  /*********************************/
+  .footer {
+    margin-top: 5rem;
+    padding: 5rem 0;
+  }
+  .grid--footer {
+    grid-template-columns: 1fr 1fr 1fr;
+    row-gap: 4rem;
+  }
+  .footer-logo {
+    margin-bottom: 8rem;
+  }
+}
+
+@media screen and (max-width: 570px) {
+  body {
+    font-size: 1.6rem;
+  }
+  .container {
+    max-width: max-content;
+  }
+
+  /*********************************/
+  /* Header */
+  /*********************************/
+
+  header h1 {
+    font-size: 3.5;
+  }
+
+  h1 {
+    font-size: 3rem;
+  }
+  h2 {
+    font-size: 2rem;
+  }
+  h3 {
+    font-size: 1.5rem;
+  }
+  /*********************************/
+  /* NAVIGATION*/
+  /*********************************/
+  .navbar__item {
+    height: 5rem;
+    padding: 0;
+  }
+  .navbar__container {
+    display: flex;
+    justify-content: space-between;
+    height: 8rem;
+    z-index: 1;
+    width: 100%;
+    max-width: max-content;
+    padding: 0;
+  }
+
+  .navbar__menu {
+    display: grid;
+    grid-template-columns: auto;
+    margin: 0;
+    position: absolute;
+    top: -100rem;
+    left: 0;
+    opacity: 1;
+    transition: all 0.5s ease;
+    z-index: -1;
+    background: #fff;
+  }
+
+  .navbar__menu.active {
+    background: rgba(255, 255, 255, 0.9);
+    top: 100%;
+    opacity: 1;
+    transition: all 0.5s ease;
+    z-index: 99;
+    height: 60vh;
+    font-size: 1.6rem;
+  }
+
+  .navbar__toggle .bar {
+    width: 2.5rem;
+    height: 3px;
+    margin: 5px auto;
+    transition: all 0.3s ease-in-out;
+    background: #fff;
+  }
+
+  .navbar__links:link,
+  .navbar__links:visited {
+    color: #000;
+    text-align: center;
+    padding: 0;
+    width: 100%;
+    display: table;
+  }
+  .navbar__links:hover,
+  .navbar__links:active {
+    background-color: #2e4247;
+    color: #fff;
+    transition: all 0.3 ease;
+    text-decoration: none;
+  }
+  .navbar__btn {
+    padding: 0;
+  }
+
+  .button {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    height: 5rem;
+  }
+
+  #mobile-menu {
+    position: absolute;
+    top: 20%;
+    right: 5%;
+    transform: translate(5%, 20%);
+  }
+
+  .navbar__toggle .bar {
+    display: block;
+    cursor: pointer;
+  }
+
+  #mobile-menu.is-active .bar:nth-child(2) {
+    opacity: 0;
+  }
+
+  #mobile-menu.is-active .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+
+  #mobile-menu.is-active .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+  /*********************************/
+  /* Index*/
+  /*********************************/
+  .index_section1 {
+    background-position: 50% 20%;
+  }
+  .contenu-banniere {
+    padding: 1.8rem;
+  }
+  .deuxcolvideotext__item {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  .positionVideo {
+    width: 29rem;
+    height: 31.5rem;
+  }
+  .deuxcolvideotext__item__contenu__text {
+    width: 90%;
+    margin-top: 2rem;
+  }
+  .deuxcolvideotext__item__video {
+    margin-top: 1rem;
+  }
+
+  /*********************************/
+  /* Propos*/
+  /*********************************/
+
+  /*********************************/
+  /* Service*/
+  /*********************************/
+  .grid__3__cols {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  /*********************************/
+  /* Forfait*/
+  /*********************************/
+  th {
+    display: none;
+  }
+
+  td {
+    display: block;
+  }
+  td:first-child {
+    padding-top: 2rem;
+  }
+  td:last-child {
+    padding-bottom: 1rem;
+  }
+  td {
+    display: grid;
+    align-items: center;
+    gap: 0.5rem;
+    grid-template-columns: 15ch auto;
+  }
+  td::before {
+    content: attr(td-des__item);
+    font-weight: 600;
+    text-transform: capitalize;
+  }
+  td:nth-of-type(2)::before {
+    content: "Évaluation préliminaire";
+  }
+  td:nth-of-type(3)::before {
+    content: "Immigration Économique";
+  }
+  td:nth-of-type(4)::before {
+    content: "Parrainage";
+  }
+  td:nth-of-type(5)::before {
+    content: "Résidence temporaire";
+  }
+  table {
+    border-collapse: collapse;
+    text-align: center;
+    margin: 3rem 0 5rem 0;
+  }
+  .th-forfait,
+  .th-prix {
+    padding: 1.3rem 0 1.3rem 0;
+    font-size: 1.3rem;
+  }
+
+  .td-prix__contenu {
+    font-size: 1.3rem;
+  }
+  .th-inclus {
+    font-size: 1.1rem;
+  }
+  .th-vide2 {
+    padding: 1.5rem 0 1.5rem 0;
+  }
+  .td-des__item {
+    max-height: max-content;
+  }
+  /*********************************/
+  /* Joindre*/
+  /*********************************/
+  .textnumero__item {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+  .textnumero__item2 {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 2rem;
+    align-items: flex-start;
+  }
+  .map {
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 3rem;
+    height: 0;
+    overflow: hidden;
+  }
+  .textnumero__item1__numero a {
+    padding: 1rem 0 1rem 0;
+    font-size: 1.6rem;
+  }
+  .textnumero__item2__email a {
+    margin: 2rem 0 0 0;
+    padding: 1rem 0 1rem 0;
+    font-size: 1.4rem;
+  }
+  /*********************************/
+  /* Formulaire*/
+  /*********************************/
+  form {
+    font-size: 1.5rem;
+  }
+  .form_info_client,
+  .form_info_facultatif {
+    width: 90%;
+  }
+  .form_info_client {
+    margin: 0 0 5rem 0;
+  }
+  input,
+  select {
+    font-size: 1.5rem;
+  }
+  fieldset legend {
+    font-size: 2rem;
+  }
+  /*********************************/
+  /* servicesDetail */
+  /*********************************/
+  .deuxcolimgtxt {
+    display: flex;
+    flex-direction: column;
+    margin-top: 3rem;
+  }
+  .deuxcolimgtxt__item {
+    width: 100%;
+  }
+  .deuxcolimgtxt__aside {
+    width: 100%;
+  }
+  /*********************************/
+  /* Footer*/
+  /*********************************/
+  .footer {
+    margin-top: 5rem;
+    padding: 5rem 0;
+  }
+  .grid--footer {
+    grid-template-columns: 1.5fr;
+    row-gap: 4rem;
+  }
+  .footer-logo {
+    margin-bottom: 8rem;
+  }
+}

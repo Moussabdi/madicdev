@@ -1,0 +1,601 @@
+body.madic-unified[data-page="cric-dashboard"] {
+  --madic-modern-accent: #2bd3ce;
+  --madic-modern-border: #294d67;
+  --madic-modern-card: #102b43;
+}
+
+
+
+
+
+body.madic-unified[data-page="cric-dashboard"] .madic-unified-content {
+  padding: 20px clamp(14px, 2.3vw, 34px) 45px;
+}
+body.madic-unified[data-page="cric-dashboard"] .madic-unified-content > header {
+  background: #102a41;
+  border: 1px solid #31526b;
+  border-radius: 14px;
+  box-shadow: 0 8px 24px #00000018;
+}
+body.madic-unified[data-page="cric-dashboard"] .madic-unified-content > main {
+  max-width: 1450px;
+}
+body.madic-unified[data-page="cric-dashboard"] .madic-cric-wrap {
+  padding: 16px 0 65px;
+}
+body.madic-unified[data-page="cric-dashboard"] .madic-cric-head {
+  position: relative;
+  overflow: hidden;
+  align-items: center;
+  padding: clamp(22px, 3vw, 36px);
+  border: 1px solid #35748b;
+  border-radius: 20px;
+  background:
+    radial-gradient(ellipse at 88% 20%, #236c8a 0, transparent 48%),
+    linear-gradient(115deg, #102c49, #16465f);
+  box-shadow: 0 14px 32px #00000025;
+}
+body.madic-unified[data-page="cric-dashboard"] .madic-cric-head::after {
+  content: "";
+  position: absolute;
+  right: -70px;
+  bottom: -190px;
+  width: 390px;
+  height: 390px;
+  border-radius: 50%;
+  border: 1px solid #9be6ed2b;
+  box-shadow:
+    0 0 0 48px #9be6ed0a,
+    0 0 0 96px #9be6ed08;
+  pointer-events: none;
+}
+body.madic-unified[data-page="cric-dashboard"] .madic-cric-head > * {
+  position: relative;
+  z-index: 1;
+}
+body.madic-unified[data-page="cric-dashboard"] .madic-cric-head h1 {
+  font-size: clamp(1.55rem, 2.4vw, 2.35rem);
+  line-height: 1.18;
+  overflow-wrap: anywhere;
+}
+body.madic-unified[data-page="cric-dashboard"] .madic-cric-kicker {
+  color: #7ee9e6;
+  letter-spacing: 0.11em;
+}
+body.madic-unified[data-page="cric-dashboard"] .madic-cric-notice {
+  border-radius: 12px;
+}
+body.madic-unified[data-page="cric-dashboard"]
+  .madic-unified-content
+  :is(
+    .madic-service-panel,
+    .madic-cric-notifications,
+    #cricReminderPanel,
+    .madic-cric-card
+  ) {
+  border: 1px solid var(--madic-modern-border);
+  border-radius: 17px;
+  box-shadow: 0 7px 23px #00000019;
+}
+body.madic-unified[data-page="cric-dashboard"] .madic-cric-grid {
+  gap: 16px;
+}
+body.madic-unified[data-page="cric-dashboard"] .madic-cric-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+  padding: 23px;
+  min-height: 190px;
+  transition:
+    border-color 0.18s ease,
+    transform 0.18s ease;
+}
+body.madic-unified[data-page="cric-dashboard"] .madic-cric-card:hover {
+  border-color: #3c8b9e;
+  transform: translateY(-2px);
+}
+body.madic-unified[data-page="cric-dashboard"] .madic-cric-card h2 {
+  margin: 0;
+  line-height: 1.3;
+}
+body.madic-unified[data-page="cric-dashboard"] .madic-cric-card p {
+  line-height: 1.55;
+}
+body.madic-unified[data-page="cric-dashboard"]
+  .madic-cric-card
+  .madic-cric-action {
+  margin-top: auto;
+  align-self: flex-start;
+  background: #155c80;
+  border: 1px solid #367c9d;
+  border-radius: 10px;
+}
+body.madic-unified[data-page="cric-dashboard"]
+  .madic-cric-card
+  .madic-cric-action:hover {
+  background: #1a7795;
+}
+body.madic-unified[data-page="cric-dashboard"] .madic-service-overview {
+  gap: 12px;
+}
+body.madic-unified[data-page="cric-dashboard"] .madic-service-overview > div {
+  border-radius: 13px;
+}
+body.madic-unified[data-page="cric-dashboard"] .madic-service-toolbar {
+  gap: 10px;
+}
+body.madic-unified[data-page="cric-dashboard"]
+  .madic-cric-notifications-details
+  > summary {
+  color: #79dfe5;
+}
+body.madic-unified[data-page="cric-dashboard"]
+  :is(button, a, input, select, summary):focus-visible {
+  outline: 3px solid #72e8e6;
+  outline-offset: 3px;
+}
+@media (max-width: 850px) {
+  body.madic-unified[data-page="cric-dashboard"] .madic-unified-content {
+    padding: 14px;
+  }
+  body.madic-unified[data-page="cric-dashboard"] .madic-cric-head {
+    padding: 20px;
+  }
+}
+@media (max-width: 720px) {
+  body.madic-unified[data-page="cric-dashboard"] .madic-cric-grid {
+    grid-template-columns: 1fr;
+  }
+  body.madic-unified[data-page="cric-dashboard"] .madic-cric-head {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  body.madic-unified[data-page="cric-dashboard"] .madic-cric-card{
+    transition: none;
+  }
+  body.madic-unified[data-page="cric-dashboard"] .madic-cric-card:hover {
+    transform: none;
+  }
+}
+
+/* MADIC Etape 2 - dashboard only; all data/permissions remain in existing scripts */
+body.madic-unified[data-page="cric-dashboard"] .madic-cric-head {
+  padding: 22px 26px;
+  margin-bottom: 16px;
+  min-height: 0;
+}
+body.madic-unified[data-page="cric-dashboard"] .madic-cric-head::after {
+  width: 220px;
+  height: 220px;
+  right: -45px;
+  bottom: -120px;
+}
+body.madic-unified[data-page="cric-dashboard"] .madic-cric-head h1 {
+  font-size: clamp(1.35rem, 2vw, 1.9rem);
+}
+body.madic-unified[data-page="cric-dashboard"] .madic-cric-head .muted {
+  margin: 5px 0;
+}
+body.madic-unified[data-page="cric-dashboard"] .madic-v2-summary {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin: 0 0 18px;
+}
+body.madic-unified[data-page="cric-dashboard"] .madic-v2-stat {
+  background: #102b43;
+  border: 1px solid #31546b;
+  border-radius: 14px;
+  padding: 16px 18px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 5px 10px;
+  align-items: center;
+  min-width: 0;
+}
+body.madic-unified[data-page="cric-dashboard"] .madic-v2-stat-icon {
+  grid-row: span 2;
+  color: #66e4e4;
+  background: #163f54;
+  border-radius: 9px;
+  width: 35px;
+  height: 35px;
+  display: grid;
+  place-items: center;
+  font-size: 18px;
+}
+body.madic-unified[data-page="cric-dashboard"] .madic-v2-stat-label {
+  color: #b3ccdc;
+  font-size: 0.82rem;
+}
+body.madic-unified[data-page="cric-dashboard"] .madic-v2-stat strong {
+  font-size: 1.55rem;
+  line-height: 1.1;
+  color: #fff;
+}
+body.madic-unified[data-page="cric-dashboard"] .madic-cric-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  align-items: stretch;
+}
+body.madic-unified[data-page="cric-dashboard"] .madic-cric-card {
+  min-height: 0 !important;
+  height: auto !important;
+  padding: 17px !important;
+  gap: 8px !important;
+  justify-content: flex-start;
+}
+body.madic-unified[data-page="cric-dashboard"] .madic-cric-card h2 {
+  font-size: 1.02rem;
+  line-height: 1.3;
+}
+body.madic-unified[data-page="cric-dashboard"] .madic-cric-card p {
+  margin: 4px 0 !important;
+  line-height: 1.42;
+  font-size: 0.88rem;
+}
+body.madic-unified[data-page="cric-dashboard"]
+  .madic-cric-card
+  .madic-cric-action {
+  margin-top: 10px !important;
+  display: inline-flex;
+  align-items: center;
+  min-height: 35px;
+  color: #fff !important;
+  background: #17688a !important;
+  font-weight: 650;
+  font-size: 0.82rem;
+  padding: 8px 12px;
+}
+body.madic-unified[data-page="cric-dashboard"]
+  .madic-cric-card
+  .madic-cric-action:hover {
+  background: #2185a4 !important;
+}
+body.madic-unified[data-page="cric-dashboard"] .madic-cric-card .secondary {
+  color: #fff !important;
+}
+body.madic-unified[data-page="cric-dashboard"]
+  .madic-cric-card
+  .madic-cric-action[hidden],
+body.madic-unified[data-page="cric-dashboard"] .madic-cric-card [hidden] {
+  display: none !important;
+}
+body.madic-unified[data-page="cric-dashboard"] .madic-service-panel {
+  padding: 18px !important;
+  margin-bottom: 14px;
+}
+body.madic-unified[data-page="cric-dashboard"] .madic-service-create {
+  padding: 10px !important;
+  margin: 10px 0 !important;
+}
+body.madic-unified[data-page="cric-dashboard"] .madic-service-overview {
+  gap: 8px;
+}
+body.madic-unified[data-page="cric-dashboard"] .madic-service-overview > div {
+  padding: 10px 12px;
+}
+body.madic-unified[data-page="cric-dashboard"] .madic-service-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+body.madic-unified[data-page="cric-dashboard"] .madic-service-toolbar select,
+body.madic-unified[data-page="cric-dashboard"] .madic-service-toolbar input {
+  width: auto;
+  min-width: 170px;
+  flex: 1;
+}
+
+body.madic-unified[data-page="cric-dashboard"] .madic-cric-notifications,
+body.madic-unified[data-page="cric-dashboard"] #cricReminderPanel {
+  padding: 17px !important;
+  margin: 12px 0 !important;
+}
+@media (max-width: 1100px) {
+  body.madic-unified[data-page="cric-dashboard"] .madic-v2-summary {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  body.madic-unified[data-page="cric-dashboard"] .madic-cric-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 720px) {
+  body.madic-unified[data-page="cric-dashboard"] .madic-cric-grid {
+    grid-template-columns: 1fr;
+  }
+  body.madic-unified[data-page="cric-dashboard"] .madic-v2-summary {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  body.madic-unified[data-page="cric-dashboard"] .madic-v2-stat {
+    padding: 12px;
+  }
+}
+
+/* Etape 3 : refonte visuelle dans la feuille EXISTANTE, sans script additionnel. */
+body.madic-unified[data-page="cric-dashboard"] { background:#f1f5fb; color:#122746; }
+body.madic-unified[data-page="cric-dashboard"] .madic-unified-content {padding:0 22px 45px; background:#f2f6fc;}
+body.madic-unified[data-page="cric-dashboard"] .madic-unified-content > header {background:#fff; border:0; border-bottom:1px solid #dce6f1; border-radius:0; box-shadow:0 4px 14px #16345c10; margin:0 -22px 18px; padding:14px 24px; min-height:65px; display:flex; align-items:center; justify-content:space-between; gap:16px;}
+body.madic-unified[data-page="cric-dashboard"] .madic-unified-content > header .brand {color:#122a50!important; font-weight:800; letter-spacing:.015em; text-decoration:none; font-size:1.35rem;}
+body.madic-unified[data-page="cric-dashboard"] .madic-unified-content > header .brand small {color:#155d87; font-size:.8em;}
+body.madic-unified[data-page="cric-dashboard"] .toplinks {display:flex;align-items:center;gap:14px;}
+body.madic-unified[data-page="cric-dashboard"] .toplinks>a {color:#183759!important;text-decoration:none;font-weight:700;}
+body.madic-unified[data-page="cric-dashboard"] .madic-top-notification {display:grid;place-items:center;width:34px;height:34px;border:1px solid #dce6f1;border-radius:50%;font-size:1.3rem;order:2;}
+body.madic-unified[data-page="cric-dashboard"] .madic-lang-controls {display:flex;gap:5px;align-items:center;}
+body.madic-unified[data-page="cric-dashboard"] .madic-lang-controls button {border-radius:9px;background:#e5f1fa!important;color:#15415e!important;min-width:40px;}
+body.madic-unified[data-page="cric-dashboard"] .madic-lang-controls button[aria-pressed="true"],body.madic-unified[data-page="cric-dashboard"] .madic-lang-controls button.active {background:#1b9fc0!important;color:#fff!important;}
+body.madic-unified[data-page="cric-dashboard"] .madic-unified-content > main {max-width:1550px;}
+body.madic-unified[data-page="cric-dashboard"] .madic-cric-wrap {padding:0 0 55px;}
+body.madic-unified[data-page="cric-dashboard"] .madic-cric-head {min-height:186px; padding:26px 30px; border:1px solid #b5cde2; border-radius:17px; background:linear-gradient(90deg,#0c2b4f 0%,#174a75dd 47%,#0c2b4f18 100%),url("../img/MADIC_Header_4096x2304.png") center 52%/cover no-repeat; box-shadow:0 8px 22px #1d4a7718; color:#fff; margin-bottom:16px;}
+body.madic-unified[data-page="cric-dashboard"] .madic-cric-head::after {display:none;}
+body.madic-unified[data-page="cric-dashboard"] .madic-cric-identity {display:flex;align-items:center;gap:18px;min-width:0;}
+body.madic-unified[data-page="cric-dashboard"] .madic-cric-avatar {width:68px;height:68px;flex:0 0 68px;display:grid;place-items:center;background:#348fbd;color:white;border:3px solid #fff;border-radius:50%;font-weight:800;box-shadow:0 4px 12px #0003;}
+body.madic-unified[data-page="cric-dashboard"] .madic-cric-head h1 {font-size:clamp(1.4rem,2.2vw,2.1rem);margin:4px 0 7px;color:#fff;}
+body.madic-unified[data-page="cric-dashboard"] .madic-cric-head .muted {color:#e6f4ff!important;}
+body.madic-unified[data-page="cric-dashboard"] .madic-cric-kicker {color:#e1f8ff;}
+body.madic-unified[data-page="cric-dashboard"] #cricLogout {background:#153a5c!important;color:#fff!important;border:1px solid #94bbd0;white-space:nowrap;}
+body.madic-unified[data-page="cric-dashboard"] .madic-v2-summary {margin-bottom:14px;}
+body.madic-unified[data-page="cric-dashboard"] .madic-v2-stat {background:#fff;border-color:#dbe5f0;box-shadow:0 3px 10px #16345c0b;}
+body.madic-unified[data-page="cric-dashboard"] .madic-v2-stat-label {color:#526983;}
+body.madic-unified[data-page="cric-dashboard"] .madic-v2-stat strong {color:#153a5b;}
+body.madic-unified[data-page="cric-dashboard"] .madic-quick-section {background:#fff;border:1px solid #dce6f2;border-radius:16px;padding:16px;margin:0 0 18px;box-shadow:0 5px 16px #13385a0d;}
+body.madic-unified[data-page="cric-dashboard"] .madic-quick-section h2 {color:#183456;margin:0 0 13px;font-size:1.1rem;}
+body.madic-unified[data-page="cric-dashboard"] .madic-quick-grid {display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;}
+body.madic-unified[data-page="cric-dashboard"] .madic-quick-card {position:relative;display:flex;align-items:center;flex-direction:column;justify-content:center;gap:7px;min-height:105px;padding:12px 10px;text-align:center;border:1px solid #cfe1f3;border-radius:12px;background:linear-gradient(150deg,#f9fcff,#e9f4ff);color:#17365a!important;text-decoration:none!important;font-weight:750;font-size:.83rem;transition:transform .15s,box-shadow .15s;}
+body.madic-unified[data-page="cric-dashboard"] .madic-quick-card:hover {transform:translateY(-2px);box-shadow:0 7px 18px #17365a1b;}
+body.madic-unified[data-page="cric-dashboard"] .madic-quick-icon {font-size:1.65rem;color:#197ac3;line-height:1;}
+body.madic-unified[data-page="cric-dashboard"] .madic-quick-arrow {position:absolute;right:10px;bottom:5px;font-size:1.5rem;color:#1b7bb8;}
+body.madic-unified[data-page="cric-dashboard"] .madic-quick-cases {background:#f4f0ff;}
+body.madic-unified[data-page="cric-dashboard"] .madic-quick-appointments {background:#effaf3;}
+body.madic-unified[data-page="cric-dashboard"] .madic-quick-billing {background:#fff8e9;}
+body.madic-unified[data-page="cric-dashboard"] .madic-quick-finances {background:#f4f1ff;}
+body.madic-unified[data-page="cric-dashboard"] .madic-quick-deadlines {background:#fff0f5;}
+body.madic-unified[data-page="cric-dashboard"] .madic-cric-notice {color:#235b3b;background:#e9f9ed;border:1px solid #c5ead1;padding:10px 14px;}
+body.madic-unified[data-page="cric-dashboard"] .madic-cric-notice:empty {display:none;}
+body.madic-unified[data-page="cric-dashboard"] .madic-unified-content :is(.madic-service-panel,.madic-cric-notifications,#cricReminderPanel,.madic-cric-card) {background:#fff!important;color:#172f4c!important;border:1px solid #dce6f2;box-shadow:0 3px 14px #12345a0c;}
+body.madic-unified[data-page="cric-dashboard"] .madic-unified-content :is(.madic-service-panel,.madic-cric-notifications,#cricReminderPanel,.madic-cric-card) :is(h2,h3) {color:#172f4c;}
+body.madic-unified[data-page="cric-dashboard"] .madic-cric-card .madic-cric-action {color:#fff!important;}
+body.madic-unified[data-page="cric-dashboard"] .madic-unified-content .madic-cric-card p {color:#39536d;}
+body.madic-unified[data-page="cric-dashboard"] .madic-cric-grid {grid-template-columns:repeat(3,minmax(0,1fr));}
+body.madic-unified[data-page="cric-dashboard"] .madic-service-panel {color:#183451;}
+body.madic-unified[data-page="cric-dashboard"] :is(#madicQuickProfile,#madicQuickClients,#madicQuickCases,#madicQuickAppointments,#madicQuickBilling,#madicQuickFinances,#madicQuickDeadlines,#madicQuickMessaging) {scroll-margin-top:18px;}
+@media(min-width:1250px){body.madic-unified[data-page="cric-dashboard"] .madic-quick-grid {grid-template-columns:repeat(8,minmax(0,1fr));}}
+@media(max-width:1050px){body.madic-unified[data-page="cric-dashboard"] .madic-quick-grid {grid-template-columns:repeat(4,minmax(0,1fr));}}
+@media(max-width:720px){body.madic-unified[data-page="cric-dashboard"] .madic-cric-head {padding:18px;background-position:center;}body.madic-unified[data-page="cric-dashboard"] .madic-cric-identity {align-items:flex-start;gap:10px;}body.madic-unified[data-page="cric-dashboard"] .madic-cric-avatar {width:44px;height:44px;flex-basis:44px;font-size:.7rem;}body.madic-unified[data-page="cric-dashboard"] .madic-quick-grid {grid-template-columns:repeat(2,minmax(0,1fr));}body.madic-unified[data-page="cric-dashboard"] .madic-unified-content>header {padding:12px 14px;flex-wrap:wrap;}}
+@media(prefers-reduced-motion:reduce){body.madic-unified[data-page="cric-dashboard"] .madic-quick-card {transition:none;}body.madic-unified[data-page="cric-dashboard"] .madic-quick-card:hover {transform:none;}}
+
+/* Étape 4 — ajustements ciblés, sans ajout de feuille ni modification métier */
+body.madic-unified[data-page="cric-dashboard"] .madic-cric-head {background-position:center 48%; min-height:190px;}
+body.madic-unified[data-page="cric-dashboard"] .madic-cric-identity-copy {min-width:0; max-width:750px;}
+body.madic-unified[data-page="cric-dashboard"] .madic-cric-head .muted {text-shadow:0 1px 2px #09213a80;}
+body.madic-unified[data-page="cric-dashboard"] .madic-quick-card {min-height:98px; padding:12px 8px; line-height:1.25;}
+body.madic-unified[data-page="cric-dashboard"] .madic-quick-label {overflow-wrap:anywhere;}
+body.madic-unified[data-page="cric-dashboard"] .madic-quick-profile {background:#eaf5ff;}
+body.madic-unified[data-page="cric-dashboard"] .madic-quick-clients {background:#e9f8f7;}
+body.madic-unified[data-page="cric-dashboard"] .madic-quick-messaging {background:#edf5ff;}
+body.madic-unified[data-page="cric-dashboard"] .madic-quick-card:focus-visible {outline:3px solid #117eab; outline-offset:2px;}
+body.madic-unified[data-page="cric-dashboard"] .madic-cric-notice {font-weight:600;}
+body.madic-unified[data-page="cric-dashboard"] .madic-cric-grid {align-items:start;}
+body.madic-unified[data-page="cric-dashboard"] .madic-unified-content .madic-cric-card {min-width:0;}
+body.madic-unified[data-page="cric-dashboard"] .madic-unified-content .madic-cric-card a.madic-cric-action {text-decoration:none;}
+body.madic-unified[data-page="cric-dashboard"] .madic-unified-content .madic-cric-card a.madic-cric-action:focus-visible {outline:3px solid #37c8e3;}
+body.madic-unified[data-page="cric-dashboard"] .madic-top-notification {font-size:1rem;}
+body.madic-unified[data-page="cric-dashboard"] .madic-v2-stat {min-height:75px;}
+@media(max-width:1250px) and (min-width:1051px){body.madic-unified[data-page="cric-dashboard"] .madic-quick-grid{grid-template-columns:repeat(4,minmax(0,1fr));}}
+@media(max-width:600px){body.madic-unified[data-page="cric-dashboard"] .madic-unified-content{padding:0 12px 30px;}body.madic-unified[data-page="cric-dashboard"] .madic-unified-content>header{margin:0 -12px 14px;}body.madic-unified[data-page="cric-dashboard"] .madic-v2-summary{gap:8px;}body.madic-unified[data-page="cric-dashboard"] .madic-v2-stat{padding:10px;grid-template-columns:1fr;}body.madic-unified[data-page="cric-dashboard"] .madic-v2-stat-icon{grid-row:auto;}body.madic-unified[data-page="cric-dashboard"] .madic-quick-card{min-height:88px;} }
+
+/* Etape 5 : finition compacte, visibilite et responsive. */
+body.madic-unified[data-page="cric-dashboard"] .madic-cric-wrap{padding-bottom:28px;}
+body.madic-unified[data-page="cric-dashboard"] .madic-cric-head{min-height:154px;padding:20px 24px;}
+body.madic-unified[data-page="cric-dashboard"] .madic-quick-section{padding:13px 14px;margin-bottom:14px;}
+body.madic-unified[data-page="cric-dashboard"] .madic-quick-section h2{margin-bottom:10px;}
+body.madic-unified[data-page="cric-dashboard"] .madic-quick-card{min-height:82px;padding:9px 7px;gap:5px;}
+body.madic-unified[data-page="cric-dashboard"] .madic-quick-icon{font-size:1.35rem;}
+body.madic-unified[data-page="cric-dashboard"] .madic-v2-stat{min-height:67px;padding:11px 13px;}
+body.madic-unified[data-page="cric-dashboard"] .madic-cric-grid{gap:10px;}
+body.madic-unified[data-page="cric-dashboard"] .madic-cric-card{padding:14px!important;}
+body.madic-unified[data-page="cric-dashboard"] .madic-cric-card .muted{color:#51677c!important;}
+body.madic-unified[data-page="cric-dashboard"] .madic-cric-notifications-details>summary{color:#12638a;}
+body.madic-unified[data-page="cric-dashboard"] .madic-top-notification{position:relative;flex-shrink:0;}
+body.madic-unified[data-page="cric-dashboard"] .madic-top-notification-count:not([hidden]){position:absolute;right:-7px;top:-7px;display:grid;place-items:center;min-width:18px;height:18px;padding:0 4px;border-radius:12px;background:#b52e47;color:white;font-size:10px;font-weight:800;line-height:1;}
+body.madic-unified[data-page="cric-dashboard"] :is(.madic-cric-head,.madic-quick-section,.madic-v2-stat,.madic-cric-card){box-sizing:border-box;}
+@media(max-width:850px){body.madic-unified[data-page="cric-dashboard"] .madic-cric-head{min-height:0;}}
+@media(max-width:480px){body.madic-unified[data-page="cric-dashboard"] .madic-cric-head{padding:16px;gap:12px;}body.madic-unified[data-page="cric-dashboard"] .madic-cric-head h1{font-size:1.25rem;}body.madic-unified[data-page="cric-dashboard"] .madic-v2-stat strong{font-size:1.3rem;}body.madic-unified[data-page="cric-dashboard"] .madic-quick-card{min-height:78px;}body.madic-unified[data-page="cric-dashboard"] .toplinks{gap:8px;}body.madic-unified[data-page="cric-dashboard"] .madic-lang-controls button{min-width:35px;padding:7px;}}
+
+/* Étape 6 : Heroicons officiels (SVG), aucun glyphe artificiel. */
+body.madic-unified[data-page="cric-dashboard"] .madic-heroicon {display:block;width:22px;height:22px;object-fit:contain;flex:none;}
+
+
+body.madic-unified[data-page="cric-dashboard"] .madic-v2-stat-icon .madic-heroicon {width:21px;height:21px;filter:brightness(0) invert(1);}
+body.madic-unified[data-page="cric-dashboard"] .madic-quick-icon {display:grid;place-items:center;}
+body.madic-unified[data-page="cric-dashboard"] .madic-quick-icon .madic-heroicon {width:28px;height:28px;filter:brightness(0) saturate(100%) invert(36%) sepia(80%) saturate(1000%) hue-rotate(165deg);}
+body.madic-unified[data-page="cric-dashboard"] .madic-quick-arrow .madic-heroicon {width:17px;height:17px;filter:brightness(0) saturate(100%) invert(36%) sepia(80%) saturate(1000%) hue-rotate(165deg);}
+body.madic-unified[data-page="cric-dashboard"] .madic-top-notification .madic-heroicon {width:21px;height:21px;}
+body.madic-unified[data-page="cric-dashboard"] #cricReminderHeading {display:flex;align-items:center;gap:9px;}
+body.madic-unified[data-page="cric-dashboard"] #cricReminderHeading .madic-heroicon {width:23px;height:23px;}
+
+
+/* MADIC - Refonte globale CRIC 2026-11-01. Presentation uniquement.
+   Tous les modules, IDs, evenements, RLS et RPC restent inchanges. */
+body.madic-unified[data-page="cric-dashboard"] {
+  --cric-ink:#183451; --cric-muted:#526a82; --cric-primary:#126b91;
+  --cric-stroke:#dbe5f0; --cric-surface:#ffffff; --cric-canvas:#f3f7fc;
+  --cric-shadow:0 8px 28px rgba(19,48,84,.065);
+  background:var(--cric-canvas);color:var(--cric-ink);
+}
+body.madic-unified[data-page="cric-dashboard"] .madic-unified-layout{}
+
+
+
+
+
+
+
+body.madic-unified[data-page="cric-dashboard"] .madic-unified-content{background:var(--cric-canvas);padding:0 clamp(15px,2.4vw,38px) 48px}
+body.madic-unified[data-page="cric-dashboard"] .madic-unified-content>header{
+  position:relative;background:#fff;border-bottom:1px solid var(--cric-stroke);
+  padding:15px clamp(18px,2.5vw,35px);min-height:72px;
+  margin:0 calc(-1 * clamp(15px,2.4vw,38px)) 22px;
+  box-shadow:0 3px 16px #12304c0a;
+}
+body.madic-unified[data-page="cric-dashboard"] .madic-unified-content>main{max-width:1480px;margin:0 auto}
+body.madic-unified[data-page="cric-dashboard"] .madic-cric-head{
+  min-height:182px;border-radius:20px;border:1px solid #b4cde0;
+  padding:clamp(18px,2.3vw,30px);margin-bottom:18px;
+  box-shadow:0 12px 28px #173b641b;
+}
+body.madic-unified[data-page="cric-dashboard"] .madic-cric-identity{gap:19px}
+body.madic-unified[data-page="cric-dashboard"] .madic-cric-avatar{
+  width:72px;height:72px;flex-basis:72px;background:linear-gradient(135deg,#43c8db,#176ea0);
+  box-shadow:0 6px 20px #041e3870;border:3px solid #ffffffde;
+}
+body.madic-unified[data-page="cric-dashboard"] .madic-cric-kicker{font-size:.75rem;letter-spacing:.15em}
+body.madic-unified[data-page="cric-dashboard"] .madic-cric-head h1{font-size:clamp(1.5rem,2.4vw,2.15rem);letter-spacing:-.025em}
+body.madic-unified[data-page="cric-dashboard"] #cricLogout{border-radius:11px;padding:11px 16px}
+body.madic-unified[data-page="cric-dashboard"] .madic-v2-summary{gap:14px;margin-bottom:16px}
+body.madic-unified[data-page="cric-dashboard"] .madic-v2-stat{
+  border:1px solid var(--cric-stroke);border-radius:16px;background:#fff;
+  min-height:100px;padding:17px 19px;gap:7px 13px;
+  box-shadow:var(--cric-shadow);transition:box-shadow .2s ease,transform .2s ease;
+}
+body.madic-unified[data-page="cric-dashboard"] .madic-v2-stat:hover{box-shadow:0 12px 25px #173b6418;transform:translateY(-2px)}
+body.madic-unified[data-page="cric-dashboard"] .madic-v2-stat-icon{
+  width:46px;height:46px;border-radius:13px;background:#e6f4fa;grid-row:span 2;
+}
+body.madic-unified[data-page="cric-dashboard"] .madic-v2-stat-icon .madic-heroicon{filter:none;width:25px;height:25px}
+body.madic-unified[data-page="cric-dashboard"] .madic-v2-stat-label{color:var(--cric-muted);font-size:.82rem;font-weight:650}
+body.madic-unified[data-page="cric-dashboard"] .madic-v2-stat strong{font-size:1.85rem;color:#153e63;font-variant-numeric:tabular-nums}
+body.madic-unified[data-page="cric-dashboard"] .madic-cric-notice{border-radius:11px;margin:0 0 16px}
+body.madic-unified[data-page="cric-dashboard"] .madic-quick-section{
+  background:#fff;border:1px solid var(--cric-stroke);border-radius:18px;
+  padding:20px 21px;margin-bottom:22px;box-shadow:var(--cric-shadow);
+}
+body.madic-unified[data-page="cric-dashboard"] .madic-quick-section h2{
+  margin:0 0 16px;font-size:1.14rem;font-weight:800;color:var(--cric-ink);
+}
+body.madic-unified[data-page="cric-dashboard"] .madic-quick-grid{gap:12px}
+body.madic-unified[data-page="cric-dashboard"] .madic-quick-card{
+  min-height:112px;padding:15px 11px;border:1px solid #d7e5f1;border-radius:14px;
+  background:#f6faff;color:#1a4264!important;font-size:.82rem;gap:10px;
+  box-shadow:0 2px 6px #1d48640a;transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease;
+}
+body.madic-unified[data-page="cric-dashboard"] .madic-quick-card:hover{
+  transform:translateY(-3px);border-color:#8bbcd7;box-shadow:0 12px 22px #173b641a;
+}
+body.madic-unified[data-page="cric-dashboard"] .madic-quick-icon{
+  width:43px;height:43px;border-radius:12px;background:#e1f0fa;
+}
+body.madic-unified[data-page="cric-dashboard"] .madic-quick-icon .madic-heroicon{width:25px;height:25px}
+body.madic-unified[data-page="cric-dashboard"] .madic-quick-arrow{right:9px;bottom:8px;opacity:.65}
+body.madic-unified[data-page="cric-dashboard"] .madic-quick-cases{background:#f6f3ff}
+body.madic-unified[data-page="cric-dashboard"] .madic-quick-appointments{background:#f1fbf6}
+body.madic-unified[data-page="cric-dashboard"] .madic-quick-billing{background:#fffaf0}
+body.madic-unified[data-page="cric-dashboard"] .madic-quick-finances{background:#f7f4ff}
+body.madic-unified[data-page="cric-dashboard"] .madic-quick-deadlines{background:#fff4f6}
+body.madic-unified[data-page="cric-dashboard"] .madic-unified-content :is(.madic-service-panel,.madic-cric-notifications,#cricReminderPanel,.madic-cric-card){
+  border-radius:18px;border:1px solid var(--cric-stroke)!important;
+  box-shadow:var(--cric-shadow);background:#fff!important;
+}
+body.madic-unified[data-page="cric-dashboard"] .madic-service-panel{padding:22px!important;margin-bottom:20px}
+body.madic-unified[data-page="cric-dashboard"] .madic-service-head{gap:14px}
+body.madic-unified[data-page="cric-dashboard"] .madic-service-head h2{font-size:1.2rem;color:var(--cric-ink)}
+body.madic-unified[data-page="cric-dashboard"] .madic-service-overview>div{background:#f6f9fd;border-color:#dce7f2}
+body.madic-unified[data-page="cric-dashboard"] .madic-service-overview small{color:#536b82}
+body.madic-unified[data-page="cric-dashboard"] .madic-service-overview strong{color:#183c5b}
+body.madic-unified[data-page="cric-dashboard"] .madic-service-list .madic-service-item{background:#fff;border-color:#dce6f1}
+body.madic-unified[data-page="cric-dashboard"] .madic-service-row{color:#1b3956}
+body.madic-unified[data-page="cric-dashboard"] .madic-service-row:hover{background:#f2f8fc}
+body.madic-unified[data-page="cric-dashboard"] .madic-service-row-client strong{color:#1b3956}
+body.madic-unified[data-page="cric-dashboard"] .madic-service-row-client small,
+body.madic-unified[data-page="cric-dashboard"] .madic-service-row-indicator{color:#526b82}
+body.madic-unified[data-page="cric-dashboard"] .madic-service-expanded-body{background:#f7fafd;border-color:#dce6f1}
+body.madic-unified[data-page="cric-dashboard"] .madic-service-workflow-block{background:#fff;border-color:#dce6f1}
+body.madic-unified[data-page="cric-dashboard"] .madic-service-state-line{color:#213c54}
+body.madic-unified[data-page="cric-dashboard"] .madic-cric-grid{gap:14px;align-items:stretch}
+body.madic-unified[data-page="cric-dashboard"] .madic-cric-card{padding:21px!important;gap:10px!important}
+body.madic-unified[data-page="cric-dashboard"] .madic-cric-card h2{font-size:1.08rem}
+body.madic-unified[data-page="cric-dashboard"] .madic-cric-card p{font-size:.9rem;line-height:1.55}
+body.madic-unified[data-page="cric-dashboard"] .madic-cric-card .madic-cric-action{margin-top:auto!important}
+body.madic-unified[data-page="cric-dashboard"] .madic-cric-notifications-list{color:#1d3c57}
+body.madic-unified[data-page="cric-dashboard"] .madic-cric-notification{border-color:#dce6f1}
+body.madic-unified[data-page="cric-dashboard"] .madic-cric-notification time{color:#546d82}
+body.madic-unified[data-page="cric-dashboard"] .madic-unified-content :is(a,button,input,select,summary):focus-visible{outline:3px solid #1689b4;outline-offset:3px}
+body.madic-unified[data-page="cric-dashboard"] .madic-unified-content [hidden]{display:none!important}
+@media(max-width:1200px){
+  body.madic-unified[data-page="cric-dashboard"] .madic-quick-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+  body.madic-unified[data-page="cric-dashboard"] .madic-v2-summary{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:850px){
+  body.madic-unified[data-page="cric-dashboard"] .madic-unified-layout{}
+  
+  
+  
+  body.madic-unified[data-page="cric-dashboard"] .madic-unified-content{padding:0 15px 32px}
+  body.madic-unified[data-page="cric-dashboard"] .madic-unified-content>header{margin:0 -15px 17px}
+}
+@media(max-width:620px){
+  body.madic-unified[data-page="cric-dashboard"] .madic-cric-head{padding:18px;flex-direction:column;align-items:stretch;gap:15px}
+  body.madic-unified[data-page="cric-dashboard"] .madic-cric-avatar{width:50px;height:50px;flex-basis:50px;font-size:.75rem}
+  body.madic-unified[data-page="cric-dashboard"] #cricLogout{align-self:flex-start}
+  body.madic-unified[data-page="cric-dashboard"] .madic-v2-summary{gap:9px}
+  body.madic-unified[data-page="cric-dashboard"] .madic-v2-stat{padding:12px;min-height:92px;grid-template-columns:1fr}
+  body.madic-unified[data-page="cric-dashboard"] .madic-v2-stat-icon{grid-row:auto;width:37px;height:37px}
+  body.madic-unified[data-page="cric-dashboard"] .madic-v2-stat strong{font-size:1.45rem}
+  body.madic-unified[data-page="cric-dashboard"] .madic-quick-section{padding:15px}
+  body.madic-unified[data-page="cric-dashboard"] .madic-quick-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+  body.madic-unified[data-page="cric-dashboard"] .madic-quick-card{min-height:105px}
+  body.madic-unified[data-page="cric-dashboard"] .madic-service-panel{padding:15px!important}
+  body.madic-unified[data-page="cric-dashboard"] .madic-cric-grid{grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:reduce){
+  body.madic-unified[data-page="cric-dashboard"] :is(.madic-quick-card,.madic-v2-stat){transition:none}
+  body.madic-unified[data-page="cric-dashboard"] :is(.madic-quick-card,.madic-v2-stat):hover{transform:none}
+}
+
+
+/* FINALISATION CRIC — regles uniques de finition et d'accessibilite.
+   Aucune modification de la logique metier ou des autorisations. */
+body.madic-unified[data-page="cric-dashboard"] [hidden] { display:none !important; }
+body.madic-unified[data-page="cric-dashboard"] .madic-skip-link {
+  position:fixed;z-index:10000;left:16px;top:-90px;padding:12px 18px;
+  background:#fff;color:#123a59;border:2px solid #0a83ad;border-radius:10px;
+  font-weight:750;box-shadow:0 8px 20px #102b4350;
+}
+body.madic-unified[data-page="cric-dashboard"] .madic-skip-link:focus {top:12px;}
+body.madic-unified[data-page="cric-dashboard"] .madic-service-create {
+  margin:14px 0;padding:16px;border:1px solid #d8e5ef;border-radius:12px;background:#f7fbff;
+}
+body.madic-unified[data-page="cric-dashboard"] #madicServiceCreateForm:not([hidden]) {
+  margin-top:14px;display:grid;gap:12px;
+}
+body.madic-unified[data-page="cric-dashboard"] #madicServiceCreateForm label {
+  color:#274761;font-weight:700;
+}
+body.madic-unified[data-page="cric-dashboard"] #madicServiceCreateForm :is(input,select) {
+  width:100%;min-width:0;max-width:100%;background:#fff;color:#193a54;
+  border:1px solid #b8cede;border-radius:9px;padding:10px 12px;
+}
+body.madic-unified[data-page="cric-dashboard"] .madic-reminder-head {
+  display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;
+}
+body.madic-unified[data-page="cric-dashboard"] #cricReminderList {padding-left:1.4rem;}
+
+body.madic-unified[data-page="cric-dashboard"] .madic-quick-card:focus-visible,
+body.madic-unified[data-page="cric-dashboard"] .madic-cric-action:focus-visible {
+  outline:3px solid #1689b4;outline-offset:3px;
+}
+body.madic-unified[data-page="cric-dashboard"] :is(.madic-cric-card,.madic-v2-stat,.madic-quick-card) {
+  min-width:0;
+}
+body.madic-unified[data-page="cric-dashboard"] .madic-cric-card {overflow-wrap:anywhere;}
+body.madic-unified[data-page="cric-dashboard"] .madic-service-panel :is(input,select,button) {max-width:100%;}
+@media(max-width:620px) {
+  body.madic-unified[data-page="cric-dashboard"] .madic-unified-content>header {gap:10px;}
+  body.madic-unified[data-page="cric-dashboard"] .toplinks {flex-wrap:wrap;justify-content:flex-end;}
+  body.madic-unified[data-page="cric-dashboard"] .madic-cric-identity-copy {overflow-wrap:anywhere;}
+  body.madic-unified[data-page="cric-dashboard"] .madic-service-toolbar :is(input,select) {min-width:0;width:100%;}
+}

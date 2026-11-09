@@ -1,0 +1,205 @@
+.madic-rdv-shell {
+  max-width: 1120px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+.madic-rdv-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+.madic-rdv-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+.madic-rdv-grid label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  min-width: 0;
+}
+.madic-rdv-grid input,
+.madic-rdv-grid select,
+.madic-rdv-grid textarea {
+  width: 100%;
+  box-sizing: border-box;
+}
+.madic-rdv-wide {
+  grid-column: 1/-1;
+}
+.madic-rdv-table {
+  overflow-x: auto;
+  margin-top: 0.75rem;
+}
+.madic-rdv-table table {
+  width: 100%;
+  min-width: 700px;
+}
+.madic-rdv-actions {
+  display: flex;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.madic-rdv-actions button,
+.madic-rdv-actions select {
+  width: auto !important;
+  min-width: 0 !important;
+  max-width: 180px !important;
+  display: inline-block !important;
+  margin: 0 !important;
+  padding: 0.4rem 0.65rem !important;
+  white-space: nowrap;
+}
+.madic-rdv-muted {
+  color: #667085;
+  font-size: 0.92rem;
+}
+.madic-rdv-shell .panel {
+  margin: 1rem 0;
+  padding: 1.3rem;
+}
+@media (max-width: 700px) {
+  .madic-rdv-grid {
+    grid-template-columns: 1fr;
+  }
+  .madic-rdv-wide {
+    grid-column: auto;
+  }
+}
+
+/* Calendrier hebdomadaire responsive : aucune donnee personnelle des autres clients. */
+.madic-rdv-calendar-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin: 1rem 0;
+}
+.madic-rdv-calendar-controls button {
+  width: auto !important;
+  margin: 0 !important;
+  padding: 0.5rem 0.75rem !important;
+}
+.madic-rdv-calendar {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+.madic-rdv-day {
+  min-width: 0;
+  padding: 0.75rem 0.5rem;
+  border: 1px solid #d9e2ec;
+  border-radius: 12px;
+  background: #f8fafc;
+}
+.madic-rdv-day h3 {
+  font-size: 0.85rem;
+  margin: 0 0 0.8rem;
+  text-transform: capitalize;
+}
+.madic-rdv-day p {
+  font-size: 0.8rem;
+  margin: 0;
+}
+.madic-rdv-slot-button {
+  width: 100% !important;
+  max-width: none !important;
+  white-space: normal !important;
+  line-height: 1.3 !important;
+  padding: 0.6rem 0.25rem !important;
+  margin: 0.25rem 0 !important;
+  font-size: 0.8rem !important;
+}
+.madic-rdv-actions {
+  gap: 0.65rem !important;
+}
+.madic-rdv-actions button {
+  margin: 0.15rem 0 !important;
+}
+.madic-rdv-status {
+  font-weight: 600;
+}
+.madic-rdv-status-confirmed {
+  color: #087443;
+}
+.madic-rdv-status-requested {
+  color: #8a5700;
+}
+.madic-rdv-status-declined,
+.madic-rdv-status-cancelled {
+  color: #687387;
+}
+@media (max-width: 1000px) {
+  .madic-rdv-calendar {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+@media (max-width: 620px) {
+  .madic-rdv-calendar {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .madic-rdv-calendar-controls {
+    justify-content: center;
+  }
+}
+
+/* Etape 5 : lisibilite et accessibilite du planning CRIC. */
+.madic-rdv-shell .panel{border-radius:16px;min-width:0}
+.madic-rdv-shell .panel h2{margin-top:0;line-height:1.35}
+.madic-rdv-shell .madic-rdv-table{border:1px solid #dce6ed;border-radius:12px}
+.madic-rdv-shell .madic-rdv-table th,.madic-rdv-shell .madic-rdv-table td{padding:12px 14px;vertical-align:middle}
+.madic-rdv-shell .madic-rdv-table tbody tr:hover{background:rgba(56,189,212,.05)}
+.madic-rdv-shell :is(button,input,select,a):focus-visible{outline:3px solid #38bfd8;outline-offset:3px}
+.madic-rdv-shell button:disabled{opacity:.55;cursor:not-allowed}
+.madic-rdv-shell #rdvNotificationList>div{border-radius:10px;padding:12px 14px!important}
+@media(max-width:700px){.madic-rdv-shell{margin:1rem auto;padding:0 12px}.madic-rdv-shell .panel{padding:16px}.madic-rdv-top{align-items:flex-start}.madic-rdv-table{max-width:100%}}
+@media(prefers-reduced-motion:reduce){.madic-rdv-shell *{scroll-behavior:auto!important;transition:none!important}}
+
+/* Étape 5/9 — harmonisation finale des rendez-vous, sans dépendance ajoutée. */
+.madic-rdv-shell{width:100%;box-sizing:border-box}
+.madic-rdv-shell .panel{min-width:0;overflow-wrap:anywhere}
+.madic-rdv-shell .panel h2{font-size:clamp(1.05rem,1.5vw,1.3rem)}
+.madic-rdv-shell .madic-rdv-grid{align-items:end}
+.madic-rdv-shell .madic-rdv-grid label{font-weight:600;line-height:1.45}
+.madic-rdv-shell .madic-rdv-grid input,.madic-rdv-shell .madic-rdv-grid select{min-height:44px;border-radius:9px}
+.madic-rdv-shell .madic-rdv-grid input[readonly]{opacity:.85}
+.madic-rdv-shell .madic-rdv-table{overscroll-behavior-x:contain}
+.madic-rdv-shell .madic-rdv-table th{white-space:nowrap;text-align:left}
+.madic-rdv-shell .madic-rdv-table td{line-height:1.45}
+.madic-rdv-shell .madic-rdv-actions{min-width:135px}
+.madic-rdv-shell #rdvNotice{line-height:1.5}
+@media(max-width:700px){.madic-rdv-shell .madic-rdv-grid{grid-template-columns:minmax(0,1fr)}.madic-rdv-shell .madic-rdv-actions{min-width:0}}
+
+/* Etape 5 : agenda mensuel CRIC, styles limites a la page rendez-vous. */
+body[data-page="rendez-vous-cric"] .madic-rdv-shell{max-width:1400px}
+body[data-page="rendez-vous-cric"] .madic-rdv-planning-panel{background:#fff;color:#173b5b}
+.madic-rdv-planning-head{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;flex-wrap:wrap}
+.madic-rdv-planning-head h2{margin:4px 0 8px!important}
+.madic-rdv-planning-kicker{margin:0;color:#087b9c;font-size:.72rem;font-weight:800;letter-spacing:.13em}
+.madic-rdv-planning-controls{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.madic-rdv-planning-controls strong{min-width:155px;text-align:center;text-transform:capitalize}
+.madic-rdv-planning-controls button{width:auto!important;padding:8px 12px!important;min-height:38px}
+.madic-rdv-planning-legend{display:flex;gap:15px;flex-wrap:wrap;margin:15px 0;font-size:.82rem;color:#46617b}
+.madic-rdv-planning-legend span{display:inline-flex;align-items:center;gap:6px}
+.madic-rdv-legend-dot{display:inline-block;width:9px;height:9px;border-radius:50%}
+.madic-rdv-legend-dot.is-free{background:#07856e}.madic-rdv-legend-dot.is-requested{background:#d99b22}.madic-rdv-legend-dot.is-confirmed{background:#287cc2}.madic-rdv-legend-dot.is-closed{background:#8b9aad}
+.madic-rdv-month-weekdays,.madic-rdv-month-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px}
+.madic-rdv-month-weekdays span{text-align:center;font-weight:700;font-size:.8rem;padding:9px;color:#4a6075}
+.madic-rdv-month-day,.madic-rdv-month-empty{min-width:0;min-height:100px;border-radius:11px}
+body[data-page="rendez-vous-cric"] .madic-rdv-month-day{display:flex;flex-direction:column;align-items:flex-start;gap:8px;text-align:left;background:#f8fbfe!important;border:1px solid #d9e6ef!important;color:#183b59!important;padding:10px!important;font-weight:500;box-shadow:none}
+body[data-page="rendez-vous-cric"] .madic-rdv-month-day:hover{background:#edf8fc!important;border-color:#38bfd8!important}
+body[data-page="rendez-vous-cric"] .madic-rdv-month-day.is-today{border-color:#178cb4!important}
+body[data-page="rendez-vous-cric"] .madic-rdv-month-day.is-selected{outline:3px solid #38bfd8;outline-offset:0}
+.madic-rdv-month-day-summary{display:flex;flex-direction:column;align-items:flex-start;gap:3px;width:100%}
+.madic-rdv-month-day-summary em{font-style:normal;font-size:.69rem;line-height:1.3;padding:3px 6px;border-radius:6px;max-width:100%;overflow-wrap:anywhere}
+.madic-rdv-month-day-summary .is-free{background:#d9f6e9;color:#076b52}.madic-rdv-month-day-summary .is-requested{background:#fff0ce;color:#815b08}.madic-rdv-month-day-summary .is-confirmed{background:#dcefff;color:#195b94}.madic-rdv-month-day-summary .is-closed{background:#e8edf3;color:#536577}
+.madic-rdv-selected-day{border-top:1px solid #d9e6ef;margin-top:15px;padding-top:14px;line-height:1.55}
+.madic-rdv-selected-day p{margin:7px 0;color:#526b83}
+@media(max-width:700px){.madic-rdv-month-weekdays,.madic-rdv-month-grid{gap:3px}.madic-rdv-month-day,.madic-rdv-month-empty{min-height:66px}body[data-page="rendez-vous-cric"] .madic-rdv-month-day{padding:5px!important;font-size:.8rem}.madic-rdv-month-day-summary em{font-size:.57rem;padding:2px}.madic-rdv-planning-controls strong{min-width:120px}}

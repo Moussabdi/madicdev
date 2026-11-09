@@ -1,0 +1,165 @@
+/* MADIX - menu isole des styles globaux du site */
+.madix-nav {
+  position: relative;
+  z-index: 1000;
+  flex-shrink: 0;
+}
+.madix-nav .madix-trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  cursor: pointer;
+  font: inherit;
+  white-space: nowrap;
+}
+.madix-nav .madix-chevron {
+  font-size: 0.75em;
+  transition: transform 0.2s ease;
+}
+.madix-nav .madix-trigger[aria-expanded="true"] .madix-chevron {
+  transform: rotate(180deg);
+}
+.madix-nav .madix-trigger:focus-visible {
+  outline: 3px solid #38bdf8;
+  outline-offset: 3px;
+}
+.madix-panel[hidden] {
+  display: none !important;
+}
+.madix-panel {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 12px);
+  width: min(390px, calc(100vw - 24px));
+  background: #0d1b32;
+  color: #f8fafc;
+  border: 1px solid #31516f;
+  border-radius: 18px;
+  box-shadow: 0 22px 65px rgba(2, 8, 23, 0.35);
+  padding: 16px;
+  z-index: 1200;
+  text-align: left;
+  line-height: 1.4;
+}
+.madix-panel:before {
+  content: "";
+  position: absolute;
+  top: -7px;
+  right: 30px;
+  width: 12px;
+  height: 12px;
+  transform: rotate(45deg);
+  background: #0d1b32;
+  border-left: 1px solid #31516f;
+  border-top: 1px solid #31516f;
+}
+.madix-panel-head {
+  padding: 12px 12px 15px;
+  background: linear-gradient(115deg, #123d5a, #14223d 70%);
+  border-radius: 12px;
+  margin-bottom: 10px;
+}
+.madix-kicker {
+  display: block;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  color: #7dd3fc;
+}
+.madix-panel-head strong {
+  display: block;
+  font-size: 27px;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+  margin: 4px 0;
+}
+.madix-x {
+  color: #38bdf8;
+}
+.madix-panel-head p {
+  font-size: 12px;
+  color: #cbd5e1;
+  margin: 0;
+}
+.madix-links {
+  display: grid;
+  gap: 5px;
+}
+.madix-nav .madix-tool {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 12px 10px;
+  border-radius: 10px;
+  text-decoration: none !important;
+  color: #e2e8f0 !important;
+  background: transparent;
+  transition:
+    background 0.15s,
+    transform 0.15s;
+}
+.madix-nav .madix-tool:hover,
+.madix-nav .madix-tool:focus-visible {
+  background: #193956;
+  transform: translateX(2px);
+  outline: none;
+}
+.madix-tool > i:first-child {
+  display: grid;
+  place-items: center;
+  flex: 0 0 38px;
+  height: 38px;
+  border-radius: 9px;
+  background: #183b59;
+  color: #67e8f9;
+  font-size: 16px;
+}
+.madix-tool > span {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  flex: 1;
+  gap: 3px;
+}
+.madix-tool strong {
+  font-size: 14px;
+  color: #f8fafc;
+  font-weight: 750;
+}
+.madix-tool small {
+  font-size: 11px;
+  color: #b5c7d8;
+}
+.madix-arrow {
+  font-size: 11px;
+  color: #8caec8;
+}
+.madix-panel-foot {
+  margin: 10px 4px 0;
+  padding-top: 10px;
+  border-top: 1px solid #29425a;
+  color: #b5c7d8;
+  font-size: 11px;
+}
+@media (max-width: 900px) {
+  .madix-panel {
+    right: auto;
+    left: 0;
+    max-width: calc(100vw - 32px);
+  }
+  .madix-panel:before {
+    right: auto;
+    left: 28px;
+  }
+}
+@media (max-width: 420px) {
+  .madix-panel {
+    width: min(340px, calc(100vw - 24px));
+  }
+}
+@media print {
+  .madix-nav {
+    display: none !important;
+  }
+}

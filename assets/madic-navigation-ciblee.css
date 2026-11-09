@@ -1,0 +1,62 @@
+/* Ajout cible : aucune modification des couleurs et styles existants */
+.madic-steps {
+  position: sticky;
+  top: 0;
+  z-index: 15;
+  padding: 14px 18px;
+  margin: 0 0 24px;
+  background: var(--madic-surface, #fff);
+  border: 1px solid #d8e0e9;
+  border-radius: 12px;
+  color: #fff;
+  box-shadow: 0 3px 12px #00000010;
+}
+.madic-steps__top,
+.madic-steps__nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+.madic-steps__track {
+  height: 7px;
+  border-radius: 10px;
+  background: #e5eaf0;
+  margin: 12px 0;
+  overflow: hidden;
+}
+#madic-progress-fill {
+  height: 100%;
+  width: 0;
+  background: #b3212c;
+  transition: width 0.2s;
+}
+.madic-steps__nav button {
+  padding: 10px 20px;
+  border: 1px solid #9ba8b7;
+  border-radius: 7px;
+  cursor: pointer;
+  background: #fff;
+  color: #21364d;
+}
+#madic-step-next {
+  background: #b3212c;
+  color: white;
+  border-color: #b3212c;
+  margin-left: auto;
+}
+.madic-step-inactive {
+  display: none !important;
+}
+.madic-steps button[hidden] {
+  display: none !important;
+}
+@media (max-width: 600px) {
+  .madic-steps {
+    padding: 12px;
+    top: 0;
+  }
+  .madic-steps__nav button {
+    flex: 1;
+  }
+}

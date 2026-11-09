@@ -1,0 +1,26 @@
+{
+  "id": "https://madic.ca/",
+  "name": "MADIC PORTAIL",
+  "short_name": "MADIC",
+  "description": "Portail professionnel pour les CRIC et leurs clients.",
+  "lang": "fr-CA",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#06152a",
+  "theme_color": "#09264a",
+  "icons": [
+    {
+      "src": "img/madic-app-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "img/madic-app-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

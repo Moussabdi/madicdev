@@ -1,0 +1,1293 @@
+<!doctype html>
+
+<html lang="fr-CA">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width,initial-scale=1" name="viewport" />
+    <meta content="noindex,nofollow" name="robots" />
+    <title
+      data-en="Professional services agreement – Study permit | MADIC"
+      data-fr="Contrat de services professionnels - Permis d’études | MADIC"
+    >
+      Contrat de services professionnels - Permis d’études | MADIC
+    </title>
+    <link href="img/favicon.png" rel="icon" />
+
+    <link href="assets/contrat_professionnel.css" rel="stylesheet" />
+  </head>
+  <body data-contract-kind="professionnel">
+    <header class="top madic-unified-header">
+      <a href="gestion-dossiers-cric.html">← Outils CRIC</a>
+      <a class="brand" href="gestion-dossiers-cric.html"
+        >MADIC<span
+          class="brand-subtitle"
+          data-en="Professional workspace"
+          data-fr="Espace professionnel"
+          >Espace professionnel</span
+        ></a
+      ><span data-en="Contracts" data-fr="Contrats">Contrats</span>
+      <nav class="toplinks">
+        <a
+          data-en="Sign out"
+          data-fr="Déconnexion"
+          data-madic-signout="true"
+          href="connexion-client-cric.html"
+          id="madicHeaderSignout"
+          >Déconnexion</a
+        ><a
+          data-en="My space"
+          data-fr="Mon espace"
+          href="dashboard-client-cric.html"
+          >Mon espace</a
+        >
+      </nav>
+      <div
+        aria-label="Outils du compte"
+        class="madic-hero-tools"
+        data-aria-label-en="Account tools"
+        data-aria-label-fr="Outils du compte"
+      >
+        <a
+          aria-label="Notifications de messagerie"
+          class="madic-hero-notifications"
+          data-aria-label-en="Message notifications"
+          data-aria-label-fr="Notifications de messagerie"
+          data-title-en="Message notifications"
+          data-title-fr="Notifications de messagerie"
+          href="messagerie-client-cric.html"
+          title="Notifications de messagerie"
+          ><svg
+            aria-hidden="true"
+            fill="none"
+            height="22"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1.8"
+            viewbox="0 0 24 24"
+            width="22"
+          >
+            <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"></path>
+            <path d="M10 21h4"></path>
+          </svg>
+          <span class="madic-hero-unread" hidden="" id="madicHeroUnread"
+            >0</span
+          ></a
+        >
+        <div
+          aria-label="Langue du portail"
+          class="madic-language-switch"
+          data-aria-label-en="Portal language"
+          data-aria-label-fr="Langue du portail"
+          id="madicHeroLanguage"
+        >
+          <button aria-pressed="true" data-lang="fr" type="button">FR</button
+          ><button aria-pressed="false" data-lang="en" type="button">EN</button>
+        </div>
+      </div>
+    </header>
+    <main>
+      <div class="intro">
+        <p class="eyebrow">MAD Immigration Canadienne Inc. · CRIC R712951</p>
+        <h1
+          data-en="Professional services agreement – Study permit"
+          data-fr="Contrat de services professionnels - Permis d’études"
+        >
+          Contrat de services professionnels - Permis d’études
+        </h1>
+        <p>
+          Préparation d'un projet de contrat à partir du document transmis.
+          Vérification et approbation par le consultant obligatoires avant toute
+          signature.
+        </p>
+      </div>
+      <p
+        class="status"
+        data-en="Verifying your professional access…"
+        data-fr="Vérification de votre accès professionnel…"
+        id="contractStatus"
+        role="status"
+      >
+        Vérification de votre accès professionnel…
+      </p>
+      <div hidden="" id="contractWorkspace">
+        <form class="panel" id="contractForm">
+          <h2
+            data-en="Agreement information"
+            data-fr="Renseignements du contrat"
+          >
+            Renseignements du contrat
+          </h2>
+          <div class="fields">
+            <label
+              ><span data-en="Associated client" data-fr="Client associé"
+                >Client associé</span
+              ><select id="contractClient" name="client_id" required="">
+                <option value="">Sélectionner un client</option>
+              </select></label
+            ><label
+              ><span data-en="Case" data-fr="Dossier">Dossier</span
+              ><select id="contractDossier" name="dossier_id">
+                <option value="">Sélectionner un dossier</option>
+              </select></label
+            ><label
+              ><span data-en="Client last name" data-fr="Nom du client"
+                >Nom du client</span
+              ><input name="nom" required="" /></label
+            ><label
+              ><span data-en="Client first name" data-fr="Prénom du client"
+                >Prénom du client</span
+              ><input name="prenom" /></label
+            ><label
+              ><span data-en="Email" data-fr="Courriel">Courriel</span
+              ><input name="courriel" type="email" /></label
+            ><label
+              ><span data-en="Phone" data-fr="Téléphone">Téléphone</span
+              ><input name="telephone" type="tel" /></label
+            ><label
+              ><span
+                data-en="Residential address"
+                data-fr="Adresse de résidence"
+                >Adresse de résidence</span
+              ><textarea name="adresse" rows="2"></textarea></label
+            ><label
+              ><span data-en="Date of birth" data-fr="Date de naissance"
+                >Date de naissance</span
+              ><input name="naissance" type="date" /></label
+            ><label
+              ><span data-en="Agreement date" data-fr="Date du contrat"
+                >Date du contrat</span
+              ><input name="date" required="" type="date" /></label
+            ><label
+              ><span data-en="Place of signing" data-fr="Lieu de signature"
+                >Lieu de signature</span
+              ><input
+                data-placeholder-en="City"
+                data-placeholder-fr="Ville"
+                name="lieu"
+                placeholder="Ville" /></label
+            ><label
+              ><span data-en="Scope of representation" data-fr="Objet du mandat"
+                >Objet du mandat</span
+              ><input
+                data-placeholder-en="E.g. Study permit application"
+                data-placeholder-fr="Ex. Demande de permis d’études"
+                name="objet"
+                placeholder="Ex. Demande de permis d’études" /></label
+            ><label
+              ><span
+                data-en="Language of services"
+                data-fr="Langue des services"
+                >Langue des services</span
+              ><select name="langue">
+                <option data-en="French" data-fr="Français" value="fr">
+                  Français
+                </option>
+                <option data-en="English" data-fr="Anglais" value="en">
+                  Anglais
+                </option>
+              </select></label
+            ><label
+              ><span
+                data-en="Agreed fees (CAD)"
+                data-fr="Honoraires convenus ($ CA)"
+                >Honoraires convenus ($ CA)</span
+              ><input
+                data-placeholder-en="To be agreed"
+                data-placeholder-fr="À convenir"
+                min="0"
+                name="tarif"
+                placeholder="À convenir"
+                step="0.01"
+                type="number" /></label
+            ><label
+              ><span
+                data-en="Agreed advance payment (CAD)"
+                data-fr="Avance convenue ($ CA)"
+                >Avance convenue ($ CA)</span
+              ><input
+                data-placeholder-en="To be agreed"
+                data-placeholder-fr="À convenir"
+                min="0"
+                name="avance"
+                placeholder="À convenir"
+                step="0.01"
+                type="number" /></label
+            ><label
+              ><span
+                data-en="Summary of preliminary advice"
+                data-fr="Résumé des conseils préliminaires"
+                >Résumé des conseils préliminaires</span
+              ><textarea name="conseils" rows="3"></textarea>
+            </label>
+          </div>
+          <div class="actions">
+            <button
+              data-en="Refresh preview"
+              data-fr="Actualiser l’aperçu"
+              id="contractPreview"
+              type="button"
+            >
+              Actualiser l’aperçu</button
+            ><button
+              data-en="Print / save as PDF"
+              data-fr="Imprimer / enregistrer en PDF"
+              id="contractPrint"
+              type="button"
+            >
+              Imprimer / enregistrer en PDF
+            </button>
+          </div>
+          <p class="hint">
+            Le PDF obtenu par impression est un brouillon non signé. Aucune
+            sauvegarde ni signature électronique n’est effectuée
+            automatiquement.
+          </p>
+        </form>
+        <article class="document" id="contractDocument">
+          <div class="doc-head">
+            <span data-en="RCIC" data-fr="CRIC · RCIC">CRIC · RCIC</span
+            ><span>MAD IMMIGRATION CANADIENNE</span>
+          </div>
+          <h2
+            data-en="Professional services agreement – Study permit"
+            data-fr="Contrat de services professionnels - Permis d’études"
+          >
+            Contrat de services professionnels - Permis d’études
+          </h2>
+          <section class="filled" id="contractFilled"></section>
+          <p
+            class="hint contract-language-notice"
+            data-en="The original contractual clauses are preserved in French. Any English version intended for signing must be reviewed and approved."
+            data-fr="Le texte contractuel source est conservé en français. Toute version anglaise destinée à la signature doit être vérifiée et approuvée."
+            id="contractLanguageNotice"
+          >
+            Le texte contractuel source est conservé en français. Toute version
+            anglaise destinée à la signature doit être vérifiée et approuvée.
+          </p>
+          <h3
+            data-en="Terms and conditions of the supplied template"
+            data-fr="Clauses et conditions du modèle transmis"
+          >
+            Clauses et conditions du modèle transmis
+          </h3>
+          <p class="hint">
+            Transcription de référence : les champs variables et les montants de
+            l’exemple doivent être vérifiés et adaptés avant utilisation. Les
+            mentions entre crochets signalent les données propres à l’ancien
+            dossier.
+          </p>
+          <section class="source-page">
+            <div
+              class="page-index"
+              data-en="Source document · page 1/14"
+              data-fr="Document source · page 1/14"
+            >
+              Document source · page 1/14
+            </div>
+            <p>
+              [Date de signature]Ce contrat de service professionnel est établi
+              ce jour de entre :
+            </p>
+            <p>Madame : [Nom du client]</p>
+            <p>Adresse : [Adresse du client]</p>
+            <p>[Ville et province du client]</p>
+            <p>[Téléphone du client]Téléphone :</p>
+            <p>[Courriel du client]Courriel :</p>
+            <p>ET</p>
+            <p>Le Consultant réglementé en immigration canadienne (« CRIC »)</p>
+            <p>Monsieur Moussa ABDI DIRANEH</p>
+            <p>1622 Rue Barré, Saint-Laurent,</p>
+            <p>H4L 4M8, Québec, Canada.</p>
+            <p>Téléphone : 514-442-3076</p>
+            <p>Courriel : madimmigrationcanadienne@gmail.com</p>
+            <p>
+              ATTENDU QUE le CRIC et le client souhaitent conclure une entente
+              par écrit qui contient
+            </p>
+            <p>
+              les conditions convenues selon lesquelles le CRIC fournira ses
+              services au client ;
+            </p>
+            <p>
+              ET ATTENDU QUE le CRIC est un membre du Collège des consultants en
+              immigration
+            </p>
+            <p>
+              et en citoyenneté (CICC) (le « Conseil »), l’organisme de
+              réglementation canadien des
+            </p>
+            <p>consultants en immigration ;</p>
+          </section>
+          <section class="source-page">
+            <div
+              class="page-index"
+              data-en="Source document · page 2/14"
+              data-fr="Document source · page 2/14"
+            >
+              Document source · page 2/14
+            </div>
+            <p>
+              ET ATTENDU QUE le CRIC est un membre du Registre québécois des
+              consultants en
+            </p>
+            <p>immigration ;</p>
+            <p>Langue des services :</p>
+            <p>
+              Les services professionnels prévus au présent contrat seront
+              fournis en anglais.
+            </p>
+            <p>Assistance professionnelle :</p>
+            <p>
+              Aucun assistant ou autre professionnel n'est actuellement affecté
+              à ce dossier.
+            </p>
+            <p>
+              Si le recours à un traducteur, un interprète ou tout autre
+              professionnel devient nécessaire
+            </p>
+            <p>
+              dans le cadre de la prestation des services, le CRIC en informera
+              le client et obtiendra
+            </p>
+            <p>son consentement préalable lorsque requis.</p>
+            <p>Résumé des conseils préliminaires :</p>
+            <p>
+              Une consultation initiale a été réalisée avec Mme [Nom du client]
+              relativement à son projet
+            </p>
+            <p>d’études au Canada.</p>
+            <p>
+              Les exigences relatives au permis d’études, aux preuves
+              financières, à l’admissibilité du
+            </p>
+            <p>
+              programme, aux délais de traitement, aux documents requis ainsi
+              qu’aux risques
+            </p>
+            <p>associés à la demande ont été expliqués à la cliente.</p>
+            <p>
+              La cliente a été informée que toute décision demeure à l’entière
+              discrétion d’Immigration,
+            </p>
+            <p>Réfugiés et Citoyenneté Canada (IRCC).</p>
+            <p>
+              EN CONTREPARTIE des engagements réciproques de ce contrat, les
+              parties
+            </p>
+            <p>conviennent de ce qui suit :</p>
+            <p>1. Responsabilités et obligations du CRIC</p>
+            <p>
+              Le client demande au CRIC, et celui-ci accepte, de représenter le
+              client au sujet de
+            </p>
+            <p>
+              Demande de permis d'études auprès d'IRCC afin de permettre à Mme
+              [Nom du client] de
+            </p>
+            <p>
+              poursuivre un programme MBA à l'Université de la
+              Colombie-Britannique.
+            </p>
+            <p>
+              Le client reconnaît que le CRIC ne peut garantir l'approbation de
+              la demande. Toute
+            </p>
+          </section>
+          <section class="source-page">
+            <div
+              class="page-index"
+              data-en="Source document · page 3/14"
+              data-fr="Document source · page 3/14"
+            >
+              Document source · page 3/14
+            </div>
+            <p>
+              décision appartient exclusivement à IRCC et aux autorités
+              gouvernementales
+            </p>
+            <p>compétentes.</p>
+            <p>
+              En contrepartie des frais payés et en raison de l’affaire
+              mentionnée ci-dessus, le CRIC
+            </p>
+            <p>s’engage à :</p>
+            <p>Phase 1 :</p>
+            <p>• Ouverture du dossier.</p>
+            <p>
+              • Évaluation préliminaire de la situation personnelle et de
+              l'admissibilité de la cliente.
+            </p>
+            <p>• Collecte et examen des documents requis.</p>
+            <p>• Vérification des antécédents d'immigration, le cas échéant.</p>
+            <p>• Préparation de la liste de contrôle des documents.</p>
+            <p>Phase 2 :</p>
+            <p>
+              • Vérification de l'admissibilité du programme d'études choisi.
+            </p>
+            <p>
+              • Vérification de la lettre d'acceptation de l'établissement
+              d'enseignement désigné
+            </p>
+            <p>(EED).</p>
+            <p>• Vérification des exigences provinciales applicables.</p>
+            <p>• Vérification des preuves financières.</p>
+            <p>• Préparation du plan d'études.</p>
+            <p>
+              • Préparation des observations écrites et lettres explicatives.
+            </p>
+            <p>Phase 3 :</p>
+            <p>
+              • Préparation des formulaires de la demande du permis d’étude.
+            </p>
+            <p>
+              • Soumission de la demande en ligne du permis d’étude en ligne.
+            </p>
+            <p>• Valider et téléverser l’ensemble des documents.</p>
+            <p>
+              • Suivi du dossier du permis d’étude auprès de l’IRCC, les autres
+              services
+            </p>
+            <p>concernés et le client jusqu’à une décision soit prise.</p>
+            <p>• Expliquer la décision au client.</p>
+            <p>
+              Le CRIC devra fournir au client une copie finale et signée du
+              présent contrat de service
+            </p>
+          </section>
+          <section class="source-page">
+            <div
+              class="page-index"
+              data-en="Source document · page 4/14"
+              data-fr="Document source · page 4/14"
+            >
+              Document source · page 4/14
+            </div>
+            <p>professionnel.</p>
+            <p>
+              Le CRIC s'engage à répondre aux communications du client dans un
+              délai raisonnable
+            </p>
+            <p>de 2 à 5 jours ouvrables.</p>
+            <p>
+              Le CRIC transmettra au client toute correspondance reçue d'IRCC
+              dans les meilleurs
+            </p>
+            <p>délais.</p>
+            <p>
+              Les délais de traitement d'IRCC sont hors du contrôle du CRIC et
+              peuvent varier sans
+            </p>
+            <p>préavis.</p>
+            <p>2. Responsabilités et obligations du client</p>
+            <p>2.1 Le client doit fournir à la demande du CRIC :</p>
+            <p>• Toute la documentation nécessaire.</p>
+            <p>
+              • Toute la documentation en anglais ou en français ou traduite en
+              anglais ou
+            </p>
+            <p>en français.</p>
+            <p>
+              2.2 Le client convient qu’il doit fournir de l’information exacte
+              et honnête et que toute
+            </p>
+            <p>
+              fausse déclaration ou omission peut annuler ce contrat ou avoir
+              une incidence
+            </p>
+            <p>
+              défavorable sur la réponse à la demande ou le maintien de tout
+              statut
+            </p>
+            <p>
+              d’immigration obtenu. Les obligations du CRIC en vertu du contrat
+              de service
+            </p>
+            <p>
+              professionnel sont nulles si le client fournit en toute
+              connaissance de cause des
+            </p>
+            <p>
+              renseignements importants inexacts, trompeurs ou faux. Les
+              obligations
+            </p>
+            <p>financières du client demeurent.</p>
+            <p>
+              2.3 Si Immigration, Réfugiés et Citoyenneté Canada (IRCC) ou
+              Emploi et
+            </p>
+            <p>
+              Développement social Canada (EDSC) ou un administrateur d’un
+              gouvernement
+            </p>
+            <p>
+              provincial ou le bureau des visas qui traite la demande communique
+              directement
+            </p>
+            <p>
+              avec le client, le client doit immédiatement en aviser le CRIC.
+            </p>
+            <p>
+              2.4 Le client doit immédiatement informer le CRIC de tout
+              changement de situation
+            </p>
+          </section>
+          <section class="source-page">
+            <div
+              class="page-index"
+              data-en="Source document · page 5/14"
+              data-fr="Document source · page 5/14"
+            >
+              Document source · page 5/14
+            </div>
+            <p>
+              matrimoniale, de famille ou d’état civil ou de coordonnées de
+              toute personne
+            </p>
+            <p>incluse dans la demande.</p>
+            <p>
+              2.5 Dans le cas d’un contrat de service professionnel conjoint,
+              les clients
+            </p>
+            <p>
+              conviennent que le CRIC doit échanger de l’information entre tous
+              les clients au
+            </p>
+            <p>
+              besoin. En outre, si un conflit surgit qui ne peut être résolu, le
+              CRIC ne pourra
+            </p>
+            <p>
+              pas continuer à représenter les deux clients ou tous les clients
+              et devra peut-
+            </p>
+            <p>être se retirer complètement de l’affaire.</p>
+            <p>3. Méthode de facturation</p>
+            <p>
+              Le client sera facturé selon un paiement par étapes, une fréquence
+              de facturation
+            </p>
+            <p>prédéterminées.</p>
+            <p>4. Modalités de paiement</p>
+            <p>
+              Honoraires professionnels : [Taux convenu] CAD / heures en cas de
+              désistement.
+            </p>
+            <p>
+              Montant du paiement anticipé : [Montant convenu] $ CAD couvrant
+              les phases 1, 2 et 3 du
+            </p>
+            <p>
+              mandat. Les fonds seront détenus conformément aux exigences
+              réglementaires
+            </p>
+            <p>
+              applicables et les honoraires seront gagnés au fur et à mesure de
+              l'exécution
+            </p>
+            <p>des services.</p>
+            <p>
+              Le montant de l’avance initiale est payable à la signature de ce
+              contrat.
+            </p>
+            <p>Détail de débours :</p>
+            <p>a. Les frais bancaires à confirmer.</p>
+            <p>
+              Les frais totaux de débours seront mis à jour selon les frais
+              bancaires.
+            </p>
+            <p>Les frais de débours sont à la charge du client.</p>
+            <p>Détail frais administratifs :</p>
+            <p>
+              b. Requérante ou requérant principal : Elle sera couverte par le
+              client au fur
+            </p>
+          </section>
+          <section class="source-page">
+            <div
+              class="page-index"
+              data-en="Source document · page 6/14"
+              data-fr="Document source · page 6/14"
+            >
+              Document source · page 6/14
+            </div>
+            <p>et à mesure de l’avancement du projet.</p>
+            <p>
+              Frais total administratifs : Elle sera couverte par le client au
+              fur et à mesure de
+            </p>
+            <p>l’avancement du projet.</p>
+            <p>Frais de service : [Montant convenu] $ CAD.</p>
+            <p>Coût total : [Montant convenu] $ CAD.</p>
+            <p>5. Échéancier des paiements :</p>
+            <p>Étape des Honoraires Avance Frais de traitement du</p>
+            <p>services du professionnels applicable à gouvernement</p>
+            <p>CRIC cette Étape Applicables</p>
+            <p>Ouverture du [Montant étape 1]$ CAD. [Montant convenu]$ CAD.</p>
+            <p>dossier</p>
+            <p>
+              Application du [Montant étape 2] CAD. Frais pour l’empreinte
+              digital : 85
+            </p>
+            <p>permis d’étude $ CAD.</p>
+            <p>Frais permis d’étude : 150$ CAD</p>
+            <p>Total à payer cette étape : 235 $</p>
+            <p>CAD.</p>
+            <p>
+              Débours : Frais des copies, les frais de poste et traduction
+              seront à la charge du
+            </p>
+            <p>client.</p>
+            <p>
+              Coût total de service : [Montant convenu] $ CAD sans le frais de
+              traitement du
+            </p>
+            <p>gouvernement applicables.</p>
+            <p>
+              Fréquence de facturation : le CRIC doit fournir une facture au
+              client.
+            </p>
+            <p>
+              Ententes spéciales convenues mutuellement entre le client et le
+              CRIC (p.ex. paiement
+            </p>
+            <p>par chèques postdatés, dans une autre devise.)</p>
+          </section>
+          <section class="source-page">
+            <div
+              class="page-index"
+              data-en="Source document · page 7/14"
+              data-fr="Document source · page 7/14"
+            >
+              Document source · page 7/14
+            </div>
+            <p>
+              Les paiements peuvent être effectués par traite bancaire, chèque
+              personnel ou dépôt
+            </p>
+            <p>
+              direct, ou par virement bancaire international au compte en
+              fidéicommis suivant :
+            </p>
+            <p>
+              Le mode de paiement international que nous disposons est le
+              suivant :
+            </p>
+            <p>• Virement Interac : madimmigrationcanadienne@gmail.com</p>
+            <p>La somme due est de $[Montant convenu] CAD</p>
+            <p>
+              • Virement bancaire (Les frais sont variables d'une banque à une
+              autre après le frais
+            </p>
+            <p>de transfert, la somme due est de $[Montant convenu] CAD).</p>
+            <p>
+              • Western Union (Les frais de transfert sont à votre charge après
+              le frais de transfert,
+            </p>
+            <p>la somme due est de $[Montant convenu] CAD).</p>
+            <p>6. Facturation</p>
+            <p>Le CRIC produira des factures qui incluront :</p>
+            <p>• Le nom et l’adresse du client,</p>
+            <p>• Une liste des services rendus,</p>
+            <p>
+              • La date ou les dates auxquelles les services ont été rendus, et
+            </p>
+            <p>• Le total des frais, et</p>
+            <p>
+              • Des taxes applicables payables au membre pour les services
+              rendus pour les clients
+            </p>
+            <p>
+              appliquant à l’intérieur du Canada à savoir TPS 5% et TVQ 9.975%.
+            </p>
+            <p>
+              Les factures doivent être fournies au client conformément aux
+              modalités de
+            </p>
+            <p>
+              paiement énoncées au paragraphe 5 du présent contrat de service
+              professionnel.
+            </p>
+            <p>
+              De plus, si le CRIC se retire d’une affaire ou est libéré de ses
+              obligations, il devra
+            </p>
+            <p>
+              fournir au client un relevé de compte détaillant tous les services
+              qui ont été rendus
+            </p>
+            <p>
+              ou faisant rapport du temps qui a été consacré au dossier du
+              client.
+            </p>
+          </section>
+          <section class="source-page">
+            <div
+              class="page-index"
+              data-en="Source document · page 8/14"
+              data-fr="Document source · page 8/14"
+            >
+              Document source · page 8/14
+            </div>
+            <p>7. Politique de remboursement</p>
+            <p>
+              Le client reconnaît que l’obtention d’un visa ou d’un statut ainsi
+              que le temps de
+            </p>
+            <p>
+              traitement de cette demande est à l’entière discrétion du
+              gouvernement du Canada
+            </p>
+            <p>
+              (ou des autorités gouvernementales) et non du CRIC. En outre, le
+              client reconnaît
+            </p>
+            <p>
+              que les frais ne sont pas remboursables s’il advenait que la
+              demande soit refusée.
+            </p>
+            <p>
+              Le client reconnaît également que tout dépôt ou avance versé dans
+              le cadre du
+            </p>
+            <p>
+              présent contrat est non remboursable dans la mesure où il couvre
+              l’ouverture du
+            </p>
+            <p>
+              dossier, l’analyse préliminaire, les consultations, les
+              communications, les travaux
+            </p>
+            <p>
+              administratifs et les services professionnels entrepris dès le
+              début du mandat.
+            </p>
+            <p>
+              Cependant, si le CRIC ou son personnel ne remplissent pas les
+              tâches mentionnées
+            </p>
+            <p>
+              à la section 2 du présent contrat, le CRIC remboursera les
+              honoraires perçus, en
+            </p>
+            <p>
+              partie ou en totalité. Le client consent à ce que les honoraires
+              soient payés pour les
+            </p>
+            <p>
+              services mentionnés ci-dessus et que tout remboursement s’applique
+              uniquement
+            </p>
+            <p>
+              au montant des honoraires payés. Les frais non utilisés et/ou non
+              gagnés seront
+            </p>
+            <p>
+              remboursés conformément au Règlement régissant la gestion des
+              dossiers clients,
+            </p>
+            <p>
+              au Règlement régissant le compte client et au Règlement régissant
+              le contrat de
+            </p>
+            <p>service professionnel comme suit :</p>
+            <p>
+              Les honoraires des phases qui n’ont pas été effectués ou les
+              tâches non remplies
+            </p>
+            <p>
+              seront remboursés intégralement par virement bancaire deux
+              semaines suivant le
+            </p>
+            <p>retrait du dossier du client.</p>
+            <p>
+              8. Résolution de conflits relatifs au Code d’éthique
+              professionnelle
+            </p>
+            <p>
+              Dans le cas d’un conflit relatif aux services professionnels
+              fournis par le CRIC, le
+            </p>
+            <p>
+              client et le CRIC doivent s’efforcer dans une mesure raisonnable
+              de résoudre le
+            </p>
+            <p>
+              problème entre les deux parties. Si le conflit ne peut pas être
+              réglé, le client doit
+            </p>
+            <p>
+              présenter une plainte par écrit au CRIC et donner au CRIC 15 jours
+              pour répondre
+            </p>
+            <p>
+              au client. Si le conflit n’est toujours pas réglé, le client peut
+              suivre le processus de
+            </p>
+            <p>
+              plainte et de discipline décrit sur le site Web du Conseil :
+              https://college-ic.ca/
+            </p>
+          </section>
+          <section class="source-page">
+            <div
+              class="page-index"
+              data-en="Source document · page 9/14"
+              data-fr="Document source · page 9/14"
+            >
+              Document source · page 9/14
+            </div>
+            <p>
+              Le client est informé de son droit de déposer une plainte auprès
+              du Collège des
+            </p>
+            <p>
+              consultants en immigration et en citoyenneté relativement à la
+              conduite
+            </p>
+            <p>professionnelle du CRIC.</p>
+            <p>Coordonnées du CCIC</p>
+            <p>Collège des consultants en immigration et citoyenneté (CCIC)</p>
+            <p>5500 North Service Rd., bureau 1002</p>
+            <p>Burlington (Ontario) L7L 6W6 Sans frais : 1-877-836-7543</p>
+            <p>9. Erreurs ou omissions</p>
+            <p>
+              Le CRIC informera le client dans les meilleurs délais de toute
+              erreur ou omission
+            </p>
+            <p>
+              importante découverte dans le dossier et prendra les mesures
+              raisonnables afin d'en
+            </p>
+            <p>limiter les conséquences.</p>
+            <p>10. Confidentialité</p>
+            <p>
+              Tous les renseignements et les documents examinés par le CRIC,
+              requis par IRCC et
+            </p>
+            <p>
+              tous les autres corps dirigeants, et utilisés pour préparer la
+              demande ne seront pas
+            </p>
+            <p>
+              divulgués à un tiers, autre qu’à des agents et des employés du
+              CRIC, sans consentement
+            </p>
+            <p>
+              préalable, sauf si exigé par le Conseil ou requis en vertu de la
+              loi. Le CRIC, et tous ses
+            </p>
+            <p>
+              agents et employés, sont aussi liés par les exigences de
+              confidentialité de l’article 28 du
+            </p>
+            <p>Code de déontologie.</p>
+            <p>
+              Le client consent à ce que les communications aient lieu par voie
+              électronique et au
+            </p>
+            <p>
+              stockage de l’information confidentielle. Le CRIC s’efforcera
+              autant que possible
+            </p>
+            <p>
+              d’assurer un niveau de sécurité élevé en matière de communication
+              électronique et
+            </p>
+            <p>de stockage de l’information.</p>
+            <p>11. Force majeure</p>
+          </section>
+          <section class="source-page">
+            <div
+              class="page-index"
+              data-en="Source document · page 10/14"
+              data-fr="Document source · page 10/14"
+            >
+              Document source · page 10/14
+            </div>
+            <p>
+              En cas d’incapacité du CRIC à respecter toute clause de ce contrat
+              de service
+            </p>
+            <p>
+              professionnel, en raison de conditions hors de son contrôle telles
+              que, sans en
+            </p>
+            <p>
+              exclure d’autres, des restrictions gouvernementales ou des lois
+              postérieures, une
+            </p>
+            <p>
+              guerre, des grèves ou des catastrophes naturelles, on ne
+              considérera pas qu’il y a
+            </p>
+            <p>rupture de ce contrat.</p>
+            <p>12. Absence imprévue du CRIC</p>
+            <p>
+              Si le client n’arrive pas à communiquer avec le CRIC et a lieu de
+              croire que le CRIC
+            </p>
+            <p>
+              est décédé, frappé d’incapacité ou autrement dans l’impossibilité
+              de remplir ses
+            </p>
+            <p>obligations, le client devra communiquer avec le CCIC.</p>
+            <p>13. Politique de changement</p>
+            <p>
+              Le client convient qu’en raison d’une demande faite au CRIC de le
+              représenter dans
+            </p>
+            <p>
+              une affaire autre que celle mentionnée ci- dessus dans le cadre de
+              ce contrat, d’un
+            </p>
+            <p>
+              changement de sa situation matérielle, de faits matériels non
+              divulgués au début de
+            </p>
+            <p>
+              la demande ou d’un changement dans la loi du gouvernement
+              concernant le
+            </p>
+            <p>
+              traitement des demandes en matière d’immigration ou de
+              citoyenneté, le contrat
+            </p>
+            <p>peut être modifié en conséquence.</p>
+            <p>
+              Ce contrat ne peut être modifié ou amendé que lorsque lesdites
+              modifications sont
+            </p>
+            <p>
+              apportées par écrit et signées par les parties aux présentes. Tous
+              les changements
+            </p>
+            <p>
+              et toutes les modifications doivent être paraphés et datés par le
+              membre et par le
+            </p>
+            <p>
+              client. Dans le cas de tout changement substantiel au présent
+              contrat, les parties
+            </p>
+            <p>
+              pourraient devoir signer un nouveau contrat de service
+              professionnel.
+            </p>
+            <p>14. Fin du contrat</p>
+            <p>
+              14.1 Ce contrat prend fin lorsque les tâches précisées à la
+              section 1 de ce contrat ont
+            </p>
+            <p>été exécutées.</p>
+            <p>
+              14.2 Ce contrat prend fin si des changements d’ordre matériel se
+              produisent dans la
+            </p>
+          </section>
+          <section class="source-page">
+            <div
+              class="page-index"
+              data-en="Source document · page 11/14"
+              data-fr="Document source · page 11/14"
+            >
+              Document source · page 11/14
+            </div>
+            <p>
+              demande ou l’admissibilité du client, et qui empêchent d’exécuter
+              les tâches
+            </p>
+            <p>décrites à la section 1 de ce contrat.</p>
+            <p>15. Libération des obligations ou retrait d’une affaire</p>
+            <p>
+              15.1 Le client peut libérer le CRIC de ses obligations et mettre
+              fin au contrat par écrit.
+            </p>
+            <p>
+              Les frais ou débours impayés ou non gagnés seront remboursés par
+              le CRIC au
+            </p>
+            <p>
+              client et/ou les frais ou débours impayés seront payés par le
+              client au CRIC.
+            </p>
+            <p>
+              15.2 En vertu de l’article 34 du Code de déontologie, le CRIC peut
+              se retirer d’une
+            </p>
+            <p>
+              affaire et mettre fin au contrat par écrit pourvu que cela ne
+              cause pas de
+            </p>
+            <p>
+              préjudice au client. Les frais ou débours impayés ou non gagnés
+              seront
+            </p>
+            <p>
+              remboursés par le CRIC au client et/ou les frais ou débours
+              impayés seront
+            </p>
+            <p>payés par le client au CRIC.</p>
+            <p>
+              15.3 Au moment où un CRIC se retire d’une affaire ou est libéré de
+              ses obligations,
+            </p>
+            <p>
+              ce dernier devra fournir au client une facture détaillant tous les
+              services qui ont
+            </p>
+            <p>
+              été rendus ou fera rapport du temps qui a été consacré au dossier
+              du client.
+            </p>
+            <p>16. Loi du contrat</p>
+            <p>
+              16.1 Ce contrat est régi par les lois en vigueur de la Province/du
+              Territoire Québec ,
+            </p>
+            <p>
+              et les lois fédérales canadiennes qui s’y appliquent et, sauf pour
+              des conflits
+            </p>
+            <p>
+              prévus à la section 9 aux présentes, tout conflit concernant les
+              clauses de ce
+            </p>
+            <p>
+              contrat sera réglé par un tribunal compétent de la Province/du
+              Territoire
+            </p>
+            <p>Canada .</p>
+          </section>
+          <section class="source-page">
+            <div
+              class="page-index"
+              data-en="Source document · page 12/14"
+              data-fr="Document source · page 12/14"
+            >
+              Document source · page 12/14
+            </div>
+            <p>17. Divers</p>
+            <p>
+              17.1 Le client autorise explicitement le CRIC à agir en son nom
+              dans les limites des
+            </p>
+            <p>
+              fonctions précises pour lesquelles les services du CRIC ont été
+              retenus,
+            </p>
+            <p>conformément au paragraphe 2 des présentes.</p>
+            <p>
+              17.2 Ce contrat constitue la totalité du contrat entre les parties
+              pour ce qui est de
+            </p>
+            <p>
+              l’objet ci-contre et remplace tous les contrats, tous les accords,
+              toutes les
+            </p>
+            <p>
+              garanties, représentations, négociations et discussions
+              précédents, verbaux ou
+            </p>
+            <p>
+              écrits, des parties sauf pour ce qui est indiqué précisément aux
+              présentes.
+            </p>
+            <p>
+              17.3 Les coûts énumérés au présent contrat doivent être payés par
+              le client.
+            </p>
+            <p>
+              17.4 Ce contrat peut uniquement être modifié si les changements
+              sont effectués par
+            </p>
+            <p>
+              écrit et signés par les parties aux présentes. Tous les
+              changements et/ou toutes
+            </p>
+            <p>
+              les modifications doivent être paraphés et datés par le membre et
+              par le client.
+            </p>
+            <p>
+              Dans le cas de tout changement substantiel au présent contrat, les
+              parties
+            </p>
+            <p>
+              pourraient devoir signer un nouveau contrat de service
+              professionnel.
+            </p>
+            <p>
+              17.5 Le client peut, après que le contrat de service professionnel
+              est signé, nommer
+            </p>
+            <p>
+              un représentant désigné autorisé à agir en son nom auprès du CRIC.
+              Un
+            </p>
+            <p>
+              représentant désigné ne peut pas être rétribué par le client ni le
+              CRIC pour agir
+            </p>
+            <p>en qualité de représentant désigné.</p>
+            <p>
+              17.6 Les dispositions de ce contrat sont jugées dissociables. Si
+              une disposition de ce
+            </p>
+            <p>
+              contrat est considérée comme inexécutable par un tribunal
+              compétent, la
+            </p>
+            <p>
+              disposition sera supprimée de ce contrat, et les autres
+              dispositions demeureront
+            </p>
+            <p>en vigueur.</p>
+            <p>
+              17.7 Les titres utilisés dans ce contrat visent seulement à
+              faciliter la lecture et ne
+            </p>
+            <p>
+              doivent en aucun cas être interprétés comme des ajouts ou des
+              limitations des
+            </p>
+          </section>
+          <section class="source-page">
+            <div
+              class="page-index"
+              data-en="Source document · page 13/14"
+              data-fr="Document source · page 13/14"
+            >
+              Document source · page 13/14
+            </div>
+            <p>engagements et ententes contenus dans ce contrat.</p>
+            <p>
+              17.8 Chaque partie aux présentes fait, établit, donne, signe ou
+              fait faire, établir,
+            </p>
+            <p>
+              donner ou signer toutes les autres choses, les assurances et tous
+              les actes,
+            </p>
+            <p>
+              actes de transfert et documents jugés nécessaires ou
+              raisonnablement requis
+            </p>
+            <p>
+              pour que l’intention et l’objet de ce contrat soient pleinement et
+              effectivement
+            </p>
+            <p>appliqués.</p>
+            <p>
+              17.9 Le client convient qu’il a eu suffisamment de temps pour
+              examiner ce contrat et
+            </p>
+            <p>
+              qu’on lui a donné la possibilité d’obtenir un avis juridique
+              indépendant et une
+            </p>
+            <p>traduction avant la signature et la remise de ce contrat.</p>
+            <p>
+              17.10 Si le client n’a pas demandé un avis juridique indépendant
+              avant la
+            </p>
+            <p>
+              signature et la remise de ce contrat, il l’a fait de son propre
+              chef sans subir de
+            </p>
+            <p>
+              pression indue et convient que le fait de ne pas avoir obtenu
+              d’avis juridique
+            </p>
+            <p>
+              indépendant ne pourra pas être utilisé comme moyen de défense pour
+              faire
+            </p>
+            <p>respecter les obligations créées dans ce contrat.</p>
+            <p>
+              17.11 En outre, le client reconnaît avoir reçu une copie de ce
+              contrat et convient
+            </p>
+            <p>être lié par ses conditions.</p>
+            <p>
+              17.12 Le client qui souhaite remplir ce contrat en anglais doit en
+              faire la demande.
+            </p>
+            <p>
+              17.13 Les termes énoncés dans le présent contrat de service
+              professionnel ont le
+            </p>
+            <p>
+              sens donné aux termes contenus dans le Règlement régissant le
+              contrat de
+            </p>
+            <p>
+              service professionnel et le Règlement administratif du Conseil,
+              modifiés de
+            </p>
+            <p>temps à autre.</p>
+            <p>
+              EN FOI DE QUOI ce contrat a été dûment signé par les parties aux
+              présentes à la date indiquée au
+            </p>
+            <p>début du présent contrat.</p>
+          </section>
+          <section class="source-page">
+            <div
+              class="page-index"
+              data-en="Source document · page 14/14"
+              data-fr="Document source · page 14/14"
+            >
+              Document source · page 14/14
+            </div>
+            <p>SIGN</p>
+            <p>Signature client :</p>
+            <p>Date :</p>
+            <p>Ville :</p>
+            <p>SIGN</p>
+            <p>Signature du CRIC :</p>
+            <p>[Date de signature]</p>
+            <p>Date :</p>
+            <p>Saint-LaurentVille :</p>
+          </section>
+          <section class="signature">
+            <h3
+              data-en="Signatures – to be obtained"
+              data-fr="Signatures - à recueillir"
+            >
+              Signatures - à recueillir
+            </h3>
+            <div>
+              <p
+                data-en="Client signature: __________________________"
+                data-fr="Signature du client : __________________________"
+              >
+                Signature du client : __________________________
+              </p>
+              <p
+                data-en="Date and place: __________________________"
+                data-fr="Date et lieu : __________________________"
+              >
+                Date et lieu : __________________________
+              </p>
+              <p
+                data-en="RCIC signature: __________________________"
+                data-fr="Signature du CRIC : __________________________"
+              >
+                Signature du CRIC : __________________________
+              </p>
+              <p
+                data-en="Date and place: __________________________"
+                data-fr="Date et lieu : __________________________"
+              >
+                Date et lieu : __________________________
+              </p>
+            </div>
+          </section>
+        </article>
+      </div>
+    </main>
+    <script defer="True" src="assets/config.js"></script>
+    <script defer="True" src="assets/contrat_professionnel.js"></script>
+  </body>
+</html>

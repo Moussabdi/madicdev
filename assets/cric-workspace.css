@@ -1,0 +1,136 @@
+#cricSearch {
+  width: 100%;
+  max-width: 440px;
+  margin: 8px 0 16px;
+  padding: 10px;
+}
+.cric-doc-panel {
+  margin-top: 22px;
+  padding: 24px;
+}
+.cric-link {
+  border: 0;
+  background: none;
+  color: #15517b;
+  text-decoration: underline;
+  cursor: pointer;
+  font: inherit;
+  padding: 3px;
+}
+.cric-doc-panel[hidden],
+#cricWorkPanel[hidden] {
+  display: none !important;
+}
+.madic-cric-table td {
+  overflow-wrap: anywhere;
+}
+.cric-shell {
+  max-width: 1150px;
+  margin: 28px auto 70px;
+  padding: 0 20px;
+}
+.cric-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+.cric-heading h1,
+.cric-heading h2 {
+  margin: 0 0 7px;
+}
+.cric-eyebrow {
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+.cric-shell .panel {
+  padding: 25px;
+  margin: 20px 0;
+  border-radius: 14px;
+}
+.cric-scroll {
+  overflow-x: auto;
+}
+.cric-scroll table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 650px;
+}
+.cric-scroll th,
+.cric-scroll td {
+  text-align: left;
+  padding: 12px;
+  vertical-align: middle;
+  border-bottom: 1px solid #cbd5e1;
+}
+.cric-scroll th {
+  font-weight: 700;
+}
+.cric-scroll select {
+  min-width: 120px;
+}
+.cric-scroll button {
+  margin: 2px;
+}
+.cric-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+.cric-form label {
+  display: grid;
+  gap: 6px;
+}
+.cric-form input,
+.cric-form select {
+  width: 100%;
+  box-sizing: border-box;
+}
+.cric-form button {
+  justify-self: start;
+}
+.cric-tools {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 15px;
+}
+.cric-tools article {
+  padding: 16px;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+}
+.cric-tools h3 {
+  margin-top: 0;
+}
+.cric-muted {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+#workspace[hidden],
+#documentsPanel[hidden],
+#contractPreview[hidden] {
+  display: none !important;
+}
+#message:not(:empty) {
+  padding: 12px;
+  border-left: 3px solid #64748b;
+}
+#contractPreview {
+  margin-top: 20px;
+  padding: 20px;
+  border: 1px solid #cbd5e1;
+  white-space: pre-wrap;
+  line-height: 1.6;
+}
+@media (max-width: 750px) {
+  .cric-form,
+  .cric-tools {
+    grid-template-columns: 1fr;
+  }
+  .cric-shell .panel {
+    padding: 16px;
+  }
+}

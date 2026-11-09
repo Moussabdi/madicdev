@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<html lang="fr-CA">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="noindex,nofollow" name="robots"/>
+<link href="img/favicon.png" rel="icon"/>
+<title>Échéances de mon cabinet | MADIC</title>
+<link href="assets/style.css" rel="stylesheet"/>
+<link href="assets/echeances-cric.css" rel="stylesheet"/>
+
+<link href="assets/madic-datahubz-modules.css" rel="stylesheet"/><link rel="stylesheet" href="assets/madic-datahubz-unified.css"/>
+<style id="madic-i18n-language-state">
+body.madic-unified .madic-cric-standard-header .madic-lang-controls button[data-lang]{background:#eef8fc!important;color:#123553!important;cursor:pointer!important;}
+body.madic-unified .madic-cric-standard-header .madic-lang-controls button[data-lang].madic-lang-active{background:#389ec0!important;color:#fff!important;}
+</style>
+</head>
+<body class="madic-unified" data-page="echeances-cric">
+<div class="madic-unified-layout"><aside aria-label="Navigation du portail" class="madic-unified-sidebar"><div class="madic-unified-brand"><span class="madic-unified-monogram"><img alt="Logo MADIC" src="img/logo-madic.svg"/></span><span><strong>MADIC PORTAIL</strong><small>Espace professionnel</small></span></div><div class="madic-unified-caption">NAVIGATION</div><nav><a data-madic-page="cric-dashboard.html" href="cric-dashboard.html"><span aria-hidden="true">▦</span>Vue d’ensemble</a><a data-madic-page="gestion-clients-cric.html" href="gestion-clients-cric.html"><span aria-hidden="true">♙</span>Clients</a><a data-madic-page="gestion-dossiers-cric.html" href="gestion-dossiers-cric.html"><span aria-hidden="true">▤</span>Outils CRIC</a><a data-madic-page="messagerie-cric.html" href="messagerie-cric.html"><span aria-hidden="true">✉</span>Messagerie</a><a data-madic-page="rendez-vous-cric.html" href="rendez-vous-cric.html"><span aria-hidden="true">▦</span>Rendez-vous</a><a data-madic-page="demandes-documents-cric.html" href="demandes-documents-cric.html"><span aria-hidden="true">▣</span>Documents</a><a aria-current="page" data-madic-page="echeances-cric.html" href="echeances-cric.html"><span aria-hidden="true">◷</span>Échéances</a><a data-madic-page="facturation-cric.html" href="facturation-cric.html"><span aria-hidden="true">▥</span>Facturation</a><a data-madic-page="finances-cric.html" href="finances-cric.html"><span aria-hidden="true">◈</span>Finances</a></nav><div class="madic-unified-foot">Espace sécurisé MADIC</div></aside><div class="madic-unified-content">
+<header class="madic-cric-standard-header"><a class="brand" href="cric-dashboard.html">MADI<span>C</span> <small>PORTAIL</small></a><nav class="toplinks" aria-label="Navigation du compte"><a href="cric-dashboard.html">Mon espace</a><div class="madic-lang-controls" role="group" aria-label="Langue / Language"><button type="button" data-lang="fr" aria-label="Français" title="Français" >FR</button><button type="button" data-lang="en" aria-label="English" title="English" >EN</button></div></nav></header>
+<main class="deadline-shell">
+<p><a href="cric-dashboard.html">← Mon espace CRIC</a></p>
+<h1>Échéances et rappels</h1>
+<p class="muted">Suivez les dates importantes de vos dossiers et les actions à réaliser.</p>
+<p class="muted" id="deadlineSpace">Vérification de votre cabinet…</p>
+<p aria-live="polite" id="deadlineMessage" role="status"></p>
+<div hidden="" id="deadlineWorkspace">
+<section class="panel">
+<h2>Ajouter une échéance</h2>
+<form id="deadlineForm">
+<label for="deadlineDossier">Dossier *</label><select id="deadlineDossier" required=""></select><label for="deadlineTitle">Description de l’échéance *</label><input id="deadlineTitle" maxlength="180" placeholder="Ex. Date limite de transmission" required=""/><label for="deadlineDate">Date limite *</label>
+<input id="deadlineDate" lang="fr-CA" name="deadlineDate" required="" type="date"/>
+<button type="submit">Enregistrer l'échéance</button>
+</form>
+</section>
+<section class="panel">
+<div class="deadline-top">
+<h2>Mes échéances</h2>
+<button class="secondary" id="deadlineRefresh" type="button">
+              Actualiser
+            </button>
+</div>
+<p class="muted" id="deadlineSummary" aria-live="polite"></p>
+<div class="deadline-table">
+<table>
+<thead>
+<tr>
+<th>Dossier</th>
+<th>Description</th>
+<th>Date</th>
+<th>Situation</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody id="deadlineRows"></tbody>
+</table>
+</div>
+</section>
+<p class="muted">
+          Les échéances sont affichées dans votre espace CRIC. Vérifiez régulièrement vos dates limites et les notifications applicables.
+        </p>
+</div>
+</main>
+<footer>© MADIC · Plateforme professionnelle</footer>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="assets/config.js"></script>
+<script src="assets/echeances-cric.js"></script>
+</div></div>
+<script src="assets/madic-datahubz-unified.js"></script>
+<script src="assets/madic-i18n-cric.js?v=20261102d"></script>
+</body>
+</html>

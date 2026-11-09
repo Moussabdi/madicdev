@@ -1,0 +1,33 @@
+.madic-consultant-presence {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.45rem 0.75rem;
+  margin: 0.35rem 0 0.5rem;
+  border-radius: 999px;
+  background: #152c43;
+  color: #e7f3ff;
+  font-size: 0.88rem;
+  font-weight: 600;
+  border: 1px solid #38546b;
+}
+.madic-consultant-presence::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #eab65e;
+  flex: none;
+}
+.madic-presence--online::before {
+  background: #39dba5;
+  box-shadow: 0 0 0 3px #39dba528;
+}
+.madic-presence--offline::before {
+  background: #9aaabd;
+}
+.madic-presence--unknown::before {
+  background: #eab65e;
+}
+
+.madic-consultant-presence{max-width:100%;line-height:1.35;flex-wrap:wrap}.madic-consultant-presence:focus-visible{outline:2px solid #26b6b0;outline-offset:2px}

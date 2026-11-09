@@ -1,0 +1,19 @@
+.madic-cric-wrap{max-width:1120px;margin:0 auto;padding:32px 20px 65px}.madic-cric-wrap[hidden]{display:none!important}.madic-cric-head{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;margin-bottom:26px}.madic-cric-head h1{margin:4px 0 8px}.madic-cric-kicker{font-size:.8rem;font-weight:700;letter-spacing:.09em}.madic-cric-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}.madic-cric-card{padding:26px;min-height:215px}.madic-cric-card p{line-height:1.6}.madic-cric-action{display:inline-block;padding:10px 14px;background:#15517b;color:#fff!important;border-radius:8px;text-decoration:none}.madic-cric-notice{margin:16px 0 24px}.madic-cric-table{overflow-x:auto}.madic-cric-table table{width:100%}.madic-cric-table td,.madic-cric-table th{padding:12px;text-align:left}.madic-cric-table button{margin:2px}.madic-cric-table select{min-width:130px}@media(max-width:720px){.madic-cric-grid{grid-template-columns:1fr}.madic-cric-head{flex-direction:column}}
+/* Notifications clients : module indépendant des rappels d'échéances. */
+.madic-cric-notifications{margin:1rem 0}
+.madic-cric-notifications-head{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap}
+.madic-cric-notifications-head h2{margin:0}
+.madic-cric-count{display:inline-block;padding:.15rem .55rem;border-radius:999px;background:#15517b;color:#fff;font-size:.85rem;vertical-align:middle}
+.madic-cric-count[hidden]{display:none}
+.madic-cric-notifications-list{list-style:none;margin:1rem 0 0;padding:0}
+.madic-cric-notification{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;flex-wrap:wrap;padding:1rem 0;border-top:1px solid #d8e0e7}
+.madic-cric-notification strong{display:block}
+.madic-cric-notification p{margin:.3rem 0}
+.madic-cric-notification time{font-size:.85rem;color:#536477}
+.madic-cric-notification-unread{border-left:3px solid #15517b;padding-left:.75rem}
+
+/* Historique replie par defaut pour conserver un tableau de bord compact. */
+.madic-cric-notifications-details{margin-top:.75rem}
+.madic-cric-notifications-details>summary{cursor:pointer;font-weight:600;color:#15517b;padding:.6rem 0;list-style-position:inside}
+.madic-cric-notifications-details>summary:focus-visible{outline:2px solid #15517b;outline-offset:3px}
+.madic-cric-notifications-details[open] .madic-cric-notifications-list{max-height:360px;overflow-y:auto;overscroll-behavior:contain;padding-right:.5rem}

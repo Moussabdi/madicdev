@@ -1,0 +1,12 @@
+{
+  "name": "madic-netlify-protected-build",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "build": "node scripts/build-production.mjs"
+  },
+  "devDependencies": {
+    "terser": "5.39.0",
+    "clean-css": "5.3.3"
+  }
+}

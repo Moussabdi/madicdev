@@ -1,0 +1,705 @@
+<!doctype html>
+
+<html lang="fr-CA">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width,initial-scale=1" name="viewport" />
+    <meta content="noindex,nofollow" name="robots" />
+    <title>Contrat de consultation initiale | MADIC</title>
+    <link href="img/favicon.png" rel="icon" />
+    <link href="assets/contrats-cric.css" rel="stylesheet" />
+    <style>
+      .madic-contract-logos {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+        min-height: 82px;
+      }
+      .madic-contract-logos img {
+        display: block;
+        object-fit: contain;
+        max-width: 100%;
+        height: auto;
+      }
+      .madic-logo-cric {
+        width: 260px;
+        max-height: 78px;
+      }
+      .madic-logo-madic {
+        width: 96px;
+        max-height: 94px;
+      }
+      @media (max-width: 520px) {
+        .madic-contract-logos {
+          gap: 12px;
+        }
+        .madic-logo-cric {
+          width: 65%;
+        }
+        .madic-logo-madic {
+          width: 25%;
+        }
+      }
+      @media print {
+        .madic-contract-logos {
+          -webkit-print-color-adjust: exact;
+          print-color-adjust: exact;
+        }
+        .madic-contract-logos img {
+          break-inside: avoid;
+        }
+      }
+      /* Harmonisation MADIC - interface seulement, sans modifier le contrat imprime. */
+      @media screen {
+        body[data-contract-kind="initial"] {
+          background: #071626;
+          color: #e8f3fa;
+        }
+        body[data-contract-kind="initial"] .top {
+          background: #10263b;
+          color: #e8f3fa;
+          border-bottom: 1px solid #29475e;
+        }
+        body[data-contract-kind="initial"] .top a {
+          color: #38bfd8;
+        }
+        body[data-contract-kind="initial"] .intro {
+          background: #10263b !important;
+          color: #e8f3fa !important;
+          border: 1px solid #29475e !important;
+          border-radius: 12px;
+          padding: 24px;
+          box-shadow: none !important;
+        }
+        body[data-contract-kind="initial"] .intro h1,
+        body[data-contract-kind="initial"] .intro p:not(.eyebrow) {
+          color: #e8f3fa !important;
+        }
+        body[data-contract-kind="initial"] .intro .eyebrow {
+          color: #38bfd8 !important;
+        }
+        body[data-contract-kind="initial"] #contractStatus {
+          background: #10263b !important;
+          color: #e8f3fa !important;
+          border: 1px solid #29475e !important;
+          border-left: 4px solid #38bfd8 !important;
+          border-radius: 8px;
+          box-shadow: none !important;
+        }
+        body[data-contract-kind="initial"] .eyebrow {
+          color: #38bfd8;
+        }
+        body[data-contract-kind="initial"] .status {
+          background: #10263b;
+          color: #e8f3fa;
+          border-left: 4px solid #38bfd8;
+        }
+        body[data-contract-kind="initial"] #contractForm {
+          background: #10263b;
+          color: #e8f3fa;
+          border: 1px solid #29475e;
+          box-shadow: none;
+        }
+        body[data-contract-kind="initial"] #contractForm h2,
+        body[data-contract-kind="initial"] #contractForm legend,
+        body[data-contract-kind="initial"] #contractForm label {
+          color: #e8f3fa;
+        }
+        body[data-contract-kind="initial"] #contractForm fieldset {
+          border-color: #29475e;
+          background: #10263b;
+        }
+        body[data-contract-kind="initial"]
+          #contractForm
+          input:not([type="file"]),
+        body[data-contract-kind="initial"] #contractForm select,
+        body[data-contract-kind="initial"] #contractForm textarea {
+          background: #09192c;
+          color: #e8f3fa;
+          border: 1px solid #29475e;
+        }
+        body[data-contract-kind="initial"] #contractForm input[type="file"] {
+          background: #09192c;
+          color: #e8f3fa;
+          border: 1px solid #29475e;
+        }
+        body[data-contract-kind="initial"] #contractForm input::placeholder,
+        body[data-contract-kind="initial"] #contractForm textarea::placeholder {
+          color: #a8bdcb;
+        }
+        body[data-contract-kind="initial"] #contractForm input:focus-visible,
+        body[data-contract-kind="initial"] #contractForm select:focus-visible,
+        body[data-contract-kind="initial"]
+          #contractForm
+          textarea:focus-visible {
+          outline: 2px solid #38bfd8;
+          outline-offset: 2px;
+        }
+        body[data-contract-kind="initial"] #contractForm button {
+          background: #38bfd8;
+          color: #071626;
+          border: 1px solid #38bfd8;
+          font-weight: 700;
+        }
+        body[data-contract-kind="initial"] #contractForm button:hover {
+          background: #7cdbed;
+        }
+        body[data-contract-kind="initial"] #contractForm .hint,
+        body[data-contract-kind="initial"] #contractForm small {
+          color: #bfd3e1;
+        }
+        body[data-contract-kind="initial"] #contractDocument {
+          background: #fff;
+          color: #1c2c3d;
+        }
+      }
+    </style>
+  </head>
+  <body data-contract-kind="initial">
+    <header class="top">
+      <a href="gestion-dossiers-cric.html">← Outils CRIC</a
+      ><strong>MADIC · Espace professionnel</strong
+      ><a href="contrats-client-vers-cric.html"
+        >Contrats transmis par les clients</a
+      >
+    </header>
+    <main>
+      <div class="intro">
+        <p class="eyebrow">Cabinet CRIC · Identité à vérifier</p>
+        <h1>Contrat de consultation initiale</h1>
+        <p>
+          Préparation d'un projet de contrat à partir du document transmis.
+          Vérification et approbation par le consultant obligatoires avant toute
+          signature.
+        </p>
+      </div>
+      <p class="status" id="contractStatus" role="status">
+        Vérification de votre accès professionnel…
+      </p>
+      <div hidden="" id="contractWorkspace">
+        <form class="panel" id="contractForm">
+          <h2>Renseignements du contrat</h2>
+          <div class="fields">
+            <label
+              >Client associé<select
+                id="contractClient"
+                name="client_id"
+                required=""
+              >
+                <option value="">Sélectionner un client</option>
+              </select></label
+            ><label
+              >Dossier<select id="contractDossier" name="dossier_id">
+                <option value="">Sélectionner un dossier</option>
+              </select></label
+            ><label>Nom du client<input name="nom" required="" /></label
+            ><label>Prénom du client<input name="prenom" /></label
+            ><label>Courriel<input name="courriel" type="email" /></label
+            ><label>Téléphone<input name="telephone" type="tel" /></label
+            ><label
+              >Adresse de résidence<textarea
+                name="adresse"
+                rows="2"
+              ></textarea></label
+            ><label
+              >Date de naissance<input name="naissance" type="date" /></label
+            ><label
+              >Date du contrat<input
+                name="date"
+                required=""
+                type="date" /></label
+            ><label
+              >Lieu de signature<input name="lieu" placeholder="Ville" /></label
+            ><label
+              >Objet de la consultation<input
+                name="objet"
+                required
+                aria-required="true"
+                value="un avis professionnel de la part du consultant sur mes projets ou objectifs d’immigration au Canada."
+                placeholder="Projet ou objectif d’immigration" /></label
+            ><label
+              >Formule choisie par le client (USD)<input
+                id="madicInitialTariffDisplay"
+                type="text"
+                value="En attente du choix enregistré du client"
+                readonly
+                aria-readonly="true" /></label
+            ><input type="hidden" name="tarif" value="" />
+          </div>
+          <fieldset class="madic-logo-fields">
+            <legend>Logos du contrat</legend>
+            <div class="madic-logo-inputs">
+              <label
+                >Logo CRIC–RCIC (gauche)<input
+                  accept="image/png,image/jpeg,image/webp"
+                  id="contractLogoCric"
+                  type="file"
+                /><small
+                  >Logo commun par défaut. Vous pouvez le remplacer pour vos
+                  contrats.</small
+                ></label
+              ><label
+                >Logo professionnel du CRIC (droite)<input
+                  accept="image/png,image/jpeg,image/webp"
+                  id="contractLogoProfessional"
+                  type="file"
+                /><small
+                  >Logo propre à votre espace CRIC (MADIC pour votre
+                  espace).</small
+                ></label
+              >
+            </div>
+            <div class="madic-logo-actions">
+              <button
+                class="madic-logo-reset"
+                id="contractLogoCricReset"
+                type="button"
+              >
+                Rétablir le logo CRIC–RCIC</button
+              ><button
+                class="madic-logo-reset"
+                id="contractLogoProfessionalReset"
+                type="button"
+              >
+                Rétablir le logo professionnel
+              </button>
+            </div>
+            <p class="hint" id="contractLogoStatus" role="status">
+              Les modifications sont conservées sur ce navigateur pour votre
+              espace CRIC.
+            </p>
+          </fieldset>
+          <fieldset class="madic-professional-fields">
+            <legend>Coordonnées professionnelles du CRIC</legend>
+            <div class="fields">
+              <label
+                >Nom complet du consultant<input
+                  autocomplete="off"
+                  name="proNom"
+                  type="text" /></label
+              ><label
+                >Numéro CRIC<input
+                  autocomplete="off"
+                  name="proNumero"
+                  type="text" /></label
+              ><label
+                >Entreprise / cabinet<input
+                  autocomplete="off"
+                  name="proEntreprise"
+                  type="text" /></label
+              ><label
+                >Adresse professionnelle<input
+                  autocomplete="off"
+                  name="proAdresse"
+                  type="text" /></label
+              ><label
+                >Téléphone professionnel<input
+                  autocomplete="off"
+                  name="proTelephone"
+                  type="text" /></label
+              ><label
+                >Courriel professionnel<input
+                  autocomplete="off"
+                  name="proCourriel"
+                  type="email" /></label
+              ><label
+                >Site Web<input
+                  autocomplete="off"
+                  name="proSite"
+                  type="text" /></label
+              ><label
+                >Modes de paiement (synchronisés avec le profil CRIC)<input
+                  autocomplete="off"
+                  name="proPaiement"
+                  type="text"
+                  readonly
+              /></label>
+            </div>
+            <p class="hint">
+              Les coordonnées du cabinet sont synchronisées avec votre profil
+              professionnel. Modifiez les modes de paiement dans Mon profil
+              professionnel.
+            </p>
+          </fieldset>
+          <fieldset class="madic-cric-signature">
+            <legend>Signature du consultant</legend>
+            <p class="hint">
+              Vérifiez le contrat, puis confirmez votre signature pour le
+              transmettre au client.
+            </p>
+            <label
+              >Lieu de signature du consultant *<input
+                id="cricSignatureCity"
+                type="text"
+                maxlength="120"
+                required
+                placeholder="Ville où vous signez actuellement" /></label
+            ><label
+              >Nom du consultant (vérifié)<input
+                id="cricSignatureName"
+                type="text"
+                autocomplete="off"
+                placeholder="Chargement du nom officiel"
+                maxlength="200" /></label
+            ><label
+              style="
+                display: flex;
+                align-items: flex-start;
+                gap: 10px;
+                margin-top: 12px;
+              "
+              ><input
+                id="cricSignatureConsent"
+                type="checkbox"
+                style="width: auto; min-width: 18px; margin-top: 4px"
+              /><span
+                >Je confirme avoir vérifié et signé ce contrat
+                électroniquement.</span
+              ></label
+            >
+          </fieldset>
+          <div class="actions">
+            <button id="contractPreview" type="button">
+              Prévisualiser le contrat</button
+            ><button id="contractPrint" type="button">Imprimer / PDF</button
+            ><button id="contractActivate" type="button">
+              Signer et transmettre au client
+            </button>
+          </div>
+          <p class="hint" id="contractExistingNotice" role="status"></p>
+          <p class="hint" id="contractActivationStatus" role="status"></p>
+        </form>
+        <article class="document" id="contractDocument">
+          <section
+            aria-label="Contrat initial page 1"
+            class="source-page madic-contract-page madic-contract-page-one"
+          >
+            <div class="doc-head madic-contract-logos">
+              <img
+                alt="CRIC RCIC-Consultant réglementé en immigration canadienne"
+                class="madic-logo-cric"
+                id="contractLogoCricPreview"
+                src="img/logo-cric-rcic.png"
+              /><img
+                alt="Logo professionnel du cabinet CRIC"
+                class="madic-logo-madic"
+                id="contractLogoProfessionalPreview"
+                src=""
+              />
+            </div>
+            <h2 id="madicInitialContractTitle">
+              Contrat de consultation initiale
+            </h2>
+            <section
+              aria-label="Coordonnées du consultant et date du contrat"
+              class="filled madic-contract-letterhead"
+              id="contractFilled"
+            >
+              <div class="madic-letterhead-consultant">
+                <div class="madic-letterhead-name" id="letterheadConsultant">
+                  À compléter
+                </div>
+                <div id="letterheadAddress">À compléter</div>
+                <div id="letterheadPhone">À compléter</div>
+                <div id="letterheadEmail">À compléter</div>
+                <div id="letterheadWebsite">À compléter</div>
+              </div>
+              <div class="madic-letterhead-place">
+                <span id="letterheadCity">Ville de signature</span
+                ><span class="madic-letterhead-comma">, le </span
+                ><time id="letterheadDate">À compléter</time>
+              </div>
+            </section>
+            <div class="madic-contract-body">
+              <p>
+                Je soussigné(e),
+                <span
+                  class="contract-inline-value contract-highlight"
+                  data-contract-template="{clientNom}"
+                  >À compléter</span
+                >
+              </p>
+              <p>
+                demande une consultation de la part de la compagnie de
+                <strong data-contract-template="{proEntreprise}"
+                  >À compléter</strong
+                >
+                située au
+                <span data-contract-template="{proAdresse}">À compléter</span>.
+              </p>
+              <p>
+                L’objet du contrat de consultation initiale
+                <span
+                  class="contract-highlight"
+                  data-contract-template="{objet}"
+                  >À compléter</span
+                >
+              </p>
+              <p>
+                Je m’engage à payer des honoraires de
+                <strong
+                  class="contract-highlight"
+                  data-contract-template="{tarifLettres}"
+                  >À compléter</strong
+                >, selon la formule de consultation initiale choisie dans ma
+                demande de service, pour le travail effectué par le consultant
+                ou ses associés, tous membres en règle du Collège des
+                consultants en immigration et en citoyenneté (CCIC). Les
+                conditions de remboursement applicables sont celles prévues au
+                présent contrat et par la loi.
+              </p>
+              <p>
+                Le client déclare ne pas être représenté par un autre
+                représentant autorisé relativement au même dossier. Le cas
+                échéant, il s’engage à en informer le consultant avant le début
+                de la consultation. Ces conditions respectent les lois en
+                vigueur dans la province du Québec, au Canada.
+              </p>
+              <p>
+                Les modes de paiement acceptés par le consultant sont :
+                <span
+                  class="contract-highlight"
+                  data-contract-template="{proPaiement}"
+                  >À compléter</span
+                >.
+              </p>
+              <p>
+                Veuillez noter que
+                <span
+                  class="contract-highlight"
+                  data-contract-template="{proNom}"
+                  >À compléter</span
+                >, qui doit exécuter la présente consultation initiale, est
+                membre en règle du Collège des consultants en immigration et en
+                citoyenneté et, à ce titre, est tenu de respecter ses règlements
+                administratifs, son code de déontologie et les règlements qui
+                s’y rattachent.
+              </p>
+              <p>
+                Le Collège des consultants encadre les consultants en
+                immigration et citoyenneté afin de protéger le public, notamment
+                par l’application de normes professionnelles, du code de
+                déontologie et des exigences de formation continue.
+              </p>
+              <p>
+                La présente consultation initiale ne constitue pas un mandat de
+                représentation. Tout service additionnel en immigration ou
+                citoyenneté nécessitera la signature d’un contrat de services
+                distinct conformément au Code de déontologie du CCIC.
+              </p>
+              <p>
+                Le client comprend que la consultation initiale consiste
+                uniquement en une évaluation préliminaire et qu’aucun résultat
+                ou approbation par IRCC ne peut être garanti.
+              </p>
+            </div>
+            <div class="contract-page-footer">
+              <div
+                aria-label="Coordonnées et permis du consultant"
+                class="cric-contact-card"
+              >
+                <div class="cric-contact-permits">
+                  <span data-contract-template="Permis CRIC-CISR : {proNumero}"
+                    >À compléter</span
+                  >
+                </div>
+                <div
+                  class="cric-contact-address"
+                  data-contract-template="{proAdresse}"
+                >
+                  À compléter
+                </div>
+                <div class="cric-contact-details">
+                  <span data-contract-template="Tél. {proTelephone}"
+                    >À compléter</span
+                  ><span data-contract-template="Courriel : {proCourriel}"
+                    >À compléter</span
+                  >
+                </div>
+              </div>
+              <span class="contract-page-number">1</span>
+            </div>
+          </section>
+          <section
+            aria-label="Contrat initial page 2"
+            class="source-page madic-contract-page madic-contract-page-two"
+          >
+            <div class="madic-contract-body">
+              <p>
+                Tous les renseignements fournis dans le cadre de cette
+                consultation demeureront confidentiels conformément au Code de
+                déontologie du Collège des consultants en immigration et en
+                citoyenneté.
+              </p>
+              <p>
+                Une copie signée du présent contrat sera conservée dans les
+                dossiers du consultant et remise au client.
+              </p>
+              <h3>Note importante</h3>
+              <p
+                data-contract-template="La consultation initiale débutera officiellement après réception du paiement des honoraires exigés selon la formule choisie : {tarifLettres}."
+              >
+                À compléter
+              </p>
+              <div class="contract-initials">
+                <span class="contract-sign-box"></span
+                ><span>Apposer vos initiales</span>
+              </div>
+              <h3>Signatures</h3>
+              <p>
+                Je comprends et accepte les conditions du présent contrat,
+                lequel peut être modifié afin d’améliorer l’accomplissement de
+                la consultation et la satisfaction des deux parties.
+              </p>
+              <div class="contract-signature-columns">
+                <div class="contract-signature-party">
+                  <p
+                    class="contract-party-heading"
+                    data-contract-template="{proNom}, CRIC"
+                  >
+                    À compléter
+                  </p>
+                  <div class="contract-form-row">
+                    <span>Permis :</span
+                    ><span data-contract-template="{proNumero}"
+                      >À compléter</span
+                    >
+                  </div>
+                  <div class="contract-form-row">
+                    <span>Date :</span
+                    ><span
+                      class="contract-sign-value"
+                      data-contract-template="{date}"
+                      >À compléter</span
+                    >
+                  </div>
+                  <div class="contract-form-row">
+                    <span>Lieu :</span
+                    ><span
+                      class="contract-sign-value"
+                      data-contract-template="{proLieu}"
+                      >À compléter</span
+                    >
+                  </div>
+                  <div class="contract-form-row">
+                    <span>Signature :</span
+                    ><span
+                      class="contract-sign-box"
+                      id="cricSignatureOnDocument"
+                    ></span>
+                  </div>
+                  <div
+                    id="cricSignatureTimestamp"
+                    style="font-size: 10px; margin-top: 4px"
+                  ></div>
+                </div>
+                <div class="contract-signature-party">
+                  <h4>Renseignements sur le client :</h4>
+                  <div class="contract-form-row">
+                    <span>Nom :</span
+                    ><span
+                      class="contract-sign-value"
+                      data-contract-template="{nom}"
+                      >À compléter</span
+                    >
+                  </div>
+                  <div class="contract-form-row">
+                    <span>Prénom :</span
+                    ><span
+                      class="contract-sign-value"
+                      data-contract-template="{prenom}"
+                      >À compléter</span
+                    >
+                  </div>
+                  <div class="contract-form-row">
+                    <span>Date de naissance :</span
+                    ><span
+                      class="contract-sign-value"
+                      data-contract-template="{naissance}"
+                      >À compléter</span
+                    >
+                  </div>
+                  <div class="contract-form-row">
+                    <span>Téléphone :</span
+                    ><span
+                      class="contract-sign-value"
+                      data-contract-template="{telephone}"
+                      >À compléter</span
+                    >
+                  </div>
+                  <div class="contract-form-row">
+                    <span>Courriel :</span
+                    ><span
+                      class="contract-sign-value"
+                      data-contract-template="{courriel}"
+                      >À compléter</span
+                    >
+                  </div>
+                  <div class="contract-form-row">
+                    <span>Adresse de résidence :</span
+                    ><span
+                      class="contract-sign-value contract-address"
+                      data-contract-template="{adresse}"
+                      >À compléter</span
+                    >
+                  </div>
+                  <div class="contract-form-row">
+                    <span>Date :</span
+                    ><span
+                      class="contract-sign-value"
+                      data-contract-template="{date}"
+                      >À compléter</span
+                    >
+                  </div>
+                  <div class="contract-form-row">
+                    <span>Lieu :</span
+                    ><span
+                      class="contract-sign-value"
+                      data-contract-template="{lieu}"
+                      >À compléter</span
+                    >
+                  </div>
+                  <div class="contract-form-row">
+                    <span>Signature client :</span
+                    ><span class="contract-sign-box"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="contract-page-footer">
+              <div
+                aria-label="Coordonnées et permis du consultant"
+                class="cric-contact-card"
+              >
+                <div class="cric-contact-permits">
+                  <span data-contract-template="Permis CRIC-CISR : {proNumero}"
+                    >À compléter</span
+                  >
+                </div>
+                <div
+                  class="cric-contact-address"
+                  data-contract-template="{proAdresse}"
+                >
+                  À compléter
+                </div>
+                <div class="cric-contact-details">
+                  <span data-contract-template="Tél. {proTelephone}"
+                    >À compléter</span
+                  ><span data-contract-template="Courriel : {proCourriel}"
+                    >À compléter</span
+                  >
+                </div>
+              </div>
+              <span class="contract-page-number">2</span>
+            </div>
+          </section>
+        </article>
+      </div>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+    <script src="assets/config.js"></script>
+    <script src="assets/madic-contrat-prefill.js"></script>
+    <script src="assets/contrats-cric.js"></script>
+  </body>
+</html>

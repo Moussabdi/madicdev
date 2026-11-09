@@ -1,0 +1,2174 @@
+/* Source: style(20261107-031047).css */
+:root {
+  font-family:
+    Inter,
+    system-ui,
+    -apple-system,
+    Segoe UI,
+    sans-serif;
+  color: #e9f1ff;
+  background: #07101f;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(ellipse at 85% 5%, #15385a 0, transparent 42%), #07101f;
+}
+a {
+  color: #5ad5f2;
+}
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22px max(24px, calc((100vw - 1100px) / 2));
+  border-bottom: 1px solid #26344b;
+  gap: 12px;
+}
+header a {
+  text-decoration: none;
+}
+.brand {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: white;
+  letter-spacing: 0.05em;
+}
+.brand span {
+  color: #48d5ec;
+}
+.toplinks {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+}
+main {
+  max-width: 1100px;
+  margin: 45px auto;
+  padding: 0 24px;
+}
+.auth {
+  max-width: 460px;
+  margin: 60px auto;
+}
+.panel {
+  background: #101e33;
+  border: 1px solid #2a425d;
+  border-radius: 18px;
+  padding: 30px;
+  box-shadow: 0 16px 45px #0004;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+}
+.muted {
+  color: #a5b7cc;
+}
+.eyebrow {
+  color: #59d7ec;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+}
+h1 {
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  margin: 10px 0 20px;
+}
+h2 {
+  font-size: 1.25rem;
+  margin: 0 0 16px;
+}
+label {
+  display: block;
+  font-size: 0.9rem;
+  margin: 16px 0 7px;
+}
+input,
+select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #47617b;
+  border-radius: 9px;
+  background: #09192c;
+  color: white;
+  font: inherit;
+}
+input:focus,
+select:focus {
+  outline: 2px solid #48d5ec;
+}
+button,
+.btn {
+  background: #38bfd8;
+  color: #041322;
+  border: 0;
+  border-radius: 9px;
+  padding: 12px 17px;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+}
+button:hover,
+.btn:hover {
+  background: #76e0ef;
+}
+button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.secondary {
+  background: #223a52;
+  color: white;
+}
+.actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: 20px;
+}
+.notice {
+  margin: 16px 0;
+  min-height: 22px;
+  color: #f3c77b;
+}
+.ok {
+  color: #77e6b2;
+}
+.danger {
+  color: #ffa3a3;
+}
+.hidden {
+  display: none !important;
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.9rem;
+}
+td,
+th {
+  padding: 11px;
+  border-bottom: 1px solid #30415a;
+  text-align: left;
+}
+footer {
+  text-align: center;
+  padding: 30px;
+  color: #8399b1;
+  font-size: 0.85rem;
+}
+small {
+  color: #a5b7cc;
+}
+code {
+  overflow-wrap: anywhere;
+}
+@media (max-width: 620px) {
+  header {
+    padding: 18px 22px;
+  }
+  .toplinks {
+    gap: 8px;
+    font-size: 0.85rem;
+  }
+  .panel {
+    padding: 22px;
+  }
+}
+
+
+/* Source: contracts-layout(5).css */
+/* MADIC : affichage des logos et contrats */
+.madic-logo-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;margin:1rem 0}
+.madic-logo-slot{border:1px solid #d6dbe1;border-radius:10px;padding:1rem;display:flex;flex-direction:column;align-items:flex-start;gap:.7rem;min-width:0}
+.madic-logo-slot input{max-width:100%}.madic-logo-preview{max-width:200px;max-height:90px;object-fit:contain}
+.madic-contract-logo-header{display:flex;align-items:flex-start;justify-content:space-between;gap:2rem;min-height:90px;margin-bottom:1.2rem}
+.madic-contract-logo-header img{max-width:43%;max-height:90px;object-fit:contain}
+#contract-print{max-width:800px;margin:1rem auto;line-height:1.65}
+#contract-print h2{text-align:center;margin:1.3rem 0}
+@media(max-width:620px){.madic-logo-grid{grid-template-columns:1fr}.madic-contract-logo-header img{max-width:45%;max-height:65px}}
+@media print{.madic-logo-admin{display:none}#contract-print{max-width:none}.madic-contract-logo-header{break-inside:avoid}}
+
+/* Correctif MADIC : logos limites a l'interieur du contrat client. */
+#contract-preview .madic-contract-logo-header,
+#contract-print .madic-contract-logo-header,
+.document .madic-contract-logo-header {
+  display:flex; align-items:center; justify-content:space-between;
+  gap:16px; min-width:0; max-width:100%;
+}
+#contract-preview .madic-contract-logo-header img,
+#contract-print .madic-contract-logo-header img,
+.document .madic-contract-logo-header img {
+  display:block; width:auto!important; height:auto!important;
+  max-width:min(42%,180px)!important; max-height:68px!important;
+  min-width:0; object-fit:contain!important; flex:0 1 auto;
+}
+#contract-preview .doc-head img,
+#contract-print .doc-head img,
+.document .doc-head img {
+  width:auto!important; height:auto!important; max-width:42%!important;
+  max-height:68px!important; object-fit:contain!important;
+}
+@media(max-width:620px){
+  #contract-preview .madic-contract-logo-header img,
+  #contract-print .madic-contract-logo-header img,
+  .document .madic-contract-logo-header img {max-width:44%!important;max-height:52px!important;}
+}
+@media print{
+  #contract-print .madic-contract-logo-header img,
+  #contract-print .doc-head img {max-height:16mm!important;}
+}
+
+
+/* Source: contrats-cric(20261107-031102).css */
+*{box-sizing:border-box}body{margin:0;font:15px/1.6 system-ui,-apple-system,Segoe UI,sans-serif;background:#f4f6f8;color:#1c2c3d}.top{display:flex;justify-content:space-between;gap:16px;align-items:center;background:#102c43;color:white;padding:16px max(22px,calc((100vw - 1100px)/2))}.top a{color:white}main{max-width:1100px;margin:35px auto;padding:0 20px}.intro h1{font-size:2rem;margin:0}.intro p{max-width:750px}.eyebrow{font-weight:700;color:#9b7331}.status{padding:12px 16px;border-left:4px solid #b48c4e;background:white}.panel,.document{background:white;border:1px solid #d9e0e6;border-radius:12px;padding:26px;margin:22px 0;box-shadow:0 4px 18px #1232}.fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}.fields label{font-weight:650;display:flex;flex-direction:column;gap:5px}input,select,textarea{font:inherit;border:1px solid #bac6cf;border-radius:6px;padding:10px;width:100%;background:white}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}button{border:0;background:#154a6b;color:white;border-radius:6px;padding:12px 17px;cursor:pointer}button+button{background:#80622d}.hint{color:#576575;font-size:13px}.document{max-width:850px;margin:25px auto;padding:44px 55px}.doc-head{display:flex;justify-content:space-between;color:#9d762e;font-weight:800;border-bottom:3px solid #c7a45b;padding-bottom:14px}.document h2{text-align:center;font-size:23px;margin:30px 0}.filled{border:1px solid #e1d3b8;background:#faf8f3;padding:18px}.filled p{margin:4px 0}.source-page{border-top:1px solid #ddd;padding-top:20px;margin-top:30px}.source-page p{margin:7px 0;overflow-wrap:anywhere}.page-index{font-size:12px;color:#7b633f;text-align:right}.signature{margin-top:35px;border-top:2px solid #c7a45b}.signature div{display:grid;grid-template-columns:1fr 1fr;gap:10px}@media(max-width:680px){.fields{grid-template-columns:1fr}.document{padding:22px}.top{padding:12px}.signature div{display:block}}@media print{body{background:white;font-size:11pt}.top,.intro,.status,.panel,.hint{display:none!important}main{margin:0;padding:0;max-width:none}.document{margin:0;padding:0;border:0;box-shadow:none;max-width:none}.source-page{break-inside:avoid}.source-page p{margin:5px 0}.filled{break-inside:avoid}@page{size:letter;margin:16mm}}
+/* Personnalisation des logos des contrats */
+.madic-logo-fields{border:1px solid #d9e0e6;border-radius:9px;margin-top:20px;padding:16px;min-width:0}.madic-logo-fields legend{font-weight:750;padding:0 7px}.madic-logo-inputs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.madic-logo-inputs label{display:flex;flex-direction:column;gap:6px;font-weight:650;min-width:0}.madic-logo-inputs small{font-weight:400;color:#576575}.madic-logo-inputs input{max-width:100%}.madic-logo-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}.madic-logo-reset{background:#526577;font-size:13px;padding:8px 12px}@media(max-width:680px){.madic-logo-inputs{grid-template-columns:1fr}}@media print{.madic-logo-fields{display:none!important}}
+
+.madic-professional-fields{border:1px solid #bac6cf;border-radius:10px;padding:18px;margin-top:24px}.madic-professional-fields legend{font-weight:750;padding:0 8px}.madic-professional-fields .hint{margin-bottom:0}@media print{.madic-professional-fields{display:none!important}}
+
+/* Mise en page soignee du contrat de consultation initiale uniquement. */
+body[data-contract-kind="initial"] .document{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:15px;
+  line-height:1.78;
+  color:#243444;
+}
+body[data-contract-kind="initial"] .document h2{
+  font-family:system-ui,-apple-system,"Segoe UI",sans-serif;
+  color:#123c56;
+  font-size:clamp(21px,3vw,27px);
+  line-height:1.3;
+  letter-spacing:-.02em;
+  margin:32px 0 25px;
+  padding-bottom:14px;
+  border-bottom:1px solid #e2d6bc;
+}
+body[data-contract-kind="initial"] .document h3{
+  font-family:system-ui,-apple-system,"Segoe UI",sans-serif;
+  color:#183f58;
+  font-size:16px;
+  line-height:1.4;
+  margin:30px 0 14px;
+}
+body[data-contract-kind="initial"] .source-page{
+  border-top:1px solid #e5eaf0;
+  padding-top:23px;
+  margin-top:27px;
+}
+body[data-contract-kind="initial"] .source-page p{
+  margin:0 0 14px;
+  text-align:justify;
+  text-justify:inter-word;
+  hyphens:auto;
+  overflow-wrap:break-word;
+  line-height:1.8;
+}
+body[data-contract-kind="initial"] .source-page p[data-contract-template]:first-of-type{
+  color:#173c55;
+  font-weight:650;
+}
+body[data-contract-kind="initial"] .page-index{
+  font:600 11px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;
+  text-transform:uppercase;
+  letter-spacing:.09em;
+  color:#8a744e;
+  margin-bottom:18px;
+}
+body[data-contract-kind="initial"] .filled{
+  border:1px solid #e7dcc7;
+  border-left:4px solid #b99451;
+  border-radius:7px;
+  background:#fcfaf6;
+  padding:19px 23px;
+  font:14px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+body[data-contract-kind="initial"] .filled p{
+  text-align:left;
+  margin:6px 0;
+}
+body[data-contract-kind="initial"] .signature{
+  padding-top:12px;
+  margin-top:40px;
+}
+@media print{
+  body[data-contract-kind="initial"] .document{font-size:11pt;line-height:1.55;color:#111}
+  body[data-contract-kind="initial"] .source-page{break-inside:auto;page-break-inside:auto;margin-top:17px;padding-top:13px}
+  body[data-contract-kind="initial"] .source-page p{line-height:1.55;margin-bottom:9px;orphans:3;widows:3}
+  body[data-contract-kind="initial"] .document h2,body[data-contract-kind="initial"] .document h3{break-after:avoid;page-break-after:avoid}
+  body[data-contract-kind="initial"] .page-index{color:#666}
+  body[data-contract-kind="initial"] .filled{background:#fff}
+}
+
+/* Coordonnees professionnelles du CRIC en tete de la deuxieme section. */
+body[data-contract-kind="initial"] .cric-contact-card{margin:0 0 25px;padding:17px 20px;background:#d3ad70;border:1px solid #b58b4b;border-radius:7px;color:#172331;font:700 14px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif;text-align:center;overflow-wrap:anywhere;break-inside:avoid;page-break-inside:avoid}
+body[data-contract-kind="initial"] .cric-contact-permits,body[data-contract-kind="initial"] .cric-contact-details{display:flex;justify-content:center;flex-wrap:wrap;column-gap:18px;row-gap:2px}
+body[data-contract-kind="initial"] .cric-contact-address{margin:5px 0}
+body[data-contract-kind="initial"] .cric-contact-card [data-contract-template]{text-align:center;hyphens:none}
+@media print{body[data-contract-kind="initial"] .cric-contact-card{-webkit-print-color-adjust:exact;print-color-adjust:exact;padding:12px 15px;font-size:10pt}}
+
+/* En-tete de correspondance de la consultation initiale */
+body[data-contract-kind="initial"] .madic-contract-letterhead{
+ display:grid;grid-template-columns:minmax(0,1fr) minmax(210px,.95fr);
+ gap:22px;align-items:start;background:#fff;border:0;border-left:0;
+ border-radius:0;padding:4px 0 18px;box-shadow:none;
+ font:15px/1.45 Arial,Helvetica,sans-serif;color:#355775;
+}
+body[data-contract-kind="initial"] .madic-letterhead-consultant{min-width:0;overflow-wrap:anywhere}
+body[data-contract-kind="initial"] .madic-letterhead-name{font-weight:500}
+body[data-contract-kind="initial"] .madic-letterhead-place{display:flex;align-items:baseline;justify-content:flex-end;flex-wrap:wrap;gap:4px;text-align:right;white-space:normal}
+body[data-contract-kind="initial"] .madic-letterhead-place time{white-space:nowrap}
+@media(max-width:650px){body[data-contract-kind="initial"] .madic-contract-letterhead{grid-template-columns:1fr;gap:14px}body[data-contract-kind="initial"] .madic-letterhead-place{justify-content:flex-start;text-align:left}}
+@media print{body[data-contract-kind="initial"] .madic-contract-letterhead{display:grid;grid-template-columns:minmax(0,1fr) minmax(170px,.85fr);gap:12px;break-inside:avoid;page-break-inside:avoid;padding:0 0 10px;font-size:10.5pt;color:#294864}body[data-contract-kind="initial"] .madic-letterhead-place{justify-content:flex-end;text-align:right}}
+
+/* Disposition des deux pages selon le modele fourni par le client. */
+body[data-contract-kind="initial"] .madic-contract-page{font:15px/1.35 Arial,Helvetica,sans-serif;color:#254d72;text-align:justify;border:0;padding:18px 0 0;margin:20px 0 0;display:flex;flex-direction:column;min-height:840px;break-inside:auto}
+body[data-contract-kind="initial"] .madic-contract-page + .madic-contract-page{break-before:page;page-break-before:always}
+body[data-contract-kind="initial"] .madic-contract-page p{font:inherit;line-height:1.35;margin:0 0 12px;text-align:justify;hyphens:none}
+body[data-contract-kind="initial"] .madic-contract-page h3{font:700 17px/1.3 Arial,Helvetica,sans-serif;margin:16px 0 12px;color:#254d72}
+body[data-contract-kind="initial"] .contract-page-footer{margin-top:auto;display:flex;align-items:flex-end;gap:16px;padding-top:22px}
+body[data-contract-kind="initial"] .contract-page-footer .cric-contact-card{flex:1;margin:0;border:0;border-radius:0;padding:7px 10px;background:#d3ad70;color:#111;font:700 13px/1.25 Arial,Helvetica,sans-serif}
+body[data-contract-kind="initial"] .contract-page-number{flex:0 0 27px;text-align:center;background:#d3ad70;color:#fff;font:bold 21px/27px Arial,sans-serif}
+body[data-contract-kind="initial"] .contract-initials{margin:14px 0 22px;display:flex;flex-direction:column;align-items:flex-start;gap:3px}
+body[data-contract-kind="initial"] .contract-sign-box{display:inline-block;border:1px solid #d3ad70;min-width:150px;height:39px}
+body[data-contract-kind="initial"] .contract-signature-columns{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:24px;text-align:left}
+body[data-contract-kind="initial"] .contract-signature-party h4{font:700 15px Arial,sans-serif;text-decoration:underline;margin:0 0 15px}
+body[data-contract-kind="initial"] .contract-party-heading{margin:0 0 17px!important}
+body[data-contract-kind="initial"] .contract-form-row{display:flex;align-items:center;gap:5px;min-height:43px;margin:5px 0;line-height:1.25}
+body[data-contract-kind="initial"] .contract-form-row>span:first-child{flex:0 0 auto}
+body[data-contract-kind="initial"] .contract-sign-value{display:block;min-width:0;flex:1;min-height:28px;border:1px solid #d3ad70;padding:5px 7px;overflow-wrap:anywhere}
+body[data-contract-kind="initial"] .contract-form-row .contract-sign-box{flex:1;min-width:0}
+body[data-contract-kind="initial"] .contract-address{min-height:42px}
+body[data-contract-kind="initial"] .contract-inline-value{font-weight:600}
+@media(max-width:650px){body[data-contract-kind="initial"] .contract-signature-columns{grid-template-columns:1fr}}
+@media print{
+ body[data-contract-kind="initial"] .document{font-family:Arial,Helvetica,sans-serif}
+ body[data-contract-kind="initial"] .madic-contract-page{min-height:0;height:calc(279.4mm - 32mm);padding:0;margin:0;break-inside:avoid;page-break-inside:avoid;break-after:page;page-break-after:always;font-size:10.3pt;line-height:1.22}
+ body[data-contract-kind="initial"] .madic-contract-page p{line-height:1.22;margin-bottom:8px}
+ body[data-contract-kind="initial"] .contract-page-footer{padding-top:8px}
+ body[data-contract-kind="initial"] .contract-page-footer .cric-contact-card{font-size:9pt;padding:5px 8px;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ body[data-contract-kind="initial"] .contract-page-number{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ body[data-contract-kind="initial"] .contract-signature-columns{gap:20px;margin-top:15px}
+ body[data-contract-kind="initial"] .contract-form-row{min-height:34px;margin:3px 0}
+ body[data-contract-kind="initial"] .contract-sign-box{height:32px}
+}
+
+/* Réglage précis des deux pages du contrat initial, selon les captures transmises. */
+body[data-contract-kind="initial"] .madic-contract-page{font-family:Arial,Helvetica,sans-serif;color:#254d72;text-align:justify;min-height:900px;padding:10px 0 0;margin:14px 0 0;display:flex;flex-direction:column;border:0}
+body[data-contract-kind="initial"] .madic-contract-page .madic-contract-body{flex:0 0 auto}
+body[data-contract-kind="initial"] .madic-contract-page p{font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.28;margin:0 0 12px;text-align:justify;hyphens:none}
+body[data-contract-kind="initial"] .madic-contract-page h3{font:bold 17px/1.25 Arial,Helvetica,sans-serif;margin:15px 0 11px;color:#254d72}
+body[data-contract-kind="initial"] .madic-contract-page .contract-highlight{font-weight:inherit}
+body[data-contract-kind="initial"] .madic-contract-page .contract-page-footer{margin-top:auto;display:grid;grid-template-columns:minmax(0,1fr) 28px;gap:65px;align-items:end;padding:10px 0 0 36px}
+body[data-contract-kind="initial"] .madic-contract-page .contract-page-footer .cric-contact-card{width:100%;margin:0;padding:5px 6px;border:0;border-radius:0;background:#d3ad70;color:#000;font:bold 13px/1.16 Arial,Helvetica,sans-serif;text-align:center}
+body[data-contract-kind="initial"] .madic-contract-page .cric-contact-permits,body[data-contract-kind="initial"] .madic-contract-page .cric-contact-details{gap:3px 10px}
+body[data-contract-kind="initial"] .madic-contract-page .cric-contact-address{margin:2px 0}
+body[data-contract-kind="initial"] .madic-contract-page .contract-page-number{background:#d3ad70;color:#fff;font:bold 21px/28px Arial,Helvetica,sans-serif;text-align:center}
+body[data-contract-kind="initial"] .madic-contract-page .contract-initials{margin:8px 0 12px;gap:3px}
+body[data-contract-kind="initial"] .madic-contract-page .contract-initials .contract-sign-box{width:240px;height:30px}
+body[data-contract-kind="initial"] .madic-contract-page .contract-signature-columns{grid-template-columns:1fr 1.18fr;gap:36px;margin-top:20px}
+body[data-contract-kind="initial"] .madic-contract-page .contract-signature-party h4{margin:0 0 12px;font:bold 15px Arial,Helvetica,sans-serif;text-decoration:underline}
+body[data-contract-kind="initial"] .madic-contract-page .contract-party-heading{margin-bottom:12px!important}
+body[data-contract-kind="initial"] .madic-contract-page .contract-form-row{min-height:42px;margin:3px 0;display:flex;align-items:center;gap:5px}
+body[data-contract-kind="initial"] .madic-contract-page .contract-sign-value{min-height:29px;border:1px solid #d3ad70;padding:4px 6px;overflow-wrap:anywhere}
+body[data-contract-kind="initial"] .madic-contract-page .contract-form-row .contract-sign-box{min-height:38px}
+@media print{
+ @page{size:letter;margin:12mm 14mm}
+ /* Logos, titre et coordonnees restent visibles sur la premiere page. */
+ body[data-contract-kind="initial"] .document{padding:0!important;margin:0!important}
+ body[data-contract-kind="initial"] .madic-contract-page{box-sizing:border-box;height:255.4mm!important;min-height:0!important;margin:0!important;padding:0!important;border:0!important;break-inside:avoid;page-break-inside:avoid;break-after:page;page-break-after:always;font-size:10.2pt}
+ body[data-contract-kind="initial"] .madic-contract-page:last-child{break-after:auto;page-break-after:auto}
+ body[data-contract-kind="initial"] .madic-contract-page p{font-size:10.2pt;line-height:1.18;margin-bottom:8px;orphans:2;widows:2}
+ body[data-contract-kind="initial"] .madic-contract-page h3{font-size:11pt;margin:10px 0 8px}
+ body[data-contract-kind="initial"] .madic-contract-page .contract-page-footer{gap:16mm;padding-left:9mm;padding-top:5px}
+ body[data-contract-kind="initial"] .madic-contract-page .contract-page-footer .cric-contact-card{font-size:9pt;line-height:1.1;padding:4px;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ body[data-contract-kind="initial"] .madic-contract-page .contract-page-number{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ body[data-contract-kind="initial"] .madic-contract-page .contract-signature-columns{gap:11mm;margin-top:12px}
+ body[data-contract-kind="initial"] .madic-contract-page .contract-form-row{min-height:32px;margin:2px 0}
+ body[data-contract-kind="initial"] .madic-contract-page .contract-form-row .contract-sign-box{min-height:30px;height:30px}
+}
+
+/* Impression : en-tete integre a la page 1, sans page supplementaire. */
+@media print {
+ body[data-contract-kind="initial"] .madic-contract-page-one>.doc-head{display:flex!important;min-height:0!important;padding-bottom:5px!important;margin:0 0 4px!important;}
+ body[data-contract-kind="initial"] .madic-contract-page-one>.doc-head img{max-height:16mm!important;width:auto!important;max-width:60%!important;object-fit:contain!important;}
+ body[data-contract-kind="initial"] .madic-contract-page-one>h2{display:block!important;font-size:13pt!important;line-height:1.1!important;margin:3px 0 5px!important;padding:0 0 3px!important;}
+ body[data-contract-kind="initial"] .madic-contract-page-one>#contractFilled{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,.7fr)!important;font-size:8pt!important;line-height:1.2!important;gap:8px!important;margin:0 0 7px!important;padding:0 0 5px!important;}
+ body[data-contract-kind="initial"] .madic-contract-page-one .madic-contract-body{min-height:0!important;}
+ body[data-contract-kind="initial"] .madic-contract-page-one .madic-contract-body p{font-size:9.3pt!important;line-height:1.16!important;margin-bottom:5px!important;}
+ body[data-contract-kind="initial"] .madic-contract-page-one .contract-page-footer{margin-top:auto!important;}
+}
+/* Réutilisation du document initial dans l'espace client */
+.madic-client-contract-preview .document{margin:18px auto;max-width:850px}
+.madic-initial-item{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:12px 0;padding:12px;border:1px solid #d9e0e6;border-radius:7px}
+.madic-initial-sign{display:grid;gap:12px;max-width:550px;margin:25px 0}
+.madic-initial-sign label{display:flex;flex-direction:column;gap:5px}
+.madic-initial-sign label:has([type=checkbox]){flex-direction:row;align-items:flex-start}
+.madic-initial-sign [type=checkbox]{width:auto;margin-top:6px}
+@media print{.madic-initial-sign,.madic-initial-item{display:none!important}}
+
+.madic-initial-document-frame{display:block;width:100%;min-height:1700px;border:1px solid #d9e0e6;background:white}
+
+/* Contrat professionnel : pages de référence, en-têtes et pieds de page. */
+body[data-contract-kind="professionnel"] #contractDocument{max-width:900px;padding:0;background:#fff;border:0;box-shadow:none}
+body[data-contract-kind="professionnel"] #contractDocument>h2{display:none}
+body[data-contract-kind="professionnel"] .source-page{position:relative;min-height:980px;padding:112px 48px 98px;margin:0;border:0;background:white;color:#25446b;font:12px/1.6 Arial,sans-serif;overflow:hidden}
+body[data-contract-kind="professionnel"] .source-page:first-of-type:before{content:'CONTRAT DE SERVICE PROFESSIONNEL';display:block;text-align:center;font-weight:700;font-size:17px;letter-spacing:.3px;margin:-18px 0 26px}
+body[data-contract-kind="professionnel"] .source-page p{margin:0 0 12px;line-height:1.7;text-align:justify;overflow-wrap:normal}
+body[data-contract-kind="professionnel"] .contract-page-header{position:absolute;top:8px;left:25px;right:25px;min-height:66px;border:0;padding:0;display:flex;align-items:flex-start;justify-content:space-between}
+body[data-contract-kind="professionnel"] .contract-page-header .madic-logo-cric{width:210px;max-height:66px}
+body[data-contract-kind="professionnel"] .contract-page-header .madic-logo-madic{width:72px;max-height:69px}
+body[data-contract-kind="professionnel"] .contract-page-footer{position:absolute;bottom:12px;left:30px;right:14px;display:flex;align-items:end;justify-content:space-between;gap:24px;color:#111}
+body[data-contract-kind="professionnel"] .contract-footer-contact{background:#d3ac6d;padding:4px 9px;text-align:center;font-size:11px;line-height:1.3;font-weight:bold;max-width:88%}
+body[data-contract-kind="professionnel"] .contract-page-number{background:#d3ac6d;color:white;padding:3px 8px;font-size:16px;font-weight:bold}
+body[data-contract-kind="professionnel"] .source-page .contract-heading{font-weight:bold;font-size:14px;margin-top:18px}
+body[data-contract-kind="professionnel"] .source-page .contract-phase{font-weight:bold;text-decoration:underline;margin-top:14px}
+body[data-contract-kind="professionnel"] .source-page .contract-bullet{padding-left:24px;margin:0 0 5px}
+body[data-contract-kind="professionnel"] .contract-intro{margin-bottom:26px!important}
+body[data-contract-kind="professionnel"] .contract-client-name{font-weight:bold}
+body[data-contract-kind="professionnel"] .contract-address{margin:16px 0!important}
+body[data-contract-kind="professionnel"] .contract-fee-table{width:100%;border-collapse:collapse;table-layout:fixed;margin:12px 0;font-size:11px}
+body[data-contract-kind="professionnel"] .contract-fee-table th,body[data-contract-kind="professionnel"] .contract-fee-table td{border:1px solid #333;padding:7px 5px;vertical-align:top;text-align:left;overflow-wrap:anywhere}
+body[data-contract-kind="professionnel"] .contract-signature-block{margin:25px 0 55px}
+body[data-contract-kind="professionnel"] .contract-signature-block .signature-line{margin:10px 0}
+@media print{ @page{size:letter;margin:0}body[data-contract-kind="professionnel"] #contractDocument{width:100%;max-width:none;margin:0;padding:0}body[data-contract-kind="professionnel"] .source-page{width:216mm;height:279.4mm;min-height:0;padding:27mm 13mm 25mm;break-after:page;page-break-after:always;break-inside:auto;overflow:hidden;font-size:9pt}body[data-contract-kind="professionnel"] .source-page:last-child{break-after:auto;page-break-after:auto}body[data-contract-kind="professionnel"] .source-page p{line-height:1.55;margin-bottom:7px}body[data-contract-kind="professionnel"] .contract-page-header{top:3mm;left:7mm;right:7mm}body[data-contract-kind="professionnel"] .contract-page-footer{bottom:4mm;left:7mm;right:4mm}body[data-contract-kind="professionnel"] .contract-footer-contact{font-size:8pt}body[data-contract-kind="professionnel"] .source-page:first-of-type:before{margin:-8mm 0 7mm;font-size:14pt}}
+
+/* MADIC V10 : bleu officiel du contrat initial, y compris impression/PDF.
+   Portee limitee au contrat initial : le contrat professionnel reste intact. */
+body[data-contract-kind="initial"] .doc-head{
+  color:#10263b;border-bottom-color:#10263b;
+}
+body[data-contract-kind="initial"] .document h2{
+  border-bottom-color:#d7e4ec;
+}
+body[data-contract-kind="initial"] .page-index{color:#10263b}
+body[data-contract-kind="initial"] .filled{
+  border-color:#d7e4ec;border-left-color:#10263b;background:#f5f9fc;
+}
+body[data-contract-kind="initial"] .signature{border-top-color:#10263b}
+body[data-contract-kind="initial"] .cric-contact-card,
+body[data-contract-kind="initial"] .contract-page-footer .cric-contact-card,
+body[data-contract-kind="initial"] .madic-contract-page .contract-page-footer .cric-contact-card{
+  background:#10263b;color:#ffffff;border-color:#10263b;
+}
+body[data-contract-kind="initial"] .contract-page-number,
+body[data-contract-kind="initial"] .madic-contract-page .contract-page-number{
+  background:#10263b;color:#ffffff;
+}
+body[data-contract-kind="initial"] .contract-sign-box,
+body[data-contract-kind="initial"] .contract-sign-value,
+body[data-contract-kind="initial"] .madic-contract-page .contract-sign-value{
+  border-color:#10263b;
+}
+@media print{
+  body[data-contract-kind="initial"] .cric-contact-card,
+  body[data-contract-kind="initial"] .contract-page-number,
+  body[data-contract-kind="initial"] .contract-page-footer .cric-contact-card,
+  body[data-contract-kind="initial"] .madic-contract-page .contract-page-footer .cric-contact-card,
+  body[data-contract-kind="initial"] .madic-contract-page .contract-page-number{
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;
+  }
+}
+
+/* MADIC : harmonisation visuelle du contrat professionnel, sans modifier les pages du contrat initial. */
+body[data-contract-kind="professionnel"] .source-page{color:#254d72}
+body[data-contract-kind="professionnel"] .source-page:first-of-type:before{color:#123c56}
+body[data-contract-kind="professionnel"] .source-page .contract-heading{color:#123c56}
+body[data-contract-kind="professionnel"] .contract-footer-contact,
+body[data-contract-kind="professionnel"] .contract-page-number{background:#10263b;color:#fff}
+body[data-contract-kind="professionnel"] .contract-fee-table th{background:#f5f9fc;color:#10263b}
+body[data-contract-kind="professionnel"] .contract-fee-table th,
+body[data-contract-kind="professionnel"] .contract-fee-table td{border-color:#8ba4b8}
+body[data-contract-kind="professionnel"] .contract-page-header img{object-fit:contain;max-height:65px}
+@media print{
+ body[data-contract-kind="professionnel"] .contract-footer-contact,
+ body[data-contract-kind="professionnel"] .contract-page-number,
+ body[data-contract-kind="professionnel"] .contract-fee-table th{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+
+/* Contrat professionnel : lecture harmonisee, sans toucher au contrat initial. */
+body[data-contract-kind="professionnel"] .source-page{font-size:14px;line-height:1.48;padding-left:48px;padding-right:48px;overflow:visible}
+body[data-contract-kind="professionnel"] .source-page p{font-size:inherit;line-height:1.52;text-align:justify;text-justify:inter-word;hyphens:auto;overflow-wrap:break-word;margin-bottom:10px}
+body[data-contract-kind="professionnel"] .source-page .contract-heading{font-size:15px}
+body[data-contract-kind="professionnel"] .source-page .contract-phase{font-size:14px}
+body[data-contract-kind="professionnel"] .source-page .contract-fee-table{font-size:12px}
+body[data-contract-kind="professionnel"] .contract-signature-block .signature-line{font-size:14px}
+body[data-contract-kind="professionnel"] .signature-stamp{font-size:11px;text-align:left}
+body[data-contract-kind="professionnel"] .madic-cric-signature{border:1px solid #29475e;border-radius:8px;margin-top:22px;padding:16px}
+body[data-contract-kind="professionnel"] .madic-cric-signature legend{font-weight:700;padding:0 8px}
+body[data-contract-kind="professionnel"] .madic-cric-signature>label{display:block;margin-top:12px}
+body[data-contract-kind="professionnel"] .madic-cric-signature .madic-sign-consent{display:flex;gap:10px;align-items:flex-start}
+body[data-contract-kind="professionnel"] .madic-cric-signature .madic-sign-consent input{width:auto;min-width:18px;margin-top:5px}
+body[data-contract-kind="professionnel"] #contractActivate:disabled{opacity:.55;cursor:not-allowed}
+@media print{body[data-contract-kind="professionnel"] .source-page{font-size:9pt;line-height:1.45;overflow:hidden;padding:27mm 13mm 25mm}body[data-contract-kind="professionnel"] .source-page p{line-height:1.45;margin-bottom:6px}body[data-contract-kind="professionnel"] .source-page .contract-heading{font-size:10pt}body[data-contract-kind="professionnel"] .source-page .contract-fee-table{font-size:8pt}}
+
+
+/* MADIC - Contrat professionnel : mise en page fluide, identique au contrat initial. */
+body[data-contract-kind="professionnel"] #contractDocument{max-width:850px;padding:44px 55px;background:#fff;color:#254d72;}
+body[data-contract-kind="professionnel"] .madic-professional-document{position:relative;min-height:0!important;height:auto!important;overflow:visible!important;padding:0!important;margin:0!important;border:0!important;display:block!important;font:15px/1.28 Arial,Helvetica,sans-serif!important;color:#254d72;}
+body[data-contract-kind="professionnel"] .madic-professional-document::before{content:'CONTRAT DE SERVICE PROFESSIONNEL';display:block;position:static;text-align:center;color:#123c56;font:bold 23px/1.3 Arial,Helvetica,sans-serif;letter-spacing:0;margin:26px 0 26px;padding-bottom:14px;border-bottom:1px solid #d7e4ec;}
+body[data-contract-kind="professionnel"] .madic-professional-document p{font:15px/1.28 Arial,Helvetica,sans-serif!important;text-align:justify!important;text-justify:inter-word;hyphens:none!important;overflow-wrap:break-word;margin:0 0 12px!important;}
+body[data-contract-kind="professionnel"] .madic-professional-document .contract-page-header{position:static!important;display:flex;align-items:center;justify-content:space-between;min-height:75px;margin:0 0 10px;padding:0;}
+body[data-contract-kind="professionnel"] .madic-professional-document .contract-page-header .madic-logo-cric{width:210px;max-height:72px;}
+body[data-contract-kind="professionnel"] .madic-professional-document .contract-page-header .madic-logo-madic{width:76px;max-height:72px;}
+body[data-contract-kind="professionnel"] .madic-professional-document .contract-heading{font:bold 16px/1.3 Arial,Helvetica,sans-serif!important;color:#123c56;margin:20px 0 10px!important;break-after:avoid;page-break-after:avoid;}
+body[data-contract-kind="professionnel"] .madic-professional-document .contract-phase{font-weight:700!important;margin-top:12px!important;}
+body[data-contract-kind="professionnel"] .madic-professional-document .contract-bullet{padding-left:22px;margin-bottom:7px!important;}
+body[data-contract-kind="professionnel"] .madic-professional-document .contract-fee-table{font:13px/1.4 Arial,Helvetica,sans-serif;margin:15px 0 18px;}
+body[data-contract-kind="professionnel"] .madic-professional-document .contract-fee-table th,body[data-contract-kind="professionnel"] .madic-professional-document .contract-fee-table td{padding:8px 7px;}
+body[data-contract-kind="professionnel"] .madic-professional-document .contract-signatures{margin-top:28px;break-inside:avoid;}
+body[data-contract-kind="professionnel"] .madic-professional-document .contract-signature-block{margin:18px 0 30px;}
+@media(max-width:680px){body[data-contract-kind="professionnel"] #contractDocument{padding:22px;}body[data-contract-kind="professionnel"] .madic-professional-document p{font-size:14px!important;}}
+@media print{
+ @page{size:letter;margin:14mm;}
+ body[data-contract-kind="professionnel"] #contractDocument{width:auto;max-width:none;margin:0;padding:0!important;border:0;}
+ body[data-contract-kind="professionnel"] .madic-professional-document{width:auto!important;height:auto!important;min-height:0!important;padding:0!important;margin:0!important;overflow:visible!important;break-after:auto!important;page-break-after:auto!important;break-inside:auto!important;}
+ body[data-contract-kind="professionnel"] .madic-professional-document::before{font-size:13pt;margin:5mm 0 5mm;padding-bottom:2mm;}
+ body[data-contract-kind="professionnel"] .madic-professional-document p{font-size:10.2pt!important;line-height:1.24!important;margin-bottom:7px!important;orphans:3;widows:3;}
+ body[data-contract-kind="professionnel"] .madic-professional-document .contract-heading{font-size:11pt!important;}
+ body[data-contract-kind="professionnel"] .madic-professional-document .contract-fee-table{font-size:9pt;break-inside:auto;}
+ body[data-contract-kind="professionnel"] .madic-professional-document .contract-fee-table tr{break-inside:avoid;}
+ body[data-contract-kind="professionnel"] .madic-professional-document .contract-page-header{position:static!important;break-inside:avoid;}
+}
+
+
+/* MADIC : pied de page professionnel repete par le moteur d'impression Chromium.
+   Les boites de marge @page se repetent sur chaque feuille, y compris la derniere.
+   Les donnees sont injectees dans la regle @page par le script du contrat. */
+@media print {
+  @page madic-professional {
+    size: letter;
+    margin: 14mm 14mm 20mm;
+    @bottom-center {
+      content: "Coordonnees professionnelles a completer";
+      background: #10263b;
+      color: white;
+      font: bold 8pt/1.2 Arial, Helvetica, sans-serif;
+      text-align: center;
+      padding: 2mm 3mm;
+      vertical-align: middle;
+    }
+    @bottom-right {
+      content: counter(page);
+      background: #10263b;
+      color: white;
+      font: bold 13pt Arial, Helvetica, sans-serif;
+      text-align: center;
+      vertical-align: middle;
+      width: 9mm;
+    }
+  }
+  body[data-contract-kind="professionnel"] #contractDocument {
+    page: madic-professional;
+  }
+  body[data-contract-kind="professionnel"] .madic-professional-document {
+    page: madic-professional;
+  }
+}
+
+/* MADIC - correctif impression contrat professionnel, sans toucher au contrat initial.
+   Le flux naturel laisse Chromium paginer sans pages artificielles. */
+@media print {
+  @page { size: letter; margin: 14mm 14mm 20mm; }
+  body[data-contract-kind="professionnel"] #contractDocument,
+  body[data-contract-kind="professionnel"] .madic-professional-document {
+    page: auto !important;
+  }
+  body[data-contract-kind="professionnel"] #contractDocument {
+    display:block !important; width:auto !important; max-width:none !important;
+    margin:0 !important; padding:0 !important; border:0 !important;
+    box-shadow:none !important;
+  }
+  body[data-contract-kind="professionnel"] .madic-professional-document {
+    display:block !important; position:static !important; width:auto !important;
+    height:auto !important; min-height:0 !important; overflow:visible !important;
+    margin:0 !important; padding:0 !important;
+    break-before:auto !important; break-after:auto !important;
+    page-break-before:auto !important; page-break-after:auto !important;
+    break-inside:auto !important; page-break-inside:auto !important;
+  }
+  body[data-contract-kind="professionnel"] .madic-professional-document::before {
+    display:block !important; content:"CONTRAT DE SERVICE PROFESSIONNEL" !important;
+    position:static !important; margin:4mm 0 5mm !important;
+    padding:0 0 2mm !important; font:bold 13pt/1.3 Arial,Helvetica,sans-serif !important;
+    color:#123c56 !important; text-align:center !important;
+    border-bottom:1px solid #d7e4ec !important;
+  }
+  body[data-contract-kind="professionnel"] .madic-professional-document .contract-page-header {
+    position:static !important; display:flex !important;
+    break-inside:avoid !important; page-break-inside:avoid !important;
+  }
+  body[data-contract-kind="professionnel"] .madic-professional-document p {
+    font:10.2pt/1.24 Arial,Helvetica,sans-serif !important;
+    margin:0 0 7px !important; text-align:justify !important;
+    orphans:3; widows:3;
+  }
+  body[data-contract-kind="professionnel"] .madic-professional-document .contract-heading {
+    break-after:avoid !important; page-break-after:avoid !important;
+  }
+  body[data-contract-kind="professionnel"] .madic-professional-document .contract-fee-table tr,
+  body[data-contract-kind="professionnel"] .madic-professional-document .contract-signatures {
+    break-inside:avoid; page-break-inside:avoid;
+  }
+  body[data-contract-kind="professionnel"] {
+    -webkit-print-color-adjust:exact; print-color-adjust:exact;
+  }
+}
+
+/* Liens de verification des frais gouvernementaux : contrat professionnel uniquement. */
+body[data-contract-kind="professionnel"] #contractForm .madic-ircc-fee-link{display:inline-block;align-self:flex-start;font-size:12px;line-height:1.4;font-weight:600;color:#63d7ec;text-decoration:underline;text-underline-offset:2px;margin:1px 0 4px}
+body[data-contract-kind="professionnel"] #contractForm .madic-ircc-fee-link:focus-visible{outline:2px solid #63d7ec;outline-offset:3px}
+
+/* MADIC : statut des frais IRCC, contrat professionnel uniquement. */
+body[data-contract-kind="professionnel"] #contractForm #madicBioCategory{margin:5px 0 3px}
+body[data-contract-kind="professionnel"] #contractForm .madic-ircc-status{display:block;font-size:12px;font-weight:400;line-height:1.5;color:#bfe5ed}
+body[data-contract-kind="professionnel"] #contractForm .madic-ircc-status[data-error="true"]{color:#ffbdad}
+
+/* MADIC : prestations dynamiques du contrat professionnel uniquement. */
+body[data-contract-kind="professionnel"] #madicPrestationsDocument .contract-phase{font-weight:700;text-decoration:underline;margin-top:12px!important}
+body[data-contract-kind="professionnel"] #madicPrestationsDocument .contract-bullet{padding-left:22px;margin-bottom:7px!important}
+body[data-contract-kind="professionnel"] .contract-service-type{font-weight:700!important;color:#123c56}
+body[data-contract-kind="professionnel"] [data-madic-study-only][hidden]{display:none!important}
+body[data-contract-kind="professionnel"] .contract-fee-table[data-madic-fee-review="true"]{outline:2px dashed #b48c4e;outline-offset:3px}
+@media print{body[data-contract-kind="professionnel"] .contract-fee-table[data-madic-fee-review="true"]{outline:none}}
+
+/* MADIC : honoraires flexibles, contrat professionnel uniquement. */
+body[data-contract-kind="professionnel"] .madic-phase-settings{grid-column:1/-1;display:grid;gap:5px}body[data-contract-kind="professionnel"] .madic-phase-fields{border:1px solid #29475e;border-radius:8px;padding:14px;display:grid;gap:10px}body[data-contract-kind="professionnel"] .madic-phase-fields label{display:flex;flex-direction:column;gap:5px}body[data-contract-kind="professionnel"] .madic-phase-fields[hidden]{display:none!important}body[data-contract-kind="professionnel"] .madic-phase-balance{font-weight:650;font-size:13px}body[data-contract-kind="professionnel"] .madic-phase-balance[data-mismatch="true"]{color:#b42318}@media print{body[data-contract-kind="professionnel"] .madic-phase-balance{font-size:9pt}}
+
+/* Synchronisation : largeur des prestations et des phases (professionnel seulement). */
+body[data-contract-kind="professionnel"] #madicPrestations{min-height:260px;resize:vertical}body[data-contract-kind="professionnel"] #madicPrestations:focus{outline-offset:2px}body[data-contract-kind="professionnel"] .madic-phase-fields{min-width:0}body[data-contract-kind="professionnel"] .madic-phase-fields input{width:100%;box-sizing:border-box}
+
+/* MADIC - Impression du contrat Client -> CRIC : le pied de page doit rester
+   dans la meme feuille que le contenu. Correctif limite a l'apercu CRIC. */
+@media print {
+  @page { size: letter; margin: 12mm 14mm; }
+  body.madic-client-first-preview[data-contract-kind="initial"] {
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #fff !important;
+  }
+  body.madic-client-first-preview[data-contract-kind="initial"] .document {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    max-width: none !important;
+  }
+  body.madic-client-first-preview[data-contract-kind="initial"] .madic-contract-page {
+    height: 249mm !important;
+    min-height: 0 !important;
+    max-height: 249mm !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+    break-after: auto !important;
+    page-break-after: auto !important;
+  }
+  body.madic-client-first-preview[data-contract-kind="initial"] .madic-contract-page-two {
+    break-before: page !important;
+    page-break-before: always !important;
+  }
+  body.madic-client-first-preview[data-contract-kind="initial"] .madic-contract-page .contract-page-footer {
+    flex-shrink: 0 !important;
+    margin-top: auto !important;
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+}
+
+/* Étape 3 — accessibilité et ergonomie, sans altérer la mise en page d'impression. */
+@media screen {
+  #contractForm :is(input,select,textarea,button):focus-visible, .actions button:focus-visible {outline:3px solid #147dba;outline-offset:3px;}
+  #contractForm :is(input,select,textarea) {max-width:100%;box-sizing:border-box;}
+  #contractForm :is(input,select,textarea):disabled {opacity:.68;cursor:not-allowed;}
+  #contractActivationStatus,#contractStatus {overflow-wrap:anywhere;}
+  .madic-phase-balance[data-mismatch="true"] {color:#b42318;font-weight:700;}
+  .actions {display:flex;flex-wrap:wrap;gap:10px;}
+  .actions button {min-height:42px;}
+  .actions button:disabled {cursor:not-allowed;opacity:.6;}
+  @media(max-width:640px){.actions{flex-direction:column}.actions button{width:100%;white-space:normal}.madic-phase-fields{min-width:0;}}
+}
+@media(prefers-reduced-motion:reduce){#contractForm *,#contractForm *::before,#contractForm *::after{scroll-behavior:auto!important;transition:none!important;}}
+
+
+/* MADIC — Étape 3 : interface CRIC modernisée. Écran seulement.
+   Les documents juridiques et les styles d'impression sont préservés. */
+@media screen {
+  body[data-contract-kind="initial"],
+  body[data-contract-kind="professionnel"] {
+    background:linear-gradient(155deg,#071a2b 0%,#102d43 52%,#0b2639 100%);
+    color:#e9f4fa;
+    min-height:100vh;
+  }
+  body[data-contract-kind] .top {
+    background:#071b2c;
+    border-bottom:1px solid #28526a;
+    box-shadow:0 8px 28px rgba(0,0,0,.18);
+  }
+  body[data-contract-kind] .top a {color:#bdeef1;text-underline-offset:3px;}
+  body[data-contract-kind] main {max-width:1180px;margin:32px auto;padding:0 24px 48px;}
+  body[data-contract-kind] .intro {padding:12px 0 22px;}
+  body[data-contract-kind] .intro h1 {color:#f5fbff;font-size:clamp(1.7rem,3vw,2.35rem);letter-spacing:-.025em;}
+  body[data-contract-kind] .intro p {color:#bdd4e2;}
+  body[data-contract-kind] .eyebrow {color:#56d6d3;letter-spacing:.04em;}
+  body[data-contract-kind] .status {
+    background:#11354b;color:#d8f3f6;border:1px solid #27586a;
+    border-left:4px solid #37c9c2;border-radius:10px;
+    box-shadow:0 8px 22px rgba(0,0,0,.12);
+  }
+  body[data-contract-kind] .panel {
+    background:#102c41;color:#eaf6fc;border:1px solid #2c5367;
+    border-radius:16px;padding:clamp(18px,3vw,30px);
+    box-shadow:0 16px 42px rgba(0,0,0,.19);
+  }
+  body[data-contract-kind] .panel h2,
+  body[data-contract-kind] .panel h3,
+  body[data-contract-kind] .panel legend {color:#f2fbff;}
+  body[data-contract-kind] .panel label {color:#e2f2f8;}
+  body[data-contract-kind] .panel .hint,
+  body[data-contract-kind] .panel small {color:#b7d3df;}
+  body[data-contract-kind] .panel :is(input:not([type="checkbox"]):not([type="radio"]),select,textarea) {
+    background:#f7fbfe;color:#142d40;border:1px solid #8baec0;
+    border-radius:9px;min-height:43px;padding:10px 12px;
+  }
+  body[data-contract-kind] .panel :is(input,select,textarea):focus-visible {
+    outline:3px solid #4cddd4;outline-offset:2px;border-color:#1caaa5;
+  }
+  body[data-contract-kind] .panel :is(input,select,textarea):read-only:not([type="checkbox"]) {
+    background:#e8f0f5;color:#345064;
+  }
+  body[data-contract-kind] .panel :is(input,select,textarea)::placeholder {color:#617b8d;}
+  body[data-contract-kind] .panel :is(fieldset,.madic-phase-fields) {
+    border:1px solid #3d6a7b;border-radius:12px;background:#14364b;
+  }
+  body[data-contract-kind] .panel fieldset legend {padding:0 9px;font-weight:750;}
+  body[data-contract-kind] .panel .madic-logo-fields small {color:#b7d3df;}
+  body[data-contract-kind] .actions button,
+  body[data-contract-kind] .panel button {
+    background:#15aaa5;color:#062b35;border-radius:9px;
+    font-weight:750;min-height:43px;box-shadow:0 3px 10px rgba(0,0,0,.1);
+  }
+  body[data-contract-kind] .actions button:hover:not(:disabled),
+  body[data-contract-kind] .panel button:hover:not(:disabled) {background:#5be1d7;}
+  body[data-contract-kind] .actions button+button,
+  body[data-contract-kind] .panel .madic-logo-reset {background:#295a72;color:#f3fcff;}
+  body[data-contract-kind] .actions button+button:hover:not(:disabled),
+  body[data-contract-kind] .panel .madic-logo-reset:hover:not(:disabled) {background:#36728d;}
+  body[data-contract-kind] button:disabled {opacity:.55;cursor:not-allowed;}
+  body[data-contract-kind] .document,
+  body[data-contract-kind] #contractDocument {
+    background:#fff;color:#243444;border-radius:12px;
+    box-shadow:0 18px 48px rgba(0,0,0,.22);
+  }
+  body[data-contract-kind="professionnel"] #contractDocument {overflow:visible;}
+  body[data-contract-kind="professionnel"] #contractForm .madic-ircc-status {color:#bde5ee;}
+  body[data-contract-kind="professionnel"] #contractForm .madic-ircc-fee-link {color:#6ce7e1;}
+  @media(max-width:680px) {
+    body[data-contract-kind] main {padding:0 14px 30px;margin:18px auto;}
+    body[data-contract-kind] .panel {padding:17px;}
+    body[data-contract-kind] .actions {flex-direction:column;}
+    body[data-contract-kind] .actions button {width:100%;}
+  }
+}
+
+
+/* Source: madic-client-sidebar(5).css */
+/* Identité MADIC : styles intégrés au tableau de bord */
+/* MADIC client dashboard v12-presentation only; original application hooks preserved. */
+body[data-page="cric-client-dashboard"] {
+  background:
+    radial-gradient(ellipse at 90% 0%, #123c57 0, transparent 35%),
+    radial-gradient(ellipse at 0% 80%, #0b2a38 0, transparent 45%), #07101f;
+  color: #e9f1ff;
+}
+body[data-page="cric-client-dashboard"] main {
+  max-width: 1180px;
+  margin: 30px auto 70px;
+  padding: 0 24px;
+}
+body[data-page="cric-client-dashboard"] header {
+  padding-left: max(24px, calc((100vw - 1180px) / 2));
+  padding-right: max(24px, calc((100vw - 1180px) / 2));
+  background: #08172aab;
+  backdrop-filter: blur(12px);
+}
+.madic-welcome-shell {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  min-height: 255px;
+  border: 1px solid #2b5368;
+  border-radius: 24px;
+  background: linear-gradient(110deg, #132e46 0%, #0e283d 58%, #103c4b 100%);
+  padding: 34px 40px;
+  margin-bottom: 22px;
+  box-shadow: 0 22px 55px #0004;
+}
+.madic-welcome-shell:before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 80% 50%, #3ed7d01d, transparent 40%);
+  pointer-events: none;
+}
+.madic-welcome-copy {
+  position: relative;
+  z-index: 2;
+  max-width: 690px;
+}
+.madic-kicker,
+.madic-overline {
+  font-size: 0.73rem;
+  letter-spacing: 0.16em;
+  font-weight: 800;
+  color: #67e2e4;
+}
+.madic-welcome-shell h1 {
+  font-size: clamp(1.75rem, 3.2vw, 2.65rem);
+  line-height: 1.2;
+  margin: 12px 0 10px;
+  max-width: 650px;
+}
+.madic-welcome-subtitle {
+  line-height: 1.65;
+  color: #bed0df;
+  max-width: 550px;
+  margin: 0;
+}
+.madic-welcome-shell .notice:empty {
+  display: none;
+}
+.madic-welcome-shell .notice {
+  margin: 10px 0 0;
+  min-height: 0;
+}
+.madic-hero-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 22px;
+}
+.madic-primary-action,
+.madic-ghost-action {
+  display: inline-flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 11px;
+  padding: 12px 17px;
+  text-decoration: none;
+  font-weight: 750;
+  font-size: 0.91rem;
+  transition:
+    transform 0.15s,
+    background 0.15s;
+}
+.madic-primary-action {
+  background: #48d4df;
+  color: #06202b;
+}
+.madic-primary-action:hover {
+  background: #83edf0;
+  transform: translateY(-2px);
+}
+.madic-ghost-action {
+  border: 1px solid #638093;
+  color: #e3f4fb;
+  background: #ffffff0b;
+}
+.madic-ghost-action:hover {
+  background: #ffffff19;
+  transform: translateY(-2px);
+}
+.madic-welcome-shell #logout {
+  position: absolute;
+  right: 20px;
+  top: 18px;
+  z-index: 3;
+  font-size: 0.82rem;
+  padding: 9px 12px;
+  border: 1px solid #ffffff40;
+  background: #0a2233cc;
+}
+.madic-hero-decoration {
+  position: absolute;
+  right: 25px;
+  top: 25px;
+  bottom: 0;
+  width: 280px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  opacity: 0.68;
+  pointer-events: none;
+}
+.madic-hero-mark {
+  font-size: 3.3rem;
+  letter-spacing: 0.04em;
+  font-weight: 900;
+  color: #e6fbff;
+  text-shadow: 0 10px 35px #0bf2f244;
+}
+.madic-hero-mark span {
+  color: #57dfdc;
+}
+.madic-hero-tag {
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  color: #a2e1e4;
+}
+.madic-orbit {
+  position: absolute;
+  border: 1px solid #70d9d95c;
+  border-radius: 50%;
+  width: 230px;
+  height: 230px;
+  transform: rotate(-25deg) scaleY(0.66);
+}
+.madic-orbit-two {
+  width: 290px;
+  height: 290px;
+  transform: rotate(35deg) scaleY(0.65);
+  border-color: #70d9d92d;
+}
+.madic-area-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 26px 0 17px;
+}
+.madic-area-heading h2 {
+  font-size: 1.5rem;
+  margin: 7px 0 6px;
+}
+.madic-area-heading p {
+  margin: 0;
+  font-size: 0.92rem;
+}
+body[data-page="cric-client-dashboard"] .madic-stack.madic-dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  align-items: stretch;
+}
+body[data-page="cric-client-dashboard"] .madic-dashboard-grid > .panel {
+  min-width: 0;
+  width: 100%;
+  margin: 0;
+  padding: 26px;
+  border-radius: 18px;
+  border: 1px solid #29465d;
+  background: linear-gradient(155deg, #13253a, #0e1d30);
+  box-shadow: 0 12px 35px #0002;
+  transition:
+    border-color 0.2s,
+    transform 0.2s,
+    box-shadow 0.2s;
+}
+body[data-page="cric-client-dashboard"] .madic-dashboard-grid > .panel:hover {
+  border-color: #3e8d9c;
+  box-shadow: 0 18px 40px #0004;
+}
+body[data-page="cric-client-dashboard"]
+  .madic-dashboard-grid
+  > .madic-feature-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
+  min-height: 215px;
+}
+body[data-page="cric-client-dashboard"] .madic-feature-card h2 {
+  font-size: 1.17rem;
+  line-height: 1.35;
+  margin: 10px 0;
+}
+body[data-page="cric-client-dashboard"] .madic-feature-card p {
+  line-height: 1.55;
+  font-size: 0.9rem;
+  margin: 0 0 18px;
+}
+body[data-page="cric-client-dashboard"] .madic-feature-card a {
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.89rem;
+  font-weight: 700;
+  text-underline-offset: 4px;
+}
+.madic-card-icon {
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #1d5c68;
+  color: #86f0ee;
+  border: 1px solid #398a8b;
+  border-radius: 13px;
+  font-size: 1.45rem;
+  font-weight: 600;
+}
+body[data-page="cric-client-dashboard"] .madic-card-form {
+  background: linear-gradient(150deg, #133f4c, #102839);
+  border-color: #357b80;
+}
+body[data-page="cric-client-dashboard"]
+  .madic-dashboard-grid
+  > .madic-detail-card {
+  grid-column: 1/-1;
+}
+body[data-page="cric-client-dashboard"]
+  .madic-detail-card
+  .madic-section-head
+  h2 {
+  margin: 0;
+}
+body[data-page="cric-client-dashboard"] .madic-detail-card h2 {
+  margin-bottom: 13px;
+}
+body[data-page="cric-client-dashboard"] .madic-detail-card h3 {
+  margin-top: 26px;
+  color: #d6f1f5;
+}
+body[data-page="cric-client-dashboard"] .madic-cabinet-card {
+  margin-bottom: 20px;
+  border-radius: 18px;
+}
+body[data-page="cric-client-dashboard"] .madic-dashboard-grid input,
+body[data-page="cric-client-dashboard"] .madic-dashboard-grid select {
+  max-width: 100%;
+}
+body[data-page="cric-client-dashboard"] .madic-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+}
+body[data-page="cric-client-dashboard"] .madic-msg-count {
+  vertical-align: middle;
+}
+body[data-page="cric-client-dashboard"] a:focus-visible,
+body[data-page="cric-client-dashboard"] button:focus-visible {
+  outline: 3px solid #82eff4;
+  outline-offset: 3px;
+}
+@media (max-width: 940px) {
+  body[data-page="cric-client-dashboard"] .madic-stack.madic-dashboard-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  body[data-page="cric-client-dashboard"] .madic-card-appointments {
+    grid-column: 1/-1;
+  }
+  .madic-hero-decoration {
+    opacity: 0.2;
+  }
+}
+@media (max-width: 650px) {
+  body[data-page="cric-client-dashboard"] main {
+    padding: 0 16px;
+    margin: 18px auto 45px;
+  }
+  body[data-page="cric-client-dashboard"] .madic-stack.madic-dashboard-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  body[data-page="cric-client-dashboard"] .madic-card-appointments {
+    grid-column: auto;
+  }
+  body[data-page="cric-client-dashboard"] .madic-dashboard-grid > .panel {
+    padding: 20px;
+  }
+  body[data-page="cric-client-dashboard"]
+    .madic-dashboard-grid
+    > .madic-feature-card {
+    min-height: 180px;
+  }
+  .madic-welcome-shell {
+    padding: 65px 22px 24px;
+    min-height: 0;
+    border-radius: 18px;
+  }
+  .madic-welcome-shell #logout {
+    right: 15px;
+    top: 15px;
+  }
+  .madic-hero-decoration {
+    display: none;
+  }
+  .madic-hero-actions a {
+    width: 100%;
+  }
+  .madic-area-heading h2 {
+    font-size: 1.3rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .madic-primary-action,
+  .madic-ghost-action,
+  body[data-page="cric-client-dashboard"] .madic-dashboard-grid > .panel {
+    transition: none;
+  }
+}
+
+/* MADIC v13-signature originale « boussole et parcours » ; aucun visuel tiers. */
+body[data-page="cric-client-dashboard"] {
+  background:
+    radial-gradient(ellipse at 100% 0%, #164253 0, transparent 37%),
+    linear-gradient(145deg, #07101f, #091c2c 62%, #07101f);
+}
+.madic-welcome-shell {
+  background: linear-gradient(117deg, #0c2739 0%, #113b47 64%, #123548 100%);
+  border-color: #3d6974;
+}
+.madic-welcome-shell:after {
+  content: "";
+  position: absolute;
+  width: 510px;
+  height: 510px;
+  border: 1px solid #80e5da18;
+  border-radius: 50%;
+  right: -145px;
+  top: -190px;
+  box-shadow:
+    0 0 0 55px #80e5da08,
+    0 0 0 110px #80e5da06;
+  pointer-events: none;
+}
+.madic-hero-decoration {
+  opacity: 1;
+  right: 40px;
+}
+.madic-orbit {
+  border-style: dashed;
+  border-color: #73d6d444;
+}
+.madic-hero-tag {
+  color: #b8e6e4;
+  text-align: center;
+  margin-top: 14px;
+  font-size: 0.6rem;
+  letter-spacing: 0.13em;
+}
+.madic-compass {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 150px;
+  height: 150px;
+  border: 1px solid #69d7d7a6;
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 9px #4cd8d00a,
+    inset 0 0 30px #4bdad012;
+  background: radial-gradient(circle, #174e59 0, #0b2e42 72%);
+}
+.madic-compass:before,
+.madic-compass:after {
+  content: "";
+  position: absolute;
+  background: #6bd8d555;
+}
+.madic-compass:before {
+  height: 1px;
+  width: 120%;
+  top: 50%;
+}
+.madic-compass:after {
+  width: 1px;
+  height: 120%;
+  left: 50%;
+}
+.madic-compass i {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 9px solid transparent;
+  border-right: 9px solid transparent;
+  z-index: 1;
+}
+.madic-compass-n {
+  border-bottom: 43px solid #69e0d5;
+  top: 13px;
+}
+.madic-compass-s {
+  border-top: 43px solid #427f92;
+  bottom: 13px;
+}
+.madic-compass-e {
+  transform: rotate(90deg);
+  border-bottom: 35px solid #427f92;
+  right: 23px;
+}
+.madic-compass-w {
+  transform: rotate(-90deg);
+  border-bottom: 35px solid #427f92;
+  left: 23px;
+}
+.madic-compass b {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 47px;
+  height: 47px;
+  border-radius: 50%;
+  background: #0b293c;
+  border: 1px solid #65d4d2;
+  color: #f0ffff;
+  font-size: 1.45rem;
+  font-weight: 800;
+}
+.madic-path-intro {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  color: #8de0db;
+  font-size: 0.71rem;
+  font-weight: 750;
+  letter-spacing: 0.13em;
+  margin: -3px 0 18px;
+}
+.madic-path-intro span[aria-hidden="true"] {
+  color: #497d87;
+  font-size: 0.55rem;
+}
+.madic-path-line {
+  display: inline-block;
+  width: 34px;
+  height: 2px;
+  background: linear-gradient(90deg, #3bd0c8, #d6ad75);
+  border-radius: 3px;
+}
+body[data-page="cric-client-dashboard"] .madic-dashboard-grid > .panel {
+  border-color: #2a5260;
+  background: linear-gradient(150deg, #10283a, #0d1d2e);
+}
+body[data-page="cric-client-dashboard"] .madic-dashboard-grid > .panel:hover {
+  border-color: #65c7c1;
+}
+.madic-card-icon {
+  background: linear-gradient(145deg, #164f58, #1b374a);
+  border-color: #417f81;
+  color: #9df0e5;
+}
+@media (max-width: 760px) {
+  .madic-hero-decoration:not(.madic-client-avatar-wrap) {
+    display: none;
+  }
+  .madic-path-intro {
+    font-size: 0.62rem;
+    gap: 8px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  body[data-page="cric-client-dashboard"] .panel,
+  body[data-page="cric-client-dashboard"] a {
+    transition: none !important;
+  }
+}
+
+/* MADIC-navigation latérale originale, inspirée du positionnement des espaces SaaS. */
+body[data-page="cric-client-dashboard"] main.madic-app-layout {
+  max-width: 1510px;
+  display: grid;
+  grid-template-columns: 246px minmax(0, 1fr);
+  gap: 28px;
+  align-items: start;
+  padding: 0 24px;
+  margin: 30px auto 70px;
+}
+.madic-app-content {
+  min-width: 0;
+}
+.madic-side-nav {
+  position: sticky;
+  top: 20px;
+  min-width: 0;
+  border: 1px solid #244658;
+  border-radius: 21px;
+  background: linear-gradient(160deg, #102b3b, #0a1c2d 85%);
+  padding: 22px 13px;
+  box-shadow: 0 16px 40px #0003;
+}
+.madic-side-brand {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 0 10px 22px;
+  border-bottom: 1px solid #2b4656;
+}
+.madic-side-brand strong {
+  display: block;
+  font-size: 0.94rem;
+  color: #f2fbfc;
+}
+.madic-side-brand small {
+  display: block;
+  margin-top: 4px;
+  font-size: 0.7rem;
+}
+.madic-side-monogram {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 39px;
+  height: 39px;
+  border-radius: 12px;
+  color: #082335;
+  background: #71e0d7;
+  font-size: 1.3rem;
+  font-weight: 900;
+}
+.madic-side-caption {
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  color: #83a6b4;
+  margin: 25px 13px 11px;
+}
+.madic-side-links {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.madic-side-links a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 13px;
+  color: #c5d8e2;
+  border-radius: 11px;
+  text-decoration: none;
+  font-size: 0.87rem;
+  font-weight: 600;
+  transition:
+    background 0.18s,
+    color 0.18s;
+}
+.madic-side-links a span {
+  width: 22px;
+  text-align: center;
+  color: #73c9cb;
+  font-size: 1.15rem;
+}
+.madic-side-links a:hover,
+.madic-side-links a:focus-visible {
+  background: #1a4351;
+  color: white;
+}
+.madic-side-links .madic-nav-active {
+  background: #20525c;
+  color: #eafffc;
+  border-left: 3px solid #70dfd4;
+}
+.madic-side-bottom {
+  margin: 30px 8px 0;
+  padding: 15px 12px;
+  border: 1px solid #28535a;
+  background: #11343d;
+  border-radius: 13px;
+  font-size: 0.76rem;
+  color: #c6e4e4;
+  line-height: 1.7;
+}
+.madic-side-bottom small {
+  margin-left: 13px;
+}
+.madic-side-bottom-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  background: #6be0be;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+body[data-page="cric-client-dashboard"] .madic-stack.madic-dashboard-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+body[data-page="cric-client-dashboard"] .madic-card-appointments {
+  grid-column: 1/-1;
+}
+body[data-page="cric-client-dashboard"] .madic-welcome-shell {
+  min-height: 220px;
+  padding: 32px 30px;
+}
+body[data-page="cric-client-dashboard"] .madic-welcome-copy {
+  max-width: 610px;
+}
+body[data-page="cric-client-dashboard"] .madic-hero-decoration {
+  right: 5px;
+  transform: scale(0.78);
+  transform-origin: right center;
+  opacity: 0.65;
+}
+.madic-app-content [id] {
+  scroll-margin-top: 24px;
+}
+@media (max-width: 1080px) {
+  body[data-page="cric-client-dashboard"] main.madic-app-layout {
+    grid-template-columns: 205px minmax(0, 1fr);
+    gap: 16px;
+    padding: 0 16px;
+  }
+  .madic-side-nav {
+    padding: 16px 8px;
+  }
+  .madic-side-brand {
+    padding: 0 6px 16px;
+  }
+  .madic-side-links a {
+    font-size: 0.81rem;
+    padding: 11px 8px;
+    gap: 7px;
+  }
+}
+@media (max-width: 800px) {
+  body[data-page="cric-client-dashboard"] main.madic-app-layout {
+    display: block;
+    margin: 18px auto 45px;
+  }
+  .madic-side-nav {
+    position: static;
+    margin-bottom: 18px;
+    padding: 13px;
+  }
+  .madic-side-brand {
+    padding-bottom: 12px;
+  }
+  .madic-side-caption,
+  .madic-side-bottom {
+    display: none;
+  }
+  .madic-side-links {
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 5px;
+    padding-top: 12px;
+    scrollbar-width: thin;
+  }
+  .madic-side-links a {
+    white-space: nowrap;
+    padding: 9px 12px;
+  }
+  .madic-side-links a span {
+    width: auto;
+  }
+  body[data-page="cric-client-dashboard"]
+    .madic-hero-decoration:not(.madic-client-avatar-wrap) {
+    display: none;
+  }
+}
+@media (max-width: 620px) {
+  body[data-page="cric-client-dashboard"] .madic-stack.madic-dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+  body[data-page="cric-client-dashboard"] .madic-card-appointments {
+    grid-column: auto;
+  }
+  body[data-page="cric-client-dashboard"] .madic-welcome-shell {
+    padding: 66px 20px 24px;
+  }
+}
+
+/* Navigation MADIC personnalisable : icones SVG style Heroicons (traces simples). */
+.madic-side-links .madic-nav-entry {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  border-radius: 12px;
+  min-width: 0;
+}
+.madic-side-links .madic-nav-entry > a {
+  flex: 1;
+  min-width: 0;
+}
+.madic-side-links .madic-nav-icon {
+  width: 20px;
+  height: 20px;
+  flex: none;
+  color: #77d6d0;
+}
+.madic-nav-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin: 16px 7px 10px;
+}
+.madic-nav-controls button {
+  font: inherit;
+  font-size: 0.73rem;
+  border: 1px solid #3a6974;
+  background: #173b4a;
+  color: #e5f8f8;
+  border-radius: 9px;
+  padding: 8px 9px;
+  cursor: pointer;
+}
+.madic-nav-controls button:hover {
+  background: #225767;
+}
+.madic-nav-help {
+  font-size: 0.73rem;
+  color: #bbd4dd;
+  padding: 0 9px;
+  line-height: 1.5;
+}
+.madic-drag-handle,
+.madic-nav-move {
+  display: none;
+}
+.madic-side-nav.madic-editing .madic-drag-handle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #9adbd7;
+  width: 19px;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+}
+.madic-side-nav.madic-editing .madic-nav-move {
+  display: flex;
+  gap: 2px;
+}
+.madic-nav-move button {
+  background: #1c4251;
+  border: 1px solid #3b6c79;
+  border-radius: 6px;
+  color: #e7f8f8;
+  padding: 5px;
+  cursor: pointer;
+}
+.madic-side-nav.madic-editing .madic-nav-entry {
+  border: 1px dashed #427281;
+  padding: 2px;
+}
+.madic-side-nav .madic-nav-entry.madic-drag-over {
+  background: #23606b;
+  outline: 2px solid #83e1d7;
+}
+.madic-side-nav .madic-nav-entry.madic-dragging {
+  opacity: 0.5;
+}
+@media (max-width: 800px) {
+  .madic-side-links .madic-nav-entry {
+    flex: none;
+  }
+  .madic-side-nav.madic-editing .madic-nav-entry {
+    flex-wrap: wrap;
+  }
+  .madic-side-nav.madic-editing .madic-nav-move {
+    width: 100%;
+    justify-content: center;
+  }
+  .madic-nav-controls {
+    margin: 10px 0;
+  }
+}
+
+.madic-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+  width: 100%;
+}
+.madic-stack > .panel {
+  width: 100%;
+  box-sizing: border-box;
+}
+.madic-section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.madic-section-head h2 {
+  margin: 0;
+}
+.madic-section-head button {
+  white-space: nowrap;
+}
+.madic-fields-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.85rem 1rem;
+  margin-top: 1rem;
+}
+.madic-fields-grid > div {
+  min-width: 0;
+}
+.madic-fields-grid label {
+  display: block;
+  margin-bottom: 0.25rem;
+}
+.madic-fields-grid input,
+.madic-fields-grid select {
+  width: 100%;
+  box-sizing: border-box;
+}
+.madic-full {
+  grid-column: 1 / -1;
+}
+.madic-table-wrap {
+  overflow-x: auto;
+}
+.madic-table-wrap table {
+  width: 100%;
+}
+.madic-collapsed-note {
+  margin: 0.65rem 0 0;
+}
+.madic-msg-count {
+  display: inline-block;
+  background: #15517b;
+  color: white;
+  border-radius: 999px;
+  padding: 0.1rem 0.55rem;
+  font-size: 0.85rem;
+}
+[hidden] {
+  display: none !important;
+}
+@media (max-width: 650px) {
+  .madic-fields-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Palette historique MADIC : bleu nuit, cartes bleu fonce, turquoise. */
+body[data-page="cric-client-dashboard"] {
+  background: #081525 !important;
+  color: #f1f6ff;
+}
+body[data-page="cric-client-dashboard"] header {
+  background: #0b1d33 !important;
+  border-bottom: 1px solid #2a4059;
+}
+body[data-page="cric-client-dashboard"] .madic-side-nav {
+  background: #10243c !important;
+  border-color: #304760 !important;
+}
+body[data-page="cric-client-dashboard"] .madic-welcome-shell {
+  background: linear-gradient(120deg, #10263f, #142f4b) !important;
+  border-color: #344c65 !important;
+}
+body[data-page="cric-client-dashboard"] .madic-dashboard-grid > .panel,
+body[data-page="cric-client-dashboard"] .madic-stack > .panel,
+body[data-page="cric-client-dashboard"] .madic-app-content > .panel {
+  background: #10243b !important;
+  border: 1px solid #314962 !important;
+  border-radius: 18px;
+  color: #f1f6ff;
+}
+body[data-page="cric-client-dashboard"] .madic-dashboard-grid > .panel:hover {
+  border-color: #4d8191 !important;
+}
+body[data-page="cric-client-dashboard"] .madic-card-form {
+  background: #142d47 !important;
+  border-color: #35677c !important;
+}
+body[data-page="cric-client-dashboard"] input,
+body[data-page="cric-client-dashboard"] textarea,
+body[data-page="cric-client-dashboard"] select {
+  background: #0a1b30;
+  color: #f5f9ff;
+  border-color: #425a73;
+}
+body[data-page="cric-client-dashboard"] input::placeholder,
+body[data-page="cric-client-dashboard"] textarea::placeholder {
+  color: #a9bdd0;
+}
+body[data-page="cric-client-dashboard"] .madic-primary-action,
+body[data-page="cric-client-dashboard"] button.primary,
+body[data-page="cric-client-dashboard"] .btn-primary {
+  background: #40c9d4;
+  color: #062330;
+  border-color: #40c9d4;
+}
+body[data-page="cric-client-dashboard"] .madic-primary-action:hover,
+body[data-page="cric-client-dashboard"] button.primary:hover,
+body[data-page="cric-client-dashboard"] .btn-primary:hover {
+  background: #71e2e8;
+}
+body[data-page="cric-client-dashboard"] .madic-side-links .madic-nav-active {
+  background: #1a4259;
+  border-left-color: #40c9d4;
+  color: #fff;
+}
+body[data-page="cric-client-dashboard"] .madic-side-links a:hover,
+body[data-page="cric-client-dashboard"] .madic-side-links a:focus-visible {
+  background: #203b55;
+}
+body[data-page="cric-client-dashboard"] .madic-nav-icon,
+body[data-page="cric-client-dashboard"] .madic-card-icon {
+  color: #65dbe0;
+}
+body[data-page="cric-client-dashboard"] .madic-card-icon {
+  background: #17354c;
+  border-color: #38687c;
+}
+body[data-page="cric-client-dashboard"] .madic-nav-controls button,
+body[data-page="cric-client-dashboard"] .madic-nav-move button {
+  background: #18364f;
+  border-color: #46647e;
+  color: #f3f9ff;
+}
+body[data-page="cric-client-dashboard"] .madic-side-bottom {
+  background: #132c44;
+  border-color: #344f68;
+  color: #d7e8f4;
+}
+body[data-page="cric-client-dashboard"] .madic-side-monogram {
+  background: #40c9d4;
+}
+body[data-page="cric-client-dashboard"] .madic-compass {
+  background: radial-gradient(circle, #183c55, #0c253b 75%);
+  border-color: #40c9d4;
+}
+body[data-page="cric-client-dashboard"] .madic-compass b {
+  background: #0b253b;
+  border-color: #40c9d4;
+}
+@media (max-width: 650px) {
+  body[data-page="cric-client-dashboard"] .madic-fields-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Modifications visuelles limitees : logo, avatar, suppression de l'introduction. */
+.madic-side-logo {
+  width: 39px;
+  height: 39px;
+  object-fit: contain;
+  flex-shrink: 0;
+  border-radius: 10px;
+}
+body[data-page="cric-client-dashboard"] .madic-client-avatar-wrap {
+  right: 35px;
+  top: 0;
+  bottom: 0;
+  width: 210px;
+  transform: none;
+  opacity: 1;
+  pointer-events: none;
+}
+.madic-client-avatar {
+  width: 145px;
+  height: 145px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 2px solid #59d5da;
+  background: linear-gradient(145deg, #193f59, #0b243a);
+  color: #87c9d9;
+  box-shadow: 0 0 0 8px #4bd8d00c;
+  overflow: hidden;
+}
+.madic-client-avatar img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 940px) {
+  body[data-page="cric-client-dashboard"] .madic-client-avatar-wrap {
+    opacity: 1;
+  }
+}
+@media (max-width: 800px) {
+  body[data-page="cric-client-dashboard"] .madic-client-avatar-wrap {
+    display: flex;
+    position: relative;
+    right: auto;
+    top: auto;
+    bottom: auto;
+    width: 100%;
+    height: auto;
+    margin: 12px 0 0;
+    transform: none;
+    opacity: 1;
+  }
+  body[data-page="cric-client-dashboard"] .madic-welcome-shell {
+    flex-wrap: wrap;
+  }
+  body[data-page="cric-client-dashboard"] .madic-client-avatar {
+    width: 96px;
+    height: 96px;
+  }
+}
+
+.madic-profile-photo-editor {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding: 16px 0 22px;
+  border-bottom: 1px solid #314962;
+  margin-bottom: 20px;
+}
+.madic-profile-photo-editor > img {
+  width: 112px;
+  height: 112px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid #40c9d4;
+  background: #142d47;
+}
+.madic-profile-photo-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 9px;
+  min-width: 0;
+  max-width: 100%;
+}
+.madic-profile-photo-actions input[type="file"] {
+  width: min(100%, 340px);
+  font-size: 0.85rem;
+}
+.madic-photo-label {
+  font-weight: 700;
+  color: #d8f8fb;
+}
+.madic-photo-buttons {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.madic-profile-photo-actions small {
+  color: #b9cedd;
+}
+#madicProfilePhotoStatus {
+  margin: 0;
+  font-size: 0.88rem;
+}
+
+/* Pages secondaires : disposition du contenu */
+body[data-page="cric-client-dashboard"].madic-client-secondary
+  main.madic-app-layout {
+  min-height: 70vh;
+}
+body.madic-client-secondary .madic-app-content > main {
+  margin: 0;
+  padding: 0;
+  max-width: none;
+}
+body.madic-client-secondary .madic-app-content > header {
+  padding: 12px 0;
+  background: transparent !important;
+  border: 0;
+}
+
+
+/* Source: madic-mes-contrats-harmonise(1).css */
+/* MADIC - Mes contrats : interface harmonisee avec l'espace client. */
+body.madic-client-secondary[data-page="cric-client-dashboard"]{background:#f3f6fa!important;color:#172b40!important;margin:0}
+body.madic-client-secondary main.madic-app-layout{display:grid!important;grid-template-columns:254px minmax(0,1fr)!important;gap:0!important;max-width:none!important;margin:0!important;padding:0!important;min-height:100vh!important;align-items:stretch!important}
+body.madic-client-secondary .madic-side-nav{position:sticky!important;top:0!important;align-self:start!important;height:100vh!important;box-sizing:border-box!important;overflow-y:auto!important;background:#10273e!important;border:0!important;border-radius:0!important;box-shadow:none!important;padding:22px 12px!important;z-index:20}
+body.madic-client-secondary .madic-side-links{display:flex!important;flex-direction:column!important;overflow:visible!important}
+body.madic-client-secondary .madic-side-links .madic-nav-entry{display:flex!important;flex:none!important}
+body.madic-client-secondary .madic-side-links a{color:#dce9f2!important}
+body.madic-client-secondary .madic-side-links a:hover,body.madic-client-secondary .madic-side-links a.madic-nav-active{background:#23516a!important;color:white!important}
+body.madic-client-secondary .madic-app-content{min-width:0!important;background:#f3f6fa!important;color:#172b40!important}
+body.madic-client-secondary .madic-contracts-topbar{position:sticky!important;top:0!important;z-index:15!important;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;background:white!important;color:#172b40!important;padding:17px 30px!important;border:0!important;border-bottom:1px solid #dde5ec!important;border-radius:0!important;margin:0!important;box-shadow:0 1px 5px #142b3b0d}
+body.madic-client-secondary .madic-contracts-topbar .madic-contracts-brand{font-weight:800;color:#142c44!important;text-decoration:none;letter-spacing:.035em}
+body.madic-client-secondary .madic-contracts-topbar .madic-contracts-actions{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+body.madic-client-secondary .madic-contracts-topbar a{color:#24506c!important;text-decoration:none;font-weight:650}
+body.madic-client-secondary .madic-app-content>main.madic-contracts-main{display:block!important;max-width:1300px!important;margin:0 auto!important;padding:30px 32px 55px!important;background:transparent!important;color:#172b40!important}
+body.madic-client-secondary .madic-contracts-main h1{color:#152d46!important;font-size:clamp(1.5rem,2.5vw,2rem);margin:0 0 20px}
+body.madic-client-secondary #madic-contracts.panel{background:#fff!important;color:#172b40!important;border:1px solid #dfe7ee!important;border-radius:14px!important;box-shadow:0 8px 24px #15324a0a!important;padding:26px!important;margin:18px 0!important;overflow-x:auto!important}
+body.madic-client-secondary #madic-contracts :is(h2,h3,h4){color:#19324b!important}
+body.madic-client-secondary #madic-contracts :is(p,td,th,label){color:#263c50}
+body.madic-client-secondary #madic-contracts table{width:100%;border-collapse:collapse;background:#fff!important;color:#172b40!important}
+body.madic-client-secondary #madic-contracts th{background:#eaf1f7!important;color:#1a3852!important;border-bottom:1px solid #d8e4ee!important;padding:12px;text-align:left}
+body.madic-client-secondary #madic-contracts td{background:#fff!important;color:#203a50!important;border-bottom:1px solid #e4ebf2!important;padding:12px}
+body.madic-client-secondary #madic-contracts tr:hover td{background:#f3f8fb!important}
+body.madic-client-secondary #contract-message:not(:empty){background:#eaf6fa!important;color:#153e55!important;border:1px solid #b9dce9;border-radius:10px;padding:12px 16px}
+body.madic-client-secondary #contract-message:empty{display:none}
+body.madic-client-secondary #madic-contracts :is(a.madic-initial-open,a.secondary,button.secondary){background:#e9f2f8!important;color:#173d58!important;border:1px solid #bed3e1!important;border-radius:9px;padding:10px 14px;text-decoration:none}
+body.madic-client-secondary #madic-contracts a{color:#176184}
+body.madic-client-secondary #madic-contracts button:not(.secondary){border-radius:9px}
+body.madic-client-secondary :is(a,button,input,select):focus-visible{outline:3px solid #35a5c4;outline-offset:2px}
+@media(max-width:800px){body.madic-client-secondary main.madic-app-layout{display:block!important}body.madic-client-secondary .madic-side-nav{position:relative!important;height:auto!important;max-height:none!important;overflow:visible!important}body.madic-client-secondary .madic-side-links{flex-direction:row!important;overflow-x:auto!important}body.madic-client-secondary .madic-side-links .madic-nav-entry{flex:none!important}body.madic-client-secondary .madic-app-content>main.madic-contracts-main{padding:22px 16px 38px!important}body.madic-client-secondary .madic-contracts-topbar{padding:15px 16px!important}}
+@media(max-width:550px){body.madic-client-secondary #madic-contracts.panel{padding:16px!important}body.madic-client-secondary #madic-contracts table{min-width:440px}}
+@media print{body.madic-client-secondary,body.madic-client-secondary .madic-app-content{background:#fff!important;color:#111!important}body.madic-client-secondary .madic-side-nav,body.madic-client-secondary .madic-contracts-topbar{display:none!important}body.madic-client-secondary main.madic-app-layout{display:block!important}}
+
+/* Correctif cible : en-tête identique visuellement au dashboard et actions lisibles. */
+body.madic-client-secondary .madic-contracts-topbar{min-height:84px!important;box-sizing:border-box!important;display:flex!important;flex-wrap:nowrap!important;gap:24px!important;padding:16px 32px!important}
+body.madic-client-secondary .madic-contracts-brand{font-size:26px!important;font-weight:850!important;letter-spacing:-.055em!important;white-space:nowrap!important;color:#102b50!important}
+body.madic-client-secondary .madic-contracts-brand span{color:#4db1d1!important}
+body.madic-client-secondary .madic-contracts-brand small{font-size:inherit!important;font-weight:800!important;color:#a5b8d0!important}
+body.madic-client-secondary .madic-contracts-actions{margin-left:auto!important;display:flex!important;align-items:center!important;gap:18px!important;white-space:nowrap}
+body.madic-client-secondary .madic-contracts-actions a{font-weight:450!important;color:#102b50!important}
+body.madic-client-secondary .madic-contracts-tools{display:flex;align-items:center;gap:24px;flex:none}
+body.madic-client-secondary .madic-contracts-notifications{display:grid;place-items:center;width:44px;height:44px;border:1px solid #d7e5f2;border-radius:50%;color:#173657!important;background:white;text-decoration:none}
+body.madic-client-secondary .madic-contracts-language{display:flex;gap:8px}
+body.madic-client-secondary .madic-contracts-language button{min-width:44px;height:39px;border:1px solid #c8dbea!important;background:#f3f7fb!important;color:#183654!important;border-radius:10px!important;font-size:14px;font-weight:700;cursor:pointer;padding:0 10px}
+body.madic-client-secondary .madic-contracts-language button[aria-pressed="true"]{background:#49a8c9!important;color:white!important;border-color:#49a8c9!important}
+body.madic-client-secondary .madic-side-nav{background:linear-gradient(180deg,#10233f,#153c5d)!important}
+body.madic-client-secondary .madic-side-brand strong{font-size:15px!important}
+body.madic-client-secondary .madic-side-logo{width:42px!important;height:42px!important;object-fit:contain}
+body.madic-client-secondary #madic-contracts table{table-layout:auto!important;min-width:850px!important}
+body.madic-client-secondary #madic-contracts th:last-child,body.madic-client-secondary #madic-contracts td:last-child{width:170px!important;min-width:170px!important;text-align:center!important;vertical-align:middle!important;white-space:normal!important}
+body.madic-client-secondary #madic-contracts td:last-child :is(a.madic-initial-open,button.secondary){display:inline-flex!important;align-items:center!important;justify-content:center!important;box-sizing:border-box!important;width:148px!important;max-width:100%!important;min-height:42px!important;padding:9px 12px!important;line-height:1.3!important;white-space:normal!important;overflow-wrap:normal!important;word-break:normal!important;text-align:center!important;background:#e5f1f9!important;border:1px solid #b9d4e7!important;border-radius:9px!important;color:#124569!important;text-decoration:none!important;font-size:14px!important;font-weight:700!important;box-shadow:none!important;position:static!important}
+body.madic-client-secondary #madic-contracts td:last-child :is(a.madic-initial-open,button.secondary):hover{background:#d2e9f7!important;border-color:#68b4d3!important}
+body.madic-client-secondary #madic-contracts td:last-child :is(a.madic-initial-open,button.secondary):focus-visible{outline:3px solid #35a5c4!important;outline-offset:2px}
+@media(max-width:1100px){body.madic-client-secondary .madic-contracts-topbar{gap:14px!important;padding:14px 18px!important}body.madic-client-secondary .madic-contracts-brand{font-size:21px!important}body.madic-client-secondary .madic-contracts-tools{gap:10px}}
+@media(max-width:650px){body.madic-client-secondary .madic-contracts-topbar{flex-wrap:wrap!important;gap:12px!important}body.madic-client-secondary .madic-contracts-brand{width:100%;font-size:23px!important}body.madic-client-secondary .madic-contracts-actions{margin-left:0!important}body.madic-client-secondary #madic-contracts table{min-width:850px!important}}
+
+/* Alignement cible du menu Mes contrats sur Actualites (reference MADIC).
+   La grille et le menu restent independants du contenu des contrats. */
+@media (min-width:801px) {
+  body.madic-client-secondary main.madic-app-layout {
+    grid-template-columns:var(--madic-client-sidebar-width,270px) minmax(0,1fr)!important;
+  }
+  body.madic-client-secondary main.madic-app-layout > aside.madic-side-nav {
+    padding:30px 13px!important;
+    border-right:1px solid #244867!important;
+    background:linear-gradient(175deg,#092342,#0b3152 60%,#08213d)!important;
+    overflow-x:hidden!important;
+    scrollbar-width:thin;
+  }
+  body.madic-client-secondary .madic-side-links {
+    gap:5px!important;
+  }
+  body.madic-client-secondary .madic-side-links .madic-nav-entry > a {
+    box-sizing:border-box!important;
+    min-height:45.6px!important;
+    padding:12px 13px!important;
+    gap:12px!important;
+    border-radius:10px!important;
+    font-size:.87rem!important;
+    font-weight:600!important;
+    line-height:1.35!important;
+  }
+  body.madic-client-secondary .madic-side-links .madic-nav-entry > a > span:not(.madic-nav-icon) {
+    width:auto!important;
+    min-width:0!important;
+    flex:0 1 auto!important;
+    text-align:left!important;
+    font-size:inherit!important;
+    font-weight:inherit!important;
+    line-height:inherit!important;
+    color:inherit!important;
+  }
+  body.madic-client-secondary .madic-side-links .madic-nav-entry > a.madic-nav-active {
+    background:#1a6482!important;
+    color:#fff!important;
+  }
+}
+
+/* Alignement du menu Mes contrats sur les pages de reference MADIC.
+   Le contenu reste dans la deuxieme colonne de la grille existante. */
+@media (min-width: 801px) {
+  body.madic-client-secondary[data-page="cric-client-dashboard"] main.madic-app-layout > aside.madic-side-nav {
+    position: fixed !important;
+    inset: 0 auto 0 0 !important;
+    top: 0 !important;
+    width: var(--madic-client-sidebar-width, 270px) !important;
+    height: 100vh !important;
+    min-height: 0 !important;
+    max-height: 100vh !important;
+    margin: 0 !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    overscroll-behavior: contain;
+    z-index: 20;
+  }
+  body.madic-client-secondary[data-page="cric-client-dashboard"] main.madic-app-layout > .madic-app-content {
+    grid-column: 2 !important;
+    min-width: 0;
+  }
+}
+
+
+/* Inline source: madic-client-footer-local */
+
+      .madic-client-footer {
+        text-align: center;
+        color: #7894b7;
+        font-size: 14px;
+        padding: 28px 12px;
+        margin: 12px 0 0;
+        background: transparent;
+      }
+    
+
+/* Inline source: madic-contracts-sidebar-label-fix */
+
+      .madic-side-links .madic-nav-entry > a > span {
+        width: auto !important;
+        min-width: 0 !important;
+        flex: 0 1 auto !important;
+        white-space: nowrap !important;
+        text-align: left !important;
+        color: inherit !important;
+        font-size: inherit !important;
+        font-weight: inherit !important;
+        letter-spacing: inherit !important;
+        line-height: inherit !important;
+      }
+    
+
+/* Inline source: madic-client-menu-reference-actualites-final */
+
+      /* Menu lateral uniquement : geometrie de reference actualites-client-cric. */
+      @media (min-width: 801px) {
+        body[data-page="cric-client-dashboard"]
+          main.madic-app-layout
+          > .madic-side-nav {
+          box-sizing: border-box !important;
+          padding-left: 13px !important;
+          padding-right: 13px !important;
+        }
+        body[data-page="cric-client-dashboard"] .madic-side-links {
+          display: flex !important;
+          flex-direction: column !important;
+          gap: 5px !important;
+          font-family:
+            Inter,
+            system-ui,
+            -apple-system,
+            "Segoe UI",
+            sans-serif;
+        }
+        body[data-page="cric-client-dashboard"]
+          .madic-side-links
+          .madic-nav-entry
+          > a {
+          box-sizing: border-box !important;
+          height: 45.6px !important;
+          min-height: 45.6px !important;
+          padding: 12px 13px !important;
+          font-size: 0.87rem !important;
+          font-weight: 600 !important;
+          line-height: 1.35 !important;
+          gap: 12px !important;
+          border-radius: 10px !important;
+        }
+        body[data-page="cric-client-dashboard"]
+          .madic-side-links
+          .madic-nav-entry
+          > a
+          > span:not(.madic-nav-icon) {
+          width: auto !important;
+          min-width: 0 !important;
+          text-align: left !important;
+          font-size: inherit !important;
+          font-weight: inherit !important;
+          line-height: inherit !important;
+          color: inherit !important;
+        }
+      }
+      @media (min-width: 801px) {
+        body.madic-client-secondary[data-page="cric-client-dashboard"]
+          main.madic-app-layout {
+          grid-template-columns: 270px minmax(0, 1fr) !important;
+        }
+        body.madic-client-secondary[data-page="cric-client-dashboard"]
+          main.madic-app-layout
+          > .madic-side-nav {
+          width: 270px !important;
+          min-width: 0 !important;
+          padding: 30px 13px !important;
+          border-right: 1px solid #244867 !important;
+          background: linear-gradient(
+            175deg,
+            #092342,
+            #0b3152 60%,
+            #08213d
+          ) !important;
+        }
+        body.madic-client-secondary[data-page="cric-client-dashboard"]
+          .madic-side-bottom {
+          background: #203e63 !important;
+          border-color: #436185 !important;
+        }
+        body.madic-client-secondary[data-page="cric-client-dashboard"]
+          .madic-side-links
+          .madic-nav-entry
+          > a.madic-nav-active {
+          background: #1a6482 !important;
+          color: #fff !important;
+          border: 1px solid #62cbd5 !important;
+          box-shadow:
+            inset 3px 0 #81e7e5,
+            0 4px 14px #001c3038 !important;
+        }
+      }
+    
+
+/* Styles extraits du rendu dynamique des contrats */
+.madic-contract-table-scroll{overflow-x:auto}
+.madic-contract-text{white-space:normal;line-height:1.65}
+.madic-contract-digest{overflow-wrap:anywhere}
+.madic-contract-logo-header img[data-logo][hidden]{display:none}
+body.madic-contract-print-page{font:15px/1.6 Arial,sans-serif;max-width:800px;margin:30px auto}
+
+/* Pied de page Mes contrats : memes reperes que le tableau de bord client.
+   Aucune modification du fond de page, du menu ou des contrats. */
+body.madic-client-secondary > footer.madic-footer {
+  box-sizing: border-box;
+  margin: 0 0 0 var(--madic-client-sidebar-width, 270px) !important;
+  width: calc(100% - var(--madic-client-sidebar-width, 270px));
+  max-width: none;
+  padding: 40px 34px 23px !important;
+  background: #070f22 !important;
+  color: #dce8f5 !important;
+  border-top: 1px solid #1b2c49 !important;
+  text-align: left;
+}
+body.madic-client-secondary > footer.madic-footer > .madic-footer-inner,
+body.madic-client-secondary > footer.madic-footer > .madic-footer-bottom {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: none;
+  margin-left: 0;
+  margin-right: 0;
+}
+@media (min-width: 801px) and (max-width: 1080px) {
+  body.madic-client-secondary > footer.madic-footer {
+    padding-left: 18px !important;
+    padding-right: 18px !important;
+  }
+}
+@media (max-width: 800px) {
+  body.madic-client-secondary > footer.madic-footer {
+    margin-left: 0 !important;
+    width: 100%;
+    padding: 32px 16px 23px !important;
+  }
+}
+@media print {
+  body.madic-client-secondary > footer.madic-footer { display: none !important; }
+}
+
+/* Harmonisation du fond du pied de page avec le tableau de bord client. */
+body.madic-client-secondary > footer.madic-footer {
+  background: #edf3fa !important;
+  color: #294663 !important;
+  border-top: 1px solid #c8d7e6 !important;
+}
+body.madic-client-secondary > footer.madic-footer .madic-footer-name { color: #173657 !important; }
+body.madic-client-secondary > footer.madic-footer .madic-footer-subtitle,
+body.madic-client-secondary > footer.madic-footer .madic-footer-desc,
+body.madic-client-secondary > footer.madic-footer .madic-footer-bottom { color: #536f8d !important; }
+body.madic-client-secondary > footer.madic-footer .madic-footer-right a { color: #294f76 !important; }
+body.madic-client-secondary > footer.madic-footer .madic-footer-bottom { border-top-color: #b9c9d9 !important; }

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<html lang="fr-CA">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="noindex,nofollow" name="robots"/>
+<link href="img/favicon.png" rel="icon"/>
+<title>Gestion financière CRIC | MADIC</title>
+<link href="assets/style.css" rel="stylesheet"/>
+<link href="assets/finances-cric.css" rel="stylesheet"/>
+
+<link href="assets/madic-datahubz-modules.css" rel="stylesheet"/><link rel="stylesheet" href="assets/madic-datahubz-unified.css"/>
+<style id="madic-i18n-language-state">
+body.madic-unified .madic-cric-standard-header .madic-lang-controls button[data-lang]{background:#eef8fc!important;color:#123553!important;cursor:pointer!important;}
+body.madic-unified .madic-cric-standard-header .madic-lang-controls button[data-lang].madic-lang-active{background:#389ec0!important;color:#fff!important;}
+</style>
+</head>
+<body class="madic-finances madic-unified" data-page="finances-cric">
+<div class="madic-unified-layout"><aside aria-label="Navigation du portail" class="madic-unified-sidebar"><div class="madic-unified-brand"><span class="madic-unified-monogram"><img alt="Logo MADIC" src="img/logo-madic.svg"/></span><span><strong>MADIC PORTAIL</strong><small>Espace professionnel</small></span></div><div class="madic-unified-caption">NAVIGATION</div><nav><a data-madic-page="cric-dashboard.html" href="cric-dashboard.html"><span aria-hidden="true">▦</span>Vue d’ensemble</a><a data-madic-page="gestion-clients-cric.html" href="gestion-clients-cric.html"><span aria-hidden="true">♙</span>Clients</a><a data-madic-page="gestion-dossiers-cric.html" href="gestion-dossiers-cric.html"><span aria-hidden="true">▤</span>Outils CRIC</a><a data-madic-page="messagerie-cric.html" href="messagerie-cric.html"><span aria-hidden="true">✉</span>Messagerie</a><a data-madic-page="demandes-documents-cric.html" href="demandes-documents-cric.html"><span aria-hidden="true">▣</span>Documents</a><a data-madic-page="echeances-cric.html" href="echeances-cric.html"><span aria-hidden="true">◷</span>Échéances</a><a data-madic-page="facturation-cric.html" href="facturation-cric.html"><span aria-hidden="true">▥</span>Facturation</a><a data-madic-page="finances-cric.html" href="finances-cric.html"><span aria-hidden="true">◈</span>Finances</a></nav><div class="madic-unified-foot">Espace sécurisé MADIC</div></aside><div class="madic-unified-content">
+<header class="madic-cric-standard-header"><a class="brand" href="cric-dashboard.html">MADI<span>C</span> <small>PORTAIL</small></a><nav class="toplinks" aria-label="Navigation du compte"><a href="cric-dashboard.html">Mon espace</a><div class="madic-lang-controls" role="group" aria-label="Langue / Language"><button type="button" data-lang="fr" aria-label="Français" title="Français" >FR</button><button type="button" data-lang="en" aria-label="English" title="English" >EN</button></div></nav></header>
+<main>
+<section class="panel">
+<h1>Gestion financière du cabinet CRIC</h1>
+<p>
+          Temps et honoraires · Facturation · Paiements · Fidéicommis ·
+          Comptabilité · Rapports
+        </p>
+<p>
+<strong>Cabinet :</strong> <span id="cabinet">Non sélectionné</span>
+</p>
+<p aria-live="polite" class="finance-muted" id="status" role="status">
+          Initialisation…
+        </p>
+<p>
+<a href="cric-dashboard.html">Retour à mon espace professionnel CRIC</a>
+</p>
+</section>
+<section class="panel">
+<nav aria-label="Modules financiers" class="finance-tabs" id="tabs"></nav>
+</section>
+<section aria-live="polite" class="panel">
+<h2 id="section-title">Temps et honoraires</h2>
+<div id="section-body"></div>
+</section>
+<p class="finance-muted">
+        Modèles 1 et 2 disponibles dans Fidéicommis. Les
+        paramètres du modèle et les comptes peuvent être enregistrés. Les
+        écritures financières restent en lecture seule. Les rapports et paiements affichent des données de consultation, sans rapprochement bancaire.
+      </p>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="assets/config.js"></script>
+<script src="assets/finances-cric.js?v=20261101-etape6"></script>
+</div></div>
+<script src="assets/madic-datahubz-unified.js"></script>
+<script src="assets/madic-i18n-cric.js?v=20261102d"></script>
+</body>
+</html>

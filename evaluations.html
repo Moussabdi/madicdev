@@ -1,0 +1,1641 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <title>MAD Immigration Canada</title>
+    <meta
+      name="description"
+      content="MAD Immigration Canadienne inc. est une entreprise Canadienne spécialisée dans l’immigration canadienne, Forte de l’ingéniosité de son équipe d’expérience."
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="icon" href="img/favicon.png" />
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png" />
+
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/evaluation.css" />
+    <link rel="stylesheet" href="css/quebec.css" />
+    <link rel="stylesheet" href="css/madix-menu.css" />
+    <link rel="stylesheet" href="css/saskatchewan.css" />
+    <link rel="stylesheet" href="css/queries.css" />
+    <link rel="icon" href="favicon.png" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+      integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
+      crossorigin="anonymous"
+    />
+    <script defer src="js/script.js"></script>
+    <script defer src="js/evaluation.js"></script>
+    <script defer src="js/quebec.js"></script>
+    <script defer src="js/madix-menu.js"></script>
+    <script defer src="js/saskatchewan.js"></script>
+  </head>
+
+  <body>
+    <header class="header">
+      <nav class="navbar">
+        <div class="navbar__container">
+          <!-- LOGO -->
+          <a href="index.html" class="navbar__logo">
+            <img
+              src="img/logo_fr_transparent.png"
+              alt="MAD Immigration Canadienne"
+              class="logo"
+            />
+          </a>
+
+          <!-- MENU : 8 LIENS + 2 ACTIONS -->
+          <div class="navbar__content" id="navbar-content">
+            <div class="navbar__navblock">
+              <ul class="navbar__menu navbar__menu--all">
+                <li class="navbar__item">
+                  <a
+                    href="index.html"
+                    class="navbar__links"
+                    id="index"
+                    data-i18n="nav.home"
+                  >
+                    Accueil
+                  </a>
+                </li>
+
+                <li class="navbar__item">
+                  <a
+                    href="services.html"
+                    class="navbar__links"
+                    id="services-page"
+                    data-i18n="nav.services"
+                  >
+                    Nos services
+                  </a>
+                </li>
+
+                <li class="navbar__item">
+                  <a
+                    href="forfaits.html"
+                    class="navbar__links"
+                    data-i18n="nav.packages"
+                  >
+                    Nos forfaits
+                  </a>
+                </li>
+
+                <li class="navbar__item">
+                  <a
+                    href="propos.html"
+                    class="navbar__links navbar__links--secondary"
+                    id="about-page"
+                    data-i18n="nav.about"
+                  >
+                    À propos
+                  </a>
+                </li>
+
+                <li class="navbar__item">
+                  <a
+                    href="carriere.html"
+                    class="navbar__links navbar__links--secondary"
+                    id="career-page"
+                    data-i18n="nav.career"
+                  >
+                    Carrière
+                  </a>
+                </li>
+
+                <li class="navbar__item">
+                  <a
+                    href="evenements.html"
+                    class="navbar__links navbar__links--secondary"
+                    data-i18n="nav.events"
+                  >
+                    Événements
+                  </a>
+                </li>
+
+                <li class="navbar__item">
+                  <a
+                    href="blogue.html"
+                    class="navbar__links navbar__links--secondary"
+                    data-i18n="nav.blog"
+                  >
+                    Blogue
+                  </a>
+                </li>
+
+                <li class="navbar__item">
+                  <a
+                    href="joindre.html"
+                    class="navbar__links navbar__links--secondary"
+                    data-i18n="nav.contact"
+                  >
+                    Nous joindre
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <!-- ACTIONS DU MENU -->
+            <div class="navbar__actions">
+              <!-- MADIX : menu des outils, sans page intermediaire -->
+              <div class="madix-nav" id="madix-nav">
+                <button
+                  type="button"
+                  class="nav-action nav-action--outline madix-trigger"
+                  id="madix-trigger"
+                  aria-expanded="false"
+                  aria-haspopup="true"
+                  aria-controls="madix-panel"
+                >
+                  <i class="fa-solid fa-layer-group" aria-hidden="true"></i>
+                  <span>MADIX</span>
+                  <i
+                    class="fa-solid fa-chevron-down madix-chevron"
+                    aria-hidden="true"
+                  ></i>
+                </button>
+                <div class="madix-panel" id="madix-panel" hidden>
+                  <div class="madix-panel-head">
+                    <span
+                      class="madix-kicker"
+                      data-madix-fr="PLATEFORME D'OUTILS"
+                      data-madix-en="IMMIGRATION TOOLKIT"
+                      >PLATEFORME D'OUTILS</span
+                    >
+                    <strong>MADI<span class="madix-x">X</span></strong>
+                    <p
+                      data-madix-fr="Explorez nos outils d'immigration"
+                      data-madix-en="Explore our immigration tools"
+                    >
+                      Explorez nos outils d'immigration
+                    </p>
+                  </div>
+                  <div class="madix-links">
+                    <a href="quebec.html" class="madix-tool">
+                      <i
+                        class="fa-solid fa-map-location-dot"
+                        aria-hidden="true"
+                      ></i>
+                      <span
+                        ><strong data-madix-fr="Québec" data-madix-en="Quebec"
+                          >Québec</strong
+                        ><small
+                          data-madix-fr="Programmes québécois"
+                          data-madix-en="Quebec immigration programs"
+                          >Programmes québécois</small
+                        ></span
+                      >
+                      <i
+                        class="fa-solid fa-arrow-up-right-from-square madix-arrow"
+                        aria-hidden="true"
+                      ></i>
+                    </a>
+                    <a href="saskatchewan.html" class="madix-tool">
+                      <i class="fa-solid fa-map" aria-hidden="true"></i>
+                      <span
+                        ><strong>Saskatchewan</strong
+                        ><small
+                          data-madix-fr="Programme SINP"
+                          data-madix-en="SINP program"
+                          >Programme SINP</small
+                        ></span
+                      >
+                      <i
+                        class="fa-solid fa-arrow-up-right-from-square madix-arrow"
+                        aria-hidden="true"
+                      ></i>
+                    </a>
+                    <a href="evaluations.html" class="madix-tool">
+                      <i class="fa-solid fa-calculator" aria-hidden="true"></i>
+                      <span
+                        ><strong
+                          data-madix-fr="Évaluations"
+                          data-madix-en="Calculators"
+                          >Évaluations</strong
+                        ><small
+                          data-madix-fr="Simulateurs et calculateurs"
+                          data-madix-en="Assessment calculators"
+                          >Simulateurs et calculateurs</small
+                        ></span
+                      >
+                      <i
+                        class="fa-solid fa-arrow-up-right-from-square madix-arrow"
+                        aria-hidden="true"
+                      ></i>
+                    </a>
+                    <a href="formulaire.html" class="madix-tool">
+                      <i
+                        class="fa-solid fa-clipboard-check"
+                        aria-hidden="true"
+                      ></i>
+                      <span
+                        ><strong
+                          data-madix-fr="Évaluation préliminaire"
+                          data-madix-en="Preliminary assessment"
+                          >Évaluation préliminaire</strong
+                        ><small
+                          data-madix-fr="Analyse initiale de votre profil"
+                          data-madix-en="Initial profile review"
+                          >Analyse initiale de votre profil</small
+                        ></span
+                      >
+                      <i
+                        class="fa-solid fa-arrow-up-right-from-square madix-arrow"
+                        aria-hidden="true"
+                      ></i>
+                    </a>
+                  </div>
+                  <p
+                    class="madix-panel-foot"
+                    data-madix-fr="De nouveaux outils seront ajoutés prochainement."
+                    data-madix-en="More tools coming soon."
+                  >
+                    De nouveaux outils seront ajoutés prochainement.
+                  </p>
+                </div>
+              </div>
+
+              <!-- ESPACE CLIENT MADIC -->
+              <a
+                href="https://madic.ca/connexion.html"
+                class="nav-action nav-action--outline"
+                id="client-portal"
+                data-i18n="nav.clientPortal"
+              >
+                <i class="fa-solid fa-user-shield" aria-hidden="true"></i>
+                <span>Espace client</span>
+              </a>
+
+              <a
+                href="rendezvous.html"
+                class="nav-action nav-action--primary"
+                id="appointment"
+                data-i18n="nav.appointment"
+              >
+                <i class="fa-solid fa-calendar-check"></i>
+                <span>Prendre rendez-vous</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- LANGUES + MODE NUIT : TOUJOURS VISIBLES -->
+          <div class="navbar__utilities">
+            <div class="language-switcher">
+              <button
+                type="button"
+                class="lang-btn active"
+                data-lang="fr"
+                aria-label="Français"
+                title="Français"
+              >
+                <img
+                  src="img/flag-quebec.svg"
+                  width="24"
+                  height="16"
+                  alt="Drapeau du Québec"
+                  class="lang-flag"
+                />
+                <span>FR</span>
+              </button>
+
+              <button
+                type="button"
+                class="lang-btn"
+                data-lang="en"
+                aria-label="English"
+                title="English"
+              >
+                <img
+                  src="img/flag-canada.svg"
+                  width="24"
+                  height="16"
+                  alt="Canadian flag"
+                  class="lang-flag"
+                />
+                <span>EN</span>
+              </button>
+            </div>
+
+            <button
+              type="button"
+              id="theme-toggle"
+              class="theme-toggle-btn"
+              aria-label="Activer le mode nuit"
+              title="Mode nuit"
+            >
+              <i class="fa-solid fa-moon"></i>
+            </button>
+          </div>
+
+          <!-- HAMBURGER -->
+          <button
+            type="button"
+            class="navbar__toggle"
+            id="mobile-menu"
+            aria-label="Ouvrir le menu"
+            aria-expanded="false"
+            aria-controls="navbar-content"
+          >
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+          </button>
+        </div>
+      </nav>
+    </header>
+    <main class="madic-eval" id="page-evaluation">
+      <section class="ev-hero">
+        <div class="ev-wrap">
+          <p
+            class="ev-kicker"
+            data-en="FREE TOOL · ESTIMATED RESULT"
+            data-fr="OUTIL GRATUIT · RÉSULTAT INDICATIF"
+          >
+            OUTIL GRATUIT · RÉSULTAT INDICATIF
+          </p>
+          <h1
+            data-en="CRS calculator-complete questionnaire"
+            data-fr="Calculatrice SCG-questionnaire complet"
+          >
+            Calculatrice SCG-questionnaire complet
+          </h1>
+          <p
+            data-en="Explore your Express Entry profile and estimate your points using IRCC criteria. This simulation does not confirm eligibility."
+            data-fr="Explorez votre profil Entrée express et estimez vos points selon les critères officiels d’IRCC. Cette simulation ne confirme pas votre admissibilité."
+          >
+            Explorez votre profil Entrée express et estimez vos points selon les
+            critères officiels d’IRCC. Cette simulation ne confirme pas votre
+            admissibilité.
+          </p>
+          <p
+            data-en="CRS calculator: general guidance only. If results differ, the Express Entry electronic system prevails under IRPA, IRPR and ministerial instructions."
+            data-fr="Calculatrice du SCG : outil de référence et d’orientation générale. En cas de divergence, les résultats du système électronique Entrée express prévalent conformément à la LIPR, au RIPR et aux instructions ministérielles."
+          >
+            Calculatrice du SCG : outil de référence et d’orientation générale.
+            En cas de divergence, les résultats du système électronique Entrée
+            express prévalent conformément à la LIPR, au RIPR et aux
+            instructions ministérielles.
+          </p>
+        </div>
+      </section>
+      <div class="ev-wrap ev-body">
+        <div aria-label="Outils" class="ev-tabs" role="tablist">
+          <button
+            aria-controls="panel-crs"
+            aria-selected="true"
+            class="ev-tab active"
+            data-en="1 · Full questionnaire and CRS calculator"
+            data-fr="1 · Questionnaire complet et calculatrice SCG"
+            data-tab="crs"
+            id="tab-crs"
+            role="tab"
+            type="button"
+          >
+            1 · Questionnaire complet et calculatrice SCG
+          </button>
+          <button
+            aria-controls="panel-pre"
+            aria-selected="false"
+            class="ev-tab"
+            data-en="2 · Simplified preliminary review"
+            data-fr="2 · Vérification préliminaire simplifiée"
+            data-tab="pre"
+            id="tab-pre"
+            role="tab"
+            type="button"
+          >
+            2 · Vérification préliminaire simplifiée
+          </button>
+        </div>
+        <section
+          aria-labelledby="tab-crs"
+          class="ev-panel"
+          id="panel-crs"
+          role="tabpanel"
+        >
+          <h2
+            data-en="Comprehensive Ranking System (CRS) calculator-detailed questionnaire"
+            data-fr="Calculatrice du Système de classement global (SCG)-questionnaire détaillé"
+          >
+            Calculatrice du Système de classement global (SCG)-questionnaire
+            détaillé
+          </h2>
+          <p
+            class="ev-muted"
+            data-en="Enter CLB/NCLC levels per skill, not raw IELTS, CELPIP, PTE Core, TEF or TCF test scores. Convert your results using IRCC tables first."
+            data-fr="Saisissez les niveaux CLB/NCLC par compétence, et non les notes brutes IELTS, CELPIP, PTE Core, TEF ou TCF. Convertissez d'abord vos résultats à l'aide des tableaux IRCC."
+          >
+            Saisissez les niveaux CLB/NCLC par compétence, et non les notes
+            brutes IELTS, CELPIP, PTE Core, TEF ou TCF. Convertissez d'abord vos
+            résultats à l'aide des tableaux IRCC.
+          </p>
+          <div class="ev-intro-notice">
+            <h3 data-en="CRS calculator" data-fr="Calculatrice du SCG">
+              Calculatrice du SCG
+            </h3>
+            <p
+              data-en="This tool helps you estimate your Comprehensive Ranking System (CRS) score based on your answers."
+              data-fr="Cet outil vous aidera à calculer votre pointage en vertu du Système de classement global (SCG) selon vos réponses."
+            >
+              Cet outil vous aidera à calculer votre pointage en vertu du
+              Système de classement global (SCG) selon vos réponses.
+            </p>
+          </div>
+          <form class="ev-form" id="crs-form">
+            <fieldset>
+              <legend
+                data-en="A · Personal details"
+                data-fr="A · Situation personnelle"
+              >
+                A · Situation personnelle
+              </legend>
+              <div class="ev-grid">
+                <label
+                  ><span data-en="Age" data-fr="Âge">Âge</span
+                  ><small
+                    class="ev-help"
+                    data-en="If invited, use your age on the invitation date; otherwise use your current age."
+                    data-fr="Si vous avez reçu une invitation, choisissez votre âge à la date de cette invitation; sinon, choisissez votre âge actuel."
+                    >Si vous avez reçu une invitation, choisissez votre âge à la
+                    date de cette invitation; sinon, choisissez votre âge
+                    actuel.</small
+                  ><select name="age" required="">
+                    <option
+                      data-en="Select..."
+                      data-fr="Sélectionner..."
+                      value=""
+                    >
+                      Sélectionner...
+                    </option>
+                    <option
+                      data-en="17 or younger"
+                      data-fr="17 ans ou moins"
+                      value="17"
+                    >
+                      17 ans ou moins
+                    </option>
+                    <option data-en="18 years" data-fr="18 ans" value="18">
+                      18 ans
+                    </option>
+                    <option data-en="19 years" data-fr="19 ans" value="19">
+                      19 ans
+                    </option>
+                    <option data-en="20 years" data-fr="20 ans" value="20">
+                      20 ans
+                    </option>
+                    <option data-en="21 years" data-fr="21 ans" value="21">
+                      21 ans
+                    </option>
+                    <option data-en="22 years" data-fr="22 ans" value="22">
+                      22 ans
+                    </option>
+                    <option data-en="23 years" data-fr="23 ans" value="23">
+                      23 ans
+                    </option>
+                    <option data-en="24 years" data-fr="24 ans" value="24">
+                      24 ans
+                    </option>
+                    <option data-en="25 years" data-fr="25 ans" value="25">
+                      25 ans
+                    </option>
+                    <option data-en="26 years" data-fr="26 ans" value="26">
+                      26 ans
+                    </option>
+                    <option data-en="27 years" data-fr="27 ans" value="27">
+                      27 ans
+                    </option>
+                    <option data-en="28 years" data-fr="28 ans" value="28">
+                      28 ans
+                    </option>
+                    <option data-en="29 years" data-fr="29 ans" value="29">
+                      29 ans
+                    </option>
+                    <option data-en="30 years" data-fr="30 ans" value="30">
+                      30 ans
+                    </option>
+                    <option data-en="31 years" data-fr="31 ans" value="31">
+                      31 ans
+                    </option>
+                    <option data-en="32 years" data-fr="32 ans" value="32">
+                      32 ans
+                    </option>
+                    <option data-en="33 years" data-fr="33 ans" value="33">
+                      33 ans
+                    </option>
+                    <option data-en="34 years" data-fr="34 ans" value="34">
+                      34 ans
+                    </option>
+                    <option data-en="35 years" data-fr="35 ans" value="35">
+                      35 ans
+                    </option>
+                    <option data-en="36 years" data-fr="36 ans" value="36">
+                      36 ans
+                    </option>
+                    <option data-en="37 years" data-fr="37 ans" value="37">
+                      37 ans
+                    </option>
+                    <option data-en="38 years" data-fr="38 ans" value="38">
+                      38 ans
+                    </option>
+                    <option data-en="39 years" data-fr="39 ans" value="39">
+                      39 ans
+                    </option>
+                    <option data-en="40 years" data-fr="40 ans" value="40">
+                      40 ans
+                    </option>
+                    <option data-en="41 years" data-fr="41 ans" value="41">
+                      41 ans
+                    </option>
+                    <option data-en="42 years" data-fr="42 ans" value="42">
+                      42 ans
+                    </option>
+                    <option data-en="43 years" data-fr="43 ans" value="43">
+                      43 ans
+                    </option>
+                    <option data-en="44 years" data-fr="44 ans" value="44">
+                      44 ans
+                    </option>
+                    <option
+                      data-en="45 or older"
+                      data-fr="45 ans ou plus"
+                      value="45"
+                    >
+                      45 ans ou plus
+                    </option>
+                  </select></label
+                >
+                <label
+                  ><span data-en="Marital status" data-fr="Situation familiale"
+                    >Situation familiale</span
+                  ><select name="marital" required="">
+                    <option
+                      data-en="Select..."
+                      data-fr="Sélectionner..."
+                      value=""
+                    >
+                      Sélectionner...
+                    </option>
+                    <option
+                      data-en="Annulled marriage"
+                      data-fr="Mariage annulé"
+                      value="annulled"
+                    >
+                      Mariage annulé
+                    </option>
+                    <option
+                      data-en="Common-law partner"
+                      data-fr="Conjoint de fait"
+                      value="commonlaw"
+                    >
+                      Conjoint de fait
+                    </option>
+                    <option
+                      data-en="Divorced/separated"
+                      data-fr="Divorcé/séparé"
+                      value="divorced"
+                    >
+                      Divorcé/séparé
+                    </option>
+                    <option
+                      data-en="Legally separated"
+                      data-fr="Séparé légalement"
+                      value="separated"
+                    >
+                      Séparé légalement
+                    </option>
+                    <option data-en="Married" data-fr="Marié" value="married">
+                      Marié
+                    </option>
+                    <option
+                      data-en="Never married/single"
+                      data-fr="Jamais marié/célibataire"
+                      value="single"
+                    >
+                      Jamais marié/célibataire
+                    </option>
+                    <option data-en="Widowed" data-fr="Veuf" value="widowed">
+                      Veuf
+                    </option>
+                  </select></label
+                >
+                <label class="spouse-condition" hidden=""
+                  ><span
+                    data-en="Spouse a Canadian citizen or permanent resident?"
+                    data-fr="Conjoint citoyen canadien ou résident permanent ?"
+                    >Conjoint citoyen canadien ou résident permanent ?</span
+                  ><select name="spouseStatus">
+                    <option data-en="No" data-fr="Non" value="no">Non</option>
+                    <option data-en="Yes" data-fr="Oui" value="yes">Oui</option>
+                  </select></label
+                >
+                <label class="spouse-condition" hidden=""
+                  ><span
+                    data-en="Is your spouse accompanying you?"
+                    data-fr="Le conjoint vous accompagne-t-il ?"
+                    >Le conjoint vous accompagne-t-il ?</span
+                  ><select name="accompany">
+                    <option data-en="Yes" data-fr="Oui" value="yes">Oui</option>
+                    <option data-en="No" data-fr="Non" value="no">Non</option>
+                  </select></label
+                >
+                <label
+                  ><span
+                    data-en="Highest Canadian-recognized credential / valid ECA"
+                    data-fr="Plus haut diplôme reconnu au Canada / EDE valide"
+                    >Plus haut diplôme reconnu au Canada / EDE valide</span
+                  ><small class="ev-help"
+                    >Diplôme canadien ou EDE valide (moins de 5 ans) pour un
+                    diplôme étranger. / Canadian credential or valid ECA (under
+                    5 years) for a foreign credential.</small
+                  ><small
+                    class="ev-help"
+                    data-en="Canadian credential or foreign credential with an ECA issued by a designated organization within the last five years."
+                    data-fr="Diplôme canadien ou diplôme étranger avec EDE délivrée par un organisme désigné au cours des cinq dernières années."
+                    >Diplôme canadien ou diplôme étranger avec EDE délivrée par
+                    un organisme désigné au cours des cinq dernières
+                    années.</small
+                  ><select
+                    class="education-options"
+                    name="education"
+                    required=""
+                  ></select
+                ></label>
+                <label
+                  ><span
+                    data-en="Years of skilled work in Canada"
+                    data-fr="Années de travail qualifié au Canada"
+                    >Années de travail qualifié au Canada</span
+                  ><small
+                    class="ev-help"
+                    data-en="Within the last 10 years: paid full-time or equivalent work in a TEER 0, 1, 2 or 3 occupation."
+                    data-fr="Au cours des 10 dernières années : travail rémunéré, à temps plein ou équivalent, dans une profession FEER 0, 1, 2 ou 3."
+                    >Au cours des 10 dernières années : travail rémunéré, à
+                    temps plein ou équivalent, dans une profession FEER 0, 1, 2
+                    ou 3.</small
+                  ><select class="years-canada" name="canada"></select
+                ></label>
+                <label
+                  ><span
+                    data-en="Years of skilled work outside Canada"
+                    data-fr="Années de travail qualifié hors Canada"
+                    >Années de travail qualifié hors Canada</span
+                  ><small
+                    class="ev-help"
+                    data-en="Within the last 10 years: skilled foreign work; verify program-specific requirements."
+                    data-fr="Au cours des 10 dernières années : expérience qualifiée à l’étranger; vérifiez les critères applicables au programme."
+                    >Au cours des 10 dernières années : expérience qualifiée à
+                    l’étranger; vérifiez les critères applicables au
+                    programme.</small
+                  ><select class="years-foreign" name="foreign"></select
+                ></label>
+              </div>
+            </fieldset>
+            <fieldset>
+              <legend
+                data-en="B · First official language"
+                data-fr="B · Première langue officielle"
+              >
+                B · Première langue officielle
+              </legend>
+              <div class="ev-grid">
+                <label
+                  ><span data-en="Language" data-fr="Langue">Langue</span
+                  ><select name="firstLanguage">
+                    <option data-en="French" data-fr="Français" value="fr">
+                      Français
+                    </option>
+                    <option data-en="English" data-fr="Anglais" value="en">
+                      Anglais
+                    </option>
+                  </select></label
+                ><label
+                  ><span
+                    data-en="Valid official test (&lt; 2 years)"
+                    data-fr="Test officiel valide (&lt; 2 ans)"
+                    >Test officiel valide (&lt; 2 ans)</span
+                  ><select name="firstValid">
+                    <option data-en="No" data-fr="Non" value="no">Non</option>
+                    <option data-en="Yes" data-fr="Oui" value="yes">Oui</option>
+                  </select></label
+                ><label class="ev-added"
+                  ><span
+                    data-en="5ii) First official language test"
+                    data-fr="5ii) Test linguistique de première langue officielle"
+                    >5ii) Test linguistique de première langue officielle</span
+                  ><small
+                    class="ev-help"
+                    data-en="Convert all four results to CLB/NCLC using the selected test’s official conversion table."
+                    data-fr="Les quatre résultats doivent être convertis en CLB/NCLC selon le test choisi."
+                    >Les quatre résultats doivent être convertis en CLB/NCLC
+                    selon le test choisi.</small
+                  ><select name="firstTest">
+                    <option
+                      data-en="Select..."
+                      data-fr="Sélectionner..."
+                      value=""
+                    >
+                      Sélectionner...
+                    </option>
+                    <option
+                      data-en="CELPIP-G"
+                      data-fr="CELPIP-G"
+                      value="celpip"
+                    >
+                      CELPIP-G
+                    </option>
+                    <option
+                      data-en="IELTS General Training"
+                      data-fr="IELTS General Training"
+                      value="ielts"
+                    >
+                      IELTS General Training
+                    </option>
+                    <option data-en="PTE Core" data-fr="PTE Core" value="pte">
+                      PTE Core
+                    </option>
+                    <option
+                      data-en="TEF Canada"
+                      data-fr="TEF Canada"
+                      value="tef"
+                    >
+                      TEF Canada
+                    </option>
+                    <option
+                      data-en="TCF Canada"
+                      data-fr="TCF Canada"
+                      value="tcf"
+                    >
+                      TCF Canada
+                    </option>
+                  </select></label
+                >
+              </div>
+              <div
+                class="ev-raw-help"
+                data-en="Choose a test: score choices automatically adapt to each skill. CLB/NCLC levels are calculated from your answers."
+                data-fr="Sélectionnez un examen : les notes proposées s’adaptent automatiquement à chaque compétence. Les niveaux CLB/NCLC sont calculés à partir de vos réponses."
+              >
+                Sélectionnez un examen : les notes proposées s’adaptent
+                automatiquement à chaque compétence. Les niveaux CLB/NCLC sont
+                calculés à partir de vos réponses.
+              </div>
+              <div class="ev-grid ev-raw-grid" data-prefix="first">
+                <label
+                  ><span
+                    data-en="Speaking-test score"
+                    data-fr="Expression orale-note du test"
+                    >Expression orale-note du test</span
+                  ><select
+                    class="ev-test-score"
+                    disabled="disabled"
+                    name="first_raw_speaking"
+                  >
+                    <option
+                      data-en="Select..."
+                      data-fr="Sélectionner..."
+                      value=""
+                    >
+                      Sélectionner...
+                    </option>
+                  </select></label
+                ><label
+                  ><span
+                    data-en="Listening-test score"
+                    data-fr="Compréhension orale-note du test"
+                    >Compréhension orale-note du test</span
+                  ><select
+                    class="ev-test-score"
+                    disabled="disabled"
+                    name="first_raw_listening"
+                  >
+                    <option
+                      data-en="Select..."
+                      data-fr="Sélectionner..."
+                      value=""
+                    >
+                      Sélectionner...
+                    </option>
+                  </select></label
+                ><label
+                  ><span
+                    data-en="Reading-test score"
+                    data-fr="Compréhension écrite-note du test"
+                    >Compréhension écrite-note du test</span
+                  ><select
+                    class="ev-test-score"
+                    disabled="disabled"
+                    name="first_raw_reading"
+                  >
+                    <option
+                      data-en="Select..."
+                      data-fr="Sélectionner..."
+                      value=""
+                    >
+                      Sélectionner...
+                    </option>
+                  </select></label
+                ><label
+                  ><span
+                    data-en="Writing-test score"
+                    data-fr="Expression écrite-note du test"
+                    >Expression écrite-note du test</span
+                  ><select
+                    class="ev-test-score"
+                    disabled="disabled"
+                    name="first_raw_writing"
+                  >
+                    <option
+                      data-en="Select..."
+                      data-fr="Sélectionner..."
+                      value=""
+                    >
+                      Sélectionner...
+                    </option>
+                  </select></label
+                >
+              </div>
+              <div
+                class="ev-grid ev-language ev-manual-clb"
+                data-prefix="first"
+              ></div>
+            </fieldset>
+            <fieldset>
+              <legend
+                data-en="C · Second official language (optional)"
+                data-fr="C · Deuxième langue officielle (facultatif)"
+              >
+                C · Deuxième langue officielle (facultatif)
+              </legend>
+              <label
+                ><span
+                  data-en="Valid test in the other language"
+                  data-fr="Test valide dans l'autre langue"
+                  >Test valide dans l'autre langue</span
+                ><select name="secondValid">
+                  <option data-en="No" data-fr="Non" value="no">Non</option>
+                  <option data-en="Yes" data-fr="Oui" value="yes">Oui</option>
+                </select></label
+              ><label class="ev-added"
+                ><span
+                  data-en="5iii) Second official language test"
+                  data-fr="5iii) Test de deuxième langue officielle"
+                  >5iii) Test de deuxième langue officielle</span
+                ><select name="secondTest">
+                  <option
+                    data-en="Select..."
+                    data-fr="Sélectionner..."
+                    value=""
+                  >
+                    Sélectionner...
+                  </option>
+                  <option
+                    data-en="Not applicable"
+                    data-fr="Sans objet"
+                    value="none"
+                  >
+                    Sans objet
+                  </option>
+                  <option data-en="TEF Canada" data-fr="TEF Canada" value="tef">
+                    TEF Canada
+                  </option>
+                  <option data-en="TCF Canada" data-fr="TCF Canada" value="tcf">
+                    TCF Canada
+                  </option>
+                </select></label
+              >
+              <div
+                class="ev-raw-help"
+                data-en="Choose a test: score choices automatically adapt to each skill. CLB/NCLC levels are calculated from your answers."
+                data-fr="Sélectionnez un examen : les notes proposées s’adaptent automatiquement à chaque compétence. Les niveaux CLB/NCLC sont calculés à partir de vos réponses."
+              >
+                Sélectionnez un examen : les notes proposées s’adaptent
+                automatiquement à chaque compétence. Les niveaux CLB/NCLC sont
+                calculés à partir de vos réponses.
+              </div>
+              <div class="ev-grid ev-raw-grid" data-prefix="second">
+                <label
+                  ><span
+                    data-en="Speaking-test score"
+                    data-fr="Expression orale-note du test"
+                    >Expression orale-note du test</span
+                  ><select
+                    class="ev-test-score"
+                    disabled="disabled"
+                    name="second_raw_speaking"
+                  >
+                    <option
+                      data-en="Select..."
+                      data-fr="Sélectionner..."
+                      value=""
+                    >
+                      Sélectionner...
+                    </option>
+                  </select></label
+                ><label
+                  ><span
+                    data-en="Listening-test score"
+                    data-fr="Compréhension orale-note du test"
+                    >Compréhension orale-note du test</span
+                  ><select
+                    class="ev-test-score"
+                    disabled="disabled"
+                    name="second_raw_listening"
+                  >
+                    <option
+                      data-en="Select..."
+                      data-fr="Sélectionner..."
+                      value=""
+                    >
+                      Sélectionner...
+                    </option>
+                  </select></label
+                ><label
+                  ><span
+                    data-en="Reading-test score"
+                    data-fr="Compréhension écrite-note du test"
+                    >Compréhension écrite-note du test</span
+                  ><select
+                    class="ev-test-score"
+                    disabled="disabled"
+                    name="second_raw_reading"
+                  >
+                    <option
+                      data-en="Select..."
+                      data-fr="Sélectionner..."
+                      value=""
+                    >
+                      Sélectionner...
+                    </option>
+                  </select></label
+                ><label
+                  ><span
+                    data-en="Writing-test score"
+                    data-fr="Expression écrite-note du test"
+                    >Expression écrite-note du test</span
+                  ><select
+                    class="ev-test-score"
+                    disabled="disabled"
+                    name="second_raw_writing"
+                  >
+                    <option
+                      data-en="Select..."
+                      data-fr="Sélectionner..."
+                      value=""
+                    >
+                      Sélectionner...
+                    </option>
+                  </select></label
+                >
+              </div>
+              <div
+                class="ev-grid ev-language ev-manual-clb"
+                data-prefix="second"
+              ></div>
+            </fieldset>
+            <fieldset class="ev-spouse" hidden="">
+              <legend
+                data-en="D · Accompanying spouse factors"
+                data-fr="D · Facteurs du conjoint accompagnant"
+              >
+                D · Facteurs du conjoint accompagnant
+              </legend>
+              <div class="ev-grid">
+                <label
+                  ><span
+                    data-en="Spouse's recognized credential / valid ECA"
+                    data-fr="Diplôme du conjoint reconnu / EDE valide"
+                    >Diplôme du conjoint reconnu / EDE valide</span
+                  ><select
+                    class="education-options"
+                    name="spouseEducation"
+                  ></select></label
+                ><label
+                  ><span
+                    data-en="Spouse's Canadian experience"
+                    data-fr="Expérience du conjoint au Canada"
+                    >Expérience du conjoint au Canada</span
+                  ><select
+                    class="years-canada"
+                    name="spouseCanada"
+                  ></select></label
+                ><label
+                  ><span
+                    data-en="Spouse's valid language test"
+                    data-fr="Test linguistique du conjoint valide"
+                    >Test linguistique du conjoint valide</span
+                  ><select name="spouseValid">
+                    <option data-en="No" data-fr="Non" value="no">Non</option>
+                    <option data-en="Yes" data-fr="Oui" value="yes">Oui</option>
+                  </select></label
+                >
+              </div>
+              <div class="ev-grid ev-language" data-prefix="spouse"></div>
+            </fieldset>
+            <fieldset>
+              <legend
+                data-en="E · Additional points"
+                data-fr="E · Points supplémentaires"
+              >
+                E · Points supplémentaires
+              </legend>
+              <div class="ev-grid">
+                <label class="ev-added"
+                  ><span
+                    data-en="4b) Did you obtain an eligible Canadian credential?"
+                    data-fr="4b) Avez-vous obtenu un certificat, grade ou diplôme canadien admissible ?"
+                    >4b) Avez-vous obtenu un certificat, grade ou diplôme
+                    canadien admissible ?</span
+                  ><small
+                    class="ev-help"
+                    data-en="Eligible study: Canadian institution, required enrolment and presence; exceptions may apply for March 2020 to August 2022. Second-language studies cannot exceed half the program and certain scholarships are excluded."
+                    data-fr="Études admissibles : établissement au Canada, durée et présence requises; exceptions possibles pour mars 2020 à août 2022. Les études en langue seconde ne doivent pas dépasser la moitié du programme et certaines bourses sont exclues."
+                    >Études admissibles : établissement au Canada, durée et
+                    présence requises; exceptions possibles pour mars 2020 à
+                    août 2022. Les études en langue seconde ne doivent pas
+                    dépasser la moitié du programme et certaines bourses sont
+                    exclues.</small
+                  ><select name="canadianCredential" required="">
+                    <option
+                      data-en="Select..."
+                      data-fr="Sélectionner..."
+                      value=""
+                    >
+                      Sélectionner...
+                    </option>
+                    <option data-en="No" data-fr="Non" value="no">Non</option>
+                    <option data-en="Yes" data-fr="Oui" value="yes">Oui</option>
+                  </select></label
+                ><label class="ev-canadian-level"
+                  ><span
+                    data-en="4c) Eligible Canadian credential level"
+                    data-fr="4c) Niveau du diplôme canadien admissible"
+                    >4c) Niveau du diplôme canadien admissible</span
+                  ><select name="canadianCredentialLevel" required="">
+                    <option
+                      data-en="Select..."
+                      data-fr="Sélectionner..."
+                      value=""
+                    >
+                      Sélectionner...
+                    </option>
+                    <option
+                      data-en="Secondary or less"
+                      data-fr="École secondaire ou moins"
+                      value="0"
+                    >
+                      École secondaire ou moins
+                    </option>
+                    <option
+                      data-en="One- or two-year credential"
+                      data-fr="Diplôme ou certificat de 1 ou 2 ans"
+                      value="15"
+                    >
+                      Diplôme ou certificat de 1 ou 2 ans
+                    </option>
+                    <option
+                      data-en="Three-year or longer credential, master’s, doctorate or eligible professional degree"
+                      data-fr="Diplôme de 3 ans ou plus, maîtrise, doctorat ou diplôme professionnel admissible"
+                      value="30"
+                    >
+                      Diplôme de 3 ans ou plus, maîtrise, doctorat ou diplôme
+                      professionnel admissible
+                    </option>
+                  </select></label
+                ><label
+                  ><span
+                    data-en="10) Eligible sibling in Canada (18+, citizen or permanent resident)"
+                    data-fr="10) Frère ou sœur admissible au Canada (18 ans ou plus, citoyen ou résident permanent)"
+                    >10) Frère ou sœur admissible au Canada (18 ans ou plus,
+                    citoyen ou résident permanent)</span
+                  ><small
+                    class="ev-help"
+                    data-en="The sibling must be at least 18, be a Canadian citizen or permanent resident and meet the relationship requirements."
+                    data-fr="Le frère ou la sœur doit avoir au moins 18 ans, être citoyen canadien ou résident permanent et respecter les critères de parenté."
+                    >Le frère ou la sœur doit avoir au moins 18 ans, être
+                    citoyen canadien ou résident permanent et respecter les
+                    critères de parenté.</small
+                  ><select name="sibling">
+                    <option data-en="No" data-fr="Non" value="no">Non</option>
+                    <option data-en="Yes" data-fr="Oui" value="yes">Oui</option>
+                  </select></label
+                ><label
+                  ><span
+                    data-en="9) Express Entry provincial or territorial nomination"
+                    data-fr="9) Désignation provinciale ou territoriale Entrée express"
+                    >9) Désignation provinciale ou territoriale Entrée
+                    express</span
+                  ><select name="pnp">
+                    <option data-en="No" data-fr="Non" value="no">Non</option>
+                    <option data-en="Yes" data-fr="Oui" value="yes">Oui</option>
+                  </select></label
+                ><label
+                  ><span
+                    data-en="7) Canadian certificate of qualification for a skilled trade"
+                    data-fr="7) Certificat de compétence canadien pour un métier spécialisé"
+                    >7) Certificat de compétence canadien pour un métier
+                    spécialisé</span
+                  ><small
+                    class="ev-help"
+                    data-en="A Canadian certificate of qualification for a skilled trade is not a provincial nomination."
+                    data-fr="Un certificat de compétence canadien pour un métier spécialisé n’est pas une désignation provinciale."
+                    >Un certificat de compétence canadien pour un métier
+                    spécialisé n’est pas une désignation provinciale.</small
+                  ><select name="trade">
+                    <option data-en="No" data-fr="Non" value="no">Non</option>
+                    <option data-en="Yes" data-fr="Oui" value="yes">Oui</option>
+                  </select></label
+                >
+              </div>
+              <label class="ev-added"
+                ><span
+                  data-en="8) Do you have a valid job offer (LMIA or exemption, if applicable)?"
+                  data-fr="8) Avez-vous une offre d’emploi valide (EIMT ou exemption, si applicable) ?"
+                  >8) Avez-vous une offre d’emploi valide (EIMT ou exemption, si
+                  applicable) ?</span
+                ><small
+                  class="ev-help"
+                  data-en="A valid offer is generally full-time, TEER 0–3 and for at least one year after permanent residence. Since March 25, 2025, job offers earn no CRS points."
+                  data-fr="Une offre valide est généralement à temps plein, en FEER 0–3 et pour au moins un an après la résidence permanente. Depuis le 25 mars 2025, aucun point SCG n’est accordé pour une offre d’emploi."
+                  >Une offre valide est généralement à temps plein, en FEER 0–3
+                  et pour au moins un an après la résidence permanente. Depuis
+                  le 25 mars 2025, aucun point SCG n’est accordé pour une offre
+                  d’emploi.</small
+                ><select name="jobOffer" required="">
+                  <option
+                    data-en="Select..."
+                    data-fr="Sélectionner..."
+                    value=""
+                  >
+                    Sélectionner...
+                  </option>
+                  <option data-en="No" data-fr="Non" value="no">Non</option>
+                  <option data-en="Yes" data-fr="Oui" value="yes">Oui</option>
+                </select></label
+              ><label class="ev-job-teer"
+                ><span
+                  data-en="8a) Job offer NOC TEER category"
+                  data-fr="8a) Catégorie FEER de l’offre d’emploi"
+                  >8a) Catégorie FEER de l’offre d’emploi</span
+                ><select name="jobTeer" required="">
+                  <option
+                    data-en="Select..."
+                    data-fr="Sélectionner..."
+                    value=""
+                  >
+                    Sélectionner...
+                  </option>
+                  <option
+                    data-en="Major group 00, TEER 0"
+                    data-fr="Grand groupe 00, FEER 0"
+                    value="00"
+                  >
+                    Grand groupe 00, FEER 0
+                  </option>
+                  <option
+                    data-en="TEER 0 except major group 00, or TEER 1, 2 or 3"
+                    data-fr="FEER 0 hors groupe 00, ou FEER 1, 2 ou 3"
+                    value="other"
+                  >
+                    FEER 0 hors groupe 00, ou FEER 1, 2 ou 3
+                  </option>
+                  <option
+                    data-en="TEER 4 or 5"
+                    data-fr="FEER 4 ou 5"
+                    value="45"
+                  >
+                    FEER 4 ou 5
+                  </option>
+                </select></label
+              >
+            </fieldset>
+            <div class="ev-actions">
+              <button
+                class="ev-primary"
+                data-en="Calculate my CRS score"
+                data-fr="Calculer mon score SCG"
+                type="submit"
+              >
+                Calculer mon score SCG</button
+              ><button
+                class="ev-secondary"
+                data-en="Reset"
+                data-fr="Réinitialiser"
+                type="reset"
+              >
+                Réinitialiser
+              </button>
+            </div>
+          </form>
+          <div
+            aria-live="polite"
+            class="ev-result"
+            hidden=""
+            id="crs-result"
+          ></div>
+        </section>
+        <section
+          aria-labelledby="tab-pre"
+          class="ev-panel"
+          hidden=""
+          id="panel-pre"
+          role="tabpanel"
+        >
+          <h2
+            data-en="Your situation at a glance"
+            data-fr="Votre situation en quelques questions"
+          >
+            Votre situation en quelques questions
+          </h2>
+          <p
+            class="ev-muted"
+            data-en="This questionnaire identifies items to review; it does not establish legal eligibility for a program."
+            data-fr="Ce questionnaire sert à repérer des éléments à vérifier, pas à déterminer l’admissibilité juridique à un programme."
+          >
+            Ce questionnaire sert à repérer des éléments à vérifier, pas à
+            déterminer l’admissibilité juridique à un programme.
+          </p>
+          <form class="ev-form" id="pre-form">
+            <div class="ev-grid">
+              <label
+                ><span data-en="Age" data-fr="Âge">Âge</span
+                ><input
+                  max="100"
+                  min="16"
+                  name="age"
+                  placeholder="30"
+                  required=""
+                  type="number"
+              /></label>
+              <label
+                ><span
+                  data-en="Current country of residence"
+                  data-fr="Pays de résidence actuel"
+                  >Pays de résidence actuel</span
+                ><select name="residence" required="">
+                  <option data-en="Select" data-fr="Sélectionner" value="">
+                    Sélectionner
+                  </option>
+                  <option data-en="Canada" data-fr="Canada" value="canada">
+                    Canada
+                  </option>
+                  <option
+                    data-en="Outside Canada"
+                    data-fr="Hors du Canada"
+                    value="other"
+                  >
+                    Hors du Canada
+                  </option>
+                </select></label
+              >
+              <label
+                ><span
+                  data-en="Skilled Canadian experience (NOC TEER 0–3)"
+                  data-fr="Expérience qualifiée au Canada (CNP FEER 0–3)"
+                  >Expérience qualifiée au Canada (CNP FEER 0–3)</span
+                ><select name="canada">
+                  <option
+                    data-en="Less than one year"
+                    data-fr="Moins d'un an"
+                    value="0"
+                  >
+                    Moins d'un an
+                  </option>
+                  <option
+                    data-en="1 year or more"
+                    data-fr="1 an ou plus"
+                    value="1"
+                  >
+                    1 an ou plus
+                  </option>
+                </select></label
+              >
+              <label
+                ><span
+                  data-en="Skilled experience outside Canada"
+                  data-fr="Expérience qualifiée hors Canada"
+                  >Expérience qualifiée hors Canada</span
+                ><select name="foreign">
+                  <option
+                    data-en="Less than one year"
+                    data-fr="Moins d'un an"
+                    value="0"
+                  >
+                    Moins d'un an
+                  </option>
+                  <option
+                    data-en="1 year or more"
+                    data-fr="1 an ou plus"
+                    value="1"
+                  >
+                    1 an ou plus
+                  </option>
+                </select></label
+              >
+              <label
+                ><span data-en="Education level" data-fr="Niveau d'études"
+                  >Niveau d'études</span
+                ><select name="education">
+                  <option
+                    data-en="Less than secondary"
+                    data-fr="Sans diplôme secondaire"
+                    value="none"
+                  >
+                    Sans diplôme secondaire
+                  </option>
+                  <option
+                    data-en="Secondary"
+                    data-fr="Secondaire"
+                    value="secondary"
+                  >
+                    Secondaire
+                  </option>
+                  <option
+                    data-en="Postsecondary"
+                    data-fr="Postsecondaire"
+                    value="post"
+                  >
+                    Postsecondaire
+                  </option>
+                </select></label
+              >
+              <label
+                ><span
+                  data-en="Valid official language test (under 2 years)"
+                  data-fr="Test linguistique officiel valide (moins de 2 ans)"
+                  >Test linguistique officiel valide (moins de 2 ans)</span
+                ><select name="test">
+                  <option
+                    data-en="No / unknown"
+                    data-fr="Non / inconnu"
+                    value="no"
+                  >
+                    Non / inconnu
+                  </option>
+                  <option data-en="Yes" data-fr="Oui" value="yes">Oui</option>
+                </select></label
+              >
+              <label
+                ><span
+                  data-en="Minimum CLB/NCLC across all 4 skills"
+                  data-fr="Niveau minimum CLB/NCLC dans les 4 compétences"
+                  >Niveau minimum CLB/NCLC dans les 4 compétences</span
+                ><select name="clb">
+                  <option data-en="Unknown" data-fr="Inconnu" value="unknown">
+                    Inconnu
+                  </option>
+                  <option data-en="4 or less" data-fr="4 ou moins" value="4">
+                    4 ou moins
+                  </option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10+</option>
+                </select></label
+              >
+              <label
+                ><span
+                  data-en="Intended destination"
+                  data-fr="Projet de destination"
+                  >Projet de destination</span
+                ><select name="destination">
+                  <option
+                    data-en="Undecided"
+                    data-fr="À déterminer"
+                    value="unknown"
+                  >
+                    À déterminer
+                  </option>
+                  <option data-en="Quebec" data-fr="Québec" value="quebec">
+                    Québec
+                  </option>
+                  <option
+                    data-en="Outside Quebec"
+                    data-fr="Hors Québec"
+                    value="outside"
+                  >
+                    Hors Québec
+                  </option>
+                </select></label
+              >
+            </div>
+            <div class="ev-actions">
+              <button
+                class="ev-primary"
+                data-en="Review next steps"
+                data-fr="Voir les éléments à vérifier"
+                type="submit"
+              >
+                Voir les éléments à vérifier
+              </button>
+            </div>
+          </form>
+          <div
+            aria-live="polite"
+            class="ev-result"
+            hidden=""
+            id="pre-result"
+          ></div>
+        </section>
+        <aside class="ev-disclaimer">
+          <strong
+            data-en="Important: informational simulation"
+            data-fr="Important : simulation informative"
+            >Important : simulation informative</strong
+          >
+          <p
+            class="ev-legal"
+            data-en="This tool is for general reference and guidance only. If results differ, the Express Entry electronic system takes precedence under the Immigration and Refugee Protection Act, its Regulations and ministerial instructions issued under section 10.3. This tool may be updated as ministerial instructions change."
+            data-fr="Cet outil ne sert qu’à des fins de référence et d’orientation générale. En cas de divergence, les résultats du système électronique Entrée express ont préséance, conformément à la LIPR, au RIPR et aux instructions ministérielles prises en vertu de l’article 10.3 de la LIPR. Cet outil peut être mis à jour à la suite de modifications des instructions ministérielles."
+          >
+            Cet outil ne sert qu’à des fins de référence et d’orientation
+            générale. En cas de divergence, les résultats du système
+            électronique Entrée express ont préséance, conformément à la LIPR,
+            au RIPR et aux instructions ministérielles prises en vertu de
+            l’article 10.3 de la LIPR. Cet outil peut être mis à jour à la suite
+            de modifications des instructions ministérielles.
+          </p>
+          <p
+            data-en="Independent MADIC tool, not affiliated with IRCC. For information only. In case of discrepancy, the Express Entry electronic system prevails under IRPA, IRPR and ministerial instructions. Rules may change. No answers are sent to MADIC."
+            data-fr="Outil indépendant de MADIC, non affilié à IRCC. Usage informatif uniquement. En cas de divergence, les résultats du système électronique Entrée express prévalent conformément à la LIPR, au RIPR et aux instructions ministérielles. Les règles peuvent évoluer. Aucune réponse n’est transmise à MADIC."
+          >
+            Outil indépendant de MADIC, non affilié à IRCC. Usage informatif
+            uniquement. En cas de divergence, les résultats du système
+            électronique Entrée express prévalent conformément à la LIPR, au
+            RIPR et aux instructions ministérielles. Les règles peuvent évoluer.
+            Aucune réponse n’est transmise à MADIC.
+          </p>
+          <div class="ev-links">
+            <a
+              data-en="Official IRCC calculator ↗"
+              data-fr="Calculatrice officielle IRCC ↗"
+              href="https://www.canada.ca/fr/immigration-refugies-citoyennete/services/immigrer-canada/entree-express/verifier-note.html"
+              rel="noopener"
+              target="_blank"
+              >Calculatrice officielle IRCC ↗</a
+            ><a
+              data-en="Official CRS criteria ↗"
+              data-fr="Barèmes officiels SCG ↗"
+              href="https://www.canada.ca/fr/immigration-refugies-citoyennete/services/immigrer-canada/entree-express/verifier-note/criteries-scg.html"
+              rel="noopener"
+              target="_blank"
+              >Barèmes officiels SCG ↗</a
+            ><a
+              data-en="Language test conversion ↗"
+              data-fr="Conversion des tests linguistiques ↗"
+              href="https://www.canada.ca/fr/immigration-refugies-citoyennete/services/immigrer-canada/entree-express/documents/examen-linguistique.html"
+              rel="noopener"
+              target="_blank"
+              >Conversion des tests linguistiques ↗</a
+            >
+          </div>
+        </aside>
+      </div>
+    </main>
+    <footer class="footer">
+      <div class="container grid--footer">
+        <div class="logo-col">
+          <a href="#" class="footer-logo">
+            <img
+              src="img/logo_fr_transparent.png"
+              alt="omnifood-logo"
+              class="logo"
+            />
+          </a>
+
+          <ul class="social-links">
+            <li>
+              <a class="footer-link" href="#"
+                ><ion-icon class="social-icon" name="logo-instagram"></ion-icon
+              ></a>
+            </li>
+            <li>
+              <a class="footer-link" href="#"
+                ><ion-icon class="social-icon" name="logo-facebook"></ion-icon
+              ></a>
+            </li>
+            <li>
+              <a class="footer-link" href="#"
+                ><ion-icon class="social-icon" name="logo-twitter"></ion-icon
+              ></a>
+            </li>
+          </ul>
+          <p class="copyright">
+            Copyright &copy;
+            <span class="year"></span>
+            Design MADMECA Inc.
+            <span data-i18n="footer.copyright">
+              Tous les droits réservés.
+            </span>
+          </p>
+        </div>
+
+        <div class="address-col">
+          <p class="footer-heading" data-i18n="footer.contact">
+            Contactez-nous
+          </p>
+          <address class="contacts">
+            <p class="address">
+              1622 Rue Barré, Bureau 202, Saint-Laurent, QC, CA
+            </p>
+            <p>
+              <a class="footer-link" href="tel:415-201-6370">514-442-3076</a
+              ><br />
+              <a class="footer-link" href="mailto:hello@omnifood.com"
+                >madimmigrationcanadienne@gmail.com</a
+              >
+            </p>
+          </address>
+        </div>
+
+        <nav class="nav-col">
+          <p class="footer-heading" data-i18n="footer.account">Compte</p>
+
+          <ul class="footer-nav">
+            <li>
+              <a class="footer-link" href="#" data-i18n="footer.createAccount">
+                Créer un compte
+              </a>
+            </li>
+
+            <li>
+              <a class="footer-link" href="#" data-i18n="footer.register">
+                S'inscrire
+              </a>
+            </li>
+
+            <li>
+              <a class="footer-link" href="#">iOS</a>
+            </li>
+
+            <li>
+              <a class="footer-link" href="#" data-i18n="footer.android">
+                Android
+              </a>
+            </li>
+          </ul>
+        </nav>
+
+        <nav class="nav-col">
+          <p class="footer-heading" data-i18n="footer.company">Compagnie</p>
+
+          <ul class="footer-nav">
+            <li>
+              <a class="footer-link" href="#" data-i18n="footer.about">
+                À propos de MADIC
+              </a>
+            </li>
+
+            <li>
+              <a class="footer-link" href="#" data-i18n="footer.business">
+                Affaires
+              </a>
+            </li>
+
+            <li>
+              <a class="footer-link" href="#" data-i18n="footer.partners">
+                Partenaires
+              </a>
+            </li>
+
+            <li>
+              <a class="footer-link" href="#" data-i18n="footer.career">
+                Carrière
+              </a>
+            </li>
+          </ul>
+        </nav>
+
+        <nav class="nav-col">
+          <p class="footer-heading" data-i18n="footer.resources">Ressources</p>
+
+          <ul class="footer-nav">
+            <li>
+              <a class="footer-link" href="#" data-i18n="footer.directory">
+                Répertoire Immigration
+              </a>
+            </li>
+
+            <li>
+              <a class="footer-link" href="#" data-i18n="footer.help">
+                Centre d'aide
+              </a>
+            </li>
+
+            <li>
+              <a class="footer-link" href="#" data-i18n="footer.privacy">
+                Confidentialité et conditions
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </footer>
+  </body>
+</html>

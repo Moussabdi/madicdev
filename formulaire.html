@@ -1,0 +1,3136 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <title>MAD Immigration Canada</title>
+    <meta
+      content="MAD Immigration Canadienne inc. est une entreprise Canadienne spécialisée dans l’immigration canadienne, Forte de l’ingéniosité de son équipe d’expérience."
+      name="description"
+    />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <link href="img/favicon.png" rel="icon" />
+    <link href="img/apple-touch-icon.png" rel="apple-touch-icon" />
+    <link href="favicon.png" rel="icon" />
+    <link href="assets/formulaire.css" rel="stylesheet" />
+    <link href="assets/madic-footer.css" rel="stylesheet" />
+  </head>
+  <body
+    class="madic-form-portal"
+    data-madic-view="form"
+    data-page="cric-client-dashboard"
+  >
+    <header>
+      <a class="brand" href="connexion-client-cric.html"
+        >MADI<span>C</span> <small>PORTAIL</small></a
+      >
+      <nav class="toplinks">
+        <a
+          data-madic-signout="true"
+          href="connexion-client-cric.html"
+          id="madicHeaderSignout"
+          >Déconnexion</a
+        ><a href="dashboard-client-cric.html">Mon espace</a>
+      </nav>
+      <div aria-label="Outils du compte" class="madic-hero-tools">
+        <a
+          aria-label="Notifications de messagerie"
+          class="madic-hero-notifications"
+          href="messagerie-client-cric.html"
+          title="Notifications de messagerie"
+          ><svg
+            aria-hidden="true"
+            fill="none"
+            height="22"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1.8"
+            viewbox="0 0 24 24"
+            width="22"
+          >
+            <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"></path>
+            <path d="M10 21h4"></path>
+          </svg>
+          <span class="madic-hero-unread" hidden="" id="madicHeroUnread"
+            >0</span
+          ></a
+        >
+        <div id="madicHeroLanguage"></div>
+      </div>
+    </header>
+    <main class="madic-app-layout" id="madic8-main">
+      <aside
+        aria-label="Navigation de mon espace client"
+        class="madic-side-nav"
+      >
+        <div class="madic-side-brand">
+          <img
+            alt="Logo MADIC Portail"
+            class="madic-side-logo"
+            src="img/logo-madic.svg"
+          />
+          <div><strong>MADIC PORTAIL</strong><small>Espace client</small></div>
+        </div>
+        <div class="madic-side-caption">MON ESPACE</div>
+        <div class="madic-nav-controls">
+          <button aria-pressed="false" id="madicCustomizeNav" type="button">
+            Personnaliser le menu</button
+          ><button hidden="" id="madicResetNav" type="button">
+            Réinitialiser
+          </button>
+        </div>
+        <p class="madic-nav-help" hidden="" id="madicNavHelp">
+          Glissez les éléments ou utilisez les flèches pour choisir votre ordre.
+        </p>
+        <nav aria-label="Menu personnalisable" class="madic-side-links">
+          <div class="madic-nav-entry" data-nav-key="nav-0">
+            <span
+              aria-hidden="true"
+              class="madic-drag-handle"
+              draggable="true"
+              title="Glisser pour déplacer"
+              >⠿</span
+            ><a class="" draggable="false" href="dashboard-client-cric.html"
+              ><svg
+                aria-hidden="true"
+                class="madic-nav-icon"
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.8"
+                viewbox="0 0 24 24"
+              >
+                <path d="M4 6h16M4 12h16M4 18h16"></path>
+              </svg>
+              Vue d’ensemble</a
+            >
+            <div class="madic-nav-move">
+              <button aria-label="Monter" data-move="up" type="button">↑</button
+              ><button aria-label="Descendre" data-move="down" type="button">
+                ↓
+              </button>
+            </div>
+          </div>
+          <div class="madic-nav-entry" data-nav-key="nav-news">
+            <span
+              aria-hidden="true"
+              class="madic-drag-handle"
+              draggable="true"
+              title="Glisser pour déplacer"
+              >⠿</span
+            >
+            <a class="" draggable="false" href="actualites-client-cric.html"
+              ><svg
+                aria-hidden="true"
+                class="madic-nav-icon"
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.8"
+                viewbox="0 0 24 24"
+              >
+                <path d="M4 5h16v14H4zM8 9h8M8 13h8M8 17h5"></path>
+              </svg>
+              <span
+                class="madic-publication-nav-label"
+                data-madic-publication-en="News"
+                data-madic-publication-fr="Actualités"
+                >Actualités</span
+              ></a
+            >
+            <div class="madic-nav-move">
+              <button aria-label="Monter" data-move="up" type="button">↑</button
+              ><button aria-label="Descendre" data-move="down" type="button">
+                ↓
+              </button>
+            </div>
+          </div>
+          <div class="madic-nav-entry" data-nav-key="nav-7">
+            <span
+              aria-hidden="true"
+              class="madic-drag-handle"
+              draggable="true"
+              title="Glisser pour déplacer"
+              >⠿</span
+            ><a class="" draggable="false" href="profil-client-cric.html"
+              ><svg
+                aria-hidden="true"
+                class="madic-nav-icon"
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.8"
+                viewbox="0 0 24 24"
+              >
+                <path
+                  d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM4 21v-2a8 8 0 0 1 16 0v2"
+                ></path>
+              </svg>
+              Mon profil</a
+            >
+            <div class="madic-nav-move">
+              <button aria-label="Monter" data-move="up" type="button">↑</button
+              ><button aria-label="Descendre" data-move="down" type="button">
+                ↓
+              </button>
+            </div>
+          </div>
+          <div class="madic-nav-entry" data-nav-key="nav-contracts">
+            <span
+              aria-hidden="true"
+              class="madic-drag-handle"
+              draggable="true"
+              title="Glisser pour déplacer"
+              >⠿</span
+            ><a class="" draggable="false" href="mes-contrats.html"
+              >Mes contrats</a
+            >
+            <div class="madic-nav-move">
+              <button aria-label="Monter" data-move="up" type="button">↑</button
+              ><button aria-label="Descendre" data-move="down" type="button">
+                ↓
+              </button>
+            </div>
+          </div>
+          <div class="madic-nav-entry" data-nav-key="nav-1">
+            <span
+              aria-hidden="true"
+              class="madic-drag-handle"
+              draggable="true"
+              title="Glisser pour déplacer"
+              >⠿</span
+            ><a
+              aria-current="page"
+              class="madic-nav-active"
+              draggable="false"
+              href="formulaire.html"
+              ><svg
+                aria-hidden="true"
+                class="madic-nav-icon"
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.8"
+                viewbox="0 0 24 24"
+              >
+                <path d="M9 12h6m-3-3v6M5 5h14v14H5z"></path>
+              </svg>
+              Formulaire</a
+            >
+            <div class="madic-nav-move">
+              <button aria-label="Monter" data-move="up" type="button">↑</button
+              ><button aria-label="Descendre" data-move="down" type="button">
+                ↓
+              </button>
+            </div>
+          </div>
+          <div class="madic-nav-entry" data-nav-key="nav-2">
+            <span
+              aria-hidden="true"
+              class="madic-drag-handle"
+              draggable="true"
+              title="Glisser pour déplacer"
+              >⠿</span
+            ><a class="" draggable="false" href="messagerie-client-cric.html"
+              ><svg
+                aria-hidden="true"
+                class="madic-nav-icon"
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.8"
+                viewbox="0 0 24 24"
+              >
+                <path d="M8 10h8m-8 4h5M4 5h16v14H4z"></path>
+              </svg>
+              Messagerie</a
+            >
+            <div class="madic-nav-move">
+              <button aria-label="Monter" data-move="up" type="button">↑</button
+              ><button aria-label="Descendre" data-move="down" type="button">
+                ↓
+              </button>
+            </div>
+          </div>
+          <div class="madic-nav-entry" data-nav-key="nav-3">
+            <span
+              aria-hidden="true"
+              class="madic-drag-handle"
+              draggable="true"
+              title="Glisser pour déplacer"
+              >⠿</span
+            ><a class="" draggable="false" href="mes-rendez-vous-cric.html"
+              ><svg
+                aria-hidden="true"
+                class="madic-nav-icon"
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.8"
+                viewbox="0 0 24 24"
+              >
+                <path d="M8 7V4m8 3V4M4 10h16M5 6h14v14H5z"></path>
+              </svg>
+              Rendez-vous</a
+            >
+            <div class="madic-nav-move">
+              <button aria-label="Monter" data-move="up" type="button">↑</button
+              ><button aria-label="Descendre" data-move="down" type="button">
+                ↓
+              </button>
+            </div>
+          </div>
+          <div class="madic-nav-entry" data-nav-key="nav-4">
+            <span
+              aria-hidden="true"
+              class="madic-drag-handle"
+              draggable="true"
+              title="Glisser pour déplacer"
+              >⠿</span
+            ><a class="" draggable="false" href="mes-dossiers-client-cric.html"
+              ><svg
+                aria-hidden="true"
+                class="madic-nav-icon"
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.8"
+                viewbox="0 0 24 24"
+              >
+                <path d="M4 7h16M4 12h16M4 17h10"></path>
+              </svg>
+              Mes dossiers</a
+            >
+            <div class="madic-nav-move">
+              <button aria-label="Monter" data-move="up" type="button">↑</button
+              ><button aria-label="Descendre" data-move="down" type="button">
+                ↓
+              </button>
+            </div>
+          </div>
+          <div class="madic-nav-entry" data-nav-key="nav-5">
+            <span
+              aria-hidden="true"
+              class="madic-drag-handle"
+              draggable="true"
+              title="Glisser pour déplacer"
+              >⠿</span
+            ><a class="" draggable="false" href="documents-client-cric.html"
+              ><svg
+                aria-hidden="true"
+                class="madic-nav-icon"
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.8"
+                viewbox="0 0 24 24"
+              >
+                <path d="M12 3v12m-4-4 4 4 4-4M5 18h14v3H5z"></path>
+              </svg>
+              Documents</a
+            >
+            <div class="madic-nav-move">
+              <button aria-label="Monter" data-move="up" type="button">↑</button
+              ><button aria-label="Descendre" data-move="down" type="button">
+                ↓
+              </button>
+            </div>
+          </div>
+          <div class="madic-nav-entry" data-nav-key="nav-6">
+            <span
+              aria-hidden="true"
+              class="madic-drag-handle"
+              draggable="true"
+              title="Glisser pour déplacer"
+              >⠿</span
+            ><a class="" draggable="false" href="factures-client-cric.html"
+              ><svg
+                aria-hidden="true"
+                class="madic-nav-icon"
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.8"
+                viewbox="0 0 24 24"
+              >
+                <path d="M7 3h10l4 4v14H3V3h4zm2 8h6m-6 4h6"></path>
+              </svg>
+              Factures</a
+            >
+            <div class="madic-nav-move">
+              <button aria-label="Monter" data-move="up" type="button">↑</button
+              ><button aria-label="Descendre" data-move="down" type="button">
+                ↓
+              </button>
+            </div>
+          </div>
+        </nav>
+        <div class="madic-side-bottom">
+          <span class="madic-side-bottom-dot"></span> Espace client sécurisé<br /><small
+            >Votre projet, à votre rythme.</small
+          >
+        </div>
+      </aside>
+      <div class="madic-app-content">
+        <main class="form-page" id="page-formulaire">
+          <!-- HERO -->
+          <section class="form-hero">
+            <div class="form-hero__overlay"></div>
+            <div class="container form-hero__content">
+              <span class="form-eyebrow">
+                <span class="form-lang-fr">ÉVALUATION PRÉLIMINAIRE</span>
+                <span class="form-lang-en">PRELIMINARY ASSESSMENT</span>
+              </span>
+              <h1>
+                <span class="form-lang-fr">
+                  Parlez-nous de votre projet d’immigration
+                </span>
+                <span class="form-lang-en">
+                  Tell us about your immigration project
+                </span>
+              </h1>
+              <p>
+                <span class="form-lang-fr">
+                  Remplissez ce formulaire afin de nous permettre d’effectuer
+                  une première analyse de votre profil et de mieux comprendre
+                  votre projet au Canada.
+                </span>
+                <span class="form-lang-en">
+                  Complete this form so that we can conduct an initial
+                  assessment of your profile and better understand your plans in
+                  Canada.
+                </span>
+              </p>
+            </div>
+          </section>
+          <!-- DÉCLARATION IMPORTANTE -->
+          <section class="form-notice-section">
+            <div class="container">
+              <div class="declaration_importante form-notice">
+                <div class="form-notice__icon">
+                  <i class="fa-solid fa-triangle-exclamation"></i>
+                </div>
+                <div class="form-notice__content">
+                  <strong>
+                    <span class="form-lang-fr">Déclaration importante</span>
+                    <span class="form-lang-en">Important declaration</span>
+                  </strong>
+                  <p data-i18n="form.declaration">
+                    Je reconnais que toute fausse déclaration de ma part ou
+                    dissimulation d’un fait important dans les éléments suivants
+                    de ce formulaire peut entraîner une erreur dans l’analyse de
+                    mon dossier. Si mon dossier est soumis avec des informations
+                    fausses ou incomplètes auprès du gouvernement du Canada,
+                    cela peut avoir des conséquences sur ma demande et mon
+                    admissibilité au Canada.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+          <!-- FORMULAIRE -->
+          <section class="formulaire_section1 form-main-section">
+            <div class="container">
+              <form class="cta-form" id="madic-intake-form" name="sign-up">
+                <div
+                  aria-live="polite"
+                  class="madic-form-message"
+                  hidden=""
+                  id="madic-form-status"
+                  role="status"
+                ></div>
+                <div aria-label="Navigation du formulaire" class="madic-steps">
+                  <div class="madic-steps__top">
+                    <strong id="madic-step-label"></strong
+                    ><span id="madic-step-count"></span>
+                  </div>
+                  <div class="madic-steps__track">
+                    <div id="madic-progress-fill"></div>
+                  </div>
+                  <div class="madic-steps__nav">
+                    <button id="madic-step-prev" type="button">Précédent</button
+                    ><button id="madic-step-next" type="button">Suivant</button>
+                  </div>
+                </div>
+                <fieldset class="form_info_client">
+                  <legend data-i18n="form.clientInformation">
+                    Renseignement du client
+                  </legend>
+                  <div class="marg-bot">
+                    <label data-i18n="form.firstName" for="prenom"
+                      >Prenom : <span class="req">*</span></label
+                    >
+                    <input
+                      class="champs-large"
+                      data-i18n-placeholder="form.firstNamePlaceholder"
+                      id="prenom"
+                      name="prenom"
+                      placeholder="Veuillez remplir votre prenom"
+                      required=""
+                      type="text"
+                    />
+                    <div class="errorMessage"></div>
+                  </div>
+                  <div class="marg-bot">
+                    <label data-i18n="form.lastName" for="nom"
+                      >Nom : <span class="req">*</span></label
+                    >
+                    <input
+                      class="champs-large"
+                      data-i18n-placeholder="form.lastNamePlaceholder"
+                      id="nom"
+                      name="nom"
+                      placeholder="Veuillez remplir votre nom"
+                      required=""
+                      type="text"
+                    />
+                    <div class="errorMessage"></div>
+                  </div>
+                  <div class="marg-bot">
+                    <label data-i18n="form.birthDate" for="date_naissance"
+                      >Date de naissance : <span class="req">*</span></label
+                    >
+                    <input
+                      class="champs-large"
+                      id="date_naissance"
+                      name="date_naissance"
+                      required=""
+                      type="date"
+                    />
+                    <div class="errorMessage"></div>
+                  </div>
+                  <div class="marg-bot">
+                    <label for="madic_age_calcule">Âge / Age :</label>
+                    <input
+                      aria-live="polite"
+                      class="champs-large"
+                      id="madic_age_calcule"
+                      readonly=""
+                      type="text"
+                    />
+                  </div>
+                  <div class="marg-bot">
+                    <label data-i18n="form.gender" for="sex"
+                      >Sexe : <span class="req">*</span></label
+                    >
+                    <select
+                      class="champs-large"
+                      id="sex"
+                      name="sex"
+                      required=""
+                    >
+                      <option data-i18n="form.selectGender" value="">
+                        Choix de votre sexe!
+                      </option>
+                      <option data-i18n="form.male" value="salle">
+                        Masculin
+                      </option>
+                      <option data-i18n="form.female" value="terrasse">
+                        Féminin
+                      </option>
+                    </select>
+                  </div>
+                  <div class="marg-bot">
+                    <label data-i18n="form.birthCountry" for="Lieu_naissance"
+                      >Lieu de naissance : <span class="req">*</span></label
+                    >
+                    <select
+                      class="champs-large"
+                      id="Lieu_naissance"
+                      name="Lieu_naissance"
+                      required=""
+                    >
+                      <option data-i18n="form.selectBirthCountry" value="">
+                        Choix de votre lieu de résidence!
+                      </option>
+                      <option value="Afghanistan">Afghanistan</option>
+                      <option value="Afrique_du_sud">Afrique du Sud</option>
+                      <option value="Albanie">Albanie</option>
+                      <option value="Algerie">Algérie</option>
+                      <option value="Allemagne">Allemagne</option>
+                      <option value="Andorre">Andorre</option>
+                      <option value="Angola">Angola</option>
+                      <option value="Anguilla">Anguilla</option>
+                      <option value="Arabie_Saoudite">Arabie Saoudite</option>
+                      <option value="Argentine">Argentine</option>
+                      <option value="Armenie">Arménie</option>
+                      <option value="Australie">Australie</option>
+                      <option value="Autriche">Autriche</option>
+                      <option value="Azerbaidjan">Azerbaidjan</option>
+                      <option value="Bahamas">Bahamas</option>
+                      <option value="Bangladesh">Bangladesh</option>
+                      <option value="Barbade">Barbade</option>
+                      <option value="Bahrein">Bahrein</option>
+                      <option value="Belgique">Belgique</option>
+                      <option value="Belize">Bélize</option>
+                      <option value="Benin">Bénin</option>
+                      <option value="Bielorussie">Biélorussie</option>
+                      <option value="Bermudes">Bermudes</option>
+                      <option value="Bolivie">Bolivie</option>
+                      <option value="Botswana">Botswana</option>
+                      <option value="Bhoutan">Bhoutan</option>
+                      <option value="Boznie_Herzegovine">
+                        Boznie-Herzegovine
+                      </option>
+                      <option value="Bresil">Brésil</option>
+                      <option value="Brunei">Brunei</option>
+                      <option value="Bulgarie">Bulgarie</option>
+                      <option value="Burkina_Faso">Burkina Faso</option>
+                      <option value="Burundi">Burundi</option>
+                      <option value="Caiman">Caiman</option>
+                      <option value="Cambodge">Cambodge</option>
+                      <option value="Cameroun">Cameroun</option>
+                      <option value="Canada">Canada</option>
+                      <option value="Canaries">Canaries</option>
+                      <option value="Cap-vert">Cap_Vert</option>
+                      <option value="Chili">Chili</option>
+                      <option value="Chine">Chine</option>
+                      <option value="Chypre">Chypre</option>
+                      <option value="Colombie">Colombie</option>
+                      <option value="Comores">Colombie</option>
+                      <option value="Congo">République du Congo</option>
+                      <option value="Congo_democratique">
+                        République Démocratique du Congo
+                      </option>
+                      <option value="Cook">Cook</option>
+                      <option value="Coree_du_Nord">Corée du Nord</option>
+                      <option value="Coree_du_Sud">Corée du Sud</option>
+                      <option value="Costa_Rica">Costa Rica</option>
+                      <option value="Cote_d_Ivoire">Côte d’Ivoire</option>
+                      <option value="Croatie">Croatie</option>
+                      <option value="Cuba">Cuba</option>
+                      <option value="Danemark">Danemark</option>
+                      <option value="Djibouti">Djibouti</option>
+                      <option value="Dominique">Dominique</option>
+                      <option value="Egypte">Egypte</option>
+                      <option value="Emirats_Arabes_Unis">
+                        Emirats Arabes Unis
+                      </option>
+                      <option value="Equateur">Equateur</option>
+                      <option value="Erythree">Erythrée</option>
+                      <option value="Espagne">Espagne</option>
+                      <option value="Estonie">Estonie</option>
+                      <option value="Etats_Unis">Etats-Unis d’Amérique</option>
+                      <option value="Ethiopie">Ethiopie</option>
+                      <option value="Feroe">Feroe</option>
+                      <option value="Fidji">Fidji</option>
+                      <option value="Finlande">Finlande</option>
+                      <option value="France">France</option>
+                      <option value="Gabon">Gabon</option>
+                      <option value="Gambie">Gambie</option>
+                      <option value="Georgie">Géorgie</option>
+                      <option value="Ghana">Ghana</option>
+                      <option value="Gibraltar">Gibraltar</option>
+                      <option value="Grece">Grèce</option>
+                      <option value="Grenade">Grenade</option>
+                      <option value="Groenland">Groenland</option>
+                      <option value="Guadeloupe">Guadeloupe</option>
+                      <option value="Guam">Guam</option>
+                      <option value="Guatemala">Guatemala</option>
+                      <option value="Guernesey">Guernesey</option>
+                      <option value="Guinee">Guineé</option>
+                      <option value="Guinee_Bissau">Guinée Bissau</option>
+                      <option value="Guinee equatoriale">
+                        Guinée Equatoriale
+                      </option>
+                      <option value="Guyana">Guyana</option>
+                      <option value="Guyane_Francaise ">
+                        Guyane Francaise
+                      </option>
+                      <option value="Haiti">Haiti</option>
+                      <option value="Honduras">Honduras</option>
+                      <option value="Hongrie">Hongrie</option>
+                      <option value="Inde">Inde</option>
+                      <option value="Indonesie">Indonésie</option>
+                      <option value="Iran">Iran</option>
+                      <option value="Iraq">Iraq</option>
+                      <option value="Irlande">Irlande</option>
+                      <option value="Islande">Islande</option>
+                      <option value="Israel">Israel</option>
+                      <option value="Italie">italie</option>
+                      <option value="Jamaique">Jamaique</option>
+                      <option value="Japon">Japon</option>
+                      <option value="Jordanie">Jordanie</option>
+                      <option value="Kazakhstan">Kazakhstan</option>
+                      <option value="Kenya">Kenya</option>
+                      <option value="Kirghizstan">Kirghizistan</option>
+                      <option value="Kiribati">Kiribati</option>
+                      <option value="Koweit">Koweit</option>
+                      <option value="Laos">Laos</option>
+                      <option value="Lesotho">Lesotho</option>
+                      <option value="Lettonie">Lettonie</option>
+                      <option value="Liban">Liban</option>
+                      <option value="Liberia">Liberia</option>
+                      <option value="Liechtenstein">Liechtenstein</option>
+                      <option value="Lituanie">Lituanie</option>
+                      <option value="Luxembourg">Luxembourg</option>
+                      <option value="Lybie">Lybie</option>
+                      <option value="Macedoine">Macédoine</option>
+                      <option value="Madagascar">Madagascar</option>
+                      <option value="Malaisie">Malaisie</option>
+                      <option value="Malawi">Malawi</option>
+                      <option value="Maldives">Maldives</option>
+                      <option value="Mali">Mali</option>
+                      <option value="Malte">Malte</option>
+                      <option value="Maroc">Maroc</option>
+                      <option value="Marshall">Marshall</option>
+                      <option value="Maurice">Maurice</option>
+                      <option value="Mauritanie">Mauritanie</option>
+                      <option value="Mexique">Mexique</option>
+                      <option value="Micronesie">Micronésie</option>
+                      <option value="Moldavie">Moldavie</option>
+                      <option value="Monaco">Monaco</option>
+                      <option value="Mongolie">Mongolie</option>
+                      &gt;
+                      <option value="Mozambique">Mozambique</option>
+                      <option value="Namibie">Namibie</option>
+                      <option value="Nauru">Nauru</option>
+                      <option value="Nepal">Nepal</option>
+                      <option value="Nicaragua">Nicaragua</option>
+                      <option value="Niger">Niger</option>
+                      <option value="Nigeria">Nigéria</option>
+                      <option value="Niue">Nioué</option>
+                      <option value="Norvege">Norvège</option>
+                      <option value="Nouvelle_Zelande">Nouvelle Zelande</option>
+                      <option value="Oman">Oman</option>
+                      <option value="Ouganda">Ouganda</option>
+                      <option value="Ouzbekistan">Ouzbékistan</option>
+                      <option value="Pakistan">Pakistan</option>
+                      <option value="Palau">Palau</option>
+                      <option value="Palestine">Palestine</option>
+                      <option value="Panama">Panama</option>
+                      <option value="Papouasie_Nouvelle_Guinee">
+                        Papouasie Nouvelle Guinée
+                      </option>
+                      <option value="Paraguay">Paraguay</option>
+                      <option value="Pays_Bas">Pays-Bas</option>
+                      <option value="Perou">Pérou</option>
+                      <option value="Philippines">Philippines</option>
+                      <option value="Pologne">Pologne</option>
+                      <option value="Portugal">Portugal</option>
+                      <option value="Qatar">Qatar</option>
+                      <option value="Republique_centrafricaine">
+                        République centrafricaine
+                      </option>
+                      <option value="Republique_Dominicaine">
+                        Republique Dominicaine
+                      </option>
+                      <option value="Republique_Tcheque">
+                        Republique Tchèque
+                      </option>
+                      <option value="Roumanie">Roumanie</option>
+                      <option value="Royaume_Uni">Royaume Uni</option>
+                      <option value="Russie">Russie</option>
+                      <option value="Rwanda">Rwanda</option>
+                      <option value="Sahara Occidental">
+                        Sahara Occidental
+                      </option>
+                      <option value="Sainte_Lucie">Sainte Lucie</option>
+                      <option value="Saint_Marin">Saint Marin</option>
+                      <option value="Salomon">Iles Salomon</option>
+                      <option value="Salvador">Salvador</option>
+                      <option value="Samoa_Occidentales">
+                        Samoa Occidentales
+                      </option>
+                      <option value="Sao_Tome_et_Principe">
+                        Sao Tomé et Principe
+                      </option>
+                      <option value="Senegal">Sénegal</option>
+                      <option value="Seychelles">Seychelles</option>
+                      <option value="Sierra Leone">Sierra Léone</option>
+                      <option value="Singapour">Singapour</option>
+                      <option value="Slovaquie">Slovaquie</option>
+                      <option value="Slovenie">Slovenie</option>
+                      <option value="Somalie">Somalie</option>
+                      <option value="Soudan">Soudan</option>
+                      <option value="Sri_Lanka">Sri Lanka</option>
+                      <option value="Suede">Suède</option>
+                      <option value="Suisse">Suisse</option>
+                      <option value="Surinam">Surinam</option>
+                      <option value="Swaziland">Swaziland</option>
+                      <option value="Syrie">Syrie</option>
+                      <option value="Tadjikistan">Tadjikistan</option>
+                      <option value="Taiwan">Taiwan</option>
+                      <option value="Tanzanie">Tanzanie</option>
+                      <option value="Tchad">Tchad</option>
+                      <option value="Thailande">Thailande</option>
+                      <option value="Tibet">Tibet</option>
+                      <option value="Timor_Oriental">Timor Oriental</option>
+                      <option value="Togo">Togo</option>
+                      <option value="Trinite_et_Tobago">
+                        Trinité et Tobago
+                      </option>
+                      <option value="Tunisie">Tunisie</option>
+                      <option value="Turkmenistan">Turkménistan</option>
+                      <option value="Turquie">Turquie</option>
+                      <option value="Ukraine">Ukraine</option>
+                      <option value="Uruguay">Uruguay</option>
+                      <option value="Vanuatu">Vanuatu</option>
+                      <option value="Vatican">Vatican</option>
+                      <option value="Venezuela">Venezuela</option>
+                      <option value="Vietnam">Vietnam</option>
+                      <option value="Yemen">Yemen</option>
+                      <option value="Zambie">Zambie</option>
+                      <option value="Zimbabwe">Zimbabwe</option>
+                    </select>
+                  </div>
+                  <div class="marg-bot">
+                    <label
+                      data-i18n="form.nationalityCountry"
+                      for="pays_nationalite"
+                      >Pays de nationalité : <span class="req">*</span></label
+                    >
+                    <select
+                      class="champs-large"
+                      id="pays_nationalite"
+                      name="pays_nationalite"
+                      required=""
+                    >
+                      <option
+                        data-i18n="form.selectNationalityCountry"
+                        value=""
+                      >
+                        Choix de votre pays de nationalité
+                      </option>
+                      <option value="Afghanistan">Afghanistan</option>
+                      <option value="Afrique_du_sud">Afrique du Sud</option>
+                      <option value="Albanie">Albanie</option>
+                      <option value="Algerie">Algérie</option>
+                      <option value="Allemagne">Allemagne</option>
+                      <option value="Andorre">Andorre</option>
+                      <option value="Angola">Angola</option>
+                      <option value="Anguilla">Anguilla</option>
+                      <option value="Arabie_Saoudite">Arabie Saoudite</option>
+                      <option value="Argentine">Argentine</option>
+                      <option value="Armenie">Arménie</option>
+                      <option value="Australie">Australie</option>
+                      <option value="Autriche">Autriche</option>
+                      <option value="Azerbaidjan">Azerbaidjan</option>
+                      <option value="Bahamas">Bahamas</option>
+                      <option value="Bangladesh">Bangladesh</option>
+                      <option value="Barbade">Barbade</option>
+                      <option value="Bahrein">Bahrein</option>
+                      <option value="Belgique">Belgique</option>
+                      <option value="Belize">Bélize</option>
+                      <option value="Benin">Bénin</option>
+                      <option value="Bielorussie">Biélorussie</option>
+                      <option value="Bermudes">Bermudes</option>
+                      <option value="Bolivie">Bolivie</option>
+                      <option value="Botswana">Botswana</option>
+                      <option value="Bhoutan">Bhoutan</option>
+                      <option value="Boznie_Herzegovine">
+                        Boznie-Herzegovine
+                      </option>
+                      <option value="Bresil">Brésil</option>
+                      <option value="Brunei">Brunei</option>
+                      <option value="Bulgarie">Bulgarie</option>
+                      <option value="Burkina_Faso">Burkina Faso</option>
+                      <option value="Burundi">Burundi</option>
+                      <option value="Caiman">Caiman</option>
+                      <option value="Cambodge">Cambodge</option>
+                      <option value="Cameroun">Cameroun</option>
+                      <option value="Canada">Canada</option>
+                      <option value="Canaries">Canaries</option>
+                      <option value="Cap-vert">Cap_Vert</option>
+                      <option value="Chili">Chili</option>
+                      <option value="Chine">Chine</option>
+                      <option value="Chypre">Chypre</option>
+                      <option value="Colombie">Colombie</option>
+                      <option value="Comores">Colombie</option>
+                      <option value="Congo">République du Congo</option>
+                      <option value="Congo_democratique">
+                        République Démocratique du Congo
+                      </option>
+                      <option value="Cook">Cook</option>
+                      <option value="Coree_du_Nord">Corée du Nord</option>
+                      <option value="Coree_du_Sud">Corée du Sud</option>
+                      <option value="Costa_Rica">Costa Rica</option>
+                      <option value="Cote_d_Ivoire">Côte d’Ivoire</option>
+                      <option value="Croatie">Croatie</option>
+                      <option value="Cuba">Cuba</option>
+                      <option value="Danemark">Danemark</option>
+                      <option value="Djibouti">Djibouti</option>
+                      <option value="Dominique">Dominique</option>
+                      <option value="Egypte">Egypte</option>
+                      <option value="Emirats_Arabes_Unis">
+                        Emirats Arabes Unis
+                      </option>
+                      <option value="Equateur">Equateur</option>
+                      <option value="Erythree">Erythrée</option>
+                      <option value="Espagne">Espagne</option>
+                      <option value="Estonie">Estonie</option>
+                      <option value="Etats_Unis">Etats-Unis d’Amérique</option>
+                      <option value="Ethiopie">Ethiopie</option>
+                      <option value="Feroe">Feroe</option>
+                      <option value="Fidji">Fidji</option>
+                      <option value="Finlande">Finlande</option>
+                      <option value="France">France</option>
+                      <option value="Gabon">Gabon</option>
+                      <option value="Gambie">Gambie</option>
+                      <option value="Georgie">Géorgie</option>
+                      <option value="Ghana">Ghana</option>
+                      <option value="Gibraltar">Gibraltar</option>
+                      <option value="Grece">Grèce</option>
+                      <option value="Grenade">Grenade</option>
+                      <option value="Groenland">Groenland</option>
+                      <option value="Guadeloupe">Guadeloupe</option>
+                      <option value="Guam">Guam</option>
+                      <option value="Guatemala">Guatemala</option>
+                      <option value="Guernesey">Guernesey</option>
+                      <option value="Guinee">Guineé</option>
+                      <option value="Guinee_Bissau">Guinée Bissau</option>
+                      <option value="Guinee equatoriale">
+                        Guinée Equatoriale
+                      </option>
+                      <option value="Guyana">Guyana</option>
+                      <option value="Guyane_Francaise ">
+                        Guyane Francaise
+                      </option>
+                      <option value="Haiti">Haiti</option>
+                      <option value="Honduras">Honduras</option>
+                      <option value="Hongrie">Hongrie</option>
+                      <option value="Inde">Inde</option>
+                      <option value="Indonesie">Indonésie</option>
+                      <option value="Iran">Iran</option>
+                      <option value="Iraq">Iraq</option>
+                      <option value="Irlande">Irlande</option>
+                      <option value="Islande">Islande</option>
+                      <option value="Israel">Israel</option>
+                      <option value="Italie">italie</option>
+                      <option value="Jamaique">Jamaique</option>
+                      <option value="Japon">Japon</option>
+                      <option value="Jordanie">Jordanie</option>
+                      <option value="Kazakhstan">Kazakhstan</option>
+                      <option value="Kenya">Kenya</option>
+                      <option value="Kirghizstan">Kirghizistan</option>
+                      <option value="Kiribati">Kiribati</option>
+                      <option value="Koweit">Koweit</option>
+                      <option value="Laos">Laos</option>
+                      <option value="Lesotho">Lesotho</option>
+                      <option value="Lettonie">Lettonie</option>
+                      <option value="Liban">Liban</option>
+                      <option value="Liberia">Liberia</option>
+                      <option value="Liechtenstein">Liechtenstein</option>
+                      <option value="Lituanie">Lituanie</option>
+                      <option value="Luxembourg">Luxembourg</option>
+                      <option value="Lybie">Lybie</option>
+                      <option value="Macedoine">Macédoine</option>
+                      <option value="Madagascar">Madagascar</option>
+                      <option value="Malaisie">Malaisie</option>
+                      <option value="Malawi">Malawi</option>
+                      <option value="Maldives">Maldives</option>
+                      <option value="Mali">Mali</option>
+                      <option value="Malte">Malte</option>
+                      <option value="Maroc">Maroc</option>
+                      <option value="Marshall">Marshall</option>
+                      <option value="Maurice">Maurice</option>
+                      <option value="Mauritanie">Mauritanie</option>
+                      <option value="Mexique">Mexique</option>
+                      <option value="Micronesie">Micronésie</option>
+                      <option value="Moldavie">Moldavie</option>
+                      <option value="Monaco">Monaco</option>
+                      <option value="Mongolie">Mongolie</option>
+                      &gt;
+                      <option value="Mozambique">Mozambique</option>
+                      <option value="Namibie">Namibie</option>
+                      <option value="Nauru">Nauru</option>
+                      <option value="Nepal">Nepal</option>
+                      <option value="Nicaragua">Nicaragua</option>
+                      <option value="Niger">Niger</option>
+                      <option value="Nigeria">Nigéria</option>
+                      <option value="Niue">Nioué</option>
+                      <option value="Norvege">Norvège</option>
+                      <option value="Nouvelle_Zelande">Nouvelle Zelande</option>
+                      <option value="Oman">Oman</option>
+                      <option value="Ouganda">Ouganda</option>
+                      <option value="Ouzbekistan">Ouzbékistan</option>
+                      <option value="Pakistan">Pakistan</option>
+                      <option value="Palau">Palau</option>
+                      <option value="Palestine">Palestine</option>
+                      <option value="Panama">Panama</option>
+                      <option value="Papouasie_Nouvelle_Guinee">
+                        Papouasie Nouvelle Guinée
+                      </option>
+                      <option value="Paraguay">Paraguay</option>
+                      <option value="Pays_Bas">Pays-Bas</option>
+                      <option value="Perou">Pérou</option>
+                      <option value="Philippines">Philippines</option>
+                      <option value="Pologne">Pologne</option>
+                      <option value="Portugal">Portugal</option>
+                      <option value="Qatar">Qatar</option>
+                      <option value="Republique_centrafricaine">
+                        République centrafricaine
+                      </option>
+                      <option value="Republique_Dominicaine">
+                        Republique Dominicaine
+                      </option>
+                      <option value="Republique_Tcheque">
+                        Republique Tchèque
+                      </option>
+                      <option value="Roumanie">Roumanie</option>
+                      <option value="Royaume_Uni">Royaume Uni</option>
+                      <option value="Russie">Russie</option>
+                      <option value="Rwanda">Rwanda</option>
+                      <option value="Sahara Occidental">
+                        Sahara Occidental
+                      </option>
+                      <option value="Sainte_Lucie">Sainte Lucie</option>
+                      <option value="Saint_Marin">Saint Marin</option>
+                      <option value="Salomon">Iles Salomon</option>
+                      <option value="Salvador">Salvador</option>
+                      <option value="Samoa_Occidentales">
+                        Samoa Occidentales
+                      </option>
+                      <option value="Sao_Tome_et_Principe">
+                        Sao Tomé et Principe
+                      </option>
+                      <option value="Senegal">Sénegal</option>
+                      <option value="Seychelles">Seychelles</option>
+                      <option value="Sierra Leone">Sierra Léone</option>
+                      <option value="Singapour">Singapour</option>
+                      <option value="Slovaquie">Slovaquie</option>
+                      <option value="Slovenie">Slovenie</option>
+                      <option value="Somalie">Somalie</option>
+                      <option value="Soudan">Soudan</option>
+                      <option value="Sri_Lanka">Sri Lanka</option>
+                      <option value="Suede">Suède</option>
+                      <option value="Suisse">Suisse</option>
+                      <option value="Surinam">Surinam</option>
+                      <option value="Swaziland">Swaziland</option>
+                      <option value="Syrie">Syrie</option>
+                      <option value="Tadjikistan">Tadjikistan</option>
+                      <option value="Taiwan">Taiwan</option>
+                      <option value="Tanzanie">Tanzanie</option>
+                      <option value="Tchad">Tchad</option>
+                      <option value="Thailande">Thailande</option>
+                      <option value="Tibet">Tibet</option>
+                      <option value="Timor_Oriental">Timor Oriental</option>
+                      <option value="Togo">Togo</option>
+                      <option value="Trinite_et_Tobago">
+                        Trinité et Tobago
+                      </option>
+                      <option value="Tunisie">Tunisie</option>
+                      <option value="Turkmenistan">Turkménistan</option>
+                      <option value="Turquie">Turquie</option>
+                      <option value="Ukraine">Ukraine</option>
+                      <option value="Uruguay">Uruguay</option>
+                      <option value="Vanuatu">Vanuatu</option>
+                      <option value="Vatican">Vatican</option>
+                      <option value="Venezuela">Venezuela</option>
+                      <option value="Vietnam">Vietnam</option>
+                      <option value="Yemen">Yemen</option>
+                      <option value="Zambie">Zambie</option>
+                      <option value="Zimbabwe">Zimbabwe</option>
+                    </select>
+                  </div>
+                  <div class="marg-bot">
+                    <label
+                      data-i18n="form.residenceCountry"
+                      for="pays_residence"
+                      >Pays de résidence : <span class="req">*</span></label
+                    >
+                    <select
+                      class="champs-large"
+                      id="pays_residence"
+                      name="pays_residence"
+                      required=""
+                    >
+                      <option data-i18n="form.selectResidenceCountry" value="">
+                        Choix de votre pays de résidence!
+                      </option>
+                      <option value="Afghanistan">Afghanistan</option>
+                      <option value="Afrique_du_sud">Afrique du Sud</option>
+                      <option value="Albanie">Albanie</option>
+                      <option value="Algerie">Algérie</option>
+                      <option value="Allemagne">Allemagne</option>
+                      <option value="Andorre">Andorre</option>
+                      <option value="Angola">Angola</option>
+                      <option value="Anguilla">Anguilla</option>
+                      <option value="Arabie_Saoudite">Arabie Saoudite</option>
+                      <option value="Argentine">Argentine</option>
+                      <option value="Armenie">Arménie</option>
+                      <option value="Australie">Australie</option>
+                      <option value="Autriche">Autriche</option>
+                      <option value="Azerbaidjan">Azerbaidjan</option>
+                      <option value="Bahamas">Bahamas</option>
+                      <option value="Bangladesh">Bangladesh</option>
+                      <option value="Barbade">Barbade</option>
+                      <option value="Bahrein">Bahrein</option>
+                      <option value="Belgique">Belgique</option>
+                      <option value="Belize">Bélize</option>
+                      <option value="Benin">Bénin</option>
+                      <option value="Bielorussie">Biélorussie</option>
+                      <option value="Bermudes">Bermudes</option>
+                      <option value="Bolivie">Bolivie</option>
+                      <option value="Botswana">Botswana</option>
+                      <option value="Bhoutan">Bhoutan</option>
+                      <option value="Boznie_Herzegovine">
+                        Boznie-Herzegovine
+                      </option>
+                      <option value="Bresil">Brésil</option>
+                      <option value="Brunei">Brunei</option>
+                      <option value="Bulgarie">Bulgarie</option>
+                      <option value="Burkina_Faso">Burkina Faso</option>
+                      <option value="Burundi">Burundi</option>
+                      <option value="Caiman">Caiman</option>
+                      <option value="Cambodge">Cambodge</option>
+                      <option value="Cameroun">Cameroun</option>
+                      <option value="Canada">Canada</option>
+                      <option value="Canaries">Canaries</option>
+                      <option value="Cap-vert">Cap_Vert</option>
+                      <option value="Chili">Chili</option>
+                      <option value="Chine">Chine</option>
+                      <option value="Chypre">Chypre</option>
+                      <option value="Colombie">Colombie</option>
+                      <option value="Comores">Colombie</option>
+                      <option value="Congo">République du Congo</option>
+                      <option value="Congo_democratique">
+                        République Démocratique du Congo
+                      </option>
+                      <option value="Cook">Cook</option>
+                      <option value="Coree_du_Nord">Corée du Nord</option>
+                      <option value="Coree_du_Sud">Corée du Sud</option>
+                      <option value="Costa_Rica">Costa Rica</option>
+                      <option value="Cote_d_Ivoire">Côte d’Ivoire</option>
+                      <option value="Croatie">Croatie</option>
+                      <option value="Cuba">Cuba</option>
+                      <option value="Danemark">Danemark</option>
+                      <option value="Djibouti">Djibouti</option>
+                      <option value="Dominique">Dominique</option>
+                      <option value="Egypte">Egypte</option>
+                      <option value="Emirats_Arabes_Unis">
+                        Emirats Arabes Unis
+                      </option>
+                      <option value="Equateur">Equateur</option>
+                      <option value="Erythree">Erythrée</option>
+                      <option value="Espagne">Espagne</option>
+                      <option value="Estonie">Estonie</option>
+                      <option value="Etats_Unis">Etats-Unis d’Amérique</option>
+                      <option value="Ethiopie">Ethiopie</option>
+                      <option value="Feroe">Feroe</option>
+                      <option value="Fidji">Fidji</option>
+                      <option value="Finlande">Finlande</option>
+                      <option value="France">France</option>
+                      <option value="Gabon">Gabon</option>
+                      <option value="Gambie">Gambie</option>
+                      <option value="Georgie">Géorgie</option>
+                      <option value="Ghana">Ghana</option>
+                      <option value="Gibraltar">Gibraltar</option>
+                      <option value="Grece">Grèce</option>
+                      <option value="Grenade">Grenade</option>
+                      <option value="Groenland">Groenland</option>
+                      <option value="Guadeloupe">Guadeloupe</option>
+                      <option value="Guam">Guam</option>
+                      <option value="Guatemala">Guatemala</option>
+                      <option value="Guernesey">Guernesey</option>
+                      <option value="Guinee">Guineé</option>
+                      <option value="Guinee_Bissau">Guinée Bissau</option>
+                      <option value="Guinee equatoriale">
+                        Guinée Equatoriale
+                      </option>
+                      <option value="Guyana">Guyana</option>
+                      <option value="Guyane_Francaise ">
+                        Guyane Francaise
+                      </option>
+                      <option value="Haiti">Haiti</option>
+                      <option value="Honduras">Honduras</option>
+                      <option value="Hongrie">Hongrie</option>
+                      <option value="Inde">Inde</option>
+                      <option value="Indonesie">Indonésie</option>
+                      <option value="Iran">Iran</option>
+                      <option value="Iraq">Iraq</option>
+                      <option value="Irlande">Irlande</option>
+                      <option value="Islande">Islande</option>
+                      <option value="Israel">Israel</option>
+                      <option value="Italie">italie</option>
+                      <option value="Jamaique">Jamaique</option>
+                      <option value="Japon">Japon</option>
+                      <option value="Jordanie">Jordanie</option>
+                      <option value="Kazakhstan">Kazakhstan</option>
+                      <option value="Kenya">Kenya</option>
+                      <option value="Kirghizstan">Kirghizistan</option>
+                      <option value="Kiribati">Kiribati</option>
+                      <option value="Koweit">Koweit</option>
+                      <option value="Laos">Laos</option>
+                      <option value="Lesotho">Lesotho</option>
+                      <option value="Lettonie">Lettonie</option>
+                      <option value="Liban">Liban</option>
+                      <option value="Liberia">Liberia</option>
+                      <option value="Liechtenstein">Liechtenstein</option>
+                      <option value="Lituanie">Lituanie</option>
+                      <option value="Luxembourg">Luxembourg</option>
+                      <option value="Lybie">Lybie</option>
+                      <option value="Macedoine">Macédoine</option>
+                      <option value="Madagascar">Madagascar</option>
+                      <option value="Malaisie">Malaisie</option>
+                      <option value="Malawi">Malawi</option>
+                      <option value="Maldives">Maldives</option>
+                      <option value="Mali">Mali</option>
+                      <option value="Malte">Malte</option>
+                      <option value="Maroc">Maroc</option>
+                      <option value="Marshall">Marshall</option>
+                      <option value="Maurice">Maurice</option>
+                      <option value="Mauritanie">Mauritanie</option>
+                      <option value="Mexique">Mexique</option>
+                      <option value="Micronesie">Micronésie</option>
+                      <option value="Moldavie">Moldavie</option>
+                      <option value="Monaco">Monaco</option>
+                      <option value="Mongolie">Mongolie</option>
+                      &gt;
+                      <option value="Mozambique">Mozambique</option>
+                      <option value="Namibie">Namibie</option>
+                      <option value="Nauru">Nauru</option>
+                      <option value="Nepal">Nepal</option>
+                      <option value="Nicaragua">Nicaragua</option>
+                      <option value="Niger">Niger</option>
+                      <option value="Nigeria">Nigéria</option>
+                      <option value="Niue">Nioué</option>
+                      <option value="Norvege">Norvège</option>
+                      <option value="Nouvelle_Zelande">Nouvelle Zelande</option>
+                      <option value="Oman">Oman</option>
+                      <option value="Ouganda">Ouganda</option>
+                      <option value="Ouzbekistan">Ouzbékistan</option>
+                      <option value="Pakistan">Pakistan</option>
+                      <option value="Palau">Palau</option>
+                      <option value="Palestine">Palestine</option>
+                      <option value="Panama">Panama</option>
+                      <option value="Papouasie_Nouvelle_Guinee">
+                        Papouasie Nouvelle Guinée
+                      </option>
+                      <option value="Paraguay">Paraguay</option>
+                      <option value="Pays_Bas">Pays-Bas</option>
+                      <option value="Perou">Pérou</option>
+                      <option value="Philippines">Philippines</option>
+                      <option value="Pologne">Pologne</option>
+                      <option value="Portugal">Portugal</option>
+                      <option value="Qatar">Qatar</option>
+                      <option value="Republique_centrafricaine">
+                        République centrafricaine
+                      </option>
+                      <option value="Republique_Dominicaine">
+                        Republique Dominicaine
+                      </option>
+                      <option value="Republique_Tcheque">
+                        Republique Tchèque
+                      </option>
+                      <option value="Roumanie">Roumanie</option>
+                      <option value="Royaume_Uni">Royaume Uni</option>
+                      <option value="Russie">Russie</option>
+                      <option value="Rwanda">Rwanda</option>
+                      <option value="Sahara Occidental">
+                        Sahara Occidental
+                      </option>
+                      <option value="Sainte_Lucie">Sainte Lucie</option>
+                      <option value="Saint_Marin">Saint Marin</option>
+                      <option value="Salomon">Iles Salomon</option>
+                      <option value="Salvador">Salvador</option>
+                      <option value="Samoa_Occidentales">
+                        Samoa Occidentales
+                      </option>
+                      <option value="Sao_Tome_et_Principe">
+                        Sao Tomé et Principe
+                      </option>
+                      <option value="Senegal">Sénegal</option>
+                      <option value="Seychelles">Seychelles</option>
+                      <option value="Sierra Leone">Sierra Léone</option>
+                      <option value="Singapour">Singapour</option>
+                      <option value="Slovaquie">Slovaquie</option>
+                      <option value="Slovenie">Slovenie</option>
+                      <option value="Somalie">Somalie</option>
+                      <option value="Soudan">Soudan</option>
+                      <option value="Sri_Lanka">Sri Lanka</option>
+                      <option value="Suede">Suède</option>
+                      <option value="Suisse">Suisse</option>
+                      <option value="Surinam">Surinam</option>
+                      <option value="Swaziland">Swaziland</option>
+                      <option value="Syrie">Syrie</option>
+                      <option value="Tadjikistan">Tadjikistan</option>
+                      <option value="Taiwan">Taiwan</option>
+                      <option value="Tanzanie">Tanzanie</option>
+                      <option value="Tchad">Tchad</option>
+                      <option value="Thailande">Thailande</option>
+                      <option value="Tibet">Tibet</option>
+                      <option value="Timor_Oriental">Timor Oriental</option>
+                      <option value="Togo">Togo</option>
+                      <option value="Trinite_et_Tobago">
+                        Trinité et Tobago
+                      </option>
+                      <option value="Tunisie">Tunisie</option>
+                      <option value="Turkmenistan">Turkménistan</option>
+                      <option value="Turquie">Turquie</option>
+                      <option value="Ukraine">Ukraine</option>
+                      <option value="Uruguay">Uruguay</option>
+                      <option value="Vanuatu">Vanuatu</option>
+                      <option value="Vatican">Vatican</option>
+                      <option value="Venezuela">Venezuela</option>
+                      <option value="Vietnam">Vietnam</option>
+                      <option value="Yemen">Yemen</option>
+                      <option value="Zambie">Zambie</option>
+                      <option value="Zimbabwe">Zimbabwe</option>
+                    </select>
+                  </div>
+                  <div class="marg-bot">
+                    <label data-i18n="form.maritalStatus" for="etat_matrimonial"
+                      >État matrimonial actuel :
+                      <span class="req">*</span></label
+                    >
+                    <select
+                      class="champs-large"
+                      id="etat_matrimonial"
+                      name="etat_matrimonial"
+                      required=""
+                    >
+                      <option data-i18n="form.selectMaritalStatus" value="">
+                        Choix de votre statut marital!
+                      </option>
+                      <option data-i18n="form.single" value="celibataire">
+                        Célibataire
+                      </option>
+                      <option data-i18n="form.married" value="marie">
+                        Marié
+                      </option>
+                      <option data-i18n="form.commonLaw" value="conjoint_fait">
+                        Conjoint de fait
+                      </option>
+                    </select>
+                  </div>
+                  <div class="marg-bot">
+                    <label data-i18n="form.childrenUnder22" for="nbr_enfant"
+                      >Combien d'enfant de moins de 22 ans avez-vous ?
+                      <span class="req">*</span></label
+                    >
+                    <input
+                      class="champs-etroit"
+                      id="nbr_enfant"
+                      min="0"
+                      name="nbr_enfant"
+                      required=""
+                      type="number"
+                      value="1"
+                    />
+                    <div class="errorMessage"></div>
+                  </div>
+                  <div class="marg-bot">
+                    <label data-i18n="form.child1Age" for="age_enfant_1"
+                      >Âge d'enfant 1 : <span class="req">*</span></label
+                    >
+                    <select
+                      class="champs-large"
+                      id="age_enfant_1"
+                      name="age_enfant_1"
+                      required=""
+                    >
+                      <option data-i18n="form.selectAge" value="">
+                        Choix de l'âge!
+                      </option>
+                      <option data-i18n="form.none" value="age_0">Aucun</option>
+                      <option data-i18n="form.age1" value="age_1">1 an</option>
+                      <option data-i18n="form.age2" value="age_2">2 ans</option>
+                      <option data-i18n="form.age3" value="age_3">3 ans</option>
+                      <option data-i18n="form.age4" value="age_4">4 ans</option>
+                      <option data-i18n="form.age5" value="age_5">5 ans</option>
+                      <option data-i18n="form.age6" value="age_6">6 ans</option>
+                      <option data-i18n="form.age7" value="age_7">7 ans</option>
+                      <option data-i18n="form.age8" value="age_8">8 ans</option>
+                      <option data-i18n="form.age9" value="age_9">9 ans</option>
+                      <option data-i18n="form.age10" value="age_10">
+                        10 ans
+                      </option>
+                      <option data-i18n="form.age11" value="age_11">
+                        11 ans
+                      </option>
+                      <option data-i18n="form.age12" value="age_12">
+                        12 ans
+                      </option>
+                      <option data-i18n="form.age13" value="age_13">
+                        13 ans
+                      </option>
+                      <option data-i18n="form.age14" value="age_14">
+                        14 ans
+                      </option>
+                      <option data-i18n="form.age15" value="age_15">
+                        15 ans
+                      </option>
+                      <option data-i18n="form.age16" value="age_16">
+                        16 ans
+                      </option>
+                      <option data-i18n="form.age17" value="age_17">
+                        17 ans
+                      </option>
+                      <option data-i18n="form.age18" value="age_18">
+                        18 ans
+                      </option>
+                      <option data-i18n="form.age19" value="age_19">
+                        19 ans
+                      </option>
+                      <option data-i18n="form.age20" value="age_20">
+                        20 ans
+                      </option>
+                      <option data-i18n="form.age21" value="age_21">
+                        21 ans
+                      </option>
+                    </select>
+                  </div>
+                  <div class="marg-bot">
+                    <label data-i18n="form.child2Age" for="age_enfant_2"
+                      >Âge d'enfant 2 : <span class="req">*</span></label
+                    >
+                    <select
+                      class="champs-large"
+                      id="age_enfant_2"
+                      name="age_enfant_2"
+                      required=""
+                    >
+                      <option data-i18n="form.selectAge" value="">
+                        Choix de l'âge!
+                      </option>
+                      <option data-i18n="form.none" value="age_0">Aucun</option>
+                      <option data-i18n="form.age1" value="age_1">1 an</option>
+                      <option data-i18n="form.age2" value="age_2">2 ans</option>
+                      <option data-i18n="form.age3" value="age_3">3 ans</option>
+                      <option data-i18n="form.age4" value="age_4">4 ans</option>
+                      <option data-i18n="form.age5" value="age_5">5 ans</option>
+                      <option data-i18n="form.age6" value="age_6">6 ans</option>
+                      <option data-i18n="form.age7" value="age_7">7 ans</option>
+                      <option data-i18n="form.age8" value="age_8">8 ans</option>
+                      <option data-i18n="form.age9" value="age_9">9 ans</option>
+                      <option data-i18n="form.age10" value="age_10">
+                        10 ans
+                      </option>
+                      <option data-i18n="form.age11" value="age_11">
+                        11 ans
+                      </option>
+                      <option data-i18n="form.age12" value="age_12">
+                        12 ans
+                      </option>
+                      <option data-i18n="form.age13" value="age_13">
+                        13 ans
+                      </option>
+                      <option data-i18n="form.age14" value="age_14">
+                        14 ans
+                      </option>
+                      <option data-i18n="form.age15" value="age_15">
+                        15 ans
+                      </option>
+                      <option data-i18n="form.age16" value="age_16">
+                        16 ans
+                      </option>
+                      <option data-i18n="form.age17" value="age_17">
+                        17 ans
+                      </option>
+                      <option data-i18n="form.age18" value="age_18">
+                        18 ans
+                      </option>
+                      <option data-i18n="form.age19" value="age_19">
+                        19 ans
+                      </option>
+                      <option data-i18n="form.age20" value="age_20">
+                        20 ans
+                      </option>
+                      <option data-i18n="form.age21" value="age_21">
+                        21 ans
+                      </option>
+                    </select>
+                  </div>
+                  <div class="marg-bot">
+                    <label data-i18n="form.child3Age" for="age_enfant_3"
+                      >Âge d'enfant 3 : <span class="req">*</span></label
+                    >
+                    <select
+                      class="champs-large"
+                      id="age_enfant_3"
+                      name="age_enfant_3"
+                      required=""
+                    >
+                      <option data-i18n="form.selectAge" value="">
+                        Choix de l'âge!
+                      </option>
+                      <option data-i18n="form.none" value="age_0">Aucun</option>
+                      <option data-i18n="form.age1" value="age_1">1 an</option>
+                      <option data-i18n="form.age2" value="age_2">2 ans</option>
+                      <option data-i18n="form.age3" value="age_3">3 ans</option>
+                      <option data-i18n="form.age4" value="age_4">4 ans</option>
+                      <option data-i18n="form.age5" value="age_5">5 ans</option>
+                      <option data-i18n="form.age6" value="age_6">6 ans</option>
+                      <option data-i18n="form.age7" value="age_7">7 ans</option>
+                      <option data-i18n="form.age8" value="age_8">8 ans</option>
+                      <option data-i18n="form.age9" value="age_9">9 ans</option>
+                      <option data-i18n="form.age10" value="age_10">
+                        10 ans
+                      </option>
+                      <option data-i18n="form.age11" value="age_11">
+                        11 ans
+                      </option>
+                      <option data-i18n="form.age12" value="age_12">
+                        12 ans
+                      </option>
+                      <option data-i18n="form.age13" value="age_13">
+                        13 ans
+                      </option>
+                      <option data-i18n="form.age14" value="age_14">
+                        14 ans
+                      </option>
+                      <option data-i18n="form.age15" value="age_15">
+                        15 ans
+                      </option>
+                      <option data-i18n="form.age16" value="age_16">
+                        16 ans
+                      </option>
+                      <option data-i18n="form.age17" value="age_17">
+                        17 ans
+                      </option>
+                      <option data-i18n="form.age18" value="age_18">
+                        18 ans
+                      </option>
+                      <option data-i18n="form.age19" value="age_19">
+                        19 ans
+                      </option>
+                      <option data-i18n="form.age20" value="age_20">
+                        20 ans
+                      </option>
+                      <option data-i18n="form.age21" value="age_21">
+                        21 ans
+                      </option>
+                    </select>
+                  </div>
+                  <div class="marg-bot">
+                    <label data-i18n="form.child4Age" for="age_enfant_4"
+                      >Âge d'enfant 4 : <span class="req">*</span></label
+                    >
+                    <select
+                      class="champs-large"
+                      id="age_enfant_4"
+                      name="age_enfant_4"
+                      required=""
+                    >
+                      <option data-i18n="form.selectAge" value="">
+                        Choix de l'âge!
+                      </option>
+                      <option data-i18n="form.none" value="age_0">Aucun</option>
+                      <option data-i18n="form.age1" value="age_1">1 an</option>
+                      <option data-i18n="form.age2" value="age_2">2 ans</option>
+                      <option data-i18n="form.age3" value="age_3">3 ans</option>
+                      <option data-i18n="form.age4" value="age_4">4 ans</option>
+                      <option data-i18n="form.age5" value="age_5">5 ans</option>
+                      <option data-i18n="form.age6" value="age_6">6 ans</option>
+                      <option data-i18n="form.age7" value="age_7">7 ans</option>
+                      <option data-i18n="form.age8" value="age_8">8 ans</option>
+                      <option data-i18n="form.age9" value="age_9">9 ans</option>
+                      <option data-i18n="form.age10" value="age_10">
+                        10 ans
+                      </option>
+                      <option data-i18n="form.age11" value="age_11">
+                        11 ans
+                      </option>
+                      <option data-i18n="form.age12" value="age_12">
+                        12 ans
+                      </option>
+                      <option data-i18n="form.age13" value="age_13">
+                        13 ans
+                      </option>
+                      <option data-i18n="form.age14" value="age_14">
+                        14 ans
+                      </option>
+                      <option data-i18n="form.age15" value="age_15">
+                        15 ans
+                      </option>
+                      <option data-i18n="form.age16" value="age_16">
+                        16 ans
+                      </option>
+                      <option data-i18n="form.age17" value="age_17">
+                        17 ans
+                      </option>
+                      <option data-i18n="form.age18" value="age_18">
+                        18 ans
+                      </option>
+                      <option data-i18n="form.age19" value="age_19">
+                        19 ans
+                      </option>
+                      <option data-i18n="form.age20" value="age_20">
+                        20 ans
+                      </option>
+                      <option data-i18n="form.age21" value="age_21">
+                        21 ans
+                      </option>
+                    </select>
+                  </div>
+                  <div class="marg-bot">
+                    <label data-i18n="form.phone" for="telephone"
+                      >Votre numéro de téléphone</label
+                    >
+                    <input
+                      class="champs-large"
+                      id="telephone"
+                      name="telephone"
+                      placeholder=""
+                      type="tel"
+                    />
+                    <div class="errorMessage"></div>
+                  </div>
+                  <div class="marg-bot">
+                    <label data-i18n="form.email" for="courriel"
+                      >Votre courriel</label
+                    >
+                    <input
+                      class="champs-large"
+                      id="courriel"
+                      name="courriel"
+                      placeholder="xyz@mail.com"
+                      type="email"
+                    />
+                    <div class="errorMessage"></div>
+                  </div>
+                </fieldset>
+                <fieldset class="form_info_client">
+                  <legend data-i18n="form.residentialAddress">
+                    Adresse de résidence
+                  </legend>
+                  <div class="marg-bot">
+                    <label data-i18n="form.apartmentNumber" for="no_appart"
+                      >No d’appartement/d’unité :
+                      <span class="req">*</span></label
+                    >
+                    <input
+                      class="champs-large"
+                      data-i18n-placeholder="form.apartmentPlaceholder"
+                      id="no_appart"
+                      name="no_appart"
+                      placeholder="Veuillez remplir votre No d'appartement!"
+                      required=""
+                      type="text"
+                    />
+                    <div class="errorMessage"></div>
+                  </div>
+                  <div class="marg-bot">
+                    <label data-i18n="form.streetNumber" for="no_rue"
+                      >Numéro de rue : <span class="req">*</span></label
+                    >
+                    <input
+                      class="champs-large"
+                      data-i18n-placeholder="form.streetPlaceholder"
+                      id="no_rue"
+                      name="no_rue"
+                      placeholder="Veuillez remplir votre numéro de rue!"
+                      required=""
+                      type="text"
+                    />
+                    <div class="errorMessage"></div>
+                  </div>
+                  <div class="marg-bot">
+                    <label for="rue"
+                      >Nom de la rue / Street name :
+                      <span class="req">*</span></label
+                    >
+                    <input
+                      autocomplete="address-line1"
+                      class="champs-large"
+                      id="rue"
+                      name="rue"
+                      placeholder="Nom de la rue / Street name"
+                      required=""
+                      type="text"
+                    />
+                    <div class="errorMessage"></div>
+                  </div>
+                  <div class="marg-bot">
+                    <label data-i18n="form.city" for="ville"
+                      >Ville : <span class="req">*</span></label
+                    >
+                    <input
+                      class="champs-large"
+                      data-i18n-placeholder="form.cityPlaceholder"
+                      id="ville"
+                      name="ville"
+                      placeholder="Veuillez remplir votre ville!"
+                      required=""
+                      type="text"
+                    />
+                    <div class="errorMessage"></div>
+                  </div>
+                  <div class="marg-bot">
+                    <label data-i18n="form.postalCode" for="code_postale"
+                      >Code postale : <span class="req">*</span></label
+                    >
+                    <input
+                      class="champs-large"
+                      data-i18n-placeholder="form.postalCodePlaceholder"
+                      id="code_postale"
+                      name="code_postale"
+                      placeholder="Veuillez remplir votre code postale!"
+                      required=""
+                      type="text"
+                    />
+                    <div class="errorMessage"></div>
+                  </div>
+                  <div class="marg-bot">
+                    <label data-i18n="form.province" for="province"
+                      >Province : <span class="req">*</span></label
+                    >
+                    <input
+                      class="champs-large"
+                      data-i18n-placeholder="form.provincePlaceholder"
+                      id="province"
+                      name="province"
+                      placeholder="Veuillez remplir votre province!"
+                      required=""
+                      type="text"
+                    />
+                    <div class="errorMessage"></div>
+                  </div>
+                  <div class="marg-bot">
+                    <label data-i18n="form.country" for="pays"
+                      >Pays : <span class="req">*</span></label
+                    >
+                    <select
+                      class="champs-large"
+                      id="pays"
+                      name="pays"
+                      required=""
+                    >
+                      <option data-i18n="form.selectCountry" value="">
+                        Choix de votre pays!
+                      </option>
+                      <option value="Afghanistan">Afghanistan</option>
+                      <option value="Afrique_du_sud">Afrique du Sud</option>
+                      <option value="Albanie">Albanie</option>
+                      <option value="Algerie">Algérie</option>
+                      <option value="Allemagne">Allemagne</option>
+                      <option value="Andorre">Andorre</option>
+                      <option value="Angola">Angola</option>
+                      <option value="Anguilla">Anguilla</option>
+                      <option value="Arabie_Saoudite">Arabie Saoudite</option>
+                      <option value="Argentine">Argentine</option>
+                      <option value="Armenie">Arménie</option>
+                      <option value="Australie">Australie</option>
+                      <option value="Autriche">Autriche</option>
+                      <option value="Azerbaidjan">Azerbaidjan</option>
+                      <option value="Bahamas">Bahamas</option>
+                      <option value="Bangladesh">Bangladesh</option>
+                      <option value="Barbade">Barbade</option>
+                      <option value="Bahrein">Bahrein</option>
+                      <option value="Belgique">Belgique</option>
+                      <option value="Belize">Bélize</option>
+                      <option value="Benin">Bénin</option>
+                      <option value="Bielorussie">Biélorussie</option>
+                      <option value="Bermudes">Bermudes</option>
+                      <option value="Bolivie">Bolivie</option>
+                      <option value="Botswana">Botswana</option>
+                      <option value="Bhoutan">Bhoutan</option>
+                      <option value="Boznie_Herzegovine">
+                        Boznie-Herzegovine
+                      </option>
+                      <option value="Bresil">Brésil</option>
+                      <option value="Brunei">Brunei</option>
+                      <option value="Bulgarie">Bulgarie</option>
+                      <option value="Burkina_Faso">Burkina Faso</option>
+                      <option value="Burundi">Burundi</option>
+                      <option value="Caiman">Caiman</option>
+                      <option value="Cambodge">Cambodge</option>
+                      <option value="Cameroun">Cameroun</option>
+                      <option value="Canada">Canada</option>
+                      <option value="Canaries">Canaries</option>
+                      <option value="Cap-vert">Cap_Vert</option>
+                      <option value="Chili">Chili</option>
+                      <option value="Chine">Chine</option>
+                      <option value="Chypre">Chypre</option>
+                      <option value="Colombie">Colombie</option>
+                      <option value="Comores">Colombie</option>
+                      <option value="Congo">République du Congo</option>
+                      <option value="Congo_democratique">
+                        République Démocratique du Congo
+                      </option>
+                      <option value="Cook">Cook</option>
+                      <option value="Coree_du_Nord">Corée du Nord</option>
+                      <option value="Coree_du_Sud">Corée du Sud</option>
+                      <option value="Costa_Rica">Costa Rica</option>
+                      <option value="Cote_d_Ivoire">Côte d’Ivoire</option>
+                      <option value="Croatie">Croatie</option>
+                      <option value="Cuba">Cuba</option>
+                      <option value="Danemark">Danemark</option>
+                      <option value="Djibouti">Djibouti</option>
+                      <option value="Dominique">Dominique</option>
+                      <option value="Egypte">Egypte</option>
+                      <option value="Emirats_Arabes_Unis">
+                        Emirats Arabes Unis
+                      </option>
+                      <option value="Equateur">Equateur</option>
+                      <option value="Erythree">Erythrée</option>
+                      <option value="Espagne">Espagne</option>
+                      <option value="Estonie">Estonie</option>
+                      <option value="Etats_Unis">Etats-Unis d’Amérique</option>
+                      <option value="Ethiopie">Ethiopie</option>
+                      <option value="Feroe">Feroe</option>
+                      <option value="Fidji">Fidji</option>
+                      <option value="Finlande">Finlande</option>
+                      <option value="France">France</option>
+                      <option value="Gabon">Gabon</option>
+                      <option value="Gambie">Gambie</option>
+                      <option value="Georgie">Géorgie</option>
+                      <option value="Ghana">Ghana</option>
+                      <option value="Gibraltar">Gibraltar</option>
+                      <option value="Grece">Grèce</option>
+                      <option value="Grenade">Grenade</option>
+                      <option value="Groenland">Groenland</option>
+                      <option value="Guadeloupe">Guadeloupe</option>
+                      <option value="Guam">Guam</option>
+                      <option value="Guatemala">Guatemala</option>
+                      <option value="Guernesey">Guernesey</option>
+                      <option value="Guinee">Guineé</option>
+                      <option value="Guinee_Bissau">Guinée Bissau</option>
+                      <option value="Guinee equatoriale">
+                        Guinée Equatoriale
+                      </option>
+                      <option value="Guyana">Guyana</option>
+                      <option value="Guyane_Francaise ">
+                        Guyane Francaise
+                      </option>
+                      <option value="Haiti">Haiti</option>
+                      <option value="Honduras">Honduras</option>
+                      <option value="Hongrie">Hongrie</option>
+                      <option value="Inde">Inde</option>
+                      <option value="Indonesie">Indonésie</option>
+                      <option value="Iran">Iran</option>
+                      <option value="Iraq">Iraq</option>
+                      <option value="Irlande">Irlande</option>
+                      <option value="Islande">Islande</option>
+                      <option value="Israel">Israel</option>
+                      <option value="Italie">italie</option>
+                      <option value="Jamaique">Jamaique</option>
+                      <option value="Japon">Japon</option>
+                      <option value="Jordanie">Jordanie</option>
+                      <option value="Kazakhstan">Kazakhstan</option>
+                      <option value="Kenya">Kenya</option>
+                      <option value="Kirghizstan">Kirghizistan</option>
+                      <option value="Kiribati">Kiribati</option>
+                      <option value="Koweit">Koweit</option>
+                      <option value="Laos">Laos</option>
+                      <option value="Lesotho">Lesotho</option>
+                      <option value="Lettonie">Lettonie</option>
+                      <option value="Liban">Liban</option>
+                      <option value="Liberia">Liberia</option>
+                      <option value="Liechtenstein">Liechtenstein</option>
+                      <option value="Lituanie">Lituanie</option>
+                      <option value="Luxembourg">Luxembourg</option>
+                      <option value="Lybie">Lybie</option>
+                      <option value="Macedoine">Macédoine</option>
+                      <option value="Madagascar">Madagascar</option>
+                      <option value="Malaisie">Malaisie</option>
+                      <option value="Malawi">Malawi</option>
+                      <option value="Maldives">Maldives</option>
+                      <option value="Mali">Mali</option>
+                      <option value="Malte">Malte</option>
+                      <option value="Maroc">Maroc</option>
+                      <option value="Marshall">Marshall</option>
+                      <option value="Maurice">Maurice</option>
+                      <option value="Mauritanie">Mauritanie</option>
+                      <option value="Mexique">Mexique</option>
+                      <option value="Micronesie">Micronésie</option>
+                      <option value="Moldavie">Moldavie</option>
+                      <option value="Monaco">Monaco</option>
+                      <option value="Mongolie">Mongolie</option>
+                      &gt;
+                      <option value="Mozambique">Mozambique</option>
+                      <option value="Namibie">Namibie</option>
+                      <option value="Nauru">Nauru</option>
+                      <option value="Nepal">Nepal</option>
+                      <option value="Nicaragua">Nicaragua</option>
+                      <option value="Niger">Niger</option>
+                      <option value="Nigeria">Nigéria</option>
+                      <option value="Niue">Nioué</option>
+                      <option value="Norvege">Norvège</option>
+                      <option value="Nouvelle_Zelande">Nouvelle Zelande</option>
+                      <option value="Oman">Oman</option>
+                      <option value="Ouganda">Ouganda</option>
+                      <option value="Ouzbekistan">Ouzbékistan</option>
+                      <option value="Pakistan">Pakistan</option>
+                      <option value="Palau">Palau</option>
+                      <option value="Palestine">Palestine</option>
+                      <option value="Panama">Panama</option>
+                      <option value="Papouasie_Nouvelle_Guinee">
+                        Papouasie Nouvelle Guinée
+                      </option>
+                      <option value="Paraguay">Paraguay</option>
+                      <option value="Pays_Bas">Pays-Bas</option>
+                      <option value="Perou">Pérou</option>
+                      <option value="Philippines">Philippines</option>
+                      <option value="Pologne">Pologne</option>
+                      <option value="Portugal">Portugal</option>
+                      <option value="Qatar">Qatar</option>
+                      <option value="Republique_centrafricaine">
+                        République centrafricaine
+                      </option>
+                      <option value="Republique_Dominicaine">
+                        Republique Dominicaine
+                      </option>
+                      <option value="Republique_Tcheque">
+                        Republique Tchèque
+                      </option>
+                      <option value="Roumanie">Roumanie</option>
+                      <option value="Royaume_Uni">Royaume Uni</option>
+                      <option value="Russie">Russie</option>
+                      <option value="Rwanda">Rwanda</option>
+                      <option value="Sahara Occidental">
+                        Sahara Occidental
+                      </option>
+                      <option value="Sainte_Lucie">Sainte Lucie</option>
+                      <option value="Saint_Marin">Saint Marin</option>
+                      <option value="Salomon">Iles Salomon</option>
+                      <option value="Salvador">Salvador</option>
+                      <option value="Samoa_Occidentales">
+                        Samoa Occidentales
+                      </option>
+                      <option value="Sao_Tome_et_Principe">
+                        Sao Tomé et Principe
+                      </option>
+                      <option value="Senegal">Sénegal</option>
+                      <option value="Seychelles">Seychelles</option>
+                      <option value="Sierra Leone">Sierra Léone</option>
+                      <option value="Singapour">Singapour</option>
+                      <option value="Slovaquie">Slovaquie</option>
+                      <option value="Slovenie">Slovenie</option>
+                      <option value="Somalie">Somalie</option>
+                      <option value="Soudan">Soudan</option>
+                      <option value="Sri_Lanka">Sri Lanka</option>
+                      <option value="Suede">Suède</option>
+                      <option value="Suisse">Suisse</option>
+                      <option value="Surinam">Surinam</option>
+                      <option value="Swaziland">Swaziland</option>
+                      <option value="Syrie">Syrie</option>
+                      <option value="Tadjikistan">Tadjikistan</option>
+                      <option value="Taiwan">Taiwan</option>
+                      <option value="Tanzanie">Tanzanie</option>
+                      <option value="Tchad">Tchad</option>
+                      <option value="Thailande">Thailande</option>
+                      <option value="Tibet">Tibet</option>
+                      <option value="Timor_Oriental">Timor Oriental</option>
+                      <option value="Togo">Togo</option>
+                      <option value="Trinite_et_Tobago">
+                        Trinité et Tobago
+                      </option>
+                      <option value="Tunisie">Tunisie</option>
+                      <option value="Turkmenistan">Turkménistan</option>
+                      <option value="Turquie">Turquie</option>
+                      <option value="Ukraine">Ukraine</option>
+                      <option value="Uruguay">Uruguay</option>
+                      <option value="Vanuatu">Vanuatu</option>
+                      <option value="Vatican">Vatican</option>
+                      <option value="Venezuela">Venezuela</option>
+                      <option value="Vietnam">Vietnam</option>
+                      <option value="Yemen">Yemen</option>
+                      <option value="Zambie">Zambie</option>
+                      <option value="Zimbabwe">Zimbabwe</option>
+                    </select>
+                  </div>
+                </fieldset>
+                <fieldset class="form_info_client">
+                  <legend data-i18n="form.languages">
+                    Connaissance des langues
+                  </legend>
+                  <div class="marg-bot">
+                    <label data-i18n="form.frenchLevel" for="niveau_francais"
+                      >Niveau de Français : <span class="req">*</span></label
+                    >
+                    <select
+                      class="champs-large"
+                      id="niveau_francais"
+                      name="niveau_francais"
+                      required=""
+                    >
+                      <option data-i18n="form.selectLevel" value="">
+                        Choix votre niveau!
+                      </option>
+                      <option data-i18n="form.none" value="aucun">Aucun</option>
+                      <option data-i18n="form.excellent" value="excellent">
+                        Excellent
+                      </option>
+                      <option data-i18n="form.intermediate" value="moyen">
+                        Moyen
+                      </option>
+                      <option data-i18n="form.basic" value="faible">
+                        Faible
+                      </option>
+                    </select>
+                  </div>
+                  <div class="marg-bot">
+                    <label data-i18n="form.englishLevel" for="niveau_anglais"
+                      >Niveau d’anglais : <span class="req">*</span></label
+                    >
+                    <select
+                      class="champs-large"
+                      id="niveau_anglais"
+                      name="niveau_anglais"
+                      required=""
+                    >
+                      <option data-i18n="form.selectLevel" value="">
+                        Choix votre niveau!
+                      </option>
+                      <option data-i18n="form.none" value="aucun">None</option>
+                      <option data-i18n="form.advanced" value="advanced">
+                        Advanced
+                      </option>
+                      <option
+                        data-i18n="form.intermediate"
+                        value="intermediate"
+                      >
+                        Intermediate
+                      </option>
+                      <option data-i18n="form.basic" value="basic">
+                        Basic
+                      </option>
+                    </select>
+                  </div>
+                  <div class="marg-bot">
+                    <label
+                      data-i18n="form.frenchTestQuestion"
+                      for="question_lang_fr"
+                      >Avez-vous fait évaluer votre compétence en français par
+                      organismeapprouvé ? <span class="req">*</span></label
+                    >
+                    <select
+                      class="champs-large"
+                      id="question_lang_fr"
+                      name="question_lang_fr"
+                      required=""
+                    >
+                      <option data-i18n="form.selectLanguageTest" value="">
+                        Choix votre test de compétence!
+                      </option>
+                      <option data-i18n="form.noLanguageTest" value="aucun">
+                        Non, je n'ai pas encore fait les tests de langues
+                      </option>
+                      <option data-i18n="form.tefCanada" value="tef_canada">
+                        Oui, j'ai déjà fait le test TEF Canada
+                      </option>
+                      <option data-i18n="form.tcfCanada" value="tcf_canada">
+                        Oui, j'ai déjà fait le test TCF Canada
+                      </option>
+                      <option data-i18n="form.tefaq" value="tefaq">
+                        Oui, j'ai déjà fait le test TEFaQ
+                      </option>
+                      <option data-i18n="form.tcfq" value="tcfq">
+                        Oui, j'ai déjà fait le test TCFQ
+                      </option>
+                      <option data-i18n="form.delf" value="delf">
+                        Oui, j'ai déjà fait le test DELF
+                      </option>
+                      <option data-i18n="form.dalf" value="dalf">
+                        Oui, j'ai déjà fait le test DALF
+                      </option>
+                    </select>
+                  </div>
+                  <div class="marg-bot">
+                    <label
+                      data-i18n="form.englishTestQuestion"
+                      for="question_lang_en"
+                      >Avez-vous fait évaluer votre compétence en anglais par un
+                      organisme approuvé ? <span class="req">*</span></label
+                    >
+                    <select
+                      class="champs-large"
+                      id="question_lang_en"
+                      name="question_lang_en"
+                      required=""
+                    >
+                      <option data-i18n="form.selectLanguageTest" value="">
+                        Choix votre test de compétence!
+                      </option>
+                      <option data-i18n="form.noLanguageTest" value="aucun">
+                        Non, je n'ai pas encore fait les tests de langues
+                      </option>
+                      <option data-i18n="form.ielts" value="ielts">
+                        Oui, j'ai déjà fait le test IELTS
+                      </option>
+                      <option data-i18n="form.celpip" value="celpip">
+                        Oui, j'ai déjà fait le test CELPIP
+                      </option>
+                    </select>
+                  </div>
+                  <h3 data-i18n="form.frenchScores">
+                    Si oui, quel est votre score de votre compétence en français
+                    ?
+                  </h3>
+                  <div class="marg-bot">
+                    <label data-i18n="form.speaking" for="expression_orale"
+                      >Expression orale : <span class="req">*</span></label
+                    >
+                    <select
+                      class="champs-large"
+                      id="expression_orale"
+                      name="expression_orale"
+                      required=""
+                    >
+                      <option data-i18n="form.selectLanguageTest" value="">
+                        Choix votre test de compétence!
+                      </option>
+                      <option data-i18n="form.none" value="aucun">Aucun</option>
+                      <option data-i18n="form.advanced" value="avance">
+                        Avancée
+                      </option>
+                      <option
+                        data-i18n="form.intermediate"
+                        value="intermediaire"
+                      >
+                        Intermediaire
+                      </option>
+                      <option data-i18n="form.basic" value="basique">
+                        Basique
+                      </option>
+                    </select>
+                  </div>
+                  <div class="marg-bot">
+                    <label data-i18n="form.listening" for="comprehension_orale"
+                      >Compréhension orale : <span class="req">*</span></label
+                    >
+                    <select
+                      class="champs-large"
+                      id="comprehension_orale"
+                      name="comprehension_orale"
+                      required=""
+                    >
+                      <option data-i18n="form.selectLanguageTest" value="">
+                        Choix votre test de compétence!
+                      </option>
+                      <option data-i18n="form.none" value="aucun">Aucun</option>
+                      <option data-i18n="form.advanced" value="avance">
+                        Avancée
+                      </option>
+                      <option
+                        data-i18n="form.intermediate"
+                        value="intermediaire"
+                      >
+                        Intermediaire
+                      </option>
+                      <option data-i18n="form.basic" value="basique">
+                        Basique
+                      </option>
+                    </select>
+                  </div>
+                  <div class="marg-bot">
+                    <label data-i18n="form.reading" for="comprehension_ecrite"
+                      >Compréhension écrite : <span class="req">*</span></label
+                    >
+                    <select
+                      class="champs-large"
+                      id="comprehension_ecrite"
+                      name="comprehension_ecrite"
+                      required=""
+                    >
+                      <option data-i18n="form.selectLanguageTest" value="">
+                        Choix votre test de compétence!
+                      </option>
+                      <option data-i18n="form.none" value="aucun">Aucun</option>
+                      <option data-i18n="form.advanced" value="avance">
+                        Avancée
+                      </option>
+                      <option
+                        data-i18n="form.intermediate"
+                        value="intermediaire"
+                      >
+                        Intermediaire
+                      </option>
+                      <option data-i18n="form.basic" value="basique">
+                        Basique
+                      </option>
+                    </select>
+                  </div>
+                  <div class="marg-bot">
+                    <label data-i18n="form.writing" for="expression_ecrite"
+                      >Expression écrite : <span class="req">*</span></label
+                    >
+                    <select
+                      class="champs-large"
+                      id="expression_ecrite"
+                      name="expression_ecrite"
+                      required=""
+                    >
+                      <option data-i18n="form.selectLanguageTest" value="">
+                        Choix votre test de compétence!
+                      </option>
+                      <option data-i18n="form.none" value="aucun">Aucun</option>
+                      <option data-i18n="form.advanced" value="avance">
+                        Avancée
+                      </option>
+                      <option
+                        data-i18n="form.intermediate"
+                        value="intermediaire"
+                      >
+                        Intermediaire
+                      </option>
+                      <option data-i18n="form.basic" value="basique">
+                        Basique
+                      </option>
+                    </select>
+                  </div>
+                  <h3 data-i18n="form.englishScores">
+                    Si oui, quel est votre score de votre compétence en anglais
+                    ?
+                  </h3>
+                  <div class="marg-bot">
+                    <label data-i18n="form.speaking" for="speaking"
+                      >Speaking: <span class="req">*</span></label
+                    >
+                    <select
+                      class="champs-large"
+                      id="speaking"
+                      name="speaking"
+                      required=""
+                    >
+                      <option data-i18n="form.selectLanguageTest" value="">
+                        Choix votre test de compétence!
+                      </option>
+                      <option data-i18n="form.none" value="none">None</option>
+                      <option data-i18n="form.advanced" value="avanced">
+                        Advanced
+                      </option>
+                      <option
+                        data-i18n="form.intermediate"
+                        value="intermediate"
+                      >
+                        Intermediate
+                      </option>
+                      <option data-i18n="form.basic" value="basic">
+                        Basic
+                      </option>
+                    </select>
+                  </div>
+                  <div class="marg-bot">
+                    <label data-i18n="form.listening" for="listening"
+                      >Listening: <span class="req">*</span></label
+                    >
+                    <select
+                      class="champs-large"
+                      id="listening"
+                      name="listening"
+                      required=""
+                    >
+                      <option data-i18n="form.selectLanguageTest" value="">
+                        Choix votre test de compétence!
+                      </option>
+                      <option data-i18n="form.none" value="none">None</option>
+                      <option data-i18n="form.advanced" value="avanced">
+                        Advanced
+                      </option>
+                      <option
+                        data-i18n="form.intermediate"
+                        value="intermediate"
+                      >
+                        Intermediate
+                      </option>
+                      <option data-i18n="form.basic" value="basic">
+                        Basic
+                      </option>
+                    </select>
+                  </div>
+                  <div class="marg-bot">
+                    <label data-i18n="form.reading" for="reading"
+                      >Reading: <span class="req">*</span></label
+                    >
+                    <select
+                      class="champs-large"
+                      id="reading"
+                      name="reading"
+                      required=""
+                    >
+                      <option data-i18n="form.selectLanguageTest" value="">
+                        Choix votre test de compétence!
+                      </option>
+                      <option data-i18n="form.none" value="none">None</option>
+                      <option data-i18n="form.advanced" value="avanced">
+                        Advanced
+                      </option>
+                      <option
+                        data-i18n="form.intermediate"
+                        value="intermediate"
+                      >
+                        Intermediate
+                      </option>
+                      <option data-i18n="form.basic" value="basic">
+                        Basic
+                      </option>
+                    </select>
+                  </div>
+                  <div class="marg-bot">
+                    <label data-i18n="form.writing" for="writing"
+                      >Writing: <span class="req">*</span></label
+                    >
+                    <select
+                      class="champs-large"
+                      id="writing"
+                      name="writing"
+                      required=""
+                    >
+                      <option data-i18n="form.selectLanguageTest" value="">
+                        Choix votre test de compétence!
+                      </option>
+                      <option data-i18n="form.none" value="none">None</option>
+                      <option data-i18n="form.advanced" value="avanced">
+                        Advanced
+                      </option>
+                      <option
+                        data-i18n="form.intermediate"
+                        value="intermediate"
+                      >
+                        Intermediate
+                      </option>
+                      <option data-i18n="form.basic" value="basic">
+                        Basic
+                      </option>
+                    </select>
+                  </div>
+                </fieldset>
+                <fieldset class="form_info_client">
+                  <legend data-i18n="form.education">Étude</legend>
+                  <div class="marg-bot">
+                    <label
+                      data-i18n="form.highestEducation"
+                      for="niveau_scolarite"
+                      >Votre niveau de scolarité le plus élevé :
+                      <span class="req">*</span></label
+                    >
+                    <select
+                      class="champs-large"
+                      id="niveau_scolarite"
+                      name="niveau_scolarite"
+                      required=""
+                    >
+                      <option data-i18n="form.selectLevel" value="">
+                        Choix votre niveau!
+                      </option>
+                      <option data-i18n="form.none" value="aucun">Aucun</option>
+                      <option data-i18n="form.bachelor" value="baccalauréat ">
+                        Baccalauréat
+                      </option>
+                      <option data-i18n="form.certificate" value="certificat ">
+                        Certificat
+                      </option>
+                      <option data-i18n="form.licence" value="licence">
+                        Licence
+                      </option>
+                      <option data-i18n="form.master" value="Maitrise">
+                        Maitrise
+                      </option>
+                      <option data-i18n="form.phd" value="doctorat">
+                        Doctorat - PHD
+                      </option>
+                      <option data-i18n="form.doctor" value="medecin">
+                        Médecin
+                      </option>
+                      <option data-i18n="form.pharmacist" value="pharmatien">
+                        Pharmatien(ne)
+                      </option>
+                    </select>
+                  </div>
+                  <div class="marg-bot">
+                    <label data-i18n="form.yearsEducation" for="nbr_annee_etude"
+                      >Nombre d’année d’étude :
+                      <span class="req">*</span></label
+                    >
+                    <input
+                      class="champs-large"
+                      data-i18n-placeholder="form.yearsEducationPlaceholder"
+                      id="nbr_annee_etude"
+                      name="nbr_annee_etude"
+                      placeholder="Veuillez remplir le nombre d'année de vos études!"
+                      required=""
+                      type="text"
+                    />
+                    <div class="errorMessage"></div>
+                  </div>
+                  <div class="marg-bot">
+                    <label data-i18n="form.fieldOfStudy" for="domaine_etude"
+                      >Votre domaine d’étude ou spécialité :
+                      <span class="req">*</span></label
+                    >
+                    <input
+                      class="champs-large"
+                      data-i18n-placeholder="form.fieldOfStudyPlaceholder"
+                      id="domaine_etude"
+                      name="domaine_etude"
+                      placeholder="Veuillez remplir votre domaine d'étude ou spécialité!"
+                      required=""
+                      type="text"
+                    />
+                    <div class="errorMessage"></div>
+                  </div>
+                  <div class="marg-bot">
+                    <label
+                      data-i18n="form.spouseEducationLevel"
+                      for="niveau_scolarite_epoux"
+                      >Niveau de scolarité le plus élevé de votre époux(se): :
+                      <span class="req">*</span></label
+                    >
+                    <select
+                      class="champs-large"
+                      id="niveau_scolarite_epoux"
+                      name="niveau_scolarite_epoux"
+                      required=""
+                    >
+                      <option data-i18n="form.selectLevel" value="">
+                        Choix votre niveau!
+                      </option>
+                      <option data-i18n="form.none" value="aucun">Aucun</option>
+                      <option data-i18n="form.bachelor" value="baccalauréat">
+                        Baccalauréat
+                      </option>
+                      <option data-i18n="form.certificate" value="certificat">
+                        Certificat
+                      </option>
+                      <option data-i18n="form.licence" value="licence">
+                        Licence
+                      </option>
+                      <option data-i18n="form.master" value="Maitrise">
+                        Maitrise
+                      </option>
+                      <option data-i18n="form.phd" value="doctorat">
+                        Doctorat - PHD
+                      </option>
+                      <option data-i18n="form.doctor" value="medecin">
+                        Médecin
+                      </option>
+                      <option data-i18n="form.pharmacist" value="pharmatien">
+                        Pharmatien(ne)
+                      </option>
+                    </select>
+                  </div>
+                  <div class="marg-bot">
+                    <label
+                      data-i18n="form.spouseYearsEducation"
+                      for="nbr_annee_etude_epoux"
+                      >Nombre d’année d’étude de votre époux (se): :
+                      <span class="req">*</span></label
+                    >
+                    <input
+                      class="champs-large"
+                      data-i18n-placeholder="form.spouseYearsEducationPlaceholder"
+                      id="nbr_annee_etude_epoux"
+                      name="nbr_annee_etude_epoux"
+                      placeholder="Veuillez remplir le nombre d'année d'études de votre époux (se)!"
+                      required=""
+                      type="text"
+                    />
+                    <div class="errorMessage"></div>
+                  </div>
+                  <div class="marg-bot">
+                    <label
+                      data-i18n="form.spouseFieldOfStudy"
+                      for="domaine_etude_epoux"
+                      >Le nom de domaine d’étude ou spécialité de votre époux
+                      (se) : <span class="req">*</span></label
+                    >
+                    <input
+                      class="champs-large"
+                      data-i18n-placeholder="form.spouseFieldOfStudyPlaceholder"
+                      id="domaine_etude_epoux"
+                      name="domaine_etude_epoux"
+                      placeholder="Veuillez remplir le nom de domaine d’étude ou spécialité de votre époux (se):!"
+                      required=""
+                      type="text"
+                    />
+                    <div class="errorMessage"></div>
+                  </div>
+                </fieldset>
+                <fieldset class="form_info_client">
+                  <legend data-i18n="form.employment">Expérience/Emploi</legend>
+                  <div class="marg-bot">
+                    <label
+                      data-i18n="form.currentEmployment"
+                      for="emploi_actuel"
+                      >Votre emploi actuel : <span class="req">*</span></label
+                    >
+                    <input
+                      class="champs-large"
+                      data-i18n-placeholder="form.currentEmploymentPlaceholder"
+                      id="emploi_actuel"
+                      name="emploi_actuel"
+                      placeholder="Veuillez remplir votre emploi actuel!"
+                      required=""
+                      type="text"
+                    />
+                    <div class="errorMessage"></div>
+                  </div>
+                  <div class="marg-bot">
+                    <label data-i18n="form.yearsExperience" for="nbr_annee_exp"
+                      >Nombre d’année d’expérience :
+                      <span class="req">*</span></label
+                    >
+                    <select
+                      class="champs-large"
+                      id="nbr_annee_exp"
+                      name="nbr_annee_exp"
+                      required=""
+                    >
+                      <option data-i18n="form.selectYearsExperience" value="">
+                        Choix de nombre d'année expérience!
+                      </option>
+                      <option data-i18n="form.none" value="aucun">Aucun</option>
+                      <option value="12_mois">0 - 12 mois</option>
+                      <option value="1_2ans">1 - 2 ans</option>
+                      <option value="2_3ans">2 - 3 ans</option>
+                      <option value="3_4ans">3 - 4 ans</option>
+                      <option value="4_5ans">4 - 5 ans</option>
+                      <option value="5_10ans">5 - 10 ans</option>
+                      <option value="10_15ans">10 - 15 ans</option>
+                    </select>
+                  </div>
+                  <div class="marg-bot">
+                    <label data-i18n="form.jobTitle" for="titre_emploi"
+                      >Le titre de votre emploi :
+                      <span class="req">*</span></label
+                    >
+                    <input
+                      class="champs-large"
+                      data-i18n-placeholder="form.jobTitlePlaceholder"
+                      id="titre_emploi"
+                      name="titre_emploi"
+                      placeholder="Veuillez remplir le titre de votre emploi!"
+                      required=""
+                      type="text"
+                    />
+                    <div class="errorMessage"></div>
+                  </div>
+                  <div class="marg-bot">
+                    <label data-i18n="form.jobDuties" for="taches_emploi"
+                      >Les tâches de votre emploi actuel :
+                      <span class="req">*</span></label
+                    >
+                    <input
+                      class="champs-large"
+                      data-i18n-placeholder="form.jobDutiesPlaceholder"
+                      id="taches_emploi"
+                      name="taches_emploi"
+                      placeholder="Veuillez remplir les tâches de votre emploi actuel!"
+                      required=""
+                      type="text"
+                    />
+                    <div class="errorMessage"></div>
+                  </div>
+                  <div class="marg-bot">
+                    <label
+                      data-i18n="form.spouseCurrentEmployment"
+                      for="emploi_actuel_epoux"
+                      >L’emploi actuel de votre époux(se) :
+                      <span class="req">*</span></label
+                    >
+                    <input
+                      class="champs-large"
+                      data-i18n-placeholder="form.spouseCurrentEmploymentPlaceholder"
+                      id="emploi_actuel_epoux"
+                      name="emploi_actuel_epoux"
+                      placeholder="Veuillez remplir votre emploi actuel de votre époux (se)!"
+                      required=""
+                      type="text"
+                    />
+                    <div class="errorMessage"></div>
+                  </div>
+                  <div class="marg-bot">
+                    <label
+                      data-i18n="form.spouseYearsExperience"
+                      for="nbr_annee_exp_epoux"
+                      >Nombre d’année d’expérience de votre époux(se) :
+                      <span class="req">*</span></label
+                    >
+                    <select
+                      class="champs-large"
+                      id="nbr_annee_exp_epoux"
+                      name="nbr_annee_exp_epoux"
+                      required=""
+                    >
+                      <option
+                        data-i18n="form.selectSpouseYearsExperience"
+                        value=""
+                      >
+                        Choix de nombre d’année d’expérience de votre époux(se)!
+                      </option>
+                      <option data-i18n="form.none" value="aucun">Aucun</option>
+                      <option value="12_mois">0 - 12 mois</option>
+                      <option value="1_2ans">1 - 2 ans</option>
+                      <option value="2_3ans">2 - 3 ans</option>
+                      <option value="3_4ans">3 - 4 ans</option>
+                      <option value="4_5ans">4 - 5 ans</option>
+                      <option value="5_10ans">5 - 10 ans</option>
+                      <option value="10_15ans">10 - 15 ans</option>
+                    </select>
+                  </div>
+                  <div class="marg-bot">
+                    <label
+                      data-i18n="form.spouseJobTitle"
+                      for="titre_emploi_epoux"
+                      >Le titre de l’emploi de votre époux(se) :
+                      <span class="req">*</span></label
+                    >
+                    <input
+                      class="champs-large"
+                      data-i18n-placeholder="form.spouseJobTitlePlaceholder"
+                      id="titre_emploi_epoux"
+                      name="titre_emploi_epoux"
+                      placeholder="Veuillez remplir le titre de l’emploi de votre époux(se)!"
+                      required=""
+                      type="text"
+                    />
+                    <div class="errorMessage"></div>
+                  </div>
+                  <div class="marg-bot">
+                    <label
+                      data-i18n="form.spouseJobDuties"
+                      for="taches_emploi_epoux"
+                      >Les tâches de l’emploi actuel de votre époux(se) :
+                      <span class="req">*</span></label
+                    >
+                    <input
+                      class="champs-large"
+                      data-i18n-placeholder="form.spouseJobDutiesPlaceholder"
+                      id="taches_emploi_epoux"
+                      name="taches_emploi_epoux"
+                      placeholder="Veuillez remplir les tâches de l’emploi actuel de votre époux(se)!"
+                      required=""
+                      type="text"
+                    />
+                    <div class="errorMessage"></div>
+                  </div>
+                </fieldset>
+                <fieldset class="form_info_client">
+                  <legend data-i18n="form.immigrationProject">
+                    Projet immigration
+                  </legend>
+                  <div class="marg-bot">
+                    <label data-i18n="form.familyCanada" for="famille_canada"
+                      >Possédez-vous de la famille au Canada ?
+                      <span class="req">*</span></label
+                    >
+                    <select
+                      class="champs-large"
+                      id="famille_canada"
+                      name="famille_canada"
+                      required=""
+                    >
+                      <option data-i18n="form.selectFamily" value="">
+                        Choix de famille au Canada!
+                      </option>
+                      <option data-i18n="form.noFamilyCanada" value="aucun">
+                        Non, je n'ai pas une famille au Canada
+                      </option>
+                      <option
+                        data-i18n="form.siblingCanada"
+                        value="frere_soeur"
+                      >
+                        Oui, j'ai un frère ou une soeur de plus 18 ans
+                      </option>
+                      <option data-i18n="form.parentCanada" value="pere_mere">
+                        Oui, j'ai mon père ou ma mère au Canada
+                      </option>
+                      <option data-i18n="form.childCanada" value="fils_fille">
+                        Oui, j'ai mon fils ou ma fille au Canada
+                      </option>
+                      <option
+                        data-i18n="form.grandchildCanada"
+                        value="petit_fils_fille"
+                      >
+                        Oui, j'ai mon petit fils ou ma petite fille au Canada
+                      </option>
+                    </select>
+                  </div>
+                  <div class="marg-bot">
+                    <label
+                      data-i18n="form.destinationProvinceQuestion"
+                      for="province_destination"
+                      >Quelle province désirez-vous s’installer ?
+                      <span class="req">*</span></label
+                    >
+                    <select
+                      class="champs-large"
+                      id="province_destination"
+                      name="province_destination"
+                      required=""
+                    >
+                      <option data-i18n="form.selectProvince" value="">
+                        Choix de province au Canada!
+                      </option>
+                      <option value="quebec">Québec</option>
+                      <option value="ontario">Ontario</option>
+                      <option
+                        data-i18n="form.britishColumbia"
+                        value="colombie_britanique"
+                      >
+                        Colombie-Britanique
+                      </option>
+                      <option value="saskatchewan">Saskatchewan</option>
+                      <option value="manitoba">Manitoba</option>
+                      <option
+                        data-i18n="form.newBrunswick"
+                        value="nouveau_brunswick"
+                      >
+                        Nouveau-Brunswick
+                      </option>
+                      <option
+                        data-i18n="form.novaScotia"
+                        value="nouvelle_ecosse"
+                      >
+                        Nouvelle-Écosse
+                      </option>
+                      <option
+                        data-i18n="form.pei"
+                        value="ile_du_prince_edouard"
+                      >
+                        Île-du-Prince-Édouard
+                      </option>
+                      <option
+                        data-i18n="form.newfoundland"
+                        value="terre_neuve_et_labrador"
+                      >
+                        Terre-Neuve-et-Labrador
+                      </option>
+                    </select>
+                  </div>
+                  <div class="marg-bot">
+                    <label data-i18n="form.jobOffer" for="offre_emploi"
+                      >Avez-vous une offre d’emploi au Canada ?
+                      <span class="req">*</span></label
+                    >
+                    <select
+                      class="champs-large"
+                      id="offre_emploi"
+                      name="offre_emploi"
+                      required=""
+                    >
+                      <option data-i18n="form.selectJobOffer" value="">
+                        Choix de famille au Canada!
+                      </option>
+                      <option data-i18n="form.noJobOffer" value="aucun">
+                        Non, je n'ai pas une offre d'emploi au Canada
+                      </option>
+                      <option data-i18n="form.yesJobOffer" value="oui_offre">
+                        Oui, j'ai une offre d'emploi au Canada
+                      </option>
+                    </select>
+                  </div>
+                  <div class="marg-bot">
+                    <label
+                      data-i18n="form.temporaryResidenceQuestion"
+                      for="residence_temporaire"
+                      >Je désire m’installez au Canada à titre de résident
+                      temporaire ? <span class="req">*</span>
+                      <button
+                        aria-controls="madic-residence-help-dialog"
+                        aria-haspopup="dialog"
+                        aria-label="Information sur le choix de résidence"
+                        class="madic-residence-help"
+                        title="Information / Help"
+                        type="button"
+                      >
+                        ?
+                      </button></label
+                    >
+                    <select
+                      class="champs-large"
+                      id="residence_temporaire"
+                      name="residence_temporaire"
+                      required=""
+                    >
+                      <option
+                        data-i18n="form.selectTemporaryResidence"
+                        value=""
+                      >
+                        Choix de votre résidence temporaire!
+                      </option>
+                      <option data-i18n="form.none" value="aucun">Aucun</option>
+                      <option data-i18n="form.visitor" value="visiteur">
+                        Visiteur
+                      </option>
+                      <option
+                        data-i18n="form.businessVisitor"
+                        value="visiteur_commercial"
+                      >
+                        Visiteur commercial
+                      </option>
+                      <option
+                        data-i18n="form.superVisa"
+                        value="visiteur_super_visa"
+                      >
+                        Visiteur - Super Visa
+                      </option>
+                      <option data-i18n="form.student" value="etudiant">
+                        Étudiant(e)
+                      </option>
+                      <option
+                        data-i18n="form.temporaryWorker"
+                        value="travailleur_temporaire"
+                      >
+                        Travailleur temporaire
+                      </option>
+                    </select>
+                  </div>
+                  <div class="marg-bot">
+                    <label
+                      data-i18n="form.permanentResidenceQuestion"
+                      for="residence_permanente"
+                      >Je désire m’installer au Canada à titre résident
+                      permanent ? <span class="req">*</span>
+                      <button
+                        aria-controls="madic-residence-help-dialog"
+                        aria-haspopup="dialog"
+                        aria-label="Information sur le choix de résidence"
+                        class="madic-residence-help"
+                        title="Information / Help"
+                        type="button"
+                      >
+                        ?
+                      </button></label
+                    >
+                    <select
+                      class="champs-large"
+                      id="residence_permanente"
+                      name="residence_permanente"
+                      required=""
+                    >
+                      <option
+                        data-i18n="form.selectPermanentResidence"
+                        value=""
+                      >
+                        Choix de votre résidence permanente!
+                      </option>
+                      <option data-i18n="form.none" value="aucun">Aucun</option>
+                      <option
+                        data-i18n="form.economicImmigration"
+                        value="immigration_economique"
+                      >
+                        Immigration Économique
+                      </option>
+                      <option
+                        data-i18n="form.spouseSponsorship"
+                        value="parrainage_epoux"
+                      >
+                        Parrainage - Époux(se)
+                      </option>
+                      <option
+                        data-i18n="form.spouseChildrenSponsorship"
+                        value="parrainage_epoux_enfant"
+                      >
+                        Parrainage - Époux(se) avec enfant(s) à charge
+                      </option>
+                      <option
+                        data-i18n="form.parentsSponsorship"
+                        value="parrainage_parent"
+                      >
+                        Parrainage - Parent(s) - Grand Parent(s)
+                      </option>
+                      <option
+                        data-i18n="form.orphanSiblingSponsorship"
+                        value="parrainage_fr_sr"
+                      >
+                        Parrainage - Frère/Soeur orphelin moins de 18 ans
+                      </option>
+                      <option
+                        data-i18n="form.adoptedChildSponsorship"
+                        value="parrainage_enfant_adopter"
+                      >
+                        Parrainage - Enfant adopter
+                      </option>
+                      <option data-i18n="form.groupFive" value="parrainage_gr5">
+                        Parrainage - Groupe de 5
+                      </option>
+                      <option data-i18n="form.humanitarian" value="humanitaire">
+                        Humanitaire
+                      </option>
+                      <option data-i18n="form.refugee" value="refugie">
+                        Refugié ou demandeur d'asile
+                      </option>
+                    </select>
+                  </div>
+                </fieldset>
+                <fieldset class="form_info_client">
+                  <legend data-i18n="form.travelHistory">
+                    Voyage antérieure
+                  </legend>
+                  <div class="marg-bot">
+                    <label data-i18n="form.previousApplication" for="refus_visa"
+                      >Avez-vous déjà déposé un visa, permis d’étude, de permis
+                      de travail ou une autorisation de voyage (AVE) au Canada ?
+                      <span class="req">*</span></label
+                    >
+                    <select
+                      class="champs-large"
+                      id="refus_visa"
+                      name="refus_visa"
+                      required=""
+                    >
+                      <option data-i18n="form.no" value="non">Non</option>
+                      <option data-i18n="form.yes" value="oui">Oui</option>
+                    </select>
+                  </div>
+                  <div class="marg-bot">
+                    <label data-i18n="form.travelEuropeUsa" for="voyage_eu_usa"
+                      >Avez déjà voyagé en Europe ou aux États-Unis ?
+                      <span class="req">*</span></label
+                    >
+                    <select
+                      class="champs-large"
+                      id="voyage_eu_usa"
+                      name="voyage_eu_usa"
+                      required=""
+                    >
+                      <option data-i18n="form.no" value="non">Non</option>
+                      <option data-i18n="form.yes" value="oui">Oui</option>
+                    </select>
+                  </div>
+                  <div class="marg-bot">
+                    <label data-i18n="form.previousRefusal" for="depot_visa"
+                      >Vous a-t-on déjà refusé un visa ou d’une autorisation de
+                      voyage (AVE) au Canada ? <span class="req">*</span></label
+                    >
+                    <select
+                      class="champs-large"
+                      id="depot_visa"
+                      name="depot_visa"
+                      required=""
+                    >
+                      <option data-i18n="form.no" value="non">Non</option>
+                      <option data-i18n="form.yes" value="oui">Oui</option>
+                    </select>
+                  </div>
+                </fieldset>
+                <fieldset class="form_info_client">
+                  <legend data-i18n="form.inadmissibility">
+                    Inadmissibilité (Veuillez donner des explications si vous
+                    répondez « oui »)
+                  </legend>
+                  <div class="marg-bot">
+                    <label data-i18n="form.criminalOffence" for="infraction"
+                      >Avez-vous déjà été reconnu (e) coupable d’une infraction
+                      pénale/criminelle ? <span class="req">*</span></label
+                    >
+                    <select
+                      class="champs-large"
+                      id="infraction"
+                      name="infraction"
+                      required=""
+                    >
+                      <option data-i18n="form.no" value="non">Non</option>
+                      <option data-i18n="form.yes" value="oui">Oui</option>
+                    </select>
+                  </div>
+                  <div class="marg-bot">
+                    <label data-i18n="form.healthQuestion" for="sante"
+                      >Avez déjà voyagé en Europe ou aux États-Unis ?
+                      <span class="req">*</span></label
+                    >
+                    <select
+                      class="champs-large"
+                      id="sante"
+                      name="sante"
+                      required=""
+                    >
+                      <option data-i18n="form.no" value="non">Non</option>
+                      <option data-i18n="form.yes" value="oui">Oui</option>
+                    </select>
+                  </div>
+                  <div class="marg-bot">
+                    <label data-i18n="form.explanation" for="commentaire"
+                      >Explication si vous répondez « oui » aux deux questions
+                      ci-dessus</label
+                    >
+                    <textarea
+                      class="champs-large"
+                      data-i18n-placeholder="form.explanationPlaceholder"
+                      id="commentaire"
+                      name="commentaire"
+                      placeholder="Veuillez nous laissez vos explications!"
+                    ></textarea>
+                  </div>
+                </fieldset>
+                <div class="form_info_facultatif">
+                  <fieldset>
+                    <legend data-i18n="form.importantInformation">
+                      Informations importante
+                    </legend>
+                    <div>
+                      <label
+                        class="info_importante"
+                        data-i18n="form.consent"
+                        for="info_importante"
+                      >
+                        Je comprends que MAD Immigration Canadienne (MADIC) inc.
+                        recueille mes renseignements personnels en vue d’évaluer
+                        mon projet d’immigration, et qu’il utilisera ces
+                        renseignements pour vérifier mon admissibilité, ainsi
+                        que ma conformité aux conditions et aux exigences
+                        prévues par la Loi sur l’immigration et la protection
+                        des réfugiés. Je déclare avoir donné des réponses
+                        exactes et complètes à toutes les questions du présent
+                        formulaire.</label
+                      >
+                      <input
+                        id="info_importante"
+                        name="info_importante"
+                        required=""
+                        type="checkbox"
+                      />
+                      <div class="errorMessage"></div>
+                    </div>
+                  </fieldset>
+                  <div class="marg-bot madic-signature-place">
+                    <label for="lieu_signature"
+                      >Lieu de signature du contrat (ville) :</label
+                    >
+                    <input
+                      autocomplete="address-level2"
+                      class="champs-large"
+                      id="lieu_signature"
+                      name="lieu_signature"
+                      placeholder="Ville où le contrat sera signé"
+                      type="text"
+                    />
+                    <p class="madic-signature-help">
+                      Cette information servira à préremplir le lieu de
+                      signature de vos contrats. Vous pourrez la confirmer avant
+                      la signature.
+                    </p>
+                  </div>
+                  <div class="txt-right">
+                    <input
+                      class="btn"
+                      data-i18n-value="form.submit"
+                      type="submit"
+                      value="Soumettre"
+                    />
+                  </div>
+                </div>
+              </form>
+            </div>
+          </section>
+        </main>
+      </div>
+    </main>
+    <footer aria-label="Pied de page MADIC / MADIC footer" class="madic-footer">
+      <div class="madic-footer-inner">
+        <div class="madic-footer-brand">
+          <div class="madic-footer-brandline">
+            <img
+              alt="Logo MADIC"
+              class="madic-footer-logo"
+              height="43"
+              src="img/logo-madic.svg"
+              width="43"
+            />
+            <div>
+              <div class="madic-footer-name">MADIC</div>
+              <div
+                class="madic-footer-subtitle"
+                data-en="MAD Immigration Canadienne"
+                data-fr="MAD Immigration Canadienne"
+              >
+                MAD Immigration Canadienne
+              </div>
+            </div>
+          </div>
+          <p
+            class="madic-footer-desc"
+            data-en="A digital platform for Canadian immigration professionals and their clients."
+            data-fr="Une plateforme numérique pour les professionnels de l'immigration canadienne et leurs clients."
+          >
+            Une plateforme numérique pour les professionnels de l'immigration
+            canadienne et leurs clients.
+          </p>
+        </div>
+        <nav aria-label="Liens du pied de page" class="madic-footer-right">
+          <a data-en="Home" data-fr="Accueil" href="index.html">Accueil</a>
+          <a
+            data-en="Privacy policy"
+            data-fr="Confidentialité"
+            href="politique-confidentialite.html"
+            >Confidentialité</a
+          >
+          <span
+            class="madic-footer-unavailable"
+            data-en="Terms of use"
+            data-fr="Conditions d'utilisation"
+            title="Page à venir / Page coming soon"
+            >Conditions d'utilisation</span
+          >
+          <span
+            class="madic-footer-unavailable"
+            data-en="Contact"
+            data-fr="Contact"
+            title="Page à venir / Page coming soon"
+            >Contact</span
+          >
+        </nav>
+      </div>
+      <div class="madic-footer-bottom">
+        © 2026 MAD Immigration Canadienne (MADIC) Inc.
+        <span data-en="All rights reserved." data-fr="Tous droits réservés."
+          >Tous droits réservés.</span
+        >
+      </div>
+    </footer>
+    <div
+      aria-describedby="madic-submit-description"
+      aria-labelledby="madic-submit-title"
+      aria-modal="true"
+      class="madic-submit-modal"
+      hidden=""
+      id="madic-submit-modal"
+      role="dialog"
+    >
+      <div class="madic-submit-dialog" tabindex="-1">
+        <div aria-hidden="true" class="madic-submit-icon">✓</div>
+        <h2 id="madic-submit-title">Merci, votre formulaire a été envoyé</h2>
+        <p id="madic-submit-description">
+          Nous avons bien reçu vos renseignements dans votre espace sécurisé
+          MADIC. Notre équipe pourra procéder à l'analyse préliminaire de votre
+          projet d'immigration.
+        </p>
+        <p class="madic-submit-note">
+          Votre formulaire a été enregistré. Vous pouvez continuer vers la
+          prochaine étape ou retourner à la vue d’ensemble de votre espace
+          client.
+        </p>
+        <div class="madic-submit-actions">
+          <a
+            class="madic-submit-return"
+            href="prochaine-etape-client.html"
+            id="madic-next-step"
+            >Continuer vers la prochaine étape</a
+          >
+          <a
+            class="madic-submit-return"
+            href="dashboard-client-cric.html"
+            id="madic-close-to-overview"
+            >Fermer et retourner à la vue d’ensemble</a
+          >
+        </div>
+      </div>
+    </div>
+    <div
+      aria-describedby="madic-residence-help-text"
+      aria-labelledby="madic-residence-help-title"
+      aria-modal="true"
+      class="madic-residence-help-dialog"
+      hidden=""
+      id="madic-residence-help-dialog"
+      role="dialog"
+    >
+      <div class="madic-residence-help-panel" tabindex="-1">
+        <h2 id="madic-residence-help-title"></h2>
+        <p id="madic-residence-help-text"></p>
+        <button
+          class="madic-residence-help-close"
+          id="madic-residence-help-close"
+          type="button"
+        ></button>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+    <script src="assets/config.js"></script>
+    <script src="assets/formulaire.js"></script>
+    <script src="assets/madic-footer.js"></script>
+  </body>
+</html>

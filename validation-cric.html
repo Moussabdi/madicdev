@@ -1,0 +1,300 @@
+<!doctype html>
+
+<html lang="fr-CA">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width,initial-scale=1" name="viewport" />
+    <meta content="noindex,nofollow" name="robots" />
+    <link href="img/favicon.png" rel="icon" />
+    <title>Validation CRIC | MADIC</title>
+    <link href="assets/madic-footer.css" rel="stylesheet" />
+    <link href="assets/validation-cric.css" rel="stylesheet" />
+  </head>
+  <body class="madic-unified" data-page="cric-approval">
+    <div class="madic-unified-layout">
+      <aside
+        aria-label="Navigation administration MADIC"
+        class="madic-unified-sidebar"
+        data-aria-label-en="MADIC administration navigation"
+        data-aria-label-fr="Navigation administration MADIC"
+      >
+        <div class="madic-unified-brand">
+          <span class="madic-unified-monogram">M</span
+          ><span
+            ><strong data-fr="MADIC PORTAIL" data-en="MADIC PORTAL">MADIC PORTAIL</strong><small
+              data-en="Super administration"
+              data-fr="Super administration"
+              >Super administration</small
+            ></span
+          >
+        </div>
+        <div
+          class="madic-unified-caption"
+          data-en="ADMINISTRATION"
+          data-fr="ADMINISTRATION"
+        >
+          ADMINISTRATION
+        </div>
+        <nav>
+          <a
+            data-en="▦ MADIC dashboard"
+            data-fr="▦ Tableau de bord MADIC"
+            href="administration.html"
+            >▦ Tableau de bord MADIC</a
+          ><a
+            aria-current="page"
+            data-en="✓ RCIC verifications"
+            data-fr="✓ Vérifications CRIC"
+            href="validation-cric.html"
+            >✓ Vérifications CRIC</a
+          ><a
+            data-en="▤ Consultants and firms"
+            data-fr="▤ Consultants et cabinets"
+            href="gestion-cric.html#consultants-management"
+            >▤ Consultants et cabinets</a
+          ><a
+            data-en="▥ Subscriptions and access"
+            data-fr="▥ Abonnements et accès"
+            href="gestion-cric.html#cabinet-management"
+            >▥ Abonnements et accès</a
+          ><a
+            data-en="◷ Payment tracking"
+            data-fr="◷ Suivi des paiements"
+            href="gestion-cric.html#payment-management"
+            >◷ Suivi des paiements</a
+          >
+        </nav>
+        <div
+          class="madic-unified-foot"
+          data-en="Secure MADIC administration"
+          data-fr="Administration sécurisée MADIC"
+        >
+          Administration sécurisée MADIC
+        </div>
+      </aside>
+      <div class="madic-unified-content">
+        <header>
+          <a class="brand" href="connexion-client-cric.html"
+            >MADI<span>C</span> <small data-fr="PORTAIL" data-en="PORTAL">PORTAIL</small></a
+          >
+          <nav class="toplinks">
+            <a
+              data-en="Sign out"
+              data-fr="Déconnexion"
+              data-madic-signout="true"
+              href="connexion-client-cric.html"
+              id="madicHeaderSignout"
+              >Déconnexion</a
+            ><a
+              data-en="My space"
+              data-fr="Mon espace"
+              href="dashboard-client-cric.html"
+              >Mon espace</a
+            >
+          </nav>
+          <div
+            aria-label="Outils du compte"
+            class="madic-hero-tools"
+            data-aria-label-en="Account tools"
+            data-aria-label-fr="Outils du compte"
+          >
+            <a
+              aria-label="Notifications de messagerie"
+              class="madic-hero-notifications"
+              data-aria-label-en="Message notifications"
+              data-aria-label-fr="Notifications de messagerie"
+              href="messagerie-client-cric.html"
+              title="Notifications de messagerie"
+              ><svg
+                aria-hidden="true"
+                fill="none"
+                height="22"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.8"
+                viewbox="0 0 24 24"
+                width="22"
+              >
+                <path
+                  d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"
+                ></path>
+                <path d="M10 21h4"></path>
+              </svg>
+              <span class="madic-hero-unread" hidden="" id="madicHeroUnread"
+                >0</span
+              ></a
+            >
+            <div id="madicHeroLanguage">
+              <button aria-pressed="true" data-lang="fr" type="button">
+                FR</button
+              ><button aria-pressed="false" data-lang="en" type="button">
+                EN
+              </button>
+            </div>
+          </div>
+        </header>
+        <main class="madic-cric-wrap" hidden="" id="cricApprovalMain">
+          <h1
+            data-en="RCIC registration requests"
+            data-fr="Demandes d'inscription CRIC"
+          >
+            Demandes d'inscription CRIC
+          </h1>
+          <p>
+            Réservé au propriétaire MADIC. Vérifiez l'identité et le permis dans
+            le registre officiel avant toute approbation.
+          </p>
+          <p aria-live="polite" id="cricMessage" role="status"></p>
+          <section class="panel">
+            <div class="validation-table-scroll">
+              <table>
+                <thead>
+                  <tr>
+                    <th data-en="Consultant" data-fr="Consultant">
+                      Consultant
+                    </th>
+                    <th data-en="Licence" data-fr="Permis">Permis</th>
+                    <th data-en="Email" data-fr="Courriel">Courriel</th>
+                    <th data-en="Status" data-fr="Statut">Statut</th>
+                    <th data-en="Decision" data-fr="Décision">Décision</th>
+                  </tr>
+                </thead>
+                <tbody id="cricApplications">
+                  <tr>
+                    <td colspan="5" data-en="Loading…" data-fr="Chargement…">
+                      Chargement…
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+          <section class="panel validation-section-gap">
+            <h2
+              data-en="RCIC licence prevalidations"
+              data-fr="Prévalidations des permis CRIC"
+            >
+              Prévalidations des permis CRIC
+            </h2>
+            <p>
+              Demandes reçues depuis la page publique. La validation d'une
+              prévalidation ne crée pas de compte professionnel et ne donne
+              aucun accès.
+            </p>
+            <p
+              aria-live="polite"
+              id="cricPrevalidationMessage"
+              role="status"
+            ></p>
+            <div class="validation-table-scroll">
+              <table>
+                <thead>
+                  <tr>
+                    <th data-en="Consultant" data-fr="Consultant">
+                      Consultant
+                    </th>
+                    <th data-en="Licence" data-fr="Permis">Permis</th>
+                    <th data-en="CICC" data-fr="CCIC">CCIC</th>
+                    <th data-en="Date" data-fr="Date">Date</th>
+                    <th data-en="Status" data-fr="Statut">Statut</th>
+                    <th data-en="Decision" data-fr="Décision">Décision</th>
+                  </tr>
+                </thead>
+                <tbody id="cricPrevalidations">
+                  <tr>
+                    <td colspan="6" data-en="Loading…" data-fr="Chargement…">
+                      Chargement…
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+          <p>
+            <a
+              data-en="← MADIC administration"
+              data-fr="← Administration MADIC"
+              href="administration.html"
+              >← Administration MADIC</a
+            >
+          </p>
+        </main>
+        <footer
+          aria-label="Pied de page MADIC / MADIC footer"
+          class="madic-footer"
+        >
+          <div class="madic-footer-inner">
+            <div class="madic-footer-brand">
+              <div class="madic-footer-brandline">
+                <img
+                  alt="Logo MADIC"
+                  class="madic-footer-logo"
+                  height="43"
+                  src="img/logo-madic.svg"
+                  width="43"
+                />
+                <div>
+                  <div class="madic-footer-name">MADIC</div>
+                  <div
+                    class="madic-footer-subtitle"
+                    data-en="MAD Immigration Canadienne"
+                    data-fr="MAD Immigration Canadienne"
+                  >
+                    MAD Immigration Canadienne
+                  </div>
+                </div>
+              </div>
+              <p
+                class="madic-footer-desc"
+                data-en="A digital platform for Canadian immigration professionals and their clients."
+                data-fr="Une plateforme numérique pour les professionnels de l'immigration canadienne et leurs clients."
+              >
+                Une plateforme numérique pour les professionnels de
+                l'immigration canadienne et leurs clients.
+              </p>
+            </div>
+            <nav
+              aria-label="Liens du pied de page"
+              class="madic-footer-right"
+              data-aria-label-en="Footer links"
+              data-aria-label-fr="Liens du pied de page"
+            >
+              <a data-en="Home" data-fr="Accueil" href="index.html">Accueil</a>
+              <a
+                data-en="Privacy policy"
+                data-fr="Confidentialité"
+                href="politique-confidentialite.html"
+                >Confidentialité</a
+              >
+              <span
+                class="madic-footer-unavailable"
+                data-en="Terms of use"
+                data-fr="Conditions d'utilisation"
+                title="Page à venir / Page coming soon"
+                >Conditions d'utilisation</span
+              >
+              <span
+                class="madic-footer-unavailable"
+                data-en="Contact"
+                data-fr="Contact"
+                title="Page à venir / Page coming soon"
+                >Contact</span
+              >
+            </nav>
+          </div>
+          <div class="madic-footer-bottom">
+            © 2026 MAD Immigration Canadienne (MADIC) Inc.
+            <span data-en="All rights reserved." data-fr="Tous droits réservés."
+              >Tous droits réservés.</span
+            >
+          </div>
+        </footer>
+      </div>
+    </div>
+
+    <script src="assets/config.js"></script>
+    <script src="assets/madic-footer.js"></script>
+    <script src="assets/validation-cric.js"></script>
+  </body>
+</html>

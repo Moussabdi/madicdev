@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+
+<html lang="fr-CA">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="noindex,nofollow" name="robots"/>
+<link href="img/favicon.png" rel="icon"/>
+<title>Mon espace CRIC | MADIC</title>
+<link href="assets/style.css" rel="stylesheet"/>
+<link href="assets/cric-dashboard.css" rel="stylesheet"/>
+<link href="assets/madic-service-journey.css" rel="stylesheet"/>
+<link href="assets/madic-datahubz-unified.css" rel="stylesheet"/>
+<link href="assets/madic-datahubz-modules.css" rel="stylesheet"/>
+<link href="assets/madic-i18n-cric-dashboard.css" rel="stylesheet"/>
+<link href="assets/madic-cric-modern.css" rel="stylesheet"/>
+</head>
+<body class="madic-unified" data-page="cric-dashboard">
+<a class="madic-skip-link" href="#cricMain">Aller au contenu principal</a>
+<div class="madic-unified-layout">
+<aside aria-label="Navigation du portail" class="madic-unified-sidebar">
+<div class="madic-unified-brand">
+<span class="madic-unified-monogram"><img alt="Logo MADIC" src="img/logo-madic.svg"/></span><span><strong>MADIC PORTAIL</strong><small>Espace professionnel</small></span>
+</div>
+<div class="madic-unified-caption">NAVIGATION</div>
+<nav>
+<a aria-current="page" data-madic-page="cric-dashboard.html" href="cric-dashboard.html"><span aria-hidden="true"><img alt="" aria-hidden="true" class="madic-heroicon" decoding="async" loading="eager" src="https://raw.githubusercontent.com/tailwindlabs/heroicons/v2.2.0/optimized/24/outline/squares-2x2.svg"/></span>Vue d’ensemble</a><a class="madic-v2-group-start" data-madic-page="gestion-clients-cric.html" href="gestion-clients-cric.html"><span aria-hidden="true"><img alt="" aria-hidden="true" class="madic-heroicon" decoding="async" loading="eager" src="https://raw.githubusercontent.com/tailwindlabs/heroicons/v2.2.0/optimized/24/outline/users.svg"/></span>Clients</a><a data-madic-page="gestion-dossiers-cric.html" href="gestion-dossiers-cric.html"><span aria-hidden="true"><img alt="" aria-hidden="true" class="madic-heroicon" decoding="async" loading="eager" src="https://raw.githubusercontent.com/tailwindlabs/heroicons/v2.2.0/optimized/24/outline/folder-open.svg"/></span>Outils CRIC</a><a class="madic-v2-group-start" data-madic-page="messagerie-cric.html" href="messagerie-cric.html"><span aria-hidden="true"><img alt="" aria-hidden="true" class="madic-heroicon" decoding="async" loading="eager" src="https://raw.githubusercontent.com/tailwindlabs/heroicons/v2.2.0/optimized/24/outline/chat-bubble-left-right.svg"/></span>Messagerie</a><a data-madic-page="demandes-documents-cric.html" href="demandes-documents-cric.html"><span aria-hidden="true"><img alt="" aria-hidden="true" class="madic-heroicon" decoding="async" loading="eager" src="https://raw.githubusercontent.com/tailwindlabs/heroicons/v2.2.0/optimized/24/outline/document-text.svg"/></span>Documents</a><a data-madic-page="echeances-cric.html" href="echeances-cric.html"><span aria-hidden="true"><img alt="" aria-hidden="true" class="madic-heroicon" decoding="async" loading="eager" src="https://raw.githubusercontent.com/tailwindlabs/heroicons/v2.2.0/optimized/24/outline/calendar-days.svg"/></span>Échéances</a><a class="madic-v2-group-start" data-madic-page="facturation-cric.html" href="facturation-cric.html"><span aria-hidden="true"><img alt="" aria-hidden="true" class="madic-heroicon" decoding="async" loading="eager" src="https://raw.githubusercontent.com/tailwindlabs/heroicons/v2.2.0/optimized/24/outline/receipt-percent.svg"/></span>Facturation</a><a data-madic-page="finances-cric.html" href="finances-cric.html"><span aria-hidden="true"><img alt="" aria-hidden="true" class="madic-heroicon" decoding="async" loading="eager" src="https://raw.githubusercontent.com/tailwindlabs/heroicons/v2.2.0/optimized/24/outline/banknotes.svg"/></span>Finances</a>
+<a data-madic-page="profil-professionnel-cric.html" href="profil-professionnel-cric.html"><span aria-hidden="true"><img alt="" aria-hidden="true" class="madic-heroicon" decoding="async" loading="eager" src="https://raw.githubusercontent.com/tailwindlabs/heroicons/v2.2.0/optimized/24/outline/identification.svg"/></span>Mon profil professionnel</a>
+</nav>
+<div class="madic-unified-foot">Espace sécurisé MADIC</div>
+</aside>
+<div class="madic-unified-content">
+<header>
+<a class="brand" href="connexion.html">MADI<span>C</span> <small>PORTAIL</small></a>
+<nav aria-label="Navigation du compte" class="toplinks">
+<a aria-label="Notifications" class="madic-top-notification" href="#cricNotificationsPanel" title="Notifications"><span aria-hidden="true"><img alt="" aria-hidden="true" class="madic-heroicon" decoding="async" loading="eager" src="https://raw.githubusercontent.com/tailwindlabs/heroicons/v2.2.0/optimized/24/outline/bell.svg"/></span><span class="madic-top-notification-count" hidden=""></span></a>
+<a href="dashboard.html">Mon espace</a>
+<div aria-label="Langue / Language" class="madic-lang-controls" role="group">
+<button aria-label="Français" data-lang="fr" type="button">
+                FR</button><button aria-label="English" data-lang="en" type="button">
+                EN
+              </button>
+</div>
+</nav>
+</header>
+<main class="madic-cric-wrap" hidden="" id="cricMain">
+<div class="madic-cric-head" aria-label="Identité et espace professionnel">
+<div class="madic-cric-identity"><span aria-hidden="true" class="madic-cric-avatar">CRIC</span><div class="madic-cric-identity-copy">
+<p class="madic-cric-kicker">ESPACE PROFESSIONNEL CRIC</p>
+<h1 id="cricWelcome">Bienvenue</h1>
+<p class="muted" id="cricLicense">Numéro CRIC : -</p>
+<p class="muted" id="cricSpace"></p>
+</div></div>
+<button class="secondary" id="cricLogout" type="button">
+              Déconnexion
+            </button>
+</div>
+<section aria-label="Synthèse professionnelle" class="madic-v2-summary" id="madicDashboardSummary">
+<div class="madic-v2-stat">
+<span aria-hidden="true" class="madic-v2-stat-icon"><img alt="" aria-hidden="true" class="madic-heroicon" decoding="async" loading="eager" src="https://raw.githubusercontent.com/tailwindlabs/heroicons/v2.2.0/optimized/24/outline/document-text.svg"/></span><span class="madic-v2-stat-label">Demandes de services</span><strong data-madic-stat="madicServiceTotalCount">—</strong>
+</div>
+<div class="madic-v2-stat">
+<span aria-hidden="true" class="madic-v2-stat-icon"><img alt="" aria-hidden="true" class="madic-heroicon" decoding="async" loading="eager" src="https://raw.githubusercontent.com/tailwindlabs/heroicons/v2.2.0/optimized/24/outline/inbox-arrow-down.svg"/></span><span class="madic-v2-stat-label">Demandes reçues</span><strong data-madic-stat="madicServiceReceivedCount">—</strong>
+</div>
+<div class="madic-v2-stat">
+<span aria-hidden="true" class="madic-v2-stat-icon"><img alt="" aria-hidden="true" class="madic-heroicon" decoding="async" loading="eager" src="https://raw.githubusercontent.com/tailwindlabs/heroicons/v2.2.0/optimized/24/outline/bell-alert.svg"/></span><span class="madic-v2-stat-label">Notifications</span><strong data-madic-stat="cricNotificationsCount">—</strong>
+</div>
+<div class="madic-v2-stat">
+<span aria-hidden="true" class="madic-v2-stat-icon"><img alt="" aria-hidden="true" class="madic-heroicon" decoding="async" loading="eager" src="https://raw.githubusercontent.com/tailwindlabs/heroicons/v2.2.0/optimized/24/outline/envelope.svg"/></span><span class="madic-v2-stat-label">Messages non lus</span><strong data-madic-stat="cricMessagesUnreadBadge">—</strong>
+</div>
+</section>
+<p aria-live="polite" class="madic-cric-notice" id="cricAccess" role="status"></p>
+<section aria-labelledby="madicQuickTitle" class="madic-quick-section" id="madicQuickNavigation"><h2 id="madicQuickTitle">Accès rapides</h2><div aria-label="Raccourcis vers les modules" class="madic-quick-grid"><a class="madic-quick-card madic-quick-profile" href="#madicQuickProfile"><span aria-hidden="true" class="madic-quick-icon"><img alt="" aria-hidden="true" class="madic-heroicon" decoding="async" loading="eager" src="https://raw.githubusercontent.com/tailwindlabs/heroicons/v2.2.0/optimized/24/outline/identification.svg"/></span><span class="madic-quick-label" data-madic-en="Professional profile" data-madic-fr="Mon profil professionnel">Mon profil professionnel</span><span aria-hidden="true" class="madic-quick-arrow"><img alt="" aria-hidden="true" class="madic-heroicon" decoding="async" loading="eager" src="https://raw.githubusercontent.com/tailwindlabs/heroicons/v2.2.0/optimized/24/outline/arrow-right.svg"/></span></a><a class="madic-quick-card madic-quick-clients" href="#madicQuickClients"><span aria-hidden="true" class="madic-quick-icon"><img alt="" aria-hidden="true" class="madic-heroicon" decoding="async" loading="eager" src="https://raw.githubusercontent.com/tailwindlabs/heroicons/v2.2.0/optimized/24/outline/users.svg"/></span><span class="madic-quick-label" data-madic-en="Client management" data-madic-fr="Gestion des clients">Gestion des clients</span><span aria-hidden="true" class="madic-quick-arrow"><img alt="" aria-hidden="true" class="madic-heroicon" decoding="async" loading="eager" src="https://raw.githubusercontent.com/tailwindlabs/heroicons/v2.2.0/optimized/24/outline/arrow-right.svg"/></span></a><a class="madic-quick-card madic-quick-cases" href="#madicQuickCases"><span aria-hidden="true" class="madic-quick-icon"><img alt="" aria-hidden="true" class="madic-heroicon" decoding="async" loading="eager" src="https://raw.githubusercontent.com/tailwindlabs/heroicons/v2.2.0/optimized/24/outline/folder-open.svg"/></span><span class="madic-quick-label" data-madic-en="Case tracking" data-madic-fr="Suivi des dossiers">Suivi des dossiers</span><span aria-hidden="true" class="madic-quick-arrow"><img alt="" aria-hidden="true" class="madic-heroicon" decoding="async" loading="eager" src="https://raw.githubusercontent.com/tailwindlabs/heroicons/v2.2.0/optimized/24/outline/arrow-right.svg"/></span></a><a class="madic-quick-card madic-quick-appointments" href="#madicQuickAppointments"><span aria-hidden="true" class="madic-quick-icon"><img alt="" aria-hidden="true" class="madic-heroicon" decoding="async" loading="eager" src="https://raw.githubusercontent.com/tailwindlabs/heroicons/v2.2.0/optimized/24/outline/calendar-days.svg"/></span><span class="madic-quick-label" data-madic-en="Appointments" data-madic-fr="Rendez-vous">Rendez-vous</span><span aria-hidden="true" class="madic-quick-arrow"><img alt="" aria-hidden="true" class="madic-heroicon" decoding="async" loading="eager" src="https://raw.githubusercontent.com/tailwindlabs/heroicons/v2.2.0/optimized/24/outline/arrow-right.svg"/></span></a><a class="madic-quick-card madic-quick-billing" href="#madicQuickBilling"><span aria-hidden="true" class="madic-quick-icon"><img alt="" aria-hidden="true" class="madic-heroicon" decoding="async" loading="eager" src="https://raw.githubusercontent.com/tailwindlabs/heroicons/v2.2.0/optimized/24/outline/document-text.svg"/></span><span class="madic-quick-label" data-madic-en="Billing" data-madic-fr="Facturation CRIC">Facturation CRIC</span><span aria-hidden="true" class="madic-quick-arrow"><img alt="" aria-hidden="true" class="madic-heroicon" decoding="async" loading="eager" src="https://raw.githubusercontent.com/tailwindlabs/heroicons/v2.2.0/optimized/24/outline/arrow-right.svg"/></span></a><a class="madic-quick-card madic-quick-finances" href="#madicQuickFinances"><span aria-hidden="true" class="madic-quick-icon"><img alt="" aria-hidden="true" class="madic-heroicon" decoding="async" loading="eager" src="https://raw.githubusercontent.com/tailwindlabs/heroicons/v2.2.0/optimized/24/outline/chart-bar-square.svg"/></span><span class="madic-quick-label" data-madic-en="Financial management" data-madic-fr="Gestion financière">Gestion financière</span><span aria-hidden="true" class="madic-quick-arrow"><img alt="" aria-hidden="true" class="madic-heroicon" decoding="async" loading="eager" src="https://raw.githubusercontent.com/tailwindlabs/heroicons/v2.2.0/optimized/24/outline/arrow-right.svg"/></span></a><a class="madic-quick-card madic-quick-deadlines" href="#madicQuickDeadlines"><span aria-hidden="true" class="madic-quick-icon"><img alt="" aria-hidden="true" class="madic-heroicon" decoding="async" loading="eager" src="https://raw.githubusercontent.com/tailwindlabs/heroicons/v2.2.0/optimized/24/outline/clock.svg"/></span><span class="madic-quick-label" data-madic-en="Deadlines" data-madic-fr="Échéances">Échéances</span><span aria-hidden="true" class="madic-quick-arrow"><img alt="" aria-hidden="true" class="madic-heroicon" decoding="async" loading="eager" src="https://raw.githubusercontent.com/tailwindlabs/heroicons/v2.2.0/optimized/24/outline/arrow-right.svg"/></span></a><a class="madic-quick-card madic-quick-messaging" href="#madicQuickMessaging"><span aria-hidden="true" class="madic-quick-icon"><img alt="" aria-hidden="true" class="madic-heroicon" decoding="async" loading="eager" src="https://raw.githubusercontent.com/tailwindlabs/heroicons/v2.2.0/optimized/24/outline/chat-bubble-left-right.svg"/></span><span class="madic-quick-label" data-madic-en="Secure messaging" data-madic-fr="Messagerie sécurisée">Messagerie sécurisée</span><span aria-hidden="true" class="madic-quick-arrow"><img alt="" aria-hidden="true" class="madic-heroicon" decoding="async" loading="eager" src="https://raw.githubusercontent.com/tailwindlabs/heroicons/v2.2.0/optimized/24/outline/arrow-right.svg"/></span></a></div></section>
+<section aria-labelledby="madicServiceRequestsHeading" class="panel madic-service-panel" hidden="" id="madicServiceRequestsPanel">
+<div class="madic-service-head">
+<h2 id="madicServiceRequestsHeading">
+                Demandes de services
+                <span class="madic-service-badge" hidden="" id="madicServicePendingBadge">0</span>
+</h2>
+<button class="secondary" id="madicServiceRefresh" type="button">
+                Actualiser
+              </button>
+</div>
+<div class="madic-service-create">
+<button aria-expanded="false" class="secondary" id="madicServiceCreateToggle" type="button">
+                + Nouvelle demande de service
+              </button>
+<form hidden="" id="madicServiceCreateForm">
+<label for="madicServiceClient">Client existant</label><select id="madicServiceClient" required=""></select>
+<p aria-live="polite" id="madicServiceIntakeState" role="status"></p>
+<label for="madicServiceType">Type de service</label><select id="madicServiceType" required="">
+<option value="consultation">Consultation initiale</option>
+<option value="proposition">Proposition personnalisée</option>
+</select>
+<label for="madicServicePayment">Mode de paiement déclaré</label><select id="madicServicePayment" required="">
+<option value="interac">Virement Interac</option>
+<option value="portail">MADIC Portail</option>
+<option value="especes">Espèces</option>
+</select>
+<label for="madicServicePaymentNote">Référence ou note (facultatif)</label><input id="madicServicePaymentNote" maxlength="500" placeholder="Référence ou date du paiement"/>
+<p class="muted">
+                  Le mode choisi est déclaré par le CRIC. Il ne confirme pas
+                  automatiquement la réception des fonds.
+                </p>
+<button id="madicServiceCreateSubmit" type="submit">
+                  Créer la demande
+                </button>
+</form>
+</div>
+<div aria-label="Synthèse des demandes" class="madic-service-overview">
+<div>
+<small>Total des demandes</small><strong id="madicServiceTotalCount">—</strong>
+</div>
+<div>
+<small>Demandes reçues</small><strong id="madicServiceReceivedCount">—</strong>
+</div>
+<div>
+<small>Autres statuts</small><strong id="madicServiceOtherCount">—</strong>
+</div>
+</div>
+<div class="madic-service-toolbar">
+<label for="madicServiceFilter">Afficher</label><select id="madicServiceFilter">
+<option value="all">Toutes les demandes</option>
+<option value="received">Demandes reçues</option>
+<option value="signed">Contrats signés</option></select><label for="madicServiceSearch">Rechercher</label><input autocomplete="off" id="madicServiceSearch" placeholder="Nom du client" type="search"/>
+</div>
+<p aria-live="polite" id="madicServiceNotice" role="status">
+              Chargement des demandes…
+            </p>
+<div class="madic-service-list" id="madicServiceList"></div>
+</section>
+<section aria-labelledby="cricNotificationsHeading" class="panel madic-cric-notifications" hidden="" id="cricNotificationsPanel">
+<div class="madic-cric-notifications-head">
+<h2 id="cricNotificationsHeading">
+                Notifications des clients
+                <span class="madic-cric-count" hidden="" id="cricNotificationsCount">0</span>
+</h2>
+<button class="secondary" id="cricNotificationsRefresh" type="button">
+                Actualiser
+              </button>
+</div>
+<p aria-live="polite" id="cricNotificationsSummary">
+              Chargement des notifications…
+            </p>
+<details class="madic-cric-notifications-details">
+<summary>
+                Afficher / masquer l’historique des notifications
+              </summary>
+<ul class="madic-cric-notifications-list" id="cricNotificationsList"></ul>
+</details>
+</section>
+<section aria-labelledby="cricReminderHeading" class="panel" hidden="" id="cricReminderPanel">
+<div class="madic-reminder-head">
+<h2 id="cricReminderHeading"><img alt="" aria-hidden="true" class="madic-heroicon" decoding="async" loading="eager" src="https://raw.githubusercontent.com/tailwindlabs/heroicons/v2.2.0/optimized/24/outline/bell-alert.svg"/>Mes rappels prioritaires</h2>
+<a href="echeances-cric.html">Voir toutes les échéances →</a>
+</div>
+<p aria-live="polite" id="cricReminderSummary">
+              Chargement des rappels…
+            </p>
+<ul id="cricReminderList"></ul>
+</section>
+<div class="madic-cric-grid">
+<section class="panel madic-cric-card">
+<h2 id="madicQuickProfile">Mon profil professionnel</h2>
+<p>
+                Personnalisez les invitations de votre cabinet avec vos
+                coordonnées et votre logo.
+              </p>
+<a class="madic-cric-action" href="profil-professionnel-cric.html">Compléter mon profil →</a>
+</section>
+<section class="panel madic-cric-card">
+<h2 id="madicQuickClients">Gestion des clients</h2>
+<p>
+                Clients associés à votre espace professionnel et invitations.
+              </p>
+<a class="madic-cric-action" hidden="" href="gestion-clients-cric.html" id="cricClientsLink">Gérer mes clients →</a>
+<p class="muted" id="cricClientsPending">
+                Accès en préparation : isolation des clients par CRIC à
+                finaliser.
+              </p>
+</section>
+<section class="panel madic-cric-card">
+<h2 id="madicQuickCases">Suivi visuel des dossiers</h2>
+<p>
+                Tableau Kanban de votre cabinet, avec changement de statut par
+                glisser-déposer ou sélection.
+              </p>
+<a class="madic-cric-action" hidden="" href="kanban-cric.html" id="cricKanbanLink">Ouvrir le Kanban →</a>
+<p class="muted" id="cricKanbanPending">
+                Accessible uniquement aux cabinets CRIC autorisés.
+              </p>
+</section>
+<section class="panel madic-cric-card" hidden="" id="cricAppointmentsCard">
+<h2 id="madicQuickAppointments">Rendez-vous et consultations</h2>
+<p>
+                Disponibilités, réservations et consultations de votre cabinet.
+              </p>
+<a class="madic-cric-action" href="rendez-vous-cric.html">Gérer les rendez-vous →</a>
+</section>
+<section class="panel madic-cric-card">
+<h2 id="madicQuickBilling">Facturation CRIC</h2>
+<p>Créer, émettre et suivre les factures de votre cabinet.</p>
+<a class="madic-cric-action" hidden="" href="facturation-cric.html" id="cricInvoicesLink">Gérer mes factures →</a>
+<p class="muted" id="cricInvoicesPending">
+                Accessible aux CRIC autorisés.
+              </p>
+</section>
+<section class="panel madic-cric-card">
+<h2 id="madicQuickFinances">Gestion financière</h2>
+<p>
+                Temps et honoraires, facturation, paiements, fidéicommis,
+                comptabilité et rapports.
+              </p>
+<a class="madic-cric-action" hidden="" href="finances-cric.html" id="cricFinancesLink">Accéder à la gestion financière →</a>
+<p class="muted" id="cricFinancesPending">
+                Accessible aux CRIC autorisés.
+              </p>
+</section>
+<section class="panel madic-cric-card">
+<h2 id="madicQuickDeadlines">Échéances et rappels</h2>
+<p>Suivez les dates limites des dossiers de votre cabinet.</p>
+<a class="madic-cric-action" hidden="" href="echeances-cric.html" id="cricDeadlinesLink">Consulter les échéances →</a>
+<p class="muted" id="cricDeadlinesPending">
+                Accessible aux CRIC autorisés.
+              </p>
+</section>
+<section class="panel madic-cric-card" hidden="" id="cricMessagingCard">
+<h2 id="madicQuickMessaging">
+                Messagerie sécurisée
+                <span aria-label="Messages non lus" class="madic-cric-count" hidden="" id="cricMessagesUnreadBadge">0</span>
+</h2>
+<p>
+                Échangez des messages confidentiels avec les clients de votre
+                cabinet.
+              </p>
+<p aria-live="polite" id="cricMessagesUnreadSummary">
+                Vérification des messages…
+              </p>
+<button class="secondary" id="cricMessagesRefresh" type="button">
+                Actualiser les messages
+              </button>
+<a class="madic-cric-action" href="messagerie-cric.html">Ouvrir la messagerie →</a>
+</section>
+<section class="panel madic-cric-card">
+<h2>Gestion des dossiers CRIC</h2>
+<p>Création et suivi des dossiers, documents et décisions.</p>
+<a class="madic-cric-action" hidden="" href="gestion-dossiers-cric.html" id="cricDossiersLink">Gérer mes dossiers →</a>
+<p class="muted" id="cricDossiersPending">
+                Accès en préparation : isolation des dossiers par CRIC à
+                finaliser.
+              </p>
+</section>
+<section class="panel madic-cric-card" hidden="" id="cricEvaluationsCard">
+<h2>Outils d’évaluation en immigration</h2>
+<p>
+                Accédez aux évaluations Entrée express, Québec et Saskatchewan.
+              </p>
+<p>
+<a class="madic-cric-action" href="evaluations.html">Évaluation Entrée express →</a>
+</p>
+<p>
+<a class="madic-cric-action" href="quebec.html">Évaluation Québec →</a>
+</p>
+<p>
+<a class="madic-cric-action" href="saskatchewan.html">Évaluation Saskatchewan →</a>
+</p>
+</section>
+</div>
+<p hidden="" id="cricOwnerArea">
+<a href="administration.html">Administration générale MADIC →</a>
+</p>
+</main>
+<p class="madic-cric-wrap" id="cricMessage" role="status">
+          Vérification de votre compte CRIC…
+        </p>
+<footer>© MAD Immigration Canadienne · Portail sécurisé</footer>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="assets/config.js"></script>
+<script src="assets/cric-dashboard.js"></script>
+<script src="assets/madic-notifications.js"></script>
+<script src="assets/madic-service-journey.js"></script>
+</div>
+</div>
+<script src="assets/madic-datahubz-unified.js"></script>
+<script defer="" src="assets/madic-i18n-cric-dashboard.js"></script>
+<script defer src="assets/madic-cric-overview.js"></script>
+</body>
+</html>

@@ -1,0 +1,263 @@
+/* Base styles formerly inherited from assets/style.css */
+:root { font-family: Inter, system-ui, -apple-system, Segoe UI, sans-serif; color: #e9f1ff; background: #07101f; }
+* { box-sizing: border-box; }
+body { margin: 0; min-height: 100vh; background: radial-gradient(ellipse at 85% 5%, #15385a 0, transparent 42%), #07101f; }
+a { color: #5ad5f2; }
+h2 { font-size: 1.25rem; margin: 0 0 16px; }
+
+/* Styles specific to index.html, extracted without altering their values */
+
+      .entry {
+        max-width: 760px;
+        margin: 12vh auto;
+        padding: 24px;
+        text-align: center;
+      }
+      .entry h1 {
+        font-size: 2.2rem;
+      }
+      .entry a {
+        display: inline-block;
+        background: #32bdd7;
+        color: #06152a;
+        padding: 14px 22px;
+        margin: 12px;
+        border-radius: 12px;
+        text-decoration: none;
+        font-weight: bold;
+      }
+      .entry a.alt {
+        background: #263f5c;
+        color: #fff;
+      }
+    
+
+      /* MADIC : extension de la page d'accueil, sans modification des accès */
+      body {
+        margin: 0;
+        background: #07101f;
+        color: #f0f7fb;
+        font-family:
+          Inter,
+          system-ui,
+          -apple-system,
+          Segoe UI,
+          sans-serif;
+      }
+      .entry {
+        margin: 0 auto !important;
+        padding: 95px 24px 75px !important;
+        max-width: 850px !important;
+      }
+      .entry h1 {
+        font-size: clamp(2rem, 4vw, 2.7rem) !important;
+      }
+      .entry p {
+        line-height: 1.65;
+      }
+      .entry a {
+        margin: 8px !important;
+      }
+      .madic-public {
+        max-width: 1140px;
+        margin: 0 auto;
+        padding: 12px 24px 90px;
+      }
+      .madic-workspace {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 34px;
+        align-items: center;
+        padding: 52px 0 60px;
+        border-top: 1px solid #294456;
+      }
+      .madic-kicker {
+        color: #63d1df;
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        line-height: 1.7;
+      }
+      .madic-workspace h2 {
+        font-size: clamp(2rem, 3.5vw, 3.2rem);
+        line-height: 1.13;
+        letter-spacing: -0.035em;
+        margin: 15px 0 20px;
+      }
+      .madic-workspace h2 span {
+        color: #61d2df;
+      }
+      .madic-lead {
+        color: #c0d4df;
+        line-height: 1.8;
+        font-size: 16px;
+      }
+      .madic-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 25px;
+      }
+      .madic-action {
+        display: inline-block;
+        text-decoration: none;
+        background: #32bdd7;
+        color: #06152a;
+        padding: 14px 19px;
+        border-radius: 12px;
+        font-weight: 750;
+      }
+      .madic-action.secondary {
+        background: #263f5c;
+        color: #fff;
+        border: 1px solid #3a5a72;
+      }
+      .madic-preview {
+        background: linear-gradient(145deg, #123448, #0c2234);
+        border: 1px solid #31566b;
+        border-radius: 20px;
+        padding: 23px;
+      }
+      .madic-preview h3 {
+        font-size: 18px;
+        margin: 0 0 20px;
+      }
+      .madic-stats {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 9px;
+        margin-bottom: 21px;
+      }
+      .madic-stat {
+        background: #1b3b4d;
+        border: 1px solid #315366;
+        border-radius: 12px;
+        padding: 14px 10px;
+      }
+      .madic-stat strong {
+        display: block;
+        font-size: 27px;
+      }
+      .madic-stat small {
+        color: #c1d4dd;
+        font-size: 11px;
+      }
+      .madic-task {
+        background: #173749;
+        border: 1px solid #2b4b5e;
+        border-radius: 11px;
+        padding: 12px;
+        margin: 9px 0;
+      }
+      .madic-task-top {
+        display: flex;
+        justify-content: space-between;
+        gap: 8px;
+        flex-wrap: wrap;
+        font-size: 12px;
+      }
+      .madic-task-top span {
+        color: #c1d4dd;
+        font-size: 11px;
+      }
+      .madic-track {
+        height: 6px;
+        background: #355768;
+        border-radius: 10px;
+        overflow: hidden;
+        margin-top: 12px;
+      }
+      .madic-track i {
+        display: block;
+        height: 100%;
+        background: #68d6c7;
+        border-radius: 10px;
+      }
+      .madic-disclaimer {
+        color: #a7becc;
+        font-size: 11px;
+        line-height: 1.5;
+      }
+      .madic-benefits {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+        margin-bottom: 65px;
+      }
+      .madic-benefits article {
+        background: #10263a;
+        border: 1px solid #2b4558;
+        border-radius: 15px;
+        padding: 20px;
+      }
+      .madic-benefits small {
+        color: #63d1df;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+      }
+      .madic-benefits h3 {
+        margin: 11px 0;
+      }
+      .madic-benefits p {
+        color: #b9d0db;
+        line-height: 1.6;
+        font-size: 13px;
+      }
+      .madic-offer {
+        border: 1px solid #31566b;
+        background: #10263a;
+        border-radius: 18px;
+        padding: 27px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+      }
+      .madic-offer h2 {
+        margin: 0 0 8px;
+      }
+      .madic-offer p {
+        margin: 0;
+        color: #b9d0db;
+        line-height: 1.6;
+      }
+      @media (max-width: 800px) {
+        .madic-workspace {
+          grid-template-columns: 1fr;
+        }
+        .madic-benefits {
+          grid-template-columns: 1fr;
+        }
+        .madic-offer {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+      }
+      @media (max-width: 480px) {
+        .entry {
+          padding: 70px 15px 50px !important;
+        }
+        .madic-public {
+          padding: 0 15px 60px;
+        }
+        .madic-stats {
+          gap: 5px;
+        }
+        .madic-stat {
+          padding: 10px 7px;
+        }
+        .madic-stat strong {
+          font-size: 22px;
+        }
+      }
+    
+
+/* Former inline styles */
+.index-inline-1 { color: #36c7e5 }
+.index-inline-2 { width: 65% }
+.index-inline-3 { width: 38% }
+.index-inline-4 { width: 90% }
+
+/* Page-specific FR/EN language controls */
+.index-language-switch{display:flex;justify-content:flex-end;gap:5px;max-width:1140px;margin:0 auto;padding:20px 24px 0}.index-language-switch button{cursor:pointer;border:1px solid #3a5a72;background:#263f5c;color:#fff;border-radius:8px;padding:8px 14px;font:700 0.85rem Inter,system-ui,sans-serif}.index-language-switch button[aria-pressed="true"]{background:#32bdd7;color:#06152a;border-color:#32bdd7}.index-language-switch button:focus-visible{outline:3px solid #efb544;outline-offset:3px}
+.madic-workspace h2 .index-heading-first{color:inherit}

@@ -1,0 +1,617 @@
+<!doctype html>
+
+<html lang="fr-CA">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width,initial-scale=1" name="viewport" />
+    <meta content="noindex,nofollow" name="robots" />
+    <title
+      data-en="Initial consultation agreement | MADIC"
+      data-fr="Contrat de consultation initiale | MADIC"
+    >
+      Contrat de consultation initiale | MADIC
+    </title>
+    <link href="img/favicon.png" rel="icon" />
+    <link href="assets/contrat_initial.css" rel="stylesheet" />
+  </head>
+  <body data-contract-kind="initial">
+    <header class="top madic-unified-header">
+      <a href="gestion-dossiers-cric.html">← Outils CRIC</a>
+      <a class="brand" href="gestion-dossiers-cric.html"
+        >MADIC<span
+          class="brand-subtitle"
+          data-en="Professional workspace"
+          data-fr="Espace professionnel"
+          >Espace professionnel</span
+        ></a
+      ><span data-en="Contracts" data-fr="Contrats">Contrats</span>
+      <nav class="toplinks">
+        <a
+          data-en="Sign out"
+          data-fr="Déconnexion"
+          data-madic-signout="true"
+          href="connexion-client-cric.html"
+          id="madicHeaderSignout"
+          >Déconnexion</a
+        ><a
+          data-en="My space"
+          data-fr="Mon espace"
+          href="dashboard-client-cric.html"
+          >Mon espace</a
+        >
+      </nav>
+      <div
+        aria-label="Outils du compte"
+        class="madic-hero-tools"
+        data-aria-label-en="Account tools"
+        data-aria-label-fr="Outils du compte"
+      >
+        <a
+          aria-label="Notifications de messagerie"
+          class="madic-hero-notifications"
+          data-aria-label-en="Message notifications"
+          data-aria-label-fr="Notifications de messagerie"
+          data-title-en="Message notifications"
+          data-title-fr="Notifications de messagerie"
+          href="messagerie-client-cric.html"
+          title="Notifications de messagerie"
+          ><svg
+            aria-hidden="true"
+            fill="none"
+            height="22"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1.8"
+            viewbox="0 0 24 24"
+            width="22"
+          >
+            <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"></path>
+            <path d="M10 21h4"></path>
+          </svg>
+          <span class="madic-hero-unread" hidden="" id="madicHeroUnread"
+            >0</span
+          ></a
+        >
+        <div
+          aria-label="Langue du portail"
+          class="madic-language-switch"
+          data-aria-label-en="Portal language"
+          data-aria-label-fr="Langue du portail"
+          id="madicHeroLanguage"
+        >
+          <button aria-pressed="true" data-lang="fr" type="button">FR</button
+          ><button aria-pressed="false" data-lang="en" type="button">EN</button>
+        </div>
+      </div>
+    </header>
+    <main>
+      <div class="intro">
+        <p class="eyebrow">MAD Immigration Canadienne Inc. · CRIC R712951</p>
+        <h1
+          data-en="Initial consultation agreement"
+          data-fr="Contrat de consultation initiale"
+        >
+          Contrat de consultation initiale
+        </h1>
+        <p
+          data-en="Preparation of a draft agreement based on the supplied document. Consultant review and approval are required before signing."
+          data-fr="Préparation d'un projet de contrat à partir du document transmis. Vérification et approbation par le consultant obligatoires avant toute signature."
+        >
+          Préparation d'un projet de contrat à partir du document transmis.
+          Vérification et approbation par le consultant obligatoires avant toute
+          signature.
+        </p>
+      </div>
+      <p
+        class="status"
+        data-en="Verifying your professional access…"
+        data-fr="Vérification de votre accès professionnel…"
+        id="contractStatus"
+        role="status"
+      >
+        Vérification de votre accès professionnel…
+      </p>
+      <div hidden="" id="contractWorkspace">
+        <form class="panel" id="contractForm">
+          <h2
+            data-en="Agreement information"
+            data-fr="Renseignements du contrat"
+          >
+            Renseignements du contrat
+          </h2>
+          <div class="fields">
+            <label
+              ><span data-en="Associated client" data-fr="Client associé"
+                >Client associé</span
+              ><select id="contractClient" name="client_id" required="">
+                <option
+                  data-en="Select a client"
+                  data-fr="Sélectionner un client"
+                  value=""
+                >
+                  Sélectionner un client
+                </option>
+              </select></label
+            ><label
+              ><span data-en="Case" data-fr="Dossier">Dossier</span
+              ><select id="contractDossier" name="dossier_id">
+                <option
+                  data-en="Select a case"
+                  data-fr="Sélectionner un dossier"
+                  value=""
+                >
+                  Sélectionner un dossier
+                </option>
+              </select></label
+            ><label
+              ><span data-en="Client last name" data-fr="Nom du client"
+                >Nom du client</span
+              ><input name="nom" required="" /></label
+            ><label
+              ><span data-en="Client first name" data-fr="Prénom du client"
+                >Prénom du client</span
+              ><input name="prenom" /></label
+            ><label
+              ><span data-en="Email" data-fr="Courriel">Courriel</span
+              ><input name="courriel" type="email" /></label
+            ><label
+              ><span data-en="Phone" data-fr="Téléphone">Téléphone</span
+              ><input name="telephone" type="tel" /></label
+            ><label
+              ><span
+                data-en="Residential address"
+                data-fr="Adresse de résidence"
+                >Adresse de résidence</span
+              ><textarea name="adresse" rows="2"></textarea></label
+            ><label
+              ><span data-en="Date of birth" data-fr="Date de naissance"
+                >Date de naissance</span
+              ><input name="naissance" type="date" /></label
+            ><label
+              ><span data-en="Agreement date" data-fr="Date du contrat"
+                >Date du contrat</span
+              ><input name="date" required="" type="date" /></label
+            ><label
+              ><span data-en="Place of signing" data-fr="Lieu de signature"
+                >Lieu de signature</span
+              ><input
+                data-placeholder-en="City"
+                data-placeholder-fr="Ville"
+                name="lieu"
+                placeholder="Ville" /></label
+            ><label
+              ><span
+                data-en="Purpose of consultation"
+                data-fr="Objet de la consultation"
+                >Objet de la consultation</span
+              ><input
+                data-placeholder-en="Immigration plan or objective"
+                data-placeholder-fr="Projet ou objectif d’immigration"
+                name="objet"
+                placeholder="Projet ou objectif d’immigration" /></label
+            ><label
+              ><span
+                data-en="Hourly fees (CAD)"
+                data-fr="Honoraires horaires ($ CA)"
+                >Honoraires horaires ($ CA)</span
+              ><input
+                min="0"
+                name="tarif"
+                step="0.01"
+                type="number"
+                value="180"
+            /></label>
+          </div>
+          <div class="actions">
+            <button
+              data-en="Refresh preview"
+              data-fr="Actualiser l’aperçu"
+              id="contractPreview"
+              type="button"
+            >
+              Actualiser l’aperçu</button
+            ><button
+              data-en="Print / save as PDF"
+              data-fr="Imprimer / enregistrer en PDF"
+              id="contractPrint"
+              type="button"
+            >
+              Imprimer / enregistrer en PDF
+            </button>
+          </div>
+          <p
+            class="hint"
+            data-en="The printed PDF is an unsigned draft. No automatic saving or electronic signing takes place."
+            data-fr="Le PDF obtenu par impression est un brouillon non signé. Aucune sauvegarde ni signature électronique n’est effectuée automatiquement."
+          >
+            Le PDF obtenu par impression est un brouillon non signé. Aucune
+            sauvegarde ni signature électronique n’est effectuée
+            automatiquement.
+          </p>
+        </form>
+        <article class="document" id="contractDocument">
+          <div class="doc-head">
+            <span data-en="RCIC" data-fr="CRIC · RCIC">CRIC · RCIC</span
+            ><span>MAD IMMIGRATION CANADIENNE</span>
+          </div>
+          <h2
+            data-en="Initial consultation agreement"
+            data-fr="Contrat de consultation initiale"
+          >
+            Contrat de consultation initiale
+          </h2>
+          <section class="filled" id="contractFilled"></section>
+          <h3
+            data-en="Terms and conditions of the supplied template"
+            data-fr="Clauses et conditions du modèle transmis"
+          >
+            Clauses et conditions du modèle transmis
+          </h3>
+          <p
+            class="hint"
+            data-en="Reference transcription: variable fields and sample amounts must be checked and adjusted before use. Bracketed references indicate information from the previous case."
+            data-fr="Transcription de référence : les champs variables et les montants de l’exemple doivent être vérifiés et adaptés avant utilisation. Les mentions entre crochets signalent les données propres à l’ancien dossier."
+          >
+            Transcription de référence : les champs variables et les montants de
+            l’exemple doivent être vérifiés et adaptés avant utilisation. Les
+            mentions entre crochets signalent les données propres à l’ancien
+            dossier.
+          </p>
+          <section class="source-page">
+            <div
+              class="page-index"
+              data-en="Source document · page 1/2"
+              data-fr="Document source · page 1/2"
+            >
+              Document source · page 1/2
+            </div>
+            <p
+              data-en="Mr. Moussa ABDI DIRANEH, RCIC***, on"
+              data-fr="M. Moussa ABDI DIRANEH, CRIC*** , le"
+            >
+              M. Moussa ABDI DIRANEH, CRIC*** , le
+            </p>
+            <p>1622 Rue Barré, Saint-Laurent,</p>
+            <p
+              data-en="H4L 4M8, Quebec, Canada."
+              data-fr="H4L 4M8, Québec, Canada."
+            >
+              H4L 4M8, Québec, Canada.
+            </p>
+            <p>514-442-3076</p>
+            <p>madimmigrationcanadienne@gmail.com</p>
+            <p>https://madimmigrationcanadienne.netlify.app/</p>
+            <p data-en="I, the undersigned," data-fr="Je soussigné(e),">
+              Je soussigné(e),
+            </p>
+            <p
+              data-en="request a consultation from MAD Immigration Canadienne"
+              data-fr="demande une consultation de la part de la compagnie de MAD Immigration Canadienne"
+            >
+              demande une consultation de la part de la compagnie de MAD
+              Immigration Canadienne
+            </p>
+            <p
+              data-en="(MADIC) Inc., located at Suite 202, 1622 Rue Barré, H4L 4M8, Saint-Laurent, Quebec,"
+              data-fr="(MADIC) inc. située au Bureau 202, 1622 Rue Barré, H4L 4M8, Saint-Laurent, Québec,"
+            >
+              (MADIC) inc. située au Bureau 202, 1622 Rue Barré, H4L 4M8,
+              Saint-Laurent, Québec,
+            </p>
+            <p>Canada.</p>
+            <p
+              data-en="The purpose of this initial consultation agreement is to obtain professional advice from the"
+              data-fr="L'objet du contrat de consultation initiale est d’obtenir un avis professionnel de la part du"
+            >
+              L'objet du contrat de consultation initiale est d’obtenir un avis
+              professionnel de la part du
+            </p>
+            <p
+              data-en="consultant regarding my immigration plans or objectives in Canada."
+              data-fr="consultant sur mes projets ou objectifs d’immigration au Canada."
+            >
+              consultant sur mes projets ou objectifs d’immigration au Canada.
+            </p>
+            <p
+              data-en="I agree to pay non-refundable fees of one hundred and eighty Canadian dollars (CAD 180) per hour of"
+              data-fr="Je m’engage à payer des honoraires de cent quatre-vingts (180 $ CA) par heure de"
+            >
+              Je m’engage à payer des honoraires de cent quatre-vingts (180 $
+              CA) par heure de
+            </p>
+            <p
+              data-en="consultation, representing the work performed by the Consultant or by"
+              data-fr="consultation, non remboursables, représentant le travail effectué par le Consultant ou par"
+            >
+              consultation, non remboursables, représentant le travail effectué
+              par le Consultant ou par
+            </p>
+            <p
+              data-en="their associates, all members in good standing of the College of Immigration and"
+              data-fr="ses associés, tous membres en règle du Collège des consultants en immigration et en"
+            >
+              ses associés, tous membres en règle du Collège des consultants en
+              immigration et en
+            </p>
+            <p
+              data-en="Citizenship Consultants (CICC)."
+              data-fr="citoyenneté (CCIC)."
+            >
+              citoyenneté (CCIC).
+            </p>
+            <p
+              data-en="The client declares that they are not represented by another authorized representative in relation"
+              data-fr="La cliente déclare ne pas être représentée par un autre représentant autorisé relativement"
+            >
+              La cliente déclare ne pas être représentée par un autre
+              représentant autorisé relativement
+            </p>
+            <p
+              data-en="to the same matter. If applicable, they agree to notify the consultant before the start"
+              data-fr="au même dossier. Le cas échéant, elle s’engage à en informer le consultant avant le début"
+            >
+              au même dossier. Le cas échéant, elle s’engage à en informer le
+              consultant avant le début
+            </p>
+            <p
+              data-en="of the consultation. These conditions comply with the laws in force in the province of"
+              data-fr="de la consultation. Ces conditions respectent les lois en vigueur dans la province du"
+            >
+              de la consultation. Ces conditions respectent les lois en vigueur
+              dans la province du
+            </p>
+            <p data-en="Quebec, Canada." data-fr="Québec au Canada.">
+              Québec au Canada.
+            </p>
+            <p
+              data-en="Payments may be made by bank draft, personal cheque or direct"
+              data-fr="Les paiements peuvent être effectués par traite bancaire, chèque personnel ou dépôt"
+            >
+              Les paiements peuvent être effectués par traite bancaire, chèque
+              personnel ou dépôt
+            </p>
+            <p
+              data-en="deposit, or by Interac e-Transfer to madimmigrationcanadienne@gmail.com, or by international"
+              data-fr="direct, ou par virement Interac à madimmigrationcanadienne@gmail.com, par virement"
+            >
+              direct, ou par virement Interac à
+              madimmigrationcanadienne@gmail.com, par virement
+            </p>
+            <p
+              data-en="bank transfer to the trust account details provided when needed."
+              data-fr="bancaire international au compte en fidéicommis qui vous sera envoyé au besoin."
+            >
+              bancaire international au compte en fidéicommis qui vous sera
+              envoyé au besoin.
+            </p>
+            <p
+              data-en="Please note that Mr. Moussa ABDI DIRANEH, who will conduct this initial"
+              data-fr="Veuillez noter que M. Moussa ABDI DIRANEH qui doit exécuter la présente consultation"
+            >
+              Veuillez noter que M. Moussa ABDI DIRANEH qui doit exécuter la
+              présente consultation
+            </p>
+            <p
+              data-en="consultation, is a member in good standing of the College of Immigration and Citizenship Consultants"
+              data-fr="initiale est membre en règle du collège des consultants en immigration et en citoyenneté"
+            >
+              initiale est membre en règle du collège des consultants en
+              immigration et en citoyenneté
+            </p>
+            <p
+              data-en="and, as such, is required to comply with its bylaws, code of professional conduct"
+              data-fr="et, à ce titre, est tenu de respecter ses règlements administratifs, son code de déontologie"
+            >
+              et, à ce titre, est tenu de respecter ses règlements
+              administratifs, son code de déontologie
+            </p>
+            <p
+              data-en="and related regulations."
+              data-fr="et les règlements qui s’y rattachent."
+            >
+              et les règlements qui s’y rattachent.
+            </p>
+            <p
+              data-en="The College regulates immigration and citizenship consultants in order to"
+              data-fr="Le Collège des consultants encadre les consultants en immigration et citoyenneté afin de"
+            >
+              Le Collège des consultants encadre les consultants en immigration
+              et citoyenneté afin de
+            </p>
+            <p
+              data-en="protect the public, including through the enforcement of professional standards, the code of"
+              data-fr="protéger le public, notamment par l’application de normes professionnelles, du code de"
+            >
+              protéger le public, notamment par l’application de normes
+              professionnelles, du code de
+            </p>
+            <p
+              data-en="professional conduct and continuing education requirements."
+              data-fr="déontologie et des exigences de formation continue."
+            >
+              déontologie et des exigences de formation continue.
+            </p>
+            <p
+              data-en="This initial consultation does not constitute a representation mandate. Any"
+              data-fr="La présente consultation initiale ne constitue pas un mandat de représentation. Tout"
+            >
+              La présente consultation initiale ne constitue pas un mandat de
+              représentation. Tout
+            </p>
+            <p
+              data-en="additional immigration or citizenship service will require signing a separate"
+              data-fr="service additionnel en immigration ou citoyenneté nécessitera la signature d’un contrat"
+            >
+              service additionnel en immigration ou citoyenneté nécessitera la
+              signature d’un contrat
+            </p>
+            <p
+              data-en="service agreement in accordance with the CICC Code of Professional Conduct."
+              data-fr="de services distinct conformément au Code de déontologie du CCIC."
+            >
+              de services distinct conformément au Code de déontologie du CCIC.
+            </p>
+            <p
+              data-en="The client understands that the initial consultation consists solely of a preliminary"
+              data-fr="La cliente comprend que la consultation initiale consiste uniquement en une évaluation"
+            >
+              La cliente comprend que la consultation initiale consiste
+              uniquement en une évaluation
+            </p>
+            <p
+              data-en="assessment and that no outcome or approval by IRCC can be guaranteed."
+              data-fr="préliminaire et qu’aucun résultat ou approbation par IRCC ne peut être garanti."
+            >
+              préliminaire et qu’aucun résultat ou approbation par IRCC ne peut
+              être garanti.
+            </p>
+          </section>
+          <section class="source-page">
+            <div
+              class="page-index"
+              data-en="Source document · page 2/2"
+              data-fr="Document source · page 2/2"
+            >
+              Document source · page 2/2
+            </div>
+            <p
+              data-en="All information provided during this consultation will remain"
+              data-fr="Tous les renseignements fournis dans le cadre de cette consultation demeureront"
+            >
+              Tous les renseignements fournis dans le cadre de cette
+              consultation demeureront
+            </p>
+            <p
+              data-en="confidential in accordance with the Code of Professional Conduct of the College of Immigration and"
+              data-fr="confidentiels conformément au Code de déontologie du Collège des consultants en"
+            >
+              confidentiels conformément au Code de déontologie du Collège des
+              consultants en
+            </p>
+            <p
+              data-en="Citizenship Consultants."
+              data-fr="immigration et en citoyenneté."
+            >
+              immigration et en citoyenneté.
+            </p>
+            <p
+              data-en="A signed copy of this agreement will be retained in the consultant’s records and"
+              data-fr="Une copie signée du présent contrat sera conservée dans les dossiers du consultant et"
+            >
+              Une copie signée du présent contrat sera conservée dans les
+              dossiers du consultant et
+            </p>
+            <p data-en="provided to the client." data-fr="remise à la cliente.">
+              remise à la cliente.
+            </p>
+            <p data-en="Important note" data-fr="Note importante">
+              Note importante
+            </p>
+            <p
+              data-en="The initial consultation will officially begin upon receipt of payment of the"
+              data-fr="La consultation initiale débutera officiellement après réception du paiement des"
+            >
+              La consultation initiale débutera officiellement après réception
+              du paiement des
+            </p>
+            <p
+              data-en="required fees of CAD 180 / HOUR."
+              data-fr="honoraires exigés de 180$ CA / HEURE."
+            >
+              honoraires exigés de 180$ CA / HEURE.
+            </p>
+            <p data-en="Please initial" data-fr="Apposer vos initiales">
+              Apposer vos initiales
+            </p>
+            <p>Signatures</p>
+            <p
+              data-en="I understand and accept the terms of this agreement, which may be amended to"
+              data-fr="Je comprends et accepte les conditions du présent contrat, lequel peut être modifié afin"
+            >
+              Je comprends et accepte les conditions du présent contrat, lequel
+              peut être modifié afin
+            </p>
+            <p
+              data-en="improve the consultation process and the satisfaction of both parties."
+              data-fr="d’améliorer l’accomplissement de la consultation et la satisfaction des deux parties."
+            >
+              d’améliorer l’accomplissement de la consultation et la
+              satisfaction des deux parties.
+            </p>
+            <p
+              data-en="Moussa ABDI DIRANEH, RCIC Client information:"
+              data-fr="Moussa ABDI DIRANEH, CRIC Renseignements sur la cliente :"
+            >
+              Moussa ABDI DIRANEH, CRIC Renseignements sur la cliente :
+            </p>
+            <p
+              data-en="Licence: R712951 Last name:"
+              data-fr="Permis : R712951 Nom :"
+            >
+              Permis : R712951 Nom :
+            </p>
+            <p data-en="First name:" data-fr="Prénom :">Prénom :</p>
+            <p data-en="Date:" data-fr="Date :">Date :</p>
+            <p data-en="Date of birth:" data-fr="Date de naissance :">
+              Date de naissance :
+            </p>
+            <p data-en="Place:" data-fr="Lieu :">Lieu :</p>
+            <p data-en="Phone:" data-fr="Téléphone :">Téléphone :</p>
+            <p data-en="Signature: SIGN" data-fr="Signature : SIGN">
+              Signature : SIGN
+            </p>
+            <p data-en="Email:" data-fr="Courriel :">Courriel :</p>
+            <p data-en="Residential address:" data-fr="Adresse de résidence :">
+              Adresse de résidence :
+            </p>
+            <p data-en="Date:" data-fr="Date :">Date :</p>
+            <p data-en="Place:" data-fr="Lieu :">Lieu :</p>
+            <p
+              data-en="Client signature: SIGN"
+              data-fr="Signature cliente : SIGN"
+            >
+              Signature cliente : SIGN
+            </p>
+          </section>
+          <section class="signature">
+            <h3
+              data-en="Signatures – to be obtained"
+              data-fr="Signatures - à recueillir"
+            >
+              Signatures - à recueillir
+            </h3>
+            <div>
+              <p
+                data-en="Client signature: __________________________"
+                data-fr="Signature du client : __________________________"
+              >
+                Signature du client : __________________________
+              </p>
+              <p
+                data-en="Date and place: __________________________"
+                data-fr="Date et lieu : __________________________"
+              >
+                Date et lieu : __________________________
+              </p>
+              <p
+                data-en="RCIC signature: __________________________"
+                data-fr="Signature du CRIC : __________________________"
+              >
+                Signature du CRIC : __________________________
+              </p>
+              <p
+                data-en="Date and place: __________________________"
+                data-fr="Date et lieu : __________________________"
+              >
+                Date et lieu : __________________________
+              </p>
+            </div>
+          </section>
+        </article>
+      </div>
+    </main>
+    <script defer="" src="assets/config.js"></script>
+    <script defer="" src="assets/contrat_initial.js"></script>
+  </body>
+</html>

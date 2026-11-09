@@ -1,0 +1,119 @@
+<!doctype html>
+
+<html lang="fr-CA">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width,initial-scale=1" name="viewport" />
+    <meta content="noindex,nofollow" name="robots" />
+    <link href="img/favicon.png" rel="icon" />
+    <title>Kanban des dossiers | MADIC</title>
+    <link href="assets/style.css" rel="stylesheet" />
+    <link href="assets/kanban-cric.css" rel="stylesheet" />
+    <link href="assets/madic-datahubz-unified.css" rel="stylesheet" />
+    <link href="assets/madic-datahubz-modules.css" rel="stylesheet" />
+  </head>
+  <body class="madic-unified" data-page="kanban-cric">
+    <a class="madic-skip-link" href="#main-content">Aller au contenu principal</a>
+    <div class="madic-unified-layout">
+      <aside aria-label="Navigation du portail" class="madic-unified-sidebar">
+        <div class="madic-unified-brand">
+          <span class="madic-unified-monogram">M</span
+          ><span
+            ><strong>MADIC PORTAIL</strong
+            ><small>Espace professionnel</small></span
+          >
+        </div>
+        <div class="madic-unified-caption">NAVIGATION</div>
+        <nav>
+          <a data-madic-page="cric-dashboard.html" href="cric-dashboard.html"
+            ><span aria-hidden="true">▦</span>Vue d’ensemble</a
+          ><a
+            data-madic-page="gestion-clients-cric.html"
+            href="gestion-clients-cric.html"
+            ><span aria-hidden="true">♙</span>Clients</a
+          ><a
+            data-madic-page="gestion-dossiers-cric.html"
+            href="gestion-dossiers-cric.html"
+            ><span aria-hidden="true">▤</span>Dossiers</a
+          ><a
+            data-madic-page="demandes-documents-cric.html"
+            href="demandes-documents-cric.html"
+            ><span aria-hidden="true">▣</span>Documents</a
+          ><a data-madic-page="echeances-cric.html" href="echeances-cric.html"
+            ><span aria-hidden="true">◷</span>Échéances</a
+          ><a
+            data-madic-page="facturation-cric.html"
+            href="facturation-cric.html"
+            ><span aria-hidden="true">▥</span>Facturation</a
+          ><a data-madic-page="finances-cric.html" href="finances-cric.html"
+            ><span aria-hidden="true">◈</span>Finances</a
+          ><a data-madic-page="gestion-cric.html" href="gestion-cric.html"
+            ><span aria-hidden="true">⚙</span>Cabinet CRIC</a
+          >
+        </nav>
+        <div class="madic-unified-foot">Espace sécurisé MADIC</div>
+      </aside>
+      <div class="madic-unified-content">
+        <header>
+          <a class="brand" href="cric-dashboard.html"
+            >MADI<span>C</span> <small>PORTAIL CRIC</small></a
+          >
+          <nav class="toplinks">
+            <a href="cric-dashboard.html">Mon espace CRIC</a>
+          </nav>
+        </header>
+        <main class="kb-shell" id="main-content">
+          <div class="kb-top">
+            <div>
+              <p class="kb-eyebrow">ESPACE PROFESSIONNEL CRIC</p>
+              <h1>Suivi visuel des dossiers</h1><p class="madic-page-lead">Visualisez les dossiers par statut et mettez à jour leur progression.</p>
+              <p id="kbSpace">Vérification des droits…</p>
+            </div>
+            <button class="secondary" id="kbLogout" type="button">
+              Déconnexion
+            </button>
+          </div>
+          <p aria-live="polite" id="kbMessage" role="status"></p>
+          <section hidden="" id="kbWorkspace"><div class="madic-kb-hero"><div><span class="madic-kb-kicker">PILOTAGE DES DOSSIERS</span><h2>Votre activité, en un coup d’œil.</h2><p>Suivez les dossiers autorisés et faites progresser leur traitement par étape.</p></div><div class="madic-kb-hero-symbol" aria-hidden="true">▦</div></div><div class="madic-kb-summary" aria-label="Indicateurs des dossiers"><article><span>Total des dossiers</span><strong id="kbTotal">0</strong><small>Dans votre cabinet</small></article><article><span>En attente</span><strong id="kbSummaryWaiting">0</strong><small>À prendre en charge</small></article><article><span>Actifs</span><strong id="kbSummaryActive">0</strong><small>En cours de traitement</small></article><article><span>Fermés</span><strong id="kbSummaryClosed">0</strong><small>Dossiers clôturés</small></article></div>
+            <nav class="madic-kanban-links" aria-label="Navigation des dossiers"><a href="gestion-dossiers-cric.html">Outils professionnels CRIC</a><a href="gestion-clients-cric.html">Gestion des clients</a></nav>
+            <div class="kb-tools">
+              <label for="kbSearch"
+                >Rechercher un dossier
+                <input
+                  id="kbSearch"
+                  placeholder="Référence ou catégorie"
+                  type="search" /></label
+              ><button class="secondary" id="kbRefresh" type="button">
+                Actualiser</button
+              ><a href="gestion-clients-cric.html">Créer un dossier →</a>
+            </div>
+            <p class="kb-help">
+              Déplacez une carte entre les colonnes ou utilisez sa liste de
+              statut. Les modifications sont enregistrées dans Supabase selon
+              les droits de votre cabinet.
+            </p>
+            <div class="kb-board" id="kbBoard">
+              <section class="kb-column" data-status="en_attente">
+                <h2>En attente <span id="kbCount-en_attente"></span></h2>
+                <div class="kb-list" id="kbList-en_attente"></div>
+              </section>
+              <section class="kb-column" data-status="actif">
+                <h2>Actif <span id="kbCount-actif"></span></h2>
+                <div class="kb-list" id="kbList-actif"></div>
+              </section>
+              <section class="kb-column" data-status="ferme">
+                <h2>Fermé <span id="kbCount-ferme"></span></h2>
+                <div class="kb-list" id="kbList-ferme"></div>
+              </section>
+            </div>
+          </section>
+        </main>
+        <footer>© MADIC PORTAIL · Données gérées par votre cabinet CRIC</footer>
+        <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+        <script src="assets/config.js"></script>
+        <script src="assets/kanban-cric.js"></script>
+        <script src="assets/madic-datahubz-unified.js"></script>
+      </div>
+    </div>
+  </body>
+</html>

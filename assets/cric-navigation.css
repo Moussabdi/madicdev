@@ -1,0 +1,48 @@
+
+.cric-return-link{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;padding:10px 15px;border-radius:9px;white-space:normal}
+
+/* MADIC - Modernisation 1/9 : gestion des clients CRIC. Styles limites a cette page. */
+body.madic-unified[data-page="gestion-clients-cric"]{--cl-ink:#173451;--cl-muted:#587087;--cl-border:#dbe6f1;--cl-bg:#f2f6fb;background:var(--cl-bg);color:var(--cl-ink)}
+body.madic-unified[data-page="gestion-clients-cric"] .madic-unified-layout{grid-template-columns:244px minmax(0,1fr)}
+body.madic-unified[data-page="gestion-clients-cric"] .madic-unified-sidebar{background:linear-gradient(175deg,#092342,#0b3152 60%,#08213d);padding:22px 14px;gap:16px;border-right:1px solid #244867}
+body.madic-unified[data-page="gestion-clients-cric"] .madic-unified-sidebar nav a{min-height:43px;border-radius:10px;color:#c8dce9!important}
+body.madic-unified[data-page="gestion-clients-cric"] .madic-unified-sidebar nav a[aria-current="page"]{background:#1a6482!important;color:#fff!important;border:1px solid #62cbd5;box-shadow:inset 3px 0 #81e7e5}
+body.madic-unified[data-page="gestion-clients-cric"] .madic-clients-icon{display:block;width:21px;height:21px;filter:brightness(0) invert(1);opacity:.9}
+body.madic-unified[data-page="gestion-clients-cric"] .madic-unified-content{background:var(--cl-bg);padding:0 clamp(15px,2.4vw,38px) 45px}
+body.madic-unified[data-page="gestion-clients-cric"] .madic-unified-content>header{background:#fff;border:0;border-bottom:1px solid var(--cl-border);border-radius:0;margin:0 calc(-1 * clamp(15px,2.4vw,38px)) 20px;padding:18px 28px;box-shadow:0 3px 16px #12304c0a}
+body.madic-unified[data-page="gestion-clients-cric"] .madic-unified-content>header a{color:#173f61!important;font-weight:700}
+body.madic-unified[data-page="gestion-clients-cric"] .cric-shell{max-width:1480px;margin:0 auto 45px;padding:0}
+body.madic-unified[data-page="gestion-clients-cric"] .madic-clients-hero{background:linear-gradient(120deg,#102e50,#15547a);color:#fff;border-radius:18px;padding:25px 28px;box-shadow:0 12px 28px #173b641b;align-items:center;margin:0 0 17px}
+body.madic-unified[data-page="gestion-clients-cric"] .madic-clients-hero h1{color:#fff;margin:6px 0 12px;font-size:clamp(1.45rem,2.3vw,2.1rem)}
+body.madic-unified[data-page="gestion-clients-cric"] .madic-clients-hero a{color:#d9f6ff!important}
+body.madic-unified[data-page="gestion-clients-cric"] .madic-clients-hero .cric-eyebrow{color:#8ce5e6;letter-spacing:.12em}
+body.madic-unified[data-page="gestion-clients-cric"] .madic-clients-hero #spaceName{color:#e3f2ff}
+body.madic-unified[data-page="gestion-clients-cric"] .madic-clients-hero .secondary{background:#184f70;color:#fff!important;border:1px solid #8eb9d0;text-decoration:none}
+body.madic-unified[data-page="gestion-clients-cric"] .madic-clients-shortcuts{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0 20px}
+body.madic-unified[data-page="gestion-clients-cric"] .madic-clients-shortcuts a{display:inline-flex;align-items:center;padding:10px 15px;background:#fff;border:1px solid var(--cl-border);border-radius:11px;color:#155577!important;font-weight:750;text-decoration:none;box-shadow:0 3px 12px #12345a0b}
+body.madic-unified[data-page="gestion-clients-cric"] .madic-clients-shortcuts a:hover{background:#e7f4fb;border-color:#8fbdd4}
+body.madic-unified[data-page="gestion-clients-cric"] .madic-unified-content .madic-clients-panel{background:#fff!important;color:var(--cl-ink)!important;border:1px solid var(--cl-border)!important;border-radius:18px;box-shadow:0 7px 25px #173b6410;padding:24px;margin:0 0 18px}
+body.madic-unified[data-page="gestion-clients-cric"] .madic-clients-panel h2{color:var(--cl-ink);font-size:1.2rem}
+body.madic-unified[data-page="gestion-clients-cric"] .madic-section-kicker{display:block;color:#197fa0;font-size:.72rem;letter-spacing:.13em;font-weight:800;margin-bottom:8px}
+body.madic-unified[data-page="gestion-clients-cric"] .madic-clients-panel p,body.madic-unified[data-page="gestion-clients-cric"] .madic-clients-panel label{color:#3e5871}
+body.madic-unified[data-page="gestion-clients-cric"] .madic-clients-panel a{color:#126c94!important}
+body.madic-unified[data-page="gestion-clients-cric"] .madic-clients-panel input:not([type="checkbox"]),body.madic-unified[data-page="gestion-clients-cric"] .madic-clients-panel select{background:#fff!important;color:#183451!important;border:1px solid #c7d7e5!important;border-radius:10px;padding:11px 12px}
+body.madic-unified[data-page="gestion-clients-cric"] .madic-clients-panel input::placeholder{color:#73869a}
+body.madic-unified[data-page="gestion-clients-cric"] .madic-clients-panel th{background:#edf5fa!important;color:#27445f!important;border-color:#dce6f1!important;font-size:.82rem}
+body.madic-unified[data-page="gestion-clients-cric"] .madic-clients-panel td{color:#27445f!important;border-color:#e2eaf2!important;overflow-wrap:anywhere}
+body.madic-unified[data-page="gestion-clients-cric"] .madic-clients-panel tbody tr:hover{background:#f6fafd}
+body.madic-unified[data-page="gestion-clients-cric"] .madic-clients-panel button:not(.secondary){background:#157da1!important;color:#fff!important;border:1px solid #157da1!important}
+body.madic-unified[data-page="gestion-clients-cric"] .madic-clients-panel button.secondary{background:#e8f2f8!important;color:#194c6d!important;border:1px solid #c9deec!important}
+body.madic-unified[data-page="gestion-clients-cric"] .madic-clients-panel button:disabled{opacity:.55}
+body.madic-unified[data-page="gestion-clients-cric"] .madic-clients-panel .cric-scroll{border:1px solid #e0e9f2;border-radius:12px;overflow-x:auto}
+body.madic-unified[data-page="gestion-clients-cric"] .madic-clients-panel .cric-scroll table{min-width:650px}
+body.madic-unified[data-page="gestion-clients-cric"] .madic-list-panel .cric-heading{align-items:end}
+body.madic-unified[data-page="gestion-clients-cric"] .madic-list-panel #search{width:min(100%,350px)}
+body.madic-unified[data-page="gestion-clients-cric"] .madic-invite-panel .cric-form{align-items:end}
+body.madic-unified[data-page="gestion-clients-cric"] .madic-invite-panel #cricInviteLink{margin-bottom:8px}
+body.madic-unified[data-page="gestion-clients-cric"] .madic-unified-content :is(a,button,input,select):focus-visible{outline:3px solid #188db7;outline-offset:3px}
+body.madic-unified[data-page="gestion-clients-cric"] .madic-unified-content [hidden]{display:none!important}
+body.madic-unified[data-page="gestion-clients-cric"] footer{color:#637a91}
+@media(max-width:850px){body.madic-unified[data-page="gestion-clients-cric"] .madic-unified-layout{grid-template-columns:minmax(0,1fr)}body.madic-unified[data-page="gestion-clients-cric"] .madic-unified-sidebar{position:relative;height:auto;padding:13px}body.madic-unified[data-page="gestion-clients-cric"] .madic-unified-sidebar nav{flex-direction:row;overflow-x:auto}body.madic-unified[data-page="gestion-clients-cric"] .madic-unified-sidebar nav a{white-space:nowrap}body.madic-unified[data-page="gestion-clients-cric"] .madic-unified-content{padding:0 15px 32px}body.madic-unified[data-page="gestion-clients-cric"] .madic-unified-content>header{margin:0 -15px 17px}}
+@media(max-width:620px){body.madic-unified[data-page="gestion-clients-cric"] .madic-clients-hero{padding:18px}body.madic-unified[data-page="gestion-clients-cric"] .madic-unified-content .madic-clients-panel{padding:16px}body.madic-unified[data-page="gestion-clients-cric"] .madic-invite-panel .cric-form{grid-template-columns:1fr}body.madic-unified[data-page="gestion-clients-cric"] .madic-unified-content>header{flex-wrap:wrap;padding:13px 16px}body.madic-unified[data-page="gestion-clients-cric"] .madic-list-panel #search{width:100%}}
+@media(prefers-reduced-motion:reduce){body.madic-unified[data-page="gestion-clients-cric"] *{scroll-behavior:auto!important;transition:none!important}}

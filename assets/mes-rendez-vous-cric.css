@@ -1,0 +1,3025 @@
+/* Styles autonomes : mes-rendez-vous-cric.html */
+
+/* Source consolidee : style(20261107-040838).css */
+:root {
+  font-family:
+    Inter,
+    system-ui,
+    -apple-system,
+    Segoe UI,
+    sans-serif;
+  color: #e9f1ff;
+  background: #07101f;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(ellipse at 85% 5%, #15385a 0, transparent 42%), #07101f;
+}
+a {
+  color: #5ad5f2;
+}
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22px max(24px, calc((100vw - 1100px) / 2));
+  border-bottom: 1px solid #26344b;
+  gap: 12px;
+}
+header a {
+  text-decoration: none;
+}
+.brand {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: white;
+  letter-spacing: 0.05em;
+}
+.brand span {
+  color: #48d5ec;
+}
+.toplinks {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+}
+main {
+  max-width: 1100px;
+  margin: 45px auto;
+  padding: 0 24px;
+}
+.auth {
+  max-width: 460px;
+  margin: 60px auto;
+}
+.panel {
+  background: #101e33;
+  border: 1px solid #2a425d;
+  border-radius: 18px;
+  padding: 30px;
+  box-shadow: 0 16px 45px #0004;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+}
+.muted {
+  color: #a5b7cc;
+}
+.eyebrow {
+  color: #59d7ec;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+}
+h1 {
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  margin: 10px 0 20px;
+}
+h2 {
+  font-size: 1.25rem;
+  margin: 0 0 16px;
+}
+label {
+  display: block;
+  font-size: 0.9rem;
+  margin: 16px 0 7px;
+}
+input,
+select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #47617b;
+  border-radius: 9px;
+  background: #09192c;
+  color: white;
+  font: inherit;
+}
+input:focus,
+select:focus {
+  outline: 2px solid #48d5ec;
+}
+button,
+.btn {
+  background: #38bfd8;
+  color: #041322;
+  border: 0;
+  border-radius: 9px;
+  padding: 12px 17px;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+}
+button:hover,
+.btn:hover {
+  background: #76e0ef;
+}
+button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.secondary {
+  background: #223a52;
+  color: white;
+}
+.actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: 20px;
+}
+.notice {
+  margin: 16px 0;
+  min-height: 22px;
+  color: #f3c77b;
+}
+.ok {
+  color: #77e6b2;
+}
+.danger {
+  color: #ffa3a3;
+}
+.hidden {
+  display: none !important;
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.9rem;
+}
+td,
+th {
+  padding: 11px;
+  border-bottom: 1px solid #30415a;
+  text-align: left;
+}
+footer {
+  text-align: center;
+  padding: 30px;
+  color: #8399b1;
+  font-size: 0.85rem;
+}
+small {
+  color: #a5b7cc;
+}
+code {
+  overflow-wrap: anywhere;
+}
+@media (max-width: 620px) {
+  header {
+    padding: 18px 22px;
+  }
+  .toplinks {
+    gap: 8px;
+    font-size: 0.85rem;
+  }
+  .panel {
+    padding: 22px;
+  }
+}
+
+
+/* Source consolidee : madic-appointments(8).css */
+.madic-rdv-shell {
+  max-width: 1120px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+.madic-rdv-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+.madic-rdv-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+.madic-rdv-grid label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  min-width: 0;
+}
+.madic-rdv-grid input,
+.madic-rdv-grid select,
+.madic-rdv-grid textarea {
+  width: 100%;
+  box-sizing: border-box;
+}
+.madic-rdv-wide {
+  grid-column: 1/-1;
+}
+.madic-rdv-table {
+  overflow-x: auto;
+  margin-top: 0.75rem;
+}
+.madic-rdv-table table {
+  width: 100%;
+  min-width: 700px;
+}
+.madic-rdv-actions {
+  display: flex;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.madic-rdv-actions button,
+.madic-rdv-actions select {
+  width: auto !important;
+  min-width: 0 !important;
+  max-width: 180px !important;
+  display: inline-block !important;
+  margin: 0 !important;
+  padding: 0.4rem 0.65rem !important;
+  white-space: nowrap;
+}
+.madic-rdv-muted {
+  color: #667085;
+  font-size: 0.92rem;
+}
+.madic-rdv-shell .panel {
+  margin: 1rem 0;
+  padding: 1.3rem;
+}
+@media (max-width: 700px) {
+  .madic-rdv-grid {
+    grid-template-columns: 1fr;
+  }
+  .madic-rdv-wide {
+    grid-column: auto;
+  }
+}
+
+/* Calendrier hebdomadaire responsive : aucune donnee personnelle des autres clients. */
+.madic-rdv-calendar-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin: 1rem 0;
+}
+.madic-rdv-calendar-controls button {
+  width: auto !important;
+  margin: 0 !important;
+  padding: 0.5rem 0.75rem !important;
+}
+.madic-rdv-calendar {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+.madic-rdv-day {
+  min-width: 0;
+  padding: 0.75rem 0.5rem;
+  border: 1px solid #d9e2ec;
+  border-radius: 12px;
+  background: #f8fafc;
+}
+.madic-rdv-day h3 {
+  font-size: 0.85rem;
+  margin: 0 0 0.8rem;
+  text-transform: capitalize;
+}
+.madic-rdv-day p {
+  font-size: 0.8rem;
+  margin: 0;
+}
+.madic-rdv-slot-button {
+  width: 100% !important;
+  max-width: none !important;
+  white-space: normal !important;
+  line-height: 1.3 !important;
+  padding: 0.6rem 0.25rem !important;
+  margin: 0.25rem 0 !important;
+  font-size: 0.8rem !important;
+}
+.madic-rdv-actions {
+  gap: 0.65rem !important;
+}
+.madic-rdv-actions button {
+  margin: 0.15rem 0 !important;
+}
+.madic-rdv-status {
+  font-weight: 600;
+}
+.madic-rdv-status-confirmed {
+  color: #087443;
+}
+.madic-rdv-status-requested {
+  color: #8a5700;
+}
+.madic-rdv-status-declined,
+.madic-rdv-status-cancelled {
+  color: #687387;
+}
+@media (max-width: 1000px) {
+  .madic-rdv-calendar {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+@media (max-width: 620px) {
+  .madic-rdv-calendar {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .madic-rdv-calendar-controls {
+    justify-content: center;
+  }
+}
+
+/* Etape 5 : lisibilite et accessibilite du planning CRIC. */
+.madic-rdv-shell .panel{border-radius:16px;min-width:0}
+.madic-rdv-shell .panel h2{margin-top:0;line-height:1.35}
+.madic-rdv-shell .madic-rdv-table{border:1px solid #dce6ed;border-radius:12px}
+.madic-rdv-shell .madic-rdv-table th,.madic-rdv-shell .madic-rdv-table td{padding:12px 14px;vertical-align:middle}
+.madic-rdv-shell .madic-rdv-table tbody tr:hover{background:rgba(56,189,212,.05)}
+.madic-rdv-shell :is(button,input,select,a):focus-visible{outline:3px solid #38bfd8;outline-offset:3px}
+.madic-rdv-shell button:disabled{opacity:.55;cursor:not-allowed}
+.madic-rdv-shell #rdvNotificationList>div{border-radius:10px;padding:12px 14px!important}
+@media(max-width:700px){.madic-rdv-shell{margin:1rem auto;padding:0 12px}.madic-rdv-shell .panel{padding:16px}.madic-rdv-top{align-items:flex-start}.madic-rdv-table{max-width:100%}}
+@media(prefers-reduced-motion:reduce){.madic-rdv-shell *{scroll-behavior:auto!important;transition:none!important}}
+
+/* Étape 5/9 — harmonisation finale des rendez-vous, sans dépendance ajoutée. */
+.madic-rdv-shell{width:100%;box-sizing:border-box}
+.madic-rdv-shell .panel{min-width:0;overflow-wrap:anywhere}
+.madic-rdv-shell .panel h2{font-size:clamp(1.05rem,1.5vw,1.3rem)}
+.madic-rdv-shell .madic-rdv-grid{align-items:end}
+.madic-rdv-shell .madic-rdv-grid label{font-weight:600;line-height:1.45}
+.madic-rdv-shell .madic-rdv-grid input,.madic-rdv-shell .madic-rdv-grid select{min-height:44px;border-radius:9px}
+.madic-rdv-shell .madic-rdv-grid input[readonly]{opacity:.85}
+.madic-rdv-shell .madic-rdv-table{overscroll-behavior-x:contain}
+.madic-rdv-shell .madic-rdv-table th{white-space:nowrap;text-align:left}
+.madic-rdv-shell .madic-rdv-table td{line-height:1.45}
+.madic-rdv-shell .madic-rdv-actions{min-width:135px}
+.madic-rdv-shell #rdvNotice{line-height:1.5}
+@media(max-width:700px){.madic-rdv-shell .madic-rdv-grid{grid-template-columns:minmax(0,1fr)}.madic-rdv-shell .madic-rdv-actions{min-width:0}}
+
+/* Etape 5 : agenda mensuel CRIC, styles limites a la page rendez-vous. */
+body[data-page="rendez-vous-cric"] .madic-rdv-shell{max-width:1400px}
+body[data-page="rendez-vous-cric"] .madic-rdv-planning-panel{background:#fff;color:#173b5b}
+.madic-rdv-planning-head{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;flex-wrap:wrap}
+.madic-rdv-planning-head h2{margin:4px 0 8px!important}
+.madic-rdv-planning-kicker{margin:0;color:#087b9c;font-size:.72rem;font-weight:800;letter-spacing:.13em}
+.madic-rdv-planning-controls{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.madic-rdv-planning-controls strong{min-width:155px;text-align:center;text-transform:capitalize}
+.madic-rdv-planning-controls button{width:auto!important;padding:8px 12px!important;min-height:38px}
+.madic-rdv-planning-legend{display:flex;gap:15px;flex-wrap:wrap;margin:15px 0;font-size:.82rem;color:#46617b}
+.madic-rdv-planning-legend span{display:inline-flex;align-items:center;gap:6px}
+.madic-rdv-legend-dot{display:inline-block;width:9px;height:9px;border-radius:50%}
+.madic-rdv-legend-dot.is-free{background:#07856e}.madic-rdv-legend-dot.is-requested{background:#d99b22}.madic-rdv-legend-dot.is-confirmed{background:#287cc2}.madic-rdv-legend-dot.is-closed{background:#8b9aad}
+.madic-rdv-month-weekdays,.madic-rdv-month-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px}
+.madic-rdv-month-weekdays span{text-align:center;font-weight:700;font-size:.8rem;padding:9px;color:#4a6075}
+.madic-rdv-month-day,.madic-rdv-month-empty{min-width:0;min-height:100px;border-radius:11px}
+body[data-page="rendez-vous-cric"] .madic-rdv-month-day{display:flex;flex-direction:column;align-items:flex-start;gap:8px;text-align:left;background:#f8fbfe!important;border:1px solid #d9e6ef!important;color:#183b59!important;padding:10px!important;font-weight:500;box-shadow:none}
+body[data-page="rendez-vous-cric"] .madic-rdv-month-day:hover{background:#edf8fc!important;border-color:#38bfd8!important}
+body[data-page="rendez-vous-cric"] .madic-rdv-month-day.is-today{border-color:#178cb4!important}
+body[data-page="rendez-vous-cric"] .madic-rdv-month-day.is-selected{outline:3px solid #38bfd8;outline-offset:0}
+.madic-rdv-month-day-summary{display:flex;flex-direction:column;align-items:flex-start;gap:3px;width:100%}
+.madic-rdv-month-day-summary em{font-style:normal;font-size:.69rem;line-height:1.3;padding:3px 6px;border-radius:6px;max-width:100%;overflow-wrap:anywhere}
+.madic-rdv-month-day-summary .is-free{background:#d9f6e9;color:#076b52}.madic-rdv-month-day-summary .is-requested{background:#fff0ce;color:#815b08}.madic-rdv-month-day-summary .is-confirmed{background:#dcefff;color:#195b94}.madic-rdv-month-day-summary .is-closed{background:#e8edf3;color:#536577}
+.madic-rdv-selected-day{border-top:1px solid #d9e6ef;margin-top:15px;padding-top:14px;line-height:1.55}
+.madic-rdv-selected-day p{margin:7px 0;color:#526b83}
+@media(max-width:700px){.madic-rdv-month-weekdays,.madic-rdv-month-grid{gap:3px}.madic-rdv-month-day,.madic-rdv-month-empty{min-height:66px}body[data-page="rendez-vous-cric"] .madic-rdv-month-day{padding:5px!important;font-size:.8rem}.madic-rdv-month-day-summary em{font-size:.57rem;padding:2px}.madic-rdv-planning-controls strong{min-width:120px}}
+
+
+/* Source consolidee : madic-client-sidebar(6).css */
+/* Identité MADIC : styles intégrés au tableau de bord */
+/* MADIC client dashboard v12-presentation only; original application hooks preserved. */
+body[data-page="cric-client-dashboard"] {
+  background:
+    radial-gradient(ellipse at 90% 0%, #123c57 0, transparent 35%),
+    radial-gradient(ellipse at 0% 80%, #0b2a38 0, transparent 45%), #07101f;
+  color: #e9f1ff;
+}
+body[data-page="cric-client-dashboard"] main {
+  max-width: 1180px;
+  margin: 30px auto 70px;
+  padding: 0 24px;
+}
+body[data-page="cric-client-dashboard"] header {
+  padding-left: max(24px, calc((100vw - 1180px) / 2));
+  padding-right: max(24px, calc((100vw - 1180px) / 2));
+  background: #08172aab;
+  backdrop-filter: blur(12px);
+}
+.madic-welcome-shell {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  min-height: 255px;
+  border: 1px solid #2b5368;
+  border-radius: 24px;
+  background: linear-gradient(110deg, #132e46 0%, #0e283d 58%, #103c4b 100%);
+  padding: 34px 40px;
+  margin-bottom: 22px;
+  box-shadow: 0 22px 55px #0004;
+}
+.madic-welcome-shell:before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 80% 50%, #3ed7d01d, transparent 40%);
+  pointer-events: none;
+}
+.madic-welcome-copy {
+  position: relative;
+  z-index: 2;
+  max-width: 690px;
+}
+.madic-kicker,
+.madic-overline {
+  font-size: 0.73rem;
+  letter-spacing: 0.16em;
+  font-weight: 800;
+  color: #67e2e4;
+}
+.madic-welcome-shell h1 {
+  font-size: clamp(1.75rem, 3.2vw, 2.65rem);
+  line-height: 1.2;
+  margin: 12px 0 10px;
+  max-width: 650px;
+}
+.madic-welcome-subtitle {
+  line-height: 1.65;
+  color: #bed0df;
+  max-width: 550px;
+  margin: 0;
+}
+.madic-welcome-shell .notice:empty {
+  display: none;
+}
+.madic-welcome-shell .notice {
+  margin: 10px 0 0;
+  min-height: 0;
+}
+.madic-hero-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 22px;
+}
+.madic-primary-action,
+.madic-ghost-action {
+  display: inline-flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 11px;
+  padding: 12px 17px;
+  text-decoration: none;
+  font-weight: 750;
+  font-size: 0.91rem;
+  transition:
+    transform 0.15s,
+    background 0.15s;
+}
+.madic-primary-action {
+  background: #48d4df;
+  color: #06202b;
+}
+.madic-primary-action:hover {
+  background: #83edf0;
+  transform: translateY(-2px);
+}
+.madic-ghost-action {
+  border: 1px solid #638093;
+  color: #e3f4fb;
+  background: #ffffff0b;
+}
+.madic-ghost-action:hover {
+  background: #ffffff19;
+  transform: translateY(-2px);
+}
+.madic-welcome-shell #logout {
+  position: absolute;
+  right: 20px;
+  top: 18px;
+  z-index: 3;
+  font-size: 0.82rem;
+  padding: 9px 12px;
+  border: 1px solid #ffffff40;
+  background: #0a2233cc;
+}
+.madic-hero-decoration {
+  position: absolute;
+  right: 25px;
+  top: 25px;
+  bottom: 0;
+  width: 280px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  opacity: 0.68;
+  pointer-events: none;
+}
+.madic-hero-mark {
+  font-size: 3.3rem;
+  letter-spacing: 0.04em;
+  font-weight: 900;
+  color: #e6fbff;
+  text-shadow: 0 10px 35px #0bf2f244;
+}
+.madic-hero-mark span {
+  color: #57dfdc;
+}
+.madic-hero-tag {
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  color: #a2e1e4;
+}
+.madic-orbit {
+  position: absolute;
+  border: 1px solid #70d9d95c;
+  border-radius: 50%;
+  width: 230px;
+  height: 230px;
+  transform: rotate(-25deg) scaleY(0.66);
+}
+.madic-orbit-two {
+  width: 290px;
+  height: 290px;
+  transform: rotate(35deg) scaleY(0.65);
+  border-color: #70d9d92d;
+}
+.madic-area-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 26px 0 17px;
+}
+.madic-area-heading h2 {
+  font-size: 1.5rem;
+  margin: 7px 0 6px;
+}
+.madic-area-heading p {
+  margin: 0;
+  font-size: 0.92rem;
+}
+body[data-page="cric-client-dashboard"] .madic-stack.madic-dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  align-items: stretch;
+}
+body[data-page="cric-client-dashboard"] .madic-dashboard-grid > .panel {
+  min-width: 0;
+  width: 100%;
+  margin: 0;
+  padding: 26px;
+  border-radius: 18px;
+  border: 1px solid #29465d;
+  background: linear-gradient(155deg, #13253a, #0e1d30);
+  box-shadow: 0 12px 35px #0002;
+  transition:
+    border-color 0.2s,
+    transform 0.2s,
+    box-shadow 0.2s;
+}
+body[data-page="cric-client-dashboard"] .madic-dashboard-grid > .panel:hover {
+  border-color: #3e8d9c;
+  box-shadow: 0 18px 40px #0004;
+}
+body[data-page="cric-client-dashboard"]
+  .madic-dashboard-grid
+  > .madic-feature-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
+  min-height: 215px;
+}
+body[data-page="cric-client-dashboard"] .madic-feature-card h2 {
+  font-size: 1.17rem;
+  line-height: 1.35;
+  margin: 10px 0;
+}
+body[data-page="cric-client-dashboard"] .madic-feature-card p {
+  line-height: 1.55;
+  font-size: 0.9rem;
+  margin: 0 0 18px;
+}
+body[data-page="cric-client-dashboard"] .madic-feature-card a {
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.89rem;
+  font-weight: 700;
+  text-underline-offset: 4px;
+}
+.madic-card-icon {
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #1d5c68;
+  color: #86f0ee;
+  border: 1px solid #398a8b;
+  border-radius: 13px;
+  font-size: 1.45rem;
+  font-weight: 600;
+}
+body[data-page="cric-client-dashboard"] .madic-card-form {
+  background: linear-gradient(150deg, #133f4c, #102839);
+  border-color: #357b80;
+}
+body[data-page="cric-client-dashboard"]
+  .madic-dashboard-grid
+  > .madic-detail-card {
+  grid-column: 1/-1;
+}
+body[data-page="cric-client-dashboard"]
+  .madic-detail-card
+  .madic-section-head
+  h2 {
+  margin: 0;
+}
+body[data-page="cric-client-dashboard"] .madic-detail-card h2 {
+  margin-bottom: 13px;
+}
+body[data-page="cric-client-dashboard"] .madic-detail-card h3 {
+  margin-top: 26px;
+  color: #d6f1f5;
+}
+body[data-page="cric-client-dashboard"] .madic-cabinet-card {
+  margin-bottom: 20px;
+  border-radius: 18px;
+}
+body[data-page="cric-client-dashboard"] .madic-dashboard-grid input,
+body[data-page="cric-client-dashboard"] .madic-dashboard-grid select {
+  max-width: 100%;
+}
+body[data-page="cric-client-dashboard"] .madic-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+}
+body[data-page="cric-client-dashboard"] .madic-msg-count {
+  vertical-align: middle;
+}
+body[data-page="cric-client-dashboard"] a:focus-visible,
+body[data-page="cric-client-dashboard"] button:focus-visible {
+  outline: 3px solid #82eff4;
+  outline-offset: 3px;
+}
+@media (max-width: 940px) {
+  body[data-page="cric-client-dashboard"] .madic-stack.madic-dashboard-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  body[data-page="cric-client-dashboard"] .madic-card-appointments {
+    grid-column: 1/-1;
+  }
+  .madic-hero-decoration {
+    opacity: 0.2;
+  }
+}
+@media (max-width: 650px) {
+  body[data-page="cric-client-dashboard"] main {
+    padding: 0 16px;
+    margin: 18px auto 45px;
+  }
+  body[data-page="cric-client-dashboard"] .madic-stack.madic-dashboard-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  body[data-page="cric-client-dashboard"] .madic-card-appointments {
+    grid-column: auto;
+  }
+  body[data-page="cric-client-dashboard"] .madic-dashboard-grid > .panel {
+    padding: 20px;
+  }
+  body[data-page="cric-client-dashboard"]
+    .madic-dashboard-grid
+    > .madic-feature-card {
+    min-height: 180px;
+  }
+  .madic-welcome-shell {
+    padding: 65px 22px 24px;
+    min-height: 0;
+    border-radius: 18px;
+  }
+  .madic-welcome-shell #logout {
+    right: 15px;
+    top: 15px;
+  }
+  .madic-hero-decoration {
+    display: none;
+  }
+  .madic-hero-actions a {
+    width: 100%;
+  }
+  .madic-area-heading h2 {
+    font-size: 1.3rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .madic-primary-action,
+  .madic-ghost-action,
+  body[data-page="cric-client-dashboard"] .madic-dashboard-grid > .panel {
+    transition: none;
+  }
+}
+
+/* MADIC v13-signature originale « boussole et parcours » ; aucun visuel tiers. */
+body[data-page="cric-client-dashboard"] {
+  background:
+    radial-gradient(ellipse at 100% 0%, #164253 0, transparent 37%),
+    linear-gradient(145deg, #07101f, #091c2c 62%, #07101f);
+}
+.madic-welcome-shell {
+  background: linear-gradient(117deg, #0c2739 0%, #113b47 64%, #123548 100%);
+  border-color: #3d6974;
+}
+.madic-welcome-shell:after {
+  content: "";
+  position: absolute;
+  width: 510px;
+  height: 510px;
+  border: 1px solid #80e5da18;
+  border-radius: 50%;
+  right: -145px;
+  top: -190px;
+  box-shadow:
+    0 0 0 55px #80e5da08,
+    0 0 0 110px #80e5da06;
+  pointer-events: none;
+}
+.madic-hero-decoration {
+  opacity: 1;
+  right: 40px;
+}
+.madic-orbit {
+  border-style: dashed;
+  border-color: #73d6d444;
+}
+.madic-hero-tag {
+  color: #b8e6e4;
+  text-align: center;
+  margin-top: 14px;
+  font-size: 0.6rem;
+  letter-spacing: 0.13em;
+}
+.madic-compass {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 150px;
+  height: 150px;
+  border: 1px solid #69d7d7a6;
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 9px #4cd8d00a,
+    inset 0 0 30px #4bdad012;
+  background: radial-gradient(circle, #174e59 0, #0b2e42 72%);
+}
+.madic-compass:before,
+.madic-compass:after {
+  content: "";
+  position: absolute;
+  background: #6bd8d555;
+}
+.madic-compass:before {
+  height: 1px;
+  width: 120%;
+  top: 50%;
+}
+.madic-compass:after {
+  width: 1px;
+  height: 120%;
+  left: 50%;
+}
+.madic-compass i {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 9px solid transparent;
+  border-right: 9px solid transparent;
+  z-index: 1;
+}
+.madic-compass-n {
+  border-bottom: 43px solid #69e0d5;
+  top: 13px;
+}
+.madic-compass-s {
+  border-top: 43px solid #427f92;
+  bottom: 13px;
+}
+.madic-compass-e {
+  transform: rotate(90deg);
+  border-bottom: 35px solid #427f92;
+  right: 23px;
+}
+.madic-compass-w {
+  transform: rotate(-90deg);
+  border-bottom: 35px solid #427f92;
+  left: 23px;
+}
+.madic-compass b {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 47px;
+  height: 47px;
+  border-radius: 50%;
+  background: #0b293c;
+  border: 1px solid #65d4d2;
+  color: #f0ffff;
+  font-size: 1.45rem;
+  font-weight: 800;
+}
+.madic-path-intro {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  color: #8de0db;
+  font-size: 0.71rem;
+  font-weight: 750;
+  letter-spacing: 0.13em;
+  margin: -3px 0 18px;
+}
+.madic-path-intro span[aria-hidden="true"] {
+  color: #497d87;
+  font-size: 0.55rem;
+}
+.madic-path-line {
+  display: inline-block;
+  width: 34px;
+  height: 2px;
+  background: linear-gradient(90deg, #3bd0c8, #d6ad75);
+  border-radius: 3px;
+}
+body[data-page="cric-client-dashboard"] .madic-dashboard-grid > .panel {
+  border-color: #2a5260;
+  background: linear-gradient(150deg, #10283a, #0d1d2e);
+}
+body[data-page="cric-client-dashboard"] .madic-dashboard-grid > .panel:hover {
+  border-color: #65c7c1;
+}
+.madic-card-icon {
+  background: linear-gradient(145deg, #164f58, #1b374a);
+  border-color: #417f81;
+  color: #9df0e5;
+}
+@media (max-width: 760px) {
+  .madic-hero-decoration:not(.madic-client-avatar-wrap) {
+    display: none;
+  }
+  .madic-path-intro {
+    font-size: 0.62rem;
+    gap: 8px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  body[data-page="cric-client-dashboard"] .panel,
+  body[data-page="cric-client-dashboard"] a {
+    transition: none !important;
+  }
+}
+
+/* MADIC-navigation latérale originale, inspirée du positionnement des espaces SaaS. */
+body[data-page="cric-client-dashboard"] main.madic-app-layout {
+  max-width: 1510px;
+  display: grid;
+  grid-template-columns: 246px minmax(0, 1fr);
+  gap: 28px;
+  align-items: start;
+  padding: 0 24px;
+  margin: 30px auto 70px;
+}
+.madic-app-content {
+  min-width: 0;
+}
+.madic-side-nav {
+  position: sticky;
+  top: 20px;
+  min-width: 0;
+  border: 1px solid #244658;
+  border-radius: 21px;
+  background: linear-gradient(160deg, #102b3b, #0a1c2d 85%);
+  padding: 22px 13px;
+  box-shadow: 0 16px 40px #0003;
+}
+.madic-side-brand {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 0 10px 22px;
+  border-bottom: 1px solid #2b4656;
+}
+.madic-side-brand strong {
+  display: block;
+  font-size: 0.94rem;
+  color: #f2fbfc;
+}
+.madic-side-brand small {
+  display: block;
+  margin-top: 4px;
+  font-size: 0.7rem;
+}
+.madic-side-monogram {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 39px;
+  height: 39px;
+  border-radius: 12px;
+  color: #082335;
+  background: #71e0d7;
+  font-size: 1.3rem;
+  font-weight: 900;
+}
+.madic-side-caption {
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  color: #83a6b4;
+  margin: 25px 13px 11px;
+}
+.madic-side-links {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.madic-side-links a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 13px;
+  color: #c5d8e2;
+  border-radius: 11px;
+  text-decoration: none;
+  font-size: 0.87rem;
+  font-weight: 600;
+  transition:
+    background 0.18s,
+    color 0.18s;
+}
+.madic-side-links a span {
+  width: 22px;
+  text-align: center;
+  color: #73c9cb;
+  font-size: 1.15rem;
+}
+.madic-side-links a:hover,
+.madic-side-links a:focus-visible {
+  background: #1a4351;
+  color: white;
+}
+.madic-side-links .madic-nav-active {
+  background: #20525c;
+  color: #eafffc;
+  border-left: 3px solid #70dfd4;
+}
+.madic-side-bottom {
+  margin: 30px 8px 0;
+  padding: 15px 12px;
+  border: 1px solid #28535a;
+  background: #11343d;
+  border-radius: 13px;
+  font-size: 0.76rem;
+  color: #c6e4e4;
+  line-height: 1.7;
+}
+.madic-side-bottom small {
+  margin-left: 13px;
+}
+.madic-side-bottom-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  background: #6be0be;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+body[data-page="cric-client-dashboard"] .madic-stack.madic-dashboard-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+body[data-page="cric-client-dashboard"] .madic-card-appointments {
+  grid-column: 1/-1;
+}
+body[data-page="cric-client-dashboard"] .madic-welcome-shell {
+  min-height: 220px;
+  padding: 32px 30px;
+}
+body[data-page="cric-client-dashboard"] .madic-welcome-copy {
+  max-width: 610px;
+}
+body[data-page="cric-client-dashboard"] .madic-hero-decoration {
+  right: 5px;
+  transform: scale(0.78);
+  transform-origin: right center;
+  opacity: 0.65;
+}
+.madic-app-content [id] {
+  scroll-margin-top: 24px;
+}
+@media (max-width: 1080px) {
+  body[data-page="cric-client-dashboard"] main.madic-app-layout {
+    grid-template-columns: 205px minmax(0, 1fr);
+    gap: 16px;
+    padding: 0 16px;
+  }
+  .madic-side-nav {
+    padding: 16px 8px;
+  }
+  .madic-side-brand {
+    padding: 0 6px 16px;
+  }
+  .madic-side-links a {
+    font-size: 0.81rem;
+    padding: 11px 8px;
+    gap: 7px;
+  }
+}
+@media (max-width: 800px) {
+  body[data-page="cric-client-dashboard"] main.madic-app-layout {
+    display: block;
+    margin: 18px auto 45px;
+  }
+  .madic-side-nav {
+    position: static;
+    margin-bottom: 18px;
+    padding: 13px;
+  }
+  .madic-side-brand {
+    padding-bottom: 12px;
+  }
+  .madic-side-caption,
+  .madic-side-bottom {
+    display: none;
+  }
+  .madic-side-links {
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 5px;
+    padding-top: 12px;
+    scrollbar-width: thin;
+  }
+  .madic-side-links a {
+    white-space: nowrap;
+    padding: 9px 12px;
+  }
+  .madic-side-links a span {
+    width: auto;
+  }
+  body[data-page="cric-client-dashboard"]
+    .madic-hero-decoration:not(.madic-client-avatar-wrap) {
+    display: none;
+  }
+}
+@media (max-width: 620px) {
+  body[data-page="cric-client-dashboard"] .madic-stack.madic-dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+  body[data-page="cric-client-dashboard"] .madic-card-appointments {
+    grid-column: auto;
+  }
+  body[data-page="cric-client-dashboard"] .madic-welcome-shell {
+    padding: 66px 20px 24px;
+  }
+}
+
+/* Navigation MADIC personnalisable : icones SVG style Heroicons (traces simples). */
+.madic-side-links .madic-nav-entry {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  border-radius: 12px;
+  min-width: 0;
+}
+.madic-side-links .madic-nav-entry > a {
+  flex: 1;
+  min-width: 0;
+}
+.madic-side-links .madic-nav-icon {
+  width: 20px;
+  height: 20px;
+  flex: none;
+  color: #77d6d0;
+}
+.madic-nav-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin: 16px 7px 10px;
+}
+.madic-nav-controls button {
+  font: inherit;
+  font-size: 0.73rem;
+  border: 1px solid #3a6974;
+  background: #173b4a;
+  color: #e5f8f8;
+  border-radius: 9px;
+  padding: 8px 9px;
+  cursor: pointer;
+}
+.madic-nav-controls button:hover {
+  background: #225767;
+}
+.madic-nav-help {
+  font-size: 0.73rem;
+  color: #bbd4dd;
+  padding: 0 9px;
+  line-height: 1.5;
+}
+.madic-drag-handle,
+.madic-nav-move {
+  display: none;
+}
+.madic-side-nav.madic-editing .madic-drag-handle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #9adbd7;
+  width: 19px;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+}
+.madic-side-nav.madic-editing .madic-nav-move {
+  display: flex;
+  gap: 2px;
+}
+.madic-nav-move button {
+  background: #1c4251;
+  border: 1px solid #3b6c79;
+  border-radius: 6px;
+  color: #e7f8f8;
+  padding: 5px;
+  cursor: pointer;
+}
+.madic-side-nav.madic-editing .madic-nav-entry {
+  border: 1px dashed #427281;
+  padding: 2px;
+}
+.madic-side-nav .madic-nav-entry.madic-drag-over {
+  background: #23606b;
+  outline: 2px solid #83e1d7;
+}
+.madic-side-nav .madic-nav-entry.madic-dragging {
+  opacity: 0.5;
+}
+@media (max-width: 800px) {
+  .madic-side-links .madic-nav-entry {
+    flex: none;
+  }
+  .madic-side-nav.madic-editing .madic-nav-entry {
+    flex-wrap: wrap;
+  }
+  .madic-side-nav.madic-editing .madic-nav-move {
+    width: 100%;
+    justify-content: center;
+  }
+  .madic-nav-controls {
+    margin: 10px 0;
+  }
+}
+
+.madic-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+  width: 100%;
+}
+.madic-stack > .panel {
+  width: 100%;
+  box-sizing: border-box;
+}
+.madic-section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.madic-section-head h2 {
+  margin: 0;
+}
+.madic-section-head button {
+  white-space: nowrap;
+}
+.madic-fields-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.85rem 1rem;
+  margin-top: 1rem;
+}
+.madic-fields-grid > div {
+  min-width: 0;
+}
+.madic-fields-grid label {
+  display: block;
+  margin-bottom: 0.25rem;
+}
+.madic-fields-grid input,
+.madic-fields-grid select {
+  width: 100%;
+  box-sizing: border-box;
+}
+.madic-full {
+  grid-column: 1 / -1;
+}
+.madic-table-wrap {
+  overflow-x: auto;
+}
+.madic-table-wrap table {
+  width: 100%;
+}
+.madic-collapsed-note {
+  margin: 0.65rem 0 0;
+}
+.madic-msg-count {
+  display: inline-block;
+  background: #15517b;
+  color: white;
+  border-radius: 999px;
+  padding: 0.1rem 0.55rem;
+  font-size: 0.85rem;
+}
+[hidden] {
+  display: none !important;
+}
+@media (max-width: 650px) {
+  .madic-fields-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Palette historique MADIC : bleu nuit, cartes bleu fonce, turquoise. */
+body[data-page="cric-client-dashboard"] {
+  background: #081525 !important;
+  color: #f1f6ff;
+}
+body[data-page="cric-client-dashboard"] header {
+  background: #0b1d33 !important;
+  border-bottom: 1px solid #2a4059;
+}
+body[data-page="cric-client-dashboard"] .madic-side-nav {
+  background: #10243c !important;
+  border-color: #304760 !important;
+}
+body[data-page="cric-client-dashboard"] .madic-welcome-shell {
+  background: linear-gradient(120deg, #10263f, #142f4b) !important;
+  border-color: #344c65 !important;
+}
+body[data-page="cric-client-dashboard"] .madic-dashboard-grid > .panel,
+body[data-page="cric-client-dashboard"] .madic-stack > .panel,
+body[data-page="cric-client-dashboard"] .madic-app-content > .panel {
+  background: #10243b !important;
+  border: 1px solid #314962 !important;
+  border-radius: 18px;
+  color: #f1f6ff;
+}
+body[data-page="cric-client-dashboard"] .madic-dashboard-grid > .panel:hover {
+  border-color: #4d8191 !important;
+}
+body[data-page="cric-client-dashboard"] .madic-card-form {
+  background: #142d47 !important;
+  border-color: #35677c !important;
+}
+body[data-page="cric-client-dashboard"] input,
+body[data-page="cric-client-dashboard"] textarea,
+body[data-page="cric-client-dashboard"] select {
+  background: #0a1b30;
+  color: #f5f9ff;
+  border-color: #425a73;
+}
+body[data-page="cric-client-dashboard"] input::placeholder,
+body[data-page="cric-client-dashboard"] textarea::placeholder {
+  color: #a9bdd0;
+}
+body[data-page="cric-client-dashboard"] .madic-primary-action,
+body[data-page="cric-client-dashboard"] button.primary,
+body[data-page="cric-client-dashboard"] .btn-primary {
+  background: #40c9d4;
+  color: #062330;
+  border-color: #40c9d4;
+}
+body[data-page="cric-client-dashboard"] .madic-primary-action:hover,
+body[data-page="cric-client-dashboard"] button.primary:hover,
+body[data-page="cric-client-dashboard"] .btn-primary:hover {
+  background: #71e2e8;
+}
+body[data-page="cric-client-dashboard"] .madic-side-links .madic-nav-active {
+  background: #1a4259;
+  border-left-color: #40c9d4;
+  color: #fff;
+}
+body[data-page="cric-client-dashboard"] .madic-side-links a:hover,
+body[data-page="cric-client-dashboard"] .madic-side-links a:focus-visible {
+  background: #203b55;
+}
+body[data-page="cric-client-dashboard"] .madic-nav-icon,
+body[data-page="cric-client-dashboard"] .madic-card-icon {
+  color: #65dbe0;
+}
+body[data-page="cric-client-dashboard"] .madic-card-icon {
+  background: #17354c;
+  border-color: #38687c;
+}
+body[data-page="cric-client-dashboard"] .madic-nav-controls button,
+body[data-page="cric-client-dashboard"] .madic-nav-move button {
+  background: #18364f;
+  border-color: #46647e;
+  color: #f3f9ff;
+}
+body[data-page="cric-client-dashboard"] .madic-side-bottom {
+  background: #132c44;
+  border-color: #344f68;
+  color: #d7e8f4;
+}
+body[data-page="cric-client-dashboard"] .madic-side-monogram {
+  background: #40c9d4;
+}
+body[data-page="cric-client-dashboard"] .madic-compass {
+  background: radial-gradient(circle, #183c55, #0c253b 75%);
+  border-color: #40c9d4;
+}
+body[data-page="cric-client-dashboard"] .madic-compass b {
+  background: #0b253b;
+  border-color: #40c9d4;
+}
+@media (max-width: 650px) {
+  body[data-page="cric-client-dashboard"] .madic-fields-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Modifications visuelles limitees : logo, avatar, suppression de l'introduction. */
+.madic-side-logo {
+  width: 39px;
+  height: 39px;
+  object-fit: contain;
+  flex-shrink: 0;
+  border-radius: 10px;
+}
+body[data-page="cric-client-dashboard"] .madic-client-avatar-wrap {
+  right: 35px;
+  top: 0;
+  bottom: 0;
+  width: 210px;
+  transform: none;
+  opacity: 1;
+  pointer-events: none;
+}
+.madic-client-avatar {
+  width: 145px;
+  height: 145px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 2px solid #59d5da;
+  background: linear-gradient(145deg, #193f59, #0b243a);
+  color: #87c9d9;
+  box-shadow: 0 0 0 8px #4bd8d00c;
+  overflow: hidden;
+}
+.madic-client-avatar img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 940px) {
+  body[data-page="cric-client-dashboard"] .madic-client-avatar-wrap {
+    opacity: 1;
+  }
+}
+@media (max-width: 800px) {
+  body[data-page="cric-client-dashboard"] .madic-client-avatar-wrap {
+    display: flex;
+    position: relative;
+    right: auto;
+    top: auto;
+    bottom: auto;
+    width: 100%;
+    height: auto;
+    margin: 12px 0 0;
+    transform: none;
+    opacity: 1;
+  }
+  body[data-page="cric-client-dashboard"] .madic-welcome-shell {
+    flex-wrap: wrap;
+  }
+  body[data-page="cric-client-dashboard"] .madic-client-avatar {
+    width: 96px;
+    height: 96px;
+  }
+}
+
+.madic-profile-photo-editor {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding: 16px 0 22px;
+  border-bottom: 1px solid #314962;
+  margin-bottom: 20px;
+}
+.madic-profile-photo-editor > img {
+  width: 112px;
+  height: 112px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid #40c9d4;
+  background: #142d47;
+}
+.madic-profile-photo-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 9px;
+  min-width: 0;
+  max-width: 100%;
+}
+.madic-profile-photo-actions input[type="file"] {
+  width: min(100%, 340px);
+  font-size: 0.85rem;
+}
+.madic-photo-label {
+  font-weight: 700;
+  color: #d8f8fb;
+}
+.madic-photo-buttons {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.madic-profile-photo-actions small {
+  color: #b9cedd;
+}
+#madicProfilePhotoStatus {
+  margin: 0;
+  font-size: 0.88rem;
+}
+
+/* Pages secondaires : disposition du contenu */
+body[data-page="cric-client-dashboard"].madic-client-secondary
+  main.madic-app-layout {
+  min-height: 70vh;
+}
+body.madic-client-secondary .madic-app-content > main {
+  margin: 0;
+  padding: 0;
+  max-width: none;
+}
+body.madic-client-secondary .madic-app-content > header {
+  padding: 12px 0;
+  background: transparent !important;
+  border: 0;
+}
+
+
+/* Source consolidee : madic-appointments-client-design(6).css */
+/* MADIC : modernisation ciblee sur Mes rendez-vous client. */
+.madic-rdv-client-modern {
+  max-width: 1180px;
+  margin: 1.6rem auto 3rem;
+  padding: 0 clamp(12px, 2.5vw, 30px);
+  min-width: 0;
+}
+.madic-rdv-client-modern * {
+  box-sizing: border-box;
+}
+.madic-rdv-client-modern .madic-rdv-hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: clamp(22px, 3vw, 34px);
+  border: 1px solid #244f66;
+  border-radius: 20px;
+  background: linear-gradient(120deg, #102b41 0%, #164b5d 72%, #167c7a 100%);
+  color: #fff;
+  box-shadow: 0 12px 30px rgba(10, 38, 57, 0.12);
+}
+.madic-rdv-client-modern .madic-rdv-hero h1 {
+  margin: 8px 0 10px;
+  color: #fff;
+  font-size: clamp(1.45rem, 2.8vw, 2.25rem);
+  line-height: 1.2;
+}
+.madic-rdv-client-modern .madic-rdv-hero p {
+  margin: 0;
+  color: #d9eff1;
+  max-width: 650px;
+  line-height: 1.55;
+}
+.madic-rdv-client-modern .madic-rdv-eyebrow {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+  color: #a6eee7;
+}
+.madic-rdv-client-modern .madic-rdv-hero-icon {
+  font-size: 2.8rem;
+  opacity: 0.35;
+  flex: none;
+}
+.madic-rdv-client-modern .madic-rdv-notice {
+  margin: 14px 0;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: rgba(20, 144, 140, 0.09);
+  border: 1px solid rgba(20, 144, 140, 0.2);
+  font-size: 0.88rem;
+}
+.madic-rdv-client-modern .panel {
+  margin: 18px 0 !important;
+  padding: clamp(18px, 2.5vw, 28px) !important;
+  border-radius: 16px !important;
+  border: 1px solid #dce6ed;
+  box-shadow: 0 4px 20px rgba(20, 42, 60, 0.045);
+  min-width: 0;
+}
+.madic-rdv-client-modern .panel h2 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 18px;
+  font-size: clamp(1.05rem, 1.6vw, 1.3rem);
+  line-height: 1.35;
+}
+.madic-rdv-client-modern .madic-rdv-step {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: #d9f3ef;
+  color: #08746f;
+  font-size: 0.77rem;
+  font-weight: 800;
+}
+.madic-rdv-client-modern .madic-rdv-section-desc {
+  margin: -8px 0 18px;
+  font-size: 0.9rem;
+  opacity: 0.75;
+}
+.madic-rdv-client-modern #rdvSpace {
+  max-width: 540px;
+  width: 100%;
+  margin-top: 8px;
+  border-radius: 10px;
+}
+.madic-rdv-client-modern .madic-rdv-calendar-controls {
+  padding: 12px;
+  border: 1px solid #dce6ed;
+  border-radius: 12px;
+  background: #f5f9fb;
+  gap: 12px;
+}
+.madic-rdv-client-modern #rdvWeekLabel {
+  font-size: 0.94rem;
+  text-align: center;
+}
+.madic-rdv-client-modern .madic-rdv-calendar-controls button {
+  border-radius: 9px !important;
+  font-weight: 650;
+}
+.madic-rdv-client-modern .madic-rdv-calendar {
+  gap: 10px;
+}
+.madic-rdv-client-modern .madic-rdv-day {
+  background: #f8fafc;
+  border: 1px solid #dce6ed;
+  border-radius: 13px;
+  padding: 14px 10px;
+  min-height: 130px;
+  transition:
+    border-color 0.15s,
+    box-shadow 0.15s;
+}
+.madic-rdv-client-modern .madic-rdv-day:has(.madic-rdv-slot-button) {
+  border-color: #72bdb5;
+  background: #f1fbf8;
+}
+.madic-rdv-client-modern .madic-rdv-today {
+  box-shadow: inset 0 3px #0c9288;
+}
+.madic-rdv-client-modern .madic-rdv-day h3 {
+  font-size: 0.83rem;
+  font-weight: 750;
+  margin: 0 0 15px;
+}
+.madic-rdv-client-modern .madic-rdv-day p {
+  color: #778798;
+  line-height: 1.5;
+}
+.madic-rdv-client-modern .madic-rdv-slot-button {
+  border-radius: 9px !important;
+  min-height: 42px;
+  background: #0e7776 !important;
+  color: #fff !important;
+  border: 1px solid #0e7776 !important;
+  font-weight: 700;
+}
+.madic-rdv-client-modern .madic-rdv-table {
+  border: 1px solid #e0e8ee;
+  border-radius: 12px;
+  overflow-x: auto;
+}
+.madic-rdv-client-modern .madic-rdv-table table {
+  margin: 0;
+  border-collapse: collapse;
+  width: 100%;
+}
+.madic-rdv-client-modern .madic-rdv-table thead {
+  background: #f2f7fa;
+}
+.madic-rdv-client-modern .madic-rdv-table th {
+  font-size: 0.8rem;
+  letter-spacing: 0.02em;
+  text-align: left;
+  white-space: nowrap;
+  color: #365366;
+}
+.madic-rdv-client-modern .madic-rdv-table th,
+.madic-rdv-client-modern .madic-rdv-table td {
+  padding: 13px 14px;
+  border-bottom: 1px solid #e5ecf1;
+  vertical-align: middle;
+}
+.madic-rdv-client-modern .madic-rdv-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+.madic-rdv-client-modern .madic-rdv-table tbody tr:hover {
+  background: rgba(16, 146, 138, 0.04);
+}
+.madic-rdv-client-modern .madic-rdv-actions {
+  display: flex !important;
+  gap: 8px !important;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.madic-rdv-client-modern .madic-rdv-actions button {
+  width: auto !important;
+  max-width: none !important;
+  min-height: 35px !important;
+  border-radius: 8px !important;
+  padding: 7px 11px !important;
+  white-space: nowrap !important;
+}
+.madic-rdv-client-modern .madic-rdv-status-confirmed {
+  display: inline-block;
+  color: #067343;
+  background: #e3f6eb;
+  padding: 5px 9px;
+  border-radius: 8px;
+}
+.madic-rdv-client-modern .madic-rdv-status-requested {
+  display: inline-block;
+  color: #916000;
+  background: #fff4d6;
+  padding: 5px 9px;
+  border-radius: 8px;
+}
+.madic-rdv-client-modern .madic-rdv-notifications {
+  border-left: 4px solid #0c9288 !important;
+}
+.madic-rdv-client-modern #rdvNotificationSummary {
+  margin: -6px 0 14px;
+}
+.madic-rdv-client-modern #rdvNotificationList {
+  display: grid;
+  gap: 8px;
+}
+.madic-rdv-client-modern .madic-rdv-notification {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 13px 15px;
+  border: 1px solid #e2e9ee;
+  border-radius: 10px;
+  background: #f8fafc;
+  flex-wrap: wrap;
+}
+.madic-rdv-client-modern .madic-rdv-notification-unread {
+  background: #effaf8;
+  border-color: #9ddbd2;
+}
+.madic-rdv-client-modern .madic-rdv-notification-title {
+  font-weight: 700;
+}
+.madic-rdv-client-modern .madic-rdv-notification span {
+  flex: 1;
+  min-width: 190px;
+  line-height: 1.5;
+}
+.madic-rdv-client-modern .madic-rdv-notification button {
+  width: auto !important;
+  margin: 0 !important;
+  padding: 8px 12px !important;
+  border-radius: 8px !important;
+  white-space: nowrap;
+}
+@media (max-width: 700px) {
+  .madic-rdv-client-modern .madic-rdv-hero-icon {
+    display: none;
+  }
+  .madic-rdv-client-modern .madic-rdv-calendar {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .madic-rdv-client-modern .madic-rdv-calendar-controls {
+    justify-content: center;
+  }
+  .madic-rdv-client-modern .madic-rdv-calendar-controls button {
+    flex: 1;
+    min-width: 135px;
+  }
+  .madic-rdv-client-modern .madic-rdv-day {
+    min-height: 110px;
+  }
+  .madic-rdv-client-modern .panel {
+    padding: 16px !important;
+  }
+}
+@media (max-width: 380px) {
+  .madic-rdv-client-modern .madic-rdv-calendar {
+    grid-template-columns: 1fr;
+  }
+  .madic-rdv-client-modern .madic-rdv-notification button {
+    width: 100% !important;
+  }
+}
+
+/* Harmonisation des couleurs avec le portail MADIC - page rendez-vous client uniquement. */
+body.madic-client-secondary .madic-rdv-client-modern {
+  color: #e8f3fa;
+}
+.madic-rdv-client-modern .madic-rdv-hero {
+  background: #10263b;
+  border-color: #29475e;
+  color: #e8f3fa;
+}
+.madic-rdv-client-modern .madic-rdv-hero h1,
+.madic-rdv-client-modern .madic-rdv-hero p {
+  color: #e8f3fa;
+}
+.madic-rdv-client-modern .madic-rdv-eyebrow {
+  color: #38bfd8;
+}
+.madic-rdv-client-modern .madic-rdv-notice {
+  background: #10263b;
+  border-color: #29475e;
+  color: #e8f3fa;
+}
+.madic-rdv-client-modern .panel {
+  background: #10263b !important;
+  border-color: #29475e !important;
+  color: #e8f3fa;
+}
+.madic-rdv-client-modern .panel h2,
+.madic-rdv-client-modern .panel label,
+.madic-rdv-client-modern .madic-rdv-section-desc {
+  color: #e8f3fa;
+}
+.madic-rdv-client-modern .madic-rdv-step {
+  background: #09192c;
+  color: #38bfd8;
+  border: 1px solid #29475e;
+}
+.madic-rdv-client-modern #rdvSpace {
+  background: #09192c;
+  color: #e8f3fa;
+  border: 1px solid #29475e;
+}
+.madic-rdv-client-modern .madic-rdv-calendar-controls {
+  background: #09192c;
+  border-color: #29475e;
+  color: #e8f3fa;
+}
+.madic-rdv-client-modern #rdvWeekLabel {
+  color: #e8f3fa;
+}
+.madic-rdv-client-modern .madic-rdv-calendar-controls button,
+.madic-rdv-client-modern .madic-rdv-table button,
+.madic-rdv-client-modern .madic-rdv-notification button {
+  background: #09192c !important;
+  color: #38bfd8 !important;
+  border: 1px solid #29475e !important;
+}
+.madic-rdv-client-modern
+  .madic-rdv-calendar-controls
+  button:hover:not(:disabled),
+.madic-rdv-client-modern .madic-rdv-table button:hover:not(:disabled),
+.madic-rdv-client-modern .madic-rdv-notification button:hover:not(:disabled) {
+  background: #17364e !important;
+  border-color: #38bfd8 !important;
+}
+.madic-rdv-client-modern .madic-rdv-calendar-controls button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.madic-rdv-client-modern .madic-rdv-day,
+.madic-rdv-client-modern .madic-rdv-day:has(.madic-rdv-slot-button) {
+  background: #09192c;
+  border-color: #29475e;
+  color: #e8f3fa;
+}
+.madic-rdv-client-modern .madic-rdv-today {
+  box-shadow: inset 0 3px #38bfd8;
+}
+.madic-rdv-client-modern .madic-rdv-day h3 {
+  color: #e8f3fa;
+}
+.madic-rdv-client-modern .madic-rdv-day p,
+.madic-rdv-client-modern .madic-rdv-muted {
+  color: #a5b7cc;
+}
+.madic-rdv-client-modern .madic-rdv-slot-button {
+  background: #38bfd8 !important;
+  color: #071626 !important;
+  border-color: #38bfd8 !important;
+}
+.madic-rdv-client-modern .madic-rdv-slot-button:hover:not(:disabled) {
+  background: #79d9e9 !important;
+  color: #071626 !important;
+}
+.madic-rdv-client-modern .madic-rdv-table {
+  border-color: #29475e;
+}
+.madic-rdv-client-modern .madic-rdv-table table {
+  background: #10263b;
+  color: #e8f3fa;
+}
+.madic-rdv-client-modern .madic-rdv-table thead {
+  background: #09192c;
+}
+.madic-rdv-client-modern .madic-rdv-table th {
+  color: #e8f3fa;
+}
+.madic-rdv-client-modern .madic-rdv-table th,
+.madic-rdv-client-modern .madic-rdv-table td {
+  border-bottom-color: #29475e;
+  color: #e8f3fa;
+}
+.madic-rdv-client-modern .madic-rdv-table tbody tr:hover {
+  background: #17364e;
+}
+/* Garder les cellules de statut dans la grille du tableau. */
+.madic-rdv-client-modern .madic-rdv-table td.madic-rdv-status-confirmed,
+.madic-rdv-client-modern .madic-rdv-table td.madic-rdv-status-requested {
+  display: table-cell;
+  background: transparent;
+  padding: 13px 14px;
+  border-radius: 0;
+}
+.madic-rdv-client-modern .madic-rdv-table td.madic-rdv-status-confirmed {
+  color: #7ee1b0;
+}
+.madic-rdv-client-modern .madic-rdv-table td.madic-rdv-status-requested {
+  color: #f1cf7a;
+}
+.madic-rdv-client-modern .madic-rdv-notifications {
+  border-left-color: #38bfd8 !important;
+}
+.madic-rdv-client-modern .madic-rdv-notification,
+.madic-rdv-client-modern .madic-rdv-notification-unread {
+  background: #09192c;
+  border-color: #29475e;
+  color: #e8f3fa;
+}
+.madic-rdv-client-modern .madic-rdv-notification-unread {
+  border-left: 3px solid #38bfd8;
+}
+
+/* Etape 5 : interaction au clavier et affichage mobile client. */
+.madic-rdv-client-modern :is(button,select,a):focus-visible{outline:3px solid #38bfd8;outline-offset:3px}
+.madic-rdv-client-modern button:disabled{opacity:.55;cursor:not-allowed}
+.madic-rdv-client-modern #rdvDurationPicker{margin:14px 0;gap:12px;flex-wrap:wrap}
+.madic-rdv-client-modern #rdvDurationPicker select{max-width:240px;min-height:42px;border-radius:9px}
+@media(max-width:620px){.madic-rdv-client-modern .madic-rdv-hero{padding:18px}.madic-rdv-client-modern .madic-rdv-table{max-width:100%}.madic-rdv-client-modern .madic-rdv-notification span{min-width:0}}
+@media(prefers-reduced-motion:reduce){.madic-rdv-client-modern *{transition:none!important;scroll-behavior:auto!important}}
+
+/* Étape 5/9 — finitions des rendez-vous client. */
+.madic-rdv-client-modern #rdvDurationPicker label{font-weight:650;color:#e8f3fa}
+.madic-rdv-client-modern #rdvDurationPicker select{background:#09192c;color:#e8f3fa;border:1px solid #29475e;padding:9px 12px}
+.madic-rdv-client-modern #rdvDurationPicker select:focus-visible{outline:3px solid #38bfd8;outline-offset:2px}
+.madic-rdv-client-modern .madic-rdv-day{overflow-wrap:anywhere}
+.madic-rdv-client-modern .madic-rdv-table td{line-height:1.5}
+.madic-rdv-client-modern .madic-rdv-slot-button{white-space:normal!important}
+@media(max-width:700px){.madic-rdv-client-modern .madic-rdv-calendar-controls{gap:10px}.madic-rdv-client-modern #rdvWeekLabel{width:100%;order:-1}.madic-rdv-client-modern .madic-rdv-hero{border-radius:14px}}
+
+
+/* Source consolidee : madic-client-cric-harmonized(20261107-040914).css */
+/* MADIC - harmonisation visuelle client / CRIC. Styles de presentation uniquement. */
+body[data-page="cric-client-dashboard"] { --madic-modern-accent:#2bd3ce; --madic-modern-border:#294d67; --madic-modern-card:#102b43; }
+body[data-page="cric-client-dashboard"] > header { background:#102a41; border-bottom:1px solid #31526b; }
+body[data-page="cric-client-dashboard"] .madic-welcome-shell { border:1px solid #35748b; border-radius:20px; background:radial-gradient(ellipse at 88% 20%,#236c8a 0,transparent 48%),linear-gradient(115deg,#102c49,#16465f);box-shadow:0 14px 32px #00000025; }
+body[data-page="cric-client-dashboard"] .madic-side-nav { background:#102a41; border:1px solid #31526b; border-radius:16px; }
+body[data-page="cric-client-dashboard"] .madic-side-links a { border-radius:10px; transition:background-color .18s ease,border-color .18s ease; }
+body[data-page="cric-client-dashboard"] .madic-side-links a:hover,body[data-page="cric-client-dashboard"] .madic-side-links a:focus-visible { background:#19435b; }
+body[data-page="cric-client-dashboard"] .madic-side-links a.madic-nav-active { background:#164d60; border-color:#2bd3ce; color:#e9ffff; }
+body[data-page="cric-client-dashboard"] :is(button,a,input,select,textarea):focus-visible { outline:2px solid #7ee9e6;outline-offset:3px; }
+body[data-page="cric-client-dashboard"] :is(.madic-kicker,.madic-overline) { color:#7ee9e6; }
+@media(max-width:760px){body[data-page="cric-client-dashboard"] .madic-welcome-shell {padding:22px 18px;border-radius:16px;}body[data-page="cric-client-dashboard"] main {padding-left:14px;padding-right:14px;}}
+
+/* MADIC IRCC - trois actualites officielles */
+body[data-page="cric-client-dashboard"] .madic-ircc-article{padding:15px 0;border-bottom:1px solid #35576b;overflow-wrap:anywhere}
+body[data-page="cric-client-dashboard"] .madic-ircc-article:last-child{border-bottom:0}
+body[data-page="cric-client-dashboard"] .madic-ircc-article h3{font-size:1rem;line-height:1.45;margin:6px 0}
+body[data-page="cric-client-dashboard"] .madic-ircc-article time,body[data-page="cric-client-dashboard"] .madic-ircc-article small{display:block;color:#b6d7e1;font-size:.79rem}
+body[data-page="cric-client-dashboard"] .madic-ircc-article p{margin:10px 0;font-size:.9rem;line-height:1.55}
+body[data-page="cric-client-dashboard"] .madic-ircc-article a{color:#84e9ee;text-underline-offset:3px}
+
+/* MADIC - retour au theme clair du tableau de bord client (03-11-2026).
+   Correctif exclusivement visuel; aucun comportement JS ni donnees modifies. */
+body[data-page="cric-client-dashboard"] {
+  background:#eef3f9 !important;
+  color:#102b50;
+}
+body[data-page="cric-client-dashboard"] > header {
+  background:#fff;
+  border-bottom:1px solid #dce6f1;
+  backdrop-filter:none;
+}
+body[data-page="cric-client-dashboard"] > header .brand,
+body[data-page="cric-client-dashboard"] > header .toplinks a {color:#102b50;}
+body[data-page="cric-client-dashboard"] .madic-side-nav {
+  background:#172e51;
+  border-color:#29496f;
+  box-shadow:none;
+}
+body[data-page="cric-client-dashboard"] .madic-side-links a:hover,
+body[data-page="cric-client-dashboard"] .madic-side-links a:focus-visible {background:#254e75;}
+body[data-page="cric-client-dashboard"] .madic-side-links a.madic-nav-active {
+  background:#326a8b;
+  border-color:#72c7d8;
+  color:#fff;
+}
+body[data-page="cric-client-dashboard"] .madic-side-bottom {background:#203e63;border-color:#436185;}
+body[data-page="cric-client-dashboard"] .madic-welcome-shell {
+  background:linear-gradient(110deg,#162e56 0%,#254a80 70%,#305d98 100%);
+  border-color:#40679d;
+  box-shadow:0 12px 28px #1c3b6b12;
+}
+body[data-page="cric-client-dashboard"] .madic-welcome-shell h1 {color:#f5f8ff;}
+body[data-page="cric-client-dashboard"] .madic-welcome-subtitle {color:#d8e4f4;}
+body[data-page="cric-client-dashboard"] .madic-welcome-shell .madic-kicker {color:#b3e8f3;}
+body[data-page="cric-client-dashboard"] .madic-welcome-shell .madic-primary-action {background:#3b789e;color:#fff;}
+body[data-page="cric-client-dashboard"] .madic-welcome-shell .madic-ghost-action {color:#fff;}
+body[data-page="cric-client-dashboard"] .madic-stack.madic-dashboard-grid > .panel,
+body[data-page="cric-client-dashboard"] .madic-cabinet-card,
+body[data-page="cric-client-dashboard"] .madic-journey-panel,
+body[data-page="cric-client-dashboard"] .madic-publication-card {
+  background:#fff;
+  color:#102b50;
+  border:1px solid #d7e4f2;
+  box-shadow:0 5px 22px #153e6b09;
+  border-radius:20px;
+}
+body[data-page="cric-client-dashboard"] .madic-dashboard-grid > .panel:hover {border-color:#a9c7df;box-shadow:0 9px 26px #153e6b12;}
+body[data-page="cric-client-dashboard"] .madic-detail-card h3,
+body[data-page="cric-client-dashboard"] .madic-publication-card h2,
+body[data-page="cric-client-dashboard"] .madic-journey-panel h2 {color:#102b50;}
+body[data-page="cric-client-dashboard"] .madic-dashboard-grid .muted,
+body[data-page="cric-client-dashboard"] .madic-publication-card p {color:#37536f;}
+body[data-page="cric-client-dashboard"] .madic-card-icon {background:#e7f4fa;border-color:#d2e9f6;color:#267ca9;}
+body[data-page="cric-client-dashboard"] .madic-profile-photo-actions small {color:#48627d;}
+body[data-page="cric-client-dashboard"] .madic-photo-label {color:#123557;}
+body[data-page="cric-client-dashboard"] .madic-publications-grid {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:18px;
+  align-items:start;
+  margin:0 0 20px;
+}
+body[data-page="cric-client-dashboard"] .madic-publication-card {min-width:0;padding:25px;}
+body[data-page="cric-client-dashboard"] .madic-publication-icon {
+  display:grid;place-items:center;width:44px;height:44px;
+  background:#e7f4fa;border:1px solid #d2e9f6;
+  border-radius:12px;color:#287da5;font-size:1.3rem;
+}
+body[data-page="cric-client-dashboard"] .madic-publication-kicker {
+  color:#287da5;font-size:.73rem;font-weight:800;letter-spacing:.12em;
+  margin:16px 0 8px;
+}
+body[data-page="cric-client-dashboard"] .madic-publication-card h2 {font-size:1.2rem;line-height:1.35;margin:8px 0 12px;}
+body[data-page="cric-client-dashboard"] .madic-publication-card > p {line-height:1.6;}
+body[data-page="cric-client-dashboard"] .madic-ircc-article {border-bottom-color:#dbe6f1;}
+body[data-page="cric-client-dashboard"] .madic-ircc-article h3 {color:#123557;}
+body[data-page="cric-client-dashboard"] .madic-ircc-article time,
+body[data-page="cric-client-dashboard"] .madic-ircc-article small {color:#607993;}
+body[data-page="cric-client-dashboard"] .madic-ircc-article p {color:#37536f;}
+body[data-page="cric-client-dashboard"] .madic-ircc-article a,
+body[data-page="cric-client-dashboard"] .madic-publication-items > a {color:#1676a6;}
+@media(max-width:900px) {
+  body[data-page="cric-client-dashboard"] .madic-publications-grid {grid-template-columns:1fr;}
+}
+@media(max-width:650px) {
+  body[data-page="cric-client-dashboard"] .madic-publication-card {padding:20px;}
+}
+
+/* Restauration du style historique du portail client uniquement.
+   Aucun element, evenement ou traitement JavaScript n'est modifie. */
+/* L'en-tete blanc du portail est present dans le HTML : le conserver visible. */
+body[data-page="cric-client-dashboard"] > header {
+  display:flex;
+  background:#fff;
+  color:#102b50;
+  border-bottom:1px solid #dce6f1;
+  backdrop-filter:none;
+}
+body[data-page="cric-client-dashboard"] main.madic-app-layout {
+  max-width:none;
+  grid-template-columns:270px minmax(0,1fr);
+  gap:39px;
+  margin:0 auto 55px;
+  padding:0 38px 0 0;
+}
+body[data-page="cric-client-dashboard"] .madic-side-nav {
+  position:sticky;
+  top:0;
+  min-height:100vh;
+  box-sizing:border-box;
+  border-radius:0;
+  padding:30px 11px;
+  background:linear-gradient(180deg,#162b4d,#1b365b);
+}
+body[data-page="cric-client-dashboard"] .madic-app-content {padding-top:79px;}
+body[data-page="cric-client-dashboard"] .madic-welcome-shell {
+  min-height:308px;
+  box-sizing:border-box;
+  padding:32px 36px;
+  border-radius:22px;
+  background:linear-gradient(110deg,#1a345e 0%,#244679 66%,#305b96 100%);
+}
+body[data-page="cric-client-dashboard"] .madic-welcome-shell h1 {font-size:clamp(2rem,3.2vw,2.9rem);}
+body[data-page="cric-client-dashboard"] .madic-journey-panel {
+  background:#fff!important;
+  color:#102b50!important;
+  border:1px solid #d7e4f2!important;
+  border-radius:20px;
+  margin:20px 0;
+  box-shadow:0 5px 22px #153e6b09;
+}
+body[data-page="cric-client-dashboard"] .madic-journey-panel :is(h2,h3,p,small),
+body[data-page="cric-client-dashboard"] .madic-journey-workflow,
+body[data-page="cric-client-dashboard"] .madic-journey-step,
+body[data-page="cric-client-dashboard"] .madic-journey-step.is-complete {color:#102b50;}
+body[data-page="cric-client-dashboard"] .madic-journey-step small {color:#49658b;}
+body[data-page="cric-client-dashboard"] .madic-journey-bar {background:#dce7f2;}
+body[data-page="cric-client-dashboard"] .madic-journey-step.is-complete .madic-journey-bar {background:#4db9cb;}
+body[data-page="cric-client-dashboard"] .madic-journey-workflow {border-top-color:#d7e4f2;}
+body[data-page="cric-client-dashboard"] .madic-journey-panel a,
+body[data-page="cric-client-dashboard"] .madic-journey-workflow a {color:#217ba8;}
+body[data-page="cric-client-dashboard"] .madic-service-badge {background:#125573;color:#fff;}
+body[data-page="cric-client-dashboard"] .madic-dashboard-grid > .panel :is(h2,h3,th,td,label) {color:#102b50;}
+body[data-page="cric-client-dashboard"] .madic-dashboard-grid > .panel a {color:#217ba8;}
+body[data-page="cric-client-dashboard"] .madic-dashboard-grid > .panel :is(input,select,textarea) {color:#102b50;}
+@media(max-width:1080px) {
+  body[data-page="cric-client-dashboard"] main.madic-app-layout {grid-template-columns:230px minmax(0,1fr);gap:20px;padding-right:18px;}
+  body[data-page="cric-client-dashboard"] .madic-app-content {padding-top:35px;}
+}
+@media(max-width:800px) {
+  body[data-page="cric-client-dashboard"] main.madic-app-layout {display:block;margin:0 auto 45px;padding:0 16px;}
+  body[data-page="cric-client-dashboard"] .madic-side-nav {position:static;min-height:0;border-radius:16px;margin:12px 0 18px;}
+  body[data-page="cric-client-dashboard"] .madic-app-content {padding-top:0;}
+  body[data-page="cric-client-dashboard"] .madic-welcome-shell {min-height:0;}
+}
+@media(max-width:620px) {
+  body[data-page="cric-client-dashboard"] .madic-welcome-shell {padding:66px 20px 24px;}
+}
+
+/* MADIC : controles de l'entete client et champs accessibles. */
+body[data-page="cric-client-dashboard"] .madic-welcome-shell .madic-hero-tools{position:absolute;z-index:5;top:18px;right:138px;display:flex;align-items:center;gap:12px}
+body[data-page="cric-client-dashboard"] .madic-hero-tools .madic-language-switch{display:flex;align-items:center;gap:4px;background:#0d284a;border:1px solid #7896b9;border-radius:10px;padding:4px}
+body[data-page="cric-client-dashboard"] .madic-hero-tools .madic-language-switch button{background:transparent;color:#f7fbff;border:0;border-radius:6px;padding:7px 9px;font-size:.8rem;min-width:35px}
+body[data-page="cric-client-dashboard"] .madic-hero-tools .madic-language-switch button[aria-pressed="true"]{background:#e4f5ff;color:#14365b}
+body[data-page="cric-client-dashboard"] .madic-hero-notifications{position:relative;display:grid;place-items:center;min-width:37px;height:37px;border:1px solid #7896b9;border-radius:10px;color:white;background:#0d284a;text-decoration:none;font-size:1.4rem}
+body[data-page="cric-client-dashboard"] .madic-hero-unread{position:absolute;top:-7px;right:-7px;min-width:19px;height:19px;border-radius:12px;background:#e55c59;color:white;text-align:center;font:700 11px/19px system-ui;padding:0 4px}
+body[data-page="cric-client-dashboard"] .madic-hero-unread[hidden]{display:none}
+body[data-page="cric-client-dashboard"] .madic-dashboard-grid :is(input,select,textarea),body[data-page="cric-client-dashboard"] .madic-cabinet-card select{background:#fff;color:#102b50;border:1px solid #a9bed3;color-scheme:light}
+body[data-page="cric-client-dashboard"] .madic-dashboard-grid :is(input,select,textarea)::placeholder{color:#526a83;opacity:1}
+body[data-page="cric-client-dashboard"] .madic-dashboard-grid :is(input,select,textarea):focus{outline:2px solid #187da9;outline-offset:1px}
+body[data-page="cric-client-dashboard"] .madic-dashboard-grid :is(input,select,textarea):read-only{background:#f0f4f8;color:#38516d}
+@media(max-width:720px){body[data-page="cric-client-dashboard"] .madic-welcome-shell .madic-hero-tools{top:14px;left:16px;right:auto}body[data-page="cric-client-dashboard"] .madic-welcome-shell #logout{top:14px;right:14px}body[data-page="cric-client-dashboard"] .madic-welcome-shell{padding-top:90px!important}}
+
+/* Alignement des deux nouvelles entrees sur les autres liens de navigation.
+   Les spans de texte ne doivent pas heriter du format des anciennes icones. */
+body[data-page="cric-client-dashboard"] .madic-side-links a .madic-publication-nav-label {
+  width:auto;
+  flex:1 1 auto;
+  min-width:0;
+  color:inherit;
+  font-size:inherit;
+  font-weight:inherit;
+  text-align:left;
+  line-height:inherit;
+}
+body[data-page="cric-client-dashboard"] .madic-side-links .madic-nav-entry > a {
+  justify-content:flex-start;
+}
+/* L'en-tete retrouve sa place dans le flux sans recouvrir le contenu. */
+body[data-page="cric-client-dashboard"] .madic-side-nav {
+  top:20px;
+  min-height:calc(100vh - 85px);
+}
+@media(max-width:800px) {
+  body[data-page="cric-client-dashboard"] .madic-side-nav {min-height:0;}
+}
+
+
+/* 2026-11-03 — correction ciblée de la structure client, référence portail CRIC.
+   Le menu occupe toute la hauteur de la page; l'entête ne couvre que le contenu.
+   Aucun script, identifiant ou lien fonctionnel modifié. */
+@media (min-width: 801px) {
+  body[data-page="cric-client-dashboard"] {
+    --madic-client-sidebar-width: 270px;
+    --madic-client-header-height: 78px;
+    background: linear-gradient(to right, #172e51 0 var(--madic-client-sidebar-width), #eef3f9 var(--madic-client-sidebar-width) 100%) !important;
+  }
+  body[data-page="cric-client-dashboard"] > header {
+    position: relative;
+    z-index: 3;
+    box-sizing: border-box;
+    width: calc(100% - var(--madic-client-sidebar-width));
+    min-height: var(--madic-client-header-height);
+    margin: 0 0 0 var(--madic-client-sidebar-width);
+    padding: 12px 38px !important;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    background: #fff !important;
+  }
+  body[data-page="cric-client-dashboard"] main.madic-app-layout {
+    display: grid;
+    grid-template-columns: var(--madic-client-sidebar-width) minmax(0, 1fr);
+    align-items: stretch;
+    gap: 0;
+    width: 100%;
+    max-width: none;
+    margin: calc(-1 * var(--madic-client-header-height)) 0 0;
+    padding: 0 38px 0 0;
+    box-sizing: border-box;
+  }
+  body[data-page="cric-client-dashboard"] .madic-side-nav {
+    position: relative;
+    top: auto;
+    align-self: stretch;
+    min-height: max(100vh, 100%);
+    height: auto;
+    margin: 0 38px 0 0;
+    width: var(--madic-client-sidebar-width);
+    padding: 30px 11px 26px;
+    box-sizing: border-box;
+    border: 0;
+    border-radius: 0;
+    background: linear-gradient(180deg, #172e51, #1b365b) !important;
+  }
+  body[data-page="cric-client-dashboard"] .madic-app-content {
+    min-width: 0;
+    padding: calc(var(--madic-client-header-height) + 24px) 0 40px 38px;
+  }
+  body[data-page="cric-client-dashboard"] > footer {
+    margin-left: var(--madic-client-sidebar-width);
+    background: #eef3f9;
+  }
+}
+/* Réduire le menu sans perdre l'alignement du bandeau sur écrans moyens. */
+@media (min-width: 801px) and (max-width: 1080px) {
+  body[data-page="cric-client-dashboard"] { --madic-client-sidebar-width: 230px; }
+  body[data-page="cric-client-dashboard"] > header { padding: 12px 18px !important; }
+  body[data-page="cric-client-dashboard"] main.madic-app-layout { padding-right: 18px; }
+  body[data-page="cric-client-dashboard"] .madic-side-nav { margin-right: 18px; }
+  body[data-page="cric-client-dashboard"] .madic-app-content { padding-left: 18px; }
+}
+/* Commandes FR/EN et notifications déjà présentes : déplacement visuel uniquement. */
+body[data-page="cric-client-dashboard"] > header .madic-hero-tools {
+  position: static !important;
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 12px;
+  margin-left: 8px;
+  z-index: auto;
+}
+body[data-page="cric-client-dashboard"] > header .madic-hero-tools .madic-language-switch {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  gap: 4px;
+}
+body[data-page="cric-client-dashboard"] > header .madic-hero-tools .madic-language-switch button {
+  color: #14365b;
+  background: #f0f6fb;
+  border: 1px solid #c4dbea;
+  border-radius: 9px;
+  min-width: 39px;
+  padding: 9px 11px;
+}
+body[data-page="cric-client-dashboard"] > header .madic-hero-tools .madic-language-switch button[aria-pressed="true"] {
+  background: #32a9cb;
+  color: #fff;
+  border-color: #32a9cb;
+}
+body[data-page="cric-client-dashboard"] > header .madic-hero-notifications {
+  background: #fff;
+  color: #102b50;
+  border: 1px solid #d5e4ef;
+  border-radius: 50%;
+}
+body[data-page="cric-client-dashboard"] > header .madic-hero-unread { color: #fff; }
+body[data-page="cric-client-dashboard"] > header .toplinks { margin-left: auto; }
+body[data-page="cric-client-dashboard"] > header .brand { flex-shrink: 0; }
+/* Conserver les champs et les étiquettes lisibles sur les cartes claires. */
+body[data-page="cric-client-dashboard"] .madic-dashboard-grid :is(input,select,textarea) {
+  background: #f3f7fb;
+  color: #102b50;
+  border: 1px solid #afc5da;
+  color-scheme: light;
+}
+body[data-page="cric-client-dashboard"] .madic-dashboard-grid input[type="file"]::file-selector-button {
+  color: #102b50;
+  background: #fff;
+  border: 1px solid #b8c9db;
+  border-radius: 5px;
+  padding: 5px 9px;
+  margin-right: 8px;
+}
+@media (max-width: 800px) {
+  body[data-page="cric-client-dashboard"] > header {
+    position: relative;
+    padding: 12px 16px !important;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+  }
+  body[data-page="cric-client-dashboard"] > header .toplinks { margin-left: auto; }
+  body[data-page="cric-client-dashboard"] > header .madic-hero-tools { margin-left: auto; }
+  body[data-page="cric-client-dashboard"] main.madic-app-layout { margin: 0 auto 45px; }
+  body[data-page="cric-client-dashboard"] .madic-side-nav { min-height: 0; }
+}
+
+/* Correctif final 03-11-2026 : presentation uniquement, portail client. */
+body[data-page="cric-client-dashboard"] > header {
+  visibility:visible !important;
+  opacity:1 !important;
+  color:#102b50;
+  box-shadow:0 1px 5px rgba(16,43,80,.06);
+}
+body[data-page="cric-client-dashboard"] > header .brand,
+body[data-page="cric-client-dashboard"] > header .toplinks,
+body[data-page="cric-client-dashboard"] > header .madic-hero-tools {
+  visibility:visible;
+  opacity:1;
+}
+body[data-page="cric-client-dashboard"] > header .toplinks {
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:16px;
+}
+body[data-page="cric-client-dashboard"] > header .toplinks a {color:#173657;}
+body[data-page="cric-client-dashboard"] > header .toplinks a:hover {color:#1676a6;}
+body[data-page="cric-client-dashboard"] > header #madicHeroLanguage {display:flex;align-items:center;}
+body[data-page="cric-client-dashboard"] > header .madic-hero-tools .madic-language-switch {display:flex;}
+body[data-page="cric-client-dashboard"] .madic-dashboard-grid > .panel,
+body[data-page="cric-client-dashboard"] .madic-cabinet-card {
+  background:#fff !important;
+  color:#102b50 !important;
+  border-color:#d7e4f2 !important;
+}
+body[data-page="cric-client-dashboard"] .madic-dashboard-grid > .panel :is(p,span,small,legend,li,th,td,label),
+body[data-page="cric-client-dashboard"] .madic-cabinet-card :is(p,small,label) {color:#284661;}
+body[data-page="cric-client-dashboard"] .madic-dashboard-grid > .panel :is(h2,h3,h4,strong),
+body[data-page="cric-client-dashboard"] .madic-cabinet-card :is(h2,h3,strong) {color:#102b50;}
+body[data-page="cric-client-dashboard"] .madic-dashboard-grid > .panel :is(input:not([type="checkbox"]):not([type="radio"]),select,textarea),
+body[data-page="cric-client-dashboard"] .madic-cabinet-card select {
+  background:#f7faff !important;
+  color:#102b50 !important;
+  border:1px solid #adc2d8 !important;
+  color-scheme:light;
+}
+body[data-page="cric-client-dashboard"] .madic-dashboard-grid > .panel :is(input,textarea)::placeholder {color:#637b95;opacity:1;}
+body[data-page="cric-client-dashboard"] .madic-dashboard-grid > .panel :is(input,select,textarea):disabled {
+  background:#e9eef5 !important;
+  color:#50647b !important;
+  opacity:1;
+}
+body[data-page="cric-client-dashboard"] .madic-dashboard-grid > .panel input[readonly] {
+  background:#eef3f8 !important;
+  color:#38516d !important;
+}
+body[data-page="cric-client-dashboard"] .madic-dashboard-grid > .panel input[type="file"]::file-selector-button {
+  background:#fff;
+  color:#173657;
+  border:1px solid #adc2d8;
+  border-radius:7px;
+  padding:8px 12px;
+  margin-right:12px;
+}
+body[data-page="cric-client-dashboard"] .madic-dashboard-grid > .panel table {color:#102b50;}
+body[data-page="cric-client-dashboard"] .madic-dashboard-grid > .panel table thead {background:#eef4fa;}
+body[data-page="cric-client-dashboard"] .madic-dashboard-grid > .panel table :is(th,td) {border-color:#dbe6f0;}
+body[data-page="cric-client-dashboard"] .madic-dashboard-grid > .panel .madic-msg-count {color:#fff;}
+body[data-page="cric-client-dashboard"] .madic-dashboard-grid > .panel :is(button,.secondary) {color:inherit;}
+body[data-page="cric-client-dashboard"] .madic-dashboard-grid > .panel button:not(.secondary) {color:#fff;}
+body[data-page="cric-client-dashboard"] .madic-publication-card :is(h2,h3) {color:#102b50;}
+body[data-page="cric-client-dashboard"] .madic-publication-card :is(p,small,time) {color:#37536f;}
+@media (max-width:800px) {
+  body[data-page="cric-client-dashboard"] > header {width:100%;margin:0;box-sizing:border-box;}
+  body[data-page="cric-client-dashboard"] > header .madic-hero-tools {gap:8px;}
+  body[data-page="cric-client-dashboard"] main.madic-app-layout {padding:0 16px;}
+}
+
+
+/* Alignement structurel sur le tableau de bord CRIC : barre blanche a droite,
+   menu marine a gauche sur toute la hauteur, sans changer les scripts. */
+@media (min-width: 801px) {
+  body[data-page="cric-client-dashboard"] {
+    display: grid;
+    grid-template-columns: var(--madic-client-sidebar-width, 270px) minmax(0, 1fr);
+    grid-template-rows: auto minmax(0, 1fr) auto;
+    min-height: 100vh;
+    align-items: stretch;
+    background: #eef3f9 !important;
+  }
+  body[data-page="cric-client-dashboard"] > header {
+    grid-column: 2;
+    grid-row: 1;
+    width: 100%;
+    min-width: 0;
+    min-height: 78px;
+    margin: 0;
+    padding: 12px 34px !important;
+    position: relative;
+    z-index: 2;
+    background: #fff !important;
+    box-sizing: border-box;
+  }
+  body[data-page="cric-client-dashboard"] > main.madic-app-layout {
+    display: contents;
+  }
+  body[data-page="cric-client-dashboard"] main.madic-app-layout > .madic-side-nav {
+    grid-column: 1;
+    grid-row: 1 / 4;
+    position: relative;
+    top: auto;
+    width: auto;
+    height: 100%;
+    min-height: 100vh;
+    margin: 0;
+    padding: 30px 13px;
+    border: 0;
+    border-radius: 0;
+    box-sizing: border-box;
+    background: #172e51 !important;
+  }
+  body[data-page="cric-client-dashboard"] main.madic-app-layout > .madic-app-content {
+    grid-column: 2;
+    grid-row: 2;
+    min-width: 0;
+    padding: 26px 34px 48px;
+  }
+  body[data-page="cric-client-dashboard"] > footer {
+    grid-column: 2;
+    grid-row: 3;
+    margin: 0;
+    min-width: 0;
+    background: #eef3f9;
+  }
+}
+@media (min-width: 801px) and (max-width: 1080px) {
+  body[data-page="cric-client-dashboard"] > header { padding: 12px 18px !important; }
+  body[data-page="cric-client-dashboard"] main.madic-app-layout > .madic-app-content { padding: 20px 18px 36px; }
+}
+/* Les deux etiquettes de publications ne doivent pas heriter de la largeur des icones. */
+body[data-page="cric-client-dashboard"] .madic-side-links a .madic-publication-nav-label {
+  width: auto;
+  min-width: 0;
+  text-align: left;
+  font-size: inherit;
+  color: inherit;
+  flex: 1;
+}
+
+/* Comportement du menu identique a la barre CRIC : navigation collante,
+   defilement independant, indicateur actif et adaptation mobile. */
+@media (min-width:801px) {
+ body[data-page="cric-client-dashboard"] main.madic-app-layout > .madic-side-nav {
+   position:sticky !important;
+   top:0 !important;
+   align-self:start !important;
+   height:100vh !important;
+   min-height:0 !important;
+   max-height:100vh !important;
+   overflow-y:auto !important;
+   overflow-x:hidden !important;
+   overscroll-behavior:contain;
+   scrollbar-width:thin;
+   z-index:3;
+   background:linear-gradient(175deg,#092342,#0b3152 60%,#08213d) !important;
+   border-right:1px solid #244867 !important;
+ }
+ body[data-page="cric-client-dashboard"] .madic-side-links {gap:5px;}
+ body[data-page="cric-client-dashboard"] .madic-side-links .madic-nav-entry > a {
+   min-height:43px;
+   box-sizing:border-box;
+   border:1px solid transparent;
+   transition:background .16s ease,transform .16s ease;
+ }
+ body[data-page="cric-client-dashboard"] .madic-side-links .madic-nav-entry > a:hover {
+   background:#194e70;
+   transform:translateX(2px);
+ }
+ body[data-page="cric-client-dashboard"] .madic-side-links .madic-nav-entry > a.madic-nav-active {
+   background:#1a6482 !important;
+   color:#fff !important;
+   border:1px solid #62cbd5 !important;
+   box-shadow:inset 3px 0 #81e7e5,0 4px 14px #001c3038;
+ }
+}
+@media (max-width:800px) {
+ body[data-page="cric-client-dashboard"] .madic-side-nav {
+   position:relative !important;
+   top:auto !important;
+   height:auto !important;
+   max-height:none !important;
+   overflow:visible !important;
+ }
+ body[data-page="cric-client-dashboard"] .madic-side-links {overflow-x:auto;}
+}
+@media (prefers-reduced-motion:reduce) {
+ body[data-page="cric-client-dashboard"] .madic-side-links .madic-nav-entry > a {transition:none !important;}
+}
+
+/* MADIC 2026-11-03 : contraste des commandes du portail client. */
+body[data-page="cric-client-dashboard"] .madic-dashboard-grid > .panel button.secondary,
+body[data-page="cric-client-dashboard"] .madic-dashboard-grid > .panel :is(#toggleProfile,#toggleDossiers,#madicUploadProfilePhoto,#madicRemoveProfilePhoto) {
+  background:#233d60 !important;
+  color:#ffffff !important;
+  border:1px solid #233d60 !important;
+  opacity:1;
+  text-shadow:none;
+}
+body[data-page="cric-client-dashboard"] .madic-dashboard-grid > .panel button.secondary:hover:not(:disabled),
+body[data-page="cric-client-dashboard"] .madic-dashboard-grid > .panel :is(#toggleProfile,#toggleDossiers,#madicUploadProfilePhoto,#madicRemoveProfilePhoto):hover:not(:disabled) {
+  background:#315d86 !important;
+  color:#ffffff !important;
+  border-color:#315d86 !important;
+}
+body[data-page="cric-client-dashboard"] .madic-dashboard-grid > .panel button.secondary:disabled {
+  background:#d9e2ed !important;
+  border-color:#c5d2df !important;
+  color:#52657a !important;
+  cursor:not-allowed;
+}
+body[data-page="cric-client-dashboard"] > header .madic-hero-notifications {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:40px;
+  min-width:40px;
+  height:40px;
+  color:#173657 !important;
+  background:#fff !important;
+  border:1px solid #d5e4ef !important;
+}
+body[data-page="cric-client-dashboard"] > header .madic-hero-notifications svg {
+  display:block;
+  width:22px;
+  height:22px;
+  flex:none;
+  stroke:currentColor;
+}
+body[data-page="cric-client-dashboard"] > header .madic-hero-notifications:hover {
+  color:#0b638a !important;
+  background:#edf7fc !important;
+}
+
+
+/* Source consolidee : madic-footer(1).css */
+footer.madic-footer {
+  background: #070f22;
+  color: #dce8f5;
+  border-top: 1px solid #1b2c49;
+  padding: 40px 28px 23px;
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+.madic-footer-inner {
+  max-width: 1100px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 36px;
+  flex-wrap: wrap;
+}
+.madic-footer-brand {
+  max-width: 390px;
+}
+.madic-footer-brandline {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.madic-footer-logo {
+  width: 43px;
+  height: 43px;
+  object-fit: contain;
+  border-radius: 9px;
+  background: #fff;
+  padding: 3px;
+}
+.madic-footer-name {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #fff;
+}
+.madic-footer-subtitle {
+  color: #9eb4d6;
+  font-size: 0.78rem;
+}
+.madic-footer-desc {
+  margin: 12px 0 0;
+  color: #9eb4d6;
+  max-width: 340px;
+  font-size: 0.85rem;
+}
+.madic-footer-right {
+  display: flex;
+  align-items: center;
+  gap: 19px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  padding-top: 8px;
+}
+.madic-footer-right a {
+  color: #b7cce9;
+  text-decoration: none;
+  font-size: 0.84rem;
+}
+.madic-footer-right a:hover {
+  text-decoration: underline;
+  color: #74e0ed;
+}
+.madic-footer-unavailable {
+  color: #8394ae;
+  font-size: 0.84rem;
+}
+.madic-footer-langs {
+  display: flex;
+  gap: 6px;
+  margin-left: 5px;
+}
+.madic-footer-langs button {
+  background: transparent;
+  border: 1px solid #3b506d;
+  color: #cbdcf2;
+  padding: 5px 9px;
+  border-radius: 7px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 0.75rem;
+}
+.madic-footer-langs button[aria-pressed="true"] {
+  background: #d8f7fc;
+  color: #09264a;
+  border-color: #d8f7fc;
+}
+.madic-footer-bottom {
+  max-width: 1100px;
+  margin: 28px auto 0;
+  padding-top: 17px;
+  border-top: 1px solid #263652;
+  color: #9eb4d6;
+  font-size: 0.78rem;
+}
+
+@media (max-width:600px){.madic-footer-inner{display:block}.madic-footer-right{justify-content:flex-start;gap:14px;margin-top:23px}.madic-footer-bottom{margin-top:23px}}
+
+.madic-footer,.madic-footer *{box-sizing:border-box}.madic-footer{font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;text-align:left}.madic-footer a:focus-visible{outline:3px solid #efb544;outline-offset:3px}
+
+
+/* Styles locaux originaux 1 */
+
+      body[data-page="cric-client-dashboard"] .madic-app-content {
+        color: #173657;
+      }
+      body[data-page="cric-client-dashboard"]
+        .madic-app-content
+        :is(.panel, .madic-rdv-hero) {
+        background: #fff;
+        color: #173657;
+        border: 1px solid #d5e4ef;
+        border-radius: 18px;
+        box-shadow: 0 8px 24px #1639580a;
+      }
+      body[data-page="cric-client-dashboard"]
+        .madic-app-content
+        :is(h1, h2, h3, label, strong) {
+        color: #102b4e;
+      }
+      body[data-page="cric-client-dashboard"]
+        .madic-app-content
+        :is(.muted, .madic-rdv-section-desc, .madic-rdv-muted) {
+        color: #4e6380;
+      }
+      body[data-page="cric-client-dashboard"]
+        .madic-app-content
+        :is(input, select, textarea) {
+        background: #f4f7fb;
+        color: #102b4e;
+        border: 1px solid #b7cbe2;
+      }
+      body[data-page="cric-client-dashboard"]
+        .madic-app-content
+        :is(input, select, textarea)::placeholder {
+        color: #64748b;
+      }
+      body[data-page="cric-client-dashboard"]
+        .madic-app-content
+        :is(
+          .madic-client-messages-history,
+          .madic-rdv-calendar-controls,
+          .madic-rdv-table,
+          .madic-client-messages-list
+        ) {
+        color: #173657;
+      }
+      body[data-page="cric-client-dashboard"] .madic-app-content a {
+        color: #126a99;
+      }
+      body[data-page="cric-client-dashboard"] .madic-app-content button {
+        cursor: pointer;
+      }
+      body[data-page="cric-client-dashboard"] .madic-app-content {
+        min-height: calc(100vh - 78px);
+      }
+      @media (max-width: 800px) {
+        body[data-page="cric-client-dashboard"] .madic-app-content {
+          padding: 20px 16px;
+          min-width: 0;
+        }
+      }
+      body[data-madic-view="appointments"] .madic-rdv-shell {
+        max-width: none;
+        margin: 0;
+        padding: 0;
+      }
+      body[data-madic-view="appointments"] .madic-rdv-hero {
+        margin-bottom: 18px;
+      }
+      body[data-madic-view="appointments"] .madic-rdv-hero :is(h1, p) {
+        color: #173657;
+      }
+    
+
+/* Styles locaux originaux 2 */
+
+      /* Isolated presentation adjustments; existing behavior and IDs unchanged. */
+      body[data-page="cric-client-dashboard"]
+        .madic-app-content
+        :is(.panel, fieldset, .form-section, .form-card) {
+        background: #fff !important;
+        color: #102b50 !important;
+        border-color: #d5e4ef !important;
+      }
+      body[data-page="cric-client-dashboard"]
+        .madic-app-content
+        :is(.panel, fieldset, .form-section, .form-card)
+        :is(
+          h1,
+          h2,
+          h3,
+          h4,
+          legend,
+          label,
+          p,
+          .muted,
+          .madic-rdv-section-desc,
+          .madic-rdv-muted
+        ) {
+        color: #173657 !important;
+      }
+      body[data-page="cric-client-dashboard"]
+        .madic-app-content
+        :is(
+          .madic-rdv-calendar,
+          .madic-rdv-calendar-controls,
+          .madic-rdv-table,
+          .madic-client-messages-list,
+          .madic-client-messages-history
+        ) {
+        color: #173657 !important;
+      }
+      body[data-page="cric-client-dashboard"]
+        .madic-app-content
+        :is(
+          .madic-rdv-calendar,
+          .madic-rdv-table,
+          .madic-client-messages-history
+        )
+        :is(p, span, small, strong, td, th) {
+        color: inherit;
+      }
+      body[data-page="cric-client-dashboard"]
+        .madic-app-content
+        .madic-client-messages-history {
+        background: #f3f7fc !important;
+        border: 1px solid #d5e4ef !important;
+      }
+      body[data-page="cric-client-dashboard"]
+        .madic-app-content
+        :is(input, select, textarea) {
+        color: #102b50;
+        background: #f4f7fb;
+        border-color: #b7cbe2;
+      }
+      body[data-page="cric-client-dashboard"]
+        .madic-app-content
+        :is(input, select, textarea)
+        option {
+        color: #102b50;
+        background: #fff;
+      }
+      body[data-page="cric-client-dashboard"]
+        .madic-app-content
+        :is(.madic-rdv-hero, .madic-form-hero) {
+        background: #162e56;
+        color: #fff;
+      }
+      body[data-page="cric-client-dashboard"]
+        .madic-app-content
+        :is(.madic-rdv-hero, .madic-form-hero)
+        :is(h1, h2, p) {
+        color: #fff !important;
+      }
+      body[data-page="cric-client-dashboard"]
+        .madic-app-content
+        .madic-rdv-calendar
+        :is(button, div) {
+        color: #173657;
+      }
+      body[data-page="cric-client-dashboard"]
+        .madic-app-content
+        .madic-rdv-calendar
+        button:disabled {
+        color: #506784;
+      }
+      body[data-page="cric-client-dashboard"]
+        .madic-app-content
+        .madic-rdv-step {
+        color: #16769a;
+      }
+      body[data-page="cric-client-dashboard"]
+        .madic-app-content
+        .madic-rdv-table
+        table {
+        background: #fff;
+        color: #173657;
+      }
+      body[data-page="cric-client-dashboard"]
+        .madic-app-content
+        .madic-rdv-table
+        :is(th, td) {
+        color: #173657;
+      }
+      body[data-page="cric-client-dashboard"]
+        .madic-app-content
+        .madic-rdv-table
+        :is(button, a) {
+        color: #176b93;
+      }
+      body[data-page="cric-client-dashboard"]
+        .madic-app-content
+        .madic-client-messages-grid
+        > .panel {
+        background: #fff !important;
+      }
+      body[data-page="cric-client-dashboard"]
+        .madic-app-content
+        .madic-client-messages-grid
+        :is(h2, p) {
+        color: #173657 !important;
+      }
+      body[data-page="cric-client-dashboard"]
+        .madic-app-content
+        .madic-client-messages-grid
+        button {
+        cursor: pointer;
+      }
+      body[data-page="cric-client-dashboard"]
+        .madic-app-content
+        :is(fieldset, legend) {
+        color: #173657;
+      }
+      .madic-three-lang {
+        display: flex;
+        gap: 5px;
+        align-items: center;
+        margin-left: 10px;
+      }
+      .madic-three-lang button {
+        border: 1px solid #c8d9e9;
+        background: #f5f8fd;
+        color: #123557;
+        border-radius: 7px;
+        padding: 7px 10px;
+        font-weight: 700;
+        cursor: pointer;
+      }
+      .madic-three-lang button[aria-pressed="true"] {
+        background: #3eabc8;
+        color: #fff;
+        border-color: #3eabc8;
+      }
+    
+
+/* Styles locaux originaux 3 */
+
+      /* Rendez-vous: remplacer uniquement les surfaces sombres par des surfaces claires. */
+      body[data-madic-view="appointments"] .madic-rdv-client-modern .panel {
+        background: #fff !important;
+        color: #173657 !important;
+        border-color: #d5e4ef !important;
+      }
+      body[data-madic-view="appointments"]
+        .madic-rdv-client-modern
+        .panel
+        :is(h2, label, .madic-rdv-section-desc) {
+        color: #173657 !important;
+      }
+      body[data-madic-view="appointments"]
+        .madic-rdv-client-modern
+        :is(
+          .madic-rdv-notice,
+          .madic-rdv-calendar-controls,
+          .madic-rdv-day,
+          .madic-rdv-day:has(.madic-rdv-slot-button),
+          .madic-rdv-notification,
+          .madic-rdv-notification-unread
+        ) {
+        background: #f4f7fb !important;
+        color: #173657 !important;
+        border-color: #d5e4ef !important;
+      }
+      body[data-madic-view="appointments"]
+        .madic-rdv-client-modern
+        .madic-rdv-calendar-controls
+        :is(strong, button),
+      body[data-madic-view="appointments"]
+        .madic-rdv-client-modern
+        .madic-rdv-day
+        :is(h3, p, span, small, strong) {
+        color: #173657 !important;
+      }
+      body[data-madic-view="appointments"]
+        .madic-rdv-client-modern
+        :is(#rdvSpace, #rdvDurationPicker select) {
+        background: #f4f7fb !important;
+        color: #173657 !important;
+        border-color: #b7cbe2 !important;
+      }
+      body[data-madic-view="appointments"]
+        .madic-rdv-client-modern
+        .madic-rdv-calendar-controls
+        button,
+      body[data-madic-view="appointments"]
+        .madic-rdv-client-modern
+        .madic-rdv-table
+        button {
+        background: #eaf3fa !important;
+        color: #126a99 !important;
+        border-color: #b7cbe2 !important;
+      }
+      body[data-madic-view="appointments"]
+        .madic-rdv-client-modern
+        .madic-rdv-slot-button {
+        background: #0e7776 !important;
+        color: #fff !important;
+        border-color: #0e7776 !important;
+      }
+      body[data-madic-view="appointments"]
+        .madic-rdv-client-modern
+        .madic-rdv-table
+        :is(table, thead) {
+        background: #fff !important;
+        color: #173657 !important;
+      }
+      body[data-madic-view="appointments"]
+        .madic-rdv-client-modern
+        .madic-rdv-table
+        :is(th, td, span, strong) {
+        color: #173657 !important;
+        border-bottom-color: #d5e4ef !important;
+      }
+      body[data-madic-view="appointments"]
+        .madic-rdv-client-modern
+        .madic-rdv-table
+        thead {
+        background: #eaf3fa !important;
+      }
+      body[data-madic-view="appointments"]
+        .madic-rdv-client-modern
+        .madic-rdv-table
+        tbody
+        tr:hover {
+        background: #f4f7fb !important;
+      }
+      body[data-madic-view="appointments"]
+        .madic-rdv-client-modern
+        .madic-rdv-table
+        td.madic-rdv-status-confirmed {
+        color: #146b4a !important;
+      }
+      body[data-madic-view="appointments"]
+        .madic-rdv-client-modern
+        .madic-rdv-table
+        td.madic-rdv-status-requested {
+        color: #885b09 !important;
+      }
+      body[data-madic-view="appointments"]
+        .madic-rdv-client-modern
+        .madic-rdv-muted {
+        color: #526783 !important;
+      }
+      /* Le bandeau principal reste sombre et ses textes restent clairs. */
+      body[data-madic-view="appointments"]
+        .madic-rdv-client-modern
+        .madic-rdv-hero
+        :is(h1, p) {
+        color: #f5f9ff !important;
+      }
+    
+
+/* Styles locaux originaux 4 */
+
+      .madic-client-footer {
+        text-align: center;
+        color: #7894b7;
+        font-size: 14px;
+        padding: 28px 12px;
+        margin: 12px 0 0;
+        background: transparent;
+      }
+    
+
+/* Remplace les styles injectes par le selecteur de duree */
+#rdvDurationPicker{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:12px 0}
+
+/* MADIC : pied de page harmonise avec Actualites / Profil client. */
+body[data-page="cric-client-dashboard"] > footer.madic-footer {
+  box-sizing: border-box;
+  background: #eef3f9 !important;
+  color: #8298c0 !important;
+  border-top: 1px solid #bdc9d8 !important;
+  margin: 0 0 0 var(--madic-client-sidebar-width, 282px);
+  padding: 40px 38px 23px;
+  width: auto;
+}
+body[data-page="cric-client-dashboard"] > footer.madic-footer .madic-footer-name,
+body[data-page="cric-client-dashboard"] > footer.madic-footer .madic-footer-subtitle,
+body[data-page="cric-client-dashboard"] > footer.madic-footer .madic-footer-desc,
+body[data-page="cric-client-dashboard"] > footer.madic-footer .madic-footer-bottom,
+body[data-page="cric-client-dashboard"] > footer.madic-footer .madic-footer-right a { color: #8298c0 !important; }
+body[data-page="cric-client-dashboard"] > footer.madic-footer .madic-footer-bottom { border-color: #bdc9d8 !important; }
+@media (max-width: 800px) { body[data-page="cric-client-dashboard"] > footer.madic-footer { margin-left: 0; padding: 30px 20px 20px; } }
+
+/* Correctif final : le footer occupe la colonne du contenu, sans double decalage lateral. */
+@media (min-width: 801px) {
+  body[data-page="cric-client-dashboard"] > footer.madic-footer {
+    grid-column: 2;
+    grid-row: 3;
+    margin: 0 !important;
+    width: 100%;
+    min-width: 0;
+    padding: 40px 80px 23px;
+  }
+  body[data-page="cric-client-dashboard"] > footer.madic-footer .madic-footer-inner {
+    max-width: none;
+    margin: 0;
+  }
+}
+body[data-page="cric-client-dashboard"] > footer.madic-footer .madic-footer-name { color: #fff !important; }
+@media (max-width: 1080px) and (min-width: 801px) {
+  body[data-page="cric-client-dashboard"] > footer.madic-footer { padding-left: 38px; padding-right: 38px; }
+}

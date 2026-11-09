@@ -1,0 +1,1095 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <title>MAD Immigration Canada</title>
+    <meta
+      name="description"
+      content="MAD Immigration Canadienne inc. est une entreprise Canadienne spécialisée dans l’immigration canadienne, Forte de l’ingéniosité de son équipe d’expérience."
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="icon" href="img/favicon.png" />
+    <link rel="apple-touch-icon" href="img/apple-touch-icon.png" />
+
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/evaluation.css" />
+    <link rel="stylesheet" href="css/quebec.css" />
+    <link rel="stylesheet" href="css/madix-menu.css" />
+    <link rel="stylesheet" href="css/saskatchewan.css" />
+    <link rel="stylesheet" href="css/queries.css" />
+    <link rel="icon" href="favicon.png" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+      integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
+      crossorigin="anonymous"
+    />
+    <script defer src="js/script.js"></script>
+    <script defer src="js/evaluation.js"></script>
+    <script defer src="js/quebec.js"></script>
+    <script defer src="js/madix-menu.js"></script>
+    <script defer src="js/saskatchewan.js"></script>
+  </head>
+
+  <body>
+    <header class="header">
+      <nav class="navbar">
+        <div class="navbar__container">
+          <!-- LOGO -->
+          <a href="index.html" class="navbar__logo">
+            <img
+              src="img/logo_fr_transparent.png"
+              alt="MAD Immigration Canadienne"
+              class="logo"
+            />
+          </a>
+
+          <!-- MENU : 8 LIENS + 2 ACTIONS -->
+          <div class="navbar__content" id="navbar-content">
+            <div class="navbar__navblock">
+              <ul class="navbar__menu navbar__menu--all">
+                <li class="navbar__item">
+                  <a
+                    href="index.html"
+                    class="navbar__links"
+                    id="index"
+                    data-i18n="nav.home"
+                  >
+                    Accueil
+                  </a>
+                </li>
+
+                <li class="navbar__item">
+                  <a
+                    href="services.html"
+                    class="navbar__links"
+                    id="services-page"
+                    data-i18n="nav.services"
+                  >
+                    Nos services
+                  </a>
+                </li>
+
+                <li class="navbar__item">
+                  <a
+                    href="forfaits.html"
+                    class="navbar__links"
+                    data-i18n="nav.packages"
+                  >
+                    Nos forfaits
+                  </a>
+                </li>
+
+                <li class="navbar__item">
+                  <a
+                    href="propos.html"
+                    class="navbar__links navbar__links--secondary"
+                    id="about-page"
+                    data-i18n="nav.about"
+                  >
+                    À propos
+                  </a>
+                </li>
+
+                <li class="navbar__item">
+                  <a
+                    href="carriere.html"
+                    class="navbar__links navbar__links--secondary"
+                    id="career-page"
+                    data-i18n="nav.career"
+                  >
+                    Carrière
+                  </a>
+                </li>
+
+                <li class="navbar__item">
+                  <a
+                    href="evenements.html"
+                    class="navbar__links navbar__links--secondary"
+                    data-i18n="nav.events"
+                  >
+                    Événements
+                  </a>
+                </li>
+
+                <li class="navbar__item">
+                  <a
+                    href="blogue.html"
+                    class="navbar__links navbar__links--secondary"
+                    data-i18n="nav.blog"
+                  >
+                    Blogue
+                  </a>
+                </li>
+
+                <li class="navbar__item">
+                  <a
+                    href="joindre.html"
+                    class="navbar__links navbar__links--secondary"
+                    data-i18n="nav.contact"
+                  >
+                    Nous joindre
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <!-- ACTIONS DU MENU -->
+            <div class="navbar__actions">
+              <!-- MADIX : menu des outils, sans page intermediaire -->
+              <div class="madix-nav" id="madix-nav">
+                <button
+                  type="button"
+                  class="nav-action nav-action--outline madix-trigger"
+                  id="madix-trigger"
+                  aria-expanded="false"
+                  aria-haspopup="true"
+                  aria-controls="madix-panel"
+                >
+                  <i class="fa-solid fa-layer-group" aria-hidden="true"></i>
+                  <span>MADIX</span>
+                  <i
+                    class="fa-solid fa-chevron-down madix-chevron"
+                    aria-hidden="true"
+                  ></i>
+                </button>
+                <div class="madix-panel" id="madix-panel" hidden>
+                  <div class="madix-panel-head">
+                    <span
+                      class="madix-kicker"
+                      data-madix-fr="PLATEFORME D'OUTILS"
+                      data-madix-en="IMMIGRATION TOOLKIT"
+                      >PLATEFORME D'OUTILS</span
+                    >
+                    <strong>MADI<span class="madix-x">X</span></strong>
+                    <p
+                      data-madix-fr="Explorez nos outils d'immigration"
+                      data-madix-en="Explore our immigration tools"
+                    >
+                      Explorez nos outils d'immigration
+                    </p>
+                  </div>
+                  <div class="madix-links">
+                    <a href="quebec.html" class="madix-tool">
+                      <i
+                        class="fa-solid fa-map-location-dot"
+                        aria-hidden="true"
+                      ></i>
+                      <span
+                        ><strong data-madix-fr="Québec" data-madix-en="Quebec"
+                          >Québec</strong
+                        ><small
+                          data-madix-fr="Programmes québécois"
+                          data-madix-en="Quebec immigration programs"
+                          >Programmes québécois</small
+                        ></span
+                      >
+                      <i
+                        class="fa-solid fa-arrow-up-right-from-square madix-arrow"
+                        aria-hidden="true"
+                      ></i>
+                    </a>
+                    <a href="saskatchewan.html" class="madix-tool">
+                      <i class="fa-solid fa-map" aria-hidden="true"></i>
+                      <span
+                        ><strong>Saskatchewan</strong
+                        ><small
+                          data-madix-fr="Programme SINP"
+                          data-madix-en="SINP program"
+                          >Programme SINP</small
+                        ></span
+                      >
+                      <i
+                        class="fa-solid fa-arrow-up-right-from-square madix-arrow"
+                        aria-hidden="true"
+                      ></i>
+                    </a>
+                    <a href="evaluations.html" class="madix-tool">
+                      <i class="fa-solid fa-calculator" aria-hidden="true"></i>
+                      <span
+                        ><strong
+                          data-madix-fr="Évaluations"
+                          data-madix-en="Calculators"
+                          >Évaluations</strong
+                        ><small
+                          data-madix-fr="Simulateurs et calculateurs"
+                          data-madix-en="Assessment calculators"
+                          >Simulateurs et calculateurs</small
+                        ></span
+                      >
+                      <i
+                        class="fa-solid fa-arrow-up-right-from-square madix-arrow"
+                        aria-hidden="true"
+                      ></i>
+                    </a>
+                    <a href="formulaire.html" class="madix-tool">
+                      <i
+                        class="fa-solid fa-clipboard-check"
+                        aria-hidden="true"
+                      ></i>
+                      <span
+                        ><strong
+                          data-madix-fr="Évaluation préliminaire"
+                          data-madix-en="Preliminary assessment"
+                          >Évaluation préliminaire</strong
+                        ><small
+                          data-madix-fr="Analyse initiale de votre profil"
+                          data-madix-en="Initial profile review"
+                          >Analyse initiale de votre profil</small
+                        ></span
+                      >
+                      <i
+                        class="fa-solid fa-arrow-up-right-from-square madix-arrow"
+                        aria-hidden="true"
+                      ></i>
+                    </a>
+                  </div>
+                  <p
+                    class="madix-panel-foot"
+                    data-madix-fr="De nouveaux outils seront ajoutés prochainement."
+                    data-madix-en="More tools coming soon."
+                  >
+                    De nouveaux outils seront ajoutés prochainement.
+                  </p>
+                </div>
+              </div>
+
+              <!-- ESPACE CLIENT MADIC -->
+              <a
+                href="https://madic.ca/connexion.html"
+                class="nav-action nav-action--outline"
+                id="client-portal"
+                data-i18n="nav.clientPortal"
+              >
+                <i class="fa-solid fa-user-shield" aria-hidden="true"></i>
+                <span>Espace client</span>
+              </a>
+
+              <a
+                href="rendezvous.html"
+                class="nav-action nav-action--primary"
+                id="appointment"
+                data-i18n="nav.appointment"
+              >
+                <i class="fa-solid fa-calendar-check"></i>
+                <span>Prendre rendez-vous</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- LANGUES + MODE NUIT : TOUJOURS VISIBLES -->
+          <div class="navbar__utilities">
+            <div class="language-switcher">
+              <button
+                type="button"
+                class="lang-btn active"
+                data-lang="fr"
+                aria-label="Français"
+                title="Français"
+              >
+                <img
+                  src="img/flag-quebec.svg"
+                  width="24"
+                  height="16"
+                  alt="Drapeau du Québec"
+                  class="lang-flag"
+                />
+                <span>FR</span>
+              </button>
+
+              <button
+                type="button"
+                class="lang-btn"
+                data-lang="en"
+                aria-label="English"
+                title="English"
+              >
+                <img
+                  src="img/flag-canada.svg"
+                  width="24"
+                  height="16"
+                  alt="Canadian flag"
+                  class="lang-flag"
+                />
+                <span>EN</span>
+              </button>
+            </div>
+
+            <button
+              type="button"
+              id="theme-toggle"
+              class="theme-toggle-btn"
+              aria-label="Activer le mode nuit"
+              title="Mode nuit"
+            >
+              <i class="fa-solid fa-moon"></i>
+            </button>
+          </div>
+
+          <!-- HAMBURGER -->
+          <button
+            type="button"
+            class="navbar__toggle"
+            id="mobile-menu"
+            aria-label="Ouvrir le menu"
+            aria-expanded="false"
+            aria-controls="navbar-content"
+          >
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main class="wrap">
+      <div class="eyebrow">ÉVALUATION PRÉLIMINAIRE • QUÉBEC • 2026</div>
+      <h1>
+        Quels parcours d'immigration permanente au Québec correspondent à votre
+        profil ?
+      </h1>
+      <p class="intro">
+        Un outil d'orientation indépendant, fondé sur les renseignements
+        gouvernementaux fournis. Il ne remplace ni Arrima, ni une décision du
+        MIFI, ni une consultation professionnelle.
+      </p>
+      <div class="notice">
+        <strong>État des programmes en 2026.</strong> Les programmes pilotes
+        Transformation alimentaire, Préposés aux bénéficiaires et IA/TI–effets
+        visuels sont fermés aux nouvelles demandes depuis le 1er janvier 2026.
+        Le PEQ fait l'objet d'une réouverture temporaire et d'une fenêtre de
+        réception du 2 juillet au 31 octobre 2026, selon l'avis fourni.
+      </div>
+      <div class="progress-note" id="progressNote" aria-live="polite">
+        Remplissez votre profil une seule fois : les parcours sont analysés
+        ensemble.
+      </div>
+      <form id="assessment" novalidate>
+        <section class="panel">
+          <div class="section-head">
+            <span>01</span>
+            <h2>Situation et projet</h2>
+          </div>
+          <div class="fields">
+            <label
+              >Âge
+              <input
+                id="age"
+                type="number"
+                min="0"
+                max="110"
+                placeholder="Ex. 29"
+                required /></label
+            ><label
+              >Où résidez-vous actuellement ?<select id="residence">
+                <option value="">Sélectionner…</option>
+                <option value="qc">Au Québec</option>
+                <option value="canada">Ailleurs au Canada</option>
+                <option value="abroad">À l'étranger</option>
+              </select></label
+            ><label
+              >Statut légal au Québec, si vous y résidez<select id="status">
+                <option value="">Sélectionner…</option>
+                <option value="valid">Statut légal valide</option>
+                <option value="none">Aucun statut légal</option>
+                <option value="na">Sans objet</option>
+              </select></label
+            ><label
+              >Votre situation<select id="situation">
+                <option value="">Sélectionner…</option>
+                <option value="worker">Travailleur / travailleuse</option>
+                <option value="graduate">Diplômé(e) du Québec</option>
+                <option value="student">Étudiant(e)</option>
+                <option value="other">Autre</option>
+              </select></label
+            ><label
+              >Déjà déposé une demande dans un ancien programme pilote avant le
+              1er janvier 2026 ?<select id="pilot">
+                <option value="">Sélectionner…</option>
+                <option value="none">Non</option>
+                <option value="food">Transformation alimentaire</option>
+                <option value="care">Préposés aux bénéficiaires</option>
+                <option value="tech">IA / TI / effets visuels</option>
+              </select></label
+            ><label
+              >Intention de vivre et travailler au Québec<select id="intent">
+                <option value="">Sélectionner…</option>
+                <option value="yes">Oui</option>
+                <option value="no">Non</option>
+              </select></label
+            ><label
+              >Emploi projeté dans un secteur inadmissible ou entreprise sous
+              votre contrôle ?<select id="excluded">
+                <option value="">Sélectionner…</option>
+                <option value="no">Non</option>
+                <option value="yes">Oui</option>
+                <option value="unknown">À vérifier</option>
+              </select></label
+            >
+          </div>
+        </section>
+        <section class="panel">
+          <div class="section-head">
+            <span>02</span>
+            <h2>Profession et expérience</h2>
+          </div>
+          <div class="fields">
+            <label
+              >Code CNP de la profession principale (5 chiffres)<input
+                id="noc"
+                inputmode="numeric"
+                pattern="[0-9]{5}"
+                maxlength="5"
+                placeholder="Ex. 21211" /></label
+            ><label
+              >La profession est-elle réglementée au Québec ?<select
+                id="regulated"
+              >
+                <option value="">Sélectionner…</option>
+                <option value="yes">
+                  Oui, mon emploi exige une autorisation
+                </option>
+                <option value="no">Non</option>
+                <option value="unknown">Je ne sais pas</option>
+              </select></label
+            ><label
+              >Reconnaissance par l'autorité de réglementation<select
+                id="recognition"
+              >
+                <option value="">Sélectionner…</option>
+                <option value="authorized">Autorisation d'exercice</option>
+                <option value="equivalence">
+                  Reconnaissance partielle ou complète datant d'au plus 5 ans
+                </option>
+                <option value="pending">
+                  Demande en cours / aucun document
+                </option>
+                <option value="na">Sans objet</option>
+              </select></label
+            ><label
+              >Expérience rémunérée dans la profession principale, 5 dernières
+              années (mois équivalents temps plein)<input
+                id="work"
+                type="number"
+                min="0"
+                max="60"
+                placeholder="Ex. 24" /></label
+            ><label
+              >Dont expérience au Québec dans la profession principale
+              (mois)<input
+                id="qcwork"
+                type="number"
+                min="0"
+                max="60"
+                placeholder="Ex. 12" /></label
+            ><label
+              >Expérience de travail au Québec FEER 0–3 acquise au 19 novembre
+              2025 (mois)<input
+                id="peqwork"
+                type="number"
+                min="0"
+                max="120"
+                placeholder="Ex. 24" /></label
+            ><label
+              >Accomplissements exceptionnels reconnus ou avis d'un partenaire
+              du MIFI<select id="exception">
+                <option value="">Sélectionner…</option>
+                <option value="yes">Oui</option>
+                <option value="no">Non</option>
+                <option value="unknown">À vérifier</option>
+              </select></label
+            >
+          </div>
+          <p class="hint">
+            La catégorie FEER est déduite du deuxième chiffre du code CNP. Le
+            volet applicable dépend aussi de la profession et des règles du
+            MIFI.
+          </p>
+        </section>
+        <section class="panel">
+          <div class="section-head">
+            <span>03</span>
+            <h2>Formation et diplôme</h2>
+          </div>
+          <div class="fields">
+            <label
+              >Plus haut diplôme obtenu<select id="degree">
+                <option value="">Sélectionner…</option>
+                <option value="none">Aucun diplôme</option>
+                <option value="secondary">
+                  Secondaire (DES ou équivalent)
+                </option>
+                <option value="vocational">DEP / ASP</option>
+                <option value="college">AEC / DEC</option>
+                <option value="bachelor">Baccalauréat</option>
+                <option value="master">Maîtrise / MBA</option>
+                <option value="doctorate">Doctorat</option>
+                <option value="other">Autre</option>
+              </select></label
+            ><label
+              >Lieu du diplôme<select id="degreeplace">
+                <option value="">Sélectionner…</option>
+                <option value="qc">Québec</option>
+                <option value="elsewhere">Hors Québec</option>
+              </select></label
+            ><label
+              >Durée du programme (heures, si applicable)<input
+                id="hours"
+                type="number"
+                min="0"
+                placeholder="Ex. 1800" /></label
+            ><label
+              >Durée du programme (crédits universitaires, si applicable)<input
+                id="credits"
+                type="number"
+                min="0"
+                placeholder="Ex. 90" /></label
+            ><label
+              >Programme à temps plein d'au moins un an<select id="fulltime">
+                <option value="">Sélectionner…</option>
+                <option value="yes">Oui</option>
+                <option value="no">Non</option>
+              </select></label
+            ><label
+              >Date d'obtention du diplôme<input
+                id="graduation"
+                type="date" /></label
+            ><label
+              >Au moins la moitié des études effectuée en séjournant au Québec
+              pour étudier<select id="half">
+                <option value="">Sélectionner…</option>
+                <option value="yes">Oui</option>
+                <option value="no">Non</option>
+              </select></label
+            ><label
+              >Condition de retour au pays liée à une bourse<select
+                id="scholarship"
+              >
+                <option value="">Sélectionner…</option>
+                <option value="none">Aucune / déjà respectée</option>
+                <option value="unmet">Oui, non respectée</option>
+              </select></label
+            >
+          </div>
+        </section>
+        <section class="panel">
+          <div class="section-head">
+            <span>04</span>
+            <h2>Français et famille</h2>
+          </div>
+          <p class="hint">
+            Saisissez les niveaux selon l'Échelle québécoise (0 à 12), et non
+            directement les notes brutes d'un examen. Les preuves linguistiques
+            doivent être vérifiées.
+          </p>
+          <div class="fields">
+            <label
+              >Compréhension orale (français)<input
+                id="oralListen"
+                type="number"
+                min="0"
+                max="12"
+                placeholder="0 à 12" /></label
+            ><label
+              >Expression orale (français)<input
+                id="oralSpeak"
+                type="number"
+                min="0"
+                max="12"
+                placeholder="0 à 12" /></label
+            ><label
+              >Compréhension écrite (français)<input
+                id="writtenRead"
+                type="number"
+                min="0"
+                max="12"
+                placeholder="0 à 12" /></label
+            ><label
+              >Expression écrite (français)<input
+                id="writtenWrite"
+                type="number"
+                min="0"
+                max="12"
+                placeholder="0 à 12" /></label
+            ><label
+              >Conjoint(e) accompagnant(e) ?<select id="spouse">
+                <option value="">Sélectionner…</option>
+                <option value="no">Non</option>
+                <option value="yes">Oui</option>
+              </select></label
+            ><label id="spouseRow"
+              >Niveau oral minimal du conjoint (plus faible des deux
+              compétences)<input
+                id="spouseFrench"
+                type="number"
+                min="0"
+                max="12"
+                placeholder="0 à 12" /></label
+            ><label
+              >Capacité financière pour les 3 premiers mois<select id="finance">
+                <option value="">Sélectionner…</option>
+                <option value="yes">Oui, selon le barème applicable</option>
+                <option value="no">Non</option>
+                <option value="unknown">À confirmer</option>
+              </select></label
+            ><label
+              >Attestation des valeurs québécoises obtenue ou prévue<select
+                id="values"
+              >
+                <option value="">Sélectionner…</option>
+                <option value="yes">Oui / démarche prévue</option>
+                <option value="no">Non</option>
+              </select></label
+            >
+          </div>
+        </section>
+        <section class="panel" id="pstq-details">
+          <div class="section-head">
+            <span>05</span>
+            <h2>Critères complémentaires PSTQ - Québec</h2>
+          </div>
+          <p class="hint">
+            Ces renseignements complètent l’évaluation unique et reprennent les
+            rubriques des formulaires MIFI ME-0104-2608 et ME-0120-2608. Les
+            mois d’expérience portent sur les cinq dernières années.
+          </p>
+          <div class="fields">
+            <label
+              >Expérience professionnelle totale (mois)<input
+                id="workTotal"
+                type="number"
+                min="0"
+                max="60"
+                placeholder="Ex. 48"
+            /></label>
+            <label
+              >Expérience professionnelle totale au Québec (mois)<input
+                id="workQcTotal"
+                type="number"
+                min="0"
+                max="60"
+                placeholder="Ex. 24"
+            /></label>
+            <label
+              >Diagnostic de main-d’œuvre de votre profession<select
+                id="labourDiagnosis"
+              >
+                <option value="">À déterminer…</option>
+                <option value="shortage">Déficit de main-d’œuvre</option>
+                <option value="balance">Équilibre</option>
+                <option value="surplus">Surplus</option>
+                <option value="unknown">Inconnu / à confirmer</option>
+              </select></label
+            >
+            <label
+              >Études au Québec sans diplôme obtenu - situation<select
+                id="qcStudyStatus"
+              >
+                <option value="">Sélectionner…</option>
+                <option value="none">Aucune</option>
+                <option value="ongoing">Études en cours</option>
+                <option value="completed">
+                  Séjour d’études terminé sans diplôme
+                </option>
+              </select></label
+            >
+            <label data-show="qcStudyStatus:ongoing,completed"
+              >Durée des études au Québec sans diplôme (mois)<input
+                id="qcStudyMonths"
+                type="number"
+                min="0"
+                max="120"
+            /></label>
+            <label
+              >Résidez-vous actuellement hors de la CMM, au Québec ?<select
+                id="outsideCmm"
+              >
+                <option value="">Sélectionner…</option>
+                <option value="yes">Oui</option>
+                <option value="no">Non</option>
+                <option value="na">Je ne réside pas au Québec</option>
+              </select></label
+            >
+            <label data-show="outsideCmm:yes"
+              >Résidence hors CMM (mois)<input
+                id="outsideResidenceMonths"
+                type="number"
+                min="0"
+                max="600"
+            /></label>
+            <label
+              >Expérience professionnelle hors CMM (mois)<input
+                id="outsideWorkMonths"
+                type="number"
+                min="0"
+                max="60"
+            /></label>
+            <label
+              >Études les plus récentes hors CMM (mois)<input
+                id="outsideStudyMonths"
+                type="number"
+                min="0"
+                max="120"
+            /></label>
+            <label
+              >Famille admissible dans la région d’établissement envisagée hors
+              CMM<select id="regionalFamily">
+                <option value="">Sélectionner…</option>
+                <option value="yes">Oui</option>
+                <option value="no">Non</option>
+                <option value="unknown">À vérifier</option>
+              </select></label
+            >
+            <label
+              >Offre d’emploi validée (OEV) dans la profession principale<select
+                id="validatedOffer"
+              >
+                <option value="">Sélectionner…</option>
+                <option value="none">Aucune</option>
+                <option value="cmm">Dans la CMM</option>
+                <option value="outside">Hors CMM</option>
+                <option value="unknown">À vérifier</option>
+              </select></label
+            >
+          </div>
+        </section>
+        <section class="panel" id="spouse-details" hidden>
+          <div class="section-head">
+            <span>06</span>
+            <h2>Conjoint accompagnant - détails PSTQ</h2>
+          </div>
+          <p class="hint">
+            Les quatre compétences de français sont évaluées séparément selon
+            l’Échelle québécoise (0 à 12).
+          </p>
+          <div class="fields">
+            <label
+              >Âge du conjoint<input
+                id="spouseAge"
+                type="number"
+                min="0"
+                max="110"
+            /></label>
+            <label
+              >Plus haut diplôme du conjoint<select id="spouseDegree">
+                <option value="">Sélectionner…</option>
+                <option value="none">Aucun</option>
+                <option value="secondary">Secondaire</option>
+                <option value="vocational">Professionnel</option>
+                <option value="college">Collégial</option>
+                <option value="bachelor">Baccalauréat</option>
+                <option value="master">Maîtrise</option>
+                <option value="doctorate">Doctorat</option>
+              </select></label
+            >
+            <label
+              >Diplôme québécois du conjoint<select id="spouseQcDegree">
+                <option value="">Sélectionner…</option>
+                <option value="no">Non</option>
+                <option value="secondary">Secondaire</option>
+                <option value="vocational">Professionnel</option>
+                <option value="college">Collégial</option>
+                <option value="bachelor">Baccalauréat</option>
+                <option value="master">Maîtrise</option>
+                <option value="doctorate">Doctorat</option>
+              </select></label
+            >
+            <label
+              >Expérience professionnelle du conjoint au Québec, cinq dernières
+              années (mois)<input
+                id="spouseQcWork"
+                type="number"
+                min="0"
+                max="60"
+            /></label>
+            <label
+              >Compréhension orale du conjoint<input
+                id="spouseListen"
+                type="number"
+                min="0"
+                max="12"
+            /></label>
+            <label
+              >Expression orale du conjoint<input
+                id="spouseSpeak"
+                type="number"
+                min="0"
+                max="12"
+            /></label>
+            <label
+              >Compréhension écrite du conjoint<input
+                id="spouseRead"
+                type="number"
+                min="0"
+                max="12"
+            /></label>
+            <label
+              >Expression écrite du conjoint<input
+                id="spouseWrite"
+                type="number"
+                min="0"
+                max="12"
+            /></label>
+          </div>
+        </section>
+        <section class="panel">
+          <div class="section-head">
+            <span>07</span>
+            <h2>Vérification du PEQ</h2>
+          </div>
+          <div class="fields">
+            <label
+              >Volet à examiner<select id="peqtype">
+                <option value="">Sélectionner…</option>
+                <option value="graduate">Diplômés du Québec</option>
+                <option value="worker">
+                  Travailleurs étrangers temporaires
+                </option>
+                <option value="both">Examiner les deux</option>
+                <option value="none">Sans objet</option>
+              </select></label
+            ><label
+              >Le diplôme admissible était-il obtenu au 19 novembre 2025
+              ?<select id="gradCutoff">
+                <option value="">Sélectionner…</option>
+                <option value="yes">Oui</option>
+                <option value="no">Non</option>
+              </select></label
+            ><label
+              >Emploi visé conforme aux conditions générales du PEQ<select
+                id="peqJob"
+              >
+                <option value="">Sélectionner…</option>
+                <option value="yes">Oui</option>
+                <option value="no">Non</option>
+                <option value="unknown">À vérifier</option>
+              </select></label
+            >
+          </div>
+        </section>
+        <div class="actions">
+          <button type="submit">Évaluer mon profil</button
+          ><button type="reset" class="secondary">Réinitialiser</button>
+        </div>
+      </form>
+      <section id="results" class="results" hidden aria-live="polite">
+        <div class="section-head">
+          <span>✓</span>
+          <h2>Résultats de l'évaluation</h2>
+        </div>
+        <div id="resultContent"></div>
+        <button type="button" class="secondary" onclick="window.print()">
+          Imprimer les résultats
+        </button>
+      </section>
+      <section class="panel sources">
+        <h2>Références gouvernementales</h2>
+        <ul>
+          <li>
+            <a
+              href="https://www.quebec.ca/immigration/permanente/travailleurs-qualifies/programme-selection-travailleurs-qualifies/exigences"
+              target="_blank"
+              rel="noopener"
+              >PSTQ-Exigences générales et spécifiques</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://www.quebec.ca/immigration/permanente/travailleurs-qualifies/programme-selection-travailleurs-qualifies/declaration-interet"
+              target="_blank"
+              rel="noopener"
+              >PSTQ-Déclaration d'intérêt Arrima</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://www.quebec.ca/immigration/permanente/travailleurs-qualifies/programme-selection-travailleurs-qualifies/invitation"
+              target="_blank"
+              rel="noopener"
+              >PSTQ-Critères d'invitation</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://www.quebec.ca/immigration/permanente/travailleurs-qualifies/programme-experience-quebecoise/conditions-selection/diplomes-quebec"
+              target="_blank"
+              rel="noopener"
+              >PEQ-Diplômés du Québec</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://www.quebec.ca/immigration/permanente/travailleurs-qualifies/programme-experience-quebecoise/conditions-selection/travailleurs-temporaires"
+              target="_blank"
+              rel="noopener"
+              >PEQ-Travailleurs étrangers temporaires</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://www.quebec.ca/immigration/permanente/travailleurs-qualifies/transformation-alimentaire"
+              target="_blank"
+              rel="noopener"
+              >Pilote Transformation alimentaire</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://www.quebec.ca/immigration/permanente/travailleurs-qualifies/intelligence-artificielle"
+              target="_blank"
+              rel="noopener"
+              >Pilote IA / TI / effets visuels</a
+            >
+          </li>
+        </ul>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container grid--footer">
+        <div class="logo-col">
+          <a href="#" class="footer-logo">
+            <img
+              src="img/logo_fr_transparent.png"
+              alt="omnifood-logo"
+              class="logo"
+            />
+          </a>
+
+          <ul class="social-links">
+            <li>
+              <a class="footer-link" href="#"
+                ><ion-icon class="social-icon" name="logo-instagram"></ion-icon
+              ></a>
+            </li>
+            <li>
+              <a class="footer-link" href="#"
+                ><ion-icon class="social-icon" name="logo-facebook"></ion-icon
+              ></a>
+            </li>
+            <li>
+              <a class="footer-link" href="#"
+                ><ion-icon class="social-icon" name="logo-twitter"></ion-icon
+              ></a>
+            </li>
+          </ul>
+          <p class="copyright">
+            Copyright &copy;
+            <span class="year"></span>
+            Design MADMECA Inc.
+            <span data-i18n="footer.copyright">
+              Tous les droits réservés.
+            </span>
+          </p>
+        </div>
+
+        <div class="address-col">
+          <p class="footer-heading" data-i18n="footer.contact">
+            Contactez-nous
+          </p>
+          <address class="contacts">
+            <p class="address">
+              1622 Rue Barré, Bureau 202, Saint-Laurent, QC, CA
+            </p>
+            <p>
+              <a class="footer-link" href="tel:415-201-6370">514-442-3076</a
+              ><br />
+              <a class="footer-link" href="mailto:hello@omnifood.com"
+                >madimmigrationcanadienne@gmail.com</a
+              >
+            </p>
+          </address>
+        </div>
+
+        <nav class="nav-col">
+          <p class="footer-heading" data-i18n="footer.account">Compte</p>
+
+          <ul class="footer-nav">
+            <li>
+              <a class="footer-link" href="#" data-i18n="footer.createAccount">
+                Créer un compte
+              </a>
+            </li>
+
+            <li>
+              <a class="footer-link" href="#" data-i18n="footer.register">
+                S'inscrire
+              </a>
+            </li>
+
+            <li>
+              <a class="footer-link" href="#">iOS</a>
+            </li>
+
+            <li>
+              <a class="footer-link" href="#" data-i18n="footer.android">
+                Android
+              </a>
+            </li>
+          </ul>
+        </nav>
+
+        <nav class="nav-col">
+          <p class="footer-heading" data-i18n="footer.company">Compagnie</p>
+
+          <ul class="footer-nav">
+            <li>
+              <a class="footer-link" href="#" data-i18n="footer.about">
+                À propos de MADIC
+              </a>
+            </li>
+
+            <li>
+              <a class="footer-link" href="#" data-i18n="footer.business">
+                Affaires
+              </a>
+            </li>
+
+            <li>
+              <a class="footer-link" href="#" data-i18n="footer.partners">
+                Partenaires
+              </a>
+            </li>
+
+            <li>
+              <a class="footer-link" href="#" data-i18n="footer.career">
+                Carrière
+              </a>
+            </li>
+          </ul>
+        </nav>
+
+        <nav class="nav-col">
+          <p class="footer-heading" data-i18n="footer.resources">Ressources</p>
+
+          <ul class="footer-nav">
+            <li>
+              <a class="footer-link" href="#" data-i18n="footer.directory">
+                Répertoire Immigration
+              </a>
+            </li>
+
+            <li>
+              <a class="footer-link" href="#" data-i18n="footer.help">
+                Centre d'aide
+              </a>
+            </li>
+
+            <li>
+              <a class="footer-link" href="#" data-i18n="footer.privacy">
+                Confidentialité et conditions
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </footer>
+  </body>
+</html>

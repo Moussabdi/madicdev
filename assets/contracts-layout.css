@@ -1,0 +1,40 @@
+/* MADIC : affichage des logos et contrats */
+.madic-logo-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;margin:1rem 0}
+.madic-logo-slot{border:1px solid #d6dbe1;border-radius:10px;padding:1rem;display:flex;flex-direction:column;align-items:flex-start;gap:.7rem;min-width:0}
+.madic-logo-slot input{max-width:100%}.madic-logo-preview{max-width:200px;max-height:90px;object-fit:contain}
+.madic-contract-logo-header{display:flex;align-items:flex-start;justify-content:space-between;gap:2rem;min-height:90px;margin-bottom:1.2rem}
+.madic-contract-logo-header img{max-width:43%;max-height:90px;object-fit:contain}
+#contract-print{max-width:800px;margin:1rem auto;line-height:1.65}
+#contract-print h2{text-align:center;margin:1.3rem 0}
+@media(max-width:620px){.madic-logo-grid{grid-template-columns:1fr}.madic-contract-logo-header img{max-width:45%;max-height:65px}}
+@media print{.madic-logo-admin{display:none}#contract-print{max-width:none}.madic-contract-logo-header{break-inside:avoid}}
+
+/* Correctif MADIC : logos limites a l'interieur du contrat client. */
+#contract-preview .madic-contract-logo-header,
+#contract-print .madic-contract-logo-header,
+.document .madic-contract-logo-header {
+  display:flex; align-items:center; justify-content:space-between;
+  gap:16px; min-width:0; max-width:100%;
+}
+#contract-preview .madic-contract-logo-header img,
+#contract-print .madic-contract-logo-header img,
+.document .madic-contract-logo-header img {
+  display:block; width:auto!important; height:auto!important;
+  max-width:min(42%,180px)!important; max-height:68px!important;
+  min-width:0; object-fit:contain!important; flex:0 1 auto;
+}
+#contract-preview .doc-head img,
+#contract-print .doc-head img,
+.document .doc-head img {
+  width:auto!important; height:auto!important; max-width:42%!important;
+  max-height:68px!important; object-fit:contain!important;
+}
+@media(max-width:620px){
+  #contract-preview .madic-contract-logo-header img,
+  #contract-print .madic-contract-logo-header img,
+  .document .madic-contract-logo-header img {max-width:44%!important;max-height:52px!important;}
+}
+@media print{
+  #contract-print .madic-contract-logo-header img,
+  #contract-print .doc-head img {max-height:16mm!important;}
+}

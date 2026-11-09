@@ -1,0 +1,163 @@
+/* MADIC DataHubz v15 - uniformisation visuelle; aucune logique metier */
+body.madic-unified {
+  --madic-bg: #071626;
+  --madic-surface: #10263b;
+  --madic-line: #29475e;
+  --madic-ink: #e8f3fa;
+  --madic-muted: #a5b7cc;
+  --madic-primary: #38bfd8;
+  color: var(--madic-ink);
+  background: var(--madic-bg);
+}
+body.madic-unified .madic-unified-content .panel,
+body.madic-unified .madic-unified-content .madic-cric-card,
+body.madic-unified .madic-unified-content .madic-home-card,
+body.madic-unified .madic-unified-content .madic-logo-slot,
+body.madic-unified .madic-unified-content .madic-msg-side,
+body.madic-unified .madic-unified-content .madic-msg-chat {
+  background: #10263b;
+  color: #e8f3fa;
+  border: 1px solid #29475e;
+  border-radius: 15px;
+  box-shadow: 0 12px 30px #0002;
+}
+body.madic-unified
+  .madic-unified-content
+  input:not([type="checkbox"]):not([type="radio"]),
+body.madic-unified .madic-unified-content select,
+body.madic-unified .madic-unified-content textarea {
+  background: #09192c;
+  color: #fff;
+  border: 1px solid #47617b;
+  border-radius: 9px;
+}
+body.madic-unified .madic-unified-content input:focus-visible,
+body.madic-unified .madic-unified-content select:focus-visible,
+body.madic-unified .madic-unified-content textarea:focus-visible {
+  outline: 2px solid #48d5ec;
+  outline-offset: 2px;
+}
+body.madic-unified
+  .madic-unified-content
+  button:not(.secondary):not([class*="outline"]),
+body.madic-unified .madic-unified-content .btn:not(.secondary),
+body.madic-unified .madic-unified-content .madic-home-link,
+body.madic-unified .madic-unified-content .madic-cric-action {
+  background: #38bfd8;
+  color: #041322 !important;
+  border-radius: 9px;
+  border-color: #38bfd8;
+}
+body.madic-unified
+  .madic-unified-content
+  button:not(.secondary):not([class*="outline"]):hover,
+body.madic-unified .madic-unified-content .btn:not(.secondary):hover {
+  background: #76e0ef;
+}
+body.madic-unified .madic-unified-content .secondary {
+  background: #223a52;
+  color: #fff;
+  border-color: #47617b;
+}
+body.madic-unified .madic-unified-content .muted,
+body.madic-unified .madic-unified-content small,
+body.madic-unified .madic-unified-content .hint {
+  color: #a5b7cc;
+}
+body.madic-unified .madic-unified-content th,
+body.madic-unified .madic-unified-content .madic-admin-table-wrap thead th {
+  background: #18364b !important;
+  color: #e8f3fa !important;
+  border-color: #29475e;
+}
+body.madic-unified .madic-unified-content td {
+  border-color: #29475e;
+  color: #e8f3fa;
+}
+body.madic-unified
+  .madic-unified-content
+  .madic-msg-conversations
+  button[aria-current="true"],
+body.madic-unified
+  .madic-unified-content
+  .madic-client-messages-list
+  button[aria-current="true"] {
+  background: #16384c;
+  color: #fff;
+  border-color: #38bfd8;
+}
+body.madic-unified .madic-unified-content .madic-msg-messages,
+body.madic-unified .madic-unified-content .madic-client-messages-history {
+  background: #09192c;
+  border-color: #29475e;
+}
+body.madic-unified .madic-unified-content .madic-msg-bubble,
+body.madic-unified .madic-unified-content .madic-client-msg-bubble {
+  background: #10263b;
+  color: #e8f3fa;
+  border-color: #29475e;
+}
+body.madic-unified .madic-unified-content .madic-msg-own,
+body.madic-unified .madic-unified-content .madic-client-msg-own {
+  background: #164254;
+  border-color: #38bfd8;
+}
+body.madic-unified .madic-unified-content .madic-cric-notification {
+  border-color: #29475e;
+}
+body.madic-unified .madic-unified-content .madic-cric-notification time {
+  color: #a5b7cc;
+}
+body.madic-unified .madic-unified-content a {
+  color: #5ad5f2;
+}
+body.madic-unified .madic-unified-content [hidden] {
+  display: none !important;
+}
+body.madic-unified .madic-unified-sidebar nav svg {
+  width: 19px;
+  height: 19px;
+  flex-shrink: 0;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+@media (max-width: 720px) {
+  body.madic-unified .madic-unified-content .madic-cric-grid,
+  body.madic-unified .madic-unified-content .madic-home-grid,
+  body.madic-unified .madic-unified-content .madic-logo-grid {
+    grid-template-columns: 1fr;
+  }
+}
+@media print {
+  body.madic-unified {
+    background: #fff !important;
+    color: #111 !important;
+  }
+  body.madic-unified .madic-unified-sidebar {
+    display: none !important;
+  }
+  body.madic-unified .madic-unified-layout {
+    display: block;
+  }
+  body.madic-unified .madic-unified-content {
+    padding: 0 !important;
+  }
+  body.madic-unified #contract-print {
+    color: #111;
+    background: #fff;
+  }
+}
+
+/* CRIC : composants en mode clair, en coherence avec le tableau de bord. */
+body.madic-unified:not([data-page="cric-dashboard"]) .madic-unified-content :is(.panel,.madic-cric-card,.madic-home-card,.madic-logo-slot,.madic-msg-side,.madic-msg-chat) {background:#fff;color:#173b5b;border-color:#dbe6f1;box-shadow:0 8px 26px #153a5b0b;}
+body.madic-unified:not([data-page="cric-dashboard"]) .madic-unified-content :is(input:not([type="checkbox"]):not([type="radio"]),select,textarea) {background:#fff;color:#173b5b;border-color:#b9ccdf;}
+body.madic-unified:not([data-page="cric-dashboard"]) .madic-unified-content :is(.madic-msg-messages,.madic-client-messages-history) {background:#f6f9fd;border-color:#dbe6f1;}
+body.madic-unified:not([data-page="cric-dashboard"]) .madic-unified-content :is(.madic-msg-bubble,.madic-client-msg-bubble) {background:#f2f7fc;color:#173b5b;border-color:#dbe6f1;}
+body.madic-unified:not([data-page="cric-dashboard"]) .madic-unified-content :is(.madic-msg-own,.madic-client-msg-own) {background:#dff3f9;border-color:#89cfdf;}
+body.madic-unified:not([data-page="cric-dashboard"]) .madic-unified-content :is(.muted,small,.hint) {color:#5a7086;}
+body.madic-unified:not([data-page="cric-dashboard"]) .madic-unified-content :is(th,.madic-admin-table-wrap thead th) {background:#eaf3fa!important;color:#183b59!important;border-color:#d6e4f0;}
+body.madic-unified:not([data-page="cric-dashboard"]) .madic-unified-content td {color:#23445f;border-color:#dbe6f0;}
+body.madic-unified:not([data-page="cric-dashboard"]) .madic-unified-content a {color:#0879a6;}

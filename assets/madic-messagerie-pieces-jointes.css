@@ -1,0 +1,133 @@
+/* MADIC - presentation des pieces jointes, commune aux deux messageries */
+.madic-message-attachments {
+  margin-top: 1.25rem !important;
+  min-width: 0;
+}
+.madic-attachment-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+.madic-attachment-heading h3 {
+  margin: 0;
+  font-size: 1.05rem;
+}
+.madic-attachment-count {
+  opacity: 0.72;
+  white-space: nowrap;
+}
+.madic-attachment-list {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: grid;
+  gap: 10px;
+}
+.madic-attachment-item {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 13px 14px;
+  margin: 0 !important;
+  border: 1px solid rgba(130, 160, 180, 0.3);
+  border-radius: 12px;
+  background: rgba(130, 160, 180, 0.07);
+  min-width: 0;
+}
+.madic-attachment-icon {
+  flex: 0 0 42px;
+  width: 42px;
+  height: 46px;
+  border-radius: 9px;
+  background: rgba(36, 198, 192, 0.14);
+  color: #19aaa4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 11px;
+  letter-spacing: 0.03em;
+}
+.madic-attachment-detail {
+  min-width: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.madic-attachment-filename {
+  font-size: 0.95rem;
+  overflow-wrap: anywhere;
+  line-height: 1.35;
+}
+.madic-attachment-size,
+.madic-attachment-meta {
+  display: block;
+  font-size: 0.79rem;
+  opacity: 0.76;
+  line-height: 1.4;
+}
+.madic-attachment-actions {
+  display: flex;
+  gap: 8px;
+  flex: 0 0 auto;
+  align-items: center;
+}
+.madic-attachment-actions button {
+  margin: 0 !important;
+  white-space: nowrap;
+  padding: 8px 12px !important;
+  min-height: 36px;
+  font-size: 0.84rem;
+  line-height: 1.2;
+}
+.madic-attachment-download {
+  font-weight: 700;
+}
+@media (max-width: 700px) {
+  .madic-attachment-item {
+    flex-wrap: wrap;
+    gap: 9px;
+  }
+  .madic-attachment-actions {
+    width: 100%;
+    padding-left: 0;
+    justify-content: flex-end;
+  }
+  .madic-attachment-actions button {
+    flex: 1;
+    max-width: 180px;
+  }
+}
+
+/* Modernisation 4/9 : pièces jointes sur ordinateur et mobile */
+.madic-message-attachments{padding:14px 0}.madic-attachment-item{border-radius:15px;transition:border-color .18s,background .18s}.madic-attachment-item:hover{border-color:rgba(38,182,176,.55);background:rgba(38,182,176,.08)}
+.madic-attachment-actions button:focus-visible{outline:2px solid #26b6b0;outline-offset:2px}
+@media(max-width:480px){.madic-attachment-item{padding:11px}.madic-attachment-actions{justify-content:stretch}.madic-attachment-actions button{max-width:none}}
+
+/* Etape 4/9 : lisibilite, accessibilite et adaptation des conversations. */
+.madic-message-attachments[hidden],.madic-attachment-item[hidden]{display:none!important}
+.madic-attachment-list{min-width:0}
+.madic-attachment-item{align-items:flex-start}
+.madic-attachment-detail{overflow-wrap:anywhere}
+.madic-attachment-actions button{cursor:pointer}
+.madic-attachment-actions button:disabled{opacity:.55;cursor:wait}
+@media(max-width:560px){
+ .madic-attachment-item{display:grid;grid-template-columns:42px minmax(0,1fr);gap:10px}
+ .madic-attachment-actions{grid-column:1/-1;width:100%;display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+ .madic-attachment-actions button{width:100%;max-width:none}
+}
+@media(prefers-reduced-motion:reduce){.madic-attachment-item{transition:none}}
+
+/* MADIC | Pièces jointes : présentation compacte et contrastée */
+.madic-message-attachments{margin:10px 0 4px!important;padding:14px!important;border:1px solid #36556c;border-radius:12px;background:#10263a}
+.madic-attachment-heading{margin-bottom:8px}.madic-attachment-heading h3{font-size:.98rem;color:#f3faff}.madic-attachment-count{color:#bfd3e2;opacity:1}
+.madic-attachment-item{background:#19344a!important;border:1px solid #3c6078!important;border-radius:10px!important;padding:10px 12px!important}
+.madic-attachment-filename{color:#f5fbff}.madic-attachment-meta,.madic-attachment-size{color:#c6d9e8;opacity:1}
+.madic-attachment-icon{color:#7ae1df;background:#174951}
+.madic-attachment-actions button{min-height:36px;color:#f4faff!important;background:#24435c!important;border:1px solid #4b6d85!important}
+.madic-attachment-actions button:hover{border-color:#5bcbd3!important;background:#30556d!important}
+@media(max-width:520px){.madic-message-attachments{padding:10px!important}.madic-attachment-item{padding:9px!important}}

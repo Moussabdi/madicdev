@@ -1,0 +1,574 @@
+*{box-sizing:border-box}body{margin:0;font:15px/1.6 system-ui,-apple-system,Segoe UI,sans-serif;background:#f4f6f8;color:#1c2c3d}.top{display:flex;justify-content:space-between;gap:16px;align-items:center;background:#102c43;color:white;padding:16px max(22px,calc((100vw - 1100px)/2))}.top a{color:white}main{max-width:1100px;margin:35px auto;padding:0 20px}.intro h1{font-size:2rem;margin:0}.intro p{max-width:750px}.eyebrow{font-weight:700;color:#9b7331}.status{padding:12px 16px;border-left:4px solid #b48c4e;background:white}.panel,.document{background:white;border:1px solid #d9e0e6;border-radius:12px;padding:26px;margin:22px 0;box-shadow:0 4px 18px #1232}.fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}.fields label{font-weight:650;display:flex;flex-direction:column;gap:5px}input,select,textarea{font:inherit;border:1px solid #bac6cf;border-radius:6px;padding:10px;width:100%;background:white}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}button{border:0;background:#154a6b;color:white;border-radius:6px;padding:12px 17px;cursor:pointer}button+button{background:#80622d}.hint{color:#576575;font-size:13px}.document{max-width:850px;margin:25px auto;padding:44px 55px}.doc-head{display:flex;justify-content:space-between;color:#9d762e;font-weight:800;border-bottom:3px solid #c7a45b;padding-bottom:14px}.document h2{text-align:center;font-size:23px;margin:30px 0}.filled{border:1px solid #e1d3b8;background:#faf8f3;padding:18px}.filled p{margin:4px 0}.source-page{border-top:1px solid #ddd;padding-top:20px;margin-top:30px}.source-page p{margin:7px 0;overflow-wrap:anywhere}.page-index{font-size:12px;color:#7b633f;text-align:right}.signature{margin-top:35px;border-top:2px solid #c7a45b}.signature div{display:grid;grid-template-columns:1fr 1fr;gap:10px}@media(max-width:680px){.fields{grid-template-columns:1fr}.document{padding:22px}.top{padding:12px}.signature div{display:block}}@media print{body{background:white;font-size:11pt}.top,.intro,.status,.panel,.hint{display:none!important}main{margin:0;padding:0;max-width:none}.document{margin:0;padding:0;border:0;box-shadow:none;max-width:none}.source-page{break-inside:avoid}.source-page p{margin:5px 0}.filled{break-inside:avoid}@page{size:letter;margin:16mm}}
+/* Personnalisation des logos des contrats */
+.madic-logo-fields{border:1px solid #d9e0e6;border-radius:9px;margin-top:20px;padding:16px;min-width:0}.madic-logo-fields legend{font-weight:750;padding:0 7px}.madic-logo-inputs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.madic-logo-inputs label{display:flex;flex-direction:column;gap:6px;font-weight:650;min-width:0}.madic-logo-inputs small{font-weight:400;color:#576575}.madic-logo-inputs input{max-width:100%}.madic-logo-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}.madic-logo-reset{background:#526577;font-size:13px;padding:8px 12px}@media(max-width:680px){.madic-logo-inputs{grid-template-columns:1fr}}@media print{.madic-logo-fields{display:none!important}}
+
+.madic-professional-fields{border:1px solid #bac6cf;border-radius:10px;padding:18px;margin-top:24px}.madic-professional-fields legend{font-weight:750;padding:0 8px}.madic-professional-fields .hint{margin-bottom:0}@media print{.madic-professional-fields{display:none!important}}
+
+/* Mise en page soignee du contrat de consultation initiale uniquement. */
+body[data-contract-kind="initial"] .document{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:15px;
+  line-height:1.78;
+  color:#243444;
+}
+body[data-contract-kind="initial"] .document h2{
+  font-family:system-ui,-apple-system,"Segoe UI",sans-serif;
+  color:#123c56;
+  font-size:clamp(21px,3vw,27px);
+  line-height:1.3;
+  letter-spacing:-.02em;
+  margin:32px 0 25px;
+  padding-bottom:14px;
+  border-bottom:1px solid #e2d6bc;
+}
+body[data-contract-kind="initial"] .document h3{
+  font-family:system-ui,-apple-system,"Segoe UI",sans-serif;
+  color:#183f58;
+  font-size:16px;
+  line-height:1.4;
+  margin:30px 0 14px;
+}
+body[data-contract-kind="initial"] .source-page{
+  border-top:1px solid #e5eaf0;
+  padding-top:23px;
+  margin-top:27px;
+}
+body[data-contract-kind="initial"] .source-page p{
+  margin:0 0 14px;
+  text-align:justify;
+  text-justify:inter-word;
+  hyphens:auto;
+  overflow-wrap:break-word;
+  line-height:1.8;
+}
+body[data-contract-kind="initial"] .source-page p[data-contract-template]:first-of-type{
+  color:#173c55;
+  font-weight:650;
+}
+body[data-contract-kind="initial"] .page-index{
+  font:600 11px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;
+  text-transform:uppercase;
+  letter-spacing:.09em;
+  color:#8a744e;
+  margin-bottom:18px;
+}
+body[data-contract-kind="initial"] .filled{
+  border:1px solid #e7dcc7;
+  border-left:4px solid #b99451;
+  border-radius:7px;
+  background:#fcfaf6;
+  padding:19px 23px;
+  font:14px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+body[data-contract-kind="initial"] .filled p{
+  text-align:left;
+  margin:6px 0;
+}
+body[data-contract-kind="initial"] .signature{
+  padding-top:12px;
+  margin-top:40px;
+}
+@media print{
+  body[data-contract-kind="initial"] .document{font-size:11pt;line-height:1.55;color:#111}
+  body[data-contract-kind="initial"] .source-page{break-inside:auto;page-break-inside:auto;margin-top:17px;padding-top:13px}
+  body[data-contract-kind="initial"] .source-page p{line-height:1.55;margin-bottom:9px;orphans:3;widows:3}
+  body[data-contract-kind="initial"] .document h2,body[data-contract-kind="initial"] .document h3{break-after:avoid;page-break-after:avoid}
+  body[data-contract-kind="initial"] .page-index{color:#666}
+  body[data-contract-kind="initial"] .filled{background:#fff}
+}
+
+/* Coordonnees professionnelles du CRIC en tete de la deuxieme section. */
+body[data-contract-kind="initial"] .cric-contact-card{margin:0 0 25px;padding:17px 20px;background:#d3ad70;border:1px solid #b58b4b;border-radius:7px;color:#172331;font:700 14px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif;text-align:center;overflow-wrap:anywhere;break-inside:avoid;page-break-inside:avoid}
+body[data-contract-kind="initial"] .cric-contact-permits,body[data-contract-kind="initial"] .cric-contact-details{display:flex;justify-content:center;flex-wrap:wrap;column-gap:18px;row-gap:2px}
+body[data-contract-kind="initial"] .cric-contact-address{margin:5px 0}
+body[data-contract-kind="initial"] .cric-contact-card [data-contract-template]{text-align:center;hyphens:none}
+@media print{body[data-contract-kind="initial"] .cric-contact-card{-webkit-print-color-adjust:exact;print-color-adjust:exact;padding:12px 15px;font-size:10pt}}
+
+/* En-tete de correspondance de la consultation initiale */
+body[data-contract-kind="initial"] .madic-contract-letterhead{
+ display:grid;grid-template-columns:minmax(0,1fr) minmax(210px,.95fr);
+ gap:22px;align-items:start;background:#fff;border:0;border-left:0;
+ border-radius:0;padding:4px 0 18px;box-shadow:none;
+ font:15px/1.45 Arial,Helvetica,sans-serif;color:#355775;
+}
+body[data-contract-kind="initial"] .madic-letterhead-consultant{min-width:0;overflow-wrap:anywhere}
+body[data-contract-kind="initial"] .madic-letterhead-name{font-weight:500}
+body[data-contract-kind="initial"] .madic-letterhead-place{display:flex;align-items:baseline;justify-content:flex-end;flex-wrap:wrap;gap:4px;text-align:right;white-space:normal}
+body[data-contract-kind="initial"] .madic-letterhead-place time{white-space:nowrap}
+@media(max-width:650px){body[data-contract-kind="initial"] .madic-contract-letterhead{grid-template-columns:1fr;gap:14px}body[data-contract-kind="initial"] .madic-letterhead-place{justify-content:flex-start;text-align:left}}
+@media print{body[data-contract-kind="initial"] .madic-contract-letterhead{display:grid;grid-template-columns:minmax(0,1fr) minmax(170px,.85fr);gap:12px;break-inside:avoid;page-break-inside:avoid;padding:0 0 10px;font-size:10.5pt;color:#294864}body[data-contract-kind="initial"] .madic-letterhead-place{justify-content:flex-end;text-align:right}}
+
+/* Disposition des deux pages selon le modele fourni par le client. */
+body[data-contract-kind="initial"] .madic-contract-page{font:15px/1.35 Arial,Helvetica,sans-serif;color:#254d72;text-align:justify;border:0;padding:18px 0 0;margin:20px 0 0;display:flex;flex-direction:column;min-height:840px;break-inside:auto}
+body[data-contract-kind="initial"] .madic-contract-page + .madic-contract-page{break-before:page;page-break-before:always}
+body[data-contract-kind="initial"] .madic-contract-page p{font:inherit;line-height:1.35;margin:0 0 12px;text-align:justify;hyphens:none}
+body[data-contract-kind="initial"] .madic-contract-page h3{font:700 17px/1.3 Arial,Helvetica,sans-serif;margin:16px 0 12px;color:#254d72}
+body[data-contract-kind="initial"] .contract-page-footer{margin-top:auto;display:flex;align-items:flex-end;gap:16px;padding-top:22px}
+body[data-contract-kind="initial"] .contract-page-footer .cric-contact-card{flex:1;margin:0;border:0;border-radius:0;padding:7px 10px;background:#d3ad70;color:#111;font:700 13px/1.25 Arial,Helvetica,sans-serif}
+body[data-contract-kind="initial"] .contract-page-number{flex:0 0 27px;text-align:center;background:#d3ad70;color:#fff;font:bold 21px/27px Arial,sans-serif}
+body[data-contract-kind="initial"] .contract-initials{margin:14px 0 22px;display:flex;flex-direction:column;align-items:flex-start;gap:3px}
+body[data-contract-kind="initial"] .contract-sign-box{display:inline-block;border:1px solid #d3ad70;min-width:150px;height:39px}
+body[data-contract-kind="initial"] .contract-signature-columns{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:24px;text-align:left}
+body[data-contract-kind="initial"] .contract-signature-party h4{font:700 15px Arial,sans-serif;text-decoration:underline;margin:0 0 15px}
+body[data-contract-kind="initial"] .contract-party-heading{margin:0 0 17px!important}
+body[data-contract-kind="initial"] .contract-form-row{display:flex;align-items:center;gap:5px;min-height:43px;margin:5px 0;line-height:1.25}
+body[data-contract-kind="initial"] .contract-form-row>span:first-child{flex:0 0 auto}
+body[data-contract-kind="initial"] .contract-sign-value{display:block;min-width:0;flex:1;min-height:28px;border:1px solid #d3ad70;padding:5px 7px;overflow-wrap:anywhere}
+body[data-contract-kind="initial"] .contract-form-row .contract-sign-box{flex:1;min-width:0}
+body[data-contract-kind="initial"] .contract-address{min-height:42px}
+body[data-contract-kind="initial"] .contract-inline-value{font-weight:600}
+@media(max-width:650px){body[data-contract-kind="initial"] .contract-signature-columns{grid-template-columns:1fr}}
+@media print{
+ body[data-contract-kind="initial"] .document{font-family:Arial,Helvetica,sans-serif}
+ body[data-contract-kind="initial"] .madic-contract-page{min-height:0;height:calc(279.4mm - 32mm);padding:0;margin:0;break-inside:avoid;page-break-inside:avoid;break-after:page;page-break-after:always;font-size:10.3pt;line-height:1.22}
+ body[data-contract-kind="initial"] .madic-contract-page p{line-height:1.22;margin-bottom:8px}
+ body[data-contract-kind="initial"] .contract-page-footer{padding-top:8px}
+ body[data-contract-kind="initial"] .contract-page-footer .cric-contact-card{font-size:9pt;padding:5px 8px;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ body[data-contract-kind="initial"] .contract-page-number{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ body[data-contract-kind="initial"] .contract-signature-columns{gap:20px;margin-top:15px}
+ body[data-contract-kind="initial"] .contract-form-row{min-height:34px;margin:3px 0}
+ body[data-contract-kind="initial"] .contract-sign-box{height:32px}
+}
+
+/* Réglage précis des deux pages du contrat initial, selon les captures transmises. */
+body[data-contract-kind="initial"] .madic-contract-page{font-family:Arial,Helvetica,sans-serif;color:#254d72;text-align:justify;min-height:900px;padding:10px 0 0;margin:14px 0 0;display:flex;flex-direction:column;border:0}
+body[data-contract-kind="initial"] .madic-contract-page .madic-contract-body{flex:0 0 auto}
+body[data-contract-kind="initial"] .madic-contract-page p{font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:1.28;margin:0 0 12px;text-align:justify;hyphens:none}
+body[data-contract-kind="initial"] .madic-contract-page h3{font:bold 17px/1.25 Arial,Helvetica,sans-serif;margin:15px 0 11px;color:#254d72}
+body[data-contract-kind="initial"] .madic-contract-page .contract-highlight{font-weight:inherit}
+body[data-contract-kind="initial"] .madic-contract-page .contract-page-footer{margin-top:auto;display:grid;grid-template-columns:minmax(0,1fr) 28px;gap:65px;align-items:end;padding:10px 0 0 36px}
+body[data-contract-kind="initial"] .madic-contract-page .contract-page-footer .cric-contact-card{width:100%;margin:0;padding:5px 6px;border:0;border-radius:0;background:#d3ad70;color:#000;font:bold 13px/1.16 Arial,Helvetica,sans-serif;text-align:center}
+body[data-contract-kind="initial"] .madic-contract-page .cric-contact-permits,body[data-contract-kind="initial"] .madic-contract-page .cric-contact-details{gap:3px 10px}
+body[data-contract-kind="initial"] .madic-contract-page .cric-contact-address{margin:2px 0}
+body[data-contract-kind="initial"] .madic-contract-page .contract-page-number{background:#d3ad70;color:#fff;font:bold 21px/28px Arial,Helvetica,sans-serif;text-align:center}
+body[data-contract-kind="initial"] .madic-contract-page .contract-initials{margin:8px 0 12px;gap:3px}
+body[data-contract-kind="initial"] .madic-contract-page .contract-initials .contract-sign-box{width:240px;height:30px}
+body[data-contract-kind="initial"] .madic-contract-page .contract-signature-columns{grid-template-columns:1fr 1.18fr;gap:36px;margin-top:20px}
+body[data-contract-kind="initial"] .madic-contract-page .contract-signature-party h4{margin:0 0 12px;font:bold 15px Arial,Helvetica,sans-serif;text-decoration:underline}
+body[data-contract-kind="initial"] .madic-contract-page .contract-party-heading{margin-bottom:12px!important}
+body[data-contract-kind="initial"] .madic-contract-page .contract-form-row{min-height:42px;margin:3px 0;display:flex;align-items:center;gap:5px}
+body[data-contract-kind="initial"] .madic-contract-page .contract-sign-value{min-height:29px;border:1px solid #d3ad70;padding:4px 6px;overflow-wrap:anywhere}
+body[data-contract-kind="initial"] .madic-contract-page .contract-form-row .contract-sign-box{min-height:38px}
+@media print{
+ @page{size:letter;margin:12mm 14mm}
+ /* Logos, titre et coordonnees restent visibles sur la premiere page. */
+ body[data-contract-kind="initial"] .document{padding:0!important;margin:0!important}
+ body[data-contract-kind="initial"] .madic-contract-page{box-sizing:border-box;height:255.4mm!important;min-height:0!important;margin:0!important;padding:0!important;border:0!important;break-inside:avoid;page-break-inside:avoid;break-after:page;page-break-after:always;font-size:10.2pt}
+ body[data-contract-kind="initial"] .madic-contract-page:last-child{break-after:auto;page-break-after:auto}
+ body[data-contract-kind="initial"] .madic-contract-page p{font-size:10.2pt;line-height:1.18;margin-bottom:8px;orphans:2;widows:2}
+ body[data-contract-kind="initial"] .madic-contract-page h3{font-size:11pt;margin:10px 0 8px}
+ body[data-contract-kind="initial"] .madic-contract-page .contract-page-footer{gap:16mm;padding-left:9mm;padding-top:5px}
+ body[data-contract-kind="initial"] .madic-contract-page .contract-page-footer .cric-contact-card{font-size:9pt;line-height:1.1;padding:4px;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ body[data-contract-kind="initial"] .madic-contract-page .contract-page-number{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ body[data-contract-kind="initial"] .madic-contract-page .contract-signature-columns{gap:11mm;margin-top:12px}
+ body[data-contract-kind="initial"] .madic-contract-page .contract-form-row{min-height:32px;margin:2px 0}
+ body[data-contract-kind="initial"] .madic-contract-page .contract-form-row .contract-sign-box{min-height:30px;height:30px}
+}
+
+/* Impression : en-tete integre a la page 1, sans page supplementaire. */
+@media print {
+ body[data-contract-kind="initial"] .madic-contract-page-one>.doc-head{display:flex!important;min-height:0!important;padding-bottom:5px!important;margin:0 0 4px!important;}
+ body[data-contract-kind="initial"] .madic-contract-page-one>.doc-head img{max-height:16mm!important;width:auto!important;max-width:60%!important;object-fit:contain!important;}
+ body[data-contract-kind="initial"] .madic-contract-page-one>h2{display:block!important;font-size:13pt!important;line-height:1.1!important;margin:3px 0 5px!important;padding:0 0 3px!important;}
+ body[data-contract-kind="initial"] .madic-contract-page-one>#contractFilled{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,.7fr)!important;font-size:8pt!important;line-height:1.2!important;gap:8px!important;margin:0 0 7px!important;padding:0 0 5px!important;}
+ body[data-contract-kind="initial"] .madic-contract-page-one .madic-contract-body{min-height:0!important;}
+ body[data-contract-kind="initial"] .madic-contract-page-one .madic-contract-body p{font-size:9.3pt!important;line-height:1.16!important;margin-bottom:5px!important;}
+ body[data-contract-kind="initial"] .madic-contract-page-one .contract-page-footer{margin-top:auto!important;}
+}
+/* Réutilisation du document initial dans l'espace client */
+.madic-client-contract-preview .document{margin:18px auto;max-width:850px}
+.madic-initial-item{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:12px 0;padding:12px;border:1px solid #d9e0e6;border-radius:7px}
+.madic-initial-sign{display:grid;gap:12px;max-width:550px;margin:25px 0}
+.madic-initial-sign label{display:flex;flex-direction:column;gap:5px}
+.madic-initial-sign label:has([type=checkbox]){flex-direction:row;align-items:flex-start}
+.madic-initial-sign [type=checkbox]{width:auto;margin-top:6px}
+@media print{.madic-initial-sign,.madic-initial-item{display:none!important}}
+
+.madic-initial-document-frame{display:block;width:100%;min-height:1700px;border:1px solid #d9e0e6;background:white}
+
+/* Contrat professionnel : pages de référence, en-têtes et pieds de page. */
+body[data-contract-kind="professionnel"] #contractDocument{max-width:900px;padding:0;background:#fff;border:0;box-shadow:none}
+body[data-contract-kind="professionnel"] #contractDocument>h2{display:none}
+body[data-contract-kind="professionnel"] .source-page{position:relative;min-height:980px;padding:112px 48px 98px;margin:0;border:0;background:white;color:#25446b;font:12px/1.6 Arial,sans-serif;overflow:hidden}
+body[data-contract-kind="professionnel"] .source-page:first-of-type:before{content:'CONTRAT DE SERVICE PROFESSIONNEL';display:block;text-align:center;font-weight:700;font-size:17px;letter-spacing:.3px;margin:-18px 0 26px}
+body[data-contract-kind="professionnel"] .source-page p{margin:0 0 12px;line-height:1.7;text-align:justify;overflow-wrap:normal}
+body[data-contract-kind="professionnel"] .contract-page-header{position:absolute;top:8px;left:25px;right:25px;min-height:66px;border:0;padding:0;display:flex;align-items:flex-start;justify-content:space-between}
+body[data-contract-kind="professionnel"] .contract-page-header .madic-logo-cric{width:210px;max-height:66px}
+body[data-contract-kind="professionnel"] .contract-page-header .madic-logo-madic{width:72px;max-height:69px}
+body[data-contract-kind="professionnel"] .contract-page-footer{position:absolute;bottom:12px;left:30px;right:14px;display:flex;align-items:end;justify-content:space-between;gap:24px;color:#111}
+body[data-contract-kind="professionnel"] .contract-footer-contact{background:#d3ac6d;padding:4px 9px;text-align:center;font-size:11px;line-height:1.3;font-weight:bold;max-width:88%}
+body[data-contract-kind="professionnel"] .contract-page-number{background:#d3ac6d;color:white;padding:3px 8px;font-size:16px;font-weight:bold}
+body[data-contract-kind="professionnel"] .source-page .contract-heading{font-weight:bold;font-size:14px;margin-top:18px}
+body[data-contract-kind="professionnel"] .source-page .contract-phase{font-weight:bold;text-decoration:underline;margin-top:14px}
+body[data-contract-kind="professionnel"] .source-page .contract-bullet{padding-left:24px;margin:0 0 5px}
+body[data-contract-kind="professionnel"] .contract-intro{margin-bottom:26px!important}
+body[data-contract-kind="professionnel"] .contract-client-name{font-weight:bold}
+body[data-contract-kind="professionnel"] .contract-address{margin:16px 0!important}
+body[data-contract-kind="professionnel"] .contract-fee-table{width:100%;border-collapse:collapse;table-layout:fixed;margin:12px 0;font-size:11px}
+body[data-contract-kind="professionnel"] .contract-fee-table th,body[data-contract-kind="professionnel"] .contract-fee-table td{border:1px solid #333;padding:7px 5px;vertical-align:top;text-align:left;overflow-wrap:anywhere}
+body[data-contract-kind="professionnel"] .contract-signature-block{margin:25px 0 55px}
+body[data-contract-kind="professionnel"] .contract-signature-block .signature-line{margin:10px 0}
+@media print{ @page{size:letter;margin:0}body[data-contract-kind="professionnel"] #contractDocument{width:100%;max-width:none;margin:0;padding:0}body[data-contract-kind="professionnel"] .source-page{width:216mm;height:279.4mm;min-height:0;padding:27mm 13mm 25mm;break-after:page;page-break-after:always;break-inside:auto;overflow:hidden;font-size:9pt}body[data-contract-kind="professionnel"] .source-page:last-child{break-after:auto;page-break-after:auto}body[data-contract-kind="professionnel"] .source-page p{line-height:1.55;margin-bottom:7px}body[data-contract-kind="professionnel"] .contract-page-header{top:3mm;left:7mm;right:7mm}body[data-contract-kind="professionnel"] .contract-page-footer{bottom:4mm;left:7mm;right:4mm}body[data-contract-kind="professionnel"] .contract-footer-contact{font-size:8pt}body[data-contract-kind="professionnel"] .source-page:first-of-type:before{margin:-8mm 0 7mm;font-size:14pt}}
+
+/* MADIC V10 : bleu officiel du contrat initial, y compris impression/PDF.
+   Portee limitee au contrat initial : le contrat professionnel reste intact. */
+body[data-contract-kind="initial"] .doc-head{
+  color:#10263b;border-bottom-color:#10263b;
+}
+body[data-contract-kind="initial"] .document h2{
+  border-bottom-color:#d7e4ec;
+}
+body[data-contract-kind="initial"] .page-index{color:#10263b}
+body[data-contract-kind="initial"] .filled{
+  border-color:#d7e4ec;border-left-color:#10263b;background:#f5f9fc;
+}
+body[data-contract-kind="initial"] .signature{border-top-color:#10263b}
+body[data-contract-kind="initial"] .cric-contact-card,
+body[data-contract-kind="initial"] .contract-page-footer .cric-contact-card,
+body[data-contract-kind="initial"] .madic-contract-page .contract-page-footer .cric-contact-card{
+  background:#10263b;color:#ffffff;border-color:#10263b;
+}
+body[data-contract-kind="initial"] .contract-page-number,
+body[data-contract-kind="initial"] .madic-contract-page .contract-page-number{
+  background:#10263b;color:#ffffff;
+}
+body[data-contract-kind="initial"] .contract-sign-box,
+body[data-contract-kind="initial"] .contract-sign-value,
+body[data-contract-kind="initial"] .madic-contract-page .contract-sign-value{
+  border-color:#10263b;
+}
+@media print{
+  body[data-contract-kind="initial"] .cric-contact-card,
+  body[data-contract-kind="initial"] .contract-page-number,
+  body[data-contract-kind="initial"] .contract-page-footer .cric-contact-card,
+  body[data-contract-kind="initial"] .madic-contract-page .contract-page-footer .cric-contact-card,
+  body[data-contract-kind="initial"] .madic-contract-page .contract-page-number{
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;
+  }
+}
+
+/* MADIC : harmonisation visuelle du contrat professionnel, sans modifier les pages du contrat initial. */
+body[data-contract-kind="professionnel"] .source-page{color:#254d72}
+body[data-contract-kind="professionnel"] .source-page:first-of-type:before{color:#123c56}
+body[data-contract-kind="professionnel"] .source-page .contract-heading{color:#123c56}
+body[data-contract-kind="professionnel"] .contract-footer-contact,
+body[data-contract-kind="professionnel"] .contract-page-number{background:#10263b;color:#fff}
+body[data-contract-kind="professionnel"] .contract-fee-table th{background:#f5f9fc;color:#10263b}
+body[data-contract-kind="professionnel"] .contract-fee-table th,
+body[data-contract-kind="professionnel"] .contract-fee-table td{border-color:#8ba4b8}
+body[data-contract-kind="professionnel"] .contract-page-header img{object-fit:contain;max-height:65px}
+@media print{
+ body[data-contract-kind="professionnel"] .contract-footer-contact,
+ body[data-contract-kind="professionnel"] .contract-page-number,
+ body[data-contract-kind="professionnel"] .contract-fee-table th{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+
+/* Contrat professionnel : lecture harmonisee, sans toucher au contrat initial. */
+body[data-contract-kind="professionnel"] .source-page{font-size:14px;line-height:1.48;padding-left:48px;padding-right:48px;overflow:visible}
+body[data-contract-kind="professionnel"] .source-page p{font-size:inherit;line-height:1.52;text-align:justify;text-justify:inter-word;hyphens:auto;overflow-wrap:break-word;margin-bottom:10px}
+body[data-contract-kind="professionnel"] .source-page .contract-heading{font-size:15px}
+body[data-contract-kind="professionnel"] .source-page .contract-phase{font-size:14px}
+body[data-contract-kind="professionnel"] .source-page .contract-fee-table{font-size:12px}
+body[data-contract-kind="professionnel"] .contract-signature-block .signature-line{font-size:14px}
+body[data-contract-kind="professionnel"] .signature-stamp{font-size:11px;text-align:left}
+body[data-contract-kind="professionnel"] .madic-cric-signature{border:1px solid #29475e;border-radius:8px;margin-top:22px;padding:16px}
+body[data-contract-kind="professionnel"] .madic-cric-signature legend{font-weight:700;padding:0 8px}
+body[data-contract-kind="professionnel"] .madic-cric-signature>label{display:block;margin-top:12px}
+body[data-contract-kind="professionnel"] .madic-cric-signature .madic-sign-consent{display:flex;gap:10px;align-items:flex-start}
+body[data-contract-kind="professionnel"] .madic-cric-signature .madic-sign-consent input{width:auto;min-width:18px;margin-top:5px}
+body[data-contract-kind="professionnel"] #contractActivate:disabled{opacity:.55;cursor:not-allowed}
+@media print{body[data-contract-kind="professionnel"] .source-page{font-size:9pt;line-height:1.45;overflow:hidden;padding:27mm 13mm 25mm}body[data-contract-kind="professionnel"] .source-page p{line-height:1.45;margin-bottom:6px}body[data-contract-kind="professionnel"] .source-page .contract-heading{font-size:10pt}body[data-contract-kind="professionnel"] .source-page .contract-fee-table{font-size:8pt}}
+
+
+/* MADIC - Contrat professionnel : mise en page fluide, identique au contrat initial. */
+body[data-contract-kind="professionnel"] #contractDocument{max-width:850px;padding:44px 55px;background:#fff;color:#254d72;}
+body[data-contract-kind="professionnel"] .madic-professional-document{position:relative;min-height:0!important;height:auto!important;overflow:visible!important;padding:0!important;margin:0!important;border:0!important;display:block!important;font:15px/1.28 Arial,Helvetica,sans-serif!important;color:#254d72;}
+body[data-contract-kind="professionnel"] .madic-professional-document::before{content:'CONTRAT DE SERVICE PROFESSIONNEL';display:block;position:static;text-align:center;color:#123c56;font:bold 23px/1.3 Arial,Helvetica,sans-serif;letter-spacing:0;margin:26px 0 26px;padding-bottom:14px;border-bottom:1px solid #d7e4ec;}
+body[data-contract-kind="professionnel"] .madic-professional-document p{font:15px/1.28 Arial,Helvetica,sans-serif!important;text-align:justify!important;text-justify:inter-word;hyphens:none!important;overflow-wrap:break-word;margin:0 0 12px!important;}
+body[data-contract-kind="professionnel"] .madic-professional-document .contract-page-header{position:static!important;display:flex;align-items:center;justify-content:space-between;min-height:75px;margin:0 0 10px;padding:0;}
+body[data-contract-kind="professionnel"] .madic-professional-document .contract-page-header .madic-logo-cric{width:210px;max-height:72px;}
+body[data-contract-kind="professionnel"] .madic-professional-document .contract-page-header .madic-logo-madic{width:76px;max-height:72px;}
+body[data-contract-kind="professionnel"] .madic-professional-document .contract-heading{font:bold 16px/1.3 Arial,Helvetica,sans-serif!important;color:#123c56;margin:20px 0 10px!important;break-after:avoid;page-break-after:avoid;}
+body[data-contract-kind="professionnel"] .madic-professional-document .contract-phase{font-weight:700!important;margin-top:12px!important;}
+body[data-contract-kind="professionnel"] .madic-professional-document .contract-bullet{padding-left:22px;margin-bottom:7px!important;}
+body[data-contract-kind="professionnel"] .madic-professional-document .contract-fee-table{font:13px/1.4 Arial,Helvetica,sans-serif;margin:15px 0 18px;}
+body[data-contract-kind="professionnel"] .madic-professional-document .contract-fee-table th,body[data-contract-kind="professionnel"] .madic-professional-document .contract-fee-table td{padding:8px 7px;}
+body[data-contract-kind="professionnel"] .madic-professional-document .contract-signatures{margin-top:28px;break-inside:avoid;}
+body[data-contract-kind="professionnel"] .madic-professional-document .contract-signature-block{margin:18px 0 30px;}
+@media(max-width:680px){body[data-contract-kind="professionnel"] #contractDocument{padding:22px;}body[data-contract-kind="professionnel"] .madic-professional-document p{font-size:14px!important;}}
+@media print{
+ @page{size:letter;margin:14mm;}
+ body[data-contract-kind="professionnel"] #contractDocument{width:auto;max-width:none;margin:0;padding:0!important;border:0;}
+ body[data-contract-kind="professionnel"] .madic-professional-document{width:auto!important;height:auto!important;min-height:0!important;padding:0!important;margin:0!important;overflow:visible!important;break-after:auto!important;page-break-after:auto!important;break-inside:auto!important;}
+ body[data-contract-kind="professionnel"] .madic-professional-document::before{font-size:13pt;margin:5mm 0 5mm;padding-bottom:2mm;}
+ body[data-contract-kind="professionnel"] .madic-professional-document p{font-size:10.2pt!important;line-height:1.24!important;margin-bottom:7px!important;orphans:3;widows:3;}
+ body[data-contract-kind="professionnel"] .madic-professional-document .contract-heading{font-size:11pt!important;}
+ body[data-contract-kind="professionnel"] .madic-professional-document .contract-fee-table{font-size:9pt;break-inside:auto;}
+ body[data-contract-kind="professionnel"] .madic-professional-document .contract-fee-table tr{break-inside:avoid;}
+ body[data-contract-kind="professionnel"] .madic-professional-document .contract-page-header{position:static!important;break-inside:avoid;}
+}
+
+
+/* MADIC : pied de page professionnel repete par le moteur d'impression Chromium.
+   Les boites de marge @page se repetent sur chaque feuille, y compris la derniere.
+   Les donnees sont injectees dans la regle @page par le script du contrat. */
+@media print {
+  @page madic-professional {
+    size: letter;
+    margin: 14mm 14mm 20mm;
+    @bottom-center {
+      content: "Coordonnees professionnelles a completer";
+      background: #10263b;
+      color: white;
+      font: bold 8pt/1.2 Arial, Helvetica, sans-serif;
+      text-align: center;
+      padding: 2mm 3mm;
+      vertical-align: middle;
+    }
+    @bottom-right {
+      content: counter(page);
+      background: #10263b;
+      color: white;
+      font: bold 13pt Arial, Helvetica, sans-serif;
+      text-align: center;
+      vertical-align: middle;
+      width: 9mm;
+    }
+  }
+  body[data-contract-kind="professionnel"] #contractDocument {
+    page: madic-professional;
+  }
+  body[data-contract-kind="professionnel"] .madic-professional-document {
+    page: madic-professional;
+  }
+}
+
+/* MADIC - correctif impression contrat professionnel, sans toucher au contrat initial.
+   Le flux naturel laisse Chromium paginer sans pages artificielles. */
+@media print {
+  @page { size: letter; margin: 14mm 14mm 20mm; }
+  body[data-contract-kind="professionnel"] #contractDocument,
+  body[data-contract-kind="professionnel"] .madic-professional-document {
+    page: auto !important;
+  }
+  body[data-contract-kind="professionnel"] #contractDocument {
+    display:block !important; width:auto !important; max-width:none !important;
+    margin:0 !important; padding:0 !important; border:0 !important;
+    box-shadow:none !important;
+  }
+  body[data-contract-kind="professionnel"] .madic-professional-document {
+    display:block !important; position:static !important; width:auto !important;
+    height:auto !important; min-height:0 !important; overflow:visible !important;
+    margin:0 !important; padding:0 !important;
+    break-before:auto !important; break-after:auto !important;
+    page-break-before:auto !important; page-break-after:auto !important;
+    break-inside:auto !important; page-break-inside:auto !important;
+  }
+  body[data-contract-kind="professionnel"] .madic-professional-document::before {
+    display:block !important; content:"CONTRAT DE SERVICE PROFESSIONNEL" !important;
+    position:static !important; margin:4mm 0 5mm !important;
+    padding:0 0 2mm !important; font:bold 13pt/1.3 Arial,Helvetica,sans-serif !important;
+    color:#123c56 !important; text-align:center !important;
+    border-bottom:1px solid #d7e4ec !important;
+  }
+  body[data-contract-kind="professionnel"] .madic-professional-document .contract-page-header {
+    position:static !important; display:flex !important;
+    break-inside:avoid !important; page-break-inside:avoid !important;
+  }
+  body[data-contract-kind="professionnel"] .madic-professional-document p {
+    font:10.2pt/1.24 Arial,Helvetica,sans-serif !important;
+    margin:0 0 7px !important; text-align:justify !important;
+    orphans:3; widows:3;
+  }
+  body[data-contract-kind="professionnel"] .madic-professional-document .contract-heading {
+    break-after:avoid !important; page-break-after:avoid !important;
+  }
+  body[data-contract-kind="professionnel"] .madic-professional-document .contract-fee-table tr,
+  body[data-contract-kind="professionnel"] .madic-professional-document .contract-signatures {
+    break-inside:avoid; page-break-inside:avoid;
+  }
+  body[data-contract-kind="professionnel"] {
+    -webkit-print-color-adjust:exact; print-color-adjust:exact;
+  }
+}
+
+/* Liens de verification des frais gouvernementaux : contrat professionnel uniquement. */
+body[data-contract-kind="professionnel"] #contractForm .madic-ircc-fee-link{display:inline-block;align-self:flex-start;font-size:12px;line-height:1.4;font-weight:600;color:#63d7ec;text-decoration:underline;text-underline-offset:2px;margin:1px 0 4px}
+body[data-contract-kind="professionnel"] #contractForm .madic-ircc-fee-link:focus-visible{outline:2px solid #63d7ec;outline-offset:3px}
+
+/* MADIC : statut des frais IRCC, contrat professionnel uniquement. */
+body[data-contract-kind="professionnel"] #contractForm #madicBioCategory{margin:5px 0 3px}
+body[data-contract-kind="professionnel"] #contractForm .madic-ircc-status{display:block;font-size:12px;font-weight:400;line-height:1.5;color:#bfe5ed}
+body[data-contract-kind="professionnel"] #contractForm .madic-ircc-status[data-error="true"]{color:#ffbdad}
+
+/* MADIC : prestations dynamiques du contrat professionnel uniquement. */
+body[data-contract-kind="professionnel"] #madicPrestationsDocument .contract-phase{font-weight:700;text-decoration:underline;margin-top:12px!important}
+body[data-contract-kind="professionnel"] #madicPrestationsDocument .contract-bullet{padding-left:22px;margin-bottom:7px!important}
+body[data-contract-kind="professionnel"] .contract-service-type{font-weight:700!important;color:#123c56}
+body[data-contract-kind="professionnel"] [data-madic-study-only][hidden]{display:none!important}
+body[data-contract-kind="professionnel"] .contract-fee-table[data-madic-fee-review="true"]{outline:2px dashed #b48c4e;outline-offset:3px}
+@media print{body[data-contract-kind="professionnel"] .contract-fee-table[data-madic-fee-review="true"]{outline:none}}
+
+/* MADIC : honoraires flexibles, contrat professionnel uniquement. */
+body[data-contract-kind="professionnel"] .madic-phase-settings{grid-column:1/-1;display:grid;gap:5px}body[data-contract-kind="professionnel"] .madic-phase-fields{border:1px solid #29475e;border-radius:8px;padding:14px;display:grid;gap:10px}body[data-contract-kind="professionnel"] .madic-phase-fields label{display:flex;flex-direction:column;gap:5px}body[data-contract-kind="professionnel"] .madic-phase-fields[hidden]{display:none!important}body[data-contract-kind="professionnel"] .madic-phase-balance{font-weight:650;font-size:13px}body[data-contract-kind="professionnel"] .madic-phase-balance[data-mismatch="true"]{color:#b42318}@media print{body[data-contract-kind="professionnel"] .madic-phase-balance{font-size:9pt}}
+
+/* Synchronisation : largeur des prestations et des phases (professionnel seulement). */
+body[data-contract-kind="professionnel"] #madicPrestations{min-height:260px;resize:vertical}body[data-contract-kind="professionnel"] #madicPrestations:focus{outline-offset:2px}body[data-contract-kind="professionnel"] .madic-phase-fields{min-width:0}body[data-contract-kind="professionnel"] .madic-phase-fields input{width:100%;box-sizing:border-box}
+
+/* MADIC - Impression du contrat Client -> CRIC : le pied de page doit rester
+   dans la meme feuille que le contenu. Correctif limite a l'apercu CRIC. */
+@media print {
+  @page { size: letter; margin: 12mm 14mm; }
+  body.madic-client-first-preview[data-contract-kind="initial"] {
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #fff !important;
+  }
+  body.madic-client-first-preview[data-contract-kind="initial"] .document {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    max-width: none !important;
+  }
+  body.madic-client-first-preview[data-contract-kind="initial"] .madic-contract-page {
+    height: 249mm !important;
+    min-height: 0 !important;
+    max-height: 249mm !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+    break-after: auto !important;
+    page-break-after: auto !important;
+  }
+  body.madic-client-first-preview[data-contract-kind="initial"] .madic-contract-page-two {
+    break-before: page !important;
+    page-break-before: always !important;
+  }
+  body.madic-client-first-preview[data-contract-kind="initial"] .madic-contract-page .contract-page-footer {
+    flex-shrink: 0 !important;
+    margin-top: auto !important;
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+}
+
+/* Étape 3 — accessibilité et ergonomie, sans altérer la mise en page d'impression. */
+@media screen {
+  #contractForm :is(input,select,textarea,button):focus-visible, .actions button:focus-visible {outline:3px solid #147dba;outline-offset:3px;}
+  #contractForm :is(input,select,textarea) {max-width:100%;box-sizing:border-box;}
+  #contractForm :is(input,select,textarea):disabled {opacity:.68;cursor:not-allowed;}
+  #contractActivationStatus,#contractStatus {overflow-wrap:anywhere;}
+  .madic-phase-balance[data-mismatch="true"] {color:#b42318;font-weight:700;}
+  .actions {display:flex;flex-wrap:wrap;gap:10px;}
+  .actions button {min-height:42px;}
+  .actions button:disabled {cursor:not-allowed;opacity:.6;}
+  @media(max-width:640px){.actions{flex-direction:column}.actions button{width:100%;white-space:normal}.madic-phase-fields{min-width:0;}}
+}
+@media(prefers-reduced-motion:reduce){#contractForm *,#contractForm *::before,#contractForm *::after{scroll-behavior:auto!important;transition:none!important;}}
+
+
+/* MADIC — Étape 3 : interface CRIC modernisée. Écran seulement.
+   Les documents juridiques et les styles d'impression sont préservés. */
+@media screen {
+  body[data-contract-kind="initial"],
+  body[data-contract-kind="professionnel"] {
+    background:linear-gradient(155deg,#071a2b 0%,#102d43 52%,#0b2639 100%);
+    color:#e9f4fa;
+    min-height:100vh;
+  }
+  body[data-contract-kind] .top {
+    background:#071b2c;
+    border-bottom:1px solid #28526a;
+    box-shadow:0 8px 28px rgba(0,0,0,.18);
+  }
+  body[data-contract-kind] .top a {color:#bdeef1;text-underline-offset:3px;}
+  body[data-contract-kind] main {max-width:1180px;margin:32px auto;padding:0 24px 48px;}
+  body[data-contract-kind] .intro {padding:12px 0 22px;}
+  body[data-contract-kind] .intro h1 {color:#f5fbff;font-size:clamp(1.7rem,3vw,2.35rem);letter-spacing:-.025em;}
+  body[data-contract-kind] .intro p {color:#bdd4e2;}
+  body[data-contract-kind] .eyebrow {color:#56d6d3;letter-spacing:.04em;}
+  body[data-contract-kind] .status {
+    background:#11354b;color:#d8f3f6;border:1px solid #27586a;
+    border-left:4px solid #37c9c2;border-radius:10px;
+    box-shadow:0 8px 22px rgba(0,0,0,.12);
+  }
+  body[data-contract-kind] .panel {
+    background:#102c41;color:#eaf6fc;border:1px solid #2c5367;
+    border-radius:16px;padding:clamp(18px,3vw,30px);
+    box-shadow:0 16px 42px rgba(0,0,0,.19);
+  }
+  body[data-contract-kind] .panel h2,
+  body[data-contract-kind] .panel h3,
+  body[data-contract-kind] .panel legend {color:#f2fbff;}
+  body[data-contract-kind] .panel label {color:#e2f2f8;}
+  body[data-contract-kind] .panel .hint,
+  body[data-contract-kind] .panel small {color:#b7d3df;}
+  body[data-contract-kind] .panel :is(input:not([type="checkbox"]):not([type="radio"]),select,textarea) {
+    background:#f7fbfe;color:#142d40;border:1px solid #8baec0;
+    border-radius:9px;min-height:43px;padding:10px 12px;
+  }
+  body[data-contract-kind] .panel :is(input,select,textarea):focus-visible {
+    outline:3px solid #4cddd4;outline-offset:2px;border-color:#1caaa5;
+  }
+  body[data-contract-kind] .panel :is(input,select,textarea):read-only:not([type="checkbox"]) {
+    background:#e8f0f5;color:#345064;
+  }
+  body[data-contract-kind] .panel :is(input,select,textarea)::placeholder {color:#617b8d;}
+  body[data-contract-kind] .panel :is(fieldset,.madic-phase-fields) {
+    border:1px solid #3d6a7b;border-radius:12px;background:#14364b;
+  }
+  body[data-contract-kind] .panel fieldset legend {padding:0 9px;font-weight:750;}
+  body[data-contract-kind] .panel .madic-logo-fields small {color:#b7d3df;}
+  body[data-contract-kind] .actions button,
+  body[data-contract-kind] .panel button {
+    background:#15aaa5;color:#062b35;border-radius:9px;
+    font-weight:750;min-height:43px;box-shadow:0 3px 10px rgba(0,0,0,.1);
+  }
+  body[data-contract-kind] .actions button:hover:not(:disabled),
+  body[data-contract-kind] .panel button:hover:not(:disabled) {background:#5be1d7;}
+  body[data-contract-kind] .actions button+button,
+  body[data-contract-kind] .panel .madic-logo-reset {background:#295a72;color:#f3fcff;}
+  body[data-contract-kind] .actions button+button:hover:not(:disabled),
+  body[data-contract-kind] .panel .madic-logo-reset:hover:not(:disabled) {background:#36728d;}
+  body[data-contract-kind] button:disabled {opacity:.55;cursor:not-allowed;}
+  body[data-contract-kind] .document,
+  body[data-contract-kind] #contractDocument {
+    background:#fff;color:#243444;border-radius:12px;
+    box-shadow:0 18px 48px rgba(0,0,0,.22);
+  }
+  body[data-contract-kind="professionnel"] #contractDocument {overflow:visible;}
+  body[data-contract-kind="professionnel"] #contractForm .madic-ircc-status {color:#bde5ee;}
+  body[data-contract-kind="professionnel"] #contractForm .madic-ircc-fee-link {color:#6ce7e1;}
+  @media(max-width:680px) {
+    body[data-contract-kind] main {padding:0 14px 30px;margin:18px auto;}
+    body[data-contract-kind] .panel {padding:17px;}
+    body[data-contract-kind] .actions {flex-direction:column;}
+    body[data-contract-kind] .actions button {width:100%;}
+  }
+}
+
+/* En-tete unique : fusion des deux en-tetes originaux. */
+.madic-unified-header{display:flex;flex-wrap:wrap;align-items:center;gap:12px;justify-content:space-between}
+.madic-unified-header .brand{font-size:21px;font-weight:800;text-decoration:none}
+.madic-unified-header .brand span{color:#57d8d0}
+.madic-unified-header .brand small{display:block;font-size:10px;font-weight:500}
+.madic-unified-header .toplinks{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.madic-unified-header .madic-hero-tools{display:flex;align-items:center;gap:14px}
+.madic-unified-header .madic-language-switch{display:flex;gap:4px}
+.madic-unified-header .madic-language-switch button{padding:6px 10px;background:#21465b;color:#fff}
+.madic-unified-header .madic-language-switch button[aria-pressed=true]{background:#15aaa5;color:#072532}
+@media print{.madic-unified-header{display:none!important}}
+
+/* MADIC - En-tete horizontal du contrat initial */
+@media screen {
+ body[data-contract-kind="initial"] .madic-unified-header{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;column-gap:24px;row-gap:12px;padding:18px max(22px,calc((100vw - 1250px)/2));}
+ .madic-unified-header .brand{display:inline-flex;flex-direction:row;align-items:baseline;gap:10px;white-space:nowrap;font-size:23px;font-weight:800;line-height:1.2;}
+ .madic-unified-header .brand-subtitle{display:inline;font-size:14px;font-weight:600;color:#c2e9ef;white-space:nowrap;}
+ .madic-unified-header .madic-hero-notifications{display:inline-flex;align-items:center;color:#bdeef1;}
+ .madic-unified-header .toplinks{display:flex;align-items:center;gap:14px;}
+ .madic-unified-header .madic-language-switch button[aria-pressed="true"]{background:#15aaa5;color:#072532;}
+ @media(max-width:780px){body[data-contract-kind="initial"] .madic-unified-header{justify-content:center;padding:14px 18px;} .madic-unified-header .brand{order:-1;width:100%;justify-content:center;}}
+}

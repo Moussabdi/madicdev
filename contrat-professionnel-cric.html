@@ -1,0 +1,1416 @@
+<!doctype html>
+
+<html lang="fr-CA">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width,initial-scale=1" name="viewport" />
+    <meta content="noindex,nofollow" name="robots" />
+    <title>Contrat de services professionnels | MADIC</title>
+    <link href="img/favicon.png" rel="icon" />
+    <link href="assets/contrats-cric.css" rel="stylesheet" />
+    <style>
+      .madic-contract-logos {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+        min-height: 82px;
+      }
+      .madic-contract-logos img {
+        display: block;
+        object-fit: contain;
+        max-width: 100%;
+        height: auto;
+      }
+      .madic-logo-cric {
+        width: 260px;
+        max-height: 78px;
+      }
+      .madic-logo-madic {
+        width: 96px;
+        max-height: 94px;
+      }
+      @media (max-width: 520px) {
+        .madic-contract-logos {
+          gap: 12px;
+        }
+        .madic-logo-cric {
+          width: 65%;
+        }
+        .madic-logo-madic {
+          width: 25%;
+        }
+      }
+      @media print {
+        .madic-contract-logos {
+          -webkit-print-color-adjust: exact;
+          print-color-adjust: exact;
+        }
+        .madic-contract-logos img {
+          break-inside: avoid;
+        }
+      }
+      /* Harmonisation MADIC : interface professionnelle uniquement (ecran). */
+      @media screen {
+        body[data-contract-kind="professionnel"] {
+          background: #071626;
+          color: #e8f3fa;
+        }
+        body[data-contract-kind="professionnel"] .top {
+          background: #10263b;
+          color: #e8f3fa;
+          border-bottom: 1px solid #29475e;
+        }
+        body[data-contract-kind="professionnel"] .top a {
+          color: #38bfd8;
+        }
+        body[data-contract-kind="professionnel"] .intro {
+          background: #10263b;
+          color: #e8f3fa;
+          border: 1px solid #29475e;
+          border-radius: 12px;
+          padding: 22px 26px;
+        }
+        body[data-contract-kind="professionnel"] .intro h1,
+        body[data-contract-kind="professionnel"] .intro p:not(.eyebrow) {
+          color: #e8f3fa;
+        }
+        body[data-contract-kind="professionnel"] .intro .eyebrow {
+          color: #38bfd8;
+        }
+        body[data-contract-kind="professionnel"] #contractStatus {
+          background: #10263b;
+          color: #e8f3fa;
+          border: 1px solid #29475e;
+          border-left: 4px solid #38bfd8;
+          border-radius: 8px;
+        }
+        body[data-contract-kind="professionnel"] #contractForm {
+          background: #10263b;
+          color: #e8f3fa;
+          border: 1px solid #29475e;
+          box-shadow: none;
+        }
+        body[data-contract-kind="professionnel"] #contractForm h2,
+        body[data-contract-kind="professionnel"] #contractForm label,
+        body[data-contract-kind="professionnel"] #contractForm legend {
+          color: #e8f3fa;
+        }
+        body[data-contract-kind="professionnel"] #contractForm fieldset {
+          background: #10263b;
+          border-color: #29475e;
+        }
+        body[data-contract-kind="professionnel"] #contractForm input,
+        body[data-contract-kind="professionnel"] #contractForm select,
+        body[data-contract-kind="professionnel"] #contractForm textarea {
+          background: #09192c;
+          color: #e8f3fa;
+          border: 1px solid #29475e;
+        }
+        body[data-contract-kind="professionnel"]
+          #contractForm
+          input::placeholder,
+        body[data-contract-kind="professionnel"]
+          #contractForm
+          textarea::placeholder {
+          color: #a8bdcb;
+        }
+        body[data-contract-kind="professionnel"]
+          #contractForm
+          input:focus-visible,
+        body[data-contract-kind="professionnel"]
+          #contractForm
+          select:focus-visible,
+        body[data-contract-kind="professionnel"]
+          #contractForm
+          textarea:focus-visible {
+          outline: 2px solid #38bfd8;
+          outline-offset: 2px;
+        }
+        body[data-contract-kind="professionnel"] #contractForm button {
+          background: #38bfd8;
+          color: #071626;
+          border: 1px solid #38bfd8;
+          font-weight: 700;
+        }
+        body[data-contract-kind="professionnel"] #contractForm .hint,
+        body[data-contract-kind="professionnel"] #contractForm small {
+          color: #bfd3e1;
+        }
+        body[data-contract-kind="professionnel"] #contractDocument {
+          background: #fff;
+          color: #1c2c3d;
+        }
+      }
+
+      /* MADIC : disposition simplifiée des renseignements du contrat CRIC. */
+      @media screen {
+        body[data-contract-kind="professionnel"]
+          #contractForm
+          .fields
+          > .madic-conseils-full {
+          grid-column: 1 / -1;
+          width: 100%;
+          min-width: 0;
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+        }
+        body[data-contract-kind="professionnel"]
+          #contractForm
+          .madic-conseils-full
+          textarea {
+          display: block;
+          width: 100%;
+          max-width: 100%;
+          min-width: 0;
+          box-sizing: border-box;
+          min-height: 150px;
+          resize: vertical;
+          line-height: 1.55;
+        }
+      }
+    </style>
+  </head>
+  <body data-contract-kind="professionnel">
+    <header class="top">
+      <a href="cric-dashboard.html">← Vue d’ensemble</a
+      ><strong>MADIC · Espace professionnel</strong><span>Contrats</span>
+    </header>
+    <main>
+      <div class="intro">
+        <p class="eyebrow">Cabinet CRIC · Identité à vérifier</p>
+        <h1>Contrat de services professionnels</h1>
+        <p>
+          Préparation d'un projet de contrat à partir du document transmis.
+          Vérification et approbation par le consultant obligatoires avant toute
+          signature.
+        </p>
+      </div>
+      <p class="status" id="contractStatus" role="status">
+        Vérification de votre accès professionnel…
+      </p>
+      <div hidden="" id="contractWorkspace">
+        <form class="panel" id="contractForm">
+          <h2>Renseignements du contrat</h2>
+          <div class="fields">
+            <label
+              >Client associé<select
+                id="contractClient"
+                name="client_id"
+                required=""
+              >
+                <option value="">Sélectionner un client</option>
+              </select></label
+            ><label
+              >Dossier<select id="contractDossier" name="dossier_id">
+                <option value="">Sélectionner un dossier</option>
+              </select></label
+            ><label
+              >Civilité<select name="civilite">
+                <option value="Madame">Madame</option>
+                <option value="Monsieur">Monsieur</option>
+                <option value="Autre">Autre</option>
+              </select></label
+            ><label>Nom du client<input name="nom" required="" /></label
+            ><label>Prénom du client<input name="prenom" /></label
+            ><label>Courriel<input name="courriel" type="email" /></label
+            ><label>Téléphone<input name="telephone" type="tel" /></label
+            ><label
+              >Adresse de résidence<textarea
+                name="adresse"
+                rows="2"
+              ></textarea></label
+            ><label
+              >Date de naissance<input name="naissance" type="date" /></label
+            ><label
+              >Date du contrat<input
+                name="date"
+                required=""
+                type="date" /></label
+            ><label
+              >Lieu de signature<input name="lieu" placeholder="Ville" /></label
+            ><label
+              >Type de service d’immigration<select
+                id="madicTypeService"
+                name="typeService"
+              >
+                <option value="etudes">Permis d’étude</option>
+                <option value="humanitaire">
+                  Considérations d’ordre humanitaire
+                </option>
+                <option value="famille">Regroupement familial</option>
+                <option value="travail">Permis de travail</option>
+                <option value="retablissement">
+                  Rétablissement de statut temporaire
+                </option>
+                <option value="erar">
+                  Examen des risques avant renvoi (ERAR)
+                </option>
+                <option value="supervisa">Super visa</option>
+                <option value="visiteur">Visiteur</option>
+                <option value="asile">Demandeur d’asile</option>
+                <option value="qualifie">Travailleur qualifié</option>
+                <option value="sejour">Permis de séjour temporaire</option>
+                <option value="ave">
+                  Autorisation de voyage électronique (AVE)
+                </option>
+                <option value="eic">Expérience internationale Canada</option>
+                <option value="affaires">
+                  Programme d’immigration des gens d’affaires
+                </option>
+              </select></label
+            ><label
+              >Objet du mandat<input
+                name="objet"
+                placeholder="Ex. Demande de permis d’études" /></label
+            ><label
+              >Responsabilités et prestations du CRIC (modifiables)<textarea
+                id="madicPrestations"
+                name="prestations"
+                rows="14"
+                spellcheck="true"
+              ></textarea
+              ><small
+                >Le contenu est lié au type de service sélectionné. Vérifiez et
+                adaptez le mandat avant impression.</small
+              ></label
+            ><label
+              >Langue des services<select name="langue">
+                <option>Français</option>
+                <option>Anglais</option>
+              </select></label
+            ><label
+              >Honoraires convenus ($ CA)<input
+                min="0"
+                name="tarif"
+                placeholder="À convenir"
+                step="0.01"
+                type="number" /></label
+            ><label
+              >Avance convenue ($ CA)<input
+                min="0"
+                name="avance"
+                placeholder="À convenir"
+                step="0.01"
+                type="number" /></label
+            ><label class="madic-conseils-full"
+              >Résumé des conseils préliminaires<textarea
+                name="conseils"
+                rows="6"
+              ></textarea>
+            </label>
+            <div class="madic-phase-settings">
+              <label
+                >Nombre de phases de facturation<select
+                  id="madicPhaseCount"
+                  name="nombrePhases"
+                >
+                  <option value="1">1 phase</option>
+                  <option value="2">2 phases</option>
+                  <option value="3">3 phases</option>
+                </select></label
+              ><small
+                >Proposé selon les prestations du service. Vous pouvez choisir
+                de 1 à 3 phases.</small
+              >
+            </div>
+            <div class="madic-phase-fields" data-madic-phase="1">
+              <strong>Phase 1 - facturation</strong
+              ><label
+                >Intitulé de la phase 1<input name="phaseTitre1" type="text" aria-label="Intitulé de la phase 1" readonly /></label
+              ><label
+                >Événement déclencheur de la facturation<input
+                  name="phaseDeclencheur1"
+                  type="text"
+                  placeholder="Ex. À la remise des prestations de cette phase" /></label
+              ><label
+                >Honoraires – phase 1 ($ CA)<input
+                  name="phase1"
+                  type="number"
+                  min="0"
+                  step="0.01"
+              /></label>
+            </div>
+            <div class="madic-phase-fields" data-madic-phase="2">
+              <strong>Phase 2 - facturation</strong
+              ><label
+                >Intitulé de la phase 2<input name="phaseTitre2" type="text" aria-label="Intitulé de la phase 2" readonly /></label
+              ><label
+                >Événement déclencheur de la facturation<input
+                  name="phaseDeclencheur2"
+                  type="text"
+                  placeholder="Ex. À la remise des prestations de cette phase" /></label
+              ><label
+                >Honoraires – phase 2 ($ CA)<input
+                  name="phase2"
+                  type="number"
+                  min="0"
+                  step="0.01"
+              /></label>
+            </div>
+            <div class="madic-phase-fields" data-madic-phase="3">
+              <strong>Phase 3 - facturation</strong
+              ><label
+                >Intitulé de la phase 3<input name="phaseTitre3" type="text" aria-label="Intitulé de la phase 3" readonly /></label
+              ><label
+                >Événement déclencheur de la facturation<input
+                  name="phaseDeclencheur3"
+                  type="text"
+                  placeholder="Ex. À la remise des prestations de cette phase" /></label
+              ><label
+                >Honoraires – phase 3 ($ CA)<input
+                  name="phase3"
+                  type="number"
+                  min="0"
+                  step="0.01"
+              /></label>
+            </div>
+            <label
+              >Frais biométriques ($ CA)
+              <select
+                aria-label="Catégorie des frais biométriques"
+                id="madicBioCategory"
+              >
+                <option value="personne">Par personne</option>
+                <option value="famille">Famille admissible (maximum)</option>
+                <option value="groupe">
+                  Groupe d’artistes admissible (maximum)
+                </option></select
+              ><small
+                class="madic-ircc-status"
+                id="madicIrccStatus"
+                role="status"
+                >Chargement des tarifs officiels IRCC…</small
+              >
+              <a
+                aria-label="Vérifier les frais biométriques sur le site officiel d’IRCC"
+                class="madic-ircc-fee-link"
+                href="https://ircc.canada.ca/francais/information/frais/bareme.asp"
+                rel="noopener noreferrer"
+                target="_blank"
+                >Vérifier le tarif IRCC</a
+              ><input
+                min="0"
+                name="fraisBio"
+                step="0.01"
+                type="number" /></label
+            ><label
+              >Frais permis d’études ($ CA)
+              <a
+                aria-label="Vérifier les frais de permis d’études sur le site officiel d’IRCC"
+                class="madic-ircc-fee-link"
+                href="https://ircc.canada.ca/francais/information/frais/bareme.asp"
+                rel="noopener noreferrer"
+                target="_blank"
+                >Vérifier le tarif IRCC</a
+              ><input min="0" name="fraisPermis" step="0.01" type="number"
+            /></label>
+          </div>
+          <fieldset class="madic-logo-fields">
+            <legend>Logos du contrat</legend>
+            <div class="madic-logo-inputs">
+              <label
+                >Logo CRIC–RCIC (gauche)<input
+                  accept="image/png,image/jpeg,image/webp"
+                  id="contractLogoCric"
+                  type="file"
+                /><small
+                  >Logo commun par défaut. Vous pouvez le remplacer pour vos
+                  contrats.</small
+                ></label
+              ><label
+                >Logo professionnel du CRIC (droite)<input
+                  accept="image/png,image/jpeg,image/webp"
+                  id="contractLogoProfessional"
+                  type="file"
+                /><small
+                  >Logo propre à votre espace CRIC (MADIC pour votre
+                  espace).</small
+                ></label
+              >
+            </div>
+            <div class="madic-logo-actions">
+              <button
+                class="madic-logo-reset"
+                id="contractLogoCricReset"
+                type="button"
+              >
+                Rétablir le logo CRIC–RCIC</button
+              ><button
+                class="madic-logo-reset"
+                id="contractLogoProfessionalReset"
+                type="button"
+              >
+                Rétablir le logo professionnel
+              </button>
+            </div>
+            <p class="hint" id="contractLogoStatus" role="status">
+              Les modifications sont conservées sur ce navigateur pour votre
+              espace CRIC.
+            </p>
+          </fieldset>
+          <fieldset class="madic-professional-fields">
+            <legend>Coordonnées professionnelles du CRIC</legend>
+            <div class="fields">
+              <label
+                >Nom complet du consultant<input
+                  autocomplete="off"
+                  name="proNom"
+                  type="text" /></label
+              ><label
+                >Numéro CRIC<input
+                  autocomplete="off"
+                  name="proNumero"
+                  type="text" /></label
+              ><label
+                >Entreprise / cabinet<input
+                  autocomplete="off"
+                  name="proEntreprise"
+                  type="text" /></label
+              ><label
+                >Adresse professionnelle<input
+                  autocomplete="off"
+                  name="proAdresse"
+                  type="text" /></label
+              ><label
+                >Téléphone professionnel<input
+                  autocomplete="off"
+                  name="proTelephone"
+                  type="text" /></label
+              ><label
+                >Courriel professionnel<input
+                  autocomplete="off"
+                  name="proCourriel"
+                  type="email" /></label
+              ><label
+                >Site Web<input
+                  autocomplete="off"
+                  name="proSite"
+                  type="text" /></label
+              ><label
+                >Coordonnées de paiement (Interac ou autres)<input
+                  autocomplete="off"
+                  name="proPaiement"
+                  type="text"
+              /></label>
+            </div>
+            <p class="hint">
+              Ces coordonnées sont modifiables et réutilisées dans les contrats
+              de cet espace CRIC sur ce navigateur. Vérifiez-les avant toute
+              signature.
+            </p>
+          </fieldset>
+          <fieldset class="madic-cric-signature">
+            <legend>Signature du consultant</legend>
+            <p class="hint">
+              Vérifiez le contrat, puis confirmez votre signature. La
+              transmission sera disponible après raccordement sécurisé du
+              contrat professionnel à Supabase.
+            </p>
+            <label
+              >Lieu de signature du consultant *<input
+                id="cricSignatureCity"
+                maxlength="120"
+                placeholder="Ville où vous signez actuellement"
+                required=""
+                type="text" /></label
+            ><label
+              >Nom du consultant (vérifié)<input
+                autocomplete="off"
+                id="cricSignatureName"
+                maxlength="200"
+                placeholder="Chargement du nom officiel"
+                readonly=""
+                type="text" /></label
+            ><label class="madic-sign-consent"
+              ><input id="cricSignatureConsent" type="checkbox" /><span
+                >Je confirme avoir vérifié ce contrat et souhaite le signer
+                électroniquement.</span
+              ></label
+            >
+          </fieldset>
+          <div class="actions">
+            <button id="contractPreview" type="button">
+              Actualiser l’aperçu</button
+            ><button id="contractPrint" type="button">
+              Imprimer / enregistrer en PDF</button
+            ><button
+              disabled=""
+              id="contractActivate"
+              title="Publication professionnelle non raccordée : aucune transmission officielle possible"
+              type="button"
+            >
+              Signer et transmettre au client (indisponible)
+            </button>
+          </div>
+          <p class="hint" id="contractActivationStatus" role="status">
+            La signature est en préparation. Aucun contrat n’est transmis ni
+            signé officiellement depuis cette page.
+          </p>
+          <p class="hint">
+            Le PDF obtenu par impression est un brouillon non signé. Aucune
+            sauvegarde ni signature électronique n’est effectuée
+            automatiquement.
+          </p>
+        </form>
+        <article class="document" id="contractDocument">
+          <h2>CONTRAT DE SERVICE PROFESSIONNEL</h2>
+          <section class="source-page madic-professional-document">
+            <div class="contract-page-header madic-contract-logos">
+              <img
+                alt="CRIC RCIC"
+                class="madic-logo-cric"
+                id="contractLogoCricPreview"
+                src="img/logo-cric-rcic.png"
+              /><img
+                alt="Logo professionnel du cabinet"
+                class="madic-logo-madic"
+                id="contractLogoProfessionalPreview"
+              />
+            </div>
+            <p
+              class="contract-intro"
+              data-contract-template="Ce contrat de service professionnel est établi le {dateLong} entre :"
+            >
+              À compléter
+            </p>
+            <p
+              class="contract-client-name"
+              data-contract-template="{civilite} {clientNom}"
+            >
+              À compléter
+            </p>
+            <p
+              class="contract-address"
+              data-contract-template="Adresse : {adresse}"
+            >
+              À compléter
+            </p>
+            <p
+              class="contract-contact"
+              data-contract-template="Téléphone : {telephone}"
+            >
+              À compléter
+            </p>
+            <p
+              class="contract-contact"
+              data-contract-template="Courriel : {courriel}"
+            >
+              À compléter
+            </p>
+            <p>ET</p>
+            <p>Le Consultant réglementé en immigration canadienne (« CRIC »)</p>
+            <p data-contract-template="Monsieur {proNom}">À compléter</p>
+            <p data-contract-template="{proAdresse}">À compléter</p>
+            <p data-contract-template="Téléphone : {proTelephone}">
+              À compléter
+            </p>
+            <p data-contract-template="Courriel : {proCourriel}">À compléter</p>
+            <p>
+              ATTENDU QUE le CRIC et le client souhaitent conclure une entente
+              par écrit qui contient les conditions convenues selon lesquelles
+              le CRIC fournira ses services au client ;
+            </p>
+            <p>
+              ET ATTENDU QUE le CRIC est un membre du Collège des consultants en
+              immigration et en citoyenneté (CICC) (le « Conseil »), l’organisme
+              de réglementation canadien des consultants en immigration ;
+            </p>
+            <p>
+              ET ATTENDU QUE le CRIC est un membre du Registre québécois des
+              consultants en immigration ;
+            </p>
+            <p class="contract-heading">Langue des services :</p>
+            <p
+              data-contract-template="Les services professionnels prévus au présent contrat seront fournis en {langueContrat}."
+            >
+              À compléter
+            </p>
+            <p class="contract-heading">Assistance professionnelle :</p>
+            <p>
+              Aucun assistant ou autre professionnel n'est actuellement affecté
+              à ce dossier.
+            </p>
+            <p>
+              Si le recours à un traducteur, un interprète ou tout autre
+              professionnel devient nécessaire dans le cadre de la prestation
+              des services, le CRIC en informera le client et obtiendra son
+              consentement préalable lorsque requis.
+            </p>
+            <p class="contract-heading">Résumé des conseils préliminaires :</p>
+            <p data-contract-template="{conseils}">À compléter</p>
+            <p>
+              EN CONTREPARTIE des engagements réciproques de ce contrat, les
+              parties conviennent de ce qui suit :
+            </p>
+            <p class="contract-heading">
+              1. Responsabilités et obligations du CRIC
+            </p>
+            <p class="contract-service-type" id="madicServiceDocument">
+              Type de service d’immigration : Permis d’étude
+            </p>
+            <p>
+              Le client demande au CRIC, et celui-ci accepte, de représenter le
+              client au sujet de
+              <span data-contract-template="{objet}">À compléter</span> Le
+              client reconnaît que le CRIC ne peut garantir l'approbation de la
+              demande. Toute décision appartient exclusivement à IRCC et aux
+              autorités gouvernementales compétentes.
+            </p>
+            <p>
+              En contrepartie des frais payés et en raison de l’affaire
+              mentionnée ci-dessus, le CRIC s’engage à :
+            </p>
+            <div id="madicPrestationsDocument"></div>
+            <p>
+              Le CRIC devra fournir au client une copie finale et signée du
+              présent contrat de service professionnel.
+            </p>
+            <p>
+              Le CRIC s'engage à répondre aux communications du client dans un
+              délai raisonnable de 2 à 5 jours ouvrables.
+            </p>
+            <p>
+              Le CRIC transmettra au client toute correspondance reçue d'IRCC
+              dans les meilleurs délais.
+            </p>
+            <p>
+              Les délais de traitement d'IRCC sont hors du contrôle du CRIC et
+              peuvent varier sans préavis.
+            </p>
+            <p class="contract-heading">
+              2. Responsabilités et obligations du client
+            </p>
+            <p>2.1 Le client doit fournir à la demande du CRIC :</p>
+            <p class="contract-bullet">• Toute la documentation nécessaire.</p>
+            <p class="contract-bullet">
+              • Toute la documentation en anglais ou en français ou traduite en
+              anglais ou
+            </p>
+            <p>en français.</p>
+            <p>
+              2.2 Le client convient qu’il doit fournir de l’information exacte
+              et honnête et que toute fausse déclaration ou omission peut
+              annuler ce contrat ou avoir une incidence défavorable sur la
+              réponse à la demande ou le maintien de tout statut d’immigration
+              obtenu. Les obligations du CRIC en vertu du contrat de service
+              professionnel sont nulles si le client fournit en toute
+              connaissance de cause des renseignements importants inexacts,
+              trompeurs ou faux. Les obligations financières du client
+              demeurent.
+            </p>
+            <p>
+              2.3 Si Immigration, Réfugiés et Citoyenneté Canada (IRCC) ou
+              Emploi et
+            </p>
+            <p>
+              Développement social Canada (EDSC) ou un administrateur d’un
+              gouvernement provincial ou le bureau des visas qui traite la
+              demande communique directement avec le client, le client doit
+              immédiatement en aviser le CRIC.
+            </p>
+            <p>
+              2.4 Le client doit immédiatement informer le CRIC de tout
+              changement de situation matrimoniale, de famille ou d’état civil
+              ou de coordonnées de toute personne incluse dans la demande.
+            </p>
+            <p>
+              2.5 Dans le cas d’un contrat de service professionnel conjoint,
+              les clients conviennent que le CRIC doit échanger de l’information
+              entre tous les clients au besoin. En outre, si un conflit surgit
+              qui ne peut être résolu, le CRIC ne pourra pas continuer à
+              représenter les deux clients ou tous les clients et devra peut-
+              être se retirer complètement de l’affaire.
+            </p>
+            <p class="contract-heading">3. Méthode de facturation</p>
+            <p>
+              Le client sera facturé selon un paiement par étapes, une fréquence
+              de facturation prédéterminées.
+            </p>
+            <p class="contract-heading">4. Modalités de paiement</p>
+            <p
+              data-contract-template="Honoraires professionnels : {tarif} CAD / heure en cas de désistement."
+            >
+              À compléter
+            </p>
+            <p
+              data-contract-template="Montant du paiement anticipé : {avance} $ CAD applicable au"
+            >
+              À compléter
+            </p>
+            <p>
+              mandat. Les fonds seront détenus conformément aux exigences
+              réglementaires applicables et les honoraires seront gagnés au fur
+              et à mesure de l'exécution des services.
+            </p>
+            <p>
+              Le montant de l’avance initiale est payable à la signature de ce
+              contrat.
+            </p>
+            <p>Détail de débours :</p>
+            <p>a. Les frais bancaires à confirmer.</p>
+            <p>
+              Les frais totaux de débours seront mis à jour selon les frais
+              bancaires.
+            </p>
+            <p>Les frais de débours sont à la charge du client.</p>
+            <p>Détail frais administratifs :</p>
+            <p>
+              b. Requérante ou requérant principal : Elle sera couverte par le
+              client au fur et à mesure de l’avancement du projet.
+            </p>
+            <p>
+              Frais total administratifs : Elle sera couverte par le client au
+              fur et à mesure de l’avancement du projet.
+            </p>
+            <p data-contract-template="Frais de service : {tarif} $ CAD.">
+              À compléter
+            </p>
+            <p data-contract-template="Coût total : {tarif} $ CAD.">
+              À compléter
+            </p>
+            <p class="contract-heading">5. Échéancier des paiements :</p>
+            <table class="contract-fee-table">
+              <thead>
+                <tr>
+                  <th>Étape des services du CRIC</th>
+                  <th>Honoraires professionnels</th>
+                  <th>Avance applicable à cette étape</th>
+                  <th>Frais de traitement gouvernementaux</th>
+                </tr>
+              </thead>
+              <tbody id="madicPhaseFeeRows"></tbody>
+            </table>
+            <p
+              class="madic-phase-balance"
+              id="madicPhaseBalance"
+              aria-live="polite"
+            ></p>
+            <p>
+              Débours : Frais des copies, les frais de poste et traduction
+              seront à la charge du client.
+            </p>
+            <p
+              data-contract-template="Coût total de service : {tarif} $ CAD sans le frais de traitement du"
+            >
+              À compléter
+            </p>
+            <p>gouvernement applicables.</p>
+            <p>
+              Fréquence de facturation : le CRIC doit fournir une facture au
+              client.
+            </p>
+            <p>
+              Ententes spéciales convenues mutuellement entre le client et le
+              CRIC (p.ex. paiement par chèques postdatés, dans une autre
+              devise.) Les paiements peuvent être effectués par traite bancaire,
+              chèque personnel ou dépôt direct, ou par virement bancaire
+              international au compte en fidéicommis suivant :
+            </p>
+            <p>
+              Le mode de paiement international que nous disposons est le
+              suivant :
+            </p>
+            <p
+              class="contract-bullet"
+              data-contract-template="•  Virement Interac : {proPaiement}"
+            >
+              À compléter
+            </p>
+            <p data-contract-template="La somme due est de {tarif} $ CAD">
+              À compléter
+            </p>
+            <p class="contract-bullet">
+              • Virement bancaire (Les frais sont variables d'une banque à une
+              autre après le frais
+            </p>
+            <p
+              data-contract-template="de transfert, la somme due est de {tarif} $ CAD)."
+            >
+              À compléter
+            </p>
+            <p class="contract-bullet">
+              • Western Union (Les frais de transfert sont à votre charge après
+              le frais de transfert,
+            </p>
+            <p data-contract-template="la somme due est de {tarif} $ CAD).">
+              À compléter
+            </p>
+            <p class="contract-heading">6. Facturation</p>
+            <p>Le CRIC produira des factures qui incluront :</p>
+            <p class="contract-bullet">• Le nom et l’adresse du client,</p>
+            <p class="contract-bullet">• Une liste des services rendus,</p>
+            <p class="contract-bullet">
+              • La date ou les dates auxquelles les services ont été rendus, et
+            </p>
+            <p class="contract-bullet">• Le total des frais, et</p>
+            <p class="contract-bullet">
+              • Des taxes applicables payables au membre pour les services
+              rendus pour les clients
+            </p>
+            <p>
+              appliquant à l’intérieur du Canada à savoir TPS 5% et TVQ 9.975%.
+            </p>
+            <p>
+              Les factures doivent être fournies au client conformément aux
+              modalités de paiement énoncées au paragraphe 5 du présent contrat
+              de service professionnel.
+            </p>
+            <p>
+              De plus, si le CRIC se retire d’une affaire ou est libéré de ses
+              obligations, il devra fournir au client un relevé de compte
+              détaillant tous les services qui ont été rendus ou faisant rapport
+              du temps qui a été consacré au dossier du client.
+            </p>
+            <p class="contract-heading">7. Politique de remboursement</p>
+            <p>
+              Le client reconnaît que l’obtention d’un visa ou d’un statut ainsi
+              que le temps de traitement de cette demande est à l’entière
+              discrétion du gouvernement du Canada (ou des autorités
+              gouvernementales) et non du CRIC. En outre, le client reconnaît
+              que les frais ne sont pas remboursables s’il advenait que la
+              demande soit refusée.
+            </p>
+            <p>
+              Le client reconnaît également que tout dépôt ou avance versé dans
+              le cadre du présent contrat est non remboursable dans la mesure où
+              il couvre l’ouverture du dossier, l’analyse préliminaire, les
+              consultations, les communications, les travaux administratifs et
+              les services professionnels entrepris dès le début du mandat.
+            </p>
+            <p>
+              Cependant, si le CRIC ou son personnel ne remplissent pas les
+              tâches mentionnées à la section 2 du présent contrat, le CRIC
+              remboursera les honoraires perçus, en partie ou en totalité. Le
+              client consent à ce que les honoraires soient payés pour les
+              services mentionnés ci-dessus et que tout remboursement s’applique
+              uniquement au montant des honoraires payés. Les frais non utilisés
+              et/ou non gagnés seront remboursés conformément au Règlement
+              régissant la gestion des dossiers clients, au Règlement régissant
+              le compte client et au Règlement régissant le contrat de service
+              professionnel comme suit :
+            </p>
+            <p>
+              Les honoraires des phases qui n’ont pas été effectués ou les
+              tâches non remplies seront remboursés intégralement par virement
+              bancaire deux semaines suivant le retrait du dossier du client.
+            </p>
+            <p class="contract-heading">
+              8. Résolution de conflits relatifs au Code d’éthique
+              professionnelle
+            </p>
+            <p>
+              Dans le cas d’un conflit relatif aux services professionnels
+              fournis par le CRIC, le client et le CRIC doivent s’efforcer dans
+              une mesure raisonnable de résoudre le problème entre les deux
+              parties. Si le conflit ne peut pas être réglé, le client doit
+              présenter une plainte par écrit au CRIC et donner au CRIC 15 jours
+              pour répondre au client. Si le conflit n’est toujours pas réglé,
+              le client peut suivre le processus de plainte et de discipline
+              décrit sur le site Web du Conseil : https://college-ic.ca/ Le
+              client est informé de son droit de déposer une plainte auprès du
+              Collège des consultants en immigration et en citoyenneté
+              relativement à la conduite professionnelle du CRIC.
+            </p>
+            <p class="contract-heading">Coordonnées du CCIC</p>
+            <p>
+              Collège des consultants en immigration et citoyenneté (CCIC) 5500
+              North Service Rd., bureau 1002 Burlington (Ontario) L7L 6W6 Sans
+              frais : 1-877-836-7543
+            </p>
+            <p class="contract-heading">9. Erreurs ou omissions</p>
+            <p>
+              Le CRIC informera le client dans les meilleurs délais de toute
+              erreur ou omission importante découverte dans le dossier et
+              prendra les mesures raisonnables afin d'en limiter les
+              conséquences.
+            </p>
+            <p class="contract-heading">10. Confidentialité</p>
+            <p>
+              Tous les renseignements et les documents examinés par le CRIC,
+              requis par IRCC et
+            </p>
+            <p>
+              tous les autres corps dirigeants, et utilisés pour préparer la
+              demande ne seront pas divulgués à un tiers, autre qu’à des agents
+              et des employés du CRIC, sans consentement préalable, sauf si
+              exigé par le Conseil ou requis en vertu de la loi. Le CRIC, et
+              tous ses agents et employés, sont aussi liés par les exigences de
+              confidentialité de l’article 28 du Code de déontologie.
+            </p>
+            <p>
+              Le client consent à ce que les communications aient lieu par voie
+              électronique et au stockage de l’information confidentielle. Le
+              CRIC s’efforcera autant que possible d’assurer un niveau de
+              sécurité élevé en matière de communication électronique et
+            </p>
+            <p>de stockage de l’information.</p>
+            <p class="contract-heading">11. Force majeure</p>
+            <p>
+              En cas d’incapacité du CRIC à respecter toute clause de ce contrat
+              de service professionnel, en raison de conditions hors de son
+              contrôle telles que, sans en exclure d’autres, des restrictions
+              gouvernementales ou des lois postérieures, une guerre, des grèves
+              ou des catastrophes naturelles, on ne considérera pas qu’il y a
+              rupture de ce contrat.
+            </p>
+            <p class="contract-heading">12. Absence imprévue du CRIC</p>
+            <p>
+              Si le client n’arrive pas à communiquer avec le CRIC et a lieu de
+              croire que le CRIC est décédé, frappé d’incapacité ou autrement
+              dans l’impossibilité de remplir ses obligations, le client devra
+              communiquer avec le CCIC.
+            </p>
+            <p class="contract-heading">13. Politique de changement</p>
+            <p>
+              Le client convient qu’en raison d’une demande faite au CRIC de le
+              représenter dans une affaire autre que celle mentionnée ci- dessus
+              dans le cadre de ce contrat, d’un changement de sa situation
+              matérielle, de faits matériels non divulgués au début de la
+              demande ou d’un changement dans la loi du gouvernement concernant
+              le traitement des demandes en matière d’immigration ou de
+              citoyenneté, le contrat peut être modifié en conséquence.
+            </p>
+            <p>
+              Ce contrat ne peut être modifié ou amendé que lorsque lesdites
+              modifications sont
+            </p>
+            <p>
+              apportées par écrit et signées par les parties aux présentes. Tous
+              les changements et toutes les modifications doivent être paraphés
+              et datés par le membre et par le client. Dans le cas de tout
+              changement substantiel au présent contrat, les parties pourraient
+              devoir signer un nouveau contrat de service professionnel.
+            </p>
+            <p class="contract-heading">14. Fin du contrat</p>
+            <p>
+              14.1 Ce contrat prend fin lorsque les tâches précisées à la
+              section 1 de ce contrat ont été exécutées.
+            </p>
+            <p>
+              14.2 Ce contrat prend fin si des changements d’ordre matériel se
+              produisent dans la demande ou l’admissibilité du client, et qui
+              empêchent d’exécuter les tâches décrites à la section 1 de ce
+              contrat.
+            </p>
+            <p class="contract-heading">
+              15. Libération des obligations ou retrait d’une affaire
+            </p>
+            <p>
+              15.1 Le client peut libérer le CRIC de ses obligations et mettre
+              fin au contrat par écrit.
+            </p>
+            <p>
+              Les frais ou débours impayés ou non gagnés seront remboursés par
+              le CRIC au client et/ou les frais ou débours impayés seront payés
+              par le client au CRIC.
+            </p>
+            <p>
+              15.2 En vertu de l’article 34 du Code de déontologie, le CRIC peut
+              se retirer d’une affaire et mettre fin au contrat par écrit pourvu
+              que cela ne cause pas de préjudice au client. Les frais ou débours
+              impayés ou non gagnés seront remboursés par le CRIC au client
+              et/ou les frais ou débours impayés seront payés par le client au
+              CRIC.
+            </p>
+            <p>
+              15.3 Au moment où un CRIC se retire d’une affaire ou est libéré de
+              ses obligations, ce dernier devra fournir au client une facture
+              détaillant tous les services qui ont été rendus ou fera rapport du
+              temps qui a été consacré au dossier du client.
+            </p>
+            <p class="contract-heading">16. Loi du contrat</p>
+            <p>
+              16.1 Ce contrat est régi par les lois en vigueur de la Province/du
+              Territoire Québec , et les lois fédérales canadiennes qui s’y
+              appliquent et, sauf pour des conflits prévus à la section 9 aux
+              présentes, tout conflit concernant les clauses de ce contrat sera
+              réglé par un tribunal compétent de la Province/du Territoire
+              Canada .
+            </p>
+            <p class="contract-heading">17. Divers</p>
+            <p>
+              17.1 Le client autorise explicitement le CRIC à agir en son nom
+              dans les limites des fonctions précises pour lesquelles les
+              services du CRIC ont été retenus, conformément au paragraphe 2 des
+              présentes.
+            </p>
+            <p>
+              17.2 Ce contrat constitue la totalité du contrat entre les parties
+              pour ce qui est de l’objet ci-contre et remplace tous les
+              contrats, tous les accords, toutes les garanties, représentations,
+              négociations et discussions précédents, verbaux ou écrits, des
+              parties sauf pour ce qui est indiqué précisément aux présentes.
+            </p>
+            <p>
+              17.3 Les coûts énumérés au présent contrat doivent être payés par
+              le client.
+            </p>
+            <p>
+              17.4 Ce contrat peut uniquement être modifié si les changements
+              sont effectués par écrit et signés par les parties aux présentes.
+              Tous les changements et/ou toutes les modifications doivent être
+              paraphés et datés par le membre et par le client.
+            </p>
+            <p>
+              Dans le cas de tout changement substantiel au présent contrat, les
+              parties pourraient devoir signer un nouveau contrat de service
+              professionnel.
+            </p>
+            <p>
+              17.5 Le client peut, après que le contrat de service professionnel
+              est signé, nommer un représentant désigné autorisé à agir en son
+              nom auprès du CRIC. Un représentant désigné ne peut pas être
+              rétribué par le client ni le CRIC pour agir en qualité de
+              représentant désigné.
+            </p>
+            <p>
+              17.6 Les dispositions de ce contrat sont jugées dissociables. Si
+              une disposition de ce contrat est considérée comme inexécutable
+              par un tribunal compétent, la disposition sera supprimée de ce
+              contrat, et les autres dispositions demeureront en vigueur.
+            </p>
+            <p>
+              17.7 Les titres utilisés dans ce contrat visent seulement à
+              faciliter la lecture et ne doivent en aucun cas être interprétés
+              comme des ajouts ou des limitations des engagements et ententes
+              contenus dans ce contrat.
+            </p>
+            <p>
+              17.8 Chaque partie aux présentes fait, établit, donne, signe ou
+              fait faire, établir, donner ou signer toutes les autres choses,
+              les assurances et tous les actes, actes de transfert et documents
+              jugés nécessaires ou raisonnablement requis pour que l’intention
+              et l’objet de ce contrat soient pleinement et effectivement
+              appliqués.
+            </p>
+            <p>
+              17.9 Le client convient qu’il a eu suffisamment de temps pour
+              examiner ce contrat et
+            </p>
+            <p>
+              qu’on lui a donné la possibilité d’obtenir un avis juridique
+              indépendant et une traduction avant la signature et la remise de
+              ce contrat.
+            </p>
+            <p>
+              17.10 Si le client n’a pas demandé un avis juridique indépendant
+              avant la signature et la remise de ce contrat, il l’a fait de son
+              propre chef sans subir de pression indue et convient que le fait
+              de ne pas avoir obtenu d’avis juridique indépendant ne pourra pas
+              être utilisé comme moyen de défense pour faire respecter les
+              obligations créées dans ce contrat.
+            </p>
+            <p>
+              17.11 En outre, le client reconnaît avoir reçu une copie de ce
+              contrat et convient être lié par ses conditions.
+            </p>
+            <p>
+              17.12 Le client qui souhaite remplir ce contrat en anglais doit en
+              faire la demande.
+            </p>
+            <p>
+              17.13 Les termes énoncés dans le présent contrat de service
+              professionnel ont le sens donné aux termes contenus dans le
+              Règlement régissant le contrat de service professionnel et le
+              Règlement administratif du Conseil, modifiés de temps à autre.
+            </p>
+            <p>
+              EN FOI DE QUOI ce contrat a été dûment signé par les parties aux
+              présentes à la date indiquée au début du présent contrat.
+            </p>
+            <div class="contract-signatures">
+              <div class="contract-signature-block">
+                <strong>Signature du client :</strong>
+                <p
+                  class="signature-line"
+                  data-contract-template="Signature : ____________________________"
+                >
+                  À compléter
+                </p>
+                <p
+                  class="signature-line"
+                  data-contract-template="Date : {dateLong}"
+                >
+                  À compléter
+                </p>
+                <p
+                  class="signature-line"
+                  data-contract-template="Ville : {lieu}"
+                >
+                  À compléter
+                </p>
+              </div>
+              <div class="contract-signature-block">
+                <strong>Signature du CRIC :</strong>
+                <p class="signature-line">
+                  Signature : <span id="cricSignatureOnDocument"></span>
+                </p>
+                <p class="signature-stamp" id="cricSignatureTimestamp"></p>
+                <p
+                  class="signature-line"
+                  data-contract-template="Ville : {lieu}"
+                >
+                  À compléter
+                </p>
+              </div>
+            </div>
+          </section>
+        </article>
+      </div>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+    <script src="assets/config.js"></script>
+    <script src="assets/madic-contrat-prefill.js"></script>
+    <script src="assets/contrats-cric.js"></script>
+    <script src="assets/madic-mandats-cric.js"></script>
+    <script>
+      (() => {
+        "use strict";
+        const form = document.getElementById("contractForm"),
+          doc = document.getElementById("contractDocument");
+        if (!form || !doc) return;
+        const nodes = [...doc.querySelectorAll("[data-contract-template]")];
+        const val = (k) => form.elements.namedItem(k)?.value?.trim() || "";
+        function render() {
+          const clientNom = [val("prenom"), val("nom")]
+            .filter(Boolean)
+            .join(" ");
+          const values = {};
+          for (const e of form.elements) if (e.name) values[e.name] = e.value;
+          const civ = val("civilite");
+          const clientAppellation =
+            [civ === "Autre" ? "" : civ, clientNom].filter(Boolean).join(" ") ||
+            "À compléter";
+          const clientDative =
+            civ === "Madame"
+              ? "Madame " + (clientNom || "À compléter")
+              : civ === "Monsieur"
+                ? "Monsieur " + (clientNom || "À compléter")
+                : clientNom || "la personne cliente";
+          const accordFeminin = civ === "Madame" ? "e" : "";
+          Object.assign(values, {
+            clientAppellation,
+            clientDative,
+            accordFeminin,
+            clientNom,
+            dateLong: val("date")
+              ? new Date(val("date") + "T12:00:00").toLocaleDateString(
+                  "fr-CA",
+                  { day: "2-digit", month: "long", year: "numeric" },
+                )
+              : "À compléter",
+            langueContrat: val("langue") === "Anglais" ? "anglais" : "français",
+            civilite: val("civilite") || "Madame",
+          });
+          for (const node of nodes)
+            node.textContent = node.dataset.contractTemplate.replace(
+              /\{([a-zA-Z0-9]+)\}/g,
+              (_, k) =>
+                values[k] !== undefined &&
+                values[k] !== null &&
+                String(values[k]) !== ""
+                  ? values[k]
+                  : k === "accordFeminin"
+                    ? ""
+                    : "À compléter",
+            );
+        }
+        form.addEventListener("input", () => queueMicrotask(render));
+        form.addEventListener("change", () => queueMicrotask(render));
+        document
+          .getElementById("contractPreview")
+          ?.addEventListener("click", () => queueMicrotask(render));
+        document
+          .getElementById("contractPrint")
+          ?.addEventListener("click", render, true);
+        window.addEventListener("beforeprint", render);
+        new MutationObserver(() => {
+          if (!document.getElementById("contractWorkspace").hidden) render();
+        }).observe(document.getElementById("contractWorkspace"), {
+          attributes: true,
+          attributeFilter: ["hidden"],
+        });
+        render();
+      })();
+    </script>
+    <script>
+      /* MADIC : résumé préliminaire automatique, sans écraser une modification manuelle. */
+      (() => {
+        "use strict";
+        const form = document.getElementById("contractForm");
+        if (!form) return;
+        const get = (k) => (form.elements.namedItem(k)?.value || "").trim();
+        const input = form.elements.namedItem("conseils");
+        if (!input) return;
+        const service = document.getElementById("madicTypeService");
+        let lastAutomatic = "";
+        let manual = false;
+        const drafts = new Map();
+        let previousService = service?.value || "";
+        function compose() {
+          const nom = [get("prenom"), get("nom")].filter(Boolean).join(" ");
+          const civ = get("civilite");
+          const personne =
+            [civ === "Autre" ? "" : civ, nom].filter(Boolean).join(" ") ||
+            "la personne cliente";
+          const libelle =
+            service?.selectedOptions?.[0]?.textContent?.trim() ||
+            "service d’immigration sélectionné";
+          const objet =
+            get("objet") || "la démarche de " + libelle.toLowerCase();
+          const specifics = {
+            etudes:
+              "Les conditions d’admissibilité au permis d’études, la lettre d’acceptation d’un établissement d’enseignement désigné, les exigences provinciales applicables, les preuves financières, les documents à fournir et les conditions de séjour ont été abordés.",
+            humanitaire:
+              "Les facteurs humanitaires pertinents, les liens familiaux, l’établissement au Canada, l’intérêt supérieur des enfants concernés, les éléments de preuve et le caractère discrétionnaire de cette demande ont été expliqués.",
+            famille:
+              "Les critères d’admissibilité du répondant et de la personne parrainée, les preuves de la relation familiale, les engagements financiers, les étapes fédérales et provinciales applicables et les pièces justificatives ont été présentés.",
+            travail:
+              "Les catégories de permis de travail, les conditions d’admissibilité, les exigences relatives à une offre d’emploi et à une EIMT ou à une dispense, selon le cas, ainsi que les justificatifs requis ont été examinés.",
+            retablissement:
+              "Les conditions de rétablissement du statut temporaire, les délais applicables, les conséquences de la perte de statut, les restrictions possibles pendant le traitement et les documents justificatifs ont été expliqués.",
+            erar: "L’admissibilité à l’examen des risques avant renvoi, les délais indiqués dans l’avis reçu, les risques personnels à démontrer, les preuves admissibles et les étapes de présentation ont été examinés.",
+            supervisa:
+              "Les conditions du super visa, le lien de parenté, les ressources financières de la personne invitante, les exigences d’assurance médicale, l’examen médical éventuel et les documents nécessaires ont été présentés.",
+            visiteur:
+              "Les critères du visa de visiteur, le motif et la durée envisagée du séjour, les ressources financières, les attaches au pays de résidence, les antécédents de voyage et les pièces justificatives ont été examinés.",
+            asile:
+              "Les critères de protection, les questions d’admissibilité, les risques personnels allégués, le formulaire Fondement de la demande d’asile, les éléments de preuve, les délais et les étapes devant les autorités compétentes ont été abordés.",
+            qualifie:
+              "Les programmes de travailleurs qualifiés potentiellement applicables, l’expérience professionnelle, les résultats linguistiques, les diplômes, les critères de sélection, les preuves financières et les étapes de résidence permanente ont été examinés.",
+            sejour:
+              "Les circonstances justifiant un permis de séjour temporaire, les questions d’interdiction de territoire, les preuves à fournir, le pouvoir discrétionnaire des autorités et les conditions éventuelles du permis ont été expliqués.",
+            ave: "Les critères d’admissibilité à l’autorisation de voyage électronique, la validité du passeport, les renseignements à déclarer, les antécédents pertinents et les limites de cette autorisation de voyage ont été expliqués.",
+            eic: "Les conditions du programme Expérience internationale Canada, les catégories possibles, les critères d’âge et de nationalité, les bassins, les invitations et les exigences du permis de travail ont été présentés.",
+            affaires:
+              "Les programmes d’immigration des gens d’affaires susceptibles de s’appliquer, les critères d’expérience entrepreneuriale, les exigences financières, la provenance des fonds et les étapes de sélection et de résidence permanente ont été abordés.",
+          };
+          const participe =
+            civ === "Madame"
+              ? "informée"
+              : civ === "Monsieur"
+                ? "informé"
+                : "informée ou informé";
+          return (
+            "Une consultation initiale a été réalisée avec " +
+            personne +
+            " relativement à " +
+            objet +
+            ". " +
+            (specifics[service?.value] ||
+              "Les conditions d’admissibilité et les pièces justificatives applicables ont été examinées.") +
+            " " +
+            "Les délais de traitement, les frais applicables, les risques de refus et les obligations de fournir des renseignements exacts ont également été expliqués. " +
+            personne +
+            " a été " +
+            participe +
+            " qu’aucun résultat ne peut être garanti et que toute décision appartient aux autorités gouvernementales compétentes."
+          );
+        }
+        function refresh() {
+          if (manual) return;
+          const existing = input.value.trim();
+          if (existing && existing !== lastAutomatic) {
+            manual = true;
+            return;
+          }
+          const next = compose();
+          if (input.value !== next) {
+            input.value = next;
+            lastAutomatic = next;
+            input.dispatchEvent(new Event("input", { bubbles: true }));
+          }
+        }
+        input.addEventListener("input", (e) => {
+          if (e.isTrusted) {
+            manual = true;
+          } else if (input.value !== lastAutomatic && input.value.trim())
+            manual = true;
+        });
+        form.addEventListener("input", (e) => {
+          if (e.target !== input) queueMicrotask(refresh);
+        });
+        form.addEventListener("change", (e) => {
+          if (e.target !== input) {
+            queueMicrotask(refresh);
+            setTimeout(refresh, 0);
+            setTimeout(refresh, 150);
+          }
+        });
+        const workspace = document.getElementById("contractWorkspace");
+        if (workspace)
+          new MutationObserver(() => {
+            if (!workspace.hidden) {
+              refresh();
+              setTimeout(refresh, 150);
+            }
+          }).observe(workspace, {
+            attributes: true,
+            attributeFilter: ["hidden"],
+          });
+        document
+          .getElementById("contractPreview")
+          ?.addEventListener("click", refresh);
+        document
+          .getElementById("contractPrint")
+          ?.addEventListener("click", refresh, true);
+        window.addEventListener("beforeprint", refresh);
+        refresh();
+      })();
+    </script>
+    <script>
+      /* MADIC : pied de page dynamique sur chaque page PDF, sans changer les clauses. */
+      (() => {
+        "use strict";
+        const form = document.getElementById("contractForm");
+        if (!form) return;
+        const style = document.createElement("style");
+        style.id = "madicProfessionalPrintFooter";
+        document.head.appendChild(style);
+        const get = (name) =>
+          (form.elements.namedItem(name)?.value || "").trim();
+        const safe = (s) =>
+          String(s)
+            .replace(/\\/g, "\\\\")
+            .replace(/"/g, '\\"')
+            .replace(/[\r\n\t]+/g, " ")
+            .replace(/[\x00-\x1f]/g, " ")
+            .trim();
+        function update() {
+          const details = [
+            "Permis CRIC-CISR : " + (get("proNumero") || "À compléter"),
+            get("registreQuebec")
+              ? "Permis registre Québec : " + get("registreQuebec")
+              : null,
+            get("proAdresse") || "Adresse à compléter",
+            "Tél. " + (get("proTelephone") || "À compléter"),
+            "Courriel : " + (get("proCourriel") || "À compléter"),
+          ]
+            .filter(Boolean)
+            .join(" | ");
+          style.textContent =
+            "@media print { @page { size:letter; margin:14mm 14mm 20mm; " +
+            '@bottom-center { content:"' +
+            safe(details) +
+            '"; background:#10263b; color:#fff; font:bold 7.5pt/1.15 Arial,Helvetica,sans-serif; text-align:center; vertical-align:middle; padding:1.5mm 2mm; } ' +
+            "@bottom-right { content:counter(page); background:#10263b; color:#fff; font:bold 13pt Arial,Helvetica,sans-serif; text-align:center; vertical-align:middle; width:9mm; } } }";
+        }
+        form.addEventListener("input", update);
+        form.addEventListener("change", update);
+        window.addEventListener("beforeprint", update);
+        document
+          .getElementById("contractPrint")
+          ?.addEventListener("click", update, true);
+        const workspace = document.getElementById("contractWorkspace");
+        if (workspace)
+          new MutationObserver(update).observe(workspace, {
+            attributes: true,
+            attributeFilter: ["hidden"],
+          });
+        update();
+      })();
+    </script>
+  </body>
+</html>

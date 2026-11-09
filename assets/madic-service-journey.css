@@ -1,0 +1,49 @@
+/* MADIC : styles locaux du parcours, sans modifier les styles existants. */
+.madic-service-panel,.madic-journey-panel{background:#10263b!important;border:1px solid #29475e!important;border-radius:17px;color:#e8f3fa;padding:23px;margin:20px 0}
+.madic-service-head,.madic-journey-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.madic-service-head h2,.madic-journey-head h2{margin:0}.madic-service-badge{display:inline-block;padding:5px 11px;background:#183f52;border:1px solid #38bfd8;border-radius:20px;color:#d7faff;font-size:.8rem;font-weight:700}
+.madic-service-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:15px}
+.madic-service-item{padding:17px;border:1px solid #29475e;border-radius:13px;background:#09192c;min-width:0}
+.madic-service-item p{color:#bdd4e2;line-height:1.55}.madic-service-actions{display:flex;flex-wrap:wrap;gap:9px;align-items:center}
+.madic-service-actions select{background:#09192c;color:#e8f3fa;border:1px solid #45657a;border-radius:8px;padding:10px;max-width:100%}
+.madic-service-actions button{border-radius:8px}.madic-journey-steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;margin:18px 0}
+.madic-journey-step{min-width:0;text-align:center;color:#9db6c6}.madic-journey-step small{display:block;margin-top:8px;font-size:.75rem}
+.madic-journey-bar{display:block;height:8px;background:#29475e;border-radius:10px}.madic-journey-step.is-complete .madic-journey-bar{background:#38bfd8}.madic-journey-step.is-complete{color:#e8f3fa}
+.madic-journey-panel a{color:#70dfea}@media(max-width:700px){.madic-service-list{grid-template-columns:1fr}.madic-service-panel,.madic-journey-panel{padding:16px}.madic-journey-step small{font-size:.65rem}}
+
+.madic-service-workflow{display:grid;gap:10px;margin-top:14px}.madic-service-workflow-block{border:1px solid #29475e;border-radius:9px;padding:13px;background:#10263b}.madic-service-workflow-block p{margin:8px 0}.madic-service-workflow a,.madic-journey-workflow a{color:#70dfea;font-weight:650}.madic-journey-workflow{border-top:1px solid #29475e;margin-top:14px;padding-top:8px}.madic-journey-workflow p{line-height:1.55}
+
+/* Indicateurs contractuels et rendez-vous - tableau de bord CRIC uniquement. */
+.madic-service-state-line{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:10px 0;color:#e8f3fa}
+.madic-service-state{display:inline-flex;align-items:center;border:1px solid #45657a;border-radius:999px;padding:5px 11px;background:#09192c;color:#c9d8e4;font-size:.78rem;font-weight:750;line-height:1.35}
+.madic-service-state-info{background:#123b4c;border-color:#38bfd8;color:#9eeafa}
+.madic-service-state-success{background:#113b34;border-color:#51c9a5;color:#b3f3d8}
+.madic-service-state-pending{background:#40371d;border-color:#d6b76b;color:#ffe6a7}
+.madic-service-workflow-block .madic-service-workflow-note{font-size:.8rem;color:#a9bfce;margin:8px 0 12px}
+
+/* MADIC - tableau compact des demandes CRIC, sans changement des modules de contrats. */
+.madic-service-overview{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:16px 0}
+.madic-service-overview>div{background:#09192c;border:1px solid #29475e;border-radius:12px;padding:13px 16px;display:flex;flex-direction:column;gap:3px}
+.madic-service-overview small{color:#afc6d6;font-size:.82rem}.madic-service-overview strong{font-size:1.6rem;color:#f0faff}
+.madic-service-toolbar{display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin:12px 0}
+.madic-service-toolbar label{font-size:.86rem;color:#bed5e3}
+.madic-service-toolbar select,.madic-service-toolbar input{background:#09192c;border:1px solid #45657a;color:#e8f3fa;border-radius:8px;padding:10px;min-width:0}
+.madic-service-toolbar input{flex:1;min-width:160px}
+.madic-service-list{display:flex;flex-direction:column;gap:9px}
+.madic-service-item{padding:0;overflow:hidden}
+.madic-service-item[hidden]{display:none!important}
+.madic-service-row{display:grid;grid-template-columns:minmax(180px,2fr) minmax(85px,.7fr) minmax(125px,1fr) minmax(125px,1fr) auto;gap:14px;align-items:center;padding:14px 16px;cursor:pointer;list-style:none}
+.madic-service-row::-webkit-details-marker{display:none}
+.madic-service-row:hover{background:#122b42}
+.madic-service-row:focus-visible{outline:2px solid #55c4d6;outline-offset:-2px}
+.madic-service-row-client{display:flex;flex-direction:column;gap:3px;min-width:0}
+.madic-service-row-client strong{color:#f3faff}.madic-service-row-client small{color:#adc7d9;font-size:.8rem}
+.madic-service-row-indicator{display:flex;flex-direction:column;align-items:flex-start;gap:5px;color:#adc7d9;font-size:.76rem}
+.madic-service-row .madic-service-state{font-size:.73rem;white-space:normal}
+.madic-service-chevron{color:#70dfea;font-weight:650;white-space:nowrap;font-size:.82rem}
+.madic-service-expanded[open] .madic-service-chevron{color:#c7ecf5}
+.madic-service-expanded-body{border-top:1px solid #29475e;padding:16px;background:#0b2035}
+.madic-service-expanded-body .madic-service-actions{margin-bottom:12px}
+.madic-service-expanded-body .madic-service-workflow{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media(max-width:900px){.madic-service-row{grid-template-columns:minmax(130px,1.5fr) auto auto;gap:10px}.madic-service-row-indicator{display:none}.madic-service-expanded-body .madic-service-workflow{grid-template-columns:1fr}}
+@media(max-width:550px){.madic-service-overview{gap:6px}.madic-service-overview>div{padding:10px}.madic-service-overview strong{font-size:1.25rem}.madic-service-row{grid-template-columns:minmax(120px,1fr) auto}.madic-service-row> .madic-service-state{display:none}.madic-service-toolbar select,.madic-service-toolbar input{width:100%}}

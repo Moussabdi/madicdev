@@ -1,0 +1,182 @@
+.madic-msg-wrap {
+  max-width: 1200px;
+  margin: auto;
+  padding: 28px 18px 60px;
+}
+.madic-msg-layout {
+  display: grid;
+  grid-template-columns: minmax(260px, 340px) minmax(0, 1fr);
+  gap: 18px;
+}
+.madic-msg-layout[hidden] {
+  display: none !important;
+}
+.madic-msg-side,
+.madic-msg-chat {
+  min-width: 0;
+}
+.madic-msg-side form {
+  display: grid;
+  gap: 8px;
+}
+.madic-msg-side input,
+.madic-msg-side select,
+.madic-msg-chat textarea {
+  width: 100%;
+  box-sizing: border-box;
+}
+.madic-msg-divider {
+  border-top: 1px solid #d6dee7;
+  margin: 18px 0;
+}
+.madic-msg-conversations {
+  list-style: none;
+  padding: 0;
+  max-height: 440px;
+  overflow: auto;
+}
+.madic-msg-conversations li {
+  margin: 7px 0;
+}
+.madic-msg-conversations button {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 10px;
+  border: 1px solid #d6dee7;
+  background: transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  color: inherit;
+}
+.madic-msg-conversations button[aria-current="true"] {
+  border-color: #15517b;
+  background: #edf5fa;
+}
+.madic-msg-conversations small {
+  display: block;
+  opacity: 0.7;
+  margin-top: 3px;
+}
+.madic-msg-messages {
+  height: 440px;
+  overflow-y: auto;
+  border: 1px solid #d6dee7;
+  border-radius: 8px;
+  padding: 12px;
+  margin: 12px 0;
+  background: rgba(127, 127, 127, 0.04);
+}
+.madic-msg-bubble {
+  padding: 10px 13px;
+  border: 1px solid #d6dee7;
+  border-radius: 10px;
+  margin: 8px 0;
+  max-width: 85%;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.madic-msg-own {
+  margin-left: auto;
+  border-color: #15517b;
+}
+.madic-msg-bubble time {
+  display: block;
+  font-size: 0.75rem;
+  opacity: 0.7;
+  margin-top: 6px;
+}
+.madic-msg-chat form {
+  display: grid;
+  gap: 9px;
+}
+.madic-msg-chat form button {
+  justify-self: start;
+}
+@media (max-width: 750px) {
+  .madic-msg-layout {
+    grid-template-columns: 1fr;
+  }
+  .madic-msg-messages {
+    height: 340px;
+  }
+}
+
+/* Modernisation MADIC 4/9 - messagerie CRIC, sans modifier les contrôles métier */
+.madic-msg-wrap{max-width:1440px;padding:clamp(18px,3vw,40px)}
+.madic-msg-wrap>h1{font-size:clamp(1.65rem,2.5vw,2.35rem);letter-spacing:-.035em;margin-bottom:12px}
+.madic-msg-layout{grid-template-columns:minmax(285px,365px) minmax(0,1fr);gap:20px;align-items:start}
+.madic-msg-side,.madic-msg-chat{border-radius:18px!important;box-shadow:0 12px 32px rgba(0,0,0,.12);overflow:hidden}
+.madic-msg-side h2,.madic-msg-chat h2{letter-spacing:-.02em}
+.madic-msg-conversations{max-height:min(62vh,700px);margin:12px 0;scrollbar-width:thin}
+.madic-msg-conversations li{margin:6px 0}
+.madic-msg-conversations button{border:1px solid rgba(142,166,190,.25);border-radius:12px;padding:13px 14px;background:rgba(130,160,180,.06);transition:border-color .18s,background .18s,transform .18s}
+.madic-msg-conversations button:hover{border-color:#26b6b0;background:rgba(38,182,176,.09);transform:translateY(-1px)}
+.madic-msg-conversations button[aria-current=true]{border-color:#26b6b0;background:rgba(38,182,176,.15);box-shadow:inset 3px 0 #26b6b0}
+.madic-msg-conversations .madic-client-group-toggle{font-weight:700;background:rgba(110,150,180,.10)}
+.madic-msg-messages{height:clamp(360px,54vh,650px);padding:18px;border-radius:14px;border-color:rgba(142,166,190,.25);scrollbar-width:thin}
+.madic-msg-bubble{padding:13px 16px;border-radius:16px 16px 16px 4px;max-width:min(85%,640px);line-height:1.55;background:rgba(130,160,180,.10)}
+.madic-msg-own{border-radius:16px 16px 4px 16px;background:rgba(38,182,176,.13);border-color:rgba(38,182,176,.45)}
+.madic-msg-side input:focus-visible,.madic-msg-side select:focus-visible,.madic-msg-chat textarea:focus-visible,.madic-msg-wrap button:focus-visible{outline:2px solid #26b6b0;outline-offset:2px}
+.madic-msg-chat textarea{min-height:94px;resize:vertical}
+.madic-msg-divider{border-color:rgba(142,166,190,.22)}
+@media(max-width:900px){.madic-msg-layout{grid-template-columns:1fr}.madic-msg-conversations{max-height:310px}}
+@media(max-width:550px){.madic-msg-wrap{padding:16px 12px 36px}.madic-msg-messages{height:340px;padding:10px}.madic-msg-bubble{max-width:94%}}
+@media(prefers-reduced-motion:reduce){.madic-msg-conversations button{transition:none}}
+
+/* Etape 4/9 : espaces de travail et navigation clavier. */
+.madic-msg-wrap{min-width:0}
+.madic-msg-layout>.panel{min-width:0}
+.madic-msg-side form button,.madic-msg-chat form button{min-height:42px}
+.madic-msg-conversations button{overflow-wrap:anywhere;line-height:1.4}
+.madic-msg-conversations button small{font-weight:400;line-height:1.45}
+.madic-msg-conversations .madic-client-group-toggle{min-height:44px}
+.madic-msg-messages{overscroll-behavior:contain}
+.madic-msg-bubble{width:fit-content;min-width:0}
+.madic-msg-bubble time{font-weight:400}
+.madic-msg-wrap [hidden]{display:none!important}
+#msgStatus{min-height:1.4em}
+#msgAutoRefreshState{font-size:.82rem;opacity:.8}
+@media(max-width:900px){.madic-msg-side,.madic-msg-chat{width:100%}}
+@media(max-width:550px){.madic-msg-side form button,.madic-msg-chat form button{width:100%}.madic-msg-conversations button{padding:12px}}
+
+/* MADIC | Communications CRIC - finition definitive */
+.madic-msg-wrap{max-width:1600px;width:100%;margin:0 auto;padding:22px clamp(16px,2.3vw,32px) 42px}
+.madic-msg-wrap>h1{margin:0 0 6px;font-size:clamp(1.65rem,2.4vw,2.2rem)}
+.madic-msg-wrap>p.muted{margin:0 0 12px;line-height:1.5}
+#msgStatus{margin:0 0 15px;font-size:.88rem;color:#a8c8dd}
+.madic-msg-layout{display:grid;grid-template-columns:minmax(350px,410px) minmax(0,1fr);gap:16px;align-items:start}
+.madic-msg-layout>.panel{padding:20px!important;border:1px solid #2b4861!important;border-radius:16px!important;box-shadow:none!important;background:#132940!important;min-width:0}
+.madic-msg-side h2,.madic-msg-chat h2{margin:0 0 14px;font-size:1.18rem;line-height:1.35;color:#f5faff}
+.madic-msg-side form{gap:6px}
+.madic-msg-side form label{margin-top:4px;font-size:.85rem}
+.madic-msg-side input,.madic-msg-side select,.madic-msg-chat textarea{background:#0b1d31!important;color:#f5faff!important;border:1px solid #3d5a73!important;border-radius:10px!important;min-height:42px;padding:10px 12px}
+.madic-msg-side input::placeholder,.madic-msg-chat textarea::placeholder{color:#a9bfd0}
+.madic-msg-side form button{margin-top:6px;min-height:42px}
+.madic-msg-divider{margin:14px 0 10px}
+#msgRefresh{margin:0 0 4px;min-height:38px}
+#msgAutoRefreshState{margin:0 0 12px!important;font-size:.76rem!important;line-height:1.4;color:#aec5d6;opacity:1!important}
+#msgConversationSearch{margin:4px 0 10px}
+.madic-msg-conversations{max-height:min(54vh,580px);padding:0!important;margin:6px 0!important;list-style:none!important;overflow:auto}
+.madic-msg-conversations li,.madic-msg-conversations ul{list-style:none!important;padding:0!important}
+.madic-msg-conversations>li{margin:0 0 7px!important}
+.madic-msg-conversations .madic-client-group-toggle{background:#203e55!important;border:1px solid #42617b!important;color:#eaf6ff!important;font-weight:650;min-height:44px;padding:10px 12px!important;line-height:1.35}
+.madic-msg-conversations .madic-client-group-toggle:hover{background:#29526b!important;color:#fff!important}
+.madic-msg-conversations ul{margin:5px 0 10px 12px!important;padding-left:9px!important;border-left:2px solid #355c72}
+.madic-msg-conversations ul li{margin:0 0 5px!important}
+.madic-msg-conversations ul button{background:#10283e!important;color:#f3faff!important;border:1px solid #36566d!important;padding:10px 12px!important;line-height:1.35;transform:none!important;font-weight:600}
+.madic-msg-conversations ul button:hover{background:#214259!important;border-color:#58c9d4!important}
+.madic-msg-conversations ul button[aria-current=true]{background:#1a4856!important;border-color:#57cbd3!important;box-shadow:inset 3px 0 #57cbd3!important}
+.madic-msg-conversations ul button small{color:#c5d8e7!important;opacity:1!important;font-size:.77rem;line-height:1.4;font-weight:400;overflow-wrap:anywhere}
+.madic-msg-chat{display:flex;flex-direction:column;gap:0}
+#msgCurrentClient{color:#b9d2e5;margin:0 0 10px}
+.madic-msg-messages{height:clamp(330px,48vh,580px);margin:4px 0 16px;padding:15px;background:#0b1d31!important;border:1px solid #35526a!important;border-radius:13px}
+.madic-msg-bubble{max-width:min(82%,650px);margin:8px 0;padding:11px 14px;background:#1b354b!important;border:1px solid #3e6078!important;color:#f6fbff!important;line-height:1.48}
+.madic-msg-own{background:#1c4b5a!important;border-color:#4cabb8!important}
+.madic-msg-bubble time{color:#c5d8e6!important;opacity:1;font-size:.74rem}
+#msgSendForm{gap:8px;margin-top:10px}
+#msgBody{min-height:85px;resize:vertical}
+#msgSend{min-width:125px;min-height:42px}
+@media(max-width:1080px){.madic-msg-layout{grid-template-columns:minmax(290px,350px) minmax(0,1fr)}}
+@media(max-width:850px){.madic-msg-layout{grid-template-columns:minmax(0,1fr)}.madic-msg-conversations{max-height:320px}.madic-msg-messages{height:390px}}
+@media(max-width:520px){.madic-msg-wrap{padding:16px 12px 32px}.madic-msg-layout>.panel{padding:14px!important}.madic-msg-conversations ul{margin-left:7px!important;padding-left:6px!important}.madic-msg-messages{height:330px;padding:10px}.madic-msg-bubble{max-width:94%}}

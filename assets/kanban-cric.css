@@ -1,0 +1,161 @@
+.kb-shell {
+  max-width: 1400px;
+  margin: 30px auto 70px;
+  padding: 0 22px;
+}
+.kb-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+.kb-eyebrow {
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+}
+.kb-tools {
+  display: flex;
+  align-items: end;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin: 20px 0;
+}
+.kb-tools label {
+  display: grid;
+  gap: 7px;
+}
+.kb-tools input {
+  min-width: 250px;
+}
+.kb-help {
+  opacity: 0.8;
+}
+.kb-board {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+.kb-column {
+  border: 1px solid #9ca3af;
+  border-radius: 14px;
+  padding: 14px;
+  min-height: 280px;
+}
+.kb-column h2 {
+  font-size: 1.1rem;
+  margin: 4px 0 15px;
+}
+.kb-list {
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.kb-column.kb-over {
+  outline: 3px solid #36b6c9;
+  outline-offset: 2px;
+}
+.kb-card {
+  border: 1px solid #8c9cad;
+  border-radius: 10px;
+  padding: 14px;
+  background: #19354c;
+  color: #fff;
+  cursor: grab;
+}
+.kb-card:focus-within {
+  outline: 2px solid #53c8d8;
+}
+.kb-card strong {
+  display: block;
+  overflow-wrap: anywhere;
+}
+.kb-card p {
+  margin: 8px 0;
+  overflow-wrap: anywhere;
+}
+.kb-card label {
+  display: grid;
+  gap: 5px;
+  font-size: 0.86rem;
+}
+.kb-card select {
+  width: 100%;
+  background: white;
+  color: #18293c;
+}
+.kb-card a {
+  color: #aeeaf6;
+}
+.kb-empty {
+  opacity: 0.7;
+  padding: 14px;
+}
+.kb-card[aria-busy="true"] {
+  opacity: 0.55;
+  pointer-events: none;
+}
+@media (max-width: 850px) {
+  .kb-board {
+    grid-template-columns: 1fr;
+  }
+  .kb-list {
+    min-height: 80px;
+  }
+}
+
+/* MADIC Etape 02 : interface des dossiers, styles locaux uniquement. */
+body.madic-unified .madic-skip-link{position:absolute;left:16px;top:-90px;z-index:100;background:#24c6c0;color:#062536;padding:12px 18px;border-radius:10px;font-weight:700}
+body.madic-unified .madic-skip-link:focus{top:12px}
+body.madic-unified .madic-page-lead{max-width:720px;color:#b7ccda;line-height:1.65;margin:9px 0 14px}
+body.madic-unified .madic-unified-content [hidden]{display:none!important}
+body.madic-unified .madic-unified-content :is(button,a,input,select,textarea):focus-visible{outline:3px solid #67e4de;outline-offset:3px}
+
+body.madic-unified[data-page="kanban-cric"] .kb-shell{max-width:1500px;margin:22px auto 65px}
+body.madic-unified[data-page="kanban-cric"] .kb-top{padding:8px 0 14px}
+body.madic-unified[data-page="kanban-cric"] .madic-kanban-links{display:flex;flex-wrap:wrap;gap:12px;margin:10px 0 20px}
+body.madic-unified[data-page="kanban-cric"] .madic-kanban-links a{padding:10px 15px;border-radius:10px;background:#14334a;border:1px solid #31576d;color:#e8f3fa;text-decoration:none;font-weight:650}
+body.madic-unified[data-page="kanban-cric"] .madic-kanban-links a:hover{border-color:#24c6c0;background:#20516a}
+body.madic-unified[data-page="kanban-cric"] .kb-tools{background:#10263b;border:1px solid #29475e;border-radius:15px;padding:18px;align-items:center}
+body.madic-unified[data-page="kanban-cric"] .kb-tools label{flex:1 1 270px}
+body.madic-unified[data-page="kanban-cric"] .kb-tools input{min-width:0;width:100%}
+body.madic-unified[data-page="kanban-cric"] .kb-column{background:#10263b;border:1px solid #31516a;border-radius:17px;padding:17px;min-width:0}
+body.madic-unified[data-page="kanban-cric"] .kb-column[data-status="en_attente"]{border-top:4px solid #e4ae5b}
+body.madic-unified[data-page="kanban-cric"] .kb-column[data-status="actif"]{border-top:4px solid #24c6c0}
+body.madic-unified[data-page="kanban-cric"] .kb-column[data-status="ferme"]{border-top:4px solid #8ba3b8}
+body.madic-unified[data-page="kanban-cric"] .kb-card{background:#17364d;border-color:#31566d;border-radius:13px;box-shadow:0 7px 18px #0002;transition:transform .15s,border-color .15s}
+body.madic-unified[data-page="kanban-cric"] .kb-card:hover{transform:translateY(-2px);border-color:#24c6c0}
+body.madic-unified[data-page="kanban-cric"] .kb-card select{background:#0b2235;color:#f2fbff;border:1px solid #55768c}
+body.madic-unified[data-page="kanban-cric"] .kb-column.kb-over{outline:3px dashed #24c6c0;background:#174354}
+@media(max-width:1100px){body.madic-unified[data-page="kanban-cric"] .kb-board{grid-template-columns:1fr}}
+@media(max-width:700px){body.madic-unified[data-page="kanban-cric"] .kb-shell{padding:0 4px}body.madic-unified[data-page="kanban-cric"] .kb-tools{padding:14px}}
+
+/* MADIC / Refonte visuelle de l'etape 2 - espaces CRIC */
+body.madic-unified[data-page="gestion-dossiers-cric"] .madic-stage-hero,body.madic-unified[data-page="kanban-cric"] .madic-kb-hero{display:flex;justify-content:space-between;align-items:center;gap:28px;padding:clamp(24px,3.5vw,46px);margin:20px 0 22px;border:1px solid #246477;border-radius:22px;background:radial-gradient(circle at 95% 0%,#1b6972 0%,transparent 38%),linear-gradient(120deg,#102a42,#0b1c30);box-shadow:0 16px 38px #0004;color:#eefaff}
+body.madic-unified[data-page="gestion-dossiers-cric"] .madic-stage-hero h2,body.madic-unified[data-page="kanban-cric"] .madic-kb-hero h2{font-size:clamp(1.5rem,2.8vw,2.35rem);line-height:1.17;margin:10px 0;color:#f4ffff;letter-spacing:-.025em}
+body.madic-unified[data-page="gestion-dossiers-cric"] .madic-stage-hero p,body.madic-unified[data-page="kanban-cric"] .madic-kb-hero p{max-width:660px;color:#bbd6e3;line-height:1.65;margin:0}
+body.madic-unified[data-page="gestion-dossiers-cric"] .madic-stage-kicker,body.madic-unified[data-page="kanban-cric"] .madic-kb-kicker{font-size:.73rem;font-weight:850;letter-spacing:.17em;color:#55e6dd}
+body.madic-unified[data-page="gestion-dossiers-cric"] .madic-stage-hero-mark,body.madic-unified[data-page="kanban-cric"] .madic-kb-hero-symbol{flex:none;display:grid;place-items:center;width:104px;height:104px;border:1px solid #397e89;border-radius:25px;background:#0a3346;color:#5ce7df;font-size:2.6rem;font-weight:850}
+body.madic-unified[data-page="gestion-dossiers-cric"] .madic-stage-hero-mark span{font-size:.9rem;color:#b8d4de;margin-top:-28px}
+body.madic-unified[data-page="gestion-dossiers-cric"] .madic-stage-stats,body.madic-unified[data-page="kanban-cric"] .madic-kb-summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px;margin:0 0 26px}
+body.madic-unified[data-page="kanban-cric"] .madic-kb-summary{grid-template-columns:repeat(4,minmax(0,1fr))}
+body.madic-unified[data-page="gestion-dossiers-cric"] .madic-stage-stats article,body.madic-unified[data-page="kanban-cric"] .madic-kb-summary article{display:flex;flex-direction:column;gap:7px;min-width:0;padding:22px 23px;border:1px solid #31536b;border-radius:16px;background:#122b40;box-shadow:0 7px 18px #0002}
+body.madic-unified[data-page="gestion-dossiers-cric"] .madic-stage-stats article::before,body.madic-unified[data-page="kanban-cric"] .madic-kb-summary article::before{content:"";width:34px;height:4px;background:#24c6c0;border-radius:9px;margin-bottom:7px}
+body.madic-unified[data-page="kanban-cric"] .madic-kb-summary article:nth-child(2)::before{background:#e4ae5b}
+body.madic-unified[data-page="kanban-cric"] .madic-kb-summary article:nth-child(4)::before{background:#8ba3b8}
+body.madic-unified[data-page="gestion-dossiers-cric"] .madic-stage-stats span,body.madic-unified[data-page="kanban-cric"] .madic-kb-summary span{font-size:.85rem;color:#bdd3e0;font-weight:700}
+body.madic-unified[data-page="gestion-dossiers-cric"] .madic-stage-stats strong,body.madic-unified[data-page="kanban-cric"] .madic-kb-summary strong{font-size:2.3rem;line-height:1.2;color:#fff;font-variant-numeric:tabular-nums}
+body.madic-unified[data-page="gestion-dossiers-cric"] .madic-stage-stats strong.madic-stage-stat-text{font-size:1.2rem;overflow-wrap:anywhere;min-height:2.3rem;display:flex;align-items:center}
+body.madic-unified[data-page="gestion-dossiers-cric"] .madic-stage-stats small,body.madic-unified[data-page="kanban-cric"] .madic-kb-summary small{color:#8eb0c3;font-size:.8rem}
+body.madic-unified[data-page="gestion-dossiers-cric"] .madic-tools-shortcuts a,body.madic-unified[data-page="kanban-cric"] .madic-kanban-links a{transition:transform .15s,background .15s,border-color .15s}
+body.madic-unified[data-page="gestion-dossiers-cric"] .madic-tools-shortcuts a:hover,body.madic-unified[data-page="kanban-cric"] .madic-kanban-links a:hover{transform:translateY(-2px)}
+body.madic-unified[data-page="gestion-dossiers-cric"] .cric-shell .panel{border-radius:18px;margin-bottom:22px}
+body.madic-unified[data-page="kanban-cric"] .kb-column h2{display:flex;align-items:center;justify-content:space-between;gap:10px}
+body.madic-unified[data-page="kanban-cric"] .kb-column h2 span{background:#24455b;border:1px solid #3b6178;padding:4px 10px;border-radius:999px;font-size:.85rem;color:#e8fbff}
+body.madic-unified[data-page="kanban-cric"] .kb-card{padding:18px}
+body.madic-unified[data-page="kanban-cric"] .kb-card strong{font-size:1.08rem;color:#e9ffff}
+@media(max-width:1100px){body.madic-unified[data-page="kanban-cric"] .madic-kb-summary{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:720px){body.madic-unified[data-page="gestion-dossiers-cric"] .madic-stage-stats,body.madic-unified[data-page="kanban-cric"] .madic-kb-summary{grid-template-columns:1fr 1fr}body.madic-unified[data-page="gestion-dossiers-cric"] .madic-stage-hero-mark,body.madic-unified[data-page="kanban-cric"] .madic-kb-hero-symbol{display:none}}
+@media(max-width:480px){body.madic-unified[data-page="gestion-dossiers-cric"] .madic-stage-stats,body.madic-unified[data-page="kanban-cric"] .madic-kb-summary{grid-template-columns:1fr}}

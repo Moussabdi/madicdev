@@ -1,0 +1,77 @@
+/* MADIC - navigation administrative, style local a gestion-cric.html */
+body.madic-unified .madic-admin-section-nav {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 22px 0 20px;
+}
+body.madic-unified .madic-admin-section-nav a {
+  display: inline-flex;
+  align-items: center;
+  padding: 11px 15px;
+  border: 1px solid #29475e;
+  border-radius: 10px;
+  background: #10263b;
+  color: #b7ccda;
+  text-decoration: none;
+  font-weight: 650;
+}
+body.madic-unified .madic-admin-section-nav a[aria-current="page"] {
+  background: #16384c;
+  border-color: #24c6c0;
+  color: #fff;
+  box-shadow: inset 3px 0 #24c6c0;
+}
+body.madic-unified .madic-admin-section-group {
+  scroll-margin-top: 20px;
+}
+body.madic-unified .madic-admin-section-group[hidden] {
+  display: none !important;
+}
+body.madic-unified .madic-admin-section-group > .panel {
+  margin: 0 0 22px !important;
+}
+body.madic-unified .madic-admin-section-group.panel {
+  margin: 0 0 22px !important;
+}
+body.madic-unified .madic-admin-table-tools {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin: 14px 0 12px;
+}
+body.madic-unified .madic-admin-table-tools label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #b7ccda;
+}
+body.madic-unified .madic-admin-table-tools input {
+  min-width: min(260px, 70vw);
+  padding: 9px 12px;
+}
+body.madic-unified .madic-admin-table-pager {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+body.madic-unified .madic-admin-table-pager button {
+  padding: 8px 12px;
+}
+body.madic-unified .madic-admin-table-count,
+body.madic-unified [data-page-info] {
+  font-size: 12px;
+  color: #a5b7cc;
+}
+@media (max-width: 700px) {
+  body.madic-unified .madic-admin-section-nav {
+    flex-direction: column;
+  }
+  body.madic-unified .madic-admin-table-tools {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}

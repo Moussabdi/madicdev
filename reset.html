@@ -1,0 +1,46 @@
+<!doctype html>
+
+<html lang="fr-CA">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width,initial-scale=1" name="viewport" />
+    <meta content="noindex,nofollow" name="robots" />
+    <link href="img/favicon.png" rel="icon" />
+    <title>Nouveau mot de passe | MADIC</title>
+    <link href="assets/style.css" rel="stylesheet" />
+    <link href="assets/madic-datahubz-auth.css" rel="stylesheet" />
+  </head>
+  <body class="madic-unified-auth" data-page="reset">
+    <header>
+      <a class="brand" href="connexion.html"
+        >MADI<span>C</span> <small>PORTAIL</small></a
+      >
+      <nav class="toplinks">
+        <a href="connexion.html">Connexion</a
+        ><a href="connexion-client-cric.html">Accès client CRIC</a
+        ><a href="dashboard.html">Mon espace</a>
+      </nav>
+    </header>
+    <main>
+      <section class="auth panel">
+        <h1>Nouveau mot de passe</h1>
+        <form id="reset">
+          <label>Nouveau mot de passe</label
+          ><input
+            autocomplete="new-password"
+            minlength="12"
+            name="password"
+            required=""
+            type="password"
+          />
+          <div class="actions"><button>Enregistrer</button></div>
+        </form>
+        <p class="notice" id="message" role="status"></p>
+      </section>
+    </main>
+    <footer>© MAD Immigration Canadienne · Portail client sécurisé</footer>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+    <script src="assets/config.js"></script>
+    <script src="assets/app.js"></script>
+  </body>
+</html>
