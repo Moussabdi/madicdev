@@ -1,14 +1,14 @@
-<!DOCTYPE html>
+<!doctype html>
 
 <html lang="fr-CA">
-<head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1" name="viewport"/>
-<link href="img/favicon.png" rel="icon"/>
-<title>Gestion documentaire du client | MADIC CRIC</title>
-<link href="assets/style.css" rel="stylesheet"/>
-<link href="assets/cric-workspace.css" rel="stylesheet"/>
-<style>
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <link href="img/favicon.png" rel="icon" />
+    <title>Gestion documentaire du client | MADIC CRIC</title>
+    <link href="assets/style.css" rel="stylesheet" />
+    <link href="assets/cric-workspace.css" rel="stylesheet" />
+    <style>
       /* Styles limités à cette page pour ne pas affecter le portail. */
       .madic-doc-page {
         max-width: 1160px;
@@ -187,122 +187,288 @@
         }
       }
       /* Modernisation 4/9 : lisibilité et responsive, styles existants conservés */
-      .madic-doc-page{max-width:1380px;padding:clamp(16px,3vw,38px)}
-      .madic-doc-top h1{font-size:clamp(1.65rem,2.5vw,2.35rem);letter-spacing:-.035em}
-      .madic-doc-page .panel{border-radius:18px;box-shadow:0 12px 32px rgba(0,0,0,.10)}
-      .madic-doc-new{border-radius:14px;border-color:rgba(142,166,190,.35)}
-      .madic-doc-new summary{padding:4px 0}
-      .madic-doc-new[open]{background:rgba(130,160,180,.05)}
-      .madic-doc-page :is(input,select,textarea,button,summary):focus-visible{outline:2px solid #26b6b0;outline-offset:2px}
-      .madic-doc-table{border-radius:12px;scrollbar-width:thin}
-      .madic-doc-table th{background:rgba(130,160,180,.09)}
-      .madic-doc-table tbody tr:hover{background:rgba(38,182,176,.055)}
-      @media(max-width:700px){.madic-doc-page{padding:16px 12px}.madic-doc-page .panel{padding:16px}}
+      .madic-doc-page {
+        max-width: 1380px;
+        padding: clamp(16px, 3vw, 38px);
+      }
+      .madic-doc-top h1 {
+        font-size: clamp(1.65rem, 2.5vw, 2.35rem);
+        letter-spacing: -0.035em;
+      }
+      .madic-doc-page .panel {
+        border-radius: 18px;
+        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+      }
+      .madic-doc-new {
+        border-radius: 14px;
+        border-color: rgba(142, 166, 190, 0.35);
+      }
+      .madic-doc-new summary {
+        padding: 4px 0;
+      }
+      .madic-doc-new[open] {
+        background: rgba(130, 160, 180, 0.05);
+      }
+      .madic-doc-page
+        :is(input, select, textarea, button, summary):focus-visible {
+        outline: 2px solid #26b6b0;
+        outline-offset: 2px;
+      }
+      .madic-doc-table {
+        border-radius: 12px;
+        scrollbar-width: thin;
+      }
+      .madic-doc-table th {
+        background: rgba(130, 160, 180, 0.09);
+      }
+      .madic-doc-table tbody tr:hover {
+        background: rgba(38, 182, 176, 0.055);
+      }
+      @media (max-width: 700px) {
+        .madic-doc-page {
+          padding: 16px 12px;
+        }
+        .madic-doc-page .panel {
+          padding: 16px;
+        }
+      }
     </style>
 
-<link href="assets/madic-datahubz-modules.css" rel="stylesheet"/><link rel="stylesheet" href="assets/madic-datahubz-unified.css"/>
-<style id="madic-i18n-language-state">
-body.madic-unified .madic-cric-standard-header .madic-lang-controls button[data-lang]{background:#eef8fc!important;color:#123553!important;cursor:pointer!important;}
-body.madic-unified .madic-cric-standard-header .madic-lang-controls button[data-lang].madic-lang-active{background:#389ec0!important;color:#fff!important;}
-</style>
-</head>
-<body class="madic-unified" data-page="demandes-documents-cric">
-<div class="madic-unified-layout"><aside aria-label="Navigation du portail" class="madic-unified-sidebar"><div class="madic-unified-brand"><span class="madic-unified-monogram"><img alt="Logo MADIC" src="img/logo-madic.svg"/></span><span><strong>MADIC PORTAIL</strong><small>Espace professionnel</small></span></div><div class="madic-unified-caption">NAVIGATION</div><nav><a data-madic-page="cric-dashboard.html" href="cric-dashboard.html"><span aria-hidden="true">▦</span>Vue d’ensemble</a><a data-madic-page="gestion-clients-cric.html" href="gestion-clients-cric.html"><span aria-hidden="true">♙</span>Clients</a><a data-madic-page="gestion-dossiers-cric.html" href="gestion-dossiers-cric.html"><span aria-hidden="true">▤</span>Outils CRIC</a><a data-madic-page="messagerie-cric.html" href="messagerie-cric.html"><span aria-hidden="true">✉</span>Messagerie</a><a data-madic-page="demandes-documents-cric.html" href="demandes-documents-cric.html"><span aria-hidden="true">▣</span>Documents</a><a data-madic-page="echeances-cric.html" href="echeances-cric.html"><span aria-hidden="true">◷</span>Échéances</a><a data-madic-page="facturation-cric.html" href="facturation-cric.html"><span aria-hidden="true">▥</span>Facturation</a><a data-madic-page="finances-cric.html" href="finances-cric.html"><span aria-hidden="true">◈</span>Finances</a></nav><div class="madic-unified-foot">Espace sécurisé MADIC</div></aside><div class="madic-unified-content">
-<header class="madic-cric-standard-header"><a class="brand" href="cric-dashboard.html">MADI<span>C</span> <small>PORTAIL</small></a><nav class="toplinks" aria-label="Navigation du compte"><a href="cric-dashboard.html">Mon espace</a><div class="madic-lang-controls" role="group" aria-label="Langue / Language"><button type="button" data-lang="fr" aria-label="Français" title="Français" >FR</button><button type="button" data-lang="en" aria-label="English" title="English" >EN</button></div></nav></header>
-<main class="cric-shell madic-doc-page">
-<div class="madic-doc-top">
-<a class="madic-doc-back" href="gestion-clients-cric.html">← Retour à la gestion des clients</a>
-<h1>Gestion documentaire du client</h1>
-<p class="madic-doc-intro">
-          Choisissez un dossier, examinez les pièces reçues et suivez les
-          documents demandés.
-        </p>
-</div>
-<p id="docreqNotice" role="status">Chargement…</p>
-<div hidden="" id="docreqApp">
-<section aria-labelledby="select-heading" class="panel">
-<p class="madic-doc-step">Étape 1 · Dossier</p>
-<h2 id="select-heading">Choisir le client et le dossier</h2>
-<form class="cric-form" id="docreqForm">
-<div class="madic-doc-fields">
-<label for="docreqClient">Client<select id="docreqClient" required=""></select></label><label for="docreqDossier">Dossier<select id="docreqDossier" required=""></select></label>
-</div>
-<details class="madic-doc-new" id="newDocumentRequest">
-<summary>+ Demander une nouvelle pièce au client</summary>
-<div class="madic-doc-form-body">
-<p class="madic-doc-hint">
-                  Cette demande apparaîtra dans l'espace du client.
-                </p>
-<label for="docreqTitle">Document demandé<input id="docreqTitle" maxlength="200" placeholder="Ex. Copie du passeport" required=""/></label><label for="docreqInstructions">Instructions<textarea id="docreqInstructions" maxlength="2000" placeholder="Précisions facultatives"></textarea></label><label for="docreqDue">Date limite (facultatif)<input id="docreqDue" lang="fr-CA" type="date"/></label>
-<div><button type="submit">Envoyer la demande</button></div>
-</div>
-</details>
-</form>
-<details class="madic-doc-new" id="newClientDocumentSend">
-<summary>+ Envoyer un document au client</summary>
-<form class="madic-doc-form-body" id="docsendForm">
-<p class="madic-doc-hint">Le fichier sera accessible dans l’espace du client, sous « Historique et évaluations de mes documents », pour le dossier sélectionné ci-dessus.</p>
-<label for="docsendFile">Fichier à transmettre (PDF, JPG ou PNG, 10 Mo maximum)
-<input id="docsendFile" type="file" accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png" required=""/></label>
-<label for="docsendTitle">Nom du document (facultatif)
-<input id="docsendTitle" maxlength="200" placeholder="Ex. Lettre de confirmation"/></label>
-<div><button id="docsendButton" type="submit">Envoyer le document</button></div>
-<p id="docsendNotice" role="status" aria-live="polite"></p>
-</form>
-</details>
-</section>
-<section aria-labelledby="received-heading" class="panel" id="receivedPanel">
-<p class="madic-doc-step">Étape 2 · Vérification</p>
-<h2 id="received-heading">Documents reçus</h2>
-<p class="madic-doc-hint">
-            Téléchargez et évaluez chaque document. En cas de refus, précisez le
-            motif qui sera visible par le client.
-          </p>
-<p id="receivedContext"></p>
-<p id="receivedNotice" role="status"></p>
-<div class="madic-doc-table">
-<table>
-<thead>
-<tr>
-<th>Fichier</th>
-<th>Reçu le</th>
-<th>Évaluation</th>
-<th>Motif du refus</th>
-<th>Actions</th>
-</tr>
-</thead>
-<tbody id="receivedRows"></tbody>
-</table>
-</div>
-</section>
-<section aria-labelledby="requests-heading" class="panel">
-<p class="madic-doc-step">Étape 3 · Suivi</p>
-<h2 id="requests-heading">Demandes envoyées</h2>
-<p class="madic-doc-hint">
-            Demandes concernant uniquement le dossier sélectionné. Le statut
-            d'une demande est distinct de l'évaluation d'un fichier.
-          </p>
-<div class="madic-doc-table">
-<table>
-<thead>
-<tr>
-<th>Pièce demandée</th>
-<th>Date limite</th>
-<th>Statut</th>
-<th>Mettre à jour</th>
-</tr>
-</thead>
-<tbody id="docreqRows"></tbody>
-</table>
-</div>
-</section>
-</div>
-</main>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
-<script src="assets/config.js"></script>
-<script src="assets/madic-document-requests-cric.js"></script>
-</div></div>
-<script src="assets/madic-datahubz-unified.js"></script>
-<script src="assets/madic-i18n-cric.js?v=20261102d"></script>
-</body>
+    <link href="assets/madic-datahubz-modules.css" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/madic-datahubz-unified.css" />
+    <style id="madic-i18n-language-state">
+      body.madic-unified
+        .madic-cric-standard-header
+        .madic-lang-controls
+        button[data-lang] {
+        background: #eef8fc !important;
+        color: #123553 !important;
+        cursor: pointer !important;
+      }
+      body.madic-unified
+        .madic-cric-standard-header
+        .madic-lang-controls
+        button[data-lang].madic-lang-active {
+        background: #389ec0 !important;
+        color: #fff !important;
+      }
+    </style>
+  </head>
+  <body class="madic-unified" data-page="demandes-documents-cric">
+    <div class="madic-unified-layout">
+      <aside aria-label="Navigation du portail" class="madic-unified-sidebar">
+        <div class="madic-unified-brand">
+          <span class="madic-unified-monogram"
+            ><img alt="Logo MADIC" src="img/logo-madic.svg" /></span
+          ><span
+            ><strong>MADIC PORTAIL</strong
+            ><small>Espace professionnel</small></span
+          >
+        </div>
+        <div class="madic-unified-caption">NAVIGATION</div>
+        <nav>
+          <a data-madic-page="cric-dashboard.html" href="cric-dashboard.html"
+            ><span aria-hidden="true">▦</span>Vue d’ensemble</a
+          ><a
+            data-madic-page="gestion-clients-cric.html"
+            href="gestion-clients-cric.html"
+            ><span aria-hidden="true">♙</span>Clients</a
+          ><a
+            data-madic-page="gestion-dossiers-cric.html"
+            href="gestion-dossiers-cric.html"
+            ><span aria-hidden="true">▤</span>Outils CRIC</a
+          ><a data-madic-page="messagerie-cric.html" href="messagerie-cric.html"
+            ><span aria-hidden="true">✉</span>Messagerie</a
+          ><a
+            data-madic-page="demandes-documents-cric.html"
+            href="demandes-documents-cric.html"
+            ><span aria-hidden="true">▣</span>Documents</a
+          ><a data-madic-page="echeances-cric.html" href="echeances-cric.html"
+            ><span aria-hidden="true">◷</span>Échéances</a
+          ><a
+            data-madic-page="facturation-cric.html"
+            href="facturation-cric.html"
+            ><span aria-hidden="true">▥</span>Facturation</a
+          ><a data-madic-page="finances-cric.html" href="finances-cric.html"
+            ><span aria-hidden="true">◈</span>Finances</a
+          >
+        </nav>
+        <div class="madic-unified-foot">Espace sécurisé MADIC</div>
+      </aside>
+      <div class="madic-unified-content">
+        <header class="madic-cric-standard-header">
+          <a class="brand" href="cric-dashboard.html"
+            >MADI<span>C</span> <small>PORTAIL</small></a
+          >
+          <nav class="toplinks" aria-label="Navigation du compte">
+            <a href="cric-dashboard.html">Mon espace</a>
+            <div
+              class="madic-lang-controls"
+              role="group"
+              aria-label="Langue / Language"
+            >
+              <button
+                type="button"
+                data-lang="fr"
+                aria-label="Français"
+                title="Français"
+              >
+                FR</button
+              ><button
+                type="button"
+                data-lang="en"
+                aria-label="English"
+                title="English"
+              >
+                EN
+              </button>
+            </div>
+          </nav>
+        </header>
+        <main class="cric-shell madic-doc-page">
+          <div class="madic-doc-top">
+            <a class="madic-doc-back" href="gestion-clients-cric.html"
+              >← Retour à la gestion des clients</a
+            >
+            <h1>Gestion documentaire du client</h1>
+            <p class="madic-doc-intro">
+              Choisissez un dossier, examinez les pièces reçues et suivez les
+              documents demandés.
+            </p>
+          </div>
+          <p id="docreqNotice" role="status">Chargement…</p>
+          <div hidden="" id="docreqApp">
+            <section aria-labelledby="select-heading" class="panel">
+              <p class="madic-doc-step">Étape 1 · Dossier</p>
+              <h2 id="select-heading">Choisir le client et le dossier</h2>
+              <form class="cric-form" id="docreqForm">
+                <div class="madic-doc-fields">
+                  <label for="docreqClient"
+                    >Client<select
+                      id="docreqClient"
+                      required=""
+                    ></select></label
+                  ><label for="docreqDossier"
+                    >Dossier<select id="docreqDossier" required=""></select
+                  ></label>
+                </div>
+                <details class="madic-doc-new" id="newDocumentRequest">
+                  <summary>+ Demander une nouvelle pièce au client</summary>
+                  <div class="madic-doc-form-body">
+                    <p class="madic-doc-hint">
+                      Cette demande apparaîtra dans l'espace du client.
+                    </p>
+                    <label for="docreqTitle"
+                      >Document demandé<input
+                        id="docreqTitle"
+                        maxlength="200"
+                        placeholder="Ex. Copie du passeport"
+                        required="" /></label
+                    ><label for="docreqInstructions"
+                      >Instructions<textarea
+                        id="docreqInstructions"
+                        maxlength="2000"
+                        placeholder="Précisions facultatives"
+                      ></textarea></label
+                    ><label for="docreqDue"
+                      >Date limite (facultatif)<input
+                        id="docreqDue"
+                        lang="fr-CA"
+                        type="date"
+                    /></label>
+                    <div><button type="submit">Envoyer la demande</button></div>
+                  </div>
+                </details>
+              </form>
+              <details class="madic-doc-new" id="newClientDocumentSend">
+                <summary>+ Envoyer un document au client</summary>
+                <form class="madic-doc-form-body" id="docsendForm">
+                  <p class="madic-doc-hint">
+                    Le fichier sera accessible dans l’espace du client, sous «
+                    Historique et évaluations de mes documents », pour le
+                    dossier sélectionné ci-dessus.
+                  </p>
+                  <label for="docsendFile"
+                    >Fichier à transmettre (PDF, JPG ou PNG, 10 Mo maximum)
+                    <input
+                      id="docsendFile"
+                      type="file"
+                      accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png"
+                      required=""
+                  /></label>
+                  <label for="docsendTitle"
+                    >Nom du document (facultatif)
+                    <input
+                      id="docsendTitle"
+                      maxlength="200"
+                      placeholder="Ex. Lettre de confirmation"
+                  /></label>
+                  <div>
+                    <button id="docsendButton" type="submit">
+                      Envoyer le document
+                    </button>
+                  </div>
+                  <p id="docsendNotice" role="status" aria-live="polite"></p>
+                </form>
+              </details>
+            </section>
+            <section
+              aria-labelledby="received-heading"
+              class="panel"
+              id="receivedPanel"
+            >
+              <p class="madic-doc-step">Étape 2 · Vérification</p>
+              <h2 id="received-heading">Documents reçus</h2>
+              <p class="madic-doc-hint">
+                Téléchargez et évaluez chaque document. En cas de refus,
+                précisez le motif qui sera visible par le client.
+              </p>
+              <p id="receivedContext"></p>
+              <p id="receivedNotice" role="status"></p>
+              <div class="madic-doc-table">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Fichier</th>
+                      <th>Reçu le</th>
+                      <th>Évaluation</th>
+                      <th>Motif du refus</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="receivedRows"></tbody>
+                </table>
+              </div>
+            </section>
+            <section aria-labelledby="requests-heading" class="panel">
+              <p class="madic-doc-step">Étape 3 · Suivi</p>
+              <h2 id="requests-heading">Demandes envoyées</h2>
+              <p class="madic-doc-hint">
+                Demandes concernant uniquement le dossier sélectionné. Le statut
+                d'une demande est distinct de l'évaluation d'un fichier.
+              </p>
+              <div class="madic-doc-table">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Pièce demandée</th>
+                      <th>Date limite</th>
+                      <th>Statut</th>
+                      <th>Mettre à jour</th>
+                    </tr>
+                  </thead>
+                  <tbody id="docreqRows"></tbody>
+                </table>
+              </div>
+            </section>
+          </div>
+        </main>
+        <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+        <script src="assets/config.js"></script>
+        <script src="assets/madic-document-requests-cric.js"></script>
+      </div>
+    </div>
+    <script src="assets/madic-datahubz-unified.js"></script>
+    <script src="assets/madic-i18n-cric.js?v=20261102d"></script>
+  </body>
 </html>

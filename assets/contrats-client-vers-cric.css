@@ -1,0 +1,113 @@
+
+      body {
+        margin: 0;
+        background: #071626;
+        color: #e8f3fa;
+        font: 16px/1.5 system-ui;
+      }
+      header,
+      main {
+        max-width: 1050px;
+        margin: auto;
+        padding: 20px;
+      }
+      a {
+        color: #6ddbe9;
+      }
+      .panel {
+        background: #10263b;
+        padding: 20px;
+        border: 1px solid #29475e;
+        border-radius: 12px;
+        margin: 16px 0;
+      }
+      button {
+        background: #55c4d6;
+        border: 0;
+        border-radius: 6px;
+        padding: 11px 16px;
+        font-weight: 700;
+        cursor: pointer;
+        margin: 6px;
+      }
+      input {
+        padding: 10px;
+      }
+      iframe {
+        width: 100%;
+        min-height: 1300px;
+        background: white;
+        border: 0;
+      }
+      .muted {
+        color: #bad0dc;
+      }
+
+      /* Accessibilite du portail client - styles locaux, sans nouvelle dependance. */
+      .madic8-skip {
+        position: absolute;
+        left: 12px;
+        top: -100px;
+        z-index: 99999;
+        padding: 12px 18px;
+        background: #fff;
+        color: #092138;
+        border-radius: 8px;
+        font-weight: 700;
+        text-decoration: none;
+      }
+      .madic8-skip:focus,
+      .madic8-skip:focus-visible {
+        top: 12px;
+      }
+      body:has(> .madic8-skip)
+        :where(button, a, input, select, textarea, [tabindex]):focus-visible {
+        outline: 3px solid #7ee6f2;
+        outline-offset: 3px;
+      }
+      body:has(> .madic8-skip) :where(img, svg, video, iframe) {
+        max-width: 100%;
+      }
+      @media (max-width: 760px) {
+        body:has(> .madic8-skip) :where(.panel, .card, main, .wrap) {
+          min-width: 0;
+          max-width: 100%;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        body:has(> .madic8-skip) *,
+        body:has(> .madic8-skip) *::before,
+        body:has(> .madic8-skip) *::after {
+          scroll-behavior: auto !important;
+          transition-duration: 0.01ms !important;
+          animation-duration: 0.01ms !important;
+        }
+      }
+      @media print {
+        .madic8-skip {
+          display: none !important;
+        }
+      }
+    
+/* Mise en page autonome et responsive de la page CRIC */
+:root{font-family:system-ui,-apple-system,Segoe UI,sans-serif;color-scheme:dark}
+*,*::before,*::after{box-sizing:border-box}
+body{min-height:100vh}
+.madic-page-header,main{width:min(100% - 40px,1050px);max-width:1050px;margin-inline:auto;padding-inline:0}
+.madic-page-header{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-block:22px;border-bottom:1px solid #29475e}
+.madic-page-header h1{font-size:clamp(1.4rem,3vw,2rem);margin:0;flex:1 1 330px}
+main{padding-block:22px 50px}
+.panel{width:100%;max-width:100%;margin-inline:0}
+#contracts{display:grid;gap:12px}#contracts .panel{margin:0;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+#contracts .panel p{margin:0;overflow-wrap:anywhere;flex:1 1 280px}
+.madic-language-switch{display:flex;gap:5px;align-items:center}
+.madic-language-switch button{margin:0;min-width:42px;background:#17374c;color:#e8f3fa;border:1px solid #4b8092}
+.madic-language-switch button[aria-pressed=true]{background:#55c4d6;color:#071626}
+#signArea{display:flex;flex-direction:column;gap:12px;margin-top:18px}
+#signArea label{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+#city{width:min(100%,360px);background:#fff;color:#14293c;border-radius:6px;border:1px solid #8da6b7}
+#accept{width:18px;height:18px;flex-shrink:0}
+button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid #7ee6f2;outline-offset:3px}
+[hidden]{display:none!important}
+@media(max-width:680px){.madic-page-header,main{width:calc(100% - 28px)}.madic-page-header h1{order:3;flex-basis:100%}iframe{min-height:900px}}
+@media print{.madic-page-header,.madic8-skip,.madic-language-switch,#signArea,#archive,#openPdf,#print{display:none!important}body{background:white;color:black}main{width:100%;padding:0}.panel{border:0}}

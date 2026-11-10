@@ -7,175 +7,89 @@
     <meta content="noindex,nofollow" name="robots" />
     <title>Contrat de services professionnels | MADIC</title>
     <link href="img/favicon.png" rel="icon" />
-    <link href="assets/contrats-cric.css" rel="stylesheet" />
-    <style>
-      .madic-contract-logos {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 24px;
-        min-height: 82px;
-      }
-      .madic-contract-logos img {
-        display: block;
-        object-fit: contain;
-        max-width: 100%;
-        height: auto;
-      }
-      .madic-logo-cric {
-        width: 260px;
-        max-height: 78px;
-      }
-      .madic-logo-madic {
-        width: 96px;
-        max-height: 94px;
-      }
-      @media (max-width: 520px) {
-        .madic-contract-logos {
-          gap: 12px;
-        }
-        .madic-logo-cric {
-          width: 65%;
-        }
-        .madic-logo-madic {
-          width: 25%;
-        }
-      }
-      @media print {
-        .madic-contract-logos {
-          -webkit-print-color-adjust: exact;
-          print-color-adjust: exact;
-        }
-        .madic-contract-logos img {
-          break-inside: avoid;
-        }
-      }
-      /* Harmonisation MADIC : interface professionnelle uniquement (ecran). */
-      @media screen {
-        body[data-contract-kind="professionnel"] {
-          background: #071626;
-          color: #e8f3fa;
-        }
-        body[data-contract-kind="professionnel"] .top {
-          background: #10263b;
-          color: #e8f3fa;
-          border-bottom: 1px solid #29475e;
-        }
-        body[data-contract-kind="professionnel"] .top a {
-          color: #38bfd8;
-        }
-        body[data-contract-kind="professionnel"] .intro {
-          background: #10263b;
-          color: #e8f3fa;
-          border: 1px solid #29475e;
-          border-radius: 12px;
-          padding: 22px 26px;
-        }
-        body[data-contract-kind="professionnel"] .intro h1,
-        body[data-contract-kind="professionnel"] .intro p:not(.eyebrow) {
-          color: #e8f3fa;
-        }
-        body[data-contract-kind="professionnel"] .intro .eyebrow {
-          color: #38bfd8;
-        }
-        body[data-contract-kind="professionnel"] #contractStatus {
-          background: #10263b;
-          color: #e8f3fa;
-          border: 1px solid #29475e;
-          border-left: 4px solid #38bfd8;
-          border-radius: 8px;
-        }
-        body[data-contract-kind="professionnel"] #contractForm {
-          background: #10263b;
-          color: #e8f3fa;
-          border: 1px solid #29475e;
-          box-shadow: none;
-        }
-        body[data-contract-kind="professionnel"] #contractForm h2,
-        body[data-contract-kind="professionnel"] #contractForm label,
-        body[data-contract-kind="professionnel"] #contractForm legend {
-          color: #e8f3fa;
-        }
-        body[data-contract-kind="professionnel"] #contractForm fieldset {
-          background: #10263b;
-          border-color: #29475e;
-        }
-        body[data-contract-kind="professionnel"] #contractForm input,
-        body[data-contract-kind="professionnel"] #contractForm select,
-        body[data-contract-kind="professionnel"] #contractForm textarea {
-          background: #09192c;
-          color: #e8f3fa;
-          border: 1px solid #29475e;
-        }
-        body[data-contract-kind="professionnel"]
-          #contractForm
-          input::placeholder,
-        body[data-contract-kind="professionnel"]
-          #contractForm
-          textarea::placeholder {
-          color: #a8bdcb;
-        }
-        body[data-contract-kind="professionnel"]
-          #contractForm
-          input:focus-visible,
-        body[data-contract-kind="professionnel"]
-          #contractForm
-          select:focus-visible,
-        body[data-contract-kind="professionnel"]
-          #contractForm
-          textarea:focus-visible {
-          outline: 2px solid #38bfd8;
-          outline-offset: 2px;
-        }
-        body[data-contract-kind="professionnel"] #contractForm button {
-          background: #38bfd8;
-          color: #071626;
-          border: 1px solid #38bfd8;
-          font-weight: 700;
-        }
-        body[data-contract-kind="professionnel"] #contractForm .hint,
-        body[data-contract-kind="professionnel"] #contractForm small {
-          color: #bfd3e1;
-        }
-        body[data-contract-kind="professionnel"] #contractDocument {
-          background: #fff;
-          color: #1c2c3d;
-        }
-      }
-
-      /* MADIC : disposition simplifiée des renseignements du contrat CRIC. */
-      @media screen {
-        body[data-contract-kind="professionnel"]
-          #contractForm
-          .fields
-          > .madic-conseils-full {
-          grid-column: 1 / -1;
-          width: 100%;
-          min-width: 0;
-          display: flex;
-          flex-direction: column;
-          gap: 8px;
-        }
-        body[data-contract-kind="professionnel"]
-          #contractForm
-          .madic-conseils-full
-          textarea {
-          display: block;
-          width: 100%;
-          max-width: 100%;
-          min-width: 0;
-          box-sizing: border-box;
-          min-height: 150px;
-          resize: vertical;
-          line-height: 1.55;
-        }
-      }
-    </style>
+    <link href="assets/contrat-professionnel-cric.css" rel="stylesheet" />
   </head>
   <body data-contract-kind="professionnel">
-    <header class="top">
-      <a href="cric-dashboard.html">← Vue d’ensemble</a
-      ><strong>MADIC · Espace professionnel</strong><span>Contrats</span>
+    <header class="madic-unified-header">
+      <a
+        data-en="← Overview"
+        data-fr="← Vue d’ensemble"
+        href="cric-dashboard.html"
+        >← Vue d’ensemble</a
+      >
+      <h1
+        data-en="Professional services agreement"
+        data-fr="Contrat de services professionnels"
+      >
+        Contrat de services professionnels
+      </h1>
+      <a class="brand" href="cric-dashboard.html"
+        >MADIC<span
+          class="brand-subtitle"
+          data-en="Professional workspace"
+          data-fr="Espace professionnel"
+          >Espace professionnel</span
+        ></a
+      >
+      <nav class="toplinks">
+        <a
+          data-en="Sign out"
+          data-fr="Déconnexion"
+          data-madic-signout="true"
+          href="connexion.html"
+          id="madicHeaderSignout"
+          >Déconnexion</a
+        ><a
+          data-en="My RCIC workspace"
+          data-fr="Mon espace CRIC"
+          href="cric-dashboard.html"
+          >Mon espace CRIC</a
+        >
+      </nav>
+      <div
+        aria-label="Outils du compte"
+        class="madic-hero-tools"
+        data-aria-label-en="Account tools"
+        data-aria-label-fr="Outils du compte"
+      >
+        <a
+          aria-label="Notifications de messagerie"
+          class="madic-hero-notifications"
+          data-aria-label-en="Message notifications"
+          data-aria-label-fr="Notifications de messagerie"
+          data-title-en="Message notifications"
+          data-title-fr="Notifications de messagerie"
+          href="messagerie-cric.html"
+          title="Notifications de messagerie"
+          ><svg
+            aria-hidden="true"
+            fill="none"
+            height="22"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1.8"
+            viewbox="0 0 24 24"
+            width="22"
+          >
+            <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"></path>
+            <path d="M10 21h4"></path>
+          </svg>
+          <span class="madic-hero-unread" hidden="" id="madicHeroUnread"
+            >0</span
+          ></a
+        >
+        <div
+          aria-label="Langue du portail"
+          class="madic-language-switch"
+          data-aria-label-en="Portal language"
+          data-aria-label-fr="Langue du portail"
+          id="madicHeroLanguage"
+        >
+          <button aria-pressed="true" data-lang="fr" type="button">FR</button
+          ><button aria-pressed="false" data-lang="en" type="button">EN</button>
+        </div>
+      </div>
     </header>
     <main>
       <div class="intro">
@@ -318,52 +232,64 @@
             <div class="madic-phase-fields" data-madic-phase="1">
               <strong>Phase 1 - facturation</strong
               ><label
-                >Intitulé de la phase 1<input name="phaseTitre1" type="text" aria-label="Intitulé de la phase 1" readonly /></label
+                >Intitulé de la phase 1<input
+                  aria-label="Intitulé de la phase 1"
+                  name="phaseTitre1"
+                  readonly=""
+                  type="text" /></label
               ><label
                 >Événement déclencheur de la facturation<input
                   name="phaseDeclencheur1"
-                  type="text"
-                  placeholder="Ex. À la remise des prestations de cette phase" /></label
+                  placeholder="Ex. À la remise des prestations de cette phase"
+                  type="text" /></label
               ><label
                 >Honoraires – phase 1 ($ CA)<input
-                  name="phase1"
-                  type="number"
                   min="0"
+                  name="phase1"
                   step="0.01"
+                  type="number"
               /></label>
             </div>
             <div class="madic-phase-fields" data-madic-phase="2">
               <strong>Phase 2 - facturation</strong
               ><label
-                >Intitulé de la phase 2<input name="phaseTitre2" type="text" aria-label="Intitulé de la phase 2" readonly /></label
+                >Intitulé de la phase 2<input
+                  aria-label="Intitulé de la phase 2"
+                  name="phaseTitre2"
+                  readonly=""
+                  type="text" /></label
               ><label
                 >Événement déclencheur de la facturation<input
                   name="phaseDeclencheur2"
-                  type="text"
-                  placeholder="Ex. À la remise des prestations de cette phase" /></label
+                  placeholder="Ex. À la remise des prestations de cette phase"
+                  type="text" /></label
               ><label
                 >Honoraires – phase 2 ($ CA)<input
-                  name="phase2"
-                  type="number"
                   min="0"
+                  name="phase2"
                   step="0.01"
+                  type="number"
               /></label>
             </div>
             <div class="madic-phase-fields" data-madic-phase="3">
               <strong>Phase 3 - facturation</strong
               ><label
-                >Intitulé de la phase 3<input name="phaseTitre3" type="text" aria-label="Intitulé de la phase 3" readonly /></label
+                >Intitulé de la phase 3<input
+                  aria-label="Intitulé de la phase 3"
+                  name="phaseTitre3"
+                  readonly=""
+                  type="text" /></label
               ><label
                 >Événement déclencheur de la facturation<input
                   name="phaseDeclencheur3"
-                  type="text"
-                  placeholder="Ex. À la remise des prestations de cette phase" /></label
+                  placeholder="Ex. À la remise des prestations de cette phase"
+                  type="text" /></label
               ><label
                 >Honoraires – phase 3 ($ CA)<input
-                  name="phase3"
-                  type="number"
                   min="0"
+                  name="phase3"
                   step="0.01"
+                  type="number"
               /></label>
             </div>
             <label
@@ -783,9 +709,9 @@
               <tbody id="madicPhaseFeeRows"></tbody>
             </table>
             <p
+              aria-live="polite"
               class="madic-phase-balance"
               id="madicPhaseBalance"
-              aria-live="polite"
             ></p>
             <p>
               Débours : Frais des copies, les frais de poste et traduction
@@ -1160,257 +1086,6 @@
         </article>
       </div>
     </main>
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
-    <script src="assets/config.js"></script>
-    <script src="assets/madic-contrat-prefill.js"></script>
-    <script src="assets/contrats-cric.js"></script>
-    <script src="assets/madic-mandats-cric.js"></script>
-    <script>
-      (() => {
-        "use strict";
-        const form = document.getElementById("contractForm"),
-          doc = document.getElementById("contractDocument");
-        if (!form || !doc) return;
-        const nodes = [...doc.querySelectorAll("[data-contract-template]")];
-        const val = (k) => form.elements.namedItem(k)?.value?.trim() || "";
-        function render() {
-          const clientNom = [val("prenom"), val("nom")]
-            .filter(Boolean)
-            .join(" ");
-          const values = {};
-          for (const e of form.elements) if (e.name) values[e.name] = e.value;
-          const civ = val("civilite");
-          const clientAppellation =
-            [civ === "Autre" ? "" : civ, clientNom].filter(Boolean).join(" ") ||
-            "À compléter";
-          const clientDative =
-            civ === "Madame"
-              ? "Madame " + (clientNom || "À compléter")
-              : civ === "Monsieur"
-                ? "Monsieur " + (clientNom || "À compléter")
-                : clientNom || "la personne cliente";
-          const accordFeminin = civ === "Madame" ? "e" : "";
-          Object.assign(values, {
-            clientAppellation,
-            clientDative,
-            accordFeminin,
-            clientNom,
-            dateLong: val("date")
-              ? new Date(val("date") + "T12:00:00").toLocaleDateString(
-                  "fr-CA",
-                  { day: "2-digit", month: "long", year: "numeric" },
-                )
-              : "À compléter",
-            langueContrat: val("langue") === "Anglais" ? "anglais" : "français",
-            civilite: val("civilite") || "Madame",
-          });
-          for (const node of nodes)
-            node.textContent = node.dataset.contractTemplate.replace(
-              /\{([a-zA-Z0-9]+)\}/g,
-              (_, k) =>
-                values[k] !== undefined &&
-                values[k] !== null &&
-                String(values[k]) !== ""
-                  ? values[k]
-                  : k === "accordFeminin"
-                    ? ""
-                    : "À compléter",
-            );
-        }
-        form.addEventListener("input", () => queueMicrotask(render));
-        form.addEventListener("change", () => queueMicrotask(render));
-        document
-          .getElementById("contractPreview")
-          ?.addEventListener("click", () => queueMicrotask(render));
-        document
-          .getElementById("contractPrint")
-          ?.addEventListener("click", render, true);
-        window.addEventListener("beforeprint", render);
-        new MutationObserver(() => {
-          if (!document.getElementById("contractWorkspace").hidden) render();
-        }).observe(document.getElementById("contractWorkspace"), {
-          attributes: true,
-          attributeFilter: ["hidden"],
-        });
-        render();
-      })();
-    </script>
-    <script>
-      /* MADIC : résumé préliminaire automatique, sans écraser une modification manuelle. */
-      (() => {
-        "use strict";
-        const form = document.getElementById("contractForm");
-        if (!form) return;
-        const get = (k) => (form.elements.namedItem(k)?.value || "").trim();
-        const input = form.elements.namedItem("conseils");
-        if (!input) return;
-        const service = document.getElementById("madicTypeService");
-        let lastAutomatic = "";
-        let manual = false;
-        const drafts = new Map();
-        let previousService = service?.value || "";
-        function compose() {
-          const nom = [get("prenom"), get("nom")].filter(Boolean).join(" ");
-          const civ = get("civilite");
-          const personne =
-            [civ === "Autre" ? "" : civ, nom].filter(Boolean).join(" ") ||
-            "la personne cliente";
-          const libelle =
-            service?.selectedOptions?.[0]?.textContent?.trim() ||
-            "service d’immigration sélectionné";
-          const objet =
-            get("objet") || "la démarche de " + libelle.toLowerCase();
-          const specifics = {
-            etudes:
-              "Les conditions d’admissibilité au permis d’études, la lettre d’acceptation d’un établissement d’enseignement désigné, les exigences provinciales applicables, les preuves financières, les documents à fournir et les conditions de séjour ont été abordés.",
-            humanitaire:
-              "Les facteurs humanitaires pertinents, les liens familiaux, l’établissement au Canada, l’intérêt supérieur des enfants concernés, les éléments de preuve et le caractère discrétionnaire de cette demande ont été expliqués.",
-            famille:
-              "Les critères d’admissibilité du répondant et de la personne parrainée, les preuves de la relation familiale, les engagements financiers, les étapes fédérales et provinciales applicables et les pièces justificatives ont été présentés.",
-            travail:
-              "Les catégories de permis de travail, les conditions d’admissibilité, les exigences relatives à une offre d’emploi et à une EIMT ou à une dispense, selon le cas, ainsi que les justificatifs requis ont été examinés.",
-            retablissement:
-              "Les conditions de rétablissement du statut temporaire, les délais applicables, les conséquences de la perte de statut, les restrictions possibles pendant le traitement et les documents justificatifs ont été expliqués.",
-            erar: "L’admissibilité à l’examen des risques avant renvoi, les délais indiqués dans l’avis reçu, les risques personnels à démontrer, les preuves admissibles et les étapes de présentation ont été examinés.",
-            supervisa:
-              "Les conditions du super visa, le lien de parenté, les ressources financières de la personne invitante, les exigences d’assurance médicale, l’examen médical éventuel et les documents nécessaires ont été présentés.",
-            visiteur:
-              "Les critères du visa de visiteur, le motif et la durée envisagée du séjour, les ressources financières, les attaches au pays de résidence, les antécédents de voyage et les pièces justificatives ont été examinés.",
-            asile:
-              "Les critères de protection, les questions d’admissibilité, les risques personnels allégués, le formulaire Fondement de la demande d’asile, les éléments de preuve, les délais et les étapes devant les autorités compétentes ont été abordés.",
-            qualifie:
-              "Les programmes de travailleurs qualifiés potentiellement applicables, l’expérience professionnelle, les résultats linguistiques, les diplômes, les critères de sélection, les preuves financières et les étapes de résidence permanente ont été examinés.",
-            sejour:
-              "Les circonstances justifiant un permis de séjour temporaire, les questions d’interdiction de territoire, les preuves à fournir, le pouvoir discrétionnaire des autorités et les conditions éventuelles du permis ont été expliqués.",
-            ave: "Les critères d’admissibilité à l’autorisation de voyage électronique, la validité du passeport, les renseignements à déclarer, les antécédents pertinents et les limites de cette autorisation de voyage ont été expliqués.",
-            eic: "Les conditions du programme Expérience internationale Canada, les catégories possibles, les critères d’âge et de nationalité, les bassins, les invitations et les exigences du permis de travail ont été présentés.",
-            affaires:
-              "Les programmes d’immigration des gens d’affaires susceptibles de s’appliquer, les critères d’expérience entrepreneuriale, les exigences financières, la provenance des fonds et les étapes de sélection et de résidence permanente ont été abordés.",
-          };
-          const participe =
-            civ === "Madame"
-              ? "informée"
-              : civ === "Monsieur"
-                ? "informé"
-                : "informée ou informé";
-          return (
-            "Une consultation initiale a été réalisée avec " +
-            personne +
-            " relativement à " +
-            objet +
-            ". " +
-            (specifics[service?.value] ||
-              "Les conditions d’admissibilité et les pièces justificatives applicables ont été examinées.") +
-            " " +
-            "Les délais de traitement, les frais applicables, les risques de refus et les obligations de fournir des renseignements exacts ont également été expliqués. " +
-            personne +
-            " a été " +
-            participe +
-            " qu’aucun résultat ne peut être garanti et que toute décision appartient aux autorités gouvernementales compétentes."
-          );
-        }
-        function refresh() {
-          if (manual) return;
-          const existing = input.value.trim();
-          if (existing && existing !== lastAutomatic) {
-            manual = true;
-            return;
-          }
-          const next = compose();
-          if (input.value !== next) {
-            input.value = next;
-            lastAutomatic = next;
-            input.dispatchEvent(new Event("input", { bubbles: true }));
-          }
-        }
-        input.addEventListener("input", (e) => {
-          if (e.isTrusted) {
-            manual = true;
-          } else if (input.value !== lastAutomatic && input.value.trim())
-            manual = true;
-        });
-        form.addEventListener("input", (e) => {
-          if (e.target !== input) queueMicrotask(refresh);
-        });
-        form.addEventListener("change", (e) => {
-          if (e.target !== input) {
-            queueMicrotask(refresh);
-            setTimeout(refresh, 0);
-            setTimeout(refresh, 150);
-          }
-        });
-        const workspace = document.getElementById("contractWorkspace");
-        if (workspace)
-          new MutationObserver(() => {
-            if (!workspace.hidden) {
-              refresh();
-              setTimeout(refresh, 150);
-            }
-          }).observe(workspace, {
-            attributes: true,
-            attributeFilter: ["hidden"],
-          });
-        document
-          .getElementById("contractPreview")
-          ?.addEventListener("click", refresh);
-        document
-          .getElementById("contractPrint")
-          ?.addEventListener("click", refresh, true);
-        window.addEventListener("beforeprint", refresh);
-        refresh();
-      })();
-    </script>
-    <script>
-      /* MADIC : pied de page dynamique sur chaque page PDF, sans changer les clauses. */
-      (() => {
-        "use strict";
-        const form = document.getElementById("contractForm");
-        if (!form) return;
-        const style = document.createElement("style");
-        style.id = "madicProfessionalPrintFooter";
-        document.head.appendChild(style);
-        const get = (name) =>
-          (form.elements.namedItem(name)?.value || "").trim();
-        const safe = (s) =>
-          String(s)
-            .replace(/\\/g, "\\\\")
-            .replace(/"/g, '\\"')
-            .replace(/[\r\n\t]+/g, " ")
-            .replace(/[\x00-\x1f]/g, " ")
-            .trim();
-        function update() {
-          const details = [
-            "Permis CRIC-CISR : " + (get("proNumero") || "À compléter"),
-            get("registreQuebec")
-              ? "Permis registre Québec : " + get("registreQuebec")
-              : null,
-            get("proAdresse") || "Adresse à compléter",
-            "Tél. " + (get("proTelephone") || "À compléter"),
-            "Courriel : " + (get("proCourriel") || "À compléter"),
-          ]
-            .filter(Boolean)
-            .join(" | ");
-          style.textContent =
-            "@media print { @page { size:letter; margin:14mm 14mm 20mm; " +
-            '@bottom-center { content:"' +
-            safe(details) +
-            '"; background:#10263b; color:#fff; font:bold 7.5pt/1.15 Arial,Helvetica,sans-serif; text-align:center; vertical-align:middle; padding:1.5mm 2mm; } ' +
-            "@bottom-right { content:counter(page); background:#10263b; color:#fff; font:bold 13pt Arial,Helvetica,sans-serif; text-align:center; vertical-align:middle; width:9mm; } } }";
-        }
-        form.addEventListener("input", update);
-        form.addEventListener("change", update);
-        window.addEventListener("beforeprint", update);
-        document
-          .getElementById("contractPrint")
-          ?.addEventListener("click", update, true);
-        const workspace = document.getElementById("contractWorkspace");
-        if (workspace)
-          new MutationObserver(update).observe(workspace, {
-            attributes: true,
-            attributeFilter: ["hidden"],
-          });
-        update();
-      })();
-    </script>
+    <script defer="" src="assets/contrat-professionnel-cric.js"></script>
   </body>
 </html>

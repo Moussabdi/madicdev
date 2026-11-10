@@ -1,0 +1,24 @@
+/* Styles autonomes pour dashboard.html, sans dependance a style.css. */
+:root{color-scheme:light;font-family:system-ui,-apple-system,'Segoe UI',sans-serif;line-height:1.5}
+*{box-sizing:border-box}
+body.madic-unified{margin:0;min-height:100vh;background:#f1f6fc;color:#143453}
+a{color:#0879a6}
+a:focus-visible{outline:3px solid #178cb4;outline-offset:3px}
+.madic-unified-layout{display:grid;grid-template-columns:244px minmax(0,1fr);min-height:100vh}
+.madic-unified-sidebar{background:linear-gradient(175deg,#092342,#0b3152 60%,#08213d);color:#f2fbff;padding:22px 14px;display:flex;flex-direction:column;gap:19px;min-width:0}
+.madic-unified-brand{display:flex;align-items:center;gap:10px;padding:7px 7px 18px;border-bottom:1px solid #ffffff25}
+.madic-unified-monogram{display:grid;place-items:center;width:53px;height:53px;flex:none;font-size:26px;font-weight:800;color:#fff}
+.madic-unified-brand strong,.madic-unified-brand small{display:block}
+.madic-unified-brand strong{font-size:14px}.madic-unified-brand small{color:#d5e9f6;font-size:11px;margin-top:5px}
+.madic-unified-caption{font-size:10px;color:#a7c9db;letter-spacing:.18em;margin:5px 12px -12px}
+.madic-unified-sidebar nav{display:flex;flex-direction:column;gap:5px}
+.madic-unified-sidebar nav a{display:flex;align-items:center;gap:12px;min-height:43px;padding:10px 12px;border-radius:10px;font-size:.83rem;font-weight:600;color:#c8dce9;text-decoration:none}
+.madic-unified-sidebar nav a:hover{background:#194e70}.madic-unified-sidebar nav a span{width:23px;text-align:center}
+.madic-unified-foot{margin-top:auto;border:1px solid #35638b;border-radius:12px;padding:14px 12px;background:#143657;color:#dceefe;font-size:11px}
+.madic-unified-content{--page-width:1300px;--page-gutter:clamp(16px,3vw,36px);min-width:0;width:100%;padding:22px var(--page-gutter) 32px;display:flex;flex-direction:column;gap:22px}
+.madic-page-header,.madic-unified-content main,.madic-page-footer{width:100%;max-width:var(--page-width);margin-inline:auto;min-width:0}
+.madic-page-header{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;padding:14px 20px;background:#fff;border:1px solid #dbe7f2;border-radius:13px}
+.madic-unified-content main{flex:1}.panel{background:#fff;border:1px solid #dbe6f1;border-radius:15px;padding:clamp(18px,3vw,28px);box-shadow:0 8px 26px #153a5b0b}.panel p{margin:0}
+.madic-page-footer{padding:14px 0;border-top:1px solid #dbe7f2;color:#526b83;font-size:.85rem}
+@media(max-width:850px){.madic-unified-layout{grid-template-columns:minmax(0,1fr)}.madic-unified-sidebar{gap:10px;padding:13px}.madic-unified-sidebar nav{flex-direction:row;overflow-x:auto;gap:7px;padding-bottom:5px}.madic-unified-sidebar nav a{white-space:nowrap;min-height:36px}.madic-unified-caption,.madic-unified-foot{display:none}.madic-unified-content{padding:15px var(--page-gutter) 24px}}
+@media(max-width:480px){.madic-page-header{padding:12px 14px}.madic-unified-content{gap:16px}}

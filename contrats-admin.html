@@ -1,29 +1,115 @@
-<!DOCTYPE html>
-
+<!doctype html>
 <html lang="fr-CA">
-<head>
-<meta charset="utf-8"/>
-<meta content="width=device-width,initial-scale=1" name="viewport"/>
-<meta content="noindex,nofollow" name="robots"/>
-<link href="img/favicon.png" rel="icon"/>
-<title>Contrats | MADIC</title>
-<link href="assets/style.css" rel="stylesheet"/>
-<link href="assets/madic-datahubz-unified.css" rel="stylesheet"/>
-<link href="assets/madic-datahubz-modules.css" rel="stylesheet"/></head>
-<body class="madic-unified">
-<div class="madic-unified-layout"><aside aria-label="Navigation du portail" class="madic-unified-sidebar"><div class="madic-unified-brand"><span class="madic-unified-monogram">M</span><span><strong>MADIC PORTAIL</strong><small>Espace professionnel</small></span></div><div class="madic-unified-caption">NAVIGATION</div><nav><a data-madic-page="cric-dashboard.html" href="cric-dashboard.html"><span aria-hidden="true">▦</span>Vue d’ensemble</a><a data-madic-page="gestion-clients-cric.html" href="gestion-clients-cric.html"><span aria-hidden="true">♙</span>Clients</a><a data-madic-page="gestion-dossiers-cric.html" href="gestion-dossiers-cric.html"><span aria-hidden="true">▤</span>Dossiers</a><a data-madic-page="demandes-documents-cric.html" href="demandes-documents-cric.html"><span aria-hidden="true">▣</span>Documents</a><a data-madic-page="echeances-cric.html" href="echeances-cric.html"><span aria-hidden="true">◷</span>Échéances</a><a data-madic-page="facturation-cric.html" href="facturation-cric.html"><span aria-hidden="true">▥</span>Facturation</a><a data-madic-page="finances-cric.html" href="finances-cric.html"><span aria-hidden="true">◈</span>Finances</a><a data-madic-page="gestion-cric.html" href="gestion-cric.html"><span aria-hidden="true">⚙</span>Cabinet CRIC</a></nav><div class="madic-unified-foot">Espace sécurisé MADIC</div></aside><div class="madic-unified-content">
-<main>
-<section class="panel">
-<h1>Contrats des cabinets CRIC</h1>
-<p>
-          La gestion des contrats de consultation est réservée au cabinet CRIC
-          autorisé. Aucun contrat client n'est chargé depuis l'administration
-          centrale.
-        </p>
-<p><a href="cric-dashboard.html">Accès professionnel CRIC</a></p>
-</section>
-</main>
-</div></div>
-<script src="assets/madic-datahubz-unified.js"></script>
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width,initial-scale=1" name="viewport" />
+    <meta content="noindex,nofollow" name="robots" />
+    <link href="img/favicon.png" rel="icon" />
+    <title>Contrats | MADIC</title>
+
+    <link href="assets/contrats-admin.css" rel="stylesheet" />
+  </head>
+  <body class="madic-unified">
+    <div class="madic-unified-layout">
+      <aside aria-label="Navigation du portail" class="madic-unified-sidebar">
+        <div class="madic-unified-brand">
+          <span class="madic-unified-monogram">M</span
+          ><span
+            ><strong>MADIC PORTAIL</strong
+            ><small data-i18n="workspace">Espace professionnel</small></span
+          >
+        </div>
+        <div class="madic-unified-caption" data-i18n="navigation">
+          NAVIGATION
+        </div>
+        <nav>
+          <a
+            data-i18n-nav="overview"
+            data-madic-page="cric-dashboard.html"
+            href="cric-dashboard.html"
+            ><span aria-hidden="true">▦</span> Vue d’ensemble</a
+          ><a
+            data-i18n-nav="clients"
+            data-madic-page="gestion-clients-cric.html"
+            href="gestion-clients-cric.html"
+            ><span aria-hidden="true">♙</span> Clients</a
+          ><a
+            data-i18n-nav="files"
+            data-madic-page="gestion-dossiers-cric.html"
+            href="gestion-dossiers-cric.html"
+            ><span aria-hidden="true">▤</span> Dossiers</a
+          ><a
+            data-i18n-nav="documents"
+            data-madic-page="demandes-documents-cric.html"
+            href="demandes-documents-cric.html"
+            ><span aria-hidden="true">▣</span> Documents</a
+          ><a
+            data-i18n-nav="deadlines"
+            data-madic-page="echeances-cric.html"
+            href="echeances-cric.html"
+            ><span aria-hidden="true">◷</span> Échéances</a
+          ><a
+            data-i18n-nav="billing"
+            data-madic-page="facturation-cric.html"
+            href="facturation-cric.html"
+            ><span aria-hidden="true">▥</span> Facturation</a
+          ><a
+            data-i18n-nav="finances"
+            data-madic-page="finances-cric.html"
+            href="finances-cric.html"
+            ><span aria-hidden="true">◈</span> Finances</a
+          ><a
+            data-i18n-nav="cabinet"
+            data-madic-page="gestion-cric.html"
+            href="gestion-cric.html"
+            ><span aria-hidden="true">⚙</span> Cabinet CRIC</a
+          >
+        </nav>
+        <div class="madic-unified-foot" data-i18n="secure">
+          Espace sécurisé MADIC
+        </div>
+      </aside>
+      <div class="madic-unified-content">
+        <header class="madic-admin-header">
+          <div class="madic-admin-heading">
+            <h2 data-i18n="header">Administration des contrats</h2>
+          </div>
+          <div class="madic-header-tools">
+            <a data-i18n="overview" href="cric-dashboard.html"
+              >Vue d’ensemble</a
+            >
+            <div
+              aria-label="Langue du portail"
+              class="madic-lang-controls"
+              data-i18n-aria="langLabel"
+              role="group"
+            >
+              <button aria-pressed="true" data-lang="fr" type="button">
+                FR</button
+              ><button aria-pressed="false" data-lang="en" type="button">
+                EN
+              </button>
+            </div>
+          </div>
+        </header>
+        <main>
+          <section class="panel">
+            <h1 data-i18n="title">Contrats des cabinets CRIC</h1>
+            <p data-i18n="description">
+              La gestion des contrats de consultation est réservée au cabinet
+              CRIC autorisé. Aucun contrat client n'est chargé depuis
+              l'administration centrale.
+            </p>
+            <p>
+              <a data-i18n="access" href="cric-dashboard.html"
+                >Accès professionnel CRIC</a
+              >
+            </p>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <script defer="True" src="assets/contrats-admin.js"></script>
+  </body>
 </html>

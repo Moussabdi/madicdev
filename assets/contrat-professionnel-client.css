@@ -1,0 +1,118 @@
+
+      :root {
+        color-scheme: dark;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: #081b2b;
+        color: #e8f3fa;
+        font:
+          16px/1.65 system-ui,
+          -apple-system,
+          Segoe UI,
+          sans-serif;
+      }
+      header {
+        padding: 20px max(24px, calc((100vw - 960px) / 2));
+        border-bottom: 1px solid #29475e;
+        background: #10263b;
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+      header a {
+        color: #24c6c0;
+        text-decoration: none;
+      }
+      main {
+        max-width: 960px;
+        margin: 55px auto;
+        padding: 0 24px;
+      }
+      article {
+        border: 1px solid #29475e;
+        background: #10263b;
+        border-radius: 16px;
+        padding: clamp(24px, 5vw, 44px);
+      }
+      .eyebrow {
+        color: #24c6c0;
+        font-size: 0.8rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+      }
+      h1 {
+        font-size: clamp(1.5rem, 3vw, 2.25rem);
+        line-height: 1.25;
+      }
+      p {
+        color: #b7ccda;
+      }
+      .action {
+        display: inline-block;
+        margin-top: 18px;
+        padding: 12px 20px;
+        background: #24c6c0;
+        color: #052534;
+        text-decoration: none;
+        border-radius: 9px;
+        font-weight: 750;
+      }
+      .note {
+        border-left: 3px solid #24c6c0;
+        padding-left: 15px;
+        margin-top: 24px;
+      }
+
+      /* Accessibilite du portail client - styles locaux, sans nouvelle dependance. */
+      .madic8-skip {
+        position: absolute;
+        left: 12px;
+        top: -100px;
+        z-index: 99999;
+        padding: 12px 18px;
+        background: #fff;
+        color: #092138;
+        border-radius: 8px;
+        font-weight: 700;
+        text-decoration: none;
+      }
+      .madic8-skip:focus,
+      .madic8-skip:focus-visible {
+        top: 12px;
+      }
+      body:has(> .madic8-skip)
+        :where(button, a, input, select, textarea, [tabindex]):focus-visible {
+        outline: 3px solid #7ee6f2;
+        outline-offset: 3px;
+      }
+      body:has(> .madic8-skip) :where(img, svg, video, iframe) {
+        max-width: 100%;
+      }
+      @media (max-width: 760px) {
+        body:has(> .madic8-skip) :where(.panel, .card, main, .wrap) {
+          min-width: 0;
+          max-width: 100%;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        body:has(> .madic8-skip) *,
+        body:has(> .madic8-skip) *::before,
+        body:has(> .madic8-skip) *::after {
+          scroll-behavior: auto !important;
+          transition-duration: 0.01ms !important;
+          animation-duration: 0.01ms !important;
+        }
+      }
+      @media print {
+        .madic8-skip {
+          display: none !important;
+        }
+      }
+    
+/* MADIC professional client: shared alignment and page-only layout */
+:root{--page-width:1040px}body{min-width:320px} .madic-unified-header{width:100%;max-width:none;padding:18px max(24px,calc((100vw - var(--page-width))/2 + 24px));display:flex;align-items:center;gap:18px;flex-wrap:wrap}.madic-unified-header>a:first-child{white-space:nowrap}.madic-unified-header h1{font-size:1.05rem;margin:0;flex:1 1 260px}.madic-unified-header .brand{font-size:1.2rem;font-weight:800;white-space:nowrap}.brand-subtitle{display:block;font-size:.72rem;font-weight:500}.toplinks,.madic-hero-tools,.madic-language-switch{display:flex;align-items:center;gap:12px}.madic-hero-tools{margin-left:auto}.madic-hero-notifications{position:relative;display:inline-flex}.madic-hero-unread{position:absolute;top:-7px;right:-9px;background:#d94d4d;color:white;border-radius:10px;padding:0 5px;font-size:.7rem}.madic-language-switch{gap:4px}.madic-language-switch button{border:1px solid #4a7484;border-radius:6px;background:transparent;color:#e8f3fa;padding:7px 10px;cursor:pointer}.madic-language-switch button[aria-pressed="true"]{background:#24c6c0;color:#052534;border-color:#24c6c0;font-weight:800}main{max-width:var(--page-width);margin:32px auto;padding:0 24px}article{width:100%;min-width:0} .note{overflow-wrap:anywhere}#madic-client-prefill{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:8px 18px}#madic-client-prefill p{margin:0;padding:8px 0;border-bottom:1px solid #29475e}@media(max-width:760px){.madic-unified-header{padding:16px 20px}.madic-unified-header h1{flex-basis:100%;order:3}.madic-hero-tools{margin-left:0}main{margin:22px auto;padding:0 20px}article{padding:24px 20px}}

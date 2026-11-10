@@ -1,100 +1,56 @@
 <!doctype html>
+
 <html lang="fr-CA">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta content="width=device-width,initial-scale=1" name="viewport" />
     <title>Contrats signés par les clients | MADIC CRIC</title>
     <link href="img/favicon.png" rel="icon" />
-    <style>
-      body {
-        margin: 0;
-        background: #071626;
-        color: #e8f3fa;
-        font: 16px/1.5 system-ui;
-      }
-      header,
-      main {
-        max-width: 1050px;
-        margin: auto;
-        padding: 20px;
-      }
-      a {
-        color: #6ddbe9;
-      }
-      .panel {
-        background: #10263b;
-        padding: 20px;
-        border: 1px solid #29475e;
-        border-radius: 12px;
-        margin: 16px 0;
-      }
-      button {
-        background: #55c4d6;
-        border: 0;
-        border-radius: 6px;
-        padding: 11px 16px;
-        font-weight: 700;
-        cursor: pointer;
-        margin: 6px;
-      }
-      input {
-        padding: 10px;
-      }
-      iframe {
-        width: 100%;
-        min-height: 1300px;
-        background: white;
-        border: 0;
-      }
-      .muted {
-        color: #bad0dc;
-      }
-    
-/* Accessibilite du portail client - styles locaux, sans nouvelle dependance. */
-.madic8-skip{position:absolute;left:12px;top:-100px;z-index:99999;padding:12px 18px;background:#fff;color:#092138;border-radius:8px;font-weight:700;text-decoration:none}
-.madic8-skip:focus,.madic8-skip:focus-visible{top:12px}
-body:has(> .madic8-skip) :where(button,a,input,select,textarea,[tabindex]):focus-visible{outline:3px solid #7ee6f2;outline-offset:3px}
-body:has(> .madic8-skip) :where(img,svg,video,iframe){max-width:100%}
-@media(max-width:760px){body:has(> .madic8-skip) :where(.panel,.card,main,.wrap){min-width:0;max-width:100%}}
-@media(prefers-reduced-motion:reduce){body:has(> .madic8-skip) *,body:has(> .madic8-skip) *::before,body:has(> .madic8-skip) *::after{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important}}
-@media print{.madic8-skip{display:none!important}}
 
-</style>
+    <link href="assets/contrats-client-vers-cric.css" rel="stylesheet" />
   </head>
   <body>
     <a class="madic8-skip" href="#madic8-main">Aller au contenu principal</a>
-    <header>
-      <a href="gestion-dossiers-cric.html">← Espace CRIC</a>
-      <h1>Contrats transmis par les clients</h1>
+    <header class="madic-page-header">
+      <a data-i18n="back" href="gestion-dossiers-cric.html">← Espace CRIC</a>
+      <h1 data-i18n="title">Contrats transmis par les clients</h1>
+      <div
+        aria-label="Language / Langue"
+        class="madic-language-switch"
+        role="group"
+      >
+        <button aria-pressed="true" data-lang="fr" type="button">FR</button
+        ><button aria-pressed="false" data-lang="en" type="button">EN</button>
+      </div>
     </header>
     <main id="madic8-main">
-      <p id="status" role="status">Chargement…</p>
+      <p data-i18n="loading" id="status" role="status">Chargement…</p>
       <div id="contracts"></div>
-      <section class="panel" id="detail" hidden>
+      <section class="panel" hidden="" id="detail">
         <h2 id="detailTitle"></h2>
         <iframe
+          data-i18n-title="documentTitle"
           id="document"
           sandbox="allow-same-origin"
           title="Contrat signé"
         ></iframe>
         <div id="signArea">
-          <label
+          <label data-i18n-label="city"
             >Ville de signature du CRIC
             <input id="city" maxlength="120" /></label
-          ><label
-            ><input type="checkbox" id="accept" /> Je confirme ma signature
+          ><label data-i18n-label="consent"
+            ><input id="accept" type="checkbox" /> Je confirme ma signature
             électronique de ce contrat.</label
-          ><button id="sign">Contresigner le contrat</button>
+          ><button data-i18n="sign" id="sign">Contresigner le contrat</button>
         </div>
-        <button id="archive" hidden>Archiver le PDF final</button
-        ><button id="openPdf" hidden>Ouvrir le PDF archivé</button
-        ><button id="print">Imprimer / PDF</button>
+        <button data-i18n="archive" hidden="" id="archive">
+          Archiver le PDF final</button
+        ><button data-i18n="openPdf" hidden="" id="openPdf">
+          Ouvrir le PDF archivé</button
+        ><button data-i18n="print" id="print">Imprimer / PDF</button>
       </section>
     </main>
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
-    <script src="assets/config.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.2/dist/jspdf.umd.min.js"></script>
-    <script src="assets/madic-client-first-cric.js"></script>
+
+    <script defer="True" src="assets/contrats-client-vers-cric.js"></script>
   </body>
 </html>
