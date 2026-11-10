@@ -1,0 +1,138 @@
+
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: #f4f6f8;
+        color: #1c2c3d;
+        font:
+          16px/1.6 system-ui,
+          sans-serif;
+      }
+      header {
+        background: #102c43;
+        color: white;
+        padding: 18px max(20px, calc((100vw - 1100px) / 2));
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+      }
+      header a {
+        color: white;
+      }
+      main {
+        max-width: 1100px;
+        margin: 24px auto;
+        padding: 0 18px;
+      }
+      h1 {
+        font-size: 1.7rem;
+      }
+      .initial-document-frame {
+        display: block;
+        width: 100%;
+        min-height: 1700px;
+        border: 1px solid #d9e0e6;
+        background: white;
+      }
+      .action {
+        border: 0;
+        background: #154a6b;
+        color: white;
+        border-radius: 6px;
+        padding: 12px 17px;
+        cursor: pointer;
+        margin: 16px 0;
+      }
+      .initial-sign-form {
+        background: white;
+        padding: 24px;
+        margin: 24px 0;
+        border: 1px solid #d9e0e6;
+        border-radius: 10px;
+        max-width: 650px;
+      }
+      .initial-sign-form label {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        margin: 12px 0;
+      }
+      .initial-sign-form input:not([type="checkbox"]) {
+        padding: 10px;
+        border: 1px solid #bac6cf;
+        border-radius: 5px;
+      }
+      .initial-sign-form .accept {
+        flex-direction: row;
+        align-items: start;
+      }
+      @media print {
+        header,
+        h1,
+        #initial-view-status,
+        .action,
+        .initial-sign-form {
+          display: none !important;
+        }
+        main {
+          padding: 0;
+          margin: 0;
+          max-width: none;
+        }
+        .initial-document-frame {
+          border: 0;
+        }
+      }
+
+      /* Accessibilite du portail client - styles locaux, sans nouvelle dependance. */
+      .madic8-skip {
+        position: absolute;
+        left: 12px;
+        top: -100px;
+        z-index: 99999;
+        padding: 12px 18px;
+        background: #fff;
+        color: #092138;
+        border-radius: 8px;
+        font-weight: 700;
+        text-decoration: none;
+      }
+      .madic8-skip:focus,
+      .madic8-skip:focus-visible {
+        top: 12px;
+      }
+      body:has(> .madic8-skip)
+        :where(button, a, input, select, textarea, [tabindex]):focus-visible {
+        outline: 3px solid #7ee6f2;
+        outline-offset: 3px;
+      }
+      body:has(> .madic8-skip) :where(img, svg, video, iframe) {
+        max-width: 100%;
+      }
+      @media (max-width: 760px) {
+        body:has(> .madic8-skip) :where(.panel, .card, main, .wrap) {
+          min-width: 0;
+          max-width: 100%;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        body:has(> .madic8-skip) *,
+        body:has(> .madic8-skip) *::before,
+        body:has(> .madic8-skip) *::after {
+          scroll-behavior: auto !important;
+          transition-duration: 0.01ms !important;
+          animation-duration: 0.01ms !important;
+        }
+      }
+      @media print {
+        .madic8-skip {
+          display: none !important;
+        }
+      }
+    
+/* Alignement uniforme de l'en-tête, contenu et cartes */
+:root{--madic-width:1100px}body{min-width:320px}.madic-unified-header{padding:0 18px;min-height:82px;align-items:center;justify-content:initial;gap:18px;flex-wrap:wrap}.madic-header-inner{width:100%;max-width:var(--madic-width);margin:0 auto;display:flex;align-items:center;gap:20px;flex-wrap:wrap}.madic-unified-header a{text-decoration:none}.madic-unified-header a:hover{text-decoration:underline}.madic-unified-header .brand{display:inline-flex;align-items:center;gap:9px;font-size:1.28rem;font-weight:800;white-space:nowrap}.brand-subtitle{font-size:.82rem;font-weight:500;white-space:nowrap;opacity:.92}.madic-header-section{opacity:.85}.toplinks{display:flex;align-items:center;gap:16px;margin-left:auto}.madic-hero-tools{display:flex;align-items:center;gap:16px}.madic-hero-notifications{position:relative;display:inline-flex;align-items:center}.madic-hero-unread:not([hidden]){position:absolute;top:-8px;right:-10px;border-radius:10px;background:#d34a3a;color:#fff;padding:0 5px;font-size:11px}.madic-language-switch{display:flex;align-items:center;gap:4px}.madic-language-switch button{border:1px solid #7594a9;background:transparent;color:#fff;border-radius:5px;padding:6px 9px;cursor:pointer}.madic-language-switch button[aria-pressed=true]{background:#fff;color:#102c43;font-weight:700}main{width:100%;max-width:var(--madic-width);margin:24px auto;padding:0 18px}#initial-view-content{width:100%;min-width:0}#initial-view-content>.initial-document-frame{width:100%;border-radius:8px}#initial-view-content>.initial-sign-form{width:100%;max-width:100%;box-sizing:border-box}.initial-sign-form .accept input{flex:0 0 auto;margin-top:6px}.initial-sign-form .accept{align-items:flex-start}.action:hover{background:#0d3754}.initial-signature-stamp{font:11px/1.4 Arial,sans-serif;color:#254d72;overflow-wrap:anywhere;margin:6px 0}.initial-signature-value{display:inline-flex;align-items:center;padding:4px 7px;color:#254d72;font:600 12px Arial,sans-serif;overflow-wrap:anywhere;height:auto;min-height:30px}@media(max-width:760px){.madic-unified-header{padding:12px 18px}.madic-header-inner{gap:12px}.toplinks{margin-left:0}.madic-hero-tools{margin-left:auto}.madic-header-section{display:none}.brand-subtitle{white-space:normal}main{margin-top:18px}.initial-sign-form{padding:16px}}@media print{.madic-unified-header,.madic8-skip{display:none!important}}
+/* Styles autonomes pour l'aperçu du contrat chargé depuis Supabase */
+.madic-contract-page{background:#fff;box-sizing:border-box;margin:0 auto 16px;padding:18px;max-width:100%;overflow-wrap:anywhere}.madic-contract-page-two{break-before:page}.madic-contract-logo-header img,.doc-head img{max-width:42%!important;max-height:68px!important;width:auto!important;height:auto!important;object-fit:contain!important}@media print{.madic-contract-page{break-after:page;page-break-after:always}.madic-contract-page:last-child{break-after:auto;page-break-after:auto}}
