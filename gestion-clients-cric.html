@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!DOCTYPE html>
+
 
 <html lang="fr-CA">
 <head>
@@ -8,15 +8,11 @@
 <meta content="noindex,nofollow" name="robots"/>
 <link href="img/favicon.png" rel="icon"/>
 <title>Gestion des clients CRIC | MADIC</title>
-<link href="assets/style.css" rel="stylesheet"/>
-<link href="assets/cric-workspace.css" rel="stylesheet"/>
-<link href="assets/cric-navigation.css" rel="stylesheet"/>
+<link href="assets/gestion-clients-cric.css" rel="stylesheet"/>
 
-<link href="assets/madic-datahubz-modules.css" rel="stylesheet"/><link href="assets/madic-clients-modern.css" rel="stylesheet"/><link rel="stylesheet" href="assets/madic-datahubz-unified.css"/>
-<style id="madic-i18n-language-state">
-body.madic-unified .madic-cric-standard-header .madic-lang-controls button[data-lang]{background:#eef8fc!important;color:#123553!important;cursor:pointer!important;}
-body.madic-unified .madic-cric-standard-header .madic-lang-controls button[data-lang].madic-lang-active{background:#389ec0!important;color:#fff!important;}
-</style>
+
+
+
 </head>
 <body class="madic-unified" data-cric-page="clients" data-page="gestion-clients-cric"><a class="madic-skip-link" href="#madic-clients-main">Aller au contenu principal</a>
 <div class="madic-unified-layout"><aside aria-label="Navigation du portail" class="madic-unified-sidebar">
@@ -30,7 +26,9 @@ body.madic-unified .madic-cric-standard-header .madic-lang-controls button[data-
 </nav>
 <div class="madic-unified-foot">Espace sécurisé MADIC</div>
 </aside><div class="madic-unified-content">
-<header class="madic-cric-standard-header"><a class="brand" href="cric-dashboard.html">MADI<span>C</span> <small>PORTAIL</small></a><nav class="toplinks" aria-label="Navigation du compte"><a href="cric-dashboard.html">Mon espace</a><div class="madic-lang-controls" role="group" aria-label="Langue / Language"><button type="button" data-lang="fr" aria-label="Français" title="Français" >FR</button><button type="button" data-lang="en" aria-label="English" title="English" >EN</button></div></nav></header>
+<header class="madic-cric-standard-header"><a class="brand" href="cric-dashboard.html">MADI<span>C</span> <small>PORTAIL</small></a><nav aria-label="Navigation du compte" class="toplinks"><a href="cric-dashboard.html">Mon espace</a><div aria-label="Langue / Language" class="madic-lang-controls" role="group"><button aria-label="Français" data-lang="fr" title="Français" type="button">FR</button><button aria-label="English" data-lang="en" title="English" type="button">EN</button></div><button class="secondary" id="logout" type="button">
+          Déconnexion
+        </button></nav></header>
 <main class="cric-shell" id="madic-clients-main">
 <div class="cric-heading madic-clients-hero">
 <div>
@@ -41,9 +39,7 @@ body.madic-unified .madic-cric-standard-header .madic-lang-controls button[data-
 </p>
 <p id="spaceName">Vérification de votre espace…</p>
 </div>
-<a class="secondary cric-return-link" href="cric-dashboard.html">← Retour à mon espace CRIC</a><button class="secondary" id="logout" type="button">
-          Déconnexion
-        </button>
+<a class="secondary cric-return-link" href="cric-dashboard.html">← Retour à mon espace CRIC</a>
 </div>
 <p aria-live="polite" id="message" role="status"></p>
 <div hidden="" id="workspace"><section aria-label="Aperçu du cabinet" class="madic-clients-overview"><article class="madic-clients-stat"><span>Clients associés</span><strong id="madicTotalClients">—</strong><small>Dans votre espace professionnel</small></article><article class="madic-clients-stat"><span>Dossiers associés</span><strong id="madicTotalDossiers">—</strong><small>Pour les clients autorisés</small></article><article class="madic-clients-stat"><span>Résultats de recherche</span><strong id="madicVisibleClients">—</strong><small>Clients affichés ci-dessous</small></article></section><nav aria-label="Accès aux actions clients" class="madic-clients-shortcuts"><a href="#madicClientsListPanel">Répertoire des clients</a><a href="#madicClientsInvitePanel">Inviter un client</a><a href="#madicImportPanel">Importer une liste</a><a href="gestion-dossiers-cric.html">Dossiers CRIC</a></nav>
@@ -134,10 +130,10 @@ body.madic-unified .madic-cric-standard-header .madic-lang-controls button[data-
 <footer>© MAD Immigration Canadienne · Portail sécurisé</footer>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <script src="assets/config.js"></script>
-<script src="assets/gestion-clients-cric.js"></script>
-<script src="assets/madic-import-clients-cric.js"></script>
+
+
 </div></div>
-<script src="assets/madic-datahubz-unified.js"></script>
-<script src="assets/madic-i18n-cric.js?v=20261102d"></script>
-</body>
+
+
+<script src="assets/gestion-clients-cric.js"></script></body>
 </html>
