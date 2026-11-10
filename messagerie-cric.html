@@ -9,19 +9,32 @@
     <title>Messagerie CRIC | MADIC</title>
     <link href="assets/style.css" rel="stylesheet" />
     <link href="assets/messagerie-cric.css?v=20261102-final" rel="stylesheet" />
-    
+    <link href="assets/madic-footer.css" rel="stylesheet" />
     <link href="assets/madic-datahubz-modules.css" rel="stylesheet" />
     <link rel="stylesheet" href="assets/madic-presence.css?v=2" />
     <link
       rel="stylesheet"
       href="assets/madic-messagerie-pieces-jointes.css?v=20261102-final"
     />
-  <link rel="stylesheet" href="assets/madic-datahubz-unified.css"/>
-<style id="madic-i18n-language-state">
-body.madic-unified .madic-cric-standard-header .madic-lang-controls button[data-lang]{background:#eef8fc!important;color:#123553!important;cursor:pointer!important;}
-body.madic-unified .madic-cric-standard-header .madic-lang-controls button[data-lang].madic-lang-active{background:#389ec0!important;color:#fff!important;}
-</style>
-</head>
+    <link rel="stylesheet" href="assets/madic-datahubz-unified.css" />
+    <style id="madic-i18n-language-state">
+      body.madic-unified
+        .madic-cric-standard-header
+        .madic-lang-controls
+        button[data-lang] {
+        background: #eef8fc !important;
+        color: #123553 !important;
+        cursor: pointer !important;
+      }
+      body.madic-unified
+        .madic-cric-standard-header
+        .madic-lang-controls
+        button[data-lang].madic-lang-active {
+        background: #389ec0 !important;
+        color: #fff !important;
+      }
+    </style>
+  </head>
   <body class="madic-unified" data-page="messagerie-cric">
     <div class="madic-unified-layout">
       <aside aria-label="Navigation du portail" class="madic-unified-sidebar">
@@ -67,10 +80,41 @@ body.madic-unified .madic-cric-standard-header .madic-lang-controls button[data-
         <div class="madic-unified-foot">Espace sécurisé MADIC</div>
       </aside>
       <div class="madic-unified-content">
-        <header class="madic-cric-standard-header"><a class="brand" href="cric-dashboard.html">MADI<span>C</span> <small>PORTAIL</small></a><nav class="toplinks" aria-label="Navigation du compte"><a href="cric-dashboard.html">Mon espace</a><div class="madic-lang-controls" role="group" aria-label="Langue / Language"><button type="button" data-lang="fr" aria-label="Français" title="Français" >FR</button><button type="button" data-lang="en" aria-label="English" title="English" >EN</button></div></nav></header>
+        <header class="madic-cric-standard-header">
+          <a class="brand" href="cric-dashboard.html"
+            >MADI<span>C</span> <small>PORTAIL</small></a
+          >
+          <nav class="toplinks" aria-label="Navigation du compte">
+            <a href="cric-dashboard.html">Mon espace</a>
+            <div
+              class="madic-lang-controls"
+              role="group"
+              aria-label="Langue / Language"
+            >
+              <button
+                type="button"
+                data-lang="fr"
+                aria-label="Français"
+                title="Français"
+              >
+                FR</button
+              ><button
+                type="button"
+                data-lang="en"
+                aria-label="English"
+                title="English"
+              >
+                EN
+              </button>
+            </div>
+          </nav>
+        </header>
         <main class="madic-msg-wrap">
           <h1>Messagerie sécurisée</h1>
-          <p class="muted">Échangez avec vos clients et retrouvez vos conversations et pièces jointes dans un espace sécurisé.</p>
+          <p class="muted">
+            Échangez avec vos clients et retrouvez vos conversations et pièces
+            jointes dans un espace sécurisé.
+          </p>
           <p aria-live="polite" id="msgStatus" role="status">
             Vérification des autorisations…
           </p>
@@ -118,15 +162,80 @@ body.madic-unified .madic-cric-standard-header .madic-lang-controls button[data-
             </section>
           </div>
         </main>
-        <footer>© MAD Immigration Canadienne · Portail sécurisé</footer>
+        <footer
+          aria-label="Pied de page MADIC / MADIC footer"
+          class="madic-footer"
+        >
+          <div class="madic-footer-inner">
+            <div class="madic-footer-brand">
+              <div class="madic-footer-brandline">
+                <img
+                  alt="Logo MADIC"
+                  class="madic-footer-logo"
+                  height="43"
+                  src="img/logo-madic.svg"
+                  width="43"
+                />
+                <div>
+                  <div class="madic-footer-name">MADIC</div>
+                  <div
+                    class="madic-footer-subtitle"
+                    data-en="MAD Immigration Canadienne"
+                    data-fr="MAD Immigration Canadienne"
+                  >
+                    MAD Immigration Canadienne
+                  </div>
+                </div>
+              </div>
+              <p
+                class="madic-footer-desc"
+                data-en="A digital platform for Canadian immigration professionals and their clients."
+                data-fr="Une plateforme numérique pour les professionnels de l'immigration canadienne et leurs clients."
+              >
+                Une plateforme numérique pour les professionnels de
+                l'immigration canadienne et leurs clients.
+              </p>
+            </div>
+            <nav aria-label="Liens du pied de page" class="madic-footer-right">
+              <a data-en="Home" data-fr="Accueil" href="index.html">Accueil</a>
+              <a
+                data-en="Privacy policy"
+                data-fr="Confidentialité"
+                href="politique-confidentialite.html"
+                >Confidentialité</a
+              >
+              <span
+                class="madic-footer-unavailable"
+                data-en="Terms of use"
+                data-fr="Conditions d'utilisation"
+                title="Page à venir / Page coming soon"
+                >Conditions d'utilisation</span
+              >
+              <span
+                class="madic-footer-unavailable"
+                data-en="Contact"
+                data-fr="Contact"
+                title="Page à venir / Page coming soon"
+                >Contact</span
+              >
+            </nav>
+          </div>
+          <div class="madic-footer-bottom">
+            © 2026 MAD Immigration Canadienne (MADIC) Inc.
+            <span data-en="All rights reserved." data-fr="Tous droits réservés."
+              >Tous droits réservés.</span
+            >
+          </div>
+        </footer>
         <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
         <script src="assets/config.js"></script>
         <script src="assets/madic-presence.js?v=2"></script>
         <script src="assets/messagerie-cric.js?fix=presence-v2"></script>
         <script src="assets/madic-messagerie-pieces-jointes.js?v=20261101-etape4"></script>
+        <script src="assets/madic-footer.js"></script>
       </div>
     </div>
     <script src="assets/madic-datahubz-unified.js"></script>
-<script src="assets/madic-i18n-cric.js?v=20261102d"></script>
+    <script src="assets/madic-i18n-cric.js?v=20261102d"></script>
   </body>
 </html>
