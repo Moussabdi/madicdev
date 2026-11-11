@@ -1,5 +1,4 @@
 <!doctype html>
-
 <html lang="fr-CA">
   <head>
     <meta charset="utf-8" />
@@ -9,9 +8,8 @@
     <title data-i18n="signup.client.title">
       Accès client sur invitation | MADIC PORTAIL
     </title>
-    <link href="assets/style.css" rel="stylesheet" />
-    <link href="assets/madic-datahubz-auth.css" rel="stylesheet" />
-    <link href="assets/madic-i18n-login.css" rel="stylesheet" />
+    <link href="assets/inscription.css" rel="stylesheet" />
+    <link href="assets/madic-footer.css" rel="stylesheet" />
   </head>
   <body data-page="invitation-information">
     <header>
@@ -57,9 +55,75 @@
         </p>
       </section>
     </main>
-    <footer data-i18n="signup.client.footer">
-      © MADIC PORTAIL · Plateforme professionnelle
+    <footer aria-label="Pied de page MADIC / MADIC footer" class="madic-footer">
+      <div class="madic-footer-inner">
+        <div class="madic-footer-brand">
+          <div class="madic-footer-brandline">
+            <img
+              alt="Logo MADIC"
+              class="madic-footer-logo"
+              height="43"
+              src="img/logo-madic.svg"
+              width="43"
+            />
+            <div>
+              <div class="madic-footer-name">MADIC</div>
+              <div
+                class="madic-footer-subtitle"
+                data-en="MAD Immigration Canadienne"
+                data-fr="MAD Immigration Canadienne"
+              >
+                MAD Immigration Canadienne
+              </div>
+            </div>
+          </div>
+          <p
+            class="madic-footer-desc"
+            data-en="A digital platform for Canadian immigration professionals and their clients."
+            data-fr="Une plateforme numérique pour les professionnels de l'immigration canadienne et leurs clients."
+          >
+            Une plateforme numérique pour les professionnels de l'immigration
+            canadienne et leurs clients.
+          </p>
+        </div>
+        <nav aria-label="Liens du pied de page" class="madic-footer-right">
+          <a
+            aria-current="page"
+            data-en="Home"
+            data-fr="Accueil"
+            href="index.html"
+            >Accueil</a
+          >
+          <a
+            data-en="Privacy policy"
+            data-fr="Confidentialité"
+            href="politique-confidentialite.html"
+            >Confidentialité</a
+          >
+          <span
+            class="madic-footer-unavailable"
+            data-en="Terms of use"
+            data-fr="Conditions d'utilisation"
+            title="Page à venir / Page coming soon"
+            >Conditions d'utilisation</span
+          >
+          <span
+            class="madic-footer-unavailable"
+            data-en="Contact"
+            data-fr="Contact"
+            title="Page à venir / Page coming soon"
+            >Contact</span
+          >
+        </nav>
+      </div>
+      <div class="madic-footer-bottom">
+        © 2026 MAD Immigration Canadienne (MADIC) Inc.
+        <span data-en="All rights reserved." data-fr="Tous droits réservés."
+          >Tous droits réservés.</span
+        >
+      </div>
     </footer>
-    <script defer="" src="assets/madic-i18n-login.js"></script>
+    <script defer="True" src="assets/madic-footer.js"></script>
+    <script defer="True" src="assets/inscription.js"></script>
   </body>
 </html>

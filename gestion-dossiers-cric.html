@@ -1,235 +1,442 @@
-<!DOCTYPE html>
+<!doctype html>
 
 <html lang="fr-CA">
-<head>
-<meta charset="utf-8"/>
-<meta content="width=device-width,initial-scale=1" name="viewport"/>
-<meta content="noindex,nofollow" name="robots"/>
-<link href="img/favicon.png" rel="icon"/>
-<title>Outils professionnels CRIC | MADIC</title>
-<link href="assets/gestion-dossiers-cric.css" rel="stylesheet"/></head>
-<body class="madic-unified" data-cric-page="dossiers" data-page="gestion-dossiers-cric">
-<a class="madic-skip-link" href="#main-content">Aller au contenu principal</a>
-<div class="madic-unified-layout">
-<aside aria-label="Navigation du portail" class="madic-unified-sidebar">
-<div class="madic-unified-brand">
-<span class="madic-unified-monogram"><img alt="Logo MADIC" src="img/logo-madic.svg"/></span><span><strong>MADIC PORTAIL</strong><small>Espace professionnel</small></span>
-</div>
-<div class="madic-unified-caption">NAVIGATION</div>
-<nav>
-<a data-madic-page="cric-dashboard.html" href="cric-dashboard.html"><span aria-hidden="true">▦</span>Vue d’ensemble</a><a data-madic-page="gestion-clients-cric.html" href="gestion-clients-cric.html"><span aria-hidden="true">♙</span>Clients</a><a aria-current="page" data-madic-page="gestion-dossiers-cric.html" href="gestion-dossiers-cric.html"><span aria-hidden="true">▤</span>Outils CRIC</a><a data-madic-page="messagerie-cric.html" href="messagerie-cric.html"><span aria-hidden="true">✉</span>Messagerie</a><a data-madic-page="rendez-vous-cric.html" href="rendez-vous-cric.html"><span aria-hidden="true">▦</span>Rendez-vous</a><a data-madic-page="demandes-documents-cric.html" href="demandes-documents-cric.html"><span aria-hidden="true">▣</span>Documents</a><a data-madic-page="echeances-cric.html" href="echeances-cric.html"><span aria-hidden="true">◷</span>Échéances</a><a data-madic-page="facturation-cric.html" href="facturation-cric.html"><span aria-hidden="true">▥</span>Facturation</a><a data-madic-page="finances-cric.html" href="finances-cric.html"><span aria-hidden="true">◈</span>Finances</a>
-<a data-madic-page="profil-professionnel-cric.html" href="profil-professionnel-cric.html">Mon profil professionnel</a></nav>
-<div class="madic-unified-foot">Espace sécurisé MADIC</div>
-</aside>
-<div class="madic-unified-content">
-<header class="madic-cric-standard-header">
-<a class="brand" href="cric-dashboard.html">MADI<span>C</span> <small>PORTAIL</small></a>
-<nav aria-label="Navigation du compte" class="toplinks"><button class="madic-header-signout" data-en="Sign out" data-fr="Déconnexion" data-madic-en="Sign out" data-madic-fr="Déconnexion" id="logout" type="button">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width,initial-scale=1" name="viewport" />
+    <meta content="noindex,nofollow" name="robots" />
+    <link href="img/favicon.png" rel="icon" />
+    <title>Outils professionnels CRIC | MADIC</title>
+    <link href="assets/gestion-dossiers-cric.css" rel="stylesheet" />
+    <link href="assets/madic-footer.css" rel="stylesheet" />
+  </head>
+  <body
+    class="madic-unified"
+    data-cric-page="dossiers"
+    data-page="gestion-dossiers-cric"
+  >
+    <a class="madic-skip-link" href="#main-content"
+      >Aller au contenu principal</a
+    >
+    <div class="madic-unified-layout">
+      <aside aria-label="Navigation du portail" class="madic-unified-sidebar">
+        <div class="madic-unified-brand">
+          <span class="madic-unified-monogram"
+            ><img alt="Logo MADIC" src="img/logo-madic.svg" /></span
+          ><span
+            ><strong>MADIC PORTAIL</strong
+            ><small>Espace professionnel</small></span
+          >
+        </div>
+        <div class="madic-unified-caption">NAVIGATION</div>
+        <nav>
+          <a data-madic-page="cric-dashboard.html" href="cric-dashboard.html"
+            ><span aria-hidden="true">▦</span>Vue d’ensemble</a
+          ><a
+            data-madic-page="gestion-clients-cric.html"
+            href="gestion-clients-cric.html"
+            ><span aria-hidden="true">♙</span>Clients</a
+          ><a
+            aria-current="page"
+            data-madic-page="gestion-dossiers-cric.html"
+            href="gestion-dossiers-cric.html"
+            ><span aria-hidden="true">▤</span>Outils CRIC</a
+          ><a data-madic-page="messagerie-cric.html" href="messagerie-cric.html"
+            ><span aria-hidden="true">✉</span>Messagerie</a
+          ><a
+            data-madic-page="rendez-vous-cric.html"
+            href="rendez-vous-cric.html"
+            ><span aria-hidden="true">▦</span>Rendez-vous</a
+          ><a
+            data-madic-page="demandes-documents-cric.html"
+            href="demandes-documents-cric.html"
+            ><span aria-hidden="true">▣</span>Documents</a
+          ><a data-madic-page="echeances-cric.html" href="echeances-cric.html"
+            ><span aria-hidden="true">◷</span>Échéances</a
+          ><a
+            data-madic-page="facturation-cric.html"
+            href="facturation-cric.html"
+            ><span aria-hidden="true">▥</span>Facturation</a
+          ><a data-madic-page="finances-cric.html" href="finances-cric.html"
+            ><span aria-hidden="true">◈</span>Finances</a
+          >
+          <a
+            data-madic-page="profil-professionnel-cric.html"
+            href="profil-professionnel-cric.html"
+            >Mon profil professionnel</a
+          >
+        </nav>
+        <div class="madic-unified-foot">Espace sécurisé MADIC</div>
+      </aside>
+      <div class="madic-unified-content">
+        <header class="madic-cric-standard-header">
+          <a class="brand" href="cric-dashboard.html"
+            >MADI<span>C</span> <small>PORTAIL</small></a
+          >
+          <nav aria-label="Navigation du compte" class="toplinks">
+            <button
+              class="madic-header-signout"
+              data-en="Sign out"
+              data-fr="Déconnexion"
+              data-madic-en="Sign out"
+              data-madic-fr="Déconnexion"
+              id="logout"
+              type="button"
+            >
               Déconnexion
             </button>
-<a data-en="My space" data-fr="Mon espace" data-madic-en="My space" data-madic-fr="Mon espace" href="cric-dashboard.html">Mon espace</a>
-<div aria-label="Langue / Language" class="madic-lang-controls" role="group">
-<button aria-label="Français" data-lang="fr" title="Français" type="button">
-                FR</button><button aria-label="English" data-lang="en" title="English" type="button">
+            <a
+              data-en="My space"
+              data-fr="Mon espace"
+              data-madic-en="My space"
+              data-madic-fr="Mon espace"
+              href="cric-dashboard.html"
+              >Mon espace</a
+            >
+            <div
+              aria-label="Langue / Language"
+              class="madic-lang-controls"
+              role="group"
+            >
+              <button
+                aria-label="Français"
+                data-lang="fr"
+                title="Français"
+                type="button"
+              >
+                FR</button
+              ><button
+                aria-label="English"
+                data-lang="en"
+                title="English"
+                type="button"
+              >
                 EN
               </button>
-</div>
-<a aria-label="Notifications" class="madic-top-notification" href="cric-dashboard.html#cricNotificationsPanel" title="Notifications"><img alt="" aria-hidden="true" class="madic-heroicon" src="https://raw.githubusercontent.com/tailwindlabs/heroicons/v2.2.0/optimized/24/outline/bell.svg"/></a></nav>
-</header>
-<main class="cric-shell" id="main-content">
-<div class="cric-heading">
-<div>
-<p class="cric-eyebrow">ESPACE PROFESSIONNEL CRIC</p>
-<h1>Outils professionnels CRIC</h1>
-<p class="madic-page-lead">
+            </div>
+            <a
+              aria-label="Notifications"
+              class="madic-top-notification"
+              href="cric-dashboard.html#cricNotificationsPanel"
+              title="Notifications"
+              ><img
+                alt=""
+                aria-hidden="true"
+                class="madic-heroicon"
+                src="https://raw.githubusercontent.com/tailwindlabs/heroicons/v2.2.0/optimized/24/outline/bell.svg"
+            /></a>
+          </nav>
+        </header>
+        <main class="cric-shell" id="main-content">
+          <div class="cric-heading">
+            <div>
+              <p class="cric-eyebrow">ESPACE PROFESSIONNEL CRIC</p>
+              <h1>Outils professionnels CRIC</h1>
+              <p class="madic-page-lead">
                 Préparez vos formulaires, contrats et analyses à partir des
                 dossiers autorisés de votre cabinet.
               </p>
-<p id="spaceName">Vérification de votre espace…</p>
-</div>
-<a class="secondary cric-return-link" href="cric-dashboard.html">← Retour à mon espace CRIC</a>
-</div>
-<p aria-live="polite" id="message" role="status"></p>
-<div hidden="" id="workspace">
-<section aria-label="Vue d'ensemble des outils" class="madic-stage-hero">
-<div class="madic-stage-hero-copy">
-<span class="madic-stage-kicker">CENTRE DE TRAVAIL · CRIC</span>
-<h2>Vos dossiers. Vos outils. Un seul espace.</h2>
-<p>
+              <p id="spaceName">Vérification de votre espace…</p>
+            </div>
+            <a class="secondary cric-return-link" href="cric-dashboard.html"
+              >← Retour à mon espace CRIC</a
+            >
+          </div>
+          <p aria-live="polite" id="message" role="status"></p>
+          <div hidden="" id="workspace">
+            <section
+              aria-label="Vue d'ensemble des outils"
+              class="madic-stage-hero"
+            >
+              <div class="madic-stage-hero-copy">
+                <span class="madic-stage-kicker">CENTRE DE TRAVAIL · CRIC</span>
+                <h2>Vos dossiers. Vos outils. Un seul espace.</h2>
+                <p>
                   Sélectionnez un client, puis son dossier pour préparer les
                   documents et les analyses professionnelles.
                 </p>
-</div>
-<div aria-hidden="true" class="madic-stage-hero-mark">
+              </div>
+              <div aria-hidden="true" class="madic-stage-hero-mark">
                 02<span> / 09</span>
-</div>
-</section>
-<section aria-label="Indicateurs de votre espace" class="madic-stage-stats">
-<article>
-<span>Clients autorisés</span><strong id="toolClientCount">—</strong><small>Associés à votre cabinet</small>
-</article>
-<article>
-<span>Dossiers accessibles</span><strong id="toolDossierCount">—</strong><small>Dans votre espace CRIC</small>
-</article>
-<article>
-<span>Dossier sélectionné</span><strong class="madic-stage-stat-text" id="toolCurrentDossier">Aucun</strong><small>Pour préparer les outils</small>
-</article>
-</section>
-<nav aria-label="Accès rapide aux outils" class="madic-tools-shortcuts">
-<a href="#madicToolsIrcc">Formulaires IRCC</a><a href="#madicContractsTitle">Contrats</a><a href="#madicToolsAnalysis">Analyse préliminaire</a><a href="kanban-cric.html">Suivi Kanban des dossiers</a>
-</nav>
-<section class="panel madic-tools-intro">
-<h2>Centre des outils professionnels</h2>
-<p>
+              </div>
+            </section>
+            <section
+              aria-label="Indicateurs de votre espace"
+              class="madic-stage-stats"
+            >
+              <article>
+                <span>Clients autorisés</span
+                ><strong id="toolClientCount">—</strong
+                ><small>Associés à votre cabinet</small>
+              </article>
+              <article>
+                <span>Dossiers accessibles</span
+                ><strong id="toolDossierCount">—</strong
+                ><small>Dans votre espace CRIC</small>
+              </article>
+              <article>
+                <span>Dossier sélectionné</span
+                ><strong class="madic-stage-stat-text" id="toolCurrentDossier"
+                  >Aucun</strong
+                ><small>Pour préparer les outils</small>
+              </article>
+            </section>
+            <nav
+              aria-label="Accès rapide aux outils"
+              class="madic-tools-shortcuts"
+            >
+              <a href="#madicToolsIrcc">Formulaires IRCC</a
+              ><a href="#madicContractsTitle">Contrats</a
+              ><a href="#madicToolsAnalysis">Analyse préliminaire</a
+              ><a href="kanban-cric.html">Suivi Kanban des dossiers</a>
+            </nav>
+            <section class="panel madic-tools-intro">
+              <h2>Centre des outils professionnels</h2>
+              <p>
                 Sélectionnez un client et son dossier pour préparer vos
                 documents de travail. Les résultats doivent être vérifiés et
                 approuvés par le consultant avant toute utilisation.
               </p>
-<div class="madic-tool-fields">
-<label>Client associé au cabinet<select id="toolClient">
-<option value="">Sélectionner un client</option>
-</select></label><label>Dossier<select disabled="" id="toolDossier">
-<option value="">Sélectionner un dossier</option>
-</select></label>
-</div>
-<p aria-live="polite" id="toolSelectionStatus" role="status"></p>
-</section>
-<section class="panel" id="madicToolsIrcc">
-<h2>1. Formulaires IRCC automatisés</h2>
-<p>
+              <div class="madic-tool-fields">
+                <label
+                  >Client associé au cabinet<select id="toolClient">
+                    <option value="">Sélectionner un client</option>
+                  </select></label
+                ><label
+                  >Dossier<select disabled="" id="toolDossier">
+                    <option value="">Sélectionner un dossier</option>
+                  </select></label
+                >
+              </div>
+              <p aria-live="polite" id="toolSelectionStatus" role="status"></p>
+            </section>
+            <section class="panel" id="madicToolsIrcc">
+              <h2>1. Formulaires IRCC automatisés</h2>
+              <p>
                 Préparation des renseignements à partir du profil du client. Les
                 PDF officiels ne sont pas générés à ce stade.
               </p>
-<div class="madic-tool-fields">
-<label>Formulaire IRCC<select id="toolIrccForm">
-<option value="IMM 5476">
+              <div class="madic-tool-fields">
+                <label
+                  >Formulaire IRCC<select id="toolIrccForm">
+                    <option value="IMM 5476">
                       IMM 5476-Recours aux services d’un représentant
                     </option>
-<option value="IMM 0008">
+                    <option value="IMM 0008">
                       IMM 0008-Demande générique pour le Canada
                     </option>
-<option value="IMM 5406">
+                    <option value="IMM 5406">
                       IMM 5406-Renseignements additionnels sur la famille
                     </option>
-<option value="IMM 5669">
+                    <option value="IMM 5669">
                       IMM 5669-Antécédents / Déclaration
                     </option>
-<option value="autre">Autre formulaire-à définir</option>
-</select></label>
-<div class="madic-tool-actions">
-<button id="toolIrccPrepare" type="button">
+                    <option value="autre">Autre formulaire-à définir</option>
+                  </select></label
+                >
+                <div class="madic-tool-actions">
+                  <button id="toolIrccPrepare" type="button">
                     Préparer la fiche de renseignements
                   </button>
-</div>
-</div>
-<div class="madic-tool-result" hidden="" id="toolIrccResult"></div>
-</section>
-<section aria-labelledby="madicContractsTitle" class="panel madic-contracts-panel">
-<div class="madic-contracts-heading">
-<div class="madic-contracts-eyebrow">
+                </div>
+              </div>
+              <div
+                class="madic-tool-result"
+                hidden=""
+                id="toolIrccResult"
+              ></div>
+            </section>
+            <section
+              aria-labelledby="madicContractsTitle"
+              class="panel madic-contracts-panel"
+            >
+              <div class="madic-contracts-heading">
+                <div class="madic-contracts-eyebrow">
                   OUTILS CRIC · GESTION CONTRACTUELLE
                 </div>
-<h2 id="madicContractsTitle">2. Contrats</h2>
-<p>
+                <h2 id="madicContractsTitle">2. Contrats</h2>
+                <p>
                   Choisissez le contrat adapté à votre mandat. Les informations
                   du client et du dossier sélectionnés seront transmises à la
                   page de préparation.
                 </p>
-</div>
-<div class="madic-contracts-grid">
-<article class="madic-contract-card">
-<div aria-hidden="true" class="madic-contract-icon">01</div>
-<div class="madic-contract-card-content">
-<span class="madic-contract-type">PREMIÈRE CONSULTATION</span>
-<h3>Contrat de consultation initiale</h3>
-<p>
+              </div>
+              <div class="madic-contracts-grid">
+                <article class="madic-contract-card">
+                  <div aria-hidden="true" class="madic-contract-icon">01</div>
+                  <div class="madic-contract-card-content">
+                    <span class="madic-contract-type"
+                      >PREMIÈRE CONSULTATION</span
+                    >
+                    <h3>Contrat de consultation initiale</h3>
+                    <p>
                       Encadrez la première consultation, son objet, les
                       honoraires et les conditions de prestation.
                     </p>
-<a class="madic-contract-link madic-contract-cta" href="contrat-initial-cric.html" id="toolInitialContractLink">Préparer le contrat <span aria-hidden="true">→</span></a>
-</div>
-</article>
-<article class="madic-contract-card">
-<div aria-hidden="true" class="madic-contract-icon">02</div>
-<div class="madic-contract-card-content">
-<span class="madic-contract-type">MANDAT DE REPRÉSENTATION</span>
-<h3>Contrat de services professionnels</h3>
-<p>
+                    <a
+                      class="madic-contract-link madic-contract-cta"
+                      href="contrat-initial-cric.html"
+                      id="toolInitialContractLink"
+                      >Préparer le contrat <span aria-hidden="true">→</span></a
+                    >
+                  </div>
+                </article>
+                <article class="madic-contract-card">
+                  <div aria-hidden="true" class="madic-contract-icon">02</div>
+                  <div class="madic-contract-card-content">
+                    <span class="madic-contract-type"
+                      >MANDAT DE REPRÉSENTATION</span
+                    >
+                    <h3>Contrat de services professionnels</h3>
+                    <p>
                       Définissez les services convenus, les responsabilités, les
                       honoraires et les modalités du mandat.
                     </p>
-<a class="madic-contract-link madic-contract-cta" href="contrat-professionnel-cric.html" id="toolProfessionalContractLink">Préparer le contrat <span aria-hidden="true">→</span></a>
-</div>
-</article>
-</div>
-<p aria-live="polite" class="madic-contracts-status" id="toolContractNavigationStatus">
+                    <a
+                      class="madic-contract-link madic-contract-cta"
+                      href="contrat-professionnel-cric.html"
+                      id="toolProfessionalContractLink"
+                      >Préparer le contrat <span aria-hidden="true">→</span></a
+                    >
+                  </div>
+                </article>
+              </div>
+              <p
+                aria-live="polite"
+                class="madic-contracts-status"
+                id="toolContractNavigationStatus"
+              >
                 Sélectionnez un client et un dossier ci-dessus avant d’ouvrir un
                 contrat.
               </p>
-<p class="madic-contracts-footnote">
+              <p class="madic-contracts-footnote">
                 Les clauses, les honoraires et les signatures doivent être
                 vérifiés et validés avant transmission au client.
               </p>
-</section>
-<section class="panel" id="madicToolsAnalysis">
-<h2>3. Résultat de l’analyse préliminaire</h2>
-<p>
+            </section>
+            <section class="panel" id="madicToolsAnalysis">
+              <h2>3. Résultat de l’analyse préliminaire</h2>
+              <p>
                 Rédigez une évaluation professionnelle provisoire, sans décision
                 automatique d’admissibilité.
               </p>
-<div class="madic-tool-fields">
-<label>Programme ou voie d’immigration<input id="toolAnalysisProgram" maxlength="160" placeholder="Ex. : Entrée express, parrainage familial"/></label><label>Appréciation préliminaire<select id="toolAnalysisStatus">
-<option value="Analyse à compléter">
+              <div class="madic-tool-fields">
+                <label
+                  >Programme ou voie d’immigration<input
+                    id="toolAnalysisProgram"
+                    maxlength="160"
+                    placeholder="Ex. : Entrée express, parrainage familial" /></label
+                ><label
+                  >Appréciation préliminaire<select id="toolAnalysisStatus">
+                    <option value="Analyse à compléter">
                       Analyse à compléter
                     </option>
-<option value="Éléments favorables à vérifier">
+                    <option value="Éléments favorables à vérifier">
                       Éléments favorables à vérifier
                     </option>
-<option value="Renseignements supplémentaires requis">
+                    <option value="Renseignements supplémentaires requis">
                       Renseignements supplémentaires requis
                     </option>
-<option value="Critères potentiellement non satisfaits">
+                    <option value="Critères potentiellement non satisfaits">
                       Critères potentiellement non satisfaits
                     </option>
-</select></label>
-</div>
-<label class="madic-tool-full">Constats et critères examinés<textarea id="toolAnalysisFindings" maxlength="5000" placeholder="Indiquez les faits vérifiés et les critères applicables." rows="4"></textarea></label><label class="madic-tool-full">Documents manquants et prochaines étapes<textarea id="toolAnalysisNext" maxlength="3000" rows="3"></textarea></label><button id="toolAnalysisPrepare" type="button">
+                  </select></label
+                >
+              </div>
+              <label class="madic-tool-full"
+                >Constats et critères examinés<textarea
+                  id="toolAnalysisFindings"
+                  maxlength="5000"
+                  placeholder="Indiquez les faits vérifiés et les critères applicables."
+                  rows="4"
+                ></textarea></label
+              ><label class="madic-tool-full"
+                >Documents manquants et prochaines étapes<textarea
+                  id="toolAnalysisNext"
+                  maxlength="3000"
+                  rows="3"
+                ></textarea></label
+              ><button id="toolAnalysisPrepare" type="button">
                 Préparer le compte rendu
               </button>
-<div class="madic-tool-result" hidden="" id="toolAnalysisResult"></div>
-</section>
-</div>
-</main>
-<footer aria-label="Pied de page MADIC / MADIC footer" class="madic-footer">
-<div class="madic-footer-inner">
-<div class="madic-footer-brand">
-<div class="madic-footer-brandline">
-<img alt="Logo MADIC" class="madic-footer-logo" height="43" src="img/logo-madic.svg" width="43"/>
-<div>
-<div class="madic-footer-name">MADIC</div>
-<div class="madic-footer-subtitle" data-en="MAD Immigration Canadienne" data-fr="MAD Immigration Canadienne">
+              <div
+                class="madic-tool-result"
+                hidden=""
+                id="toolAnalysisResult"
+              ></div>
+            </section>
+          </div>
+        </main>
+        <footer
+          aria-label="Pied de page MADIC / MADIC footer"
+          class="madic-footer"
+        >
+          <div class="madic-footer-inner">
+            <div class="madic-footer-brand">
+              <div class="madic-footer-brandline">
+                <img
+                  alt="Logo MADIC"
+                  class="madic-footer-logo"
+                  height="43"
+                  src="img/logo-madic.svg"
+                  width="43"
+                />
+                <div>
+                  <div class="madic-footer-name">MADIC</div>
+                  <div
+                    class="madic-footer-subtitle"
+                    data-en="MAD Immigration Canadienne"
+                    data-fr="MAD Immigration Canadienne"
+                  >
                     MAD Immigration Canadienne
                   </div>
-</div>
-</div>
-<p class="madic-footer-desc" data-en="A digital platform for Canadian immigration professionals and their clients." data-fr="Une plateforme numérique pour les professionnels de l'immigration canadienne et leurs clients.">
+                </div>
+              </div>
+              <p
+                class="madic-footer-desc"
+                data-en="A digital platform for Canadian immigration professionals and their clients."
+                data-fr="Une plateforme numérique pour les professionnels de l'immigration canadienne et leurs clients."
+              >
                 Une plateforme numérique pour les professionnels de
                 l'immigration canadienne et leurs clients.
               </p>
-</div>
-<nav aria-label="Liens du pied de page" class="madic-footer-right">
-<a data-en="Home" data-fr="Accueil" href="index.html">Accueil</a>
-<a data-en="Privacy policy" data-fr="Confidentialité" href="politique-confidentialite.html">Confidentialité</a>
-<span class="madic-footer-unavailable" data-en="Terms of use" data-fr="Conditions d'utilisation" title="Page à venir / Page coming soon">Conditions d'utilisation</span>
-<span class="madic-footer-unavailable" data-en="Contact" data-fr="Contact" title="Page à venir / Page coming soon">Contact</span>
-</nav>
-</div>
-<div class="madic-footer-bottom">
+            </div>
+            <nav aria-label="Liens du pied de page" class="madic-footer-right">
+              <a data-en="Home" data-fr="Accueil" href="index.html">Accueil</a>
+              <a
+                data-en="Privacy policy"
+                data-fr="Confidentialité"
+                href="politique-confidentialite.html"
+                >Confidentialité</a
+              >
+              <span
+                class="madic-footer-unavailable"
+                data-en="Terms of use"
+                data-fr="Conditions d'utilisation"
+                title="Page à venir / Page coming soon"
+                >Conditions d'utilisation</span
+              >
+              <span
+                class="madic-footer-unavailable"
+                data-en="Contact"
+                data-fr="Contact"
+                title="Page à venir / Page coming soon"
+                >Contact</span
+              >
+            </nav>
+          </div>
+          <div class="madic-footer-bottom">
             © 2026 MAD Immigration Canadienne (MADIC) Inc.
-            <span data-en="All rights reserved." data-fr="Tous droits réservés.">Tous droits réservés.</span>
-</div>
-</footer>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script><script src="assets/config.js"></script><script src="assets/gestion-dossiers-cric.js"></script></div>
-</div>
-</body>
+            <span data-en="All rights reserved." data-fr="Tous droits réservés."
+              >Tous droits réservés.</span
+            >
+          </div>
+        </footer>
+        <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+        <script src="assets/config.js"></script>
+        <script src="assets/madic-footer.js"></script>
+        <script src="assets/gestion-dossiers-cric.js"></script>
+      </div>
+    </div>
+  </body>
 </html>

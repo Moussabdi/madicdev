@@ -34,16 +34,29 @@
     document.body.appendChild(popup);
     popupTitle = popup.querySelector("h2");
     popupText = popup.querySelector("p");
-    popup.querySelectorAll("button").forEach(b => b.addEventListener("click", closePopup));
-    popup.addEventListener("click", e => { if (e.target === popup) closePopup(); });
-    document.addEventListener("keydown", e => {
+    popup
+      .querySelectorAll("button")
+      .forEach((b) => b.addEventListener("click", closePopup));
+    popup.addEventListener("click", (e) => {
+      if (e.target === popup) closePopup();
+    });
+    document.addEventListener("keydown", (e) => {
       if (popup.hidden) return;
-      if (e.key === "Escape") { e.preventDefault(); closePopup(); }
+      if (e.key === "Escape") {
+        e.preventDefault();
+        closePopup();
+      }
       if (e.key === "Tab") {
         const buttons = [...popup.querySelectorAll("button")];
-        const first = buttons[0], last = buttons[buttons.length - 1];
-        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
-        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+        const first = buttons[0],
+          last = buttons[buttons.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
       }
     });
   };
@@ -59,11 +72,24 @@
   };
   const show = (s) => {
     if (msg) msg.textContent = s;
-    if (document.body.dataset.page === "cric-signup" && s && !s.startsWith("Demande déjà enregistrée") && !s.startsWith("Permis CRIC confirmé automatiquement")) {
-      openPopup(s, /^Erreur|non confirm|refus|invalide/i.test(s) ? "Résultat de la vérification CRIC" : "Information sur votre demande CRIC");
+    if (
+      document.body.dataset.page === "cric-signup" &&
+      s &&
+      !s.startsWith("Demande déjà enregistrée") &&
+      !s.startsWith("Permis CRIC confirmé automatiquement")
+    ) {
+      openPopup(
+        s,
+        /^Erreur|non confirm|refus|invalide/i.test(s)
+          ? "Résultat de la vérification CRIC"
+          : "Information sur votre demande CRIC",
+      );
     }
   };
-  if (!cfg?.url || !cfg?.anonKey || !window.supabase) { show("Configuration Supabase manquante."); return; }
+  if (!cfg?.url || !cfg?.anonKey || !window.supabase) {
+    show("Configuration Supabase manquante.");
+    return;
+  }
   const db = window.getMadicSupabase();
   const page = document.body.dataset.page;
   if (page === "cric-signup") {
@@ -71,14 +97,16 @@
     guideButton.type = "button";
     guideButton.className = "madic-cric-guide";
     guideButton.textContent = "ⓘ Guide de vérification CRIC";
-    guideButton.addEventListener("click", () => openPopup(
-      "1. Saisissez votre nom complet et votre numéro de permis CRIC.\n" +
-      "2. Cliquez sur « Vérifier mon permis CRIC ». MADIC consulte le registre officiel du CCIC.\n" +
-      "3. Si le permis est confirmé, la prévalidation est transmise à MADIC sans création de compte.\n" +
-      "4. MADIC examine votre identité dans la page administrative de validation.\n\n" +
-      "Si le permis n’est pas confirmé, vérifiez les informations saisies. Vous pouvez fermer cette fenêtre à tout moment.",
-      "Guide d'inscription CRIC"
-    ));
+    guideButton.addEventListener("click", () =>
+      openPopup(
+        "1. Saisissez votre nom complet et votre numéro de permis CRIC.\n" +
+          "2. Cliquez sur « Vérifier mon permis CRIC ». MADIC consulte le registre officiel du CCIC.\n" +
+          "3. Si le permis est confirmé, la prévalidation est transmise à MADIC sans création de compte.\n" +
+          "4. MADIC examine votre identité dans la page administrative de validation.\n\n" +
+          "Si le permis n’est pas confirmé, vérifiez les informations saisies. Vous pouvez fermer cette fenêtre à tout moment.",
+        "Guide d'inscription CRIC",
+      ),
+    );
     const heading = document.querySelector("main h1");
     if (heading) heading.insertAdjacentElement("afterend", guideButton);
     const nameInput = document.getElementById("cricName");
@@ -87,52 +115,114 @@
     const checkButton = document.getElementById("cricCheckStatus");
     const key = "madic_cric_prevalidation_v1";
     const invoke = async (body) => {
-      const { data, error } = await db.functions.invoke("madic-verify-cric-license", { body });
+      const { data, error } = await db.functions.invoke(
+        "madic-verify-cric-license",
+        { body },
+      );
       if (error) {
         let message = "La vérification du permis a échoué.";
-        try { const payload = await error.context?.clone()?.json(); if (payload?.error) message = payload.error; } catch (_) {}
+        try {
+          const payload = await error.context?.clone()?.json();
+          if (payload?.error) message = payload.error;
+        } catch (_) {}
         throw new Error(message);
       }
       if (data?.error) throw new Error(data.error);
       return data;
     };
-    const getSaved = () => { try { return JSON.parse(localStorage.getItem(key) || "null"); } catch { return null; } };
+    const getSaved = () => {
+      try {
+        return JSON.parse(localStorage.getItem(key) || "null");
+      } catch {
+        return null;
+      }
+    };
     const saved = getSaved();
     if (saved?.token && saved.name && saved.license) {
       nameInput.value = saved.name;
       licenseInput.value = saved.license;
       checkButton.hidden = false;
     }
-    const invalidate = () => { localStorage.removeItem(key); checkButton.hidden = true; };
+    const invalidate = () => {
+      localStorage.removeItem(key);
+      checkButton.hidden = true;
+    };
     nameInput.addEventListener("input", invalidate);
     licenseInput.addEventListener("input", invalidate);
     verifyButton.addEventListener("click", async () => {
       const name = nameInput.value.trim().replace(/\s+/g, " ");
       const license = licenseInput.value.trim().toUpperCase();
-      if (name.length < 3 || !/^R\d{6,}$/.test(license)) { show("Saisissez un nom complet et un numéro CRIC valide."); return; }
+      if (name.length < 3 || !/^R\d{6,}$/.test(license)) {
+        show("Saisissez un nom complet et un numéro CRIC valide.");
+        return;
+      }
       verifyButton.disabled = true;
       try {
-        const data = await invoke({ action: "request", full_name: name, license_number: license });
-        if (data.verified !== true || data.registry_verified !== true || data.status !== "pending" || !data.token || data.registry?.registry_license !== license) throw Error("La vérification officielle n’a pas été confirmée.");
-        localStorage.setItem(key, JSON.stringify({ name, license, token: data.token }));
+        const data = await invoke({
+          action: "request",
+          full_name: name,
+          license_number: license,
+        });
+        if (
+          data.verified !== true ||
+          data.registry_verified !== true ||
+          data.status !== "pending" ||
+          !data.token ||
+          data.registry?.registry_license !== license
+        )
+          throw Error("La vérification officielle n’a pas été confirmée.");
+        localStorage.setItem(
+          key,
+          JSON.stringify({ name, license, token: data.token }),
+        );
         checkButton.hidden = false;
-        show("Permis vérifié dans le registre officiel CCIC. La demande est enregistrée pour examen administratif MADIC. Aucun compte n’a été créé.");
-      } catch (e) { show("Erreur : " + e.message); }
-      finally { verifyButton.disabled = false; }
+        show(
+          "Permis vérifié dans le registre officiel CCIC. La demande est enregistrée pour examen administratif MADIC. Aucun compte n’a été créé.",
+        );
+      } catch (e) {
+        show("Erreur : " + e.message);
+      } finally {
+        verifyButton.disabled = false;
+      }
     });
     checkButton.addEventListener("click", async () => {
       const saved = getSaved();
-      if (!saved?.token || saved.name !== nameInput.value.trim().replace(/\s+/g, " ") || saved.license !== licenseInput.value.trim().toUpperCase()) { show("Effectuez une nouvelle vérification."); return; }
+      if (
+        !saved?.token ||
+        saved.name !== nameInput.value.trim().replace(/\s+/g, " ") ||
+        saved.license !== licenseInput.value.trim().toUpperCase()
+      ) {
+        show("Effectuez une nouvelle vérification.");
+        return;
+      }
       checkButton.disabled = true;
       try {
         const data = await invoke({ action: "status", token: saved.token });
-        if (data.full_name !== saved.name || data.license_number !== saved.license) throw Error("Référence incohérente.");
-        const labels = { pending: "en attente de validation administrative", approved: "validée par MADIC (sans compte créé)", rejected: "refusée", expired: "expirée" };
-        show("Demande CRIC : " + (labels[data.status] || data.status) + ". Aucun compte n’est créé sur cette page.");
-      } catch (e) { show("Erreur : " + e.message); }
-      finally { checkButton.disabled = false; }
+        if (
+          data.full_name !== saved.name ||
+          data.license_number !== saved.license
+        )
+          throw Error("Référence incohérente.");
+        const labels = {
+          pending: "en attente de validation administrative",
+          approved: "validée par MADIC (sans compte créé)",
+          rejected: "refusée",
+          expired: "expirée",
+        };
+        show(
+          "Demande CRIC : " +
+            (labels[data.status] || data.status) +
+            ". Aucun compte n’est créé sur cette page.",
+        );
+      } catch (e) {
+        show("Erreur : " + e.message);
+      } finally {
+        checkButton.disabled = false;
+      }
     });
-    document.getElementById("cricSignup").addEventListener("submit", e => e.preventDefault());
+    document
+      .getElementById("cricSignup")
+      .addEventListener("submit", (e) => e.preventDefault());
   }
   if (page === "cric-approval") {
     (async () => {
@@ -198,18 +288,26 @@
               )
                 return;
               if (approve) {
-                const registryUrl = "https://registre.college-ic.ca/Public-Register-FR/RCIC_Search.aspx";
+                const registryUrl =
+                  "https://registre.college-ic.ca/Public-Register-FR/RCIC_Search.aspx";
                 const confirmed = window.prompt(
                   "Avant approbation, consultez le registre officiel du CCIC :\n" +
-                  registryUrl + "\n\n" +
-                  "Vérifiez le numéro, le nom et le statut professionnel.\n" +
-                  "Si et seulement si ces éléments correspondent, saisissez exactement le numéro " +
-                  item.license_number + " pour confirmer :",
+                    registryUrl +
+                    "\n\n" +
+                    "Vérifiez le numéro, le nom et le statut professionnel.\n" +
+                    "Si et seulement si ces éléments correspondent, saisissez exactement le numéro " +
+                    item.license_number +
+                    " pour confirmer :",
                   "",
                 );
                 if (confirmed === null) return;
-                if (confirmed.trim().toUpperCase() !== item.license_number.trim().toUpperCase()) {
-                  show("Approbation annulée : vérification du registre non confirmée.");
+                if (
+                  confirmed.trim().toUpperCase() !==
+                  item.license_number.trim().toUpperCase()
+                ) {
+                  show(
+                    "Approbation annulée : vérification du registre non confirmée.",
+                  );
                   return;
                 }
               }
