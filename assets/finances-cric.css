@@ -1783,3 +1783,18 @@ body.madic-unified[data-page="finances-cric"] .madic-unified-content>header .mad
 body.madic-unified[data-page="finances-cric"] .madic-unified-content>header .madic-lang-controls button{box-sizing:border-box!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;width:52px!important;min-width:52px!important;height:44px!important;min-height:44px!important;padding:0 12px!important;border:1px solid #55b9dc!important;border-radius:12px!important;background:#f0f9fd!important;color:#102b4a!important;box-shadow:none!important;font:600 14px Inter,system-ui,sans-serif!important;line-height:1!important;opacity:1!important;cursor:pointer!important}
 body.madic-unified[data-page="finances-cric"] .madic-unified-content>header .madic-lang-controls button[aria-pressed="true"],body.madic-unified[data-page="finances-cric"] .madic-unified-content>header .madic-lang-controls button.active{background:#399fc0!important;border-color:#399fc0!important;color:#fff!important}
 body.madic-unified[data-page="finances-cric"] .madic-unified-content>header .madic-lang-controls button:focus-visible{outline:2px solid #178cb4!important;outline-offset:3px!important}
+
+/* Alignement final de l'en-tete Finances sur cric-dashboard (reference actuelle). */
+body.madic-unified[data-page="finances-cric"] .madic-unified-content>header {
+  height:98px!important; min-height:98px!important; padding:15px clamp(18px,2.5vw,35px)!important;
+  border-bottom:1px solid #dbe6f0!important; box-shadow:0 3px 16px #12304c0a!important;
+}
+body.madic-unified[data-page="finances-cric"] .madic-unified-content>header .toplinks>a:not(.madic-top-notification) {
+  color:#183759!important; font-weight:700!important; text-decoration:none!important;
+}
+body.madic-unified[data-page="finances-cric"] .madic-unified-content>header .brand {
+  font-size:22px!important; font-weight:800!important; color:#102d4c!important;
+}
+body.madic-unified[data-page="finances-cric"] .madic-unified-content>header .brand span {color:#50bfdf!important;}
+body.madic-unified[data-page="finances-cric"] .madic-unified-content>header .brand small {color:#21618d!important;}
+@media(max-width:600px){body.madic-unified[data-page="finances-cric"] .madic-unified-content>header{height:auto!important;min-height:98px!important}}
