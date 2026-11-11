@@ -1067,3 +1067,13 @@ body.madic-unified[data-page="gestion-clients-cric"] .madic-unified-content>head
 @media(min-width:801px) and (max-width:1080px){body.madic-unified[data-page="gestion-clients-cric"] .madic-unified-content>header{padding:12px 18px!important;}}
 @media(max-width:800px){body.madic-unified[data-page="gestion-clients-cric"] .madic-unified-content>header{padding:18px 22px!important;}}
 @media(max-width:600px){body.madic-unified[data-page="gestion-clients-cric"] .madic-unified-content>header{flex-wrap:wrap!important;gap:10px!important;}body.madic-unified[data-page="gestion-clients-cric"] .madic-unified-content>header .toplinks{flex-wrap:wrap!important;gap:8px!important;}}
+
+/* Boutons FR/EN : reproduction des styles du header cric-dashboard. */
+body.madic-unified[data-page="gestion-clients-cric"] .madic-unified-content>header .madic-lang-controls {display:flex!important;align-items:center!important;gap:5px!important;margin-left:18px!important;}
+body.madic-unified[data-page="gestion-clients-cric"] .madic-unified-content>header .madic-lang-controls button[data-lang] {min-width:40px!important;min-height:0!important;padding:8px 12px!important;border-radius:9px!important;border:1px solid #5c90a2!important;background:#e5f1fa!important;color:#15415e!important;font:600 13px system-ui,sans-serif!important;cursor:pointer!important;opacity:1!important;}
+body.madic-unified[data-page="gestion-clients-cric"] .madic-unified-content>header .madic-lang-controls button[data-lang][aria-pressed="true"],
+body.madic-unified[data-page="gestion-clients-cric"] .madic-unified-content>header .madic-lang-controls button[data-lang].active,
+body.madic-unified[data-page="gestion-clients-cric"] .madic-unified-content>header .madic-lang-controls button[data-lang].madic-lang-active {background:#1b9fc0!important;color:#fff!important;border-color:#1b9fc0!important;}
+body.madic-unified[data-page="gestion-clients-cric"] .madic-unified-content>header .madic-lang-controls button[data-lang]:focus-visible{outline:2px solid #8df3f2!important;outline-offset:3px!important;}
+@media(max-width:650px){body.madic-unified[data-page="gestion-clients-cric"] .madic-unified-content>header .madic-lang-controls{margin-left:0!important;gap:10px!important;}}
+@media(max-width:480px){body.madic-unified[data-page="gestion-clients-cric"] .madic-unified-content>header .madic-lang-controls button[data-lang]{min-width:35px!important;padding:7px!important;}}
