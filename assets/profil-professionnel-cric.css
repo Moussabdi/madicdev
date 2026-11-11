@@ -2757,3 +2757,43 @@ body.madic-unified[data-page="profil-professionnel-cric"] .madic-cric-standard-h
 body.madic-unified[data-page="profil-professionnel-cric"] .madic-cric-standard-header .madic-top-notification{display:inline-flex!important;align-items:center!important;justify-content:center!important;width:46px!important;height:46px!important;flex:0 0 46px!important;border:1px solid #dbe7f2!important;border-radius:50%!important;background:#fff!important;color:#123553!important;text-decoration:none!important;}
 body.madic-unified[data-page="profil-professionnel-cric"] .madic-cric-standard-header .madic-top-notification svg{display:block;width:24px;height:24px;}
 @media(max-width:650px){body.madic-unified[data-page="profil-professionnel-cric"] .madic-unified-content>header.madic-cric-standard-header{height:auto!important;min-height:78px!important;padding:12px 15px!important;}body.madic-unified[data-page="profil-professionnel-cric"] .madic-cric-standard-header .toplinks{flex-wrap:wrap!important;}}
+
+
+/* Alignement final : mêmes coordonnées que cric-dashboard du 11 novembre 2026.
+   Uniquement la page profil; aucune modification du formulaire ou des traitements. */
+body.madic-unified[data-page="profil-professionnel-cric"] .madic-unified-content {
+  box-sizing:border-box!important;width:100%!important;min-width:0!important;
+  padding:0!important;display:flex!important;flex-direction:column!important;
+  min-height:100vh!important;background:#eef3f9!important;
+}
+body.madic-unified[data-page="profil-professionnel-cric"] .madic-unified-content > header.madic-cric-standard-header {
+  box-sizing:border-box!important;width:100%!important;min-height:78px!important;height:auto!important;
+  margin:0!important;padding:12px 34px!important;border-radius:0!important;
+  border:0!important;border-bottom:1px solid #dbe6f0!important;
+  background:#fff!important;box-shadow:none!important;backdrop-filter:none!important;
+}
+body.madic-unified[data-page="profil-professionnel-cric"] .madic-unified-content > main.madic-profile-wrap {
+  box-sizing:border-box!important;width:100%!important;max-width:none!important;
+  margin:0!important;padding:26px 34px 48px!important;flex:1 0 auto!important;
+}
+body.madic-unified[data-page="profil-professionnel-cric"] .madic-unified-content > footer.madic-footer {
+  box-sizing:border-box!important;width:100%!important;max-width:none!important;
+  margin:0!important;padding:40px 34px 23px!important;border-radius:0!important;
+  flex-shrink:0!important;background:#eaf5fc!important;
+}
+body.madic-unified[data-page="profil-professionnel-cric"] .madic-unified-content > footer.madic-footer > .madic-footer-inner,
+body.madic-unified[data-page="profil-professionnel-cric"] .madic-unified-content > footer.madic-footer > .madic-footer-bottom {
+  box-sizing:border-box!important;width:100%!important;max-width:none!important;
+  margin-left:0!important;margin-right:0!important;
+  padding-left:0!important;padding-right:0!important;
+}
+@media(min-width:801px) and (max-width:1080px){
+ body.madic-unified[data-page="profil-professionnel-cric"] .madic-unified-content > header.madic-cric-standard-header{padding:12px 18px!important}
+ body.madic-unified[data-page="profil-professionnel-cric"] .madic-unified-content > main.madic-profile-wrap{padding:20px 18px 36px!important}
+ body.madic-unified[data-page="profil-professionnel-cric"] .madic-unified-content > footer.madic-footer{padding:40px 18px 23px!important}
+}
+@media(max-width:800px){
+ body.madic-unified[data-page="profil-professionnel-cric"] .madic-unified-content > header.madic-cric-standard-header{padding:18px 22px!important}
+ body.madic-unified[data-page="profil-professionnel-cric"] .madic-unified-content > main.madic-profile-wrap{padding:18px 16px 45px!important}
+ body.madic-unified[data-page="profil-professionnel-cric"] .madic-unified-content > footer.madic-footer{padding:32px 16px 23px!important}
+}
