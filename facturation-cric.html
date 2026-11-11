@@ -1,303 +1,167 @@
-<!doctype html>
+<!DOCTYPE html>
 
 <html lang="fr-CA">
-  <head>
-    <meta charset="utf-8" />
-    <meta content="width=device-width,initial-scale=1" name="viewport" />
-    <meta content="noindex,nofollow" name="robots" />
-    <link href="img/favicon.png" rel="icon" />
-    <title>Facturation CRIC | MADIC</title>
-    <link href="assets/style.css" rel="stylesheet" />
-    <link href="assets/facturation-cric.css" rel="stylesheet" />
-    <link href="assets/madic-footer.css" rel="stylesheet" />
-    <link href="assets/madic-datahubz-modules.css" rel="stylesheet" />
-    <link rel="stylesheet" href="assets/madic-datahubz-unified.css" />
-    <style id="madic-i18n-language-state">
-      body.madic-unified
-        .madic-cric-standard-header
-        .madic-lang-controls
-        button[data-lang] {
-        background: #eef8fc !important;
-        color: #123553 !important;
-        cursor: pointer !important;
-      }
-      body.madic-unified
-        .madic-cric-standard-header
-        .madic-lang-controls
-        button[data-lang].madic-lang-active {
-        background: #389ec0 !important;
-        color: #fff !important;
-      }
-    </style>
-  </head>
-  <body class="madic-unified" data-page="facturation-cric">
-    <div class="madic-unified-layout">
-      <aside aria-label="Navigation du portail" class="madic-unified-sidebar">
-        <div class="madic-unified-brand">
-          <span class="madic-unified-monogram"
-            ><img alt="Logo MADIC" src="img/logo-madic.svg" /></span
-          ><span
-            ><strong>MADIC PORTAIL</strong
-            ><small>Espace professionnel</small></span
-          >
-        </div>
-        <div class="madic-unified-caption">NAVIGATION</div>
-        <nav>
-          <a data-madic-page="cric-dashboard.html" href="cric-dashboard.html"
-            ><span aria-hidden="true">▦</span>Vue d’ensemble</a
-          ><a
-            data-madic-page="gestion-clients-cric.html"
-            href="gestion-clients-cric.html"
-            ><span aria-hidden="true">♙</span>Clients</a
-          ><a
-            data-madic-page="gestion-dossiers-cric.html"
-            href="gestion-dossiers-cric.html"
-            ><span aria-hidden="true">▤</span>Outils CRIC</a
-          ><a data-madic-page="messagerie-cric.html" href="messagerie-cric.html"
-            ><span aria-hidden="true">✉</span>Messagerie</a
-          ><a
-            data-madic-page="demandes-documents-cric.html"
-            href="demandes-documents-cric.html"
-            ><span aria-hidden="true">▣</span>Documents</a
-          ><a data-madic-page="echeances-cric.html" href="echeances-cric.html"
-            ><span aria-hidden="true">◷</span>Échéances</a
-          ><a
-            data-madic-page="facturation-cric.html"
-            href="facturation-cric.html"
-            ><span aria-hidden="true">▥</span>Facturation</a
-          ><a data-madic-page="finances-cric.html" href="finances-cric.html"
-            ><span aria-hidden="true">◈</span>Finances</a
-          >
-        </nav>
-        <div class="madic-unified-foot">Espace sécurisé MADIC</div>
-      </aside>
-      <div class="madic-unified-content">
-        <header class="madic-cric-standard-header">
-          <a class="brand" href="cric-dashboard.html"
-            >MADI<span>C</span> <small>PORTAIL</small></a
-          >
-          <nav class="toplinks" aria-label="Navigation du compte">
-            <a href="cric-dashboard.html">Mon espace</a>
-            <div
-              class="madic-lang-controls"
-              role="group"
-              aria-label="Langue / Language"
-            >
-              <button
-                type="button"
-                data-lang="fr"
-                aria-label="Français"
-                title="Français"
-              >
-                FR</button
-              ><button
-                type="button"
-                data-lang="en"
-                aria-label="English"
-                title="English"
-              >
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="noindex,nofollow" name="robots"/>
+<link href="img/favicon.png" rel="icon"/>
+<title>Facturation CRIC | MADIC</title>
+<link href="assets/style.css" rel="stylesheet"/>
+<link href="assets/facturation-cric.css" rel="stylesheet"/>
+<link href="assets/madic-footer.css" rel="stylesheet"/>
+<link href="assets/madic-datahubz-modules.css" rel="stylesheet"/>
+<link href="assets/madic-datahubz-unified.css" rel="stylesheet"/>
+
+</head>
+<body class="madic-unified" data-page="facturation-cric">
+<div class="madic-unified-layout">
+<aside aria-label="Navigation du portail" class="madic-unified-sidebar">
+<div class="madic-unified-brand">
+<span class="madic-unified-monogram"><img alt="Logo MADIC" src="img/logo-madic.svg"/></span><span><strong>MADIC PORTAIL</strong><small>Espace professionnel</small></span>
+</div>
+<div class="madic-unified-caption">NAVIGATION</div>
+<nav>
+<a aria-current="page" data-madic-page="cric-dashboard.html" href="cric-dashboard.html"><span aria-hidden="true"><img alt="" aria-hidden="true" class="madic-heroicon" decoding="async" loading="eager" src="https://raw.githubusercontent.com/tailwindlabs/heroicons/v2.2.0/optimized/24/outline/squares-2x2.svg"/></span>Vue d’ensemble</a><a class="madic-v2-group-start" data-madic-page="gestion-clients-cric.html" href="gestion-clients-cric.html"><span aria-hidden="true"><img alt="" aria-hidden="true" class="madic-heroicon" decoding="async" loading="eager" src="https://raw.githubusercontent.com/tailwindlabs/heroicons/v2.2.0/optimized/24/outline/users.svg"/></span>Clients</a><a data-madic-page="gestion-dossiers-cric.html" href="gestion-dossiers-cric.html"><span aria-hidden="true"><img alt="" aria-hidden="true" class="madic-heroicon" decoding="async" loading="eager" src="https://raw.githubusercontent.com/tailwindlabs/heroicons/v2.2.0/optimized/24/outline/folder-open.svg"/></span>Outils CRIC</a><a class="madic-v2-group-start" data-madic-page="messagerie-cric.html" href="messagerie-cric.html"><span aria-hidden="true"><img alt="" aria-hidden="true" class="madic-heroicon" decoding="async" loading="eager" src="https://raw.githubusercontent.com/tailwindlabs/heroicons/v2.2.0/optimized/24/outline/chat-bubble-left-right.svg"/></span>Messagerie</a><a data-madic-page="demandes-documents-cric.html" href="demandes-documents-cric.html"><span aria-hidden="true"><img alt="" aria-hidden="true" class="madic-heroicon" decoding="async" loading="eager" src="https://raw.githubusercontent.com/tailwindlabs/heroicons/v2.2.0/optimized/24/outline/document-text.svg"/></span>Documents</a><a data-madic-page="echeances-cric.html" href="echeances-cric.html"><span aria-hidden="true"><img alt="" aria-hidden="true" class="madic-heroicon" decoding="async" loading="eager" src="https://raw.githubusercontent.com/tailwindlabs/heroicons/v2.2.0/optimized/24/outline/calendar-days.svg"/></span>Échéances</a><a class="madic-v2-group-start" data-madic-page="facturation-cric.html" href="facturation-cric.html"><span aria-hidden="true"><img alt="" aria-hidden="true" class="madic-heroicon" decoding="async" loading="eager" src="https://raw.githubusercontent.com/tailwindlabs/heroicons/v2.2.0/optimized/24/outline/receipt-percent.svg"/></span>Facturation</a><a data-madic-page="finances-cric.html" href="finances-cric.html"><span aria-hidden="true"><img alt="" aria-hidden="true" class="madic-heroicon" decoding="async" loading="eager" src="https://raw.githubusercontent.com/tailwindlabs/heroicons/v2.2.0/optimized/24/outline/banknotes.svg"/></span>Finances</a>
+<a data-madic-page="profil-professionnel-cric.html" href="profil-professionnel-cric.html"><span aria-hidden="true"><img alt="" aria-hidden="true" class="madic-heroicon" decoding="async" loading="eager" src="https://raw.githubusercontent.com/tailwindlabs/heroicons/v2.2.0/optimized/24/outline/identification.svg"/></span>Mon profil professionnel</a>
+</nav>
+<div class="madic-unified-foot">Espace sécurisé MADIC</div>
+</aside>
+<div class="madic-unified-content">
+<header>
+<a class="brand" href="connexion.html">MADI<span>C</span> <small>PORTAIL</small></a>
+<nav aria-label="Navigation du compte" class="toplinks">
+
+<button class="madic-header-signout" data-en="Sign out" data-fr="Déconnexion" data-madic-en="Sign out" data-madic-fr="Déconnexion" id="cricLogout" type="button">Déconnexion</button>
+<a href="dashboard.html">Mon espace</a>
+<div aria-label="Langue / Language" class="madic-lang-controls" role="group">
+<button aria-label="Français" data-lang="fr" type="button">
+                FR</button><button aria-label="English" data-lang="en" type="button">
                 EN
               </button>
-            </div>
-          </nav>
-        </header>
-        <main>
-          <h1>Facturation de mon cabinet</h1>
-          <p id="status" role="status">Vérification de votre accès…</p>
-          <div hidden="" id="app">
-            <section aria-labelledby="stripeTitle" class="panel">
-              <h2 id="stripeTitle">Paiements Stripe Connect</h2>
-              <p>
+</div>
+</nav>
+</header>
+<main class="madic-cric-wrap">
+<h1>Facturation de mon cabinet</h1>
+<p id="status" role="status">Vérification de votre accès…</p>
+<div hidden="" id="app">
+<section aria-labelledby="stripeTitle" class="panel">
+<h2 id="stripeTitle">Paiements Stripe Connect</h2>
+<p>
                 Connectez le compte Stripe de votre cabinet pour recevoir
                 directement les paiements de vos clients.
               </p>
-              <p aria-live="polite" id="stripeStatus" role="status">
+<p aria-live="polite" id="stripeStatus" role="status">
                 Vérification de la connexion Stripe…
               </p>
-              <button id="connectStripe" type="button">
+<button id="connectStripe" type="button">
                 Connecter mon compte Stripe
               </button>
-            </section>
-            <section class="panel">
-              <h2>Créer une facture</h2>
-              <form id="invoiceForm">
-                <label>Client *<select id="client" required=""></select></label
-                ><label
-                  >Dossier (facultatif)<select id="dossier">
-                    <option value="">Aucun dossier</option>
-                  </select></label
-                ><label
-                  >Nom du cabinet *<input
-                    id="cabinet"
-                    maxlength="200"
-                    required="" /></label
-                ><label
-                  >Adresse du cabinet<textarea
-                    id="address"
-                    maxlength="500"
-                    rows="2"
-                  ></textarea></label
-                ><label
-                  >Numéros de taxes (si applicables)<input
-                    id="taxNumbers"
-                    maxlength="200"
-                /></label>
-                <div class="full">
-                  <label
-                    >Logo du cabinet (PNG ou JPG, max. 100 Ko)<input
-                      accept="image/png,image/jpeg"
-                      id="logo"
-                      type="file"
-                  /></label>
-                  <p class="hint">
+</section>
+<section class="panel">
+<h2>Créer une facture</h2>
+<form id="invoiceForm">
+<label>Client *<select id="client" required=""></select></label><label>Dossier (facultatif)<select id="dossier">
+<option value="">Aucun dossier</option>
+</select></label><label>Nom du cabinet *<input id="cabinet" maxlength="200" required=""/></label><label>Adresse du cabinet<textarea id="address" maxlength="500" rows="2"></textarea></label><label>Numéros de taxes (si applicables)<input id="taxNumbers" maxlength="200"/></label>
+<div class="full">
+<label>Logo du cabinet (PNG ou JPG, max. 100 Ko)<input accept="image/png,image/jpeg" id="logo" type="file"/></label>
+<p class="hint">
                     Le logo est enregistré dans chaque nouvelle facture.
                     Sélectionnez-le de nouveau pour les factures suivantes.
                   </p>
-                  <img alt="Aperçu du logo" hidden="" id="logoPreview" />
-                </div>
-                <div class="full">
-                  <h3>Lignes de facturation</h3>
-                  <div class="tablewrap">
-                    <table>
-                      <thead>
-                        <tr>
-                          <th>Description</th>
-                          <th>Quantité</th>
-                          <th>Prix unitaire (CAD)</th>
-                          <th>Montant</th>
-                          <th></th>
-                        </tr>
-                      </thead>
-                      <tbody id="itemRows"></tbody>
-                    </table>
-                  </div>
-                  <button class="secondary" id="addLine" type="button">
+<img alt="Aperçu du logo" hidden="" id="logoPreview"/>
+</div>
+<div class="full">
+<h3>Lignes de facturation</h3>
+<div class="tablewrap">
+<table>
+<thead>
+<tr>
+<th>Description</th>
+<th>Quantité</th>
+<th>Prix unitaire (CAD)</th>
+<th>Montant</th>
+<th></th>
+</tr>
+</thead>
+<tbody id="itemRows"></tbody>
+</table>
+</div>
+<button class="secondary" id="addLine" type="button">
                     + Ajouter une ligne
                   </button>
-                  <p aria-live="polite" id="subtotal">Sous-total : 0,00 $</p>
-                </div>
-                <label
-                  >Taux total de taxes applicable (%)<input
-                    id="tax"
-                    max="100"
-                    min="0"
-                    required=""
-                    step="0.0001"
-                    type="number"
-                    value="0"
-                /></label>
-                <p class="hint">
+<p aria-live="polite" id="subtotal">Sous-total : 0,00 $</p>
+</div>
+<label>Taux total de taxes applicable (%)<input id="tax" max="100" min="0" required="" step="0.0001" type="number" value="0"/></label>
+<p class="hint">
                   Saisissez le taux applicable à votre situation. MADIC ne
                   détermine pas les obligations fiscales de votre cabinet.
                 </p>
-                <label
-                  >Date d'échéance<input
-                    id="due"
-                    lang="fr-CA"
-                    name="due"
-                    onclick="if (this.showPicker) this.showPicker();"
-                    type="date" /></label
-                ><label
-                  >Notes<textarea id="notes" maxlength="1000"></textarea></label
-                ><button id="save" type="submit">Créer la facture</button>
-              </form>
-            </section>
-            <section class="panel">
-              <h2>Mes factures</h2>
-              <button class="secondary" id="refresh" type="button">
+<label>Date d'échéance<input id="due" lang="fr-CA" name="due" onclick="if (this.showPicker) this.showPicker();" type="date"/></label><label>Notes<textarea id="notes" maxlength="1000"></textarea></label><button id="save" type="submit">Créer la facture</button>
+</form>
+</section>
+<section class="panel">
+<h2>Mes factures</h2>
+<button class="secondary" id="refresh" type="button">
                 Actualiser
               </button>
-              <div class="tablewrap">
-                <table>
-                  <thead>
-                    <tr>
-                      <th>Numéro</th>
-                      <th>Client</th>
-                      <th>Émission</th>
-                      <th>Total</th>
-                      <th>Payé</th>
-                      <th>Situation</th>
-                      <th>Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody id="rows"></tbody>
-                </table>
-              </div>
-            </section>
-          </div>
-        </main>
-        <footer
-          aria-label="Pied de page MADIC / MADIC footer"
-          class="madic-footer"
-        >
-          <div class="madic-footer-inner">
-            <div class="madic-footer-brand">
-              <div class="madic-footer-brandline">
-                <img
-                  alt="Logo MADIC"
-                  class="madic-footer-logo"
-                  height="43"
-                  src="img/logo-madic.svg"
-                  width="43"
-                />
-                <div>
-                  <div class="madic-footer-name">MADIC</div>
-                  <div
-                    class="madic-footer-subtitle"
-                    data-en="MAD Immigration Canadienne"
-                    data-fr="MAD Immigration Canadienne"
-                  >
+<div class="tablewrap">
+<table>
+<thead>
+<tr>
+<th>Numéro</th>
+<th>Client</th>
+<th>Émission</th>
+<th>Total</th>
+<th>Payé</th>
+<th>Situation</th>
+<th>Actions</th>
+</tr>
+</thead>
+<tbody id="rows"></tbody>
+</table>
+</div>
+</section>
+</div>
+</main>
+<footer aria-label="Pied de page MADIC / MADIC footer" class="madic-footer">
+<div class="madic-footer-inner">
+<div class="madic-footer-brand">
+<div class="madic-footer-brandline">
+<img alt="Logo MADIC" class="madic-footer-logo" height="43" src="img/logo-madic.svg" width="43"/>
+<div>
+<div class="madic-footer-name">MADIC</div>
+<div class="madic-footer-subtitle" data-en="MAD Immigration Canadienne" data-fr="MAD Immigration Canadienne">
                     MAD Immigration Canadienne
                   </div>
-                </div>
-              </div>
-              <p
-                class="madic-footer-desc"
-                data-en="A digital platform for Canadian immigration professionals and their clients."
-                data-fr="Une plateforme numérique pour les professionnels de l'immigration canadienne et leurs clients."
-              >
+</div>
+</div>
+<p class="madic-footer-desc" data-en="A digital platform for Canadian immigration professionals and their clients." data-fr="Une plateforme numérique pour les professionnels de l'immigration canadienne et leurs clients.">
                 Une plateforme numérique pour les professionnels de
                 l'immigration canadienne et leurs clients.
               </p>
-            </div>
-            <nav aria-label="Liens du pied de page" class="madic-footer-right">
-              <a data-en="Home" data-fr="Accueil" href="index.html">Accueil</a>
-              <a
-                data-en="Privacy policy"
-                data-fr="Confidentialité"
-                href="politique-confidentialite.html"
-                >Confidentialité</a
-              >
-              <span
-                class="madic-footer-unavailable"
-                data-en="Terms of use"
-                data-fr="Conditions d'utilisation"
-                title="Page à venir / Page coming soon"
-                >Conditions d'utilisation</span
-              >
-              <span
-                class="madic-footer-unavailable"
-                data-en="Contact"
-                data-fr="Contact"
-                title="Page à venir / Page coming soon"
-                >Contact</span
-              >
-            </nav>
-          </div>
-          <div class="madic-footer-bottom">
+</div>
+<nav aria-label="Liens du pied de page" class="madic-footer-right">
+<a data-en="Home" data-fr="Accueil" href="index.html">Accueil</a>
+<a data-en="Privacy policy" data-fr="Confidentialité" href="politique-confidentialite.html">Confidentialité</a>
+<span class="madic-footer-unavailable" data-en="Terms of use" data-fr="Conditions d'utilisation" title="Page à venir / Page coming soon">Conditions d'utilisation</span>
+<span class="madic-footer-unavailable" data-en="Contact" data-fr="Contact" title="Page à venir / Page coming soon">Contact</span>
+</nav>
+</div>
+<div class="madic-footer-bottom">
             © 2026 MAD Immigration Canadienne (MADIC) Inc.
-            <span data-en="All rights reserved." data-fr="Tous droits réservés."
-              >Tous droits réservés.</span
-            >
-          </div>
-        </footer>
-        <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
-        <script src="assets/config.js"></script>
-        <script src="assets/madic-footer.js"></script>
-        <script src="assets/facturation-cric.js"></script>
-      </div>
-    </div>
-    <script src="assets/madic-datahubz-unified.js"></script>
-    <script src="assets/madic-i18n-cric.js?v=20261102d"></script>
-  </body>
+            <span data-en="All rights reserved." data-fr="Tous droits réservés.">Tous droits réservés.</span>
+</div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="assets/config.js"></script>
+<script src="assets/madic-footer.js"></script>
+<script src="assets/facturation-cric.js"></script>
+</div>
+</div>
+<script src="assets/madic-datahubz-unified.js"></script>
+<script src="assets/madic-i18n-cric.js?v=20261102d"></script>
+</body>
 </html>

@@ -569,3 +569,19 @@
     );
   }
 })();
+
+/* Deconnexion de l'en-tete harmonise. */
+document.getElementById("cricLogout")?.addEventListener("click", async () => {
+  const button = document.getElementById("cricLogout");
+  button.disabled = true;
+  try {
+    if (typeof window.getMadicSupabase !== "function") throw new Error("Client Supabase indisponible");
+    const { error } = await window.getMadicSupabase().auth.signOut();
+    if (error) throw error;
+    window.location.href = "connexion.html";
+  } catch (error) {
+    button.disabled = false;
+    const status = document.getElementById("status");
+    if (status) status.textContent = "Déconnexion impossible : " + (error.message || String(error));
+  }
+});
