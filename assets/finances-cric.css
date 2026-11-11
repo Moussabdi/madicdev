@@ -1768,3 +1768,12 @@ body.madic-unified[data-page="finances-cric"] .toplinks #cricLogout{display:inli
 body.madic-unified[data-page="finances-cric"] .toplinks #cricLogout:hover{text-decoration:underline}
 @media(max-width:1080px){body.madic-unified[data-page="finances-cric"] .madic-unified-content>main{padding:20px 18px 36px!important}}
 @media(max-width:800px){body.madic-unified[data-page="finances-cric"] .madic-unified-content>header{padding:18px 22px!important}body.madic-unified[data-page="finances-cric"] .madic-unified-content>main{padding:18px 16px 45px!important}body.madic-unified[data-page="finances-cric"] .madic-unified-content>footer.madic-footer{padding:32px 16px 23px!important}}
+
+/* Finance header: notification and dashboard-identical spacing; scoped to this page. */
+body.madic-unified[data-page="finances-cric"] .madic-unified-content>header{height:78px!important;min-height:78px!important;display:flex!important;align-items:center!important;justify-content:space-between!important;gap:18px!important;flex-wrap:nowrap!important}
+body.madic-unified[data-page="finances-cric"] .madic-unified-content>header .toplinks{display:flex!important;align-items:center!important;justify-content:flex-end!important;gap:16px!important;flex-wrap:nowrap!important}
+body.madic-unified[data-page="finances-cric"] .madic-unified-content>header .madic-top-notification{position:relative;order:2;display:grid!important;place-items:center;flex:0 0 34px;width:34px;height:34px;border:1px solid #dce6f1;border-radius:50%;background:#fff;text-decoration:none!important}
+body.madic-unified[data-page="finances-cric"] .madic-top-notification .madic-heroicon{display:block;width:21px;height:21px;filter:none;opacity:1}
+body.madic-unified[data-page="finances-cric"] .madic-top-notification-count:not([hidden]){position:absolute;right:-7px;top:-7px;display:grid;place-items:center;min-width:18px;height:18px;padding:0 4px;border-radius:12px;background:#b52e47;color:white;font-size:10px;font-weight:800}
+@media(max-width:800px){body.madic-unified[data-page="finances-cric"] .madic-unified-content>header{padding:12px 22px!important}}
+@media(max-width:600px){body.madic-unified[data-page="finances-cric"] .madic-unified-content>header{height:auto!important;min-height:78px!important;flex-wrap:wrap!important}body.madic-unified[data-page="finances-cric"] .madic-unified-content>header .toplinks{flex-wrap:wrap!important;gap:8px!important}}
