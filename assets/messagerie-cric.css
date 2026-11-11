@@ -1158,3 +1158,47 @@ body.madic-unified[data-page="messagerie-cric"] .madic-header-signout{background
 body.madic-unified[data-page="messagerie-cric"] .madic-header-signout:hover{background:#d5eaf6!important}
 body.madic-unified[data-page="messagerie-cric"] .madic-footer{background:#fff;color:#536c82}
 body.madic-unified[data-page="messagerie-cric"] [hidden]{display:none!important}
+
+
+/* Harmonisation avec gestion-clients-cric.css : structure uniquement. */
+body.madic-unified[data-page="messagerie-cric"] .madic-unified-content {
+  padding:0 !important;display:flex;flex-direction:column;min-height:100vh;min-width:0;background:#eef3f9 !important;
+}
+body.madic-unified[data-page="messagerie-cric"] .madic-unified-content > header.madic-cric-standard-header {
+  width:100% !important;max-width:none !important;min-height:78px !important;margin:0 !important;
+  padding:12px 34px !important;border:0 !important;border-bottom:1px solid #dbe6f0 !important;
+  border-radius:0 !important;background:#fff !important;box-shadow:none !important;backdrop-filter:none !important;
+}
+body.madic-unified[data-page="messagerie-cric"] .madic-unified-content > main.madic-msg-wrap {
+  box-sizing:border-box;width:100%;max-width:none;margin:0 !important;padding:26px 34px 48px !important;flex:1 0 auto;
+}
+body.madic-unified[data-page="messagerie-cric"] .madic-unified-content > footer.madic-footer {
+  box-sizing:border-box;width:100%;max-width:none;margin:0;padding:40px 34px 23px !important;
+  border-radius:0;flex-shrink:0;background:#eef3f9 !important;
+  border-top:1px solid #a9bacd !important;color:#526b83 !important;text-align:left;
+}
+body.madic-unified[data-page="messagerie-cric"] footer.madic-footer > .madic-footer-inner,
+body.madic-unified[data-page="messagerie-cric"] footer.madic-footer > .madic-footer-bottom {
+  box-sizing:border-box;width:100%;max-width:none;margin-left:0;margin-right:0;padding-left:0;padding-right:0;
+}
+body.madic-unified[data-page="messagerie-cric"] footer.madic-footer :is(.madic-footer-name,.madic-footer-subtitle,.madic-footer-desc,.madic-footer-bottom,.madic-footer-unavailable){color:#526b83 !important;}
+body.madic-unified[data-page="messagerie-cric"] footer.madic-footer .madic-footer-name{color:#143453 !important;}
+body.madic-unified[data-page="messagerie-cric"] footer.madic-footer .madic-footer-right a{color:#35729d !important;}
+body.madic-unified[data-page="messagerie-cric"] footer.madic-footer .madic-footer-bottom{border-top-color:#a9bacd !important;}
+body.madic-unified[data-page="messagerie-cric"] .toplinks #madicMsgLogout{
+  display:inline-flex;align-items:center;justify-content:center;padding:6px 4px !important;min-height:38px;
+  border:0 !important;border-radius:0 !important;background:transparent !important;color:#123553 !important;
+  box-shadow:none !important;font:inherit;font-weight:500;cursor:pointer;white-space:nowrap;
+}
+body.madic-unified[data-page="messagerie-cric"] .toplinks #madicMsgLogout:hover{text-decoration:underline;}
+body.madic-unified[data-page="messagerie-cric"] .toplinks #madicMsgLogout:focus-visible{outline:2px solid #178cb4;outline-offset:3px;}
+@media (min-width:801px) and (max-width:1080px){
+ body.madic-unified[data-page="messagerie-cric"] .madic-unified-content > header{padding:12px 18px !important;}
+ body.madic-unified[data-page="messagerie-cric"] .madic-unified-content > main.madic-msg-wrap{padding:20px 18px 36px !important;}
+ body.madic-unified[data-page="messagerie-cric"] .madic-unified-content > footer.madic-footer{padding-left:18px !important;padding-right:18px !important;}
+}
+@media(max-width:600px){
+ body.madic-unified[data-page="messagerie-cric"] .madic-unified-content > header{padding:12px 14px !important;}
+ body.madic-unified[data-page="messagerie-cric"] .madic-unified-content > main.madic-msg-wrap{padding:16px 14px 32px !important;}
+ body.madic-unified[data-page="messagerie-cric"] .madic-unified-content > footer.madic-footer{padding:25px 14px 18px !important;}
+}
