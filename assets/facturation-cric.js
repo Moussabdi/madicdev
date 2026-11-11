@@ -612,3 +612,25 @@ document.getElementById("cricLogout")?.addEventListener("click", async () => {
     document.addEventListener('visibilitychange',()=>{if(!document.hidden)void refresh();});
   }catch(error){console.warn('Notifications CRIC indisponibles',error);}
 })();
+
+/* Libelle officiel de l'en-tete : Mon espace / My space. */
+(() => {
+  const apply = () => {
+    const link = document.querySelector('.toplinks a[data-fr="Mon espace"]');
+    if (!link) return;
+    const en = (() => { try { return localStorage.getItem('madic_ui_language') === 'en'; } catch (_) { return document.documentElement.lang.toLowerCase().startsWith('en'); } })();
+    const expected = en ? 'My space' : 'Mon espace';
+    if (link.textContent.trim() !== expected) link.textContent = expected;
+    link.setAttribute('data-en', 'My space');
+    link.setAttribute('data-madic-en', 'My space');
+  };
+  const init = () => {
+    apply();
+    const link = document.querySelector('.toplinks a[data-fr="Mon espace"]');
+    if (link) new MutationObserver(apply).observe(link, {childList:true, characterData:true, subtree:true});
+    document.querySelectorAll('.madic-lang-controls button').forEach(b => b.addEventListener('click', () => { queueMicrotask(apply); setTimeout(apply, 0); }));
+    window.addEventListener('storage', apply);
+  };
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init, {once:true});
+  else init();
+})();
