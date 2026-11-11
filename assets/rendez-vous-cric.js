@@ -774,7 +774,7 @@ window.getMadicSupabase = function () {
     Finances: "Finances",
     "Mon profil professionnel": "My professional profile",
     "Espace sécurisé MADIC": "Secure MADIC workspace",
-    "Mon espace": "My workspace",
+    "Mon espace": "My space",
     "Aller au contenu principal": "Skip to main content",
     "Gestion des clients CRIC": "RCIC client management",
     "Demandes de documents →": "Document requests →",
@@ -1662,3 +1662,35 @@ window.getMadicSupabase = function () {
 
 /* MADIC: sign out from appointment workspace */
 (function(){const init=()=>{const btn=document.getElementById('logout');if(!btn)return;btn.addEventListener('click',async()=>{try{const db=window.getMadicSupabase();await db.auth.signOut();window.location.assign('connexion.html');}catch(e){console.error('MADIC sign out failed',e);}})};if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();})();
+
+/* Header notification count: dashboard-equivalent authorized CRIC RPCs. */
+(function(){
+  'use strict';
+  const badge=document.querySelector('.madic-top-notification-count');
+  if(!badge)return;
+  let busy=false;
+  async function refresh(){
+    if(busy||document.hidden||typeof window.getMadicSupabase!=='function')return;
+    busy=true;
+    try{
+      const db=window.getMadicSupabase();
+      const {data:{user}={},error:authError}=await db.auth.getUser();
+      if(authError||!user)return;
+      const {data:spaces,error:spaceError}=await db.from('madic_cric_spaces').select('id').eq('owner_user_id',user.id).eq('access_status','active').limit(1);
+      if(spaceError||!spaces?.length)return;
+      const spaceId=spaces[0].id;
+      const {data:allowed,error:permissionError}=await db.rpc('madic_can_manage_cric_space',{p_space_id:spaceId});
+      if(permissionError||allowed!==true)return;
+      const {data:count,error:countError}=await db.rpc('madic_cric_clients_connexions_non_lues',{p_space_id:spaceId});
+      if(countError)return;
+      const value=Number(count)||0;
+      badge.hidden=value<=0;
+      badge.textContent=value>99?'99+':value>0?String(value):'';
+    }catch(error){console.warn('MADIC: compteur de notifications indisponible',error);}
+    finally{busy=false;}
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>{void refresh();},{once:true});else void refresh();
+  window.addEventListener('focus',()=>{void refresh();});
+  document.addEventListener('visibilitychange',()=>{if(!document.hidden)void refresh();});
+  window.setInterval(()=>{void refresh();},30000);
+})();
