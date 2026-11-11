@@ -445,3 +445,26 @@ window.getMadicSupabase = function () {
 
 /* Deconnexion Supabase, sans changer les regles d'acces. */
 (()=>{'use strict';const init=()=>{const b=document.getElementById('cricLogout');if(!b)return;b.addEventListener('click',async()=>{if(b.disabled)return;b.disabled=true;try{const client=window.getMadicSupabase?.();if(!client)throw new Error('Supabase indisponible');const {error}=await client.auth.signOut();if(error)throw error;window.location.assign('connexion-cric.html');}catch(e){const status=document.getElementById('deadlineMessage');if(status)status.textContent='Déconnexion impossible : '+(e.message||String(e));b.disabled=false;}});};if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();})();
+
+/* Notification du header : compteur du cabinet via les RPC existantes, sous RLS. */
+(function(){'use strict';
+  function init(){
+    const badge=document.querySelector('.madic-cric-standard-header .madic-top-notification-count');
+    if(!badge)return;
+    const refresh=async()=>{
+      try{
+        const db=window.getMadicSupabase?.();if(!db)return;
+        const {data:auth,error:authError}=await db.auth.getUser();if(authError||!auth?.user)return;
+        const {data:spaces,error:spaceError}=await db.from('madic_cric_spaces').select('id').eq('owner_user_id',auth.user.id).eq('access_status','active').limit(1);
+        if(spaceError||!spaces?.length)return;
+        const {data:allowed,error:accessError}=await db.rpc('madic_can_manage_cric_space',{p_space_id:spaces[0].id});
+        if(accessError||allowed!==true)return;
+        const {data:count,error}=await db.rpc('madic_cric_clients_connexions_non_lues',{p_space_id:spaces[0].id});
+        if(error)return;
+        const value=Math.max(0,Number(count)||0);badge.textContent=value>99?'99+':String(value);badge.hidden=value===0;
+      }catch(err){console.warn('MADIC : compteur de notifications indisponible',err);}
+    };
+    void refresh();window.addEventListener('focus',()=>{void refresh();});document.addEventListener('visibilitychange',()=>{if(!document.hidden)void refresh();});
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
+})();

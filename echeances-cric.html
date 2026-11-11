@@ -1,4 +1,5 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="fr-CA">
 <head>
 <meta charset="utf-8"/>
@@ -6,12 +7,6 @@
 <meta content="noindex,nofollow" name="robots"/>
 <link href="img/favicon.png" rel="icon"/>
 <title>Échéances de mon cabinet | MADIC</title>
-
-
-
-
-
-
 <link href="assets/echeances-cric.css" rel="stylesheet"/></head>
 <body class="madic-unified" data-page="echeances-cric">
 <div class="madic-unified-layout">
@@ -29,15 +24,15 @@
 <div class="madic-unified-content">
 <header class="madic-cric-standard-header">
 <a class="brand" href="cric-dashboard.html">MADI<span>C</span> <small>PORTAIL</small></a>
-<nav aria-label="Navigation du compte" class="toplinks"><button class="madic-header-signout" data-en="Sign out" data-fr="Déconnexion" id="cricLogout" type="button">Déconnexion</button>
-<a href="cric-dashboard.html">Mon espace</a>
+<nav aria-label="Navigation du compte" class="toplinks"><button class="madic-header-signout" data-en="Sign out" data-fr="Déconnexion" data-madic-en="Sign out" data-madic-fr="Déconnexion" id="cricLogout" type="button">Déconnexion</button>
+<a data-en="My space" data-fr="Mon espace" data-madic-en="My space" data-madic-fr="Mon espace" href="cric-dashboard.html">Mon espace</a>
 <div aria-label="Langue / Language" class="madic-lang-controls" role="group">
 <button aria-label="Français" data-lang="fr" title="Français" type="button">
                 FR</button><button aria-label="English" data-lang="en" title="English" type="button">
                 EN
               </button>
 </div>
-</nav>
+<a aria-label="Notifications" class="madic-top-notification" href="cric-dashboard.html#cricNotificationsPanel" title="Notifications"><span aria-hidden="true"><img alt="" aria-hidden="true" class="madic-heroicon" src="https://raw.githubusercontent.com/tailwindlabs/heroicons/v2.2.0/optimized/24/outline/bell.svg"/></span><span class="madic-top-notification-count" hidden=""></span></a></nav>
 </header>
 <main class="deadline-shell">
 <p><a href="cric-dashboard.html">← Mon espace CRIC</a></p>
@@ -115,13 +110,7 @@
             <span data-en="All rights reserved." data-fr="Tous droits réservés.">Tous droits réservés.</span>
 </div>
 </footer>
-
-
-
-
 </div>
 </div>
-
-
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script><script src="assets/echeances-cric.js"></script></body>
 </html>
