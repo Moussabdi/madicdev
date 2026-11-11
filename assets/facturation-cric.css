@@ -2586,3 +2586,61 @@ body.madic-unified[data-page="facturation-cric"] .toplinks #cricLogout:focus-vis
 body.madic-unified[data-page="facturation-cric"] .madic-unified-content > header{border-radius:0!important;margin:0!important;box-shadow:none!important;background:#fff!important;border-bottom:1px solid #dbe6f0!important;}
 body.madic-unified[data-page="facturation-cric"] .madic-unified-content > main.madic-cric-wrap{max-width:none!important;margin:0!important;width:100%!important;}
 body.madic-unified[data-page="facturation-cric"] .madic-unified-content > footer.madic-footer{border-radius:0!important;margin:0!important;width:100%!important;background:#eef3f9!important;}
+
+/* Correction facture : conserver la geometrie du dashboard et restaurer
+   les couleurs claires du formulaire et des tableaux de facturation. */
+body.madic-unified[data-page="facturation-cric"] .madic-unified-content > main.madic-cric-wrap {
+  color: #123553;
+  background: transparent;
+}
+body.madic-unified[data-page="facturation-cric"] .madic-cric-wrap :is(h1,h2,h3,p,label,th,td,span) {
+  color: #123553;
+}
+body.madic-unified[data-page="facturation-cric"] .madic-cric-wrap .panel {
+  background: #fff;
+  color: #123553;
+  border: 1px solid #d8e5ef;
+  border-radius: 18px;
+  box-shadow: 0 12px 32px rgba(20, 52, 83, .045);
+}
+body.madic-unified[data-page="facturation-cric"] .madic-cric-wrap .panel :is(input,select,textarea) {
+  background: #fff;
+  color: #123553;
+  border: 1px solid #b9cfe2;
+  border-radius: 9px;
+  box-shadow: none;
+  color-scheme: light;
+}
+body.madic-unified[data-page="facturation-cric"] .madic-cric-wrap .panel :is(input,select,textarea)::placeholder {
+  color: #6b7f92;
+  opacity: 1;
+}
+body.madic-unified[data-page="facturation-cric"] .madic-cric-wrap .panel :is(input,select,textarea):focus-visible {
+  outline: 2px solid #148db8;
+  outline-offset: 1px;
+}
+body.madic-unified[data-page="facturation-cric"] .madic-cric-wrap .panel :is(.hint,.muted) {
+  color: #526b83;
+}
+body.madic-unified[data-page="facturation-cric"] .madic-cric-wrap .panel table {
+  color: #123553;
+  background: #fff;
+}
+body.madic-unified[data-page="facturation-cric"] .madic-cric-wrap .panel thead th {
+  color: #fff;
+  background: #203b53;
+}
+body.madic-unified[data-page="facturation-cric"] .madic-cric-wrap .panel tbody td {
+  color: #123553;
+  background: #fff;
+  border-bottom: 1px solid #d8e5ef;
+}
+body.madic-unified[data-page="facturation-cric"] .madic-cric-wrap .panel :is(#subtotal,#stripeStatus) {
+  color: #123553;
+}
+body.madic-unified[data-page="facturation-cric"] .madic-cric-wrap .panel button:not(.secondary) {
+  color: #071f34;
+}
+body.madic-unified[data-page="facturation-cric"] .madic-cric-wrap .panel button.secondary {
+  color: #fff;
+}
