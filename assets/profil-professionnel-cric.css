@@ -2736,3 +2736,17 @@ body.madic-unified .madic-profile-form .madic-profile-intro h2{color:#143453}
 body.madic-unified .madic-profile-form .madic-profile-intro p{color:#526b83}
 body.madic-unified .madic-cric-standard-header .madic-lang-controls button[data-lang]{cursor:pointer!important}
 @media(max-width:850px){body.madic-unified .madic-unified-content{min-height:0}body.madic-unified .madic-unified-content>main.madic-profile-wrap{padding:20px 15px 35px!important}}
+
+/* Header du profil aligne sur cric-dashboard : pleine largeur, 72px, sans cadre. */
+body.madic-unified[data-page="profil-professionnel-cric"] .madic-unified-content>header.madic-cric-standard-header{
+ position:relative!important;display:flex!important;align-items:center!important;justify-content:space-between!important;
+ width:100%!important;min-height:72px!important;padding:15px clamp(18px,2.5vw,35px)!important;
+ margin:0 0 22px!important;background:#fff!important;border:0!important;border-bottom:1px solid #dbe7f2!important;
+ border-radius:0!important;box-shadow:0 3px 16px #12304c0a!important;box-sizing:border-box!important;
+}
+body.madic-unified[data-page="profil-professionnel-cric"] #cricLogout{
+ appearance:none;background:transparent!important;border:0!important;color:#123553!important;
+ font:inherit;font-weight:600!important;padding:11px 12px!important;border-radius:11px!important;cursor:pointer!important;white-space:nowrap;
+}
+body.madic-unified[data-page="profil-professionnel-cric"] #cricLogout:hover{background:#eaf5fc!important}
+@media(max-width:650px){body.madic-unified[data-page="profil-professionnel-cric"] .madic-unified-content>header.madic-cric-standard-header{flex-wrap:wrap!important;gap:8px!important;padding:12px 15px!important}}

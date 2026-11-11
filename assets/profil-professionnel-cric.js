@@ -604,3 +604,27 @@ window.getMadicSupabase = function () {
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init, {once:true});
   else init();
 })();
+
+/* Deconnexion du profil : session Supabase existante, sans client supplementaire. */
+(function(){
+  function init(){
+    const button=document.getElementById('cricLogout');
+    if(!button)return;
+    button.addEventListener('click',async function(){
+      if(button.disabled)return;
+      button.disabled=true;
+      try{
+        const db=typeof window.getMadicSupabase==='function'?window.getMadicSupabase():window.madicSupabaseClient;
+        if(!db?.auth?.signOut)throw new Error('Client Supabase indisponible');
+        const result=await db.auth.signOut();
+        if(result?.error)throw result.error;
+        window.location.assign('connexion.html');
+      }catch(error){
+        console.error('Deconnexion MADIC :',error);
+        button.disabled=false;
+        window.alert(document.documentElement.lang.startsWith('en')?'Unable to sign out. Please try again.':'Déconnexion impossible. Veuillez réessayer.');
+      }
+    });
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
+})();
