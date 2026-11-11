@@ -1,474 +1,178 @@
-<!doctype html>
+<!DOCTYPE html>
 
 <html lang="fr-CA">
-  <head>
-    <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1" name="viewport" />
-    <link href="img/favicon.png" rel="icon" />
-    <title>Gestion documentaire du client | MADIC CRIC</title>
-    <link href="assets/style.css" rel="stylesheet" />
-    <link href="assets/cric-workspace.css" rel="stylesheet" />
-    <style>
-      /* Styles limités à cette page pour ne pas affecter le portail. */
-      .madic-doc-page {
-        max-width: 1160px;
-        margin: 0 auto;
-        padding: 1.5rem 1rem 3rem;
-        box-sizing: border-box;
-      }
-      .madic-doc-page * {
-        box-sizing: border-box;
-      }
-      .madic-doc-top {
-        margin-bottom: 1.4rem;
-      }
-      .madic-doc-top h1 {
-        margin: 0.3rem 0 0.45rem;
-      }
-      .madic-doc-back {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.35rem;
-        text-decoration: none;
-        font-weight: 600;
-      }
-      .madic-doc-intro,
-      .madic-doc-hint {
-        color: var(--muted, #667085);
-        line-height: 1.55;
-      }
-      .madic-doc-page .panel {
-        width: 100%;
-        max-width: none;
-        margin: 0 0 1.4rem;
-        padding: 1.5rem;
-        border-radius: 12px;
-      }
-      .madic-doc-page .panel h2 {
-        margin: 0 0 0.65rem;
-        font-size: 1.22rem;
-      }
-      .madic-doc-step {
-        font-size: 0.78rem;
-        letter-spacing: 0.06em;
-        text-transform: uppercase;
-        font-weight: 700;
-        color: var(--muted, #667085);
-        margin: 0 0 0.35rem;
-      }
-      .madic-doc-fields {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 1rem;
-        margin: 1rem 0;
-      }
-      .madic-doc-page label {
-        display: block;
-        min-width: 0;
-        font-weight: 600;
-      }
-      .madic-doc-page label select,
-      .madic-doc-page label input,
-      .madic-doc-page label textarea {
-        display: block;
-        width: 100%;
-        min-width: 0;
-        max-width: 100%;
-        margin-top: 0.35rem;
-      }
-      .madic-doc-new {
-        margin-top: 1.2rem;
-        padding: 1rem;
-        border: 1px solid var(--border, #d9dfe6);
-        border-radius: 10px;
-      }
-      .madic-doc-new summary {
-        cursor: pointer;
-        font-weight: 700;
-      }
-      .madic-doc-new .madic-doc-form-body {
-        padding-top: 1rem;
-        display: grid;
-        gap: 0.85rem;
-      }
-      .madic-doc-table {
-        width: 100%;
-        overflow-x: auto;
-        margin-top: 1rem;
-      }
-      .madic-doc-table table {
-        width: 100%;
-        border-collapse: collapse;
-        table-layout: auto;
-      }
-      .madic-doc-table th,
-      .madic-doc-table td {
-        text-align: left;
-        vertical-align: top;
-        padding: 0.85rem 0.65rem;
-        line-height: 1.45;
-      }
-      .madic-doc-table th {
-        white-space: nowrap;
-        font-size: 0.86rem;
-      }
-      #receivedRows td:first-child {
-        overflow-wrap: anywhere;
-        min-width: 180px;
-      }
-      #receivedRows td:nth-child(2) {
-        white-space: nowrap;
-      }
-      #receivedRows td:nth-child(4) {
-        overflow-wrap: anywhere;
-      }
-      /* Ne jamais laisser les boutons prendre toute la largeur de la cellule. */
-      .madic-doc-page .madic-doc-table button {
-        display: inline-flex !important;
-        width: auto !important;
-        max-width: 100% !important;
-        min-width: 0 !important;
-        flex: 0 0 auto !important;
-        align-items: center;
-        justify-content: center;
-        white-space: normal;
-        line-height: 1.2;
-        font-size: 0.82rem;
-        padding: 0.5rem 0.65rem;
-        margin: 0 !important;
-        border-radius: 7px;
-      }
-      .madic-doc-actions {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: flex-start;
-        gap: 0.4rem;
-        min-width: 175px;
-        max-width: 250px;
-      }
-      .madic-doc-actions button {
-        white-space: nowrap !important;
-      }
-      .madic-doc-request-action {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.45rem;
-        align-items: center;
-        min-width: 145px;
-      }
-      .madic-doc-request-action select {
-        width: auto !important;
-        max-width: 160px !important;
-        min-width: 120px !important;
-        margin: 0 !important;
-        font-size: 0.87rem;
-        padding: 0.45rem;
-      }
-      .madic-doc-request-action button {
-        width: auto !important;
-      }
-      .madic-doc-page #docreqNotice:empty,
-      .madic-doc-page #receivedNotice:empty {
-        display: none;
-      }
-      @media (max-width: 700px) {
-        .madic-doc-fields {
-          grid-template-columns: 1fr;
-        }
-        .madic-doc-page .panel {
-          padding: 1rem;
-        }
-        .madic-doc-page {
-          padding: 1rem 0.7rem;
-        }
-        .madic-doc-table th,
-        .madic-doc-table td {
-          padding: 0.65rem 0.45rem;
-        }
-      }
-      /* Modernisation 4/9 : lisibilité et responsive, styles existants conservés */
-      .madic-doc-page {
-        max-width: 1380px;
-        padding: clamp(16px, 3vw, 38px);
-      }
-      .madic-doc-top h1 {
-        font-size: clamp(1.65rem, 2.5vw, 2.35rem);
-        letter-spacing: -0.035em;
-      }
-      .madic-doc-page .panel {
-        border-radius: 18px;
-        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
-      }
-      .madic-doc-new {
-        border-radius: 14px;
-        border-color: rgba(142, 166, 190, 0.35);
-      }
-      .madic-doc-new summary {
-        padding: 4px 0;
-      }
-      .madic-doc-new[open] {
-        background: rgba(130, 160, 180, 0.05);
-      }
-      .madic-doc-page
-        :is(input, select, textarea, button, summary):focus-visible {
-        outline: 2px solid #26b6b0;
-        outline-offset: 2px;
-      }
-      .madic-doc-table {
-        border-radius: 12px;
-        scrollbar-width: thin;
-      }
-      .madic-doc-table th {
-        background: rgba(130, 160, 180, 0.09);
-      }
-      .madic-doc-table tbody tr:hover {
-        background: rgba(38, 182, 176, 0.055);
-      }
-      @media (max-width: 700px) {
-        .madic-doc-page {
-          padding: 16px 12px;
-        }
-        .madic-doc-page .panel {
-          padding: 16px;
-        }
-      }
-    </style>
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<link href="img/favicon.png" rel="icon"/>
+<title>Gestion documentaire du client | MADIC CRIC</title>
 
-    <link href="assets/madic-datahubz-modules.css" rel="stylesheet" />
-    <link rel="stylesheet" href="assets/madic-datahubz-unified.css" />
-    <style id="madic-i18n-language-state">
-      body.madic-unified
-        .madic-cric-standard-header
-        .madic-lang-controls
-        button[data-lang] {
-        background: #eef8fc !important;
-        color: #123553 !important;
-        cursor: pointer !important;
-      }
-      body.madic-unified
-        .madic-cric-standard-header
-        .madic-lang-controls
-        button[data-lang].madic-lang-active {
-        background: #389ec0 !important;
-        color: #fff !important;
-      }
-    </style>
-  </head>
-  <body class="madic-unified" data-page="demandes-documents-cric">
-    <div class="madic-unified-layout">
-      <aside aria-label="Navigation du portail" class="madic-unified-sidebar">
-        <div class="madic-unified-brand">
-          <span class="madic-unified-monogram"
-            ><img alt="Logo MADIC" src="img/logo-madic.svg" /></span
-          ><span
-            ><strong>MADIC PORTAIL</strong
-            ><small>Espace professionnel</small></span
-          >
-        </div>
-        <div class="madic-unified-caption">NAVIGATION</div>
-        <nav>
-          <a data-madic-page="cric-dashboard.html" href="cric-dashboard.html"
-            ><span aria-hidden="true">▦</span>Vue d’ensemble</a
-          ><a
-            data-madic-page="gestion-clients-cric.html"
-            href="gestion-clients-cric.html"
-            ><span aria-hidden="true">♙</span>Clients</a
-          ><a
-            data-madic-page="gestion-dossiers-cric.html"
-            href="gestion-dossiers-cric.html"
-            ><span aria-hidden="true">▤</span>Outils CRIC</a
-          ><a data-madic-page="messagerie-cric.html" href="messagerie-cric.html"
-            ><span aria-hidden="true">✉</span>Messagerie</a
-          ><a
-            data-madic-page="demandes-documents-cric.html"
-            href="demandes-documents-cric.html"
-            ><span aria-hidden="true">▣</span>Documents</a
-          ><a data-madic-page="echeances-cric.html" href="echeances-cric.html"
-            ><span aria-hidden="true">◷</span>Échéances</a
-          ><a
-            data-madic-page="facturation-cric.html"
-            href="facturation-cric.html"
-            ><span aria-hidden="true">▥</span>Facturation</a
-          ><a data-madic-page="finances-cric.html" href="finances-cric.html"
-            ><span aria-hidden="true">◈</span>Finances</a
-          >
-        </nav>
-        <div class="madic-unified-foot">Espace sécurisé MADIC</div>
-      </aside>
-      <div class="madic-unified-content">
-        <header class="madic-cric-standard-header">
-          <a class="brand" href="cric-dashboard.html"
-            >MADI<span>C</span> <small>PORTAIL</small></a
-          >
-          <nav class="toplinks" aria-label="Navigation du compte">
-            <a href="cric-dashboard.html">Mon espace</a>
-            <div
-              class="madic-lang-controls"
-              role="group"
-              aria-label="Langue / Language"
-            >
-              <button
-                type="button"
-                data-lang="fr"
-                aria-label="Français"
-                title="Français"
-              >
-                FR</button
-              ><button
-                type="button"
-                data-lang="en"
-                aria-label="English"
-                title="English"
-              >
+
+
+
+
+
+
+<link href="assets/demandes-documents-cric.css" rel="stylesheet"/><meta content="noindex,nofollow" name="robots"/></head>
+<body class="madic-unified" data-cric-page="documents" data-page="demandes-documents-cric">
+<div class="madic-unified-layout">
+<aside aria-label="Navigation du portail" class="madic-unified-sidebar">
+<div class="madic-unified-brand">
+<span class="madic-unified-monogram"><img alt="Logo MADIC" src="img/logo-madic.svg"/></span><span><strong>MADIC PORTAIL</strong><small>Espace professionnel</small></span>
+</div>
+<div class="madic-unified-caption">NAVIGATION</div>
+<nav>
+<a data-madic-page="cric-dashboard.html" href="cric-dashboard.html"><span aria-hidden="true"><img alt="" aria-hidden="true" class="madic-heroicon" decoding="async" loading="eager" src="https://raw.githubusercontent.com/tailwindlabs/heroicons/v2.2.0/optimized/24/outline/squares-2x2.svg"/></span>Vue d’ensemble</a><a class="madic-v2-group-start" data-madic-page="gestion-clients-cric.html" href="gestion-clients-cric.html"><span aria-hidden="true"><img alt="" aria-hidden="true" class="madic-heroicon" decoding="async" loading="eager" src="https://raw.githubusercontent.com/tailwindlabs/heroicons/v2.2.0/optimized/24/outline/users.svg"/></span>Clients</a><a data-madic-page="gestion-dossiers-cric.html" href="gestion-dossiers-cric.html"><span aria-hidden="true"><img alt="" aria-hidden="true" class="madic-heroicon" decoding="async" loading="eager" src="https://raw.githubusercontent.com/tailwindlabs/heroicons/v2.2.0/optimized/24/outline/folder-open.svg"/></span>Outils CRIC</a><a class="madic-v2-group-start" data-madic-page="messagerie-cric.html" href="messagerie-cric.html"><span aria-hidden="true"><img alt="" aria-hidden="true" class="madic-heroicon" decoding="async" loading="eager" src="https://raw.githubusercontent.com/tailwindlabs/heroicons/v2.2.0/optimized/24/outline/chat-bubble-left-right.svg"/></span>Messagerie</a><a aria-current="page" data-madic-page="demandes-documents-cric.html" href="demandes-documents-cric.html"><span aria-hidden="true"><img alt="" aria-hidden="true" class="madic-heroicon" decoding="async" loading="eager" src="https://raw.githubusercontent.com/tailwindlabs/heroicons/v2.2.0/optimized/24/outline/document-text.svg"/></span>Documents</a><a data-madic-page="echeances-cric.html" href="echeances-cric.html"><span aria-hidden="true"><img alt="" aria-hidden="true" class="madic-heroicon" decoding="async" loading="eager" src="https://raw.githubusercontent.com/tailwindlabs/heroicons/v2.2.0/optimized/24/outline/calendar-days.svg"/></span>Échéances</a><a class="madic-v2-group-start" data-madic-page="facturation-cric.html" href="facturation-cric.html"><span aria-hidden="true"><img alt="" aria-hidden="true" class="madic-heroicon" decoding="async" loading="eager" src="https://raw.githubusercontent.com/tailwindlabs/heroicons/v2.2.0/optimized/24/outline/receipt-percent.svg"/></span>Facturation</a><a data-madic-page="finances-cric.html" href="finances-cric.html"><span aria-hidden="true"><img alt="" aria-hidden="true" class="madic-heroicon" decoding="async" loading="eager" src="https://raw.githubusercontent.com/tailwindlabs/heroicons/v2.2.0/optimized/24/outline/banknotes.svg"/></span>Finances</a>
+<a data-madic-page="profil-professionnel-cric.html" href="profil-professionnel-cric.html"><span aria-hidden="true"><img alt="" aria-hidden="true" class="madic-heroicon" decoding="async" loading="eager" src="https://raw.githubusercontent.com/tailwindlabs/heroicons/v2.2.0/optimized/24/outline/identification.svg"/></span>Mon profil professionnel</a>
+</nav>
+<div class="madic-unified-foot">Espace sécurisé MADIC</div>
+</aside>
+<div class="madic-unified-content">
+<header class="madic-cric-standard-header">
+<a class="brand" href="cric-dashboard.html">MADI<span>C</span> <small>PORTAIL</small></a>
+<nav aria-label="Navigation du compte" class="toplinks">
+<button class="madic-header-signout" id="logout" type="button">
+              Déconnexion
+            </button><a href="cric-dashboard.html">Mon espace</a><div aria-label="Langue / Language" class="madic-lang-controls" role="group">
+<button aria-label="Français" data-lang="fr" title="Français" type="button">
+                FR</button><button aria-label="English" data-lang="en" title="English" type="button">
                 EN
               </button>
-            </div>
-          </nav>
-        </header>
-        <main class="cric-shell madic-doc-page">
-          <div class="madic-doc-top">
-            <a class="madic-doc-back" href="gestion-clients-cric.html"
-              >← Retour à la gestion des clients</a
-            >
-            <h1>Gestion documentaire du client</h1>
-            <p class="madic-doc-intro">
+</div></nav>
+</header>
+<main class="cric-shell madic-doc-page">
+<div class="madic-doc-top">
+<a class="madic-doc-back" href="gestion-clients-cric.html">← Retour à la gestion des clients</a>
+<h1>Gestion documentaire du client</h1>
+<p class="madic-doc-intro">
               Choisissez un dossier, examinez les pièces reçues et suivez les
               documents demandés.
             </p>
-          </div>
-          <p id="docreqNotice" role="status">Chargement…</p>
-          <div hidden="" id="docreqApp">
-            <section aria-labelledby="select-heading" class="panel">
-              <p class="madic-doc-step">Étape 1 · Dossier</p>
-              <h2 id="select-heading">Choisir le client et le dossier</h2>
-              <form class="cric-form" id="docreqForm">
-                <div class="madic-doc-fields">
-                  <label for="docreqClient"
-                    >Client<select
-                      id="docreqClient"
-                      required=""
-                    ></select></label
-                  ><label for="docreqDossier"
-                    >Dossier<select id="docreqDossier" required=""></select
-                  ></label>
-                </div>
-                <details class="madic-doc-new" id="newDocumentRequest">
-                  <summary>+ Demander une nouvelle pièce au client</summary>
-                  <div class="madic-doc-form-body">
-                    <p class="madic-doc-hint">
+</div>
+<p id="docreqNotice" role="status">Chargement…</p>
+<div hidden="" id="docreqApp">
+<section aria-labelledby="select-heading" class="panel">
+<p class="madic-doc-step">Étape 1 · Dossier</p>
+<h2 id="select-heading">Choisir le client et le dossier</h2>
+<form class="cric-form" id="docreqForm">
+<div class="madic-doc-fields">
+<label for="docreqClient">Client<select id="docreqClient" required=""></select></label><label for="docreqDossier">Dossier<select id="docreqDossier" required=""></select></label>
+</div>
+<details class="madic-doc-new" id="newDocumentRequest">
+<summary>+ Demander une nouvelle pièce au client</summary>
+<div class="madic-doc-form-body">
+<p class="madic-doc-hint">
                       Cette demande apparaîtra dans l'espace du client.
                     </p>
-                    <label for="docreqTitle"
-                      >Document demandé<input
-                        id="docreqTitle"
-                        maxlength="200"
-                        placeholder="Ex. Copie du passeport"
-                        required="" /></label
-                    ><label for="docreqInstructions"
-                      >Instructions<textarea
-                        id="docreqInstructions"
-                        maxlength="2000"
-                        placeholder="Précisions facultatives"
-                      ></textarea></label
-                    ><label for="docreqDue"
-                      >Date limite (facultatif)<input
-                        id="docreqDue"
-                        lang="fr-CA"
-                        type="date"
-                    /></label>
-                    <div><button type="submit">Envoyer la demande</button></div>
-                  </div>
-                </details>
-              </form>
-              <details class="madic-doc-new" id="newClientDocumentSend">
-                <summary>+ Envoyer un document au client</summary>
-                <form class="madic-doc-form-body" id="docsendForm">
-                  <p class="madic-doc-hint">
+<label for="docreqTitle">Document demandé<input id="docreqTitle" maxlength="200" placeholder="Ex. Copie du passeport" required=""/></label><label for="docreqInstructions">Instructions<textarea id="docreqInstructions" maxlength="2000" placeholder="Précisions facultatives"></textarea></label><label for="docreqDue">Date limite (facultatif)<input id="docreqDue" lang="fr-CA" type="date"/></label>
+<div><button type="submit">Envoyer la demande</button></div>
+</div>
+</details>
+</form>
+<details class="madic-doc-new" id="newClientDocumentSend">
+<summary>+ Envoyer un document au client</summary>
+<form class="madic-doc-form-body" id="docsendForm">
+<p class="madic-doc-hint">
                     Le fichier sera accessible dans l’espace du client, sous «
                     Historique et évaluations de mes documents », pour le
                     dossier sélectionné ci-dessus.
                   </p>
-                  <label for="docsendFile"
-                    >Fichier à transmettre (PDF, JPG ou PNG, 10 Mo maximum)
-                    <input
-                      id="docsendFile"
-                      type="file"
-                      accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png"
-                      required=""
-                  /></label>
-                  <label for="docsendTitle"
-                    >Nom du document (facultatif)
-                    <input
-                      id="docsendTitle"
-                      maxlength="200"
-                      placeholder="Ex. Lettre de confirmation"
-                  /></label>
-                  <div>
-                    <button id="docsendButton" type="submit">
+<label for="docsendFile">Fichier à transmettre (PDF, JPG ou PNG, 10 Mo maximum)
+                    <input accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png" id="docsendFile" required="" type="file"/></label>
+<label for="docsendTitle">Nom du document (facultatif)
+                    <input id="docsendTitle" maxlength="200" placeholder="Ex. Lettre de confirmation"/></label>
+<div>
+<button id="docsendButton" type="submit">
                       Envoyer le document
                     </button>
-                  </div>
-                  <p id="docsendNotice" role="status" aria-live="polite"></p>
-                </form>
-              </details>
-            </section>
-            <section
-              aria-labelledby="received-heading"
-              class="panel"
-              id="receivedPanel"
-            >
-              <p class="madic-doc-step">Étape 2 · Vérification</p>
-              <h2 id="received-heading">Documents reçus</h2>
-              <p class="madic-doc-hint">
+</div>
+<p aria-live="polite" id="docsendNotice" role="status"></p>
+</form>
+</details>
+</section>
+<section aria-labelledby="received-heading" class="panel" id="receivedPanel">
+<p class="madic-doc-step">Étape 2 · Vérification</p>
+<h2 id="received-heading">Documents reçus</h2>
+<p class="madic-doc-hint">
                 Téléchargez et évaluez chaque document. En cas de refus,
                 précisez le motif qui sera visible par le client.
               </p>
-              <p id="receivedContext"></p>
-              <p id="receivedNotice" role="status"></p>
-              <div class="madic-doc-table">
-                <table>
-                  <thead>
-                    <tr>
-                      <th>Fichier</th>
-                      <th>Reçu le</th>
-                      <th>Évaluation</th>
-                      <th>Motif du refus</th>
-                      <th>Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody id="receivedRows"></tbody>
-                </table>
-              </div>
-            </section>
-            <section aria-labelledby="requests-heading" class="panel">
-              <p class="madic-doc-step">Étape 3 · Suivi</p>
-              <h2 id="requests-heading">Demandes envoyées</h2>
-              <p class="madic-doc-hint">
+<p id="receivedContext"></p>
+<p id="receivedNotice" role="status"></p>
+<div class="madic-doc-table">
+<table>
+<thead>
+<tr>
+<th>Fichier</th>
+<th>Reçu le</th>
+<th>Évaluation</th>
+<th>Motif du refus</th>
+<th>Actions</th>
+</tr>
+</thead>
+<tbody id="receivedRows"></tbody>
+</table>
+</div>
+</section>
+<section aria-labelledby="requests-heading" class="panel">
+<p class="madic-doc-step">Étape 3 · Suivi</p>
+<h2 id="requests-heading">Demandes envoyées</h2>
+<p class="madic-doc-hint">
                 Demandes concernant uniquement le dossier sélectionné. Le statut
                 d'une demande est distinct de l'évaluation d'un fichier.
               </p>
-              <div class="madic-doc-table">
-                <table>
-                  <thead>
-                    <tr>
-                      <th>Pièce demandée</th>
-                      <th>Date limite</th>
-                      <th>Statut</th>
-                      <th>Mettre à jour</th>
-                    </tr>
-                  </thead>
-                  <tbody id="docreqRows"></tbody>
-                </table>
+<div class="madic-doc-table">
+<table>
+<thead>
+<tr>
+<th>Pièce demandée</th>
+<th>Date limite</th>
+<th>Statut</th>
+<th>Mettre à jour</th>
+</tr>
+</thead>
+<tbody id="docreqRows"></tbody>
+</table>
+</div>
+</section>
+</div>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+
+
+</div>
+</div>
+<footer aria-label="Pied de page MADIC / MADIC footer" class="madic-footer">
+<div class="madic-footer-inner">
+<div class="madic-footer-brand">
+<div class="madic-footer-brandline">
+<img alt="Logo MADIC" class="madic-footer-logo" height="43" src="img/logo-madic.svg" width="43"/>
+<div>
+<div class="madic-footer-name">MADIC</div>
+<div class="madic-footer-subtitle" data-en="MAD Immigration Canadienne" data-fr="MAD Immigration Canadienne">
+                MAD Immigration Canadienne
               </div>
-            </section>
-          </div>
-        </main>
-        <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
-        <script src="assets/config.js"></script>
-        <script src="assets/madic-document-requests-cric.js"></script>
-      </div>
-    </div>
-    <script src="assets/madic-datahubz-unified.js"></script>
-    <script src="assets/madic-i18n-cric.js?v=20261102d"></script>
-  </body>
+</div>
+</div>
+<p class="madic-footer-desc" data-en="A digital platform for Canadian immigration professionals and their clients." data-fr="Une plateforme numérique pour les professionnels de l'immigration canadienne et leurs clients.">
+            Une plateforme numérique pour les professionnels de l'immigration
+            canadienne et leurs clients.
+          </p>
+</div>
+<nav aria-label="Liens du pied de page" class="madic-footer-right">
+<a data-en="Home" data-fr="Accueil" href="index.html">Accueil</a>
+<a data-en="Privacy policy" data-fr="Confidentialité" href="politique-confidentialite.html">Confidentialité</a>
+<span class="madic-footer-unavailable" data-en="Terms of use" data-fr="Conditions d'utilisation" title="Page à venir / Page coming soon">Conditions d'utilisation</span>
+<span class="madic-footer-unavailable" data-en="Contact" data-fr="Contact" title="Page à venir / Page coming soon">Contact</span>
+</nav>
+</div>
+<div class="madic-footer-bottom">
+        © 2026 MAD Immigration Canadienne (MADIC) Inc.
+        <span data-en="All rights reserved." data-fr="Tous droits réservés.">Tous droits réservés.</span>
+</div>
+</footer>
+
+
+
+<script defer="True" src="assets/demandes-documents-cric.js"></script></body>
 </html>
