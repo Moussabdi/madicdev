@@ -1202,3 +1202,13 @@ body.madic-unified[data-page="messagerie-cric"] .toplinks #madicMsgLogout:focus-
  body.madic-unified[data-page="messagerie-cric"] .madic-unified-content > main.madic-msg-wrap{padding:16px 14px 32px !important;}
  body.madic-unified[data-page="messagerie-cric"] .madic-unified-content > footer.madic-footer{padding:25px 14px 18px !important;}
 }
+
+/* MADIC : header messagerie aligne sur le dashboard CRIC (78 px). */
+body.madic-unified[data-page="messagerie-cric"] .madic-unified-content > header.madic-cric-standard-header {height:78px!important;min-height:78px!important;max-width:none!important;width:100%!important;margin:0!important;padding:12px 34px!important;border:0!important;border-bottom:1px solid #dbe6f0!important;border-radius:0!important;box-shadow:none!important;background:#fff!important;display:flex!important;align-items:center!important;justify-content:space-between!important;flex-wrap:nowrap!important;}
+body.madic-unified[data-page="messagerie-cric"] .madic-cric-standard-header .toplinks{display:flex!important;align-items:center!important;justify-content:flex-end!important;gap:14px!important;flex-wrap:nowrap!important;}
+body.madic-unified[data-page="messagerie-cric"] .madic-cric-standard-header .toplinks>a{white-space:nowrap!important;}
+body.madic-unified[data-page="messagerie-cric"] .madic-cric-standard-header .madic-top-notification{position:relative;order:2;display:grid!important;place-items:center;width:42px;height:42px;flex:0 0 42px;border:1px solid #dce6f1!important;border-radius:50%!important;background:#fff!important;color:#123553!important;text-decoration:none!important;}
+body.madic-unified[data-page="messagerie-cric"] .madic-cric-standard-header .madic-top-notification .madic-heroicon{display:block;width:21px;height:21px;object-fit:contain;filter:none;}
+body.madic-unified[data-page="messagerie-cric"] .madic-cric-standard-header .madic-lang-controls{order:1;display:flex!important;align-items:center!important;gap:7px!important;}
+body.madic-unified[data-page="messagerie-cric"] .madic-cric-standard-header .madic-lang-controls button{cursor:pointer!important;}
+@media(max-width:700px){body.madic-unified[data-page="messagerie-cric"] .madic-unified-content>header.madic-cric-standard-header{height:auto!important;min-height:78px!important;padding:12px 14px!important;flex-wrap:wrap!important;gap:10px!important;}body.madic-unified[data-page="messagerie-cric"] .madic-cric-standard-header .toplinks{gap:8px!important;flex-wrap:wrap!important;}}
