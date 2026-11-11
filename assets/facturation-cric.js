@@ -585,3 +585,30 @@ document.getElementById("cricLogout")?.addEventListener("click", async () => {
     if (status) status.textContent = "Déconnexion impossible : " + (error.message || String(error));
   }
 });
+
+/* Indicateur de notifications CRIC dans l'en-tete, avec RLS Supabase. */
+(async function madicBillingNotificationBadge(){
+  const badge=document.querySelector('.madic-top-notification-count');
+  if(!badge || typeof window.getMadicSupabase!=='function')return;
+  try {
+    const db=window.getMadicSupabase();
+    const {data:auth,error:authError}=await db.auth.getUser();
+    if(authError||!auth?.user)return;
+    const {data:spaces,error:spaceError}=await db.from('madic_cric_spaces').select('id').eq('owner_user_id',auth.user.id).eq('access_status','active').limit(1);
+    if(spaceError||!spaces?.length)return;
+    const {data:allowed,error:permissionError}=await db.rpc('madic_can_manage_cric_space',{p_space_id:spaces[0].id});
+    if(permissionError||allowed!==true)return;
+    const refresh=async()=>{
+      try {
+        const {data,error}=await db.rpc('madic_cric_clients_connexions_non_lues',{p_space_id:spaces[0].id});
+        if(error)throw error;
+        const count=Math.max(0,Number(data)||0);
+        badge.textContent=count>99?'99+':String(count);
+        badge.hidden=count===0;
+      }catch(error){console.warn('Compteur de notifications indisponible',error);badge.hidden=true;}
+    };
+    await refresh();
+    window.addEventListener('focus',refresh);
+    document.addEventListener('visibilitychange',()=>{if(!document.hidden)void refresh();});
+  }catch(error){console.warn('Notifications CRIC indisponibles',error);}
+})();
