@@ -1535,3 +1535,88 @@ body.madic-unified[data-page="echeances-cric"] .madic-cric-standard-header .madi
 body.madic-unified[data-page="echeances-cric"] .madic-cric-standard-header .madic-lang-controls button[data-lang]{min-width:50px!important;height:43px!important;border-radius:11px!important}
 @media(max-width:850px){body.madic-unified[data-page="echeances-cric"] .madic-unified-content>header.madic-cric-standard-header{padding:12px 18px!important;height:auto!important;min-height:78px!important;flex-wrap:wrap!important}}
 @media(max-width:560px){body.madic-unified[data-page="echeances-cric"] .madic-cric-standard-header .toplinks{gap:9px!important;flex-wrap:wrap!important}}
+
+/* MADIC 2026-11-10 : alignement sur dashboard-client-cric (header, contenu, footer). */
+body.madic-unified[data-page="echeances-cric"] .madic-unified-content {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: #eef3f9;
+}
+body.madic-unified[data-page="echeances-cric"] .madic-unified-content > header {
+  width: 100%;
+  min-height: 78px;
+  margin: 0;
+  padding: 12px 34px !important;
+  border-radius: 0;
+  border: 0;
+  border-bottom: 1px solid #dbe6f0;
+  background: #fff !important;
+  box-shadow: none;
+  backdrop-filter: none;
+}
+body.madic-unified[data-page="echeances-cric"] .madic-unified-content > main.deadline-shell {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 26px 34px 48px;
+  flex: 1 0 auto;
+}
+body.madic-unified[data-page="echeances-cric"] .madic-unified-content > #cricMessage {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: none;
+  padding-left: 34px;
+  padding-right: 34px;
+}
+body.madic-unified[data-page="echeances-cric"] .madic-unified-content > footer.madic-footer {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 40px 34px 23px !important;
+  border-radius: 0;
+  flex-shrink: 0;
+}
+body.madic-unified[data-page="echeances-cric"] .madic-unified-content > footer.madic-footer > .madic-footer-inner,
+body.madic-unified[data-page="echeances-cric"] .madic-unified-content > footer.madic-footer > .madic-footer-bottom {
+  width: 100%;
+  max-width: none;
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 0;
+  padding-right: 0;
+}
+@media (min-width: 801px) and (max-width: 1080px) {
+  body.madic-unified[data-page="echeances-cric"] .madic-unified-content > header { padding: 12px 18px !important; }
+  body.madic-unified[data-page="echeances-cric"] .madic-unified-content > main.deadline-shell { padding: 20px 18px 36px; }
+  body.madic-unified[data-page="echeances-cric"] .madic-unified-content > #cricMessage { padding-left: 18px; padding-right: 18px; }
+  body.madic-unified[data-page="echeances-cric"] .madic-unified-content > footer.madic-footer { padding-left: 18px !important; padding-right: 18px !important; }
+}
+@media (max-width: 800px) {
+  body.madic-unified[data-page="echeances-cric"] .madic-unified-content > header { padding: 18px 22px !important; }
+  body.madic-unified[data-page="echeances-cric"] .madic-unified-content > main.deadline-shell { padding: 18px 16px 45px; }
+  body.madic-unified[data-page="echeances-cric"] .madic-unified-content > #cricMessage { padding-left: 16px; padding-right: 16px; }
+  body.madic-unified[data-page="echeances-cric"] .madic-unified-content > footer.madic-footer { padding: 32px 16px 23px !important; }
+}
+
+/* MADIC - Header et footer CRIC harmonises avec dashboard-client-cric. */
+body.madic-unified[data-page="echeances-cric"] .madic-unified-content > footer.madic-footer {
+  background: #eef3f9 !important;
+  border-top: 1px solid #a9bacd !important;
+  color: #526b83 !important;
+}
+body.madic-unified[data-page="echeances-cric"] footer.madic-footer :is(.madic-footer-name,.madic-footer-subtitle,.madic-footer-desc,.madic-footer-bottom,.madic-footer-unavailable) {
+  color: #526b83 !important;
+}
+body.madic-unified[data-page="echeances-cric"] footer.madic-footer .madic-footer-name {color:#143453 !important;}
+body.madic-unified[data-page="echeances-cric"] footer.madic-footer .madic-footer-right a {color:#35729d !important;}
+body.madic-unified[data-page="echeances-cric"] footer.madic-footer .madic-footer-bottom {border-top-color:#a9bacd !important;}
+
+/* Harmonisation finale du corps et du pied de page - Echeances CRIC. */
+body.madic-unified[data-page="echeances-cric"] .madic-unified-content {padding:0!important;display:flex!important;flex-direction:column!important;min-height:100vh!important;background:#eef3f9!important;}
+body.madic-unified[data-page="echeances-cric"] .madic-unified-content > main.deadline-shell {box-sizing:border-box!important;width:100%!important;max-width:none!important;margin:0!important;padding:26px 34px 48px!important;flex:1 0 auto!important;}
+body.madic-unified[data-page="echeances-cric"] .madic-unified-content > footer.madic-footer {box-sizing:border-box!important;width:100%!important;max-width:none!important;margin:0!important;padding:40px 34px 23px!important;background:#eef3f9!important;border-radius:0!important;border-top:1px solid #a9bacd!important;flex-shrink:0!important;text-align:left!important;}
+body.madic-unified[data-page="echeances-cric"] .madic-unified-content > footer.madic-footer > :is(.madic-footer-inner,.madic-footer-bottom){width:100%!important;max-width:none!important;margin-left:0!important;margin-right:0!important;padding-left:0!important;padding-right:0!important;}
+@media(min-width:801px) and (max-width:1080px){body.madic-unified[data-page="echeances-cric"] .madic-unified-content > main.deadline-shell{padding:20px 18px 36px!important}body.madic-unified[data-page="echeances-cric"] .madic-unified-content > footer.madic-footer{padding-left:18px!important;padding-right:18px!important}}
+@media(max-width:800px){body.madic-unified[data-page="echeances-cric"] .madic-unified-content > main.deadline-shell{padding:18px 16px 45px!important}body.madic-unified[data-page="echeances-cric"] .madic-unified-content > footer.madic-footer{padding:32px 16px 23px!important}}
