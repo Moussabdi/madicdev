@@ -2750,3 +2750,10 @@ body.madic-unified[data-page="profil-professionnel-cric"] #cricLogout{
 }
 body.madic-unified[data-page="profil-professionnel-cric"] #cricLogout:hover{background:#eaf5fc!important}
 @media(max-width:650px){body.madic-unified[data-page="profil-professionnel-cric"] .madic-unified-content>header.madic-cric-standard-header{flex-wrap:wrap!important;gap:8px!important;padding:12px 15px!important}}
+
+/* Profil CRIC : header strictement aligne sur le tableau de bord, sans toucher au contenu. */
+body.madic-unified[data-page="profil-professionnel-cric"] .madic-unified-content>header.madic-cric-standard-header{height:78px!important;min-height:78px!important;padding:0 clamp(20px,2.5vw,35px)!important;margin:0!important;border-radius:0!important;border:0!important;border-bottom:1px solid #dbe7f2!important;box-shadow:none!important;background:#fff!important;}
+body.madic-unified[data-page="profil-professionnel-cric"] .madic-cric-standard-header .toplinks{display:flex!important;align-items:center!important;gap:12px!important;flex-wrap:nowrap!important;}
+body.madic-unified[data-page="profil-professionnel-cric"] .madic-cric-standard-header .madic-top-notification{display:inline-flex!important;align-items:center!important;justify-content:center!important;width:46px!important;height:46px!important;flex:0 0 46px!important;border:1px solid #dbe7f2!important;border-radius:50%!important;background:#fff!important;color:#123553!important;text-decoration:none!important;}
+body.madic-unified[data-page="profil-professionnel-cric"] .madic-cric-standard-header .madic-top-notification svg{display:block;width:24px;height:24px;}
+@media(max-width:650px){body.madic-unified[data-page="profil-professionnel-cric"] .madic-unified-content>header.madic-cric-standard-header{height:auto!important;min-height:78px!important;padding:12px 15px!important;}body.madic-unified[data-page="profil-professionnel-cric"] .madic-cric-standard-header .toplinks{flex-wrap:wrap!important;}}
