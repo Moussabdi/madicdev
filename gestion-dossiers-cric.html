@@ -7,14 +7,6 @@
 <meta content="noindex,nofollow" name="robots"/>
 <link href="img/favicon.png" rel="icon"/>
 <title>Outils professionnels CRIC | MADIC</title>
-
-
-
-
-
-
-
-
 <link href="assets/gestion-dossiers-cric.css" rel="stylesheet"/></head>
 <body class="madic-unified" data-cric-page="dossiers" data-page="gestion-dossiers-cric">
 <a class="madic-skip-link" href="#main-content">Aller au contenu principal</a>
@@ -32,17 +24,17 @@
 <div class="madic-unified-content">
 <header class="madic-cric-standard-header">
 <a class="brand" href="cric-dashboard.html">MADI<span>C</span> <small>PORTAIL</small></a>
-<nav aria-label="Navigation du compte" class="toplinks"><button class="madic-header-signout" id="logout" type="button">
+<nav aria-label="Navigation du compte" class="toplinks"><button class="madic-header-signout" data-en="Sign out" data-fr="Déconnexion" data-madic-en="Sign out" data-madic-fr="Déconnexion" id="logout" type="button">
               Déconnexion
             </button>
-<a href="cric-dashboard.html">Mon espace</a>
+<a data-en="My space" data-fr="Mon espace" data-madic-en="My space" data-madic-fr="Mon espace" href="cric-dashboard.html">Mon espace</a>
 <div aria-label="Langue / Language" class="madic-lang-controls" role="group">
 <button aria-label="Français" data-lang="fr" title="Français" type="button">
                 FR</button><button aria-label="English" data-lang="en" title="English" type="button">
                 EN
               </button>
 </div>
-</nav>
+<a aria-label="Notifications" class="madic-top-notification" data-en="Notifications" data-fr="Notifications" href="cric-dashboard.html#cricNotificationsPanel" title="Notifications"><span aria-hidden="true"><img alt="" aria-hidden="true" class="madic-heroicon" src="https://raw.githubusercontent.com/tailwindlabs/heroicons/v2.2.0/optimized/24/outline/bell.svg"/></span></a></nav>
 </header>
 <main class="cric-shell" id="main-content">
 <div class="cric-heading">
@@ -237,13 +229,7 @@
             <span data-en="All rights reserved." data-fr="Tous droits réservés.">Tous droits réservés.</span>
 </div>
 </footer>
-
-
-
-
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script><script src="assets/config.js"></script><script src="assets/gestion-dossiers-cric.js"></script></div>
 </div>
-
-
 </body>
 </html>
