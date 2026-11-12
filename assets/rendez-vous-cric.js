@@ -767,6 +767,8 @@ window.getMadicSupabase = function () {
 (() => {
   "use strict";
   const dictionary = {
+    "Calculée automatiquement": "Calculated automatically",
+    "Adresse ou lien Teams": "Address or Teams link",
     "Sélectionnez une journée pour afficher ses consultations.": "Select a day to view its consultations.",
     "Aucun créneau ni réservation pour cette journée.": "No time slots or bookings for this day.",
     "Réservation(s) en cours - autres heures potentiellement disponibles": "Booking(s) in progress - other times may be available",
