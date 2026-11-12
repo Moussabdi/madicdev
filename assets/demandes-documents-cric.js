@@ -151,7 +151,11 @@ window.getMadicSupabase = function () {
         review,
         doc.review_reason || "-",
       ])
-        row.insertCell().textContent = value;
+        {
+        const cell = row.insertCell();
+        cell.textContent = value;
+        if (value === doc.original_name || value === doc.review_reason) cell.setAttribute("data-madic-user-content", "true");
+      }
       const btn = document.createElement("button");
       btn.type = "button";
       btn.className = "secondary";
@@ -177,7 +181,7 @@ window.getMadicSupabase = function () {
           let reason = null;
           if (status === "refuse") {
             reason = window.prompt(
-              "Motif du refus (obligatoire, visible par le client) :",
+              window.MadicDocreqT?.("Motif du refus (obligatoire, visible par le client) :") || "Motif du refus (obligatoire, visible par le client) :",
               doc.review_reason || "",
             );
             if (reason === null) return;
@@ -188,7 +192,7 @@ window.getMadicSupabase = function () {
               return;
             }
           } else if (
-            !window.confirm("Confirmer l’acceptation de ce document ?")
+            !window.confirm(window.MadicDocreqT?.("Confirmer l’acceptation de ce document ?") || "Confirmer l’acceptation de ce document ?")
           )
             return;
           action.disabled = true;
@@ -266,7 +270,11 @@ window.getMadicSupabase = function () {
           r.status
         ] || r.status,
       ])
-        tr.insertCell().textContent = v;
+        {
+        const cell = tr.insertCell();
+        cell.textContent = v;
+        if (v === r.title) cell.setAttribute("data-madic-user-content", "true");
+      }
       const td = tr.insertCell();
       td.className = "madic-doc-request-action";
       const sel = document.createElement("select");
@@ -515,6 +523,59 @@ window.getMadicSupabase = function () {
     "Temps et honoraires": "Time and fees",
     "Aucune donnée enregistrée pour ce cabinet.": "No data recorded for this practice."
   });
+
+  /* Document management: missing dynamic FR/EN strings (UI only). */
+  Object.assign(dictionary, {
+    "Accepté": "Accepted",
+    "Refusé": "Rejected",
+    "En attente": "Pending",
+    "Télécharger": "Download",
+    "Accepter": "Accept",
+    "Accepter à nouveau": "Accept again",
+    "Modifier le refus": "Edit rejection",
+    "Refuser": "Reject",
+    "Aucune demande documentaire.": "No document requests.",
+    "Manque de signature": "Missing signature",
+    "Demandé": "Requested",
+    "Terminé": "Completed",
+    "Annulé": "Cancelled",
+    "Enregistrer": "Save",
+    "Statut enregistré.": "Status saved.",
+    "Document accepté.": "Document accepted.",
+    "Document refusé. Motif enregistré.": "Document rejected. Reason saved.",
+    "Demandes chargées.": "Requests loaded.",
+    "Chargement…": "Loading…",
+    "Aucun dossier sélectionné": "No case selected",
+    "Aucun dossier sélectionné.": "No case selected.",
+    "Lecture impossible": "Unable to load",
+    "La sélection a changé : actualisez les documents.": "The selection has changed: refresh the documents.",
+    "Motif du refus (obligatoire, visible par le client) :": "Reason for rejection (required, visible to the client):",
+    "Motif requis : 1 à 1000 caractères.": "Reason required: 1 to 1000 characters.",
+    "Confirmer l’acceptation de ce document ?": "Confirm acceptance of this document?",
+    "Document non autorisé pour ce cabinet ou ce dossier.": "Document not authorized for this practice or case.",
+    "Évaluation impossible": "Unable to review",
+    "Lien indisponible": "Link unavailable",
+    "Téléchargement impossible": "Download failed",
+    "Connexion CRIC requise.": "RCIC sign-in required.",
+    "Compte CRIC non approuvé.": "RCIC account not approved.",
+    "Cabinet inactif.": "Inactive practice.",
+    "Accès refusé.": "Access denied.",
+    "Configuration Supabase manquante.": "Supabase configuration missing.",
+    "Sélectionnez un client et son dossier.": "Select a client and its case.",
+    "Choisissez un PDF, JPG ou PNG de 10 Mo maximum.": "Choose a PDF, JPG or PNG file, maximum 10 MB.",
+    "Transmission en cours…": "Sending…",
+    "Transmission non confirmée.": "Transmission not confirmed.",
+    "Document transmis. Il est maintenant disponible dans l’espace client.": "Document sent. It is now available in the client workspace.",
+    "Transmission impossible": "Unable to send",
+    "Client, dossier et document obligatoires.": "Client, case and document are required.",
+    "Création impossible": "Unable to create",
+    "Demande créée.": "Request created.",
+    "Chargement impossible": "Unable to load",
+    "Déconnexion impossible": "Unable to sign out",
+    "document(s) reçu(s).": "document(s) received.",
+    "Documents du dossier": "Case documents",
+    "Aucun document reçu.": "No documents received."
+});
   const key = 'madic_ui_language';
   let lang = 'fr';
   try { lang = localStorage.getItem(key) === 'en' ? 'en' : 'fr'; } catch (_) {}
@@ -528,7 +589,7 @@ window.getMadicSupabase = function () {
   const originalAttrs = new WeakMap();
   const renderedAttrs = new WeakMap();
   const attrs = ['placeholder', 'title', 'aria-label'];
-  const ignored = node => !!node.parentElement?.closest('script,style,code,pre,textarea,[contenteditable="true"],.madic-lang-controls');
+  const ignored = node => !!node.parentElement?.closest('script,style,code,pre,textarea,[contenteditable="true"],.madic-lang-controls,[data-madic-user-content="true"]');
   const patterns = [
     [/^Nouvelle demande de rendez-vous\s*-\s*/i, 'New appointment request - '],
     [/^Dernière vérification automatique\s*:/i, 'Last automatic check:'],
@@ -631,6 +692,7 @@ window.getMadicSupabase = function () {
     }, true);
     observer = new MutationObserver(schedule);
     render();
+    window.MadicDocreqT = (source) => lang === 'en' ? toEnglish(source) : toFrench(source);
     window.MadicCricLanguage = {set:selectLanguage, get:()=>lang, refresh:render};
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init, {once:true});
