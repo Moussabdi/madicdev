@@ -407,3 +407,15 @@ body[data-page="invitation-information"] .madic-footer :is(.madic-footer-name,.m
 body[data-page="invitation-information"] .madic-footer .madic-footer-name {color:#fff;}
 body[data-page="invitation-information"] .madic-footer .madic-footer-right a {color:#dce8f5;}
 body[data-page="invitation-information"] .madic-footer .madic-footer-bottom {border-top-color:#1b2c49;}
+
+/* Harmonisation finale : carte d'invitation identique au theme sombre de connexion. */
+body[data-page="invitation-information"] > main .auth.panel {
+  background: #101e33;
+  border: 1px solid #2a425d;
+  color: #e9f1ff;
+  box-shadow: 0 16px 45px #0004;
+}
+body[data-page="invitation-information"] > main h1 { color: #e9f1ff; }
+body[data-page="invitation-information"] > main .eyebrow { color: #59d7ec; }
+body[data-page="invitation-information"] > main .muted { color: #a5b7cc; }
+body[data-page="invitation-information"] > main a { color: #5ad5f2; }
