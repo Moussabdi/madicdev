@@ -154,7 +154,13 @@ window.getMadicSupabase = function () {
         {
         const cell = row.insertCell();
         cell.textContent = value;
-        if (value === doc.original_name || value === doc.review_reason) cell.setAttribute("data-madic-user-content", "true");
+        if (value === doc.original_name) cell.setAttribute("data-madic-user-content", "true");
+        // Keep the original reason in Supabase and translate only known display text.
+        // Free-form client/professional content is otherwise preserved verbatim.
+        if (value === doc.review_reason) {
+          cell.setAttribute("data-madic-review-reason", "true");
+          if (value !== "Manque de signature") cell.setAttribute("data-madic-user-content", "true");
+        }
       }
       const btn = document.createElement("button");
       btn.type = "button";
