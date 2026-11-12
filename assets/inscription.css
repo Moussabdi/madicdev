@@ -372,7 +372,7 @@ footer.madic-footer {
 .madic-footer,.madic-footer *{box-sizing:border-box}.madic-footer{font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;text-align:left}.madic-footer a:focus-visible{outline:3px solid #efb544;outline-offset:3px}
 
 /* Inscription client : harmonisation avec cric-dashboard, page publique. */
-html,body{min-height:100%;}body[data-page="invitation-information"]{background:#f1f6fc;color:#143453;min-height:100vh;display:flex;flex-direction:column;}
+html,body{min-height:100%;}body[data-page="invitation-information"]{background:radial-gradient(ellipse at 85% 5%, #15385a 0, transparent 42%), #07101f;color:#143453;min-height:100vh;display:flex;flex-direction:column;}
 body[data-page="invitation-information"]>header{width:100%;min-height:74px;margin:0;padding:12px max(22px,calc((100% - 1120px)/2 + 20px));background:#fff;border:0;border-bottom:1px solid #dbe7f2;border-radius:0;box-shadow:none;display:flex;align-items:center;gap:18px;flex-wrap:wrap;}
 body[data-page="invitation-information"]>header .brand{color:#102d4c;font-size:22px;font-weight:800;white-space:nowrap;}body[data-page="invitation-information"]>header .brand span{color:#50bfdf;}body[data-page="invitation-information"]>header .brand small{color:#21618d;font-size:.75em;}
 body[data-page="invitation-information"]>header .toplinks{display:flex;align-items:center;gap:18px;margin-left:auto;}body[data-page="invitation-information"]>header .toplinks a{color:#123553;font-weight:650;}
