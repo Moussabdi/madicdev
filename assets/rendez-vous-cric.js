@@ -27,8 +27,10 @@ window.getMadicSupabase = function () {
   const db = window.getMadicSupabase();
   let spaceId,
     slots = [];
+  const english = () => localStorage.getItem("madic_ui_language") === "en";
+  const tr = (fr, en) => english() ? en : fr;
   const date = (t) =>
-    new Intl.DateTimeFormat("fr-CA", {
+    new Intl.DateTimeFormat(english() ? "en-CA" : "fr-CA", {
       dateStyle: "medium",
       timeStyle: "short",
       timeZone: "America/Toronto",
@@ -39,15 +41,15 @@ window.getMadicSupabase = function () {
     return c;
   };
   const mode = {
-    video: "Visioconférence",
-    phone: "Téléphone",
-    in_person: "En personne",
+    get video() { return tr("Visioconférence", "Video call"); },
+    get phone() { return tr("Téléphone", "Phone call"); },
+    get in_person() { return tr("En personne", "In person"); },
   };
   const status = {
-    requested: "Demandé",
-    confirmed: "Confirmé",
-    declined: "Refusé",
-    cancelled: "Annulé",
+    get requested() { return tr("Demandé", "Requested"); },
+    get confirmed() { return tr("Confirmé", "Confirmed"); },
+    get declined() { return tr("Refusé", "Declined"); },
+    get cancelled() { return tr("Annulé", "Cancelled"); },
   };
   const button = (label, fn) => {
     const b = document.createElement("button");
@@ -284,7 +286,7 @@ window.getMadicSupabase = function () {
     }
     const year = calendarMonth.getUTCFullYear(),
       month = calendarMonth.getUTCMonth();
-    label.textContent = new Intl.DateTimeFormat("fr-CA", {
+    label.textContent = new Intl.DateTimeFormat(english() ? "en-CA" : "fr-CA", {
       month: "long",
       year: "numeric",
       timeZone: "UTC",
@@ -330,31 +332,31 @@ window.getMadicSupabase = function () {
       if (confirmed) {
         const chip = document.createElement("em");
         chip.className = "is-confirmed";
-        chip.textContent = `${confirmed} confirmé${confirmed > 1 ? "s" : ""}`;
+        chip.textContent = english() ? `${confirmed} confirmed` : `${confirmed} confirmé${confirmed > 1 ? "s" : ""}`;
         summary.append(chip);
       }
       if (requested) {
         const chip = document.createElement("em");
         chip.className = "is-requested";
-        chip.textContent = `${requested} demande${requested > 1 ? "s" : ""}`;
+        chip.textContent = english() ? `${requested} requested` : `${requested} demande${requested > 1 ? "s" : ""}`;
         summary.append(chip);
       }
       if (available) {
         const chip = document.createElement("em");
         chip.className = "is-free";
-        chip.textContent = `${available} libre${available > 1 ? "s" : ""}`;
+        chip.textContent = english() ? `${available} available` : `${available} libre${available > 1 ? "s" : ""}`;
         summary.append(chip);
       }
       if (daily.some((x) => !x.is_open)) {
         const chip = document.createElement("em");
         chip.className = "is-closed";
-        chip.textContent = "Fermé";
+        chip.textContent = tr("Fermé", "Closed");
         summary.append(chip);
       }
       b.append(summary);
       b.setAttribute(
         "aria-label",
-        `${key}, ${daily.length} créneau(x), ${reservations.length} réservation(s)`,
+        english() ? `${key}, ${daily.length} slots, ${reservations.length} bookings` : `${key}, ${daily.length} créneau(x), ${reservations.length} réservation(s)`,
       );
       b.addEventListener("click", () => {
         if (key >= today) {
@@ -367,20 +369,20 @@ window.getMadicSupabase = function () {
         b.classList.add("is-selected");
         detail.replaceChildren();
         const title = document.createElement("strong");
-        title.textContent = new Intl.DateTimeFormat("fr-CA", {
+        title.textContent = new Intl.DateTimeFormat(english() ? "en-CA" : "fr-CA", {
           dateStyle: "full",
           timeZone: "UTC",
         }).format(new Date(`${key}T12:00:00Z`));
         detail.append(title);
         if (!daily.length && !reservations.length) {
           const p = document.createElement("p");
-          p.textContent = "Aucun créneau ni réservation pour cette journée.";
+          p.textContent = tr("Aucun créneau ni réservation pour cette journée.", "No time slots or bookings for this day.");
           detail.append(p);
         }
         for (const x of daily) {
           const p = document.createElement("p");
           const associated = reservations.filter((a) => a.slot_id === x.id);
-          p.textContent = `${date(x.starts_at)} – ${date(x.ends_at)} · ${mode[x.mode] || x.mode} · ${!x.is_open ? "Fermé" : associated.length ? associated.map((a) => status[a.status]).join(", ") : "Disponible"}`;
+          p.textContent = `${date(x.starts_at)} – ${date(x.ends_at)} · ${mode[x.mode] || x.mode} · ${!x.is_open ? tr("Fermé", "Closed") : associated.length ? associated.map((a) => status[a.status]).join(", ") : tr("Disponible", "Available")}`;
           detail.append(p);
         }
         if (key >= today)
@@ -392,10 +394,14 @@ window.getMadicSupabase = function () {
       const p = document.createElement("p");
       p.className = "madic-rdv-muted";
       p.textContent =
-        "Sélectionnez une journée pour afficher ses consultations.";
+        tr("Sélectionnez une journée pour afficher ses consultations.", "Select a day to view its consultations.");
       detail.append(p);
     }
   }
+  document.addEventListener("madic:languagechange", () => {
+    renderMonth();
+    if (spaceId) void load().catch((error) => notice(error.message));
+  });
   function initMonthControls() {
     const prev = $("rdvMonthPrev"),
       next = $("rdvMonthNext"),
@@ -455,16 +461,16 @@ window.getMadicSupabase = function () {
       td(
         r,
         !s.is_open
-          ? "Fermé"
+          ? tr("Fermé", "Closed")
           : active.has(s.id)
-            ? "Réservation(s) en cours - autres heures potentiellement disponibles"
-            : "Disponible",
+            ? tr("Réservation(s) en cours - autres heures potentiellement disponibles", "Booking(s) in progress - other times may be available")
+            : tr("Disponible", "Available"),
       );
       const cell = r.insertCell();
       cell.className = "madic-rdv-actions";
       if (s.is_open && !active.has(s.id))
         cell.append(
-          button("Fermer", async () => {
+          button(tr("Fermer", "Close"), async () => {
             const { error } = await db.rpc("madic_rdv_close_slot", {
               p_slot_id: s.id,
             });
@@ -476,7 +482,7 @@ window.getMadicSupabase = function () {
     if (!slots.length) {
       const r = sb.insertRow();
       r.insertCell().colSpan = 5;
-      r.cells[0].textContent = "Aucun créneau à venir.";
+      r.cells[0].textContent = tr("Aucun créneau à venir.", "No upcoming time slots.");
     }
     const ids = [...new Set((ar.data || []).map((a) => a.client_id))];
     let names = new Map();
@@ -507,7 +513,7 @@ window.getMadicSupabase = function () {
           ? `${date(a.starts_at)} – ${date(a.ends_at)}`
           : s
             ? `${date(s.starts_at)} – ${date(s.ends_at)}`
-            : "Créneau passé",
+            : tr("Créneau passé", "Past time slot"),
       );
       td(r, s ? mode[s.mode] : "-");
       const statusCell = td(r, status[a.status] || a.status);
@@ -519,15 +525,15 @@ window.getMadicSupabase = function () {
       cell.className = "madic-rdv-actions";
       if (a.status === "requested") {
         cell.append(
-          button("Confirmer", async () => {
+          button(tr("Confirmer", "Confirm"), async () => {
             const { error } = await db.rpc("madic_rdv_set_status", {
               p_appointment_id: a.id,
               p_status: "confirmed",
             });
             if (error) throw error;
           }),
-          button("Refuser", async () => {
-            if (!confirm("Refuser cette demande ?")) return;
+          button(tr("Refuser", "Decline"), async () => {
+            if (!confirm(tr("Refuser cette demande ?", "Decline this request?"))) return;
             const { error } = await db.rpc("madic_rdv_set_status", {
               p_appointment_id: a.id,
               p_status: "declined",
@@ -538,8 +544,8 @@ window.getMadicSupabase = function () {
       }
       if (a.status === "confirmed")
         cell.append(
-          button("Annuler", async () => {
-            if (!confirm("Annuler ce rendez-vous ?")) return;
+          button(tr("Annuler", "Cancel"), async () => {
+            if (!confirm(tr("Annuler ce rendez-vous ?", "Cancel this appointment?"))) return;
             const { error } = await db.rpc("madic_rdv_set_status", {
               p_appointment_id: a.id,
               p_status: "cancelled",
@@ -549,22 +555,22 @@ window.getMadicSupabase = function () {
         );
       if (a.status === "confirmed")
         cell.append(
-          button("Lieu / lien", async () => {
+          button(tr("Lieu / lien", "Location / link"), async () => {
             const { data, error } = await db.rpc("madic_rdv_meeting_details", {
               p_appointment_id: a.id,
             });
             if (error) throw error;
-            alert(data?.[0]?.location_info || "Aucun lieu ou lien indiqué.");
+            alert(data?.[0]?.location_info || tr("Aucun lieu ou lien indiqué.", "No location or link provided."));
           }),
         );
     }
     if (!ar.data?.length) {
       const r = br.insertRow();
       r.insertCell().colSpan = 5;
-      r.cells[0].textContent = "Aucune réservation.";
+      r.cells[0].textContent = tr("Aucune réservation.", "No bookings.");
     }
     await loadNotifications(spaceId);
-    notice("Disponibilités et réservations actualisées.");
+    notice(tr("Disponibilités et réservations actualisées.", "Availability and bookings updated."));
   }
   try {
     const {
@@ -761,6 +767,19 @@ window.getMadicSupabase = function () {
 (() => {
   "use strict";
   const dictionary = {
+    "Sélectionnez une journée pour afficher ses consultations.": "Select a day to view its consultations.",
+    "Aucun créneau ni réservation pour cette journée.": "No time slots or bookings for this day.",
+    "Réservation(s) en cours - autres heures potentiellement disponibles": "Booking(s) in progress - other times may be available",
+    "Lieu / lien": "Location / link",
+    "Fermé": "Closed",
+    "Disponible": "Available",
+    "Confirmé": "Confirmed",
+    "Annulé": "Cancelled",
+    "Visioconférence": "Video call",
+    "Téléphone": "Phone call",
+    "En personne": "In person",
+    "Aucune réservation.": "No bookings.",
+    "Aucun créneau à venir.": "No upcoming time slots.",
     "Espace professionnel": "Professional workspace",
     NAVIGATION: "NAVIGATION",
     "Vue d’ensemble": "Overview",
