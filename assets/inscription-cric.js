@@ -16,7 +16,6 @@ window.getMadicSupabase = function () {
   return window.madicSupabaseClient;
 };
 
-
 /* Source : cric-registration(2).js */
 (() => {
   "use strict";
@@ -342,7 +341,6 @@ window.getMadicSupabase = function () {
   }
 })();
 
-
 /* Source : madic-i18n-login.js */
 (() => {
   "use strict";
@@ -383,7 +381,7 @@ window.getMadicSupabase = function () {
     "signup.cric.nav": { fr: "Connexion CRIC", en: "RCIC sign-in" },
     "signup.cric.eyebrow": {
       fr: "ESPACE PROFESSIONNEL",
-      en: "PROFESSIONAL PORTAL",
+      en: "PROFESSIONAL SPACE",
     },
     "signup.cric.heading": {
       fr: "Demande d’accès CRIC",
@@ -557,7 +555,27 @@ window.getMadicSupabase = function () {
   else init();
 })();
 
-
 /* Source : madic-footer.js */
 /* Footer commun MADIC : traduction des libellés sur les pages sans gestionnaire FR/EN. */
-(function(){"use strict";function apply(lang){lang=lang==="en"?"en":"fr";document.querySelectorAll(".madic-footer [data-fr][data-en]").forEach(function(el){el.textContent=el.getAttribute("data-"+lang);});}var lang="fr";try{lang=new URLSearchParams(location.search).get("lang")||localStorage.getItem("madic-lang")||"fr";}catch(e){}apply(lang);window.addEventListener("storage",function(e){if(e.key==="madic-lang")apply(e.newValue);});})();
+(function () {
+  "use strict";
+  function apply(lang) {
+    lang = lang === "en" ? "en" : "fr";
+    document
+      .querySelectorAll(".madic-footer [data-fr][data-en]")
+      .forEach(function (el) {
+        el.textContent = el.getAttribute("data-" + lang);
+      });
+  }
+  var lang = "fr";
+  try {
+    lang =
+      new URLSearchParams(location.search).get("lang") ||
+      localStorage.getItem("madic-lang") ||
+      "fr";
+  } catch (e) {}
+  apply(lang);
+  window.addEventListener("storage", function (e) {
+    if (e.key === "madic-lang") apply(e.newValue);
+  });
+})();
