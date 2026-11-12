@@ -1,3 +1,76 @@
+/* MADIC Kanban - consolidated from user-supplied current sources */
+window.MADIC_CONFIG = {
+  url: "https://ezijsozitnydhjkxzqem.supabase.co",
+  anonKey: "sb_publishable_MQjW5_va454CjZ7weau0iQ_AdJ41yvi",
+};
+window.getMadicSupabase = function () {
+  if (!window.madicSupabaseClient) {
+    const cfg = window.MADIC_CONFIG;
+
+    window.madicSupabaseClient = window.supabase.createClient(
+      cfg.url,
+      cfg.anonKey,
+    );
+  }
+
+  return window.madicSupabaseClient;
+};
+
+/* MADIC : navigation CRIC uniforme. Icones Heroicons identiques au tableau de bord. */
+(() => {
+  "use strict";
+  const init = () => {
+    const sidebar = document.querySelector(".madic-unified-sidebar");
+    if (!sidebar || !sidebar.querySelector(".madic-unified-brand small")?.textContent.includes("Espace professionnel")) return;
+    const nav = sidebar.querySelector("nav");
+    if (!nav) return;
+    const iconBase = "https://raw.githubusercontent.com/tailwindlabs/heroicons/v2.2.0/optimized/24/outline/";
+    const items = [
+      ["cric-dashboard.html", "Vue d’ensemble", "squares-2x2", ""],
+      ["gestion-clients-cric.html", "Clients", "users", "madic-v2-group-start"],
+      ["gestion-dossiers-cric.html", "Outils CRIC", "folder-open", ""],
+      ["messagerie-cric.html", "Messagerie", "chat-bubble-left-right", "madic-v2-group-start"],
+      ["rendez-vous-cric.html", "Rendez-vous", "calendar-days", ""],
+      ["demandes-documents-cric.html", "Documents", "document-text", ""],
+      ["echeances-cric.html", "Échéances", "calendar-days", ""],
+      ["facturation-cric.html", "Facturation", "receipt-percent", "madic-v2-group-start"],
+      ["finances-cric.html", "Finances", "banknotes", ""],
+      ["profil-professionnel-cric.html", "Mon profil professionnel", "identification", ""]
+    ];
+    const current = (location.pathname.split("/").pop() || "cric-dashboard").replace(/\.html$/, "") + ".html";
+    const fragment = document.createDocumentFragment();
+    for (const [href, label, iconName, group] of items) {
+      const link = document.createElement("a");
+      link.href = href;
+      link.dataset.madicPage = href;
+      if (group) link.className = group;
+      if (current === href) link.setAttribute("aria-current", "page");
+      const holder = document.createElement("span");
+      holder.setAttribute("aria-hidden", "true");
+      const img = document.createElement("img");
+      img.className = "madic-heroicon";
+      img.alt = "";
+      img.setAttribute("aria-hidden", "true");
+      img.loading = "eager";
+      img.decoding = "async";
+      img.src = iconBase + iconName + ".svg";
+      holder.appendChild(img);
+      link.append(holder, document.createTextNode(label));
+      fragment.appendChild(link);
+    }
+    nav.replaceChildren(fragment);
+    const brand = sidebar.querySelector(".madic-unified-monogram");
+    if (brand) {
+      const logo = document.createElement("img");
+      logo.src = "img/logo-madic.svg";
+      logo.alt = "Logo MADIC";
+      brand.replaceChildren(logo);
+    }
+  };
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init, {once:true});
+  else init();
+})();
+
 (async () => {
   "use strict";
   const $ = (id) => document.getElementById(id),
@@ -176,4 +249,43 @@
   } catch (e) {
     notice("Accès impossible : " + (e.message || String(e)));
   }
+})();
+
+/* Footer commun MADIC : traduction des libellés sur les pages sans gestionnaire FR/EN. */
+(function(){"use strict";function apply(lang){lang=lang==="en"?"en":"fr";document.querySelectorAll(".madic-footer [data-fr][data-en]").forEach(function(el){el.textContent=el.getAttribute("data-"+lang);});}var lang="fr";try{lang=new URLSearchParams(location.search).get("lang")||localStorage.getItem("madic-lang")||"fr";}catch(e){}apply(lang);window.addEventListener("storage",function(e){if(e.key==="madic-lang")apply(e.newValue);});})();
+
+
+/* Kanban page language control; preserves the existing Kanban workflow. */
+(function(){'use strict';
+ const key='madic-lang';let lang='fr';try{lang=localStorage.getItem(key)==='en'?'en':'fr';}catch(e){}
+ const pairs={
+ 'Suivi visuel des dossiers':'Visual case tracking','ESPACE PROFESSIONNEL CRIC':'RCIC PROFESSIONAL SPACE',
+ 'Visualisez les dossiers par statut et mettez à jour leur progression.':'View cases by status and update their progress.',
+ 'Vérification des droits…':'Checking permissions…','PILOTAGE DES DOSSIERS':'CASE MANAGEMENT',
+ 'Votre activité, en un coup d’œil.':'Your activity at a glance.',
+ 'Suivez les dossiers autorisés et faites progresser leur traitement par étape.':'Track authorized cases and move them through each stage.',
+ 'Total des dossiers':'Total cases','Dans votre cabinet':'In your practice','En attente':'Pending',
+ 'À prendre en charge':'To be handled','Actifs':'Active','En cours de traitement':'In progress',
+ 'Fermés':'Closed','Dossiers clôturés':'Closed cases','Outils professionnels CRIC':'RCIC professional tools',
+ 'Gestion des clients':'Client management','Rechercher un dossier':'Search for a case',
+ 'Référence ou catégorie':'Reference or category','Actualiser':'Refresh','Créer un dossier →':'Create a case →',
+ 'Déconnexion':'Sign out','Mon espace':'My space','Vue d’ensemble':'Overview',
+ 'Clients':'Clients','Outils CRIC':'RCIC tools','Messagerie':'Messaging','Rendez-vous':'Appointments',
+ 'Documents':'Documents','Échéances':'Deadlines','Facturation':'Billing','Finances':'Finances',
+ 'Mon profil professionnel':'My professional profile','Espace professionnel':'Professional space',
+ 'NAVIGATION':'NAVIGATION','Espace sécurisé MADIC':'Secure MADIC space',
+ 'Statut':'Status','Fermé':'Closed','Actif':'Active','Dossier':'Case','Sans catégorie':'Uncategorized'
+ };
+ const reverse=Object.fromEntries(Object.entries(pairs).map(([a,b])=>[b,a]));
+ function apply(next){lang=next==='en'?'en':'fr';document.documentElement.lang=lang==='en'?'en-CA':'fr-CA';
+ document.querySelectorAll('[data-fr][data-en]').forEach(el=>{el.textContent=el.getAttribute('data-'+lang);});
+ document.querySelectorAll('[data-madic-fr][data-madic-en]:not([data-fr])').forEach(el=>{el.textContent=el.getAttribute('data-madic-'+lang);});
+ document.querySelectorAll('main, aside, header').forEach(root=>{const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);let node;while(node=walker.nextNode()){if(node.parentElement?.closest('script,style,[data-fr][data-en],[data-madic-fr][data-madic-en]'))continue;const raw=node.nodeValue;const trimmed=raw.trim();if(!trimmed)continue;const translated=lang==='en'?pairs[trimmed]:reverse[trimmed];if(translated)node.nodeValue=raw.replace(trimmed,translated);}});
+ document.querySelectorAll('.madic-lang-controls button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.lang===lang)));
+ document.querySelectorAll('#kbSearch').forEach(el=>{el.placeholder=lang==='en'?'Reference or category':'Référence ou catégorie';});
+ }
+ document.querySelectorAll('.madic-lang-controls button').forEach(b=>b.addEventListener('click',()=>{try{localStorage.setItem(key,b.dataset.lang);}catch(e){}apply(b.dataset.lang);}));
+ apply(lang);
+ const observer=new MutationObserver(()=>{if(lang==='en'){observer.disconnect();apply('en');observer.observe(document.querySelector('#kbWorkspace')||document.body,{childList:true,subtree:true});}});
+ observer.observe(document.querySelector('#kbWorkspace')||document.body,{childList:true,subtree:true});
 })();

@@ -1,0 +1,389 @@
+:root {
+  font-family:
+    Inter,
+    system-ui,
+    -apple-system,
+    Segoe UI,
+    sans-serif;
+  color: #e9f1ff;
+  background: #07101f;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(ellipse at 85% 5%, #15385a 0, transparent 42%), #07101f;
+}
+a {
+  color: #5ad5f2;
+}
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 22px max(24px, calc((100vw - 1100px) / 2));
+  border-bottom: 1px solid #26344b;
+  gap: 12px;
+}
+header a {
+  text-decoration: none;
+}
+.brand {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: white;
+  letter-spacing: 0.05em;
+}
+.brand span {
+  color: #48d5ec;
+}
+.toplinks {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+}
+main {
+  max-width: 1100px;
+  margin: 45px auto;
+  padding: 0 24px;
+}
+.auth {
+  max-width: 460px;
+  margin: 60px auto;
+}
+.panel {
+  background: #101e33;
+  border: 1px solid #2a425d;
+  border-radius: 18px;
+  padding: 30px;
+  box-shadow: 0 16px 45px #0004;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+}
+.muted {
+  color: #a5b7cc;
+}
+.eyebrow {
+  color: #59d7ec;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+}
+h1 {
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  margin: 10px 0 20px;
+}
+h2 {
+  font-size: 1.25rem;
+  margin: 0 0 16px;
+}
+label {
+  display: block;
+  font-size: 0.9rem;
+  margin: 16px 0 7px;
+}
+input,
+select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #47617b;
+  border-radius: 9px;
+  background: #09192c;
+  color: white;
+  font: inherit;
+}
+input:focus,
+select:focus {
+  outline: 2px solid #48d5ec;
+}
+button,
+.btn {
+  background: #38bfd8;
+  color: #041322;
+  border: 0;
+  border-radius: 9px;
+  padding: 12px 17px;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+}
+button:hover,
+.btn:hover {
+  background: #76e0ef;
+}
+button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.secondary {
+  background: #223a52;
+  color: white;
+}
+.actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: 20px;
+}
+.notice {
+  margin: 16px 0;
+  min-height: 22px;
+  color: #f3c77b;
+}
+.ok {
+  color: #77e6b2;
+}
+.danger {
+  color: #ffa3a3;
+}
+.hidden {
+  display: none !important;
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.9rem;
+}
+td,
+th {
+  padding: 11px;
+  border-bottom: 1px solid #30415a;
+  text-align: left;
+}
+footer {
+  text-align: center;
+  padding: 30px;
+  color: #8399b1;
+  font-size: 0.85rem;
+}
+small {
+  color: #a5b7cc;
+}
+code {
+  overflow-wrap: anywhere;
+}
+@media (max-width: 620px) {
+  header {
+    padding: 18px 22px;
+  }
+  .toplinks {
+    gap: 8px;
+    font-size: 0.85rem;
+  }
+  .panel {
+    padding: 22px;
+  }
+}
+
+body {
+  background-color: #071626;
+  color: #e8f3fa;
+}
+button,
+a.button,
+input[type="submit"] {
+  border-radius: 10px;
+}
+input,
+select,
+textarea {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+footer.madic-footer {
+  background: #070f22;
+  color: #dce8f5;
+  border-top: 1px solid #1b2c49;
+  padding: 40px 28px 23px;
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+.madic-footer-inner {
+  max-width: 1100px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 36px;
+  flex-wrap: wrap;
+}
+.madic-footer-brand {
+  max-width: 390px;
+}
+.madic-footer-brandline {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.madic-footer-logo {
+  width: 43px;
+  height: 43px;
+  object-fit: contain;
+  border-radius: 9px;
+  background: #fff;
+  padding: 3px;
+}
+.madic-footer-name {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #fff;
+}
+.madic-footer-subtitle {
+  color: #9eb4d6;
+  font-size: 0.78rem;
+}
+.madic-footer-desc {
+  margin: 12px 0 0;
+  color: #9eb4d6;
+  max-width: 340px;
+  font-size: 0.85rem;
+}
+.madic-footer-right {
+  display: flex;
+  align-items: center;
+  gap: 19px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  padding-top: 8px;
+}
+.madic-footer-right a {
+  color: #b7cce9;
+  text-decoration: none;
+  font-size: 0.84rem;
+}
+.madic-footer-right a:hover {
+  text-decoration: underline;
+  color: #74e0ed;
+}
+.madic-footer-unavailable {
+  color: #8394ae;
+  font-size: 0.84rem;
+}
+.madic-footer-langs {
+  display: flex;
+  gap: 6px;
+  margin-left: 5px;
+}
+.madic-footer-langs button {
+  background: transparent;
+  border: 1px solid #3b506d;
+  color: #cbdcf2;
+  padding: 5px 9px;
+  border-radius: 7px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 0.75rem;
+}
+.madic-footer-langs button[aria-pressed="true"] {
+  background: #d8f7fc;
+  color: #09264a;
+  border-color: #d8f7fc;
+}
+.madic-footer-bottom {
+  max-width: 1100px;
+  margin: 28px auto 0;
+  padding-top: 17px;
+  border-top: 1px solid #263652;
+  color: #9eb4d6;
+  font-size: 0.78rem;
+}
+
+@media (max-width:600px){.madic-footer-inner{display:block}.madic-footer-right{justify-content:flex-start;gap:14px;margin-top:23px}.madic-footer-bottom{margin-top:23px}}
+
+.madic-footer,.madic-footer *{box-sizing:border-box}.madic-footer{font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;text-align:left}.madic-footer a:focus-visible{outline:3px solid #efb544;outline-offset:3px}
+
+
+      /* Formulaire d'invitation CRIC. */
+      #invitationForm .invitation-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin-top: 24px;
+      }
+      #invitationForm .invitation-actions button {
+        display: block;
+        width: 100%;
+        min-height: 46px;
+        text-align: center;
+      }
+      #invitationForm #switchAccount {
+        background: transparent;
+        color: #aee8f4;
+        border: 1px solid #47617b;
+        font-weight: 600;
+      }
+      #invitationForm #switchAccount:hover {
+        background: #223a52;
+      }
+      #invitationForm #switchAccount[hidden] {
+        display: none !important;
+      }
+      #invitationForm .invitation-help {
+        margin: 0;
+        color: #a5b7cc;
+        font-size: 0.86rem;
+        line-height: 1.5;
+      }
+      #message {
+        line-height: 1.5;
+        overflow-wrap: anywhere;
+      }
+
+      /* Accessibilite du portail client - styles locaux, sans nouvelle dependance. */
+      .madic8-skip {
+        position: absolute;
+        left: 12px;
+        top: -100px;
+        z-index: 99999;
+        padding: 12px 18px;
+        background: #fff;
+        color: #092138;
+        border-radius: 8px;
+        font-weight: 700;
+        text-decoration: none;
+      }
+      .madic8-skip:focus,
+      .madic8-skip:focus-visible {
+        top: 12px;
+      }
+      body:has(> .madic8-skip)
+        :where(button, a, input, select, textarea, [tabindex]):focus-visible {
+        outline: 3px solid #7ee6f2;
+        outline-offset: 3px;
+      }
+      body:has(> .madic8-skip) :where(img, svg, video, iframe) {
+        max-width: 100%;
+      }
+      @media (max-width: 760px) {
+        body:has(> .madic8-skip) :where(.panel, .card, main, .wrap) {
+          min-width: 0;
+          max-width: 100%;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        body:has(> .madic8-skip) *,
+        body:has(> .madic8-skip) *::before,
+        body:has(> .madic8-skip) *::after {
+          scroll-behavior: auto !important;
+          transition-duration: 0.01ms !important;
+          animation-duration: 0.01ms !important;
+        }
+      }
+      @media print {
+        .madic8-skip {
+          display: none !important;
+        }
+      }
+    
+/* Invitation CRIC : harmonisation avec les pages publiques MADIC. */
+html,body{min-height:100%;}body.madic-unified-auth{background:#f1f6fc;color:#143453;display:flex;flex-direction:column;min-height:100vh}body.madic-unified-auth>.madic-invitation-header{background:#fff;border:0;border-bottom:1px solid #dbe7f2;border-radius:0;box-shadow:none;margin:0;width:100%;padding:15px clamp(20px,4vw,54px);min-height:72px;display:flex;align-items:center;justify-content:space-between}body.madic-unified-auth .brand{color:#143453}body.madic-unified-auth .brand small{color:#286c91}body.madic-unified-auth main{width:min(100%,1120px);margin:0 auto;padding:32px clamp(16px,3vw,36px) 52px;flex:1}body.madic-unified-auth .panel{background:#fff;color:#173b5b;border:1px solid #dbe7f2;box-shadow:0 10px 30px #153a5b12}body.madic-unified-auth .auth{margin:16px auto;max-width:590px}body.madic-unified-auth .muted,body.madic-unified-auth .invitation-help{color:#536c82}body.madic-unified-auth label{color:#173b5b}body.madic-unified-auth input{background:#fff;color:#143453;border:1px solid #b9ccdf}body.madic-unified-auth #switchAccount{color:#195d7c;border-color:#b9ccdf}body.madic-unified-auth #switchAccount:hover{background:#e9f3fa}body.madic-unified-auth .eyebrow{color:#087c9d}body.madic-unified-auth .madic-lang-controls{display:flex;gap:6px}body.madic-unified-auth .madic-lang-controls button{padding:8px 12px;background:#eef8fc;color:#173b5b;border:1px solid #b8d9e9;border-radius:8px}body.madic-unified-auth .madic-lang-controls button[aria-pressed="true"]{background:#238eb0;color:#fff}body.madic-unified-auth .madic-footer{width:100%;margin-top:auto;background:#e9f5fc;color:#173b5b;border-top:1px solid #d2e7f5}body.madic-unified-auth .madic-footer a{color:#176080}@media(max-width:620px){body.madic-unified-auth>.madic-invitation-header{padding:12px 16px;flex-wrap:wrap;gap:10px}body.madic-unified-auth main{padding:20px 14px 40px}}

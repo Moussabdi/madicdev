@@ -2,271 +2,54 @@
 <html lang="fr">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Prochaine étape | MADIC</title>
+    <meta content="width=device-width,initial-scale=1" name="viewport" />
+    <title
+      data-en="Your next step | MADIC Portal"
+      data-fr="Prochaine étape | MADIC Portail"
+    >
+      Prochaine étape | MADIC Portail
+    </title>
     <link href="img/favicon.png" rel="icon" />
-    <style>
-      :root {
-        font-family: Arial, Helvetica, sans-serif;
-        color: #e8f3fa;
-        background: #071626;
-        color-scheme: dark;
-      }
-      * {
-        box-sizing: border-box;
-      }
-      body {
-        margin: 0;
-        min-height: 100vh;
-        background: #071626;
-        color: #e8f3fa;
-        line-height: 1.55;
-      }
-      a {
-        color: #65d7e9;
-      }
-      a:hover {
-        text-decoration: underline;
-      }
-      .top {
-        background: #10263b;
-        border-bottom: 1px solid #29475e;
-        padding: 18px max(24px, calc((100% - 1120px) / 2));
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 16px;
-        flex-wrap: wrap;
-        box-shadow: 0 4px 24px #0002;
-      }
-      .brand {
-        color: #e8f3fa;
-        text-decoration: none;
-        font-size: 1.65rem;
-        letter-spacing: 0.05em;
-        font-weight: 800;
-        line-height: 1;
-      }
-      .brand span {
-        color: #38bfd8;
-      }
-      .brand small {
-        display: block;
-        margin-top: 5px;
-        color: #9bb6c8;
-        font-size: 0.65rem;
-        letter-spacing: 0.15em;
-      }
-      .header-actions {
-        display: flex;
-        align-items: center;
-        gap: 18px;
-        flex-wrap: wrap;
-      }
-      .back {
-        font-size: 0.92rem;
-        color: #c4dbe8;
-        text-decoration: none;
-      }
-      .lang {
-        border: 1px solid #29475e;
-        background: #09192c;
-        color: #e8f3fa;
-        padding: 9px 15px;
-        border-radius: 8px;
-        font: inherit;
-        cursor: pointer;
-      }
-      .wrap {
-        max-width: 1120px;
-        margin: 38px auto 60px;
-        padding: 0 22px;
-      }
-      .card {
-        background: #10263b;
-        border: 1px solid #29475e;
-        border-radius: 14px;
-        padding: 30px;
-        margin: 0 0 20px;
-        box-shadow: 0 10px 28px #0002;
-      }
-      h1 {
-        margin: 0 0 14px;
-        font-size: clamp(1.65rem, 3vw, 2.25rem);
-        line-height: 1.2;
-      }
-      p {
-        margin: 12px 0;
-      }
-      .muted {
-        color: #b7ccda;
-        line-height: 1.7;
-      }
-      .choices {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 18px;
-        margin: 12px 0 24px;
-      }
-      .choice {
-        display: block;
-        background: #09192c;
-        border: 1px solid #29475e;
-        border-radius: 12px;
-        padding: 24px;
-        cursor: pointer;
-        transition:
-          border-color 0.15s,
-          background 0.15s,
-          box-shadow 0.15s;
-        min-width: 0;
-      }
-      .choice:hover {
-        border-color: #38bfd8;
-      }
-      .choice:has(input:checked) {
-        border-color: #38bfd8;
-        background: #0c3044;
-        box-shadow: 0 0 0 1px #38bfd8 inset;
-      }
-      .choice input {
-        accent-color: #38bfd8;
-        width: 18px;
-        height: 18px;
-        margin: 0 10px 0 0;
-        vertical-align: middle;
-        cursor: pointer;
-      }
-      .choice strong {
-        font-size: 1.08rem;
-        color: #f0f9fd;
-      }
-      .choice .muted {
-        margin: 15px 0 0;
-      }
-      .tariff-options {
-        background: #09192c;
-        border: 1px solid #29475e;
-        border-radius: 12px;
-        padding: 20px;
-        margin: 0 0 22px;
-      }
-      .tariff-options legend {
-        font-weight: 800;
-        color: #e8f3fa;
-        padding: 0 8px;
-      }
-      .tariff-options label {
-        display: block;
-        padding: 11px 8px;
-        cursor: pointer;
-      }
-      .tariff-options input {
-        accent-color: #38bfd8;
-        margin-right: 9px;
-      }
-      .tariff-options .muted {
-        margin: 0 0 8px;
-      }
-      .tariff-options[hidden] {
-        display: none;
-      }
-      .btn {
-        background: #38bfd8;
-        color: #062334;
-        border: 1px solid #38bfd8;
-        padding: 13px 24px;
-        border-radius: 9px;
-        cursor: pointer;
-        font-weight: 800;
-        font-size: 1rem;
-        min-height: 46px;
-      }
-      .btn:hover:not(:disabled) {
-        background: #65d7e9;
-      }
-      .btn:disabled {
-        opacity: 0.55;
-        cursor: wait;
-      }
-      .status {
-        min-height: 1.5em;
-        color: #e8f3fa;
-      }
-      .footer-back {
-        margin-top: 22px;
-      }
-      .footer-back a {
-        color: #b7ccda;
-        text-decoration: none;
-      }
-      button:focus-visible,
-      input:focus-visible,
-      a:focus-visible {
-        outline: 3px solid #38bfd8;
-        outline-offset: 3px;
-      }
-      @media (max-width: 700px) {
-        .top {
-          padding: 16px 20px;
-        }
-        .wrap {
-          margin: 22px auto 40px;
-          padding: 0 15px;
-        }
-        .card {
-          padding: 22px 18px;
-        }
-        .choices {
-          grid-template-columns: 1fr;
-        }
-        .choice {
-          padding: 20px;
-        }
-        .header-actions {
-          gap: 10px;
-        }
-      }
-    
-/* Accessibilite du portail client - styles locaux, sans nouvelle dependance. */
-.madic8-skip{position:absolute;left:12px;top:-100px;z-index:99999;padding:12px 18px;background:#fff;color:#092138;border-radius:8px;font-weight:700;text-decoration:none}
-.madic8-skip:focus,.madic8-skip:focus-visible{top:12px}
-body:has(> .madic8-skip) :where(button,a,input,select,textarea,[tabindex]):focus-visible{outline:3px solid #7ee6f2;outline-offset:3px}
-body:has(> .madic8-skip) :where(img,svg,video,iframe){max-width:100%}
-@media(max-width:760px){body:has(> .madic8-skip) :where(.panel,.card,main,.wrap){min-width:0;max-width:100%}}
-@media(prefers-reduced-motion:reduce){body:has(> .madic8-skip) *,body:has(> .madic8-skip) *::before,body:has(> .madic8-skip) *::after{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important}}
-@media print{.madic8-skip{display:none!important}}
-
-</style>
+    <link href="assets/prochaine-etape-client.css" rel="stylesheet" />
+    <link href="assets/madic-footer.css" rel="stylesheet" />
   </head>
   <body>
     <a class="madic8-skip" href="#madic8-main">Aller au contenu principal</a>
     <header class="top">
       <a
+        aria-label="MADIC Portail client"
         class="brand"
         href="dashboard-client-cric.html"
-        aria-label="MADIC Portail client"
         >MADI<span>C</span><small>PORTAIL CLIENT</small></a
       >
       <div class="header-actions">
         <a
           class="back"
-          href="dashboard-client-cric.html"
-          data-fr="← Retour à mon espace client"
           data-en="← Return to my client dashboard"
+          data-fr="← Retour à mon espace client"
+          href="dashboard-client-cric.html"
           >← Retour à mon espace client</a
         ><button class="lang" id="lang" type="button">English</button>
+        <button
+          class="madic-signout"
+          data-en="Sign out"
+          data-fr="Déconnexion"
+          id="madicSignout"
+          type="button"
+        >
+          Déconnexion
+        </button>
       </div>
     </header>
-    <main id="madic8-main" class="wrap">
+    <main class="wrap" id="madic8-main">
       <div class="card">
-        <h1 data-fr="Votre prochaine étape" data-en="Your next step">
+        <h1 data-en="Your next step" data-fr="Votre prochaine étape">
           Votre prochaine étape
         </h1>
         <p
           class="muted"
-          data-fr="Votre formulaire a été soumis. Choisissez comment vous souhaitez poursuivre. Aucun contrat n'est signé à cette étape. Après l'envoi de votre demande, vous serez dirigé vers les modalités de paiement."
           data-en="Your form has been submitted. Choose how you would like to proceed. No contract is signed at this stage. After submitting your request, you will be directed to payment options."
+          data-fr="Votre formulaire a été soumis. Choisissez comment vous souhaitez poursuivre. Aucun contrat n'est signé à cette étape. Après l'envoi de votre demande, vous serez dirigé vers les modalités de paiement."
         >
           Votre formulaire a été soumis. Choisissez comment vous souhaitez
           poursuivre. Aucun contrat n'est signé à cette étape. Après l'envoi de
@@ -278,19 +61,19 @@ body:has(> .madic8-skip) :where(img,svg,video,iframe){max-width:100%}
           <div class="choices">
             <label class="choice"
               ><input
-                type="radio"
                 name="service"
+                required=""
+                type="radio"
                 value="consultation"
-                required
               /><strong
-                data-fr="Consultation initiale"
                 data-en="Initial consultation"
+                data-fr="Consultation initiale"
                 >Consultation initiale</strong
               >
               <p
                 class="muted"
-                data-fr="Demander une consultation d'une heure pour obtenir des conseils et des orientations. Les honoraires et les modalités seront confirmés par votre CRIC."
                 data-en="Request a one-hour consultation for advice and guidance. Your RCIC will confirm fees and terms."
+                data-fr="Demander une consultation d'une heure pour obtenir des conseils et des orientations. Les honoraires et les modalités seront confirmés par votre CRIC."
               >
                 Demander une consultation d'une heure pour obtenir des conseils
                 et des orientations. Les honoraires et les modalités seront
@@ -298,19 +81,19 @@ body:has(> .madic8-skip) :where(img,svg,video,iframe){max-width:100%}
               </p></label
             ><label class="choice"
               ><input
-                type="radio"
                 name="service"
+                required=""
+                type="radio"
                 value="proposition"
-                required
               /><strong
-                data-fr="Proposition personnalisée"
                 data-en="Personalized proposal"
+                data-fr="Proposition personnalisée"
                 >Proposition personnalisée</strong
               >
               <p
                 class="muted"
-                data-fr="Demander au CRIC d'examiner votre situation et de vous proposer un accompagnement adapté : consultation, soutien partiel ou prise en charge complète."
                 data-en="Ask your RCIC to review your situation and propose suitable support: consultation, partial assistance, or full representation."
+                data-fr="Demander au CRIC d'examiner votre situation et de vous proposer un accompagnement adapté : consultation, soutien partiel ou prise en charge complète."
               >
                 Demander au CRIC d'examiner votre situation et de vous proposer
                 un accompagnement adapté : consultation, soutien partiel ou
@@ -318,37 +101,37 @@ body:has(> .madic8-skip) :where(img,svg,video,iframe){max-width:100%}
               </p></label
             >
           </div>
-          <fieldset class="tariff-options" id="consultationTariffs" hidden>
+          <fieldset class="tariff-options" hidden="" id="consultationTariffs">
             <legend
-              data-fr="Choisissez votre formule de consultation *"
               data-en="Choose your consultation pricing option *"
+              data-fr="Choisissez votre formule de consultation *"
             >
               Choisissez votre formule de consultation *
             </legend>
             <p
               class="muted"
-              data-fr="Sélection obligatoire pour la consultation initiale. Tous les montants sont en dollars américains (USD)."
               data-en="Required for an initial consultation. All amounts are in US dollars (USD)."
+              data-fr="Sélection obligatoire pour la consultation initiale. Tous les montants sont en dollars américains (USD)."
             >
               Sélection obligatoire pour la consultation initiale. Tous les
               montants sont en dollars américains (USD).
             </p>
             <label
-              ><input type="radio" name="tariff" value="hourly" /><span
-                data-fr="À taux horaire — 159 $ US"
+              ><input name="tariff" type="radio" value="hourly" /><span
                 data-en="Hourly rate — US$159"
+                data-fr="À taux horaire — 159 $ US"
                 >À taux horaire — 159 $ US</span
               ></label
             ><label
-              ><input type="radio" name="tariff" value="single" /><span
-                data-fr="À taux forfaitaire — Personne célibataire : 599 $ US"
+              ><input name="tariff" type="radio" value="single" /><span
                 data-en="Flat rate — Single person: US$599"
+                data-fr="À taux forfaitaire — Personne célibataire : 599 $ US"
                 >À taux forfaitaire — Personne célibataire : 599 $ US</span
               ></label
             ><label
-              ><input type="radio" name="tariff" value="couple" /><span
-                data-fr="À taux forfaitaire — Couple (demandeur principal avec époux(se)) : 749 $ US"
+              ><input name="tariff" type="radio" value="couple" /><span
                 data-en="Flat rate — Couple (principal applicant and spouse): US$749"
+                data-fr="À taux forfaitaire — Couple (demandeur principal avec époux(se)) : 749 $ US"
                 >À taux forfaitaire — Couple (demandeur principal avec
                 époux(se)) : 749 $ US</span
               ></label
@@ -356,36 +139,99 @@ body:has(> .madic8-skip) :where(img,svg,video,iframe){max-width:100%}
           </fieldset>
           <p
             class="muted"
-            data-fr="Votre sélection constitue une demande de service, et non une acceptation de contrat. Le CRIC confirmera la disponibilité, les honoraires, le contrat applicable et les modalités de paiement."
             data-en="Your selection is a service request, not a contract acceptance. Your RCIC will confirm availability, fees, the applicable agreement, and payment terms."
+            data-fr="Votre sélection constitue une demande de service, et non une acceptation de contrat. Le CRIC confirmera la disponibilité, les honoraires, le contrat applicable et les modalités de paiement."
           >
             Votre sélection constitue une demande de service, et non une
             acceptation de contrat. Le CRIC confirmera la disponibilité, les
             honoraires, le contrat applicable et les modalités de paiement.
           </p>
           <button
-            id="send"
             class="btn"
-            type="submit"
-            data-fr="Envoyer ma demande"
             data-en="Submit my request"
+            data-fr="Envoyer ma demande"
+            id="send"
+            type="submit"
           >
             Envoyer ma demande
           </button>
-          <p class="status" id="status" role="status" aria-live="polite"></p>
+          <p aria-live="polite" class="status" id="status" role="status"></p>
         </form>
       </div>
       <p class="footer-back">
         <a
-          href="dashboard-client-cric.html"
-          data-fr="Retour à mon espace client"
           data-en="Return to my client dashboard"
+          data-fr="Retour à mon espace client"
+          href="dashboard-client-cric.html"
           >Retour à mon espace client</a
         >
       </p>
     </main>
+    <footer aria-label="Pied de page MADIC / MADIC footer" class="madic-footer">
+      <div class="madic-footer-inner">
+        <div class="madic-footer-brand">
+          <div class="madic-footer-brandline">
+            <img
+              alt="Logo MADIC"
+              class="madic-footer-logo"
+              height="43"
+              src="img/logo-madic.svg"
+              width="43"
+            />
+            <div>
+              <div class="madic-footer-name">MADIC</div>
+              <div
+                class="madic-footer-subtitle"
+                data-en="MAD Immigration Canadienne"
+                data-fr="MAD Immigration Canadienne"
+              >
+                MAD Immigration Canadienne
+              </div>
+            </div>
+          </div>
+          <p
+            class="madic-footer-desc"
+            data-en="A digital platform for Canadian immigration professionals and their clients."
+            data-fr="Une plateforme numérique pour les professionnels de l'immigration canadienne et leurs clients."
+          >
+            Une plateforme numérique pour les professionnels de l'immigration
+            canadienne et leurs clients.
+          </p>
+        </div>
+        <nav aria-label="Liens du pied de page" class="madic-footer-right">
+          <a data-en="Home" data-fr="Accueil" href="index.html">Accueil</a>
+          <a
+            data-en="Privacy policy"
+            data-fr="Confidentialité"
+            href="politique-confidentialite.html"
+            >Confidentialité</a
+          >
+          <span
+            class="madic-footer-unavailable"
+            data-en="Terms of use"
+            data-fr="Conditions d'utilisation"
+            title="Page à venir / Page coming soon"
+            >Conditions d'utilisation</span
+          >
+          <span
+            class="madic-footer-unavailable"
+            data-en="Contact"
+            data-fr="Contact"
+            title="Page à venir / Page coming soon"
+            >Contact</span
+          >
+        </nav>
+      </div>
+      <div class="madic-footer-bottom">
+        © 2026 MAD Immigration Canadienne (MADIC) Inc.
+        <span data-en="All rights reserved." data-fr="Tous droits réservés."
+          >Tous droits réservés.</span
+        >
+      </div>
+    </footer>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
-    <script src="assets/config.js"></script>
-    <script defer src="assets/madic-prochaine-etape.js"></script>
+    <script defer="" src="assets/config.js"></script>
+    <script defer="" src="assets/prochaine-etape-client.js"></script>
+    <script defer="" src="assets/madic-footer.js"></script>
   </body>
 </html>

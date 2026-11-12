@@ -2,344 +2,309 @@
 <html lang="fr">
   <head>
     <meta charset="utf-8" />
-    <title>MAD Immigration Canada</title>
+    <title data-en="Quebec | MADIC Portal" data-fr="Québec | MADIC Portail">
+      Québec | MADIC Portail
+    </title>
     <meta
-      name="description"
       content="MAD Immigration Canadienne inc. est une entreprise Canadienne spécialisée dans l’immigration canadienne, Forte de l’ingéniosité de son équipe d’expérience."
+      name="description"
     />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <link rel="icon" href="img/favicon.png" />
-    <link rel="apple-touch-icon" href="img/apple-touch-icon.png" />
-
-    <link rel="stylesheet" href="css/normalize.css" />
-    <link rel="stylesheet" href="css/styles.css" />
-    <link rel="stylesheet" href="css/evaluation.css" />
-    <link rel="stylesheet" href="css/quebec.css" />
-    <link rel="stylesheet" href="css/madix-menu.css" />
-    <link rel="stylesheet" href="css/saskatchewan.css" />
-    <link rel="stylesheet" href="css/queries.css" />
-    <link rel="icon" href="favicon.png" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
-      integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
-      crossorigin="anonymous"
-    />
-    <script defer src="js/script.js"></script>
-    <script defer src="js/evaluation.js"></script>
-    <script defer src="js/quebec.js"></script>
-    <script defer src="js/madix-menu.js"></script>
-    <script defer src="js/saskatchewan.js"></script>
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <link href="img/favicon.png" rel="icon" />
+    <link href="img/apple-touch-icon.png" rel="apple-touch-icon" />
+    <link href="assets/quebec.css" rel="stylesheet" />
+    <link href="assets/madic-footer.css" rel="stylesheet" />
+    <script defer="True" src="assets/quebec.js"></script>
+    <script defer="True" src="assets/madic-footer.js"></script>
   </head>
-
   <body>
     <header class="header">
       <nav class="navbar">
         <div class="navbar__container">
           <!-- LOGO -->
-          <a href="index.html" class="navbar__logo">
+          <a class="navbar__logo" href="index.html">
             <img
-              src="img/logo_fr_transparent.png"
               alt="MAD Immigration Canadienne"
               class="logo"
+              src="img/logo_fr_transparent.png"
             />
           </a>
-
           <!-- MENU : 8 LIENS + 2 ACTIONS -->
           <div class="navbar__content" id="navbar-content">
             <div class="navbar__navblock">
               <ul class="navbar__menu navbar__menu--all">
                 <li class="navbar__item">
                   <a
-                    href="index.html"
                     class="navbar__links"
-                    id="index"
                     data-i18n="nav.home"
+                    href="index.html"
+                    id="index"
                   >
                     Accueil
                   </a>
                 </li>
-
                 <li class="navbar__item">
                   <a
-                    href="services.html"
                     class="navbar__links"
-                    id="services-page"
                     data-i18n="nav.services"
+                    href="services.html"
+                    id="services-page"
                   >
                     Nos services
                   </a>
                 </li>
-
                 <li class="navbar__item">
                   <a
-                    href="forfaits.html"
                     class="navbar__links"
                     data-i18n="nav.packages"
+                    href="forfaits.html"
                   >
                     Nos forfaits
                   </a>
                 </li>
-
                 <li class="navbar__item">
                   <a
-                    href="propos.html"
                     class="navbar__links navbar__links--secondary"
-                    id="about-page"
                     data-i18n="nav.about"
+                    href="propos.html"
+                    id="about-page"
                   >
                     À propos
                   </a>
                 </li>
-
                 <li class="navbar__item">
                   <a
-                    href="carriere.html"
                     class="navbar__links navbar__links--secondary"
-                    id="career-page"
                     data-i18n="nav.career"
+                    href="carriere.html"
+                    id="career-page"
                   >
                     Carrière
                   </a>
                 </li>
-
                 <li class="navbar__item">
                   <a
-                    href="evenements.html"
                     class="navbar__links navbar__links--secondary"
                     data-i18n="nav.events"
+                    href="evenements.html"
                   >
                     Événements
                   </a>
                 </li>
-
                 <li class="navbar__item">
                   <a
-                    href="blogue.html"
                     class="navbar__links navbar__links--secondary"
                     data-i18n="nav.blog"
+                    href="blogue.html"
                   >
                     Blogue
                   </a>
                 </li>
-
                 <li class="navbar__item">
                   <a
-                    href="joindre.html"
                     class="navbar__links navbar__links--secondary"
                     data-i18n="nav.contact"
+                    href="joindre.html"
                   >
                     Nous joindre
                   </a>
                 </li>
               </ul>
             </div>
-
             <!-- ACTIONS DU MENU -->
             <div class="navbar__actions">
               <!-- MADIX : menu des outils, sans page intermediaire -->
               <div class="madix-nav" id="madix-nav">
                 <button
-                  type="button"
-                  class="nav-action nav-action--outline madix-trigger"
-                  id="madix-trigger"
+                  aria-controls="madix-panel"
                   aria-expanded="false"
                   aria-haspopup="true"
-                  aria-controls="madix-panel"
+                  class="nav-action nav-action--outline madix-trigger"
+                  id="madix-trigger"
+                  type="button"
                 >
-                  <i class="fa-solid fa-layer-group" aria-hidden="true"></i>
+                  <i aria-hidden="true" class="fa-solid fa-layer-group"></i>
                   <span>MADIX</span>
                   <i
-                    class="fa-solid fa-chevron-down madix-chevron"
                     aria-hidden="true"
+                    class="fa-solid fa-chevron-down madix-chevron"
                   ></i>
                 </button>
-                <div class="madix-panel" id="madix-panel" hidden>
+                <div class="madix-panel" hidden="" id="madix-panel">
                   <div class="madix-panel-head">
                     <span
                       class="madix-kicker"
-                      data-madix-fr="PLATEFORME D'OUTILS"
                       data-madix-en="IMMIGRATION TOOLKIT"
+                      data-madix-fr="PLATEFORME D'OUTILS"
                       >PLATEFORME D'OUTILS</span
                     >
                     <strong>MADI<span class="madix-x">X</span></strong>
                     <p
-                      data-madix-fr="Explorez nos outils d'immigration"
                       data-madix-en="Explore our immigration tools"
+                      data-madix-fr="Explorez nos outils d'immigration"
                     >
                       Explorez nos outils d'immigration
                     </p>
                   </div>
                   <div class="madix-links">
-                    <a href="quebec.html" class="madix-tool">
+                    <a class="madix-tool" href="quebec.html">
                       <i
-                        class="fa-solid fa-map-location-dot"
                         aria-hidden="true"
+                        class="fa-solid fa-map-location-dot"
                       ></i>
                       <span
-                        ><strong data-madix-fr="Québec" data-madix-en="Quebec"
+                        ><strong data-madix-en="Quebec" data-madix-fr="Québec"
                           >Québec</strong
                         ><small
-                          data-madix-fr="Programmes québécois"
                           data-madix-en="Quebec immigration programs"
+                          data-madix-fr="Programmes québécois"
                           >Programmes québécois</small
                         ></span
                       >
                       <i
-                        class="fa-solid fa-arrow-up-right-from-square madix-arrow"
                         aria-hidden="true"
+                        class="fa-solid fa-arrow-up-right-from-square madix-arrow"
                       ></i>
                     </a>
-                    <a href="saskatchewan.html" class="madix-tool">
-                      <i class="fa-solid fa-map" aria-hidden="true"></i>
+                    <a class="madix-tool" href="saskatchewan.html">
+                      <i aria-hidden="true" class="fa-solid fa-map"></i>
                       <span
                         ><strong>Saskatchewan</strong
                         ><small
-                          data-madix-fr="Programme SINP"
                           data-madix-en="SINP program"
+                          data-madix-fr="Programme SINP"
                           >Programme SINP</small
                         ></span
                       >
                       <i
-                        class="fa-solid fa-arrow-up-right-from-square madix-arrow"
                         aria-hidden="true"
+                        class="fa-solid fa-arrow-up-right-from-square madix-arrow"
                       ></i>
                     </a>
-                    <a href="evaluations.html" class="madix-tool">
-                      <i class="fa-solid fa-calculator" aria-hidden="true"></i>
+                    <a class="madix-tool" href="evaluations.html">
+                      <i aria-hidden="true" class="fa-solid fa-calculator"></i>
                       <span
                         ><strong
-                          data-madix-fr="Évaluations"
                           data-madix-en="Calculators"
+                          data-madix-fr="Évaluations"
                           >Évaluations</strong
                         ><small
-                          data-madix-fr="Simulateurs et calculateurs"
                           data-madix-en="Assessment calculators"
+                          data-madix-fr="Simulateurs et calculateurs"
                           >Simulateurs et calculateurs</small
                         ></span
                       >
                       <i
-                        class="fa-solid fa-arrow-up-right-from-square madix-arrow"
                         aria-hidden="true"
+                        class="fa-solid fa-arrow-up-right-from-square madix-arrow"
                       ></i>
                     </a>
-                    <a href="formulaire.html" class="madix-tool">
+                    <a class="madix-tool" href="formulaire.html">
                       <i
-                        class="fa-solid fa-clipboard-check"
                         aria-hidden="true"
+                        class="fa-solid fa-clipboard-check"
                       ></i>
                       <span
                         ><strong
-                          data-madix-fr="Évaluation préliminaire"
                           data-madix-en="Preliminary assessment"
+                          data-madix-fr="Évaluation préliminaire"
                           >Évaluation préliminaire</strong
                         ><small
-                          data-madix-fr="Analyse initiale de votre profil"
                           data-madix-en="Initial profile review"
+                          data-madix-fr="Analyse initiale de votre profil"
                           >Analyse initiale de votre profil</small
                         ></span
                       >
                       <i
-                        class="fa-solid fa-arrow-up-right-from-square madix-arrow"
                         aria-hidden="true"
+                        class="fa-solid fa-arrow-up-right-from-square madix-arrow"
                       ></i>
                     </a>
                   </div>
                   <p
                     class="madix-panel-foot"
-                    data-madix-fr="De nouveaux outils seront ajoutés prochainement."
                     data-madix-en="More tools coming soon."
+                    data-madix-fr="De nouveaux outils seront ajoutés prochainement."
                   >
                     De nouveaux outils seront ajoutés prochainement.
                   </p>
                 </div>
               </div>
-
               <!-- ESPACE CLIENT MADIC -->
               <a
-                href="https://madic.ca/connexion.html"
                 class="nav-action nav-action--outline"
-                id="client-portal"
                 data-i18n="nav.clientPortal"
+                href="https://madic.ca/connexion.html"
+                id="client-portal"
               >
-                <i class="fa-solid fa-user-shield" aria-hidden="true"></i>
+                <i aria-hidden="true" class="fa-solid fa-user-shield"></i>
                 <span>Espace client</span>
               </a>
-
               <a
-                href="rendezvous.html"
                 class="nav-action nav-action--primary"
-                id="appointment"
                 data-i18n="nav.appointment"
+                href="rendezvous.html"
+                id="appointment"
               >
                 <i class="fa-solid fa-calendar-check"></i>
                 <span>Prendre rendez-vous</span>
               </a>
             </div>
           </div>
-
           <!-- LANGUES + MODE NUIT : TOUJOURS VISIBLES -->
           <div class="navbar__utilities">
             <div class="language-switcher">
               <button
-                type="button"
+                aria-label="Français"
                 class="lang-btn active"
                 data-lang="fr"
-                aria-label="Français"
                 title="Français"
+                type="button"
               >
                 <img
-                  src="img/flag-quebec.svg"
-                  width="24"
-                  height="16"
                   alt="Drapeau du Québec"
                   class="lang-flag"
+                  height="16"
+                  src="img/flag-quebec.svg"
+                  width="24"
                 />
                 <span>FR</span>
               </button>
-
               <button
-                type="button"
+                aria-label="English"
                 class="lang-btn"
                 data-lang="en"
-                aria-label="English"
                 title="English"
+                type="button"
               >
                 <img
-                  src="img/flag-canada.svg"
-                  width="24"
-                  height="16"
                   alt="Canadian flag"
                   class="lang-flag"
+                  height="16"
+                  src="img/flag-canada.svg"
+                  width="24"
                 />
                 <span>EN</span>
               </button>
             </div>
-
             <button
-              type="button"
-              id="theme-toggle"
-              class="theme-toggle-btn"
               aria-label="Activer le mode nuit"
+              class="theme-toggle-btn"
+              id="theme-toggle"
               title="Mode nuit"
+              type="button"
             >
               <i class="fa-solid fa-moon"></i>
             </button>
           </div>
-
           <!-- HAMBURGER -->
           <button
-            type="button"
+            aria-controls="navbar-content"
+            aria-expanded="false"
+            aria-label="Ouvrir le menu"
             class="navbar__toggle"
             id="mobile-menu"
-            aria-label="Ouvrir le menu"
-            aria-expanded="false"
-            aria-controls="navbar-content"
+            type="button"
           >
             <span class="bar"></span>
             <span class="bar"></span>
@@ -348,7 +313,6 @@
         </div>
       </nav>
     </header>
-
     <main class="wrap">
       <div class="eyebrow">ÉVALUATION PRÉLIMINAIRE • QUÉBEC • 2026</div>
       <h1>
@@ -367,11 +331,11 @@
         Le PEQ fait l'objet d'une réouverture temporaire et d'une fenêtre de
         réception du 2 juillet au 31 octobre 2026, selon l'avis fourni.
       </div>
-      <div class="progress-note" id="progressNote" aria-live="polite">
+      <div aria-live="polite" class="progress-note" id="progressNote">
         Remplissez votre profil une seule fois : les parcours sont analysés
         ensemble.
       </div>
-      <form id="assessment" novalidate>
+      <form id="assessment" novalidate="">
         <section class="panel">
           <div class="section-head">
             <span>01</span>
@@ -382,11 +346,11 @@
               >Âge
               <input
                 id="age"
-                type="number"
-                min="0"
                 max="110"
+                min="0"
                 placeholder="Ex. 29"
-                required /></label
+                required=""
+                type="number" /></label
             ><label
               >Où résidez-vous actuellement ?<select id="residence">
                 <option value="">Sélectionner…</option>
@@ -445,8 +409,8 @@
               >Code CNP de la profession principale (5 chiffres)<input
                 id="noc"
                 inputmode="numeric"
-                pattern="[0-9]{5}"
                 maxlength="5"
+                pattern="[0-9]{5}"
                 placeholder="Ex. 21211" /></label
             ><label
               >La profession est-elle réglementée au Québec ?<select
@@ -477,26 +441,26 @@
               >Expérience rémunérée dans la profession principale, 5 dernières
               années (mois équivalents temps plein)<input
                 id="work"
-                type="number"
-                min="0"
                 max="60"
-                placeholder="Ex. 24" /></label
+                min="0"
+                placeholder="Ex. 24"
+                type="number" /></label
             ><label
               >Dont expérience au Québec dans la profession principale
               (mois)<input
                 id="qcwork"
-                type="number"
-                min="0"
                 max="60"
-                placeholder="Ex. 12" /></label
+                min="0"
+                placeholder="Ex. 12"
+                type="number" /></label
             ><label
               >Expérience de travail au Québec FEER 0–3 acquise au 19 novembre
               2025 (mois)<input
                 id="peqwork"
-                type="number"
-                min="0"
                 max="120"
-                placeholder="Ex. 24" /></label
+                min="0"
+                placeholder="Ex. 24"
+                type="number" /></label
             ><label
               >Accomplissements exceptionnels reconnus ou avis d'un partenaire
               du MIFI<select id="exception">
@@ -542,15 +506,15 @@
             ><label
               >Durée du programme (heures, si applicable)<input
                 id="hours"
-                type="number"
                 min="0"
-                placeholder="Ex. 1800" /></label
+                placeholder="Ex. 1800"
+                type="number" /></label
             ><label
               >Durée du programme (crédits universitaires, si applicable)<input
                 id="credits"
-                type="number"
                 min="0"
-                placeholder="Ex. 90" /></label
+                placeholder="Ex. 90"
+                type="number" /></label
             ><label
               >Programme à temps plein d'au moins un an<select id="fulltime">
                 <option value="">Sélectionner…</option>
@@ -593,31 +557,31 @@
             <label
               >Compréhension orale (français)<input
                 id="oralListen"
-                type="number"
-                min="0"
                 max="12"
-                placeholder="0 à 12" /></label
+                min="0"
+                placeholder="0 à 12"
+                type="number" /></label
             ><label
               >Expression orale (français)<input
                 id="oralSpeak"
-                type="number"
-                min="0"
                 max="12"
-                placeholder="0 à 12" /></label
+                min="0"
+                placeholder="0 à 12"
+                type="number" /></label
             ><label
               >Compréhension écrite (français)<input
                 id="writtenRead"
-                type="number"
-                min="0"
                 max="12"
-                placeholder="0 à 12" /></label
+                min="0"
+                placeholder="0 à 12"
+                type="number" /></label
             ><label
               >Expression écrite (français)<input
                 id="writtenWrite"
-                type="number"
-                min="0"
                 max="12"
-                placeholder="0 à 12" /></label
+                min="0"
+                placeholder="0 à 12"
+                type="number" /></label
             ><label
               >Conjoint(e) accompagnant(e) ?<select id="spouse">
                 <option value="">Sélectionner…</option>
@@ -628,10 +592,10 @@
               >Niveau oral minimal du conjoint (plus faible des deux
               compétences)<input
                 id="spouseFrench"
-                type="number"
-                min="0"
                 max="12"
-                placeholder="0 à 12" /></label
+                min="0"
+                placeholder="0 à 12"
+                type="number" /></label
             ><label
               >Capacité financière pour les 3 premiers mois<select id="finance">
                 <option value="">Sélectionner…</option>
@@ -664,18 +628,18 @@
             <label
               >Expérience professionnelle totale (mois)<input
                 id="workTotal"
-                type="number"
-                min="0"
                 max="60"
+                min="0"
                 placeholder="Ex. 48"
+                type="number"
             /></label>
             <label
               >Expérience professionnelle totale au Québec (mois)<input
                 id="workQcTotal"
-                type="number"
-                min="0"
                 max="60"
+                min="0"
                 placeholder="Ex. 24"
+                type="number"
             /></label>
             <label
               >Diagnostic de main-d’œuvre de votre profession<select
@@ -703,9 +667,9 @@
             <label data-show="qcStudyStatus:ongoing,completed"
               >Durée des études au Québec sans diplôme (mois)<input
                 id="qcStudyMonths"
-                type="number"
-                min="0"
                 max="120"
+                min="0"
+                type="number"
             /></label>
             <label
               >Résidez-vous actuellement hors de la CMM, au Québec ?<select
@@ -720,23 +684,23 @@
             <label data-show="outsideCmm:yes"
               >Résidence hors CMM (mois)<input
                 id="outsideResidenceMonths"
-                type="number"
-                min="0"
                 max="600"
+                min="0"
+                type="number"
             /></label>
             <label
               >Expérience professionnelle hors CMM (mois)<input
                 id="outsideWorkMonths"
-                type="number"
-                min="0"
                 max="60"
+                min="0"
+                type="number"
             /></label>
             <label
               >Études les plus récentes hors CMM (mois)<input
                 id="outsideStudyMonths"
-                type="number"
-                min="0"
                 max="120"
+                min="0"
+                type="number"
             /></label>
             <label
               >Famille admissible dans la région d’établissement envisagée hors
@@ -760,7 +724,7 @@
             >
           </div>
         </section>
-        <section class="panel" id="spouse-details" hidden>
+        <section class="panel" hidden="" id="spouse-details">
           <div class="section-head">
             <span>06</span>
             <h2>Conjoint accompagnant - détails PSTQ</h2>
@@ -773,9 +737,9 @@
             <label
               >Âge du conjoint<input
                 id="spouseAge"
-                type="number"
-                min="0"
                 max="110"
+                min="0"
+                type="number"
             /></label>
             <label
               >Plus haut diplôme du conjoint<select id="spouseDegree">
@@ -805,37 +769,37 @@
               >Expérience professionnelle du conjoint au Québec, cinq dernières
               années (mois)<input
                 id="spouseQcWork"
-                type="number"
-                min="0"
                 max="60"
+                min="0"
+                type="number"
             /></label>
             <label
               >Compréhension orale du conjoint<input
                 id="spouseListen"
-                type="number"
-                min="0"
                 max="12"
+                min="0"
+                type="number"
             /></label>
             <label
               >Expression orale du conjoint<input
                 id="spouseSpeak"
-                type="number"
-                min="0"
                 max="12"
+                min="0"
+                type="number"
             /></label>
             <label
               >Compréhension écrite du conjoint<input
                 id="spouseRead"
-                type="number"
-                min="0"
                 max="12"
+                min="0"
+                type="number"
             /></label>
             <label
               >Expression écrite du conjoint<input
                 id="spouseWrite"
-                type="number"
-                min="0"
                 max="12"
+                min="0"
+                type="number"
             /></label>
           </div>
         </section>
@@ -876,16 +840,16 @@
         </section>
         <div class="actions">
           <button type="submit">Évaluer mon profil</button
-          ><button type="reset" class="secondary">Réinitialiser</button>
+          ><button class="secondary" type="reset">Réinitialiser</button>
         </div>
       </form>
-      <section id="results" class="results" hidden aria-live="polite">
+      <section aria-live="polite" class="results" hidden="" id="results">
         <div class="section-head">
           <span>✓</span>
           <h2>Résultats de l'évaluation</h2>
         </div>
         <div id="resultContent"></div>
-        <button type="button" class="secondary" onclick="window.print()">
+        <button class="secondary" id="madic-print-button" type="button">
           Imprimer les résultats
         </button>
       </section>
@@ -895,200 +859,122 @@
           <li>
             <a
               href="https://www.quebec.ca/immigration/permanente/travailleurs-qualifies/programme-selection-travailleurs-qualifies/exigences"
-              target="_blank"
               rel="noopener"
+              target="_blank"
               >PSTQ-Exigences générales et spécifiques</a
             >
           </li>
           <li>
             <a
               href="https://www.quebec.ca/immigration/permanente/travailleurs-qualifies/programme-selection-travailleurs-qualifies/declaration-interet"
-              target="_blank"
               rel="noopener"
+              target="_blank"
               >PSTQ-Déclaration d'intérêt Arrima</a
             >
           </li>
           <li>
             <a
               href="https://www.quebec.ca/immigration/permanente/travailleurs-qualifies/programme-selection-travailleurs-qualifies/invitation"
-              target="_blank"
               rel="noopener"
+              target="_blank"
               >PSTQ-Critères d'invitation</a
             >
           </li>
           <li>
             <a
               href="https://www.quebec.ca/immigration/permanente/travailleurs-qualifies/programme-experience-quebecoise/conditions-selection/diplomes-quebec"
-              target="_blank"
               rel="noopener"
+              target="_blank"
               >PEQ-Diplômés du Québec</a
             >
           </li>
           <li>
             <a
               href="https://www.quebec.ca/immigration/permanente/travailleurs-qualifies/programme-experience-quebecoise/conditions-selection/travailleurs-temporaires"
-              target="_blank"
               rel="noopener"
+              target="_blank"
               >PEQ-Travailleurs étrangers temporaires</a
             >
           </li>
           <li>
             <a
               href="https://www.quebec.ca/immigration/permanente/travailleurs-qualifies/transformation-alimentaire"
-              target="_blank"
               rel="noopener"
+              target="_blank"
               >Pilote Transformation alimentaire</a
             >
           </li>
           <li>
             <a
               href="https://www.quebec.ca/immigration/permanente/travailleurs-qualifies/intelligence-artificielle"
-              target="_blank"
               rel="noopener"
+              target="_blank"
               >Pilote IA / TI / effets visuels</a
             >
           </li>
         </ul>
       </section>
     </main>
-
-    <footer class="footer">
-      <div class="container grid--footer">
-        <div class="logo-col">
-          <a href="#" class="footer-logo">
+    <footer aria-label="Pied de page MADIC / MADIC footer" class="madic-footer">
+      <div class="madic-footer-inner">
+        <div class="madic-footer-brand">
+          <div class="madic-footer-brandline">
             <img
-              src="img/logo_fr_transparent.png"
-              alt="omnifood-logo"
-              class="logo"
+              alt="Logo MADIC"
+              class="madic-footer-logo"
+              height="43"
+              src="img/logo-madic.svg"
+              width="43"
             />
-          </a>
-
-          <ul class="social-links">
-            <li>
-              <a class="footer-link" href="#"
-                ><ion-icon class="social-icon" name="logo-instagram"></ion-icon
-              ></a>
-            </li>
-            <li>
-              <a class="footer-link" href="#"
-                ><ion-icon class="social-icon" name="logo-facebook"></ion-icon
-              ></a>
-            </li>
-            <li>
-              <a class="footer-link" href="#"
-                ><ion-icon class="social-icon" name="logo-twitter"></ion-icon
-              ></a>
-            </li>
-          </ul>
-          <p class="copyright">
-            Copyright &copy;
-            <span class="year"></span>
-            Design MADMECA Inc.
-            <span data-i18n="footer.copyright">
-              Tous les droits réservés.
-            </span>
-          </p>
-        </div>
-
-        <div class="address-col">
-          <p class="footer-heading" data-i18n="footer.contact">
-            Contactez-nous
-          </p>
-          <address class="contacts">
-            <p class="address">
-              1622 Rue Barré, Bureau 202, Saint-Laurent, QC, CA
-            </p>
-            <p>
-              <a class="footer-link" href="tel:415-201-6370">514-442-3076</a
-              ><br />
-              <a class="footer-link" href="mailto:hello@omnifood.com"
-                >madimmigrationcanadienne@gmail.com</a
+            <div>
+              <div class="madic-footer-name">MADIC</div>
+              <div
+                class="madic-footer-subtitle"
+                data-en="MAD Immigration Canadienne"
+                data-fr="MAD Immigration Canadienne"
               >
-            </p>
-          </address>
+                MAD Immigration Canadienne
+              </div>
+            </div>
+          </div>
+          <p
+            class="madic-footer-desc"
+            data-en="A digital platform for Canadian immigration professionals and their clients."
+            data-fr="Une plateforme numérique pour les professionnels de l'immigration canadienne et leurs clients."
+          >
+            Une plateforme numérique pour les professionnels de l'immigration
+            canadienne et leurs clients.
+          </p>
         </div>
-
-        <nav class="nav-col">
-          <p class="footer-heading" data-i18n="footer.account">Compte</p>
-
-          <ul class="footer-nav">
-            <li>
-              <a class="footer-link" href="#" data-i18n="footer.createAccount">
-                Créer un compte
-              </a>
-            </li>
-
-            <li>
-              <a class="footer-link" href="#" data-i18n="footer.register">
-                S'inscrire
-              </a>
-            </li>
-
-            <li>
-              <a class="footer-link" href="#">iOS</a>
-            </li>
-
-            <li>
-              <a class="footer-link" href="#" data-i18n="footer.android">
-                Android
-              </a>
-            </li>
-          </ul>
+        <nav aria-label="Liens du pied de page" class="madic-footer-right">
+          <a data-en="Home" data-fr="Accueil" href="index.html">Accueil</a>
+          <a
+            data-en="Privacy policy"
+            data-fr="Confidentialité"
+            href="politique-confidentialite.html"
+            >Confidentialité</a
+          >
+          <span
+            class="madic-footer-unavailable"
+            data-en="Terms of use"
+            data-fr="Conditions d'utilisation"
+            title="Page à venir / Page coming soon"
+            >Conditions d'utilisation</span
+          >
+          <span
+            class="madic-footer-unavailable"
+            data-en="Contact"
+            data-fr="Contact"
+            title="Page à venir / Page coming soon"
+            >Contact</span
+          >
         </nav>
-
-        <nav class="nav-col">
-          <p class="footer-heading" data-i18n="footer.company">Compagnie</p>
-
-          <ul class="footer-nav">
-            <li>
-              <a class="footer-link" href="#" data-i18n="footer.about">
-                À propos de MADIC
-              </a>
-            </li>
-
-            <li>
-              <a class="footer-link" href="#" data-i18n="footer.business">
-                Affaires
-              </a>
-            </li>
-
-            <li>
-              <a class="footer-link" href="#" data-i18n="footer.partners">
-                Partenaires
-              </a>
-            </li>
-
-            <li>
-              <a class="footer-link" href="#" data-i18n="footer.career">
-                Carrière
-              </a>
-            </li>
-          </ul>
-        </nav>
-
-        <nav class="nav-col">
-          <p class="footer-heading" data-i18n="footer.resources">Ressources</p>
-
-          <ul class="footer-nav">
-            <li>
-              <a class="footer-link" href="#" data-i18n="footer.directory">
-                Répertoire Immigration
-              </a>
-            </li>
-
-            <li>
-              <a class="footer-link" href="#" data-i18n="footer.help">
-                Centre d'aide
-              </a>
-            </li>
-
-            <li>
-              <a class="footer-link" href="#" data-i18n="footer.privacy">
-                Confidentialité et conditions
-              </a>
-            </li>
-          </ul>
-        </nav>
+      </div>
+      <div class="madic-footer-bottom">
+        © 2026 MAD Immigration Canadienne (MADIC) Inc.
+        <span data-en="All rights reserved." data-fr="Tous droits réservés."
+          >Tous droits réservés.</span
+        >
       </div>
     </footer>
   </body>

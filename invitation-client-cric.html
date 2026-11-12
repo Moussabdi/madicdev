@@ -1,85 +1,69 @@
 <!doctype html>
-
 <html lang="fr-CA">
   <head>
     <meta charset="utf-8" />
     <meta content="width=device-width,initial-scale=1" name="viewport" />
     <meta content="noindex,nofollow" name="robots" />
     <link href="img/favicon.png" rel="icon" />
-    <title>Invitation client CRIC | MADIC</title>
-    <link href="assets/style.css" rel="stylesheet" />
-    <style>
-      /* Formulaire d'invitation CRIC. */
-      #invitationForm .invitation-actions {
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-        margin-top: 24px;
-      }
-      #invitationForm .invitation-actions button {
-        display: block;
-        width: 100%;
-        min-height: 46px;
-        text-align: center;
-      }
-      #invitationForm #switchAccount {
-        background: transparent;
-        color: #aee8f4;
-        border: 1px solid #47617b;
-        font-weight: 600;
-      }
-      #invitationForm #switchAccount:hover {
-        background: #223a52;
-      }
-      #invitationForm #switchAccount[hidden] {
-        display: none !important;
-      }
-      #invitationForm .invitation-help {
-        margin: 0;
-        color: #a5b7cc;
-        font-size: 0.86rem;
-        line-height: 1.5;
-      }
-      #message {
-        line-height: 1.5;
-        overflow-wrap: anywhere;
-      }
-    
-/* Accessibilite du portail client - styles locaux, sans nouvelle dependance. */
-.madic8-skip{position:absolute;left:12px;top:-100px;z-index:99999;padding:12px 18px;background:#fff;color:#092138;border-radius:8px;font-weight:700;text-decoration:none}
-.madic8-skip:focus,.madic8-skip:focus-visible{top:12px}
-body:has(> .madic8-skip) :where(button,a,input,select,textarea,[tabindex]):focus-visible{outline:3px solid #7ee6f2;outline-offset:3px}
-body:has(> .madic8-skip) :where(img,svg,video,iframe){max-width:100%}
-@media(max-width:760px){body:has(> .madic8-skip) :where(.panel,.card,main,.wrap){min-width:0;max-width:100%}}
-@media(prefers-reduced-motion:reduce){body:has(> .madic8-skip) *,body:has(> .madic8-skip) *::before,body:has(> .madic8-skip) *::after{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important}}
-@media print{.madic8-skip{display:none!important}}
-
-</style>
-    <link href="assets/madic-datahubz-auth.css" rel="stylesheet" />
+    <title
+      data-en="RCIC Client Invitation | MADIC Portal"
+      data-fr="Invitation client CRIC | MADIC Portail"
+    >
+      Invitation client CRIC | MADIC Portail
+    </title>
+    <link href="assets/invitation-client-cric.css" rel="stylesheet" />
+    <link href="assets/madic-footer.css" rel="stylesheet" />
   </head>
   <body class="madic-unified-auth" data-page="cric-invitation">
     <a class="madic8-skip" href="#madic8-main">Aller au contenu principal</a>
-    <header>
+    <header class="madic-invitation-header">
       <a class="brand" href="connexion-client-cric.html"
         >MADI<span>C</span> <small>PORTAIL CLIENT CRIC</small></a
       >
+      <div aria-label="Langue / Language" class="madic-lang-controls">
+        <button data-lang="fr" type="button">FR</button
+        ><button data-lang="en" type="button">EN</button>
+      </div>
     </header>
     <main id="madic8-main">
       <section class="auth panel">
-        <div class="eyebrow">INVITATION SÉCURISÉE</div>
-        <h1>Rejoindre le portail de votre consultant</h1>
-        <p class="muted">
+        <div
+          class="eyebrow"
+          data-en="SECURE INVITATION"
+          data-fr="INVITATION SÉCURISÉE"
+        >
+          INVITATION SÉCURISÉE
+        </div>
+        <h1
+          data-en="Join your consultant’s portal"
+          data-fr="Rejoindre le portail de votre consultant"
+        >
+          Rejoindre le portail de votre consultant
+        </h1>
+        <p
+          class="muted"
+          data-en="Your invitation is associated with a specific firm. Sign in using the email address that received the invitation."
+          data-fr="Votre invitation est associée à un cabinet précis. Connectez-vous avec le courriel destinataire de l’invitation."
+        >
           Votre invitation est associée à un cabinet précis. Connectez-vous avec
           le courriel destinataire de l'invitation.
         </p>
         <form id="invitationForm">
-          <label for="inviteEmail">Courriel invité</label
+          <label
+            data-en="Invited email"
+            data-fr="Courriel invité"
+            for="inviteEmail"
+            >Courriel invité</label
           ><input
             autocomplete="email"
             id="inviteEmail"
             required=""
             type="email"
-          /><label for="invitePassword">Mot de passe</label
+          /><label
+            data-en="Password"
+            data-fr="Mot de passe"
+            for="invitePassword"
+            >Mot de passe</label
           ><input
             id="invitePassword"
             minlength="12"
@@ -87,24 +71,107 @@ body:has(> .madic8-skip) :where(img,svg,video,iframe){max-width:100%}
             type="password"
           />
           <div class="invitation-actions">
-            <button id="inviteSubmit" type="submit">
+            <button
+              data-en="Continue and accept my invitation"
+              data-fr="Continuer et accepter mon invitation"
+              id="inviteSubmit"
+              type="submit"
+            >
               Continuer et accepter mon invitation</button
-            ><button hidden="" id="switchAccount" type="button">
+            ><button
+              data-en="Switch account"
+              data-fr="Changer de compte"
+              hidden=""
+              id="switchAccount"
+              type="button"
+            >
               Changer de compte
             </button>
-            <p class="invitation-help">
+            <p
+              class="invitation-help"
+              data-en="Use the email address that received the invitation. Switching accounts is offered only when another session is active."
+              data-fr="Utilisez l’adresse courriel qui a reçu l’invitation. Le changement de compte est proposé seulement si une autre session est active."
+            >
               Utilisez l’adresse courriel qui a reçu l’invitation. Le changement
               de compte est proposé seulement si une autre session est active.
             </p>
           </div>
         </form>
         <p id="message" role="status"></p>
-        <p><a href="connexion-client-cric.html">Déjà client ? Connexion</a></p>
+        <p>
+          <a
+            data-en="Already a client? Sign in"
+            data-fr="Déjà client ? Connexion"
+            href="connexion-client-cric.html"
+            >Déjà client ? Connexion</a
+          >
+        </p>
       </section>
     </main>
-    <footer>© MADIC</footer>
+    <footer aria-label="Pied de page MADIC / MADIC footer" class="madic-footer">
+      <div class="madic-footer-inner">
+        <div class="madic-footer-brand">
+          <div class="madic-footer-brandline">
+            <img
+              alt="Logo MADIC"
+              class="madic-footer-logo"
+              height="43"
+              src="img/logo-madic.svg"
+              width="43"
+            />
+            <div>
+              <div class="madic-footer-name">MADIC</div>
+              <div
+                class="madic-footer-subtitle"
+                data-en="MAD Immigration Canadienne"
+                data-fr="MAD Immigration Canadienne"
+              >
+                MAD Immigration Canadienne
+              </div>
+            </div>
+          </div>
+          <p
+            class="madic-footer-desc"
+            data-en="A digital platform for Canadian immigration professionals and their clients."
+            data-fr="Une plateforme numérique pour les professionnels de l'immigration canadienne et leurs clients."
+          >
+            Une plateforme numérique pour les professionnels de l'immigration
+            canadienne et leurs clients.
+          </p>
+        </div>
+        <nav aria-label="Liens du pied de page" class="madic-footer-right">
+          <a data-en="Home" data-fr="Accueil" href="index.html">Accueil</a>
+          <a
+            data-en="Privacy policy"
+            data-fr="Confidentialité"
+            href="politique-confidentialite.html"
+            >Confidentialité</a
+          >
+          <span
+            class="madic-footer-unavailable"
+            data-en="Terms of use"
+            data-fr="Conditions d'utilisation"
+            title="Page à venir / Page coming soon"
+            >Conditions d'utilisation</span
+          >
+          <span
+            class="madic-footer-unavailable"
+            data-en="Contact"
+            data-fr="Contact"
+            title="Page à venir / Page coming soon"
+            >Contact</span
+          >
+        </nav>
+      </div>
+      <div class="madic-footer-bottom">
+        © 2026 MAD Immigration Canadienne (MADIC) Inc.
+        <span data-en="All rights reserved." data-fr="Tous droits réservés."
+          >Tous droits réservés.</span
+        >
+      </div>
+    </footer>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
-    <script src="assets/config.js"></script>
-    <script src="assets/portails-madic.js"></script>
+    <script src="assets/invitation-client-cric.js"></script>
+    <script src="assets/madic-footer.js"></script>
   </body>
 </html>

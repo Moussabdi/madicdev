@@ -2,205 +2,16 @@
 <html lang="fr">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Paiement de votre demande | MADIC Portail</title>
+    <meta content="width=device-width,initial-scale=1" name="viewport" />
+    <title
+      data-en="Payment for your service request | MADIC Portal"
+      data-fr="Paiement de votre demande | MADIC Portail"
+    >
+      Paiement de votre demande | MADIC Portail
+    </title>
     <link href="img/favicon.png" rel="icon" />
-    <style>
-      :root {
-        font-family: Arial, Helvetica, sans-serif;
-        color: #e8f3fa;
-        background: #071626;
-        color-scheme: dark;
-      }
-      * {
-        box-sizing: border-box;
-      }
-      body {
-        margin: 0;
-        background: #071626;
-        line-height: 1.55;
-      }
-      a {
-        color: #65d7e9;
-      }
-      .top {
-        background: #10263b;
-        border-bottom: 1px solid #29475e;
-        padding: 18px max(24px, calc((100% - 1120px) / 2));
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 16px;
-      }
-      .brand {
-        color: #e8f3fa;
-        text-decoration: none;
-        font-size: 1.65rem;
-        font-weight: 800;
-      }
-      .brand span {
-        color: #38bfd8;
-      }
-      .brand small {
-        display: block;
-        color: #9bb6c8;
-        font-size: 0.65rem;
-        letter-spacing: 0.15em;
-      }
-      .wrap {
-        max-width: 1120px;
-        margin: 38px auto 60px;
-        padding: 0 22px;
-      }
-      .card {
-        background: #10263b;
-        border: 1px solid #29475e;
-        border-radius: 14px;
-        padding: 30px;
-        margin: 0 0 20px;
-        box-shadow: 0 10px 28px #0002;
-      }
-      h1 {
-        font-size: clamp(1.7rem, 3vw, 2.2rem);
-        margin: 0 0 12px;
-      }
-      .muted {
-        color: #b7ccda;
-      }
-      .progress {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 10px;
-        margin: 20px 0;
-      }
-      .progress-segment {
-        height: 7px;
-        border-radius: 8px;
-        background: #29475e;
-      }
-      .progress-segment.done {
-        background: #55c4d6;
-      }
-      .choice {
-        display: block;
-        background: #09192c;
-        border: 1px solid #29475e;
-        border-radius: 10px;
-        padding: 18px;
-        margin: 10px 0;
-        cursor: pointer;
-      }
-      .choice:has(input:checked) {
-        border-color: #55c4d6;
-        background: #0c3044;
-      }
-      .choice input {
-        accent-color: #55c4d6;
-      }
-      .field {
-        margin: 16px 0;
-      }
-      .field label {
-        display: block;
-        font-weight: 700;
-        margin-bottom: 6px;
-      }
-      input[type="date"],
-      input[type="text"],
-      input[type="file"] {
-        background: #09192c;
-        border: 1px solid #456178;
-        border-radius: 8px;
-        color: #e8f3fa;
-        padding: 12px;
-        width: 100%;
-        font: inherit;
-      }
-      .btn {
-        background: #55c4d6;
-        color: #062334;
-        border: 0;
-        border-radius: 9px;
-        padding: 13px 23px;
-        font: inherit;
-        font-weight: 800;
-        cursor: pointer;
-      }
-      .btn.secondary {
-        background: #243e56;
-        color: #e8f3fa;
-        border: 1px solid #456178;
-      }
-      .btn:disabled {
-        opacity: 0.5;
-      }
-      #success .success-actions {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        gap: 14px;
-        margin-top: 18px;
-      }
-      #success .success-actions .btn {
-        display: inline-block;
-        text-decoration: none;
-      }
-      .actions {
-        display: flex;
-        gap: 12px;
-        flex-wrap: wrap;
-        margin-top: 24px;
-      }
-      .notice {
-        color: #f6d58c;
-        min-height: 24px;
-      }
-      .info {
-        background: #0a2336;
-        border: 1px solid #29475e;
-        border-radius: 10px;
-        padding: 15px;
-        margin: 15px 0;
-      }
-      .lang {
-        background: #09192c;
-        border: 1px solid #456178;
-        color: #fff;
-        padding: 9px 14px;
-        border-radius: 8px;
-        cursor: pointer;
-      }
-      button:focus-visible,
-      input:focus-visible,
-      a:focus-visible {
-        outline: 3px solid #55c4d6;
-        outline-offset: 3px;
-      }
-      [hidden] {
-        display: none !important;
-      }
-      @media (max-width: 650px) {
-        .card {
-          padding: 22px 17px;
-        }
-        .top {
-          padding: 16px 20px;
-        }
-        .wrap {
-          padding: 0 14px;
-        }
-      }
-    
-/* Accessibilite du portail client - styles locaux, sans nouvelle dependance. */
-.madic8-skip{position:absolute;left:12px;top:-100px;z-index:99999;padding:12px 18px;background:#fff;color:#092138;border-radius:8px;font-weight:700;text-decoration:none}
-.madic8-skip:focus,.madic8-skip:focus-visible{top:12px}
-body:has(> .madic8-skip) :where(button,a,input,select,textarea,[tabindex]):focus-visible{outline:3px solid #7ee6f2;outline-offset:3px}
-body:has(> .madic8-skip) :where(img,svg,video,iframe){max-width:100%}
-@media(max-width:760px){body:has(> .madic8-skip) :where(.panel,.card,main,.wrap){min-width:0;max-width:100%}}
-@media(prefers-reduced-motion:reduce){body:has(> .madic8-skip) *,body:has(> .madic8-skip) *::before,body:has(> .madic8-skip) *::after{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important}}
-@media print{.madic8-skip{display:none!important}}
-
-</style>
+    <link href="assets/paiement-service-client.css" rel="stylesheet" />
+    <link href="assets/madic-footer.css" rel="stylesheet" />
   </head>
   <body>
     <a class="madic8-skip" href="#madic8-main">Aller au contenu principal</a>
@@ -208,158 +19,167 @@ body:has(> .madic8-skip) :where(img,svg,video,iframe){max-width:100%}
       <a class="brand" href="dashboard-client-cric.html"
         >MADI<span>C</span><small>PORTAIL CLIENT</small></a
       >
-      <div>
+      <div class="top-actions">
         <a
-          href="dashboard-client-cric.html"
-          data-fr="Retour à mon espace client"
           data-en="Back to my client space"
+          data-fr="Retour à mon espace client"
+          href="dashboard-client-cric.html"
           >Retour à mon espace client</a
         >
-        <button class="lang" type="button" id="lang">English</button>
+        <button class="lang" id="lang" type="button">English</button>
+        <button
+          class="lang payment-signout"
+          data-en="Sign out"
+          data-fr="Déconnexion"
+          id="paymentSignout"
+          type="button"
+        >
+          Déconnexion
+        </button>
       </div>
     </header>
-    <main id="madic8-main" class="wrap">
+    <main class="wrap" id="madic8-main">
       <section class="card">
         <h1
-          data-fr="Paiement de votre demande de service"
           data-en="Payment for your service request"
+          data-fr="Paiement de votre demande de service"
         >
           Paiement de votre demande de service
         </h1>
         <p
           class="muted"
-          data-fr="Complétez les quatre étapes obligatoires. Une déclaration de paiement ne constitue pas une confirmation de réception des fonds."
           data-en="Complete all four required steps. Declaring a payment does not confirm receipt of funds."
+          data-fr="Complétez les quatre étapes obligatoires. Une déclaration de paiement ne constitue pas une confirmation de réception des fonds."
         >
           Complétez les quatre étapes obligatoires. Une déclaration de paiement
           ne constitue pas une confirmation de réception des fonds.
         </p>
-        <div class="progress" aria-label="Progression">
+        <div aria-label="Progression" class="progress">
           <span class="progress-segment done"></span
           ><span class="progress-segment"></span
           ><span class="progress-segment"></span
           ><span class="progress-segment"></span>
         </div>
-        <p class="notice" id="notice" role="status" aria-live="polite"></p>
+        <p aria-live="polite" class="notice" id="notice" role="status"></p>
       </section>
       <section class="card">
-        <form id="paymentForm" hidden>
+        <form hidden="" id="paymentForm">
           <div data-step="0">
             <h2
-              data-fr="1. Confirmer le service"
               data-en="1. Confirm the service"
+              data-fr="1. Confirmer le service"
             >
               1. Confirmer le service
             </h2>
             <p>Service : <strong id="service"></strong></p>
-            <div class="info" id="tariffDetails" hidden>
+            <div class="info" hidden="" id="tariffDetails">
               <strong
-                data-fr="Tarification sélectionnée"
                 data-en="Selected pricing"
+                data-fr="Tarification sélectionnée"
                 >Tarification sélectionnée</strong
               >
               <p id="tariffLabel"></p>
               <p id="tariffAmount"></p>
             </div>
             <label class="choice"
-              ><input type="checkbox" id="serviceAcknowledgement" required />
+              ><input id="serviceAcknowledgement" required="" type="checkbox" />
               <span
-                data-fr="Je confirme le service sélectionné."
                 data-en="I confirm the selected service."
+                data-fr="Je confirme le service sélectionné."
                 >Je confirme le service sélectionné.</span
               ></label
             >
           </div>
-          <div data-step="1" hidden>
+          <div data-step="1" hidden="">
             <h2
-              data-fr="2. Situation du paiement"
               data-en="2. Payment situation"
+              data-fr="2. Situation du paiement"
             >
               2. Situation du paiement
             </h2>
             <label class="choice"
-              ><input type="radio" name="timing" value="already" />
+              ><input name="timing" type="radio" value="already" />
               <span
-                data-fr="J'ai déjà effectué le paiement"
                 data-en="I have already paid"
+                data-fr="J'ai déjà effectué le paiement"
                 >J'ai déjà effectué le paiement</span
               ></label
             ><label class="choice"
-              ><input type="radio" name="timing" value="later" />
+              ><input name="timing" type="radio" value="later" />
               <span
-                data-fr="Je souhaite effectuer le paiement maintenant"
                 data-en="I want to pay now"
+                data-fr="Je souhaite effectuer le paiement maintenant"
                 >Je souhaite effectuer le paiement maintenant</span
               ></label
             >
           </div>
-          <div data-step="2" hidden>
+          <div data-step="2" hidden="">
             <h2
-              data-fr="3. Mode et informations de paiement"
               data-en="3. Payment method and details"
+              data-fr="3. Mode et informations de paiement"
             >
               3. Mode et informations de paiement
             </h2>
             <label class="choice"
-              ><input type="radio" name="method" value="interac" /> Virement
+              ><input name="method" type="radio" value="interac" /> Virement
               Interac</label
             ><label class="choice"
-              ><input type="radio" name="method" value="cash" />
-              <span data-fr="Espèces" data-en="Cash">Espèces</span></label
+              ><input name="method" type="radio" value="cash" />
+              <span data-en="Cash" data-fr="Espèces">Espèces</span></label
             ><label class="choice"
-              ><input type="radio" name="method" value="western_union" />
+              ><input name="method" type="radio" value="western_union" />
               Western Union</label
             ><label class="choice"
-              ><input type="radio" name="method" value="portal" /> MADIC
+              ><input name="method" type="radio" value="portal" /> MADIC
               Portail</label
             >
-            <div id="alreadyFields" hidden>
+            <div hidden="" id="alreadyFields">
               <div class="field">
                 <label
-                  for="paymentDate"
-                  data-fr="Date du paiement *"
                   data-en="Payment date *"
+                  data-fr="Date du paiement *"
+                  for="paymentDate"
                   >Date du paiement *</label
-                ><input type="date" id="paymentDate" />
+                ><input id="paymentDate" type="date" />
               </div>
               <div class="field">
                 <label
-                  for="reference"
-                  data-fr="Référence ou numéro de reçu *"
                   data-en="Reference or receipt number *"
+                  data-fr="Référence ou numéro de reçu *"
+                  for="reference"
                   >Référence ou numéro de reçu *</label
                 ><input
-                  type="text"
                   id="reference"
                   maxlength="200"
                   placeholder="Référence du paiement"
+                  type="text"
                 />
               </div>
               <div class="field">
                 <label
-                  for="proof"
-                  data-fr="Preuve de paiement obligatoire (PDF, JPG, PNG, 10 Mo max.) *"
                   data-en="Required proof of payment (PDF, JPG, PNG, max. 10 MB) *"
+                  data-fr="Preuve de paiement obligatoire (PDF, JPG, PNG, 10 Mo max.) *"
+                  for="proof"
                   >Preuve de paiement obligatoire (PDF, JPG, PNG, 10 Mo max.)
                   *</label
                 ><input
-                  type="file"
-                  id="proof"
                   accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png"
+                  id="proof"
+                  type="file"
                 />
               </div>
             </div>
-            <div class="info" id="methodInstructions" hidden>
+            <div class="info" hidden="" id="methodInstructions">
               <strong
-                data-fr="Instructions du cabinet"
                 data-en="Office instructions"
+                data-fr="Instructions du cabinet"
                 >Instructions du cabinet</strong
               >
               <p id="methodNotice"></p>
               <p
                 class="muted"
-                data-fr="Ne transmettez des fonds qu'après avoir reçu les coordonnées officielles du cabinet. Pour un paiement hors portail, revenez déclarer la date et déposer votre preuve après la transaction."
                 data-en="Only send funds after receiving official office instructions. For offline payments, return to declare the date and upload proof after the transaction."
+                data-fr="Ne transmettez des fonds qu'après avoir reçu les coordonnées officielles du cabinet. Pour un paiement hors portail, revenez déclarer la date et déposer votre preuve après la transaction."
               >
                 Ne transmettez des fonds qu'après avoir reçu les coordonnées
                 officielles du cabinet. Pour un paiement hors portail, revenez
@@ -367,19 +187,19 @@ body:has(> .madic8-skip) :where(img,svg,video,iframe){max-width:100%}
               </p>
             </div>
           </div>
-          <div data-step="3" hidden>
+          <div data-step="3" hidden="">
             <h2
-              data-fr="4. Vérification et validation"
               data-en="4. Review and confirmation"
+              data-fr="4. Vérification et validation"
             >
               4. Vérification et validation
             </h2>
             <p id="summary"></p>
             <label class="choice"
-              ><input type="checkbox" id="certify" />
+              ><input id="certify" type="checkbox" />
               <span
-                data-fr="Je certifie l'exactitude des informations et comprends que mon paiement doit être vérifié par le CRIC."
                 data-en="I certify the information is accurate and understand my payment must be verified by the RCIC."
+                data-fr="Je certifie l'exactitude des informations et comprends que mon paiement doit être vérifié par le CRIC."
                 >Je certifie l'exactitude des informations et comprends que mon
                 paiement doit être vérifié par le CRIC.</span
               ></label
@@ -387,19 +207,19 @@ body:has(> .madic8-skip) :where(img,svg,video,iframe){max-width:100%}
           </div>
           <div class="actions">
             <button
-              type="button"
-              id="back"
               class="btn secondary"
-              hidden
-              data-fr="Précédent"
               data-en="Back"
+              data-fr="Précédent"
+              hidden=""
+              id="back"
+              type="button"
             >
               Précédent</button
-            ><button type="submit" id="next" class="btn">Continuer</button>
+            ><button class="btn" id="next" type="submit">Continuer</button>
           </div>
         </form>
-        <div id="success" hidden>
-          <h2 data-fr="Informations enregistrées" data-en="Information saved">
+        <div hidden="" id="success">
+          <h2 data-en="Information saved" data-fr="Informations enregistrées">
             Informations enregistrées
           </h2>
           <p id="successMessage"></p>
@@ -407,15 +227,15 @@ body:has(> .madic8-skip) :where(img,svg,video,iframe){max-width:100%}
           <div class="success-actions">
             <a
               class="btn"
-              id="initialContractLink"
+              hidden=""
               href="mes-contrats.html"
-              hidden
+              id="initialContractLink"
               >Ouvrir et signer mon contrat initial</a
             ><a
               class="btn"
-              href="dashboard-client-cric.html"
-              data-fr="Retour à mon espace client"
               data-en="Return to my client dashboard"
+              data-fr="Retour à mon espace client"
+              href="dashboard-client-cric.html"
               >Retour à mon espace client</a
             >
           </div>
@@ -423,7 +243,23 @@ body:has(> .madic8-skip) :where(img,svg,video,iframe){max-width:100%}
       </section>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
-    <script src="assets/config.js"></script>
-    <script defer src="assets/madic-paiement-service.js"></script>
+
+    <footer class="payment-footer">
+      <div class="payment-footer-inner">
+        <a class="payment-footer-brand" href="dashboard-client-cric.html"
+          >MADIC PORTAIL</a
+        >
+        <div class="payment-footer-links">
+          <a
+            data-en="My client space"
+            data-fr="Mon espace client"
+            href="dashboard-client-cric.html"
+            >Mon espace client</a
+          >
+        </div>
+      </div>
+    </footer>
+    <script defer="True" src="assets/paiement-service-client.js"></script>
+    <script defer="True" src="assets/madic-footer.js"></script>
   </body>
 </html>

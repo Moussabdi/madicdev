@@ -1,46 +1,135 @@
 <!doctype html>
-
 <html lang="fr-CA">
   <head>
     <meta charset="utf-8" />
     <meta content="width=device-width,initial-scale=1" name="viewport" />
     <meta content="noindex,nofollow" name="robots" />
     <link href="img/favicon.png" rel="icon" />
-    <title>Nouveau mot de passe | MADIC</title>
-    <link href="assets/style.css" rel="stylesheet" />
-    <link href="assets/madic-datahubz-auth.css" rel="stylesheet" />
+    <title
+      data-en="New password | MADIC Portal"
+      data-fr="Nouveau mot de passe | MADIC Portail"
+    >
+      Nouveau mot de passe | MADIC Portail
+    </title>
+    <link href="assets/reset.css" rel="stylesheet" />
+    <link href="assets/madic-footer.css" rel="stylesheet" />
   </head>
   <body class="madic-unified-auth" data-page="reset">
-    <header>
+    <header class="madic-reset-header">
       <a class="brand" href="connexion.html"
         >MADI<span>C</span> <small>PORTAIL</small></a
       >
       <nav class="toplinks">
-        <a href="connexion.html">Connexion</a
-        ><a href="connexion-client-cric.html">Accès client CRIC</a
-        ><a href="dashboard.html">Mon espace</a>
+        <a data-en="Sign in" data-fr="Connexion" href="connexion.html"
+          >Connexion</a
+        ><a
+          data-en="RCIC client access"
+          data-fr="Accès client CRIC"
+          href="connexion-client-cric.html"
+          >Accès client CRIC</a
+        ><a data-en="My space" data-fr="Mon espace" href="dashboard.html"
+          >Mon espace</a
+        >
+        <div
+          aria-label="Langue / Language"
+          class="madic-lang-controls"
+          role="group"
+        >
+          <button aria-pressed="true" data-lang="fr" type="button">FR</button
+          ><button aria-pressed="false" data-lang="en" type="button">EN</button>
+        </div>
       </nav>
     </header>
     <main>
       <section class="auth panel">
-        <h1>Nouveau mot de passe</h1>
+        <h1 data-en="New password" data-fr="Nouveau mot de passe">
+          Nouveau mot de passe
+        </h1>
         <form id="reset">
-          <label>Nouveau mot de passe</label
+          <label
+            data-en="New password"
+            data-fr="Nouveau mot de passe"
+            for="resetPassword"
+            >Nouveau mot de passe</label
           ><input
             autocomplete="new-password"
+            id="resetPassword"
             minlength="12"
             name="password"
             required=""
             type="password"
           />
-          <div class="actions"><button>Enregistrer</button></div>
+          <div class="actions">
+            <button data-en="Save" data-fr="Enregistrer">Enregistrer</button>
+          </div>
         </form>
         <p class="notice" id="message" role="status"></p>
       </section>
     </main>
-    <footer>© MAD Immigration Canadienne · Portail client sécurisé</footer>
+    <footer aria-label="Pied de page MADIC / MADIC footer" class="madic-footer">
+      <div class="madic-footer-inner">
+        <div class="madic-footer-brand">
+          <div class="madic-footer-brandline">
+            <img
+              alt="Logo MADIC"
+              class="madic-footer-logo"
+              height="43"
+              src="img/logo-madic.svg"
+              width="43"
+            />
+            <div>
+              <div class="madic-footer-name">MADIC</div>
+              <div
+                class="madic-footer-subtitle"
+                data-en="MAD Immigration Canadienne"
+                data-fr="MAD Immigration Canadienne"
+              >
+                MAD Immigration Canadienne
+              </div>
+            </div>
+          </div>
+          <p
+            class="madic-footer-desc"
+            data-en="A digital platform for Canadian immigration professionals and their clients."
+            data-fr="Une plateforme numérique pour les professionnels de l'immigration canadienne et leurs clients."
+          >
+            Une plateforme numérique pour les professionnels de l'immigration
+            canadienne et leurs clients.
+          </p>
+        </div>
+        <nav aria-label="Liens du pied de page" class="madic-footer-right">
+          <a data-en="Home" data-fr="Accueil" href="index.html">Accueil</a>
+          <a
+            data-en="Privacy policy"
+            data-fr="Confidentialité"
+            href="politique-confidentialite.html"
+            >Confidentialité</a
+          >
+          <span
+            class="madic-footer-unavailable"
+            data-en="Terms of use"
+            data-fr="Conditions d'utilisation"
+            title="Page à venir / Page coming soon"
+            >Conditions d'utilisation</span
+          >
+          <span
+            class="madic-footer-unavailable"
+            data-en="Contact"
+            data-fr="Contact"
+            title="Page à venir / Page coming soon"
+            >Contact</span
+          >
+        </nav>
+      </div>
+      <div class="madic-footer-bottom">
+        © 2026 MAD Immigration Canadienne (MADIC) Inc.
+        <span data-en="All rights reserved." data-fr="Tous droits réservés."
+          >Tous droits réservés.</span
+        >
+      </div>
+    </footer>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
-    <script src="assets/config.js"></script>
-    <script src="assets/app.js"></script>
+    <script src="assets/reset.js"></script>
+    <script src="assets/madic-footer.js"></script>
   </body>
 </html>

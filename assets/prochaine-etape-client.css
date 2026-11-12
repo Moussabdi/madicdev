@@ -1,0 +1,486 @@
+
+      :root {
+        font-family: Arial, Helvetica, sans-serif;
+        color: #e8f3fa;
+        background: #071626;
+        color-scheme: dark;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background: #071626;
+        color: #e8f3fa;
+        line-height: 1.55;
+      }
+      a {
+        color: #65d7e9;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+      .top {
+        background: #10263b;
+        border-bottom: 1px solid #29475e;
+        padding: 18px max(24px, calc((100% - 1120px) / 2));
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        flex-wrap: wrap;
+        box-shadow: 0 4px 24px #0002;
+      }
+      .brand {
+        color: #e8f3fa;
+        text-decoration: none;
+        font-size: 1.65rem;
+        letter-spacing: 0.05em;
+        font-weight: 800;
+        line-height: 1;
+      }
+      .brand span {
+        color: #38bfd8;
+      }
+      .brand small {
+        display: block;
+        margin-top: 5px;
+        color: #9bb6c8;
+        font-size: 0.65rem;
+        letter-spacing: 0.15em;
+      }
+      .header-actions {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        flex-wrap: wrap;
+      }
+      .back {
+        font-size: 0.92rem;
+        color: #c4dbe8;
+        text-decoration: none;
+      }
+      .lang {
+        border: 1px solid #29475e;
+        background: #09192c;
+        color: #e8f3fa;
+        padding: 9px 15px;
+        border-radius: 8px;
+        font: inherit;
+        cursor: pointer;
+      }
+      .wrap {
+        max-width: 1120px;
+        margin: 38px auto 60px;
+        padding: 0 22px;
+      }
+      .card {
+        background: #10263b;
+        border: 1px solid #29475e;
+        border-radius: 14px;
+        padding: 30px;
+        margin: 0 0 20px;
+        box-shadow: 0 10px 28px #0002;
+      }
+      h1 {
+        margin: 0 0 14px;
+        font-size: clamp(1.65rem, 3vw, 2.25rem);
+        line-height: 1.2;
+      }
+      p {
+        margin: 12px 0;
+      }
+      .muted {
+        color: #b7ccda;
+        line-height: 1.7;
+      }
+      .choices {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+        margin: 12px 0 24px;
+      }
+      .choice {
+        display: block;
+        background: #09192c;
+        border: 1px solid #29475e;
+        border-radius: 12px;
+        padding: 24px;
+        cursor: pointer;
+        transition:
+          border-color 0.15s,
+          background 0.15s,
+          box-shadow 0.15s;
+        min-width: 0;
+      }
+      .choice:hover {
+        border-color: #38bfd8;
+      }
+      .choice:has(input:checked) {
+        border-color: #38bfd8;
+        background: #0c3044;
+        box-shadow: 0 0 0 1px #38bfd8 inset;
+      }
+      .choice input {
+        accent-color: #38bfd8;
+        width: 18px;
+        height: 18px;
+        margin: 0 10px 0 0;
+        vertical-align: middle;
+        cursor: pointer;
+      }
+      .choice strong {
+        font-size: 1.08rem;
+        color: #f0f9fd;
+      }
+      .choice .muted {
+        margin: 15px 0 0;
+      }
+      .tariff-options {
+        background: #09192c;
+        border: 1px solid #29475e;
+        border-radius: 12px;
+        padding: 20px;
+        margin: 0 0 22px;
+      }
+      .tariff-options legend {
+        font-weight: 800;
+        color: #e8f3fa;
+        padding: 0 8px;
+      }
+      .tariff-options label {
+        display: block;
+        padding: 11px 8px;
+        cursor: pointer;
+      }
+      .tariff-options input {
+        accent-color: #38bfd8;
+        margin-right: 9px;
+      }
+      .tariff-options .muted {
+        margin: 0 0 8px;
+      }
+      .tariff-options[hidden] {
+        display: none;
+      }
+      .btn {
+        background: #38bfd8;
+        color: #062334;
+        border: 1px solid #38bfd8;
+        padding: 13px 24px;
+        border-radius: 9px;
+        cursor: pointer;
+        font-weight: 800;
+        font-size: 1rem;
+        min-height: 46px;
+      }
+      .btn:hover:not(:disabled) {
+        background: #65d7e9;
+      }
+      .btn:disabled {
+        opacity: 0.55;
+        cursor: wait;
+      }
+      .status {
+        min-height: 1.5em;
+        color: #e8f3fa;
+      }
+      .footer-back {
+        margin-top: 22px;
+      }
+      .footer-back a {
+        color: #b7ccda;
+        text-decoration: none;
+      }
+      button:focus-visible,
+      input:focus-visible,
+      a:focus-visible {
+        outline: 3px solid #38bfd8;
+        outline-offset: 3px;
+      }
+      @media (max-width: 700px) {
+        .top {
+          padding: 16px 20px;
+        }
+        .wrap {
+          margin: 22px auto 40px;
+          padding: 0 15px;
+        }
+        .card {
+          padding: 22px 18px;
+        }
+        .choices {
+          grid-template-columns: 1fr;
+        }
+        .choice {
+          padding: 20px;
+        }
+        .header-actions {
+          gap: 10px;
+        }
+      }
+
+      /* Accessibilite du portail client - styles locaux, sans nouvelle dependance. */
+      .madic8-skip {
+        position: absolute;
+        left: 12px;
+        top: -100px;
+        z-index: 99999;
+        padding: 12px 18px;
+        background: #fff;
+        color: #092138;
+        border-radius: 8px;
+        font-weight: 700;
+        text-decoration: none;
+      }
+      .madic8-skip:focus,
+      .madic8-skip:focus-visible {
+        top: 12px;
+      }
+      body:has(> .madic8-skip)
+        :where(button, a, input, select, textarea, [tabindex]):focus-visible {
+        outline: 3px solid #7ee6f2;
+        outline-offset: 3px;
+      }
+      body:has(> .madic8-skip) :where(img, svg, video, iframe) {
+        max-width: 100%;
+      }
+      @media (max-width: 760px) {
+        body:has(> .madic8-skip) :where(.panel, .card, main, .wrap) {
+          min-width: 0;
+          max-width: 100%;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        body:has(> .madic8-skip) *,
+        body:has(> .madic8-skip) *::before,
+        body:has(> .madic8-skip) *::after {
+          scroll-behavior: auto !important;
+          transition-duration: 0.01ms !important;
+          animation-duration: 0.01ms !important;
+        }
+      }
+      @media print {
+        .madic8-skip {
+          display: none !important;
+        }
+      }
+    
+/* Pied de page : reference cric-dashboard */
+/* Source: madic-footer(20261109-062616).css */
+footer.madic-footer {
+  background: #070f22;
+  color: #dce8f5;
+  border-top: 1px solid #1b2c49;
+  padding: 40px 28px 23px;
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+.madic-footer-inner {
+  max-width: 1100px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 36px;
+  flex-wrap: wrap;
+}
+.madic-footer-brand {
+  max-width: 390px;
+}
+.madic-footer-brandline {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.madic-footer-logo {
+  width: 43px;
+  height: 43px;
+  object-fit: contain;
+  border-radius: 9px;
+  background: #fff;
+  padding: 3px;
+}
+.madic-footer-name {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #fff;
+}
+.madic-footer-subtitle {
+  color: #9eb4d6;
+  font-size: 0.78rem;
+}
+.madic-footer-desc {
+  margin: 12px 0 0;
+  color: #9eb4d6;
+  max-width: 340px;
+  font-size: 0.85rem;
+}
+.madic-footer-right {
+  display: flex;
+  align-items: center;
+  gap: 19px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  padding-top: 8px;
+}
+.madic-footer-right a {
+  color: #b7cce9;
+  text-decoration: none;
+  font-size: 0.84rem;
+}
+.madic-footer-right a:hover {
+  text-decoration: underline;
+  color: #74e0ed;
+}
+.madic-footer-unavailable {
+  color: #8394ae;
+  font-size: 0.84rem;
+}
+.madic-footer-langs {
+  display: flex;
+  gap: 6px;
+  margin-left: 5px;
+}
+.madic-footer-langs button {
+  background: transparent;
+  border: 1px solid #3b506d;
+  color: #cbdcf2;
+  padding: 5px 9px;
+  border-radius: 7px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 0.75rem;
+}
+.madic-footer-langs button[aria-pressed="true"] {
+  background: #d8f7fc;
+  color: #09264a;
+  border-color: #d8f7fc;
+}
+.madic-footer-bottom {
+  max-width: 1100px;
+  margin: 28px auto 0;
+  padding-top: 17px;
+  border-top: 1px solid #263652;
+  color: #9eb4d6;
+  font-size: 0.78rem;
+}
+
+@media (max-width:600px){.madic-footer-inner{display:block}.madic-footer-right{justify-content:flex-start;gap:14px;margin-top:23px}.madic-footer-bottom{margin-top:23px}}
+
+.madic-footer,.madic-footer *{box-sizing:border-box}.madic-footer{font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;text-align:left}.madic-footer a:focus-visible{outline:3px solid #efb544;outline-offset:3px}
+
+/* Unified alignment: header, main and footer */
+.madic-unified-content{min-width:0;width:100%;box-sizing:border-box}
+.madic-unified-content>header,.madic-unified-content>.madic-footer,.madic-unified-content>footer{box-sizing:border-box;width:100%;}
+.madic-unified-content>header{padding-left:max(20px,calc((100% - 1120px)/2 + 20px));padding-right:max(20px,calc((100% - 1120px)/2 + 20px));}
+.madic-unified-content .madic-cric-wrap{width:100%;max-width:1120px;box-sizing:border-box;margin-left:auto;margin-right:auto;padding-left:20px;padding-right:20px}
+.madic-unified-content .madic-footer-inner,.madic-unified-content .madic-footer-bottom{box-sizing:border-box;max-width:1120px;margin-left:auto;margin-right:auto;padding-left:20px;padding-right:20px}
+.madic-cric-grid,.madic-quick-grid,.madic-v2-summary{width:100%;box-sizing:border-box}
+.madic-cric-grid>* ,.madic-quick-grid>* ,.madic-v2-summary>*{min-width:0;box-sizing:border-box}
+@media(max-width:768px){.madic-unified-content>header{padding-left:20px;padding-right:20px}.madic-unified-content .madic-cric-wrap{padding-left:20px;padding-right:20px}}
+@media(max-width:480px){.madic-unified-content>header,.madic-unified-content .madic-cric-wrap,.madic-unified-content .madic-footer-inner,.madic-unified-content .madic-footer-bottom{padding-left:16px;padding-right:16px}.madic-cric-grid{grid-template-columns:minmax(0,1fr)}}
+
+/* MADIC 2026-11-10 : alignement sur dashboard-client-cric (header, contenu, footer). */
+body.madic-unified[data-page="cric-dashboard"] .madic-unified-content {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: #eef3f9;
+}
+body.madic-unified[data-page="cric-dashboard"] .madic-unified-content > header {
+  width: 100%;
+  min-height: 78px;
+  margin: 0;
+  padding: 12px 34px !important;
+  border-radius: 0;
+  border: 0;
+  border-bottom: 1px solid #dbe6f0;
+  background: #fff !important;
+  box-shadow: none;
+  backdrop-filter: none;
+}
+body.madic-unified[data-page="cric-dashboard"] .madic-unified-content > main.madic-cric-wrap {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 26px 34px 48px;
+  flex: 1 0 auto;
+}
+body.madic-unified[data-page="cric-dashboard"] .madic-unified-content > #cricMessage {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: none;
+  padding-left: 34px;
+  padding-right: 34px;
+}
+body.madic-unified[data-page="cric-dashboard"] .madic-unified-content > footer.madic-footer {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 40px 34px 23px !important;
+  border-radius: 0;
+  flex-shrink: 0;
+}
+body.madic-unified[data-page="cric-dashboard"] .madic-unified-content > footer.madic-footer > .madic-footer-inner,
+body.madic-unified[data-page="cric-dashboard"] .madic-unified-content > footer.madic-footer > .madic-footer-bottom {
+  width: 100%;
+  max-width: none;
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 0;
+  padding-right: 0;
+}
+@media (min-width: 801px) and (max-width: 1080px) {
+  body.madic-unified[data-page="cric-dashboard"] .madic-unified-content > header { padding: 12px 18px !important; }
+  body.madic-unified[data-page="cric-dashboard"] .madic-unified-content > main.madic-cric-wrap { padding: 20px 18px 36px; }
+  body.madic-unified[data-page="cric-dashboard"] .madic-unified-content > #cricMessage { padding-left: 18px; padding-right: 18px; }
+  body.madic-unified[data-page="cric-dashboard"] .madic-unified-content > footer.madic-footer { padding-left: 18px !important; padding-right: 18px !important; }
+}
+@media (max-width: 800px) {
+  body.madic-unified[data-page="cric-dashboard"] .madic-unified-content > header { padding: 18px 22px !important; }
+  body.madic-unified[data-page="cric-dashboard"] .madic-unified-content > main.madic-cric-wrap { padding: 18px 16px 45px; }
+  body.madic-unified[data-page="cric-dashboard"] .madic-unified-content > #cricMessage { padding-left: 16px; padding-right: 16px; }
+  body.madic-unified[data-page="cric-dashboard"] .madic-unified-content > footer.madic-footer { padding: 32px 16px 23px !important; }
+}
+
+/* MADIC - Header et footer CRIC harmonises avec dashboard-client-cric. */
+body.madic-unified[data-page="cric-dashboard"] .madic-unified-content > footer.madic-footer {
+  background: #eef3f9 !important;
+  border-top: 1px solid #a9bacd !important;
+  color: #526b83 !important;
+}
+body.madic-unified[data-page="cric-dashboard"] footer.madic-footer :is(.madic-footer-name,.madic-footer-subtitle,.madic-footer-desc,.madic-footer-bottom,.madic-footer-unavailable) {
+  color: #526b83 !important;
+}
+body.madic-unified[data-page="cric-dashboard"] footer.madic-footer .madic-footer-name {color:#143453 !important;}
+body.madic-unified[data-page="cric-dashboard"] footer.madic-footer .madic-footer-right a {color:#35729d !important;}
+body.madic-unified[data-page="cric-dashboard"] footer.madic-footer .madic-footer-bottom {border-top-color:#a9bacd !important;}
+body.madic-unified[data-page="cric-dashboard"] .toplinks #cricLogout {
+  display:inline-flex; align-items:center; justify-content:center;
+  padding: 6px 4px !important; min-height:38px; border:0 !important;
+  border-radius:0 !important; background:transparent !important; color:#123553 !important;
+  box-shadow:none !important; font:inherit; font-weight:500; cursor:pointer; white-space:nowrap;
+}
+body.madic-unified[data-page="cric-dashboard"] .toplinks #cricLogout:hover {text-decoration:underline;}
+body.madic-unified[data-page="cric-dashboard"] .toplinks #cricLogout:focus-visible {outline:2px solid #178cb4;outline-offset:3px;}
+@media(max-width:600px){body.madic-unified[data-page="cric-dashboard"] .toplinks #cricLogout{font-size:.83rem;}}
+
+/* Harmonisation portail client */
+:root{color-scheme:light;background:#f1f6fc;color:#173b5b}
+body{display:flex;flex-direction:column;background:#f1f6fc;color:#173b5b}
+.top{background:#fff;border:0;border-bottom:1px solid #dbe7f2;box-shadow:none;padding:14px max(24px,calc((100% - 1120px)/2));border-radius:0}
+.brand{color:#123553}.brand small{color:#50728e}.back{color:#245676}
+.lang,.madic-signout{border:1px solid #b7d5e5;background:#eef8fc;color:#123553;border-radius:8px;padding:9px 15px;font:inherit;cursor:pointer}
+.lang:hover,.madic-signout:hover{background:#d9f0f9}
+.wrap{width:100%;flex:1;margin:30px auto 48px}
+.card{background:#fff;color:#173b5b;border:1px solid #dbe6f1;box-shadow:0 8px 26px #153a5b0b}
+h1,.choice strong,.tariff-options legend{color:#143453}
+a,.footer-back a{color:#0879a6}.muted{color:#526b83}
+.choice,.tariff-options{background:#f6f9fd;border-color:#d6e4f0}
+.choice:has(input:checked){background:#e4f5fa;border-color:#38bfd8}
+.status{color:#173b5b}
+footer.madic-footer{margin-top:auto;width:100%}
+@media(max-width:700px){.top{padding:14px 16px}.header-actions{gap:8px}}

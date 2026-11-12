@@ -2,344 +2,323 @@
 <html lang="fr">
   <head>
     <meta charset="utf-8" />
-    <title>MAD Immigration Canada</title>
+    <title
+      data-en="Saskatchewan | MADIC PORTAL"
+      data-fr="Saskatchewan | MADIC Portail"
+    >
+      Saskatchewan | MADIC Portail
+    </title>
     <meta
-      name="description"
       content="MAD Immigration Canadienne inc. est une entreprise Canadienne spécialisée dans l’immigration canadienne, Forte de l’ingéniosité de son équipe d’expérience."
+      name="description"
     />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <link rel="icon" href="img/favicon.png" />
-    <link rel="apple-touch-icon" href="img/apple-touch-icon.png" />
-
-    <link rel="stylesheet" href="css/normalize.css" />
-    <link rel="stylesheet" href="css/styles.css" />
-    <link rel="stylesheet" href="css/evaluation.css" />
-    <link rel="stylesheet" href="css/quebec.css" />
-    <link rel="stylesheet" href="css/madix-menu.css" />
-    <link rel="stylesheet" href="css/saskatchewan.css" />
-    <link rel="stylesheet" href="css/queries.css" />
-    <link rel="icon" href="favicon.png" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <link href="img/favicon.png" rel="icon" />
+    <link href="img/apple-touch-icon.png" rel="apple-touch-icon" />
+    <link href="favicon.png" rel="icon" />
     <link
-      rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+      rel="stylesheet"
     />
     <link
-      rel="stylesheet"
+      crossorigin="anonymous"
       href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
       integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
-      crossorigin="anonymous"
+      rel="stylesheet"
     />
-    <script defer src="js/script.js"></script>
-    <script defer src="js/evaluation.js"></script>
-    <script defer src="js/quebec.js"></script>
-    <script defer src="js/madix-menu.js"></script>
-    <script defer src="js/saskatchewan.js"></script>
+    <link href="assets/saskatchewan.css" rel="stylesheet" />
+    <link href="assets/madic-footer.css" rel="stylesheet" />
+    <script defer="" src="assets/saskatchewan.js"></script>
+    <script defer="" src="assets/madic-footer.js"></script>
   </head>
-
   <body>
     <header class="header">
       <nav class="navbar">
         <div class="navbar__container">
           <!-- LOGO -->
-          <a href="index.html" class="navbar__logo">
+          <a class="navbar__logo" href="index.html">
             <img
-              src="img/logo_fr_transparent.png"
               alt="MAD Immigration Canadienne"
               class="logo"
+              src="img/logo_fr_transparent.png"
             />
           </a>
-
           <!-- MENU : 8 LIENS + 2 ACTIONS -->
           <div class="navbar__content" id="navbar-content">
             <div class="navbar__navblock">
               <ul class="navbar__menu navbar__menu--all">
                 <li class="navbar__item">
                   <a
-                    href="index.html"
                     class="navbar__links"
-                    id="index"
                     data-i18n="nav.home"
+                    href="index.html"
+                    id="index"
                   >
                     Accueil
                   </a>
                 </li>
-
                 <li class="navbar__item">
                   <a
-                    href="services.html"
                     class="navbar__links"
-                    id="services-page"
                     data-i18n="nav.services"
+                    href="services.html"
+                    id="services-page"
                   >
                     Nos services
                   </a>
                 </li>
-
                 <li class="navbar__item">
                   <a
-                    href="forfaits.html"
                     class="navbar__links"
                     data-i18n="nav.packages"
+                    href="forfaits.html"
                   >
                     Nos forfaits
                   </a>
                 </li>
-
                 <li class="navbar__item">
                   <a
-                    href="propos.html"
                     class="navbar__links navbar__links--secondary"
-                    id="about-page"
                     data-i18n="nav.about"
+                    href="propos.html"
+                    id="about-page"
                   >
                     À propos
                   </a>
                 </li>
-
                 <li class="navbar__item">
                   <a
-                    href="carriere.html"
                     class="navbar__links navbar__links--secondary"
-                    id="career-page"
                     data-i18n="nav.career"
+                    href="carriere.html"
+                    id="career-page"
                   >
                     Carrière
                   </a>
                 </li>
-
                 <li class="navbar__item">
                   <a
-                    href="evenements.html"
                     class="navbar__links navbar__links--secondary"
                     data-i18n="nav.events"
+                    href="evenements.html"
                   >
                     Événements
                   </a>
                 </li>
-
                 <li class="navbar__item">
                   <a
-                    href="blogue.html"
                     class="navbar__links navbar__links--secondary"
                     data-i18n="nav.blog"
+                    href="blogue.html"
                   >
                     Blogue
                   </a>
                 </li>
-
                 <li class="navbar__item">
                   <a
-                    href="joindre.html"
                     class="navbar__links navbar__links--secondary"
                     data-i18n="nav.contact"
+                    href="joindre.html"
                   >
                     Nous joindre
                   </a>
                 </li>
               </ul>
             </div>
-
             <!-- ACTIONS DU MENU -->
             <div class="navbar__actions">
               <!-- MADIX : menu des outils, sans page intermediaire -->
               <div class="madix-nav" id="madix-nav">
                 <button
-                  type="button"
-                  class="nav-action nav-action--outline madix-trigger"
-                  id="madix-trigger"
+                  aria-controls="madix-panel"
                   aria-expanded="false"
                   aria-haspopup="true"
-                  aria-controls="madix-panel"
+                  class="nav-action nav-action--outline madix-trigger"
+                  id="madix-trigger"
+                  type="button"
                 >
-                  <i class="fa-solid fa-layer-group" aria-hidden="true"></i>
+                  <i aria-hidden="true" class="fa-solid fa-layer-group"></i>
                   <span>MADIX</span>
                   <i
-                    class="fa-solid fa-chevron-down madix-chevron"
                     aria-hidden="true"
+                    class="fa-solid fa-chevron-down madix-chevron"
                   ></i>
                 </button>
-                <div class="madix-panel" id="madix-panel" hidden>
+                <div class="madix-panel" hidden="" id="madix-panel">
                   <div class="madix-panel-head">
                     <span
                       class="madix-kicker"
-                      data-madix-fr="PLATEFORME D'OUTILS"
                       data-madix-en="IMMIGRATION TOOLKIT"
+                      data-madix-fr="PLATEFORME D'OUTILS"
                       >PLATEFORME D'OUTILS</span
                     >
                     <strong>MADI<span class="madix-x">X</span></strong>
                     <p
-                      data-madix-fr="Explorez nos outils d'immigration"
                       data-madix-en="Explore our immigration tools"
+                      data-madix-fr="Explorez nos outils d'immigration"
                     >
                       Explorez nos outils d'immigration
                     </p>
                   </div>
                   <div class="madix-links">
-                    <a href="quebec.html" class="madix-tool">
+                    <a class="madix-tool" href="quebec.html">
                       <i
-                        class="fa-solid fa-map-location-dot"
                         aria-hidden="true"
+                        class="fa-solid fa-map-location-dot"
                       ></i>
                       <span
-                        ><strong data-madix-fr="Québec" data-madix-en="Quebec"
+                        ><strong data-madix-en="Quebec" data-madix-fr="Québec"
                           >Québec</strong
                         ><small
-                          data-madix-fr="Programmes québécois"
                           data-madix-en="Quebec immigration programs"
+                          data-madix-fr="Programmes québécois"
                           >Programmes québécois</small
                         ></span
                       >
                       <i
-                        class="fa-solid fa-arrow-up-right-from-square madix-arrow"
                         aria-hidden="true"
+                        class="fa-solid fa-arrow-up-right-from-square madix-arrow"
                       ></i>
                     </a>
-                    <a href="saskatchewan.html" class="madix-tool">
-                      <i class="fa-solid fa-map" aria-hidden="true"></i>
+                    <a class="madix-tool" href="saskatchewan.html">
+                      <i aria-hidden="true" class="fa-solid fa-map"></i>
                       <span
                         ><strong>Saskatchewan</strong
                         ><small
-                          data-madix-fr="Programme SINP"
                           data-madix-en="SINP program"
+                          data-madix-fr="Programme SINP"
                           >Programme SINP</small
                         ></span
                       >
                       <i
-                        class="fa-solid fa-arrow-up-right-from-square madix-arrow"
                         aria-hidden="true"
+                        class="fa-solid fa-arrow-up-right-from-square madix-arrow"
                       ></i>
                     </a>
-                    <a href="evaluations.html" class="madix-tool">
-                      <i class="fa-solid fa-calculator" aria-hidden="true"></i>
+                    <a class="madix-tool" href="evaluations.html">
+                      <i aria-hidden="true" class="fa-solid fa-calculator"></i>
                       <span
                         ><strong
-                          data-madix-fr="Évaluations"
                           data-madix-en="Calculators"
+                          data-madix-fr="Évaluations"
                           >Évaluations</strong
                         ><small
-                          data-madix-fr="Simulateurs et calculateurs"
                           data-madix-en="Assessment calculators"
+                          data-madix-fr="Simulateurs et calculateurs"
                           >Simulateurs et calculateurs</small
                         ></span
                       >
                       <i
-                        class="fa-solid fa-arrow-up-right-from-square madix-arrow"
                         aria-hidden="true"
+                        class="fa-solid fa-arrow-up-right-from-square madix-arrow"
                       ></i>
                     </a>
-                    <a href="formulaire.html" class="madix-tool">
+                    <a class="madix-tool" href="formulaire.html">
                       <i
-                        class="fa-solid fa-clipboard-check"
                         aria-hidden="true"
+                        class="fa-solid fa-clipboard-check"
                       ></i>
                       <span
                         ><strong
-                          data-madix-fr="Évaluation préliminaire"
                           data-madix-en="Preliminary assessment"
+                          data-madix-fr="Évaluation préliminaire"
                           >Évaluation préliminaire</strong
                         ><small
-                          data-madix-fr="Analyse initiale de votre profil"
                           data-madix-en="Initial profile review"
+                          data-madix-fr="Analyse initiale de votre profil"
                           >Analyse initiale de votre profil</small
                         ></span
                       >
                       <i
-                        class="fa-solid fa-arrow-up-right-from-square madix-arrow"
                         aria-hidden="true"
+                        class="fa-solid fa-arrow-up-right-from-square madix-arrow"
                       ></i>
                     </a>
                   </div>
                   <p
                     class="madix-panel-foot"
-                    data-madix-fr="De nouveaux outils seront ajoutés prochainement."
                     data-madix-en="More tools coming soon."
+                    data-madix-fr="De nouveaux outils seront ajoutés prochainement."
                   >
                     De nouveaux outils seront ajoutés prochainement.
                   </p>
                 </div>
               </div>
-
               <!-- ESPACE CLIENT MADIC -->
               <a
-                href="https://madic.ca/connexion.html"
                 class="nav-action nav-action--outline"
-                id="client-portal"
                 data-i18n="nav.clientPortal"
+                href="https://madic.ca/connexion.html"
+                id="client-portal"
               >
-                <i class="fa-solid fa-user-shield" aria-hidden="true"></i>
+                <i aria-hidden="true" class="fa-solid fa-user-shield"></i>
                 <span>Espace client</span>
               </a>
-
               <a
-                href="rendezvous.html"
                 class="nav-action nav-action--primary"
-                id="appointment"
                 data-i18n="nav.appointment"
+                href="rendezvous.html"
+                id="appointment"
               >
                 <i class="fa-solid fa-calendar-check"></i>
                 <span>Prendre rendez-vous</span>
               </a>
             </div>
           </div>
-
           <!-- LANGUES + MODE NUIT : TOUJOURS VISIBLES -->
           <div class="navbar__utilities">
             <div class="language-switcher">
               <button
-                type="button"
+                aria-label="Français"
                 class="lang-btn active"
                 data-lang="fr"
-                aria-label="Français"
                 title="Français"
+                type="button"
               >
                 <img
-                  src="img/flag-quebec.svg"
-                  width="24"
-                  height="16"
                   alt="Drapeau du Québec"
                   class="lang-flag"
+                  height="16"
+                  src="img/flag-quebec.svg"
+                  width="24"
                 />
                 <span>FR</span>
               </button>
-
               <button
-                type="button"
+                aria-label="English"
                 class="lang-btn"
                 data-lang="en"
-                aria-label="English"
                 title="English"
+                type="button"
               >
                 <img
-                  src="img/flag-canada.svg"
-                  width="24"
-                  height="16"
                   alt="Canadian flag"
                   class="lang-flag"
+                  height="16"
+                  src="img/flag-canada.svg"
+                  width="24"
                 />
                 <span>EN</span>
               </button>
             </div>
-
             <button
-              type="button"
-              id="theme-toggle"
-              class="theme-toggle-btn"
               aria-label="Activer le mode nuit"
+              class="theme-toggle-btn"
+              id="theme-toggle"
               title="Mode nuit"
+              type="button"
             >
               <i class="fa-solid fa-moon"></i>
             </button>
           </div>
-
           <!-- HAMBURGER -->
           <button
-            type="button"
+            aria-controls="navbar-content"
+            aria-expanded="false"
+            aria-label="Ouvrir le menu"
             class="navbar__toggle"
             id="mobile-menu"
-            aria-label="Ouvrir le menu"
-            aria-expanded="false"
-            aria-controls="navbar-content"
+            type="button"
           >
             <span class="bar"></span>
             <span class="bar"></span>
@@ -376,14 +355,14 @@
             <label
               >Âge
               <input
-                name="age"
-                type="number"
-                min="0"
                 max="110"
-                required
-                placeholder="Ex. 32" /></label
+                min="0"
+                name="age"
+                placeholder="Ex. 32"
+                required=""
+                type="number" /></label
             ><label
-              >Lieu de résidence<select name="location" required>
+              >Lieu de résidence<select name="location" required="">
                 <option value="">Sélectionner...</option>
                 <option value="sk">En Saskatchewan</option>
                 <option value="canada">Ailleurs au Canada</option>
@@ -410,7 +389,7 @@
             ><label
               >Situation relative à une demande d'asile<select
                 name="refugee"
-                required
+                required=""
               >
                 <option value="">Sélectionner...</option>
                 <option value="no">Aucune demande d'asile en cours</option>
@@ -425,7 +404,7 @@
             ><label
               >Intention réelle de vivre et travailler en Saskatchewan<select
                 name="intent"
-                required
+                required=""
               >
                 <option value="">Sélectionner...</option>
                 <option value="yes">Oui</option>
@@ -435,7 +414,7 @@
             >
           </div>
           <label class="check"
-            ><input type="checkbox" name="departure" /> Si ma demande d'asile a
+            ><input name="departure" type="checkbox" /> Si ma demande d'asile a
             été refusée : tous les membres accompagnants et moi avons quitté le
             Canada et je possède les documents requis (IMM 0056B ou ARC, selon
             le cas).</label
@@ -446,7 +425,7 @@
           <div class="fields">
             <label
               >Offre d'emploi permanente à temps plein d'un employeur en
-              Saskatchewan<select name="offer" required>
+              Saskatchewan<select name="offer" required="">
                 <option value="">Sélectionner...</option>
                 <option value="yes">Oui</option>
                 <option value="no">Non</option>
@@ -460,7 +439,7 @@
                 <option value="no">Non</option>
               </select></label
             ><label
-              >Secteur de l'employeur<select name="sector" required>
+              >Secteur de l'employeur<select name="sector" required="">
                 <option value="">Sélectionner...</option>
                 <option value="health">Santé</option>
                 <option value="agri">Agriculture / agroalimentaire</option>
@@ -476,13 +455,13 @@
               </select></label
             ><label
               >Code CNP 2021 (5 chiffres)<input
-                name="noc"
                 inputmode="numeric"
-                pattern="[0-9]{5}"
                 maxlength="5"
+                name="noc"
+                pattern="[0-9]{5}"
                 placeholder="Ex. 21232" /></label
             ><label
-              >Catégorie FEER / TEER<select name="teer" required>
+              >Catégorie FEER / TEER<select name="teer" required="">
                 <option value="">Sélectionner...</option>
                 <option value="0">0</option>
                 <option value="1">1</option>
@@ -508,7 +487,7 @@
             <label
               >Plus haut diplôme reconnu / équivalence canadienne<select
                 name="education"
-                required
+                required=""
               >
                 <option value="">Sélectionner...</option>
                 <option value="23">Maîtrise ou doctorat - 23 points</option>
@@ -544,7 +523,7 @@
               </select></label
             ><label
               >Années de travail qualifié lié à la profession au cours des 5
-              dernières années<select name="exp5" required>
+              dernières années<select name="exp5" required="">
                 <option value="">Sélectionner...</option>
                 <option value="0">Moins d'un an</option>
                 <option value="1">1 an</option>
@@ -555,7 +534,7 @@
               </select></label
             ><label
               >Années de travail qualifié lié à la profession durant les années
-              6 à 10 précédentes<select name="exp10" required>
+              6 à 10 précédentes<select name="exp10" required="">
                 <option value="">Sélectionner...</option>
                 <option value="0">Moins d'un an</option>
                 <option value="1">1 an</option>
@@ -567,18 +546,18 @@
             ><label
               >Travail chez l'employeur offrant le poste en Saskatchewan (heures
               admissibles)<input
-                name="employerhours"
-                type="number"
                 min="0"
+                name="employerhours"
                 step="1"
+                type="number"
                 value="0" /></label
             ><label
               >Expérience récente (années) dans la profession offerte<input
-                name="recentyears"
-                type="number"
-                min="0"
                 max="50"
+                min="0"
+                name="recentyears"
                 step="0.5"
+                type="number"
                 value="0" /></label
             ><label
               >Expérience de travail admissible en Saskatchewan (12 mois dans
@@ -603,14 +582,14 @@
             autoévaluation.
             <a
               href="https://www.canada.ca/fr/immigration-refugies-citoyennete/services/immigrer-canada/entree-express/documents/examen-linguistique.html"
-              target="_blank"
               rel="noopener"
+              target="_blank"
               >Tableaux officiels de conversion IRCC</a
             >.
           </p>
           <div class="fields">
             <label
-              >Première langue - test<select name="test1" required>
+              >Première langue - test<select name="test1" required="">
                 <option value="">Sélectionner...</option>
                 <option value="ielts">IELTS General Training</option>
                 <option value="celpip">CELPIP-G</option>
@@ -622,7 +601,7 @@
             ><label
               >Plus faible CLB/NCLC des 4 compétences - première langue<select
                 name="clb1"
-                required
+                required=""
               >
                 <option value="">Sélectionner...</option>
                 <option value="0">Aucun / moins de 4</option>
@@ -696,33 +675,33 @@
         </section>
         <div class="actions">
           <button type="submit">Évaluer mon profil SINP</button
-          ><button type="reset" class="secondary">Réinitialiser</button>
+          ><button class="secondary" type="reset">Réinitialiser</button>
         </div>
       </form>
       <section
-        id="results"
-        class="panel results"
-        hidden
         aria-live="polite"
+        class="panel results"
+        hidden=""
+        id="results"
       ></section>
       <footer>
         <p>
           <strong>Sources officielles :</strong>
           <a
             href="https://www.saskatchewan.ca/residents/moving-to-saskatchewan/live-in-saskatchewan/by-immigrating/saskatchewan-immigrant-nominee-program/assess-your-eligibility"
-            target="_blank"
             rel="noopener"
+            target="_blank"
             >Grille et évaluation SINP</a
           >
           ·
           <a
             href="https://www.saskatchewan.ca/residents/moving-to-saskatchewan/live-in-saskatchewan/by-immigrating/saskatchewan-immigrant-nominee-program/sinp-processing-statistics"
-            target="_blank"
             rel="noopener"
+            target="_blank"
             >Quotas et périodes de réception 2026</a
           >
           ·
-          <a href="https://noc.esdc.gc.ca/" target="_blank" rel="noopener"
+          <a href="https://noc.esdc.gc.ca/" rel="noopener" target="_blank"
             >CNP 2021</a
           >.
         </p>
@@ -735,14 +714,13 @@
     <footer class="footer">
       <div class="container grid--footer">
         <div class="logo-col">
-          <a href="#" class="footer-logo">
+          <a class="footer-logo" href="#">
             <img
-              src="img/logo_fr_transparent.png"
               alt="omnifood-logo"
               class="logo"
+              src="img/logo_fr_transparent.png"
             />
           </a>
-
           <ul class="social-links">
             <li>
               <a class="footer-link" href="#"
@@ -761,7 +739,7 @@
             </li>
           </ul>
           <p class="copyright">
-            Copyright &copy;
+            Copyright ©
             <span class="year"></span>
             Design MADMECA Inc.
             <span data-i18n="footer.copyright">
@@ -769,7 +747,6 @@
             </span>
           </p>
         </div>
-
         <div class="address-col">
           <p class="footer-heading" data-i18n="footer.contact">
             Contactez-nous
@@ -787,83 +764,69 @@
             </p>
           </address>
         </div>
-
         <nav class="nav-col">
           <p class="footer-heading" data-i18n="footer.account">Compte</p>
-
           <ul class="footer-nav">
             <li>
-              <a class="footer-link" href="#" data-i18n="footer.createAccount">
+              <a class="footer-link" data-i18n="footer.createAccount" href="#">
                 Créer un compte
               </a>
             </li>
-
             <li>
-              <a class="footer-link" href="#" data-i18n="footer.register">
+              <a class="footer-link" data-i18n="footer.register" href="#">
                 S'inscrire
               </a>
             </li>
-
             <li>
               <a class="footer-link" href="#">iOS</a>
             </li>
-
             <li>
-              <a class="footer-link" href="#" data-i18n="footer.android">
+              <a class="footer-link" data-i18n="footer.android" href="#">
                 Android
               </a>
             </li>
           </ul>
         </nav>
-
         <nav class="nav-col">
           <p class="footer-heading" data-i18n="footer.company">Compagnie</p>
-
           <ul class="footer-nav">
             <li>
-              <a class="footer-link" href="#" data-i18n="footer.about">
+              <a class="footer-link" data-i18n="footer.about" href="#">
                 À propos de MADIC
               </a>
             </li>
-
             <li>
-              <a class="footer-link" href="#" data-i18n="footer.business">
+              <a class="footer-link" data-i18n="footer.business" href="#">
                 Affaires
               </a>
             </li>
-
             <li>
-              <a class="footer-link" href="#" data-i18n="footer.partners">
+              <a class="footer-link" data-i18n="footer.partners" href="#">
                 Partenaires
               </a>
             </li>
-
             <li>
-              <a class="footer-link" href="#" data-i18n="footer.career">
+              <a class="footer-link" data-i18n="footer.career" href="#">
                 Carrière
               </a>
             </li>
           </ul>
         </nav>
-
         <nav class="nav-col">
           <p class="footer-heading" data-i18n="footer.resources">Ressources</p>
-
           <ul class="footer-nav">
             <li>
-              <a class="footer-link" href="#" data-i18n="footer.directory">
+              <a class="footer-link" data-i18n="footer.directory" href="#">
                 Répertoire Immigration
               </a>
             </li>
-
             <li>
-              <a class="footer-link" href="#" data-i18n="footer.help">
+              <a class="footer-link" data-i18n="footer.help" href="#">
                 Centre d'aide
               </a>
             </li>
-
             <li>
-              <a class="footer-link" href="#" data-i18n="footer.privacy">
+              <a class="footer-link" data-i18n="footer.privacy" href="#">
                 Confidentialité et conditions
               </a>
             </li>
