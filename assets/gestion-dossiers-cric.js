@@ -346,6 +346,18 @@
     "Temps et honoraires": "Time and fees",
     "Aucune donnée enregistrée pour ce cabinet.": "No data recorded for this practice."
   });
+  // Traductions des messages dynamiques de sélection (interface seulement).
+  Object.assign(dictionary, {
+    "Sélectionnez un client pour commencer.": "Select a client to get started.",
+    "Aucun client associé à cet espace CRIC.": "No clients are associated with this RCIC workspace.",
+    "Aucun dossier pour ce client.": "No case is available for this client.",
+    "Sélectionnez d’abord un client et un dossier autorisés.": "First select an authorized client and case.",
+    "Outils de préparation disponibles. Aucun document n’est automatiquement enregistré.": "Preparation tools are available. No documents are saved automatically.",
+    "Sélectionner un dossier": "Select a case",
+    "Fiche copiée.": "Information sheet copied.",
+    "Copier la fiche": "Copy information sheet",
+    "Copie impossible : sélectionnez le texte manuellement.": "Unable to copy: select the text manually."
+  });
   const key = 'madic_ui_language';
   let lang = 'fr';
   try { lang = localStorage.getItem(key) === 'en' ? 'en' : 'fr'; } catch (_) {}

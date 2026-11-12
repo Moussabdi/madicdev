@@ -1250,3 +1250,24 @@
 
 /* Libelle de navigation fixe : jamais My workspace. */
 (()=>{const apply=()=>{const a=document.querySelector('body[data-page="messagerie-cric"] .toplinks a[data-madic-fr="Mon espace"]');if(!a)return;const lang=document.documentElement.lang?.toLowerCase().startsWith('en')?'en':(localStorage.getItem('madic-cric-lang')==='en'?'en':'fr');a.textContent=lang==='en'?'My space':'Mon espace';};if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',apply,{once:true});else apply();})();
+
+
+/* Localisation du sujet par défaut seulement : ne jamais traduire un objet saisi par le professionnel. */
+;(() => {
+  const FR = 'Conversation générale';
+  const EN = 'General conversation';
+  function updateDefaultSubject() {
+    const input = document.getElementById('msgSubject');
+    if (!input) return;
+    const current = input.value.trim();
+    if (current !== FR && current !== EN) return;
+    const english = document.documentElement.lang.toLowerCase().startsWith('en');
+    const next = english ? EN : FR;
+    if (input.value !== next) input.value = next;
+    input.defaultValue = next;
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', updateDefaultSubject, {once: true});
+  } else updateDefaultSubject();
+  document.addEventListener('madic:languagechange', updateDefaultSubject);
+})();
