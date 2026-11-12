@@ -377,11 +377,11 @@ window.getMadicSupabase = function () {
       fr: "Inscription CRIC | MADIC",
       en: "RCIC registration | MADIC",
     },
-    "signup.cric.brand": { fr: "PROFESSIONNEL", en: "PROFESSIONAL" },
+    "signup.cric.brand": { fr: "Portail", en: "Portal" },
     "signup.cric.nav": { fr: "Connexion CRIC", en: "RCIC sign-in" },
     "signup.cric.eyebrow": {
       fr: "ESPACE PROFESSIONNEL",
-      en: "PROFESSIONAL SPACE",
+      en: "PROFESSIONAL PORTAL",
     },
     "signup.cric.heading": {
       fr: "Demande d’accès CRIC",

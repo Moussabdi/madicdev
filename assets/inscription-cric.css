@@ -404,3 +404,19 @@ body[data-page="cric-signup"] footer.madic-footer .madic-footer-bottom{border-to
 .madic-cric-ok{display:block;margin-left:auto;cursor:pointer;border-radius:8px;padding:10px 19px}
 .madic-cric-guide{margin:8px 0 16px;cursor:pointer;background:transparent;border:1px solid currentColor;border-radius:8px;padding:8px 12px;font:inherit}
 @media(max-width:600px){body[data-page="cric-signup"]>header{padding:18px 22px;flex-wrap:wrap}body[data-page="cric-signup"]>main{padding:0 16px}body[data-page="cric-signup"]>main .auth.panel{margin:30px auto}body[data-page="cric-signup"]>footer.madic-footer{padding:32px 16px 23px}}
+
+/* Correctif cible : contraste du guide CRIC sur la carte bleu marine. */
+body[data-page="cric-signup"] .madic-cric-guide {
+  color: #e9f1ff;
+  background: #223a52;
+  border: 1px solid #647d9b;
+}
+body[data-page="cric-signup"] .madic-cric-guide:hover {
+  color: #ffffff;
+  background: #304b69;
+  border-color: #8bb5d2;
+}
+body[data-page="cric-signup"] .madic-cric-guide:focus-visible {
+  outline: 2px solid #5ad5f2;
+  outline-offset: 2px;
+}
