@@ -1481,6 +1481,32 @@
     "Nom du client": "Client name",
     "Messages non lus": "Unread messages",
     "Navigation du portail": "Portal navigation",
+    "Reçue": "Received", "En analyse": "Under review", "Réponse transmise": "Response sent", "Clôturée": "Closed",
+    "Enregistrer le statut": "Save status", "Contrat": "Contract", "Contrat initial et signature": "Initial agreement and signature",
+    "Contrat professionnel et signature": "Professional services agreement and signature", "Signature du client": "Client signature",
+    "Brouillon uniquement": "Draft only", "Non disponible": "Unavailable", "Signé": "Signed", "Signée": "Signed",
+    "Contresigné": "Countersigned", "Publié": "Published", "En attente": "Pending", "À contresigner": "Awaiting countersignature",
+    "Aucune demande": "No request", "Demande annulée": "Request cancelled", "Confirmé": "Confirmed",
+    "État du client": "Client status", "Créneaux du cabinet": "Firm availability", "Vérification…": "Checking…",
+    "Détails": "Details", "Préparer / consulter le contrat →": "Prepare / view agreement →",
+    "Consulter le contrat contresigné →": "View countersigned agreement →",
+    "Consulter et contresigner le contrat →": "View and countersign agreement →",
+    "Gérer les disponibilités →": "Manage availability →",
+    "La publication et la signature électronique du contrat professionnel ne sont pas encore activées. Aucun contrat initial ne sera utilisé pour ce mandat.":
+      "Publication and electronic signing of the professional services agreement are not yet enabled. No initial agreement will be used for this mandate.",
+    "Les créneaux publiés sont accessibles aux clients du cabinet; ils ne constituent pas une proposition individuelle ni une réservation confirmée.":
+      "Published time slots are available to the firm's clients; they do not constitute an individual offer or a confirmed booking.",
+    "Aucune demande de service pour le moment.": "No service requests at this time.",
+    "Aucun nouveau message.": "No new messages.", "Marquer comme lue": "Mark as read",
+    "Activité client": "Client activity", "Nouveau message MADIC": "New MADIC message",
+    "Consulter la messagerie": "Open messaging", "Fermer": "Close", "Dossier": "Case",
+    "Aucun CRIC inscrit.": "No registered RCIC.", "Décision enregistrée": "Decision saved",
+    "Autoriser": "Approve", "Refuser": "Reject", "En attente": "Pending",
+    "Choisir un client": "Select a client", "Statut de la demande": "Request status",
+    "Consultation initiale": "Initial consultation", "Proposition personnalisée": "Customized proposal",
+    "Rappel": "Reminder", "Paiement": "Payment", "Dépassé": "Overdue", "disponible(s)": "available",
+    "Messages": "Messages", "Mon profil professionnel": "My professional profile",
+
   };
   const storageKey = "madic_ui_language";
   const originals = new WeakMap();
@@ -1509,7 +1535,34 @@
       if (!target && /^Espace professionnel\s*:/.test(trimmed)) target = trimmed.replace(/^Espace professionnel/, "Professional workspace");
       if (!target && /^Numéro CRIC\s*:/.test(trimmed))
         target = trimmed.replace(/^Numéro CRIC/, "RCIC licence number");
+      if (!target) {
+        let match;
+        if ((match = trimmed.match(/^(\d+) demande\(s\), dont (\d+) à traiter\.$/)))
+          target = `${match[1]} request(s), including ${match[2]} to process.`;
+        else if ((match = trimmed.match(/^(\d+) client\(s\) distinct\(s\) avec une connexion non lue\. (\d+) notification\(s\) non lue\(s\) parmi les (\d+) dernières affichées\.$/)))
+          target = `${match[1]} distinct client(s) with an unread login. ${match[2]} unread notification(s) among the last ${match[3]} displayed.`;
+        else if ((match = trimmed.match(/^(\d+) client\(s\) distinct\(s\) avec une connexion non lue\. Aucune notification récente à afficher\.$/)))
+          target = `${match[1]} distinct client(s) with an unread login. No recent notifications to display.`;
+        else if ((match = trimmed.match(/^(\d+) rappel\(s\) prioritaire\(s\), dont (\d+) dépassé\(s\)\.$/)))
+          target = `${match[1]} priority reminder(s), including ${match[2]} overdue.`;
+        else if ((match = trimmed.match(/^(\d+) message\(s\) non lu\(s\) dans (\d+) conversation\(s\)\.$/)))
+          target = `${match[1]} unread message(s) in ${match[2]} conversation(s).`;
+        else if ((match = trimmed.match(/^(\d+) disponible\(s\)$/)))
+          target = `${match[1]} available`;
+        else if ((match = trimmed.match(/^Statut de la demande de (.+)$/)))
+          target = `Request status for ${match[1]}`;
+        else if ((match = trimmed.match(/^Et (\d+) autre\(s\) échéance\(s\) prioritaire\(s\)\.$/)))
+          target = `And ${match[1]} other priority deadline(s).`;
+        else if ((match = trimmed.match(/^Paiement - (.+) - Dépassé de (\d+) jour\(s\) (.+)$/)))
+          target = `Payment - ${match[1]} - ${match[2]} day(s) overdue ${match[3]}`;
+        else if ((match = trimmed.match(/^(Consultation initiale|Proposition personnalisée) · (.+)$/)))
+          target = `${dictionary[match[1]] || match[1]} · ${match[2]}`;
+      }
       if (target) result = source.replace(trimmed, target);
+    } else {
+      // Restore French when business scripts generated English content or data attributes.
+      const reverse = Object.entries(dictionary).find(([, en]) => en === trimmed);
+      if (reverse) result = source.replace(trimmed, reverse[0]);
     }
     if (node.nodeValue !== result) node.nodeValue = result;
     rendered.set(node, result);
@@ -1534,6 +1587,11 @@
     const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
     let node;
     while ((node = walker.nextNode())) translateText(node);
+    root.querySelectorAll("[data-fr][data-en]").forEach((el) => {
+      if (el.matches("input,textarea")) return;
+      const translated = el.getAttribute("data-" + lang);
+      if (translated !== null && el.textContent !== translated) el.textContent = translated;
+    });
     root
       .querySelectorAll("[placeholder],[title],[aria-label]")
       .forEach(translateAttributes);

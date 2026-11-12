@@ -855,6 +855,7 @@
     "Temps et honoraires": "Time and fees",
     "Aucune donnée enregistrée pour ce cabinet.": "No data recorded for this practice."
   });
+  Object.assign(dictionary, {"Profil professionnel complet : invitations disponibles.":"Professional profile complete: invitations available.","Profil professionnel complet : invitations par importation disponibles.":"Professional profile complete: bulk invitations available.","Compléter mon profil professionnel →":"Complete my professional profile →","Aucun client ne correspond à votre recherche.":"No clients match your search.","Aucun client associé pour le moment.":"No clients associated yet.","Statut enregistré.":"Status saved.","Dossiers actualisés.":"Cases refreshed.","Compte CRIC non approuvé.":"RCIC account not approved.","Accès à cet espace non autorisé.":"Access to this workspace is not authorized.","Espace CRIC absent ou suspendu.":"RCIC workspace missing or suspended.","Espace CRIC inactif.":"RCIC workspace inactive.","Accès non autorisé.":"Access denied.","Aucun dossier.":"No cases.","Aucun changement.":"No changes.","En attente":"Pending","Actif":"Active","Fermé":"Closed","Accepté":"Accepted","Refusé":"Rejected","Enregistrer":"Save","Consulter":"View","Télécharger":"Download","Lien copié.":"Link copied.","Sélectionnez et copiez le lien.":"Select and copy the link.","Complétez d’abord votre profil professionnel.":"Complete your professional profile first.","Envoi de l’invitation en cours…":"Sending invitation…","Envoi non confirmé. Vérifiez avant de recommencer.":"Sending not confirmed. Please check before trying again.","Importation annulée.":"Import cancelled.","Fichier trop volumineux (maximum 5 Mo).":"File too large (maximum 5 MB).","Format non accepté.":"Unsupported file format.","Fichier vide ou sans lignes de clients.":"Empty file or no client rows.","Maximum 500 clients par fichier.":"Maximum 500 clients per file.","Colonne « courriel » ou « email » introuvable dans la première ligne.":"No “courriel” or “email” column found in the first row.","Courriel invalide":"Invalid email","Doublon dans le fichier":"Duplicate in file","Prêt":"Ready","Importation impossible :":"Import failed:","En cours":"In progress","En attente d’acceptation":"Awaiting acceptance","Déjà associé":"Already associated","Invitation non envoyée":"Invitation not sent","Invitation envoyée":"Invitation sent","Échec":"Failed","Envoi non confirmé":"Sending not confirmed","Session expirée.":"Session expired.","Connexion Supabase indisponible.":"Supabase connection unavailable.","Envoi interrompu :":"Sending interrupted:","CSV invalide : guillemets non fermés.":"Invalid CSV: unclosed quotation marks.","Lecteur Excel indisponible.":"Excel reader unavailable.","Impossible de charger le lecteur Excel. Utilisez un CSV.":"Unable to load Excel reader. Use a CSV file.","Profil professionnel incomplet. Veuillez le compléter avant d'inviter des clients.":"Professional profile incomplete. Please complete it before inviting clients.","Complétez d’abord votre profil professionnel avant d’envoyer des invitations.":"Complete your professional profile before sending invitations.","Veuillez vérifier votre profil professionnel.":"Please verify your professional profile.","Configuration Supabase manquante.":"Supabase configuration missing.","Chargement…":"Loading…","MADIC PORTAIL / ESPACE PROFESSIONNEL":"MADIC PORTAL / PROFESSIONAL WORKSPACE","Nom, courriel ou téléphone":"Name, email or phone","Rechercher un client":"Search for a client","Navigation du portail":"Portal navigation","Navigation du compte":"Account navigation","Accès aux actions clients":"Client actions","Aperçu du cabinet":"Practice overview","Liste des clients associés":"List of associated clients","Lien d'invitation généré":"Generated invitation link","Prévisualisation des invitations à importer":"Preview of invitations to import","Liens du pied de page":"Footer links","Pied de page MADIC / MADIC footer":"MADIC footer","Veuillez sélectionner un fichier.":"Please select a file.","Vérification du profil professionnel avant les invitations…":"Checking professional profile before invitations…"});
   const key = 'madic_ui_language';
   let lang = 'fr';
   try { lang = localStorage.getItem(key) === 'en' ? 'en' : 'fr'; } catch (_) {}
@@ -870,6 +871,26 @@
   const attrs = ['placeholder', 'title', 'aria-label'];
   const ignored = node => !!node.parentElement?.closest('script,style,code,pre,textarea,[contenteditable="true"],.madic-lang-controls');
   const patterns = [
+    [/^Profil professionnel complet\s*:\s*invitations disponibles\.$/i, 'Professional profile complete: invitations available.'],
+    [/^Profil professionnel complet\s*:\s*invitations par importation disponibles\.$/i, 'Professional profile complete: bulk invitations available.'],
+    [/^Espace chargé\. Les données sont soumises aux autorisations Supabase\.$/i, 'Workspace loaded. Data access is subject to Supabase permissions.'],
+    [/^Invitation envoyée à (.+)\. Le client dispose de 7 jours pour l’accepter\.$/i, (_,email) => `Invitation sent to ${email}. The client has 7 days to accept it.`],
+    [/^(\d+) ligne\(s\) analysée\(s\), (\d+) invitation\(s\) prête\(s\)\. Vérifiez avant de confirmer\.$/i, (_,total,ready) => `${total} row(s) analyzed, ${ready} invitation(s) ready. Review before confirming.`],
+    [/^Traitement\s*:\s*(\d+) envoyée\(s\), (\d+) déjà associé\(s\), (\d+) échec\(s\)\.$/i, (_,sent,existing,failed) => `Processing: ${sent} sent, ${existing} already associated, ${failed} failed.`],
+    [/^Terminé\s*:\s*(\d+) invitation\(s\) envoyée\(s\), (\d+) déjà associé\(s\), (\d+) échec\(s\)\.$/i, (_,sent,existing,failed) => `Completed: ${sent} invitation(s) sent, ${existing} already associated, ${failed} failed.`],
+    [/^Envoyer (\d+) invitation\(s\) individuelles \? Les clients devront accepter leur invitation\.$/i, (_,n) => `Send ${n} individual invitation(s)? Clients must accept their invitations.`],
+    [/^Espace professionnel\s*:\s*/i, 'Professional workspace: '],
+    [/^Impossible de (?:charger les données|vérifier le profil professionnel)\s*:/i, text => text.replace('charger les données','load data').replace('vérifier le profil professionnel','verify professional profile').replace('Impossible de','Unable to')],
+    [/^Avant d'inviter un client, remplissez votre profil professionnel \(entreprise, adresse, titre, numéro de permis, téléphone et logo\)\./i, 'Before inviting a client, complete your professional profile (business name, address, title, licence number, phone and logo).'],
+    [/^Avant d'envoyer des invitations, remplissez votre profil professionnel\./i, 'Before sending invitations, complete your professional profile.'],
+    [/^Envoi non confirmé\s*:/i, 'Sending not confirmed:'],
+    [/^Envoi interrompu\s*:/i, 'Sending interrupted:'],
+    [/^Importation impossible\s*:/i, 'Import failed:'],
+    [/^Invitation envoyée à /i, 'Invitation sent to '],
+    [/^Mise à jour impossible\s*:/i, 'Update failed:'],
+    [/^Téléchargement impossible\s*:/i, 'Download failed:'],
+    [/^Vérification du profil impossible\s*:/i, 'Unable to verify profile:'],
+    [/^\d+ document\(s\)$/i, s => s.replace('document(s)','document(s)')],
     [/^Nouvelle demande de rendez-vous\s*-\s*/i, 'New appointment request - '],
     [/^Dernière vérification automatique\s*:/i, 'Last automatic check:'],
     [/^Documents du dossier\s*:/i, 'Case documents:'],
@@ -925,6 +946,11 @@
     let previous = renderedAttrs.get(el);
     if (!source) { source = {}; originalAttrs.set(el, source); }
     if (!previous) { previous = {}; renderedAttrs.set(el, previous); }
+    if (el.hasAttribute('data-en') && el.hasAttribute('data-fr')) {
+      const explicit = el.getAttribute(lang === 'en' ? 'data-en' : 'data-fr');
+      // Only leaf elements: avoid replacing nested links, controls or icons.
+      if (el.children.length === 0 && el.textContent !== explicit) el.textContent = explicit;
+    }
     for (const attr of attrs) {
       if (!el.hasAttribute(attr)) continue;
       const current = el.getAttribute(attr);
@@ -939,6 +965,8 @@
   function render() {
     if (observer) observer.disconnect();
     document.documentElement.lang = lang === 'en' ? 'en-CA' : 'fr-CA';
+    const pageTitle = document.querySelector('title[data-fr][data-en]');
+    if (pageTitle) document.title = pageTitle.getAttribute(lang === 'en' ? 'data-en' : 'data-fr');
     const root = document.body;
     if (!root) return;
     const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT | NodeFilter.SHOW_ELEMENT);

@@ -1,3 +1,4 @@
+/* Consolidated source: facturation-cric(20261112-222214).css */
 /* Source: style(20261110-054302).css */
 :root {
   font-family:
@@ -2656,3 +2657,111 @@ body.madic-unified[data-page="facturation-cric"] .madic-top-notification .madic-
 body.madic-unified[data-page="facturation-cric"] .madic-top-notification-count:not([hidden]) {position:absolute;top:-7px;right:-7px;display:grid;place-items:center;min-width:20px;height:20px;padding:0 5px;background:#b52e47;color:#fff;border-radius:20px;font-size:11px;font-weight:800;}
 @media(max-width:850px){body.madic-unified[data-page="facturation-cric"] .madic-unified-content > header {padding:12px 18px!important;}}
 @media(max-width:650px){body.madic-unified[data-page="facturation-cric"] .madic-unified-content > header {height:auto!important;min-height:78px!important;flex-wrap:wrap!important;gap:10px!important;padding:12px 18px!important;}body.madic-unified[data-page="facturation-cric"] .madic-unified-content > header .toplinks{gap:8px!important;flex-wrap:wrap!important;}}
+
+
+/* Consolidated source: madic-footer(20261112-222203).css */
+footer.madic-footer {
+  background: #070f22;
+  color: #dce8f5;
+  border-top: 1px solid #1b2c49;
+  padding: 40px 28px 23px;
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+.madic-footer-inner {
+  max-width: 1100px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 36px;
+  flex-wrap: wrap;
+}
+.madic-footer-brand {
+  max-width: 390px;
+}
+.madic-footer-brandline {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.madic-footer-logo {
+  width: 43px;
+  height: 43px;
+  object-fit: contain;
+  border-radius: 9px;
+  background: #fff;
+  padding: 3px;
+}
+.madic-footer-name {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #fff;
+}
+.madic-footer-subtitle {
+  color: #9eb4d6;
+  font-size: 0.78rem;
+}
+.madic-footer-desc {
+  margin: 12px 0 0;
+  color: #9eb4d6;
+  max-width: 340px;
+  font-size: 0.85rem;
+}
+.madic-footer-right {
+  display: flex;
+  align-items: center;
+  gap: 19px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  padding-top: 8px;
+}
+.madic-footer-right a {
+  color: #b7cce9;
+  text-decoration: none;
+  font-size: 0.84rem;
+}
+.madic-footer-right a:hover {
+  text-decoration: underline;
+  color: #74e0ed;
+}
+.madic-footer-unavailable {
+  color: #8394ae;
+  font-size: 0.84rem;
+}
+.madic-footer-langs {
+  display: flex;
+  gap: 6px;
+  margin-left: 5px;
+}
+.madic-footer-langs button {
+  background: transparent;
+  border: 1px solid #3b506d;
+  color: #cbdcf2;
+  padding: 5px 9px;
+  border-radius: 7px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 0.75rem;
+}
+.madic-footer-langs button[aria-pressed="true"] {
+  background: #d8f7fc;
+  color: #09264a;
+  border-color: #d8f7fc;
+}
+.madic-footer-bottom {
+  max-width: 1100px;
+  margin: 28px auto 0;
+  padding-top: 17px;
+  border-top: 1px solid #263652;
+  color: #9eb4d6;
+  font-size: 0.78rem;
+}
+
+@media (max-width:600px){.madic-footer-inner{display:block}.madic-footer-right{justify-content:flex-start;gap:14px;margin-top:23px}.madic-footer-bottom{margin-top:23px}}
+
+.madic-footer,.madic-footer *{box-sizing:border-box}.madic-footer{font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;text-align:left}.madic-footer a:focus-visible{outline:3px solid #efb544;outline-offset:3px}
+
+/* Final alignment with CRIC dashboard */
+body.madic-unified[data-page="facturation-cric"] .madic-unified-content > header {border-radius:0!important;margin:0!important;box-shadow:none!important;}
+body.madic-unified[data-page="facturation-cric"] .madic-unified-content > footer.madic-footer {border-radius:0!important;margin:0!important;width:100%!important;background:#eef3f9!important;}
