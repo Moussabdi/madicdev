@@ -383,3 +383,27 @@ body[data-page="invitation-information"]>footer.madic-footer{width:100%;backgrou
 body[data-page="invitation-information"] .madic-footer-inner,body[data-page="invitation-information"] .madic-footer-bottom{max-width:1120px;margin-left:auto;margin-right:auto;}
 body[data-page="invitation-information"] .madic-footer :is(.madic-footer-name,.madic-footer-subtitle,.madic-footer-desc,.madic-footer-bottom,.madic-footer-unavailable){color:#526b83;}body[data-page="invitation-information"] .madic-footer .madic-footer-name{color:#143453;}body[data-page="invitation-information"] .madic-footer .madic-footer-right a{color:#35729d;}body[data-page="invitation-information"] .madic-footer .madic-footer-bottom{border-top-color:#a9bacd;}
 @media(max-width:680px){body[data-page="invitation-information"]>header{padding:15px 18px;}body[data-page="invitation-information"]>header .toplinks{order:3;width:100%;margin-left:0;flex-wrap:wrap;}body[data-page="invitation-information"]>main{padding:26px 16px 40px;}body[data-page="invitation-information"]>main .auth.panel{padding:24px;}body[data-page="invitation-information"]>footer.madic-footer{padding:30px 16px 22px;}}
+
+/* Correction ciblée : fond bleu marine uniforme avec la page Connexion.
+   Conserver intégralement la carte blanche et la logique existante. */
+body[data-page="invitation-information"] > header {
+  background: #071626;
+  border-bottom: 1px solid #26344b;
+  box-shadow: none;
+}
+body[data-page="invitation-information"] > header .brand { color: #ffffff; }
+body[data-page="invitation-information"] > header .brand small { color: #a5b7cc; }
+body[data-page="invitation-information"] > header .toplinks a { color: #5ad5f2; }
+body[data-page="invitation-information"] > header .madic-lang-switch button {
+  background: transparent; color: #e9f1ff; border: 1px solid #8296af;
+}
+body[data-page="invitation-information"] > header .madic-lang-switch button[aria-pressed="true"] {
+  background: #183453; color: #ffffff; border-color: #8296af;
+}
+body[data-page="invitation-information"] > footer.madic-footer {
+  background: #070f22; color: #dce8f5; border-top: 1px solid #1b2c49;
+}
+body[data-page="invitation-information"] .madic-footer :is(.madic-footer-name,.madic-footer-subtitle,.madic-footer-desc,.madic-footer-bottom,.madic-footer-unavailable) {color:#a5b7cc;}
+body[data-page="invitation-information"] .madic-footer .madic-footer-name {color:#fff;}
+body[data-page="invitation-information"] .madic-footer .madic-footer-right a {color:#dce8f5;}
+body[data-page="invitation-information"] .madic-footer .madic-footer-bottom {border-top-color:#1b2c49;}
