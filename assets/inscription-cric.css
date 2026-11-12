@@ -371,27 +371,29 @@ footer.madic-footer {
 
 .madic-footer,.madic-footer *{box-sizing:border-box}.madic-footer{font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;text-align:left}.madic-footer a:focus-visible{outline:3px solid #efb544;outline-offset:3px}
 
-/* Inscription CRIC : alignement du bandeau, des marges et du pied de page avec le dashboard. */
-body.madic-unified-auth[data-page="cric-signup"]{background:#eef3f9;color:#143453;min-height:100vh;display:flex;flex-direction:column}
-body[data-page="cric-signup"]>header{box-sizing:border-box;width:100%;min-height:78px;margin:0;padding:12px 34px;background:#fff;border:0;border-bottom:1px solid #dbe6f0;border-radius:0;box-shadow:none;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
-body[data-page="cric-signup"]>header .brand{color:#102d4c}
-body[data-page="cric-signup"]>header .brand small{color:#21618d}
+/* Inscription CRIC : presentation alignee sur connexion-cric.html. */
+body.madic-unified-auth[data-page="cric-signup"]{min-height:100vh;display:flex;flex-direction:column;background:radial-gradient(ellipse at 85% 5%,#15385a 0,transparent 42%),#07101f;color:#e9f1ff}
+body[data-page="cric-signup"]>header{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;min-height:0;margin:0;padding:22px max(24px,calc((100vw - 1100px)/2));background:transparent;border:0;border-bottom:1px solid #26344b;border-radius:0;box-shadow:none;flex-wrap:nowrap}
+body[data-page="cric-signup"]>header .brand{color:#fff}
+body[data-page="cric-signup"]>header .brand small{color:#a5b7cc}
 body[data-page="cric-signup"]>header .toplinks{margin-left:auto}
-body[data-page="cric-signup"]>header .toplinks a{color:#173b5b;font-weight:650}
-body[data-page="cric-signup"] .madic-lang-switch{padding:0}
-body[data-page="cric-signup"] .madic-lang-switch button{background:#eef8fc;color:#123553;border-color:#54b7d9;min-height:39px}
-body[data-page="cric-signup"] .madic-lang-switch button[aria-pressed="true"]{background:#389ec0;color:#fff;border-color:#389ec0}
-body[data-page="cric-signup"]>main{width:100%;max-width:none;box-sizing:border-box;margin:0;padding:26px 34px 48px;flex:1 0 auto}
-body[data-page="cric-signup"]>main .auth.panel{width:min(100%,680px);max-width:680px;margin:0 auto;background:#fff;color:#143453;border:1px solid #dbe6f0;box-shadow:0 8px 26px #153a5b0b}
-body[data-page="cric-signup"]>main h1{color:#143453}
-body[data-page="cric-signup"]>main .muted,body[data-page="cric-signup"]>main label{color:#526b83}
-body[data-page="cric-signup"]>main input{background:#fff;color:#173b5b;border:1px solid #b9ccdf}
-body[data-page="cric-signup"]>main a{color:#0879a6}
-body[data-page="cric-signup"]>footer.madic-footer{box-sizing:border-box;width:100%;max-width:none;margin:0;padding:40px 34px 23px;background:#e3eef9;color:#143453;border-top:1px solid #cbdcec}
-body[data-page="cric-signup"] .madic-footer-inner,body[data-page="cric-signup"] .madic-footer-bottom{width:100%;max-width:none}
-body[data-page="cric-signup"] footer.madic-footer :is(.madic-footer-name,.madic-footer-subtitle,.madic-footer-desc,.madic-footer-bottom,.madic-footer-unavailable){color:#143453}
-body[data-page="cric-signup"] footer.madic-footer .madic-footer-right a{color:#35729d}
-body[data-page="cric-signup"] footer.madic-footer .madic-footer-bottom{border-top-color:#a9bacd}
+body[data-page="cric-signup"]>header .toplinks a{color:#5ad5f2;font-weight:400}
+body[data-page="cric-signup"] .madic-lang-switch{padding:0;gap:.65rem}
+body[data-page="cric-signup"] .madic-lang-switch button{background:transparent;color:#e9f1ff;border:1px solid #8b939e;min-height:0;padding:.35rem .65rem}
+body[data-page="cric-signup"] .madic-lang-switch button[aria-pressed="true"]{background:transparent;color:#e9f1ff;border:2px solid #8b939e}
+body[data-page="cric-signup"]>main{box-sizing:border-box;width:100%;max-width:1100px;margin:45px auto;padding:0 24px;flex:1 0 auto}
+body[data-page="cric-signup"]>main .auth.panel{width:100%;max-width:460px;margin:60px auto;background:#101e33;color:#e9f1ff;border:1px solid #2a425d;box-shadow:0 16px 45px #0004}
+body[data-page="cric-signup"]>main h1{color:#e9f1ff}
+body[data-page="cric-signup"]>main .muted,body[data-page="cric-signup"]>main label{color:#a5b7cc}
+body[data-page="cric-signup"]>main input{background:#09192c;color:#fff;border:1px solid #47617b}
+body[data-page="cric-signup"]>main a{color:#5ad5f2}
+body[data-page="cric-signup"]>footer.madic-footer{box-sizing:border-box;width:100%;max-width:none;margin:0;padding:36px 24px 22px;background:#080f22;color:#9eb4d6;border-top:1px solid #263652}
+body[data-page="cric-signup"] .madic-footer-inner,body[data-page="cric-signup"] .madic-footer-bottom{width:100%;max-width:1100px}
+body[data-page="cric-signup"] footer.madic-footer .madic-footer-name{color:#fff}
+body[data-page="cric-signup"] footer.madic-footer :is(.madic-footer-subtitle,.madic-footer-desc,.madic-footer-bottom){color:#9eb4d6}
+body[data-page="cric-signup"] footer.madic-footer .madic-footer-unavailable{color:#8394ae}
+body[data-page="cric-signup"] footer.madic-footer .madic-footer-right a{color:#b7cce9}
+body[data-page="cric-signup"] footer.madic-footer .madic-footer-bottom{border-top-color:#263652}
 #cricCheckStatus:not([hidden]){margin-top:14px}
 [hidden]{display:none!important}
 .madic-cric-overlay{position:fixed;inset:0;z-index:99999;background:rgba(12,24,42,.55);display:flex;align-items:center;justify-content:center;padding:18px}
@@ -401,4 +403,4 @@ body[data-page="cric-signup"] footer.madic-footer .madic-footer-bottom{border-to
 .madic-cric-x{position:absolute;right:13px;top:10px;background:transparent!important;border:0!important;box-shadow:none!important;color:#445!important;font-size:26px!important;padding:4px 10px!important;cursor:pointer}
 .madic-cric-ok{display:block;margin-left:auto;cursor:pointer;border-radius:8px;padding:10px 19px}
 .madic-cric-guide{margin:8px 0 16px;cursor:pointer;background:transparent;border:1px solid currentColor;border-radius:8px;padding:8px 12px;font:inherit}
-@media(max-width:600px){body[data-page="cric-signup"]>header{padding:18px 22px}body[data-page="cric-signup"]>main{padding:18px 16px 45px}body[data-page="cric-signup"]>footer.madic-footer{padding:32px 16px 23px}}
+@media(max-width:600px){body[data-page="cric-signup"]>header{padding:18px 22px;flex-wrap:wrap}body[data-page="cric-signup"]>main{padding:0 16px}body[data-page="cric-signup"]>main .auth.panel{margin:30px auto}body[data-page="cric-signup"]>footer.madic-footer{padding:32px 16px 23px}}
