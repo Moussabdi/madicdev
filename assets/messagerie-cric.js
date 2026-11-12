@@ -141,7 +141,7 @@
     clients = new Map(),
     conversations = [];
   const date = (value) =>
-    new Intl.DateTimeFormat("fr-CA", {
+    new Intl.DateTimeFormat(document.documentElement.lang.startsWith("en") ? "en-CA" : "fr-CA", {
       dateStyle: "medium",
       timeStyle: "short",
       timeZone: "America/Toronto",
@@ -794,7 +794,7 @@
           "Envoyé par : " +
           sender +
           " · " +
-          new Intl.DateTimeFormat("fr-CA", {
+          new Intl.DateTimeFormat(document.documentElement.lang.startsWith("en") ? "en-CA" : "fr-CA", {
             dateStyle: "medium",
             timeStyle: "short",
             timeZone: "America/Toronto",
@@ -1058,6 +1058,58 @@
     "Temps et honoraires": "Time and fees",
     "Aucune donnée enregistrée pour ce cabinet.": "No data recorded for this practice."
   });
+  // Traductions propres à la messagerie : libellés statiques et états dynamiques.
+  Object.assign(dictionary, {
+    "Conversations actualisées.": "Conversations refreshed.",
+    "Aucune conversation ne correspond à votre recherche.": "No conversations match your search.",
+    "Aucune conversation pour le moment.": "No conversations yet.",
+    "Dernier message": "Last message",
+    "Créée": "Created",
+    "non lu": "unread",
+    "non lus": "unread",
+    "Conversation introuvable.": "Conversation not found.",
+    "Aucun message. Vous pouvez commencer la conversation.": "No messages yet. You can start the conversation.",
+    "Vous": "You",
+    "Client": "Client",
+    "Messagerie du cabinet chargée.": "Practice messaging loaded.",
+    "Sélectionnez un client et un objet.": "Select a client and a subject.",
+    "Conversation existante ouverte. Aucun doublon créé.": "Existing conversation opened. No duplicate created.",
+    "Conversation créée.": "Conversation created.",
+    "Message envoyé.": "Message sent.",
+    "Erreur": "Error",
+    "Dernière vérification automatique": "Last automatic check",
+    "Actualisation automatique activée (10 secondes).": "Automatic refresh enabled (10 seconds).",
+    "Actualisation automatique en erreur": "Automatic refresh failed",
+    "Rechercher une conversation": "Search conversations",
+    "Nom du client ou objet...": "Client name or subject...",
+    "Conversation générale": "General conversation",
+    "Rédigez votre message…": "Write your message…",
+    "Joindre un document (PDF, JPG, PNG - 10 Mo maximum)": "Attach a document (PDF, JPG, PNG - 10 MB maximum)",
+    "Envoyer la pièce jointe": "Send attachment",
+    "Pièces jointes de la conversation": "Conversation attachments",
+    "Pièces jointes": "Attachments",
+    "Ouvrir": "Open",
+    "Télécharger": "Download",
+    "Aucune pièce jointe.": "No attachments.",
+    "Sélectionnez un fichier.": "Select a file.",
+    "Format non autorisé.": "File format not allowed.",
+    "Pièce jointe envoyée.": "Attachment sent.",
+    "Ouverture impossible": "Unable to open",
+    "Téléchargement lancé": "Download started",
+    "Envoi impossible": "Unable to send",
+    "Message sans texte": "Message without text",
+    "Professionnel": "Professional",
+    "Sélectionnez un client": "Select a client",
+    "Dernière vérification automatique :": "Last automatic check:",
+    "Client du cabinet": "Practice client",
+    "Choisir un client…": "Choose a client…",
+    "Objet": "Subject",
+    "Nouvelle conversation": "New conversation",
+    "Actualiser": "Refresh",
+    "Sélectionnez une conversation": "Select a conversation",
+    "Votre message": "Your message",
+    "Envoyer": "Send"
+  });
   const key = 'madic_ui_language';
   let lang = 'fr';
   try { lang = localStorage.getItem(key) === 'en' ? 'en' : 'fr'; } catch (_) {}
@@ -1071,10 +1123,22 @@
   const originalAttrs = new WeakMap();
   const renderedAttrs = new WeakMap();
   const attrs = ['placeholder', 'title', 'aria-label'];
-  const ignored = node => !!node.parentElement?.closest('script,style,code,pre,textarea,[contenteditable="true"],.madic-lang-controls');
+  const ignored = node => !!node.parentElement?.closest('script,style,code,pre,textarea,[contenteditable="true"],.madic-lang-controls,.madic-msg-bubble,.madic-attachment-list .madic-attachment-filename');
   const patterns = [
     [/^Nouvelle demande de rendez-vous\s*-\s*/i, 'New appointment request - '],
     [/^Dernière vérification automatique\s*:/i, 'Last automatic check:'],
+    [/^Dernier message\s*:/i, 'Last message:'],
+    [/^Créée\s*:/i, 'Created:'],
+    [/^Conversations?\s+\d+$/i, s => s.replace(/^Conversations?/i, 'Conversations')],
+    [/^Pièces jointes\s*:/i, 'Attachments:'],
+    [/^Erreur\s*:/i, 'Error:'],
+    [/^Actualisation automatique en erreur\s*:/i, 'Automatic refresh failed:'],
+    [/^Ouverture impossible\s*:/i, 'Unable to open:'],
+    [/^Envoi impossible\s*:/i, 'Unable to send:'],
+    [/^Téléchargement lancé\s*:/i, 'Download started:'],
+    [/^\d+\s+pièces? jointes?/i, s => s.replace(/pièces? jointes?/i, 'attachments')],
+    [/^\d+\s+conversation(?:s)?(?:\s*·\s*\d+\s+non lus?)?$/i, s => s.replace(/non lus?/i,'unread')],
+
     [/^Documents du dossier\s*:/i, 'Case documents:'],
     [/^Espace professionnel\s*:/i, 'Professional workspace:'],
     [/^Espace de facturation du cabinet\s*:/i, 'Practice invoicing workspace:'],
@@ -1144,6 +1208,8 @@
     document.documentElement.lang = lang === 'en' ? 'en-CA' : 'fr-CA';
     const root = document.body;
     if (!root) return;
+    const title = document.querySelector('title[data-fr][data-en]');
+    if (title) title.textContent = title.dataset[lang];
     const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT | NodeFilter.SHOW_ELEMENT);
     let node;
     while ((node = walker.nextNode())) {
