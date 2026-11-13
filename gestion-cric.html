@@ -1,290 +1,607 @@
-<!DOCTYPE html>
+<!doctype html>
 
 <html lang="fr-CA">
-<head>
-<meta charset="utf-8"/>
-<meta content="width=device-width,initial-scale=1" name="viewport"/>
-<meta content="noindex,nofollow" name="robots"/>
-<link href="img/favicon.png" rel="icon"/>
-<title data-en="CRIC Management | MADIC Portal" data-fr="Gestion des CRIC | MADIC Portail">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width,initial-scale=1" name="viewport" />
+    <meta content="noindex,nofollow" name="robots" />
+    <link href="img/favicon.png" rel="icon" />
+    <title
+      data-en="CRIC Management | MADIC Portal"
+      data-fr="Gestion des CRIC | MADIC Portail"
+    >
       Gestion des CRIC | MADIC Portail
     </title>
-<link href="assets/gestion-cric.css" rel="stylesheet"/>
-<link href="assets/madic-footer.css" rel="stylesheet"/>
-</head>
-<body class="madic-unified">
-<div class="madic-unified-layout">
-<aside aria-label="Navigation administration MADIC" class="madic-unified-sidebar">
-<div class="madic-unified-brand">
-<span class="madic-unified-monogram"><img alt="Logo MADIC Portail" src="img/logo-madic.svg"/></span><span><strong data-en="MADIC PORTAL" data-fr="MADIC PORTAIL">MADIC PORTAIL</strong><small data-en="Super administration" data-fr="Super administration">Super administration</small></span>
-</div>
-<div class="madic-unified-caption" data-en="ADMINISTRATION" data-fr="ADMINISTRATION">
+    <link href="assets/gestion-cric.css" rel="stylesheet" />
+    <link href="assets/madic-footer.css" rel="stylesheet" />
+  </head>
+  <body class="madic-unified">
+    <div class="madic-unified-layout">
+      <aside
+        aria-label="Navigation administration MADIC"
+        class="madic-unified-sidebar"
+      >
+        <div class="madic-unified-brand">
+          <span class="madic-unified-monogram"
+            ><img alt="Logo MADIC Portail" src="img/logo-madic.svg" /></span
+          ><span
+            ><strong data-en="MADIC PORTAL" data-fr="MADIC PORTAIL"
+              >MADIC PORTAIL</strong
+            ><small
+              data-en="Super administration"
+              data-fr="Super administration"
+              >Super administration</small
+            ></span
+          >
+        </div>
+        <div
+          class="madic-unified-caption"
+          data-en="ADMINISTRATION"
+          data-fr="ADMINISTRATION"
+        >
           ADMINISTRATION
         </div>
-<nav>
-<a data-en="▦ MADIC dashboard" data-fr="▦ Tableau de bord MADIC" href="administration.html">▦ Tableau de bord MADIC</a><a data-en="✓ RCIC verifications" data-fr="✓ Vérifications CRIC" href="validation-cric.html">✓ Vérifications CRIC</a><a data-en="▤ Consultants and firms" data-fr="▤ Consultants et cabinets" href="gestion-cric.html#consultants-management">▤ Consultants et cabinets</a><a data-en="▥ Subscriptions and access" data-fr="▥ Abonnements et accès" href="gestion-cric.html#cabinet-management">▥ Abonnements et accès</a><a data-en="◷ Payment tracking" data-fr="◷ Suivi des paiements" href="gestion-cric.html#payment-management">◷ Suivi des paiements</a>
-</nav>
-<div class="madic-unified-foot" data-en="Secure MADIC administration" data-fr="Administration sécurisée MADIC">
+        <nav>
+          <a
+            data-en="▦ MADIC dashboard"
+            data-fr="▦ Tableau de bord MADIC"
+            href="administration.html"
+            >▦ Tableau de bord MADIC</a
+          ><a
+            data-en="✓ RCIC verifications"
+            data-fr="✓ Vérifications CRIC"
+            href="validation-cric.html"
+            >✓ Vérifications CRIC</a
+          ><a
+            data-en="▤ Consultants and firms"
+            data-fr="▤ Consultants et cabinets"
+            href="gestion-cric.html#consultants-management"
+            >▤ Consultants et cabinets</a
+          ><a
+            data-en="▥ Subscriptions and access"
+            data-fr="▥ Abonnements et accès"
+            href="gestion-cric.html#cabinet-management"
+            >▥ Abonnements et accès</a
+          ><a
+            data-en="◷ Payment tracking"
+            data-fr="◷ Suivi des paiements"
+            href="gestion-cric.html#payment-management"
+            >◷ Suivi des paiements</a
+          >
+        </nav>
+        <div
+          class="madic-unified-foot"
+          data-en="Secure MADIC administration"
+          data-fr="Administration sécurisée MADIC"
+        >
           Administration sécurisée MADIC
         </div>
-</aside>
-<div class="madic-unified-content">
-<header>
-<a class="brand" href="connexion-client-cric.html">MADI<span>C</span>
-<small data-en="PORTAL" data-fr="PORTAIL">PORTAIL</small></a>
-<nav class="toplinks">
-<a data-en="Sign out" data-fr="Déconnexion" data-madic-signout="true" href="connexion-client-cric.html" id="madicHeaderSignout">Déconnexion</a><a data-en="My space" data-fr="Mon espace" href="dashboard-client-cric.html">Mon espace</a>
-</nav>
-<div aria-label="Outils du compte" class="madic-hero-tools" data-aria-label-en="Account tools" data-aria-label-fr="Outils du compte">
-<a aria-label="Notifications de messagerie" class="madic-hero-notifications" data-aria-label-en="Message notifications" data-aria-label-fr="Notifications de messagerie" href="messagerie-client-cric.html" title="Notifications de messagerie"><svg aria-hidden="true" fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="22">
-<path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"></path>
-<path d="M10 21h4"></path>
-</svg>
-<span class="madic-hero-unread" hidden="" id="madicHeroUnread">0</span></a>
-<div id="madicHeroLanguage">
-<button aria-pressed="true" data-lang="fr" type="button">
-                FR</button><button aria-pressed="false" data-lang="en" type="button">
+      </aside>
+      <div class="madic-unified-content">
+        <header>
+          <a class="brand" href="connexion-client-cric.html"
+            >MADI<span>C</span>
+            <small data-en="PORTAL" data-fr="PORTAIL">PORTAIL</small></a
+          >
+          <nav class="toplinks">
+            <a
+              data-en="Sign out"
+              data-fr="Déconnexion"
+              data-madic-signout="true"
+              href="connexion-client-cric.html"
+              id="madicHeaderSignout"
+              >Déconnexion</a
+            ><a
+              data-en="My space"
+              data-fr="Mon espace"
+              href="dashboard-client-cric.html"
+              >Mon espace</a
+            >
+          </nav>
+          <div
+            aria-label="Outils du compte"
+            class="madic-hero-tools"
+            data-aria-label-en="Account tools"
+            data-aria-label-fr="Outils du compte"
+          >
+            <a
+              aria-label="Notifications de messagerie"
+              class="madic-hero-notifications"
+              data-aria-label-en="Message notifications"
+              data-aria-label-fr="Notifications de messagerie"
+              href="messagerie-client-cric.html"
+              title="Notifications de messagerie"
+              ><svg
+                aria-hidden="true"
+                fill="none"
+                height="22"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.8"
+                viewbox="0 0 24 24"
+                width="22"
+              >
+                <path
+                  d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"
+                ></path>
+                <path d="M10 21h4"></path>
+              </svg>
+              <span class="madic-hero-unread" hidden="" id="madicHeroUnread"
+                >0</span
+              ></a
+            >
+            <div id="madicHeroLanguage">
+              <button aria-pressed="true" data-lang="fr" type="button">
+                FR</button
+              ><button aria-pressed="false" data-lang="en" type="button">
                 EN
               </button>
-</div>
-</div>
-</header>
-<main class="madic-cric-wrap" hidden="" id="cricAdminMain">
-<div class="madic-cric-head">
-<div>
-<p class="madic-cric-kicker" data-en="MADIC SUPER ADMINISTRATION" data-fr="SUPER ADMINISTRATION MADIC">
+            </div>
+          </div>
+        </header>
+        <main class="madic-cric-wrap" hidden="" id="cricAdminMain">
+          <div class="madic-cric-head">
+            <div>
+              <p
+                class="madic-cric-kicker"
+                data-en="MADIC SUPER ADMINISTRATION"
+                data-fr="SUPER ADMINISTRATION MADIC"
+              >
                 SUPER ADMINISTRATION MADIC
               </p>
-<h1 data-en="RCIC management" data-fr="Gestion des CRIC">
+              <h1 data-en="RCIC management" data-fr="Gestion des CRIC">
                 Gestion des CRIC
               </h1>
-<p class="muted" data-en="Approve consultants, manage their subscriptions and suspend their professional access." data-fr="Approuver les consultants, gérer leurs abonnements et suspendre leur accès professionnel.">
+              <p
+                class="muted"
+                data-en="Approve consultants, manage their subscriptions and suspend their professional access."
+                data-fr="Approuver les consultants, gérer leurs abonnements et suspendre leur accès professionnel."
+              >
                 Approuver les consultants, gérer leurs abonnements et suspendre
                 leur accès professionnel.
               </p>
-</div>
-<button class="secondary" data-en="Sign out" data-fr="Déconnexion" id="cricLogout" type="button">
-              Déconnexion
-            </button>
-</div>
-<p>
-<a data-en="← MADIC dashboard" data-fr="← Tableau de bord MADIC" href="administration.html">← Tableau de bord MADIC</a>
+            </div>
+          </div>
+          <p>
+            <a
+              data-en="← MADIC dashboard"
+              data-fr="← Tableau de bord MADIC"
+              href="administration.html"
+              >← Tableau de bord MADIC</a
+            >
             ·
-            <a data-en="View RCIC prevalidations and applications" data-fr="Voir les prévalidations et demandes CRIC" href="validation-cric.html">Voir les prévalidations et demandes CRIC</a>
-</p>
-<p aria-live="polite" id="cricAdminNotice" role="status"></p>
-<div aria-label="Sections de gestion" class="madic-admin-section-nav">
-<a data-admin-section="consultants-management" data-en="Consultants and firms" data-fr="Consultants et cabinets" href="#consultants-management">Consultants et cabinets</a><a data-admin-section="cabinet-management" data-en="Subscriptions and access" data-fr="Abonnements et accès" href="#cabinet-management">Abonnements et accès</a><a data-admin-section="payment-management" data-en="Payment tracking" data-fr="Suivi des paiements" href="#payment-management">Suivi des paiements</a>
-</div>
-<section aria-labelledby="cabinetHeading" class="panel madic-admin-section-group" id="cabinet-management">
-<h2 data-en="Firms and subscriptions" data-fr="Cabinets et abonnements" id="cabinetHeading">
+            <a
+              data-en="View RCIC prevalidations and applications"
+              data-fr="Voir les prévalidations et demandes CRIC"
+              href="validation-cric.html"
+              >Voir les prévalidations et demandes CRIC</a
+            >
+          </p>
+          <p aria-live="polite" id="cricAdminNotice" role="status"></p>
+          <div aria-label="Sections de gestion" class="madic-admin-section-nav">
+            <a
+              data-admin-section="consultants-management"
+              data-en="Consultants and firms"
+              data-fr="Consultants et cabinets"
+              href="#consultants-management"
+              >Consultants et cabinets</a
+            ><a
+              data-admin-section="cabinet-management"
+              data-en="Subscriptions and access"
+              data-fr="Abonnements et accès"
+              href="#cabinet-management"
+              >Abonnements et accès</a
+            ><a
+              data-admin-section="payment-management"
+              data-en="Payment tracking"
+              data-fr="Suivi des paiements"
+              href="#payment-management"
+              >Suivi des paiements</a
+            >
+          </div>
+          <section
+            aria-labelledby="cabinetHeading"
+            class="panel madic-admin-section-group"
+            id="cabinet-management"
+          >
+            <h2
+              data-en="Firms and subscriptions"
+              data-fr="Cabinets et abonnements"
+              id="cabinetHeading"
+            >
               Cabinets et abonnements
             </h2>
-<p class="muted" data-en="Create approved firms, select their plans and manage their access. Changes are controlled by Supabase." data-fr="Créer les cabinets approuvés, choisir leur formule et administrer leurs accès. Les changements sont contrôlés par Supabase.">
+            <p
+              class="muted"
+              data-en="Create approved firms, select their plans and manage their access. Changes are controlled by Supabase."
+              data-fr="Créer les cabinets approuvés, choisir leur formule et administrer leurs accès. Les changements sont contrôlés par Supabase."
+            >
               Créer les cabinets approuvés, choisir leur formule et administrer
               leurs accès. Les changements sont contrôlés par Supabase.
             </p>
-<p aria-live="polite" id="cricSpaceNotice" role="status"></p>
-<div class="madic-admin-table-tools" data-table="cricSpaceRows">
-<label><span data-en="Search" data-fr="Rechercher">Rechercher</span><input aria-label="Rechercher dans le tableau" data-aria-label-en="Search the table" data-aria-label-fr="Rechercher dans le tableau" data-placeholder-en="Name, licence, firm, status…" data-placeholder-fr="Nom, permis, cabinet, statut…" placeholder="Nom, permis, cabinet, statut…" type="search"/></label><span aria-live="polite" class="madic-admin-table-count"></span>
-<div class="madic-admin-table-pager">
-<button class="secondary" data-en="Previous" data-fr="Précédent" data-prev="" type="button">
-                  Précédent</button><span data-page-info=""></span><button class="secondary" data-en="Next" data-fr="Suivant" data-next="" type="button">
+            <p aria-live="polite" id="cricSpaceNotice" role="status"></p>
+            <div class="madic-admin-table-tools" data-table="cricSpaceRows">
+              <label
+                ><span data-en="Search" data-fr="Rechercher">Rechercher</span
+                ><input
+                  aria-label="Rechercher dans le tableau"
+                  data-aria-label-en="Search the table"
+                  data-aria-label-fr="Rechercher dans le tableau"
+                  data-placeholder-en="Name, licence, firm, status…"
+                  data-placeholder-fr="Nom, permis, cabinet, statut…"
+                  placeholder="Nom, permis, cabinet, statut…"
+                  type="search" /></label
+              ><span aria-live="polite" class="madic-admin-table-count"></span>
+              <div class="madic-admin-table-pager">
+                <button
+                  class="secondary"
+                  data-en="Previous"
+                  data-fr="Précédent"
+                  data-prev=""
+                  type="button"
+                >
+                  Précédent</button
+                ><span data-page-info=""></span
+                ><button
+                  class="secondary"
+                  data-en="Next"
+                  data-fr="Suivant"
+                  data-next=""
+                  type="button"
+                >
                   Suivant
                 </button>
-</div>
-</div>
-<div class="madic-cric-table">
-<table>
-<thead>
-<tr>
-<th data-en="Consultant" data-fr="Consultant">
+              </div>
+            </div>
+            <div class="madic-cric-table">
+              <table>
+                <thead>
+                  <tr>
+                    <th data-en="Consultant" data-fr="Consultant">
                       Consultant
                     </th>
-<th data-en="Firm" data-fr="Cabinet">Cabinet</th>
-<th data-en="Plan" data-fr="Formule">Formule</th>
-<th data-en="Payment" data-fr="Paiement">Paiement</th>
-<th data-en="Access" data-fr="Accès">Accès</th>
-<th data-en="Actions" data-fr="Actions">Actions</th>
-</tr>
-</thead>
-<tbody id="cricSpaceRows">
-<tr>
-<td colspan="6" data-en="Loading…" data-fr="Chargement…">
+                    <th data-en="Firm" data-fr="Cabinet">Cabinet</th>
+                    <th data-en="Plan" data-fr="Formule">Formule</th>
+                    <th data-en="Payment" data-fr="Paiement">Paiement</th>
+                    <th data-en="Access" data-fr="Accès">Accès</th>
+                    <th data-en="Actions" data-fr="Actions">Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="cricSpaceRows">
+                  <tr>
+                    <td colspan="6" data-en="Loading…" data-fr="Chargement…">
                       Chargement…
                     </td>
-</tr>
-</tbody>
-</table>
-</div>
-</section>
-<section aria-labelledby="paymentHeading" class="panel madic-admin-section-group" id="payment-management">
-<h2 data-en="Payment tracking" data-fr="Suivi des paiements" id="paymentHeading">
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+          <section
+            aria-labelledby="paymentHeading"
+            class="panel madic-admin-section-group"
+            id="payment-management"
+          >
+            <h2
+              data-en="Payment tracking"
+              data-fr="Suivi des paiements"
+              id="paymentHeading"
+            >
               Suivi des paiements
             </h2>
-<p class="muted" data-en="Administrative status of subscriptions and due dates recorded in MADIC. This section does not confirm receipt of payments and is not a transaction history." data-fr="État administratif des abonnements et échéances enregistrés dans MADIC. Cette section ne confirme aucun encaissement et ne constitue pas un historique de transactions.">
+            <p
+              class="muted"
+              data-en="Administrative status of subscriptions and due dates recorded in MADIC. This section does not confirm receipt of payments and is not a transaction history."
+              data-fr="État administratif des abonnements et échéances enregistrés dans MADIC. Cette section ne confirme aucun encaissement et ne constitue pas un historique de transactions."
+            >
               État administratif des abonnements et échéances enregistrés dans
               MADIC. Cette section ne confirme aucun encaissement et ne
               constitue pas un historique de transactions.
             </p>
-<p aria-live="polite" id="cricPaymentNotice" role="status"></p>
-<div class="madic-admin-table-tools" data-table="cricPaymentRows">
-<label><span data-en="Search" data-fr="Rechercher">Rechercher</span><input aria-label="Rechercher dans le tableau" data-aria-label-en="Search the table" data-aria-label-fr="Rechercher dans le tableau" data-placeholder-en="Name, licence, firm, status…" data-placeholder-fr="Nom, permis, cabinet, statut…" placeholder="Nom, permis, cabinet, statut…" type="search"/></label><span aria-live="polite" class="madic-admin-table-count"></span>
-<div class="madic-admin-table-pager">
-<button class="secondary" data-en="Previous" data-fr="Précédent" data-prev="" type="button">
-                  Précédent</button><span data-page-info=""></span><button class="secondary" data-en="Next" data-fr="Suivant" data-next="" type="button">
+            <p aria-live="polite" id="cricPaymentNotice" role="status"></p>
+            <div class="madic-admin-table-tools" data-table="cricPaymentRows">
+              <label
+                ><span data-en="Search" data-fr="Rechercher">Rechercher</span
+                ><input
+                  aria-label="Rechercher dans le tableau"
+                  data-aria-label-en="Search the table"
+                  data-aria-label-fr="Rechercher dans le tableau"
+                  data-placeholder-en="Name, licence, firm, status…"
+                  data-placeholder-fr="Nom, permis, cabinet, statut…"
+                  placeholder="Nom, permis, cabinet, statut…"
+                  type="search" /></label
+              ><span aria-live="polite" class="madic-admin-table-count"></span>
+              <div class="madic-admin-table-pager">
+                <button
+                  class="secondary"
+                  data-en="Previous"
+                  data-fr="Précédent"
+                  data-prev=""
+                  type="button"
+                >
+                  Précédent</button
+                ><span data-page-info=""></span
+                ><button
+                  class="secondary"
+                  data-en="Next"
+                  data-fr="Suivant"
+                  data-next=""
+                  type="button"
+                >
                   Suivant
                 </button>
-</div>
-</div>
-<div class="madic-cric-table">
-<table>
-<thead>
-<tr>
-<th data-en="Consultant" data-fr="Consultant">
+              </div>
+            </div>
+            <div class="madic-cric-table">
+              <table>
+                <thead>
+                  <tr>
+                    <th data-en="Consultant" data-fr="Consultant">
                       Consultant
                     </th>
-<th data-en="Firm" data-fr="Cabinet">Cabinet</th>
-<th data-en="Plan" data-fr="Formule">Formule</th>
-<th data-en="Payment status" data-fr="Statut du paiement">
+                    <th data-en="Firm" data-fr="Cabinet">Cabinet</th>
+                    <th data-en="Plan" data-fr="Formule">Formule</th>
+                    <th data-en="Payment status" data-fr="Statut du paiement">
                       Statut du paiement
                     </th>
-<th data-en="Next due date" data-fr="Prochaine échéance">
+                    <th data-en="Next due date" data-fr="Prochaine échéance">
                       Prochaine échéance
                     </th>
-</tr>
-</thead>
-<tbody id="cricPaymentRows">
-<tr>
-<td colspan="5" data-en="Loading…" data-fr="Chargement…">
+                  </tr>
+                </thead>
+                <tbody id="cricPaymentRows">
+                  <tr>
+                    <td colspan="5" data-en="Loading…" data-fr="Chargement…">
                       Chargement…
                     </td>
-</tr>
-</tbody>
-</table>
-</div>
-</section>
-<div class="madic-admin-section-group" id="consultants-management">
-<section class="panel">
-<div class="madic-admin-table-tools" data-table="cricRows">
-<label><span data-en="Search" data-fr="Rechercher">Rechercher</span><input aria-label="Rechercher dans le tableau" data-aria-label-en="Search the table" data-aria-label-fr="Rechercher dans le tableau" data-placeholder-en="Name, licence, firm, status…" data-placeholder-fr="Nom, permis, cabinet, statut…" placeholder="Nom, permis, cabinet, statut…" type="search"/></label><span aria-live="polite" class="madic-admin-table-count"></span>
-<div class="madic-admin-table-pager">
-<button class="secondary" data-en="Previous" data-fr="Précédent" data-prev="" type="button">
-                    Précédent</button><span data-page-info=""></span><button class="secondary" data-en="Next" data-fr="Suivant" data-next="" type="button">
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+          <div class="madic-admin-section-group" id="consultants-management">
+            <section class="panel">
+              <div class="madic-admin-table-tools" data-table="cricRows">
+                <label
+                  ><span data-en="Search" data-fr="Rechercher">Rechercher</span
+                  ><input
+                    aria-label="Rechercher dans le tableau"
+                    data-aria-label-en="Search the table"
+                    data-aria-label-fr="Rechercher dans le tableau"
+                    data-placeholder-en="Name, licence, firm, status…"
+                    data-placeholder-fr="Nom, permis, cabinet, statut…"
+                    placeholder="Nom, permis, cabinet, statut…"
+                    type="search" /></label
+                ><span
+                  aria-live="polite"
+                  class="madic-admin-table-count"
+                ></span>
+                <div class="madic-admin-table-pager">
+                  <button
+                    class="secondary"
+                    data-en="Previous"
+                    data-fr="Précédent"
+                    data-prev=""
+                    type="button"
+                  >
+                    Précédent</button
+                  ><span data-page-info=""></span
+                  ><button
+                    class="secondary"
+                    data-en="Next"
+                    data-fr="Suivant"
+                    data-next=""
+                    type="button"
+                  >
                     Suivant
                   </button>
-</div>
-</div>
-<div class="madic-cric-table">
-<table>
-<thead>
-<tr>
-<th data-en="Name" data-fr="Nom">Nom</th>
-<th data-en="RCIC licence number" data-fr="Numéro CRIC">
+                </div>
+              </div>
+              <div class="madic-cric-table">
+                <table>
+                  <thead>
+                    <tr>
+                      <th data-en="Name" data-fr="Nom">Nom</th>
+                      <th data-en="RCIC licence number" data-fr="Numéro CRIC">
                         Numéro CRIC
                       </th>
-<th data-en="Application" data-fr="Demande">Demande</th>
-<th data-en="Plan" data-fr="Formule">Formule</th>
-<th data-en="Payment" data-fr="Paiement">Paiement</th>
-<th data-en="Due date" data-fr="Échéance">Échéance</th>
-<th data-en="Access" data-fr="Accès">Accès</th>
-<th data-en="Actions" data-fr="Actions">Actions</th>
-</tr>
-</thead>
-<tbody id="cricRows">
-<tr>
-<td colspan="8" data-en="Loading…" data-fr="Chargement…">
+                      <th data-en="Application" data-fr="Demande">Demande</th>
+                      <th data-en="Plan" data-fr="Formule">Formule</th>
+                      <th data-en="Payment" data-fr="Paiement">Paiement</th>
+                      <th data-en="Due date" data-fr="Échéance">Échéance</th>
+                      <th data-en="Access" data-fr="Accès">Accès</th>
+                      <th data-en="Actions" data-fr="Actions">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="cricRows">
+                    <tr>
+                      <td colspan="8" data-en="Loading…" data-fr="Chargement…">
                         Chargement…
                       </td>
-</tr>
-</tbody>
-</table>
-</div>
-</section>
-<section aria-labelledby="approvedPrevalidationsTitle" class="panel">
-<h2 data-en="Verified RCICs – professional account to activate" data-fr="CRIC validés - compte professionnel à activer" id="approvedPrevalidationsTitle">
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+            <section
+              aria-labelledby="approvedPrevalidationsTitle"
+              class="panel"
+            >
+              <h2
+                data-en="Verified RCICs – professional account to activate"
+                data-fr="CRIC validés - compte professionnel à activer"
+                id="approvedPrevalidationsTitle"
+              >
                 CRIC validés - compte professionnel à activer
               </h2>
-<p class="muted" data-en="Licences and identities approved by MADIC. This list is for administrative tracking: no professional access is granted until an authenticated account is linked and authorized." data-fr="Permis et identité approuvés par MADIC. Cette liste est un suivi administratif : aucun accès professionnel n’est accordé tant qu’un compte authentifié n’est pas associé et autorisé.">
+              <p
+                class="muted"
+                data-en="Licences and identities approved by MADIC. This list is for administrative tracking: no professional access is granted until an authenticated account is linked and authorized."
+                data-fr="Permis et identité approuvés par MADIC. Cette liste est un suivi administratif : aucun accès professionnel n’est accordé tant qu’un compte authentifié n’est pas associé et autorisé."
+              >
                 Permis et identité approuvés par MADIC. Cette liste est un suivi
                 administratif : aucun accès professionnel n’est accordé tant
                 qu’un compte authentifié n’est pas associé et autorisé.
               </p>
-<p aria-live="polite" id="cricApprovedNotice" role="status"></p>
-<div class="madic-admin-table-tools" data-table="cricApprovedPrevalidations">
-<label><span data-en="Search" data-fr="Rechercher">Rechercher</span><input aria-label="Rechercher dans le tableau" data-aria-label-en="Search the table" data-aria-label-fr="Rechercher dans le tableau" data-placeholder-en="Name, licence, firm, status…" data-placeholder-fr="Nom, permis, cabinet, statut…" placeholder="Nom, permis, cabinet, statut…" type="search"/></label><span aria-live="polite" class="madic-admin-table-count"></span>
-<div class="madic-admin-table-pager">
-<button class="secondary" data-en="Previous" data-fr="Précédent" data-prev="" type="button">
-                    Précédent</button><span data-page-info=""></span><button class="secondary" data-en="Next" data-fr="Suivant" data-next="" type="button">
+              <p aria-live="polite" id="cricApprovedNotice" role="status"></p>
+              <div
+                class="madic-admin-table-tools"
+                data-table="cricApprovedPrevalidations"
+              >
+                <label
+                  ><span data-en="Search" data-fr="Rechercher">Rechercher</span
+                  ><input
+                    aria-label="Rechercher dans le tableau"
+                    data-aria-label-en="Search the table"
+                    data-aria-label-fr="Rechercher dans le tableau"
+                    data-placeholder-en="Name, licence, firm, status…"
+                    data-placeholder-fr="Nom, permis, cabinet, statut…"
+                    placeholder="Nom, permis, cabinet, statut…"
+                    type="search" /></label
+                ><span
+                  aria-live="polite"
+                  class="madic-admin-table-count"
+                ></span>
+                <div class="madic-admin-table-pager">
+                  <button
+                    class="secondary"
+                    data-en="Previous"
+                    data-fr="Précédent"
+                    data-prev=""
+                    type="button"
+                  >
+                    Précédent</button
+                  ><span data-page-info=""></span
+                  ><button
+                    class="secondary"
+                    data-en="Next"
+                    data-fr="Suivant"
+                    data-next=""
+                    type="button"
+                  >
                     Suivant
                   </button>
-</div>
-</div>
-<div class="madic-cric-table">
-<table>
-<thead>
-<tr>
-<th data-en="Consultant" data-fr="Consultant">
+                </div>
+              </div>
+              <div class="madic-cric-table">
+                <table>
+                  <thead>
+                    <tr>
+                      <th data-en="Consultant" data-fr="Consultant">
                         Consultant
                       </th>
-<th data-en="Licence" data-fr="Permis">Permis</th>
-<th data-en="CICC verification" data-fr="Vérification CCIC">
+                      <th data-en="Licence" data-fr="Permis">Permis</th>
+                      <th
+                        data-en="CICC verification"
+                        data-fr="Vérification CCIC"
+                      >
                         Vérification CCIC
                       </th>
-<th data-en="Decision" data-fr="Décision">Décision</th>
-<th data-en="Account" data-fr="Compte">Compte</th>
-<th data-en="Next steps" data-fr="Suite">Suite</th>
-</tr>
-</thead>
-<tbody id="cricApprovedPrevalidations">
-<tr>
-<td colspan="6" data-en="Loading…" data-fr="Chargement…">
+                      <th data-en="Decision" data-fr="Décision">Décision</th>
+                      <th data-en="Account" data-fr="Compte">Compte</th>
+                      <th data-en="Next steps" data-fr="Suite">Suite</th>
+                    </tr>
+                  </thead>
+                  <tbody id="cricApprovedPrevalidations">
+                    <tr>
+                      <td colspan="6" data-en="Loading…" data-fr="Chargement…">
                         Chargement…
                       </td>
-</tr>
-</tbody>
-</table>
-</div>
-</section>
-</div>
-</main>
-<p class="madic-cric-wrap" data-en="Checking super administrator permissions…" data-fr="Vérification des droits du super administrateur…" id="cricMessage" role="status">
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+          </div>
+        </main>
+        <p
+          class="madic-cric-wrap"
+          data-en="Checking super administrator permissions…"
+          data-fr="Vérification des droits du super administrateur…"
+          id="cricMessage"
+          role="status"
+        >
           Vérification des droits du super administrateur…
         </p>
-<footer aria-label="Pied de page MADIC / MADIC footer" class="madic-footer">
-<div class="madic-footer-inner">
-<div class="madic-footer-brand">
-<div class="madic-footer-brandline">
-<img alt="Logo MADIC" class="madic-footer-logo" height="43" src="img/logo-madic.svg" width="43"/>
-<div>
-<div class="madic-footer-name">MADIC</div>
-<div class="madic-footer-subtitle" data-en="MAD Immigration Canadienne" data-fr="MAD Immigration Canadienne">
+        <footer
+          aria-label="Pied de page MADIC / MADIC footer"
+          class="madic-footer"
+        >
+          <div class="madic-footer-inner">
+            <div class="madic-footer-brand">
+              <div class="madic-footer-brandline">
+                <img
+                  alt="Logo MADIC"
+                  class="madic-footer-logo"
+                  height="43"
+                  src="img/logo-madic.svg"
+                  width="43"
+                />
+                <div>
+                  <div class="madic-footer-name">MADIC</div>
+                  <div
+                    class="madic-footer-subtitle"
+                    data-en="MAD Immigration Canadienne"
+                    data-fr="MAD Immigration Canadienne"
+                  >
                     MAD Immigration Canadienne
                   </div>
-</div>
-</div>
-<p class="madic-footer-desc" data-en="A digital platform for Canadian immigration professionals and their clients." data-fr="Une plateforme numérique pour les professionnels de l'immigration canadienne et leurs clients.">
+                </div>
+              </div>
+              <p
+                class="madic-footer-desc"
+                data-en="A digital platform for Canadian immigration professionals and their clients."
+                data-fr="Une plateforme numérique pour les professionnels de l'immigration canadienne et leurs clients."
+              >
                 Une plateforme numérique pour les professionnels de
                 l'immigration canadienne et leurs clients.
               </p>
-</div>
-<nav aria-label="Liens du pied de page" class="madic-footer-right" data-aria-label-en="Footer links" data-aria-label-fr="Liens du pied de page">
-<a data-en="Home" data-fr="Accueil" href="index.html">Accueil</a>
-<a data-en="Privacy policy" data-fr="Confidentialité" href="politique-confidentialite.html">Confidentialité</a>
-<span class="madic-footer-unavailable" data-en="Terms of use" data-fr="Conditions d'utilisation" title="Page à venir / Page coming soon">Conditions d'utilisation</span>
-<span class="madic-footer-unavailable" data-en="Contact" data-fr="Contact" title="Page à venir / Page coming soon">Contact</span>
-</nav>
-</div>
-<div class="madic-footer-bottom">
+            </div>
+            <nav
+              aria-label="Liens du pied de page"
+              class="madic-footer-right"
+              data-aria-label-en="Footer links"
+              data-aria-label-fr="Liens du pied de page"
+            >
+              <a data-en="Home" data-fr="Accueil" href="index.html">Accueil</a>
+              <a
+                data-en="Privacy policy"
+                data-fr="Confidentialité"
+                href="politique-confidentialite.html"
+                >Confidentialité</a
+              >
+              <span
+                class="madic-footer-unavailable"
+                data-en="Terms of use"
+                data-fr="Conditions d'utilisation"
+                title="Page à venir / Page coming soon"
+                >Conditions d'utilisation</span
+              >
+              <span
+                class="madic-footer-unavailable"
+                data-en="Contact"
+                data-fr="Contact"
+                title="Page à venir / Page coming soon"
+                >Contact</span
+              >
+            </nav>
+          </div>
+          <div class="madic-footer-bottom">
             © 2026 MAD Immigration Canadienne (MADIC) Inc.
-            <span data-en="All rights reserved." data-fr="Tous droits réservés.">Tous droits réservés.</span>
-</div>
-</footer>
-</div>
-</div>
-<script defer="" src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
-<script defer="" src="assets/config.js"></script>
-<script defer="" src="assets/madic-footer.js"></script>
-<script defer="" src="assets/gestion-cric.js"></script>
-</body>
+            <span data-en="All rights reserved." data-fr="Tous droits réservés."
+              >Tous droits réservés.</span
+            >
+          </div>
+        </footer>
+      </div>
+    </div>
+    <script
+      defer=""
+      src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"
+    ></script>
+    <script defer="" src="assets/config.js"></script>
+    <script defer="" src="assets/madic-footer.js"></script>
+    <script defer="" src="assets/gestion-cric.js"></script>
+  </body>
 </html>
