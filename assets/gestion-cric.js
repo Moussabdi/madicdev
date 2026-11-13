@@ -903,6 +903,7 @@
  };
  function apply(){
    if(busy)return;busy=true;
+   observer.disconnect();
    try {
      document.documentElement.lang=language==="en"?"en":"fr-CA";
      document.title=language==="en"?"RCIC Management | MADIC":"Gestion des CRIC | MADIC";
@@ -923,13 +924,15 @@
        if(fr===undefined || (current!==fr && current!==translate(fr,"en"))){fr=reverse.get(current.trim())||current;original.set(node,fr);}
        const next=translate(fr,language);if(current!==next)node.nodeValue=next;
      }
-   } finally {busy=false;}
+   } finally {
+     busy=false;
+     observer.observe(document.body,{subtree:true,childList:true,characterData:true});
+   }
  }
  function change(lang){language=lang==="en"?"en":"fr";try{localStorage.setItem('madic-lang',language)}catch(e){}apply();}
  try{const query=new URLSearchParams(location.search).get('lang');language=(query||localStorage.getItem('madic-lang'))==="en"?"en":"fr";}catch(e){}
  document.querySelectorAll('#madicHeroLanguage button[data-lang]').forEach(btn=>btn.addEventListener('click',()=>change(btn.dataset.lang)));
  const observer=new MutationObserver(()=>{if(!busy)apply();});
- observer.observe(document.body,{subtree:true,childList:true,characterData:true});
  apply();
  window.addEventListener('storage',event=>{if(event.key==='madic-lang')change(event.newValue)});
 })();
