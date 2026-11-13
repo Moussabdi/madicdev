@@ -1,0 +1,6 @@
+-- A exécuter dans Supabase SQL Editor APRÈS 01_phase1.sql.
+-- Remplacer l'UUID ci-dessous par l'ID AUTHENTICATION de Moussa (auth.users.id).
+-- NE PAS utiliser le numéro CRIC ou l'adresse courriel à sa place.
+-- INSERT INTO public.madic_super_admins(user_id)
+-- VALUES ('REMPLACER-PAR-UUID-DE-MOUSSA');
+-- IMPORTANT : la commande est volontairement commentée pour éviter une attribution erronée.

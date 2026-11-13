@@ -581,11 +581,11 @@
                     <label class="madic-photo-label" for="madicProfilePhotoFile"
                       >Choisir une photo</label
                     >
-                    <input
+                    <span class="madic-localized-file-picker"><input
                       accept="image/jpeg,image/png,image/webp"
                       id="madicProfilePhotoFile"
                       type="file"
-                    />
+                    /><label class="madic-file-picker-button" for="madicProfilePhotoFile" data-madic-file-button="madicProfilePhotoFile">Choisir un fichier</label><span class="madic-file-picker-name" data-madic-file-name="madicProfilePhotoFile">Aucun fichier choisi</span></span>
                     <div class="madic-photo-buttons">
                       <button
                         class="secondary"
@@ -1342,13 +1342,13 @@
                 <option value="">Aucun dossier actif</option>
               </select>
               <label for="file">Document</label
-              ><input
+              ><span class="madic-localized-file-picker"><input
                 accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png"
                 id="file"
                 name="file"
                 required=""
                 type="file"
-              />
+              /><label class="madic-file-picker-button" for="file" data-madic-file-button="file">Choisir un fichier</label><span class="madic-file-picker-name" data-madic-file-name="file">Aucun fichier choisi</span></span>
               <div class="actions">
                 <button disabled="" id="uploadButton" type="submit">
                   Transmettre

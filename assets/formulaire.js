@@ -874,3 +874,225 @@
           });
       })();
     
+
+/* MADIC form: self-contained key-based FR/EN translations. */
+(function () {
+  "use strict";
+  const en = {
+  "form.declaration": "I acknowledge that any false statement or concealment of a material fact in this form may lead to an incorrect assessment of my case. If my application is submitted to the Government of Canada with false or incomplete information, this may affect my application and my admissibility to Canada.",
+  "form.clientInformation": "Client information",
+  "form.firstName": "First name:",
+  "form.lastName": "Last name:",
+  "form.birthDate": "Date of birth:",
+  "form.gender": "Gender:",
+  "form.selectGender": "Select your gender!",
+  "form.male": "Male",
+  "form.female": "Female",
+  "form.birthCountry": "Country of birth:",
+  "form.selectBirthCountry": "Select your country of birth!",
+  "form.nationalityCountry": "Country of citizenship:",
+  "form.selectNationalityCountry": "Select your country of citizenship!",
+  "form.residenceCountry": "Country of residence:",
+  "form.selectResidenceCountry": "Select your country of residence!",
+  "form.maritalStatus": "Current marital status:",
+  "form.selectMaritalStatus": "Select your marital status!",
+  "form.single": "Single",
+  "form.married": "Married",
+  "form.commonLaw": "Common-law partner",
+  "form.childrenUnder22": "How many children under 22 do you have?",
+  "form.child1Age": "Age of child 1:",
+  "form.selectAge": "Select an age!",
+  "form.none": "None",
+  "form.child2Age": "Age of child 2:",
+  "form.child3Age": "Age of child 3:",
+  "form.child4Age": "Age of child 4:",
+  "form.phone": "Your phone number",
+  "form.email": "Your email address",
+  "form.residentialAddress": "Residential address",
+  "form.apartmentNumber": "Apartment/unit number:",
+  "form.streetNumber": "Street number:",
+  "form.city": "City:",
+  "form.postalCode": "Postal code:",
+  "form.province": "Province:",
+  "form.country": "Country:",
+  "form.selectCountry": "Select your country!",
+  "form.languages": "Language proficiency",
+  "form.frenchLevel": "French proficiency:",
+  "form.selectLevel": "Select your level!",
+  "form.excellent": "Excellent",
+  "form.intermediate": "Intermediate",
+  "form.basic": "Basic",
+  "form.englishLevel": "English proficiency:",
+  "form.advanced": "Advanced",
+  "form.frenchTestQuestion": "Have you had your French language proficiency assessed by an authorized testing organization?",
+  "form.selectLanguageTest": "Select your language test!",
+  "form.noLanguageTest": "No, I have not taken any language tests yet",
+  "form.tefCanada": "Yes, I have taken the TEF Canada test",
+  "form.tcfCanada": "Yes, I have taken the TCF Canada test",
+  "form.tefaq": "Yes, I have taken the TEFaQ test",
+  "form.tcfq": "Yes, I have taken the TCFQ test",
+  "form.delf": "Yes, I have taken the DELF test",
+  "form.dalf": "Yes, I have taken the DALF test",
+  "form.englishTestQuestion": "Have you had your English language proficiency assessed by an authorized testing organization?",
+  "form.ielts": "Yes, I have taken the IELTS test",
+  "form.celpip": "Yes, I have taken the CELPIP test",
+  "form.frenchScores": "If yes, what are your French language test scores?",
+  "form.speaking": "Speaking:",
+  "form.listening": "Listening:",
+  "form.reading": "Reading:",
+  "form.writing": "Writing:",
+  "form.englishScores": "If yes, what are your English language test scores?",
+  "form.education": "Education",
+  "form.highestEducation": "Your highest level of education:",
+  "form.bachelor": "Bachelor's degree",
+  "form.certificate": "Certificate",
+  "form.licence": "Bachelor's degree (licence)",
+  "form.master": "Master's degree",
+  "form.phd": "Doctorate (PhD)",
+  "form.doctor": "Physician",
+  "form.pharmacist": "Pharmacist",
+  "form.yearsEducation": "Number of years of education:",
+  "form.fieldOfStudy": "Your field of study or specialization:",
+  "form.spouseEducationLevel": "Your spouse's highest level of education:",
+  "form.spouseYearsEducation": "Your spouse's years of education:",
+  "form.spouseFieldOfStudy": "Your spouse's field of study or specialization:",
+  "form.employment": "Work experience / Employment",
+  "form.currentEmployment": "Your current employment:",
+  "form.yearsExperience": "Years of work experience:",
+  "form.selectYearsExperience": "Select years of experience!",
+  "form.jobTitle": "Your job title:",
+  "form.jobDuties": "Your current job duties:",
+  "form.spouseCurrentEmployment": "Your spouse's current employment:",
+  "form.spouseYearsExperience": "Your spouse's years of work experience:",
+  "form.selectSpouseYearsExperience": "Select your spouse's years of experience!",
+  "form.spouseJobTitle": "Your spouse's job title:",
+  "form.spouseJobDuties": "Your spouse's current job duties:",
+  "form.immigrationProject": "Immigration plans",
+  "form.familyCanada": "Do you have family in Canada?",
+  "form.selectFamily": "Select your family relationship in Canada!",
+  "form.noFamilyCanada": "No, I do not have family in Canada",
+  "form.siblingCanada": "Yes, I have a brother or sister over 18 in Canada",
+  "form.parentCanada": "Yes, my father or mother lives in Canada",
+  "form.childCanada": "Yes, my son or daughter lives in Canada",
+  "form.grandchildCanada": "Yes, my grandson or granddaughter lives in Canada",
+  "form.destinationProvinceQuestion": "Which province would you like to settle in?",
+  "form.selectProvince": "Select a Canadian province!",
+  "form.britishColumbia": "British Columbia",
+  "form.newBrunswick": "New Brunswick",
+  "form.novaScotia": "Nova Scotia",
+  "form.pei": "Prince Edward Island",
+  "form.newfoundland": "Newfoundland and Labrador",
+  "form.jobOffer": "Do you have a job offer in Canada?",
+  "form.selectJobOffer": "Select a job-offer response!",
+  "form.noJobOffer": "No, I do not have a job offer in Canada",
+  "form.yesJobOffer": "Yes, I have a job offer in Canada",
+  "form.temporaryResidenceQuestion": "Do you wish to come to Canada as a temporary resident?",
+  "form.selectTemporaryResidence": "Select your temporary residence category!",
+  "form.visitor": "Visitor",
+  "form.businessVisitor": "Business visitor",
+  "form.superVisa": "Visitor - Super Visa",
+  "form.student": "Student",
+  "form.temporaryWorker": "Temporary worker",
+  "form.permanentResidenceQuestion": "Do you wish to settle in Canada as a permanent resident?",
+  "form.selectPermanentResidence": "Select your permanent residence category!",
+  "form.economicImmigration": "Economic immigration",
+  "form.spouseSponsorship": "Spousal sponsorship",
+  "form.spouseChildrenSponsorship": "Sponsorship - Spouse with dependent children",
+  "form.parentsSponsorship": "Sponsorship - Parents and grandparents",
+  "form.orphanSiblingSponsorship": "Sponsorship - Orphaned sibling under 18",
+  "form.adoptedChildSponsorship": "Sponsorship - Adopted child",
+  "form.groupFive": "Sponsorship - Group of five",
+  "form.humanitarian": "Humanitarian considerations",
+  "form.refugee": "Refugee or asylum claimant",
+  "form.travelHistory": "Previous travel",
+  "form.previousApplication": "Have you previously applied for a visa, study permit, work permit or other Canadian immigration authorization?",
+  "form.no": "No",
+  "form.yes": "Yes",
+  "form.travelEuropeUsa": "Have you ever travelled to Europe or the United States?",
+  "form.previousRefusal": "Have you ever been refused a visa or electronic travel authorization (eTA)?",
+  "form.inadmissibility": "Inadmissibility (please explain if you answer yes)",
+  "form.criminalOffence": "Have you ever been convicted of a criminal offence?",
+  "form.healthQuestion": "Have you ever travelled to Europe or the United States?",
+  "form.explanation": "Explanation if you answered yes to either of the two questions above",
+  "form.importantInformation": "Important information",
+  "form.consent": "I understand that MAD Immigration Canadienne (MADIC) Inc. collects my information for the assessment of my immigration request and I consent to its use for this purpose.",
+  "form.age1": "1 year",
+  "form.age2": "2 years",
+  "form.age3": "3 years",
+  "form.age4": "4 years",
+  "form.age5": "5 years",
+  "form.age6": "6 years",
+  "form.age7": "7 years",
+  "form.age8": "8 years",
+  "form.age9": "9 years",
+  "form.age10": "10 years",
+  "form.age11": "11 years",
+  "form.age12": "12 years",
+  "form.age13": "13 years",
+  "form.age14": "14 years",
+  "form.age15": "15 years",
+  "form.age16": "16 years",
+  "form.age17": "17 years",
+  "form.age18": "18 years",
+  "form.age19": "19 years",
+  "form.age20": "20 years",
+  "form.age21": "21 years",
+  "form.firstNamePlaceholder": "Enter your first name",
+  "form.lastNamePlaceholder": "Enter your last name",
+  "form.apartmentPlaceholder": "Enter your apartment/unit number",
+  "form.streetPlaceholder": "Enter your street number",
+  "form.cityPlaceholder": "Enter your city",
+  "form.postalCodePlaceholder": "Enter your postal code",
+  "form.provincePlaceholder": "Enter your province",
+  "form.yearsEducationPlaceholder": "Enter your number of years of education",
+  "form.fieldOfStudyPlaceholder": "Enter your field of study or specialization",
+  "form.spouseYearsEducationPlaceholder": "Enter your spouse's years of education",
+  "form.spouseFieldOfStudyPlaceholder": "Enter your spouse's field of study or specialization",
+  "form.currentEmploymentPlaceholder": "Enter your current employment",
+  "form.jobTitlePlaceholder": "Enter your job title",
+  "form.jobDutiesPlaceholder": "Enter your current job duties",
+  "form.spouseCurrentEmploymentPlaceholder": "Enter your spouse's current employment",
+  "form.spouseJobTitlePlaceholder": "Enter your spouse's job title",
+  "form.spouseJobDutiesPlaceholder": "Enter your spouse's current job duties",
+  "form.explanationPlaceholder": "Please provide your explanation",
+  "form.submit": "Submit"
+};
+  const nodes = Array.from(document.querySelectorAll('[data-i18n], [data-i18n-placeholder], [data-i18n-value]'));
+  const originals = new WeakMap();
+  nodes.forEach(el => {
+    originals.set(el, { html: el.innerHTML, placeholder: el.getAttribute('placeholder'), value: el.getAttribute('value') });
+  });
+  function applyFormLanguage() {
+    const english = document.documentElement.lang.toLowerCase().startsWith('en');
+    nodes.forEach(el => {
+      const original = originals.get(el);
+      if (!original) return;
+      const key = el.getAttribute('data-i18n');
+      if (key && Object.prototype.hasOwnProperty.call(en, key)) {
+        if (!english) {
+          if (el.innerHTML !== original.html) el.innerHTML = original.html;
+        } else {
+          const text = en[key];
+          // Keep required-field markers and any other nested markup intact.
+          if (el.querySelector('.req')) {
+            const first = Array.from(el.childNodes).find(n => n.nodeType === Node.TEXT_NODE);
+            if (first) first.nodeValue = text + ' ';
+          } else if (el.textContent !== text) {
+            el.textContent = text;
+          }
+        }
+      }
+      const placeholderKey = el.getAttribute('data-i18n-placeholder');
+      if (placeholderKey) el.setAttribute('placeholder', english ? (en[placeholderKey] || original.placeholder || '') : (original.placeholder || ''));
+      const valueKey = el.getAttribute('data-i18n-value');
+      if (valueKey) el.setAttribute('value', english ? (en[valueKey] || original.value || '') : (original.value || ''));
+    });
+  }
+  // Apply after the existing form language switch has updated <html lang>.
+  const observer = new MutationObserver(applyFormLanguage);
+  observer.observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
+  document.addEventListener('click', e => {
+    if (e.target.closest('.madic-three-lang button')) queueMicrotask(applyFormLanguage);
+  });
+  applyFormLanguage();
+})();

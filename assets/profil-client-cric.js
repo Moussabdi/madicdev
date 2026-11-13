@@ -572,6 +572,13 @@
         if (Object.prototype.hasOwnProperty.call(profile, key))
           payload[key] = ($(id)?.value || "").trim() || null;
       }
+      // Le genre doit toujours être envoyé explicitement, même si le profil
+      // initial ne contient pas encore de valeur pour cette colonne.
+      // Les valeurs Homme/Femme sont celles attendues par le SQL MADIC.
+      const selectedGender = ($("gender")?.value || "").trim();
+      if (selectedGender && !["Homme", "Femme"].includes(selectedGender))
+        return status("Veuillez sélectionner un genre valide.", true);
+      payload.gender = selectedGender || null;
       // Ajout isolé : mêmes règles de sauvegarde que les autres champs du profil.
       if (Object.prototype.hasOwnProperty.call(profile, "ircc_application_category")) {
         payload.ircc_application_category = irccCategory.value || null;
@@ -595,6 +602,14 @@
         .eq("id", user.id);
       if (error)
         return status("Profil non enregistré : " + error.message, true);
+      // Vérifier la valeur effectivement conservée par Supabase, notamment
+      // si une politique ou un déclencheur empêche la sauvegarde du genre.
+      const { data: savedGenderRow, error: genderReadError } = await db
+        .from("profiles").select("gender").eq("id", user.id).single();
+      if (genderReadError)
+        return status("Profil mis à jour, mais vérification du genre impossible : " + genderReadError.message, true);
+      if ((savedGenderRow?.gender || null) !== payload.gender)
+        return status("Le genre n'a pas été conservé dans Supabase. Vérifiez les autorisations ou déclencheurs de la table profiles.", true);
       // Les réponses complémentaires sont stockées dans les métadonnées du compte,
       // sans nouvelle colonne ni modification des politiques RLS existantes.
       const selectedType = irccType.value;
@@ -703,7 +718,7 @@
     $("uploadButton").disabled = !active.length;
     await loadDocuments();
     status(
-      "Espace client associé au cabinet : " +
+      (localStorage.getItem("madic_ui_language") === "en" ? "Client space associated with the practice: " : "Espace client associé au cabinet : ") +
         spaces.find((s) => s.space_id === spaceId).space_name,
     );
   }
@@ -2035,6 +2050,12 @@
     Monter: "Move up",
     Descendre: "Move down",
     "Espace client sécurisé": "Secure client space",
+    "Espace client": "Client space",
+    "Enregistrer le statut": "Save status",
+    "Paiement": "Payment",
+    "Appel": "Call",
+    "Non payée": "Unpaid",
+    "Espèces": "Cash",
     "Votre projet, à votre rythme.": "Your project, at your pace.",
     Déconnexion: "Sign out",
     "MADIC · VOTRE PARCOURS AU CANADA": "MADIC · YOUR JOURNEY IN CANADA",
@@ -2391,3 +2412,29 @@
       })();
     
 ;
+
+
+/* Bilingual custom file selectors: browser native button labels depend on OS locale. */
+(() => {
+  'use strict';
+  const key = 'madic_ui_language';
+  const language = () => { try { return localStorage.getItem(key) === 'en' ? 'en' : 'fr'; } catch (_) { return document.documentElement.lang.startsWith('en') ? 'en' : 'fr'; } };
+  function render() {
+    const en = language() === 'en';
+    document.querySelectorAll('.madic-localized-file-picker').forEach(wrapper => {
+      const input = wrapper.querySelector('input[type="file"]');
+      const button = wrapper.querySelector('.madic-file-picker-button');
+      const name = wrapper.querySelector('.madic-file-picker-name');
+      if (!input || !button || !name) return;
+      button.textContent = en ? 'Choose file' : 'Choisir un fichier';
+      name.textContent = input.files?.length ? Array.from(input.files).map(f => f.name).join(', ') : (en ? 'No file selected' : 'Aucun fichier choisi');
+    });
+  }
+  function init() {
+    document.querySelectorAll('.madic-localized-file-picker input[type="file"]').forEach(input => input.addEventListener('change', render));
+    document.querySelectorAll('.madic-language-switch button').forEach(button => button.addEventListener('click', () => queueMicrotask(render)));
+    window.addEventListener('storage', render);
+    render();
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init, {once:true}); else init();
+})();

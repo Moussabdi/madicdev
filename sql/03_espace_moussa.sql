@@ -1,0 +1,14 @@
+-- OPTIONNEL : créer l'espace CRIC du propriétaire après 01_phase1.sql et 02_owner.sql.
+-- Remplacez les trois paramètres ci-dessous avant exécution.
+-- Ne pas exécuter avec les valeurs fictives.
+-- BEGIN;
+-- INSERT INTO public.madic_cric_spaces(owner_user_id,name)
+-- VALUES ('UUID_AUTH_DE_MOUSSA', 'Moussa ABDI DIRANEH')
+-- ON CONFLICT (owner_user_id) DO NOTHING;
+-- INSERT INTO public.madic_cric_memberships(space_id,user_id,role)
+-- SELECT id, owner_user_id, 'owner' FROM public.madic_cric_spaces
+-- WHERE owner_user_id = 'UUID_AUTH_DE_MOUSSA'
+-- ON CONFLICT DO NOTHING;
+-- COMMIT;
+-- Pour afficher son numéro CRIC, créer/compléter sa demande CRIC de manière contrôlée.
+-- Ne pas créer un faux numéro de permis et ne pas modifier les demandes d'autrui.

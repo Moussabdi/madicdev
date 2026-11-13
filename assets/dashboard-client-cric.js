@@ -2133,6 +2133,25 @@
     "Avatar neutre": "Default avatar",
     "Glisser pour déplacer": "Drag to move",
   };
+  Object.assign(translations, {
+    "Espace client": "Client space",
+    "Chaque projet a son histoire. Retrouvez ici les informations, les échanges et les étapes de votre parcours avec MADIC.": "Every journey has its own story. Find information, messages and the stages of your journey with MADIC here.",
+    "Étape 2 sur 4": "Step 2 of 4",
+    "Demande": "Request",
+    "Réponse": "Response",
+    "Consultation initiale - Reçue.": "Initial consultation - Received.",
+    "Aucun message non lu.": "No unread messages.",
+    "Indiquez le type de demande que vous présentez. (obligatoire)": "Indicate the type of application you are submitting. (required)",
+    "Quel type de demande présentez-vous ? (obligatoire)": "What type of application are you submitting? (required)",
+    "À partir de quel endroit faites-vous votre demande ? (obligatoire)": "From where are you submitting your application? (required)",
+    "Autre demande d’immigration économique": "Other economic immigration application",
+    "Demande d’asile présentée au Canada": "Refugee claim made in Canada",
+    "Autre demande concernant les réfugiés": "Other refugee-related application",
+    "Demande pour considérations d’ordre humanitaire": "Application on humanitarian and compassionate grounds",
+    "Télécharger": "Download",
+    "0 demande(s). Transmettez les pièces demandées dans le formulaire ci-dessous.": "0 request(s). Upload the requested documents using the form below.",
+    "1 facture(s) émise(s) pour le cabinet sélectionné.": "1 invoice(s) issued by the selected firm.",
+  });
   const reverse = Object.fromEntries(
     Object.entries(translations).map(([fr, en]) => [en, fr]),
   );
@@ -2142,10 +2161,30 @@
   function setText(node, dict) {
     const raw = node.nodeValue;
     const trimmed = raw.trim();
-    if (!trimmed || !Object.prototype.hasOwnProperty.call(dict, trimmed))
+    const normalized = trimmed.replace(/\s+/g, " ");
+    if (!trimmed) return;
+    if (!Object.prototype.hasOwnProperty.call(dict, normalized)) {
+      const patterns = language === "en" ? [
+        [/^Espace client associé au cabinet : (.+)$/, "Client space associated with the firm: $1"],
+        [/^Étape (\d+) sur (\d+)$/, "Step $1 of $2"],
+        [/^(\d+) demande\(s\)\. Transmettez les pièces demandées dans le formulaire ci-dessous\.$/, "$1 request(s). Upload the requested documents using the form below."],
+        [/^(\d+) facture\(s\) émise\(s\) pour le cabinet sélectionné\.$/, "$1 invoice(s) issued by the selected firm."],
+      ] : [
+        [/^Client space associated with the firm: (.+)$/, "Espace client associé au cabinet : $1"],
+        [/^Step (\d+) of (\d+)$/, "Étape $1 sur $2"],
+        [/^(\d+) request\(s\)\. Upload the requested documents using the form below\.$/, "$1 demande(s). Transmettez les pièces demandées dans le formulaire ci-dessous."],
+        [/^(\d+) invoice\(s\) issued by the selected firm\.$/, "$1 facture(s) émise(s) pour le cabinet sélectionné."],
+      ];
+      for (const [pattern, replacement] of patterns) {
+        if (pattern.test(trimmed)) {
+          node.nodeValue = raw.replace(trimmed, trimmed.replace(pattern, replacement));
+          return;
+        }
+      }
       return;
-    const translated = dict[trimmed];
-    if (translated === trimmed) return;
+    }
+    const translated = dict[normalized];
+    if (translated === normalized) return;
     const next = raw.replace(trimmed, translated);
     if (next !== raw) node.nodeValue = next;
   }

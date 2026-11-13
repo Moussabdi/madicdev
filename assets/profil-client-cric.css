@@ -2043,3 +2043,10 @@ body[data-page="cric-client-dashboard"] > header .madic-hero-notifications:hover
     padding-right: 18px !important;
   }
 }
+
+/* Locale-independent accessible file selectors (FR / EN). */
+.madic-localized-file-picker {display:flex;align-items:center;gap:10px;flex-wrap:wrap;min-width:0;}
+.madic-localized-file-picker input[type="file"] {position:absolute!important;width:1px!important;height:1px!important;opacity:0!important;overflow:hidden!important;clip-path:inset(50%)!important;}
+.madic-localized-file-picker .madic-file-picker-button {display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:7px 12px;border:1px solid #b8cde5;border-radius:7px;background:#f7f9fc;color:#123557;font:inherit;white-space:nowrap;}
+.madic-localized-file-picker input[type="file"]:focus-visible + .madic-file-picker-button {outline:2px solid #278ec4;outline-offset:2px;}
+.madic-localized-file-picker .madic-file-picker-name {overflow-wrap:anywhere;color:inherit;}
