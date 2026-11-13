@@ -257,3 +257,11 @@ textarea {
 .madic-language-switch {display:inline-flex;align-items:center;gap:0.65rem;margin-left:12px;flex-wrap:wrap}
 .madic-language-switch button {min-width:3.25rem;margin:0;cursor:pointer;padding:0.35rem 0.65rem;border-radius:0.6rem}
 .madic-language-switch button[aria-pressed="true"] {border:2px solid #40c9d4;font-weight:700}
+
+/* Active FR/EN language button */
+.madic-lang-switch button[aria-pressed="true"] {
+  background-color: #5ad5f2;
+  color: #09264a;
+  border-color: #5ad5f2;
+  font-weight: 700;
+}
