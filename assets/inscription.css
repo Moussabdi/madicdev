@@ -398,7 +398,7 @@ body[data-page="invitation-information"] > header .madic-lang-switch button {
   background: transparent; color: #e9f1ff; border: 1px solid #8296af;
 }
 body[data-page="invitation-information"] > header .madic-lang-switch button[aria-pressed="true"] {
-  background: #183453; color: #ffffff; border-color: #8296af;
+  background: #5ad5f2; color: #09264a; border-color: #5ad5f2;
 }
 body[data-page="invitation-information"] > footer.madic-footer {
   background: #070f22; color: #dce8f5; border-top: 1px solid #1b2c49;

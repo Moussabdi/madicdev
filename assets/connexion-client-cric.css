@@ -418,3 +418,12 @@ textarea {
           display: none !important;
         }
       }
+
+/* Langue selectionnee : FR ou EN */
+.madic-lang-switch button[aria-pressed="true"],
+.madic-footer-langs button[aria-pressed="true"] {
+  background: #5ad5f2;
+  border-color: #5ad5f2;
+  color: #09264a;
+  font-weight: 700;
+}
