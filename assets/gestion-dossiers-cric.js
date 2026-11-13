@@ -358,6 +358,11 @@
     "Copier la fiche": "Copy information sheet",
     "Copie impossible : sélectionnez le texte manuellement.": "Unable to copy: select the text manually."
   });
+  // Placeholders in the preliminary assessment form (UI only).
+  Object.assign(dictionary, {
+    "Ex. : Entrée express, parrainage familial": "E.g. Express Entry, family sponsorship",
+    "Indiquez les faits vérifiés et les critères applicables.": "Enter the verified facts and applicable criteria."
+  });
   const key = 'madic_ui_language';
   let lang = 'fr';
   try { lang = localStorage.getItem(key) === 'en' ? 'en' : 'fr'; } catch (_) {}
