@@ -530,6 +530,17 @@ window.getMadicSupabase = function () {
     "Aucune donnée enregistrée pour ce cabinet.": "No data recorded for this practice."
   });
 
+  /* Document request form: translate placeholders, including dynamically rendered fields. */
+  Object.assign(dictionary, {
+    "Ex. Copie du passeport": "e.g. Passport copy",
+    "Précisions facultatives": "Optional details",
+    "Ex. Lettre de confirmation": "e.g. Confirmation letter",
+    "Choisir un fichier": "Choose file",
+    "Aucun fichier choisi": "No file selected",
+    "Fichier sélectionné": "Selected file",
+    "jj/mm/aaaa": "mm/dd/yyyy"
+  });
+
   /* Document management: missing dynamic FR/EN strings (UI only). */
   Object.assign(dictionary, {
     "Accepté": "Accepted",
@@ -666,6 +677,8 @@ window.getMadicSupabase = function () {
   function render() {
     if (observer) observer.disconnect();
     document.documentElement.lang = lang === 'en' ? 'en-CA' : 'fr-CA';
+    const dateField = document.getElementById('docreqDue');
+    if (dateField) dateField.lang = lang === 'en' ? 'en-CA' : 'fr-CA';
     const root = document.body;
     if (!root) return;
     const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT | NodeFilter.SHOW_ELEMENT);
@@ -689,7 +702,16 @@ window.getMadicSupabase = function () {
     render();
     document.dispatchEvent(new CustomEvent('madic:languagechange', {detail:{lang}}));
   }
+  function updateFileLabel() {
+    const fileInput = document.getElementById('docsendFile');
+    const label = document.querySelector('.madic-local-file-name');
+    if (!fileInput || !label) return;
+    label.textContent = fileInput.files?.length ? fileInput.files[0].name : (lang === 'en' ? 'No file selected' : 'Aucun fichier choisi');
+  }
   function init() {
+    document.getElementById('docsendFile')?.addEventListener('change', updateFileLabel);
+    document.addEventListener('reset', event => { if (event.target?.id === 'docsendForm') requestAnimationFrame(updateFileLabel); });
+    document.addEventListener('madic:languagechange', updateFileLabel);
     document.addEventListener('click', event => {
       const button = event.target.closest?.('.madic-lang-controls button[data-lang]');
       if (!button) return;

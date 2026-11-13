@@ -261,12 +261,17 @@
                   </p>
                   <label for="docsendFile"
                     >Fichier à transmettre (PDF, JPG ou PNG, 10 Mo maximum)
-                    <input
-                      accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png"
-                      id="docsendFile"
-                      required=""
-                      type="file"
-                  /></label>
+                    <span class="madic-local-file-control">
+                      <input
+                        accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png"
+                        id="docsendFile"
+                        required=""
+                        type="file"
+                        aria-label="Fichier à transmettre"
+                      />
+                      <span class="madic-local-file-button" aria-hidden="true">Choisir un fichier</span>
+                      <span class="madic-local-file-name" aria-hidden="true">Aucun fichier choisi</span>
+                    </span></label>
                   <label for="docsendTitle"
                     >Nom du document (facultatif)
                     <input
