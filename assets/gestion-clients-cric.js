@@ -1014,3 +1014,26 @@
   else init();
 })();
 
+
+/* File picker labels are explicit UI strings, independent of browser locale. */
+(function () {
+  const picker = document.getElementById('madicImportFile');
+  const filename = document.getElementById('madicImportFileName');
+  if (!picker || !filename) return;
+  function updateFilename() {
+    const selected = picker.files && picker.files.length ? Array.from(picker.files).map(file => file.name).join(', ') : '';
+    if (selected) {
+      filename.textContent = selected;
+      filename.removeAttribute('data-fr');
+      filename.removeAttribute('data-en');
+    } else {
+      filename.setAttribute('data-fr', 'Aucun fichier choisi');
+      filename.setAttribute('data-en', 'No file selected');
+      const lang = window.MadicCricLanguage?.get?.() || (document.documentElement.lang.startsWith('en') ? 'en' : 'fr');
+      filename.textContent = lang === 'en' ? 'No file selected' : 'Aucun fichier choisi';
+    }
+  }
+  picker.addEventListener('change', updateFilename);
+  document.addEventListener('madic:languagechange', updateFilename);
+  updateFilename();
+})();

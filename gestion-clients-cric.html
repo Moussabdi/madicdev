@@ -351,11 +351,16 @@
                 >Fichier de clients (colonne courriel ou email
                 obligatoire)</label
               >
-              <input
-                accept=".csv,.xlsx,.xls,text/csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel"
-                id="madicImportFile"
-                type="file"
-              />
+              <div class="madic-import-file-picker">
+                <input
+                  accept=".csv,.xlsx,.xls,text/csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel"
+                  id="madicImportFile"
+                  type="file"
+                  aria-describedby="madicImportFileName"
+                />
+                <label for="madicImportFile" class="madic-import-file-button" data-fr="Choisir un fichier" data-en="Choose file">Choisir un fichier</label>
+                <span id="madicImportFileName" role="status" aria-live="polite" data-fr="Aucun fichier choisi" data-en="No file selected">Aucun fichier choisi</span>
+              </div>
               <p class="cric-muted">
                 Seuls les courriels sont utilisés pour les invitations. Les
                 autres colonnes ne sont pas transmises.
