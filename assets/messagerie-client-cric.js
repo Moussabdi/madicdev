@@ -928,6 +928,51 @@
           Suivant: "Next",
           Soumettre: "Submit",
           "Pays :": "Country:",
+          "Ma messagerie sécurisée": "My secure messaging",
+          "PORTAIL CLIENT CRIC": "RCIC CLIENT PORTAL",
+          "Présence du consultant indisponible": "Consultant presence unavailable",
+          "Connexion au service de présence...": "Connecting to presence service...",
+          "Synchronisation Realtime non confirmée": "Realtime synchronization not confirmed",
+          "← Retour à mon espace": "← Back to my space",
+          "Vérification de votre accès…": "Checking your access…",
+          "Initialisation de l’actualisation automatique…": "Initializing automatic refresh…",
+          "Conversation avec votre consultant": "Conversation with your consultant",
+          "Aucun message dans cette conversation.": "No messages in this conversation.",
+          "Aucune conversation disponible pour ce compte. Si votre consultant en a créé une, contactez-le.": "No conversations are available for this account. If your consultant has created one, please contact them.",
+          "Joindre un document (PDF, JPG, PNG - 10 Mo maximum)": "Attach a document (PDF, JPG, PNG - 10 MB maximum)",
+          "Envoyer la pièce jointe": "Send attachment",
+          "Pièces jointes de la conversation": "Conversation attachments",
+          "Ouvrir": "Open",
+          "Télécharger": "Download",
+          "Aucune pièce jointe.": "No attachments.",
+          "Sélectionnez un fichier.": "Select a file.",
+          "Format non autorisé.": "Unsupported file format.",
+          "Le fichier doit mesurer entre 1 octet et 10 Mo.": "The file must be between 1 byte and 10 MB.",
+          "Sélectionnez une conversation.": "Select a conversation.",
+          "Pièce jointe envoyée.": "Attachment sent.",
+          "Terminer": "Done",
+          "Réinitialiser": "Reset",
+          "Glissez les éléments ou utilisez les flèches pour choisir votre ordre.": "Drag items or use the arrows to change their order.",
+          "Glisser pour déplacer": "Drag to move",
+          "Monter": "Move up",
+          "Descendre": "Move down",
+          "Aller au contenu principal": "Skip to main content",
+          "Outils du compte": "Account tools",
+          "Notifications de messagerie": "Message notifications",
+          "Navigation de mon espace client": "Client space navigation",
+          "Menu personnalisable": "Customizable menu",
+          "Logo MADIC Portail": "MADIC Portal logo",
+          "Espace client": "Client space",
+          "Messagerie du client chargée.": "Client messaging loaded.",
+          "Configuration Supabase manquante.": "Supabase configuration missing.",
+          "Cabinet non autorisé.": "Unauthorized firm.",
+          "Conversation non disponible.": "Conversation unavailable.",
+          "À envoyer": "To send",
+          "Envoyer": "Send",
+          "Votre message a été envoyé.": "Your message has been sent.",
+          "Envoi en cours…": "Sending…",
+          "Actualisation automatique activée.": "Automatic refresh enabled.",
+          "Actualisation automatique désactivée.": "Automatic refresh disabled.",
           "Connaissance des langues": "Language proficiency",
           "Niveau de Français :": "French proficiency:",
           "Niveau d’anglais :": "English proficiency:",
@@ -970,39 +1015,69 @@
           buttons[code] = b;
         }
         slot.appendChild(wrap);
+        // Translate UI text, including status messages inserted after Supabase loads.
+        // Never translate conversation subjects, message bodies, or uploaded filenames.
+        function protectedContent(el) {
+          return !!el?.closest('.madic-client-msg-bubble, .madic-client-msg-preview, .madic-attachment-filename, #clientMsgConversations button');
+        }
+        function convert(value, map) {
+          if (Object.prototype.hasOwnProperty.call(map, value)) return map[value];
+          if (lang !== 'en') return value;
+          const patterns = [
+            [/^(\d+) non lus?$/, (_, n) => n + ' unread'],
+            [/^Dernier message : (.*)$/, (_, d) => 'Last message: ' + d],
+            [/^Conversation créée : (.*)$/, (_, d) => 'Conversation created: ' + d],
+            [/^Vous : (.*)$/, (_, body) => 'You: ' + body],
+            [/^Consultant : (.*)$/, (_, body) => 'Consultant: ' + body],
+            [/^Envoyé par : (.*)$/, (_, rest) => 'Sent by: ' + rest.replace(/^Vous\b/, 'You')],
+            [/^(\d+) documents?$/, (_, n) => n + ' document' + (n === '1' ? '' : 's')],
+            [/^(\d+) Ko$/, (_, n) => n + ' KB'],
+            [/^Pièces jointes : (.*)$/, (_, e) => 'Attachments: ' + e],
+            [/^Téléchargement lancé : (.*)$/, (_, f) => 'Download started: ' + f],
+            [/^Téléchargement impossible : (.*)$/, (_, e) => 'Download failed: ' + e],
+            [/^Ouverture impossible : (.*)$/, (_, e) => 'Unable to open: ' + e],
+            [/^Envoi impossible : (.*)$/, (_, e) => 'Unable to send: ' + e],
+            [/^Erreur : (.*)$/, (_, e) => 'Error: ' + e],
+            [/^Vous · (.*)$/, (_, d) => 'You · ' + d],
+          ];
+          for (const [pattern, replacement] of patterns) if (pattern.test(value)) return value.replace(pattern, replacement);
+          return value;
+        }
         function translate() {
-          const map = lang === "en" ? dict : reverse;
-          const walker = document.createTreeWalker(
-            document.body,
-            NodeFilter.SHOW_TEXT,
-            {
-              acceptNode(n) {
-                return n.parentElement &&
-                  n.parentElement.closest(
-                    'script,style,textarea,option,[contenteditable="true"]',
-                  )
-                  ? NodeFilter.FILTER_REJECT
-                  : NodeFilter.FILTER_ACCEPT;
-              },
-            },
-          );
+          const map = lang === 'en' ? dict : reverse;
+          const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+            acceptNode(n) {
+              return n.parentElement && (n.parentElement.closest('script,style,textarea,option,[contenteditable="true"]') || protectedContent(n.parentElement))
+                ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT;
+            }
+          });
           let node;
           while ((node = walker.nextNode())) {
-            const raw = node.nodeValue,
-              word = raw.trim();
-            if (Object.prototype.hasOwnProperty.call(map, word))
-              node.nodeValue = raw.replace(word, map[word]);
+            const raw = node.nodeValue, word = raw.trim();
+            const translated = convert(word, map);
+            if (translated !== word) node.nodeValue = raw.replace(word, translated);
           }
-          for (const el of document.querySelectorAll(
-            "[placeholder],[aria-label],[title]",
-          )) {
-            for (const a of ["placeholder", "aria-label", "title"]) {
+          for (const el of document.querySelectorAll('[placeholder],[aria-label],[title]')) {
+            if (protectedContent(el)) continue;
+            for (const a of ['placeholder', 'aria-label', 'title']) {
               const v = el.getAttribute(a);
-              if (v && Object.prototype.hasOwnProperty.call(map, v))
-                el.setAttribute(a, map[v]);
+              if (v) {
+                const translated = convert(v, map);
+                if (translated !== v) el.setAttribute(a, translated);
+              }
             }
           }
+          const title = document.querySelector('title[data-fr][data-en]');
+          if (title && title.textContent !== title.getAttribute('data-' + lang)) title.textContent = title.getAttribute('data-' + lang);
         }
+        // Dynamic UI strings are generated asynchronously by the messaging and attachment modules.
+        let scheduled = false;
+        const observer = new MutationObserver(() => {
+          if (scheduled) return;
+          scheduled = true;
+          queueMicrotask(() => { scheduled = false; translate(); });
+        });
+        observer.observe(document.body, {childList:true, subtree:true, characterData:true});
         function apply() {
           document.documentElement.lang = lang === "en" ? "en-CA" : "fr-CA";
           translate();

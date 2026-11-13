@@ -914,8 +914,10 @@
   if (!window.getMadicSupabase || !$("cabinet") || !$("clientInvoicesPanel"))
     return;
   const db = window.getMadicSupabase();
+  const isEn = () => document.documentElement.lang.toLowerCase().startsWith("en");
+  const tr = (fr, en) => isEn() ? en : fr;
   const money = (cents) =>
-    (Number(cents || 0) / 100).toLocaleString("fr-CA", {
+    (Number(cents || 0) / 100).toLocaleString(isEn() ? "en-CA" : "fr-CA", {
       style: "currency",
       currency: "CAD",
     });
@@ -933,12 +935,12 @@
     const w = window.open("", "_blank");
     if (!w)
       return notice(
-        "Autorisez les fenêtres contextuelles pour afficher la facture.",
+        tr("Autorisez les fenêtres contextuelles pour afficher la facture.", "Allow pop-ups to display the invoice."),
       );
     const doc = w.document;
     doc.open();
     doc.write(
-      '<!doctype html><html lang="fr-CA"><head><meta charset="utf-8"><title>Facture</title><style>body{font:15px Arial,sans-serif;max-width:800px;margin:40px auto;color:#182331}table{width:100%;border-collapse:collapse}th,td{padding:9px;border-bottom:1px solid #ddd;text-align:left}.right{text-align:right}img{max-width:200px;max-height:90px;object-fit:contain}button{margin:24px 0;padding:10px}@media print{button{display:none}}</style></head><body><main id="invoice"></main><button onclick="window.print()">Imprimer / Enregistrer en PDF</button></body></html>',
+      '<!doctype html><html lang="' + (isEn() ? 'en-CA' : 'fr-CA') + '"><head><meta charset="utf-8"><title>' + tr('Facture', 'Invoice') + '</title><style>body{font:15px Arial,sans-serif;max-width:800px;margin:40px auto;color:#182331}table{width:100%;border-collapse:collapse}th,td{padding:9px;border-bottom:1px solid #ddd;text-align:left}.right{text-align:right}img{max-width:200px;max-height:90px;object-fit:contain}button{margin:24px 0;padding:10px}@media print{button{display:none}}</style></head><body><main id="invoice"></main><button onclick="window.print()">' + tr('Imprimer / Enregistrer en PDF', 'Print / Save as PDF') + '</button></body></html>',
     );
     doc.close();
     const root = doc.getElementById("invoice");
@@ -949,22 +951,22 @@
     ) {
       const img = doc.createElement("img");
       img.src = i.logo_data_url;
-      img.alt = "Logo du cabinet";
+      img.alt = tr("Logo du cabinet", "Firm logo");
       root.append(img);
     }
-    add("h1", "Facture " + i.invoice_number, root);
+    add("h1", tr("Facture ", "Invoice ") + i.invoice_number, root);
     add("h2", i.cabinet_name, root);
     if (i.cabinet_address) add("p", i.cabinet_address, root);
     if (i.cabinet_tax_numbers)
-      add("p", "Numéros de taxes : " + i.cabinet_tax_numbers, root);
+      add("p", tr("Numéros de taxes : ", "Tax numbers: ") + i.cabinet_tax_numbers, root);
     add(
       "p",
-      "Émise le " + date(i.issued_on) + " · Échéance : " + date(i.due_on),
+      tr("Émise le ", "Issued on ") + date(i.issued_on) + tr(" · Échéance : ", " · Due: ") + date(i.due_on),
       root,
     );
     const table = add("table", "", root);
     const head = add("tr", "", table);
-    for (const h of ["Description", "Qté", "Prix unitaire", "Montant"])
+    for (const h of [tr("Description", "Description"), tr("Qté", "Qty"), tr("Prix unitaire", "Unit price"), tr("Montant", "Amount")])
       add("th", h, head);
     const items =
       Array.isArray(i.items) && i.items.length
@@ -987,29 +989,29 @@
         add("td", value, tr);
     }
     for (const [label, value] of [
-      ["Sous-total", money(i.amount_cents)],
-      ["Taxes", money(total(i) - i.amount_cents)],
-      ["Total", money(total(i))],
-      ["Paiements reçus", money(i.paid_cents)],
-      ["Solde", money(total(i) - i.paid_cents)],
+      [tr("Sous-total", "Subtotal"), money(i.amount_cents)],
+      [tr("Taxes", "Taxes"), money(total(i) - i.amount_cents)],
+      [tr("Total", "Total"), money(total(i))],
+      [tr("Paiements reçus", "Payments received"), money(i.paid_cents)],
+      [tr("Solde", "Balance"), money(total(i) - i.paid_cents)],
     ]) {
       const tr = add("tr", "", table);
       add("td", label, tr).colSpan = 3;
       add("td", value, tr).className = "right";
     }
-    if (i.notes) add("p", "Notes : " + i.notes, root);
+    if (i.notes) add("p", tr("Notes : ", "Notes: ") + i.notes, root);
     w.focus();
   }
   async function payInvoice(invoice, button) {
     if (!invoice.id) {
       notice(
-        "Identifiant de facture manquant. Vérifiez la fonction madic_my_issued_invoices.",
+        tr("Identifiant de facture manquant. Vérifiez la fonction madic_my_issued_invoices.", "Missing invoice ID. Check the madic_my_issued_invoices function."),
       );
       return;
     }
     button.disabled = true;
-    button.textContent = "Préparation…";
-    notice("Préparation du paiement sécurisé Stripe…");
+    button.textContent = tr("Préparation…", "Preparing…");
+    notice(tr("Préparation du paiement sécurisé Stripe…", "Preparing secure Stripe payment…"));
     try {
       const { data, error } = await db.functions.invoke(
         "madic-stripe-create-checkout",
@@ -1018,7 +1020,7 @@
         },
       );
       if (error) {
-        let detail = error.message || "Erreur Stripe";
+        let detail = error.message || tr("Erreur Stripe", "Stripe error");
         try {
           const payload = await error.context?.json();
           if (payload?.error) detail = payload.error;
@@ -1031,13 +1033,13 @@
         typeof data?.url !== "string" ||
         !/^https:\/\/checkout\.stripe\.com\//.test(data.url)
       ) {
-        throw new Error("Lien de paiement Stripe invalide.");
+        throw new Error(tr("Lien de paiement Stripe invalide.", "Invalid Stripe payment link."));
       }
       window.location.assign(data.url);
     } catch (err) {
-      notice("Paiement indisponible : " + (err.message || String(err)));
+      notice(tr("Paiement indisponible : ", "Payment unavailable: ") + (err.message || String(err)));
       button.disabled = false;
-      button.textContent = "Payer en ligne";
+      button.textContent = tr("Payer en ligne", "Pay online");
     }
   }
   async function load() {
@@ -1045,12 +1047,12 @@
     const body = $("clientInvoicesRows");
     body.replaceChildren();
     if (!spaceId) return;
-    notice("Chargement des factures…");
+    notice(tr("Chargement des factures…", "Loading invoices…"));
     const { data, error } = await db.rpc("madic_my_issued_invoices", {
       p_space_id: spaceId,
     });
     if (error) {
-      notice("Factures indisponibles : " + error.message);
+      notice(tr("Factures indisponibles : ", "Invoices unavailable: ") + error.message);
       return;
     }
     invoices = Array.isArray(data) ? data : [];
@@ -1068,14 +1070,14 @@
       const td = r.insertCell();
       const b = document.createElement("button");
       b.type = "button";
-      b.textContent = "Voir / PDF";
+      b.textContent = tr("Voir / PDF", "View / PDF");
       b.addEventListener("click", () => pdf(i));
       td.append(b);
       const balance = total(i) - Number(i.paid_cents || 0);
       if (balance > 0) {
         const pay = document.createElement("button");
         pay.type = "button";
-        pay.textContent = "Payer en ligne";
+        pay.textContent = tr("Payer en ligne", "Pay online");
         pay.style.marginLeft = "0.5rem";
         pay.addEventListener("click", () => payInvoice(i, pay));
         td.append(pay);
@@ -1083,10 +1085,10 @@
     }
     if (!invoices.length) {
       const r = body.insertRow();
-      add("td", "Aucune facture émise pour ce cabinet.", r).colSpan = 6;
+      add("td", tr("Aucune facture émise pour ce cabinet.", "No invoices issued by this firm."), r).colSpan = 6;
     }
     notice(
-      invoices.length + " facture(s) émise(s) pour le cabinet sélectionné.",
+      invoices.length + tr(" facture(s) émise(s) pour le cabinet sélectionné.", " invoice(s) issued by the selected firm."),
     );
   }
   const { data: auth, error } = await db.auth.getUser();
@@ -2013,6 +2015,22 @@
 (function () {
   "use strict";
   const translations = {
+    "Espace client": "Client space",
+    "Outils du compte": "Account tools",
+    "Aperçu uniquement : cliquez sur Enregistrer la photo pour la conserver.": "Preview only: click Save photo to keep it.",
+    "Télécharger": "Download",
+    "Aucune demande de service pour le moment.": "No service requests at this time.",
+    "Détails": "Details",
+    "État du client": "Client status",
+    "Aucune demande": "No request",
+    "Enregistrer le statut": "Save status",
+    "Logo du cabinet": "Firm logo",
+    "Facture": "Invoice",
+    "Imprimer / Enregistrer en PDF": "Print / Save as PDF",
+    "Préparation…": "Preparing…",
+    "Payer en ligne": "Pay online",
+    "Voir / PDF": "View / PDF",
+    "Aucune facture émise pour ce cabinet.": "No invoices issued by this firm.",
     Connexion: "Sign in",
     "Mon espace": "My space",
     "Mon espace MADIC": "My MADIC space",

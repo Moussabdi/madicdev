@@ -1055,6 +1055,13 @@
   "form.spouseJobTitlePlaceholder": "Enter your spouse's job title",
   "form.spouseJobDutiesPlaceholder": "Enter your spouse's current job duties",
   "form.explanationPlaceholder": "Please provide your explanation",
+  "form.clientSpace": "Client space",
+  "form.calculatedAge": "Age:",
+  "form.streetName": "Street name:",
+  "form.streetNamePlaceholder": "Street name",
+  "form.signaturePlace": "Contract signing location (city):",
+  "form.signaturePlacePlaceholder": "City where the contract will be signed",
+  "form.signatureHelp": "This information will be used to prefill the signing location in your contracts. You can confirm it before signing.",
   "form.submit": "Submit"
 };
   const nodes = Array.from(document.querySelectorAll('[data-i18n], [data-i18n-placeholder], [data-i18n-value]'));

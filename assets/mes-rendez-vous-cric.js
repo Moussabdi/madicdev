@@ -3,10 +3,13 @@
 /* Source consolidee : madic-appointments-client(20261107-040956).js */
 (async () => {
   "use strict";
+  const isEnglish = () => { try { return (localStorage.getItem("madic_ui_language") || "fr") === "en"; } catch (_) { return document.documentElement.lang.startsWith("en"); } };
+  const L = (fr, en) => isEnglish() ? en : fr;
+  const refreshTranslation = () => { if (typeof window.madicTranslateAppointments === "function") window.madicTranslateAppointments(); };
   const $ = (id) => document.getElementById(id),
-    notice = (t) => ($("rdvNotice").textContent = t);
+    notice = (t) => { $("rdvNotice").textContent = t; refreshTranslation(); };
   if (typeof window.getMadicSupabase !== "function")
-    return notice("Configuration Supabase manquante.");
+    return notice(L("Configuration Supabase manquante.", "Supabase configuration is missing."));
   const db = window.getMadicSupabase();
   let spaces = [],
     slots = [];
@@ -20,12 +23,12 @@
     wrap.id = "rdvDurationPicker";
     
     const label = document.createElement("label");
-    label.textContent = "Durée du rendez-vous : ";
+    label.textContent = L("Durée du rendez-vous : ", "Appointment duration: ");
     label.htmlFor = "rdvDuration";
     const select = document.createElement("select");
     select.id = "rdvDuration";
-    select.add(new Option("1 heure", "60"));
-    select.add(new Option("2 heures", "120"));
+    select.add(new Option(L("1 heure", "1 hour"), "60"));
+    select.add(new Option(L("2 heures", "2 hours"), "120"));
     select.value = String(durationMinutes);
     select.onchange = () => {
       durationMinutes = Number(select.value);
@@ -37,7 +40,7 @@
   async function bookPeriod(s) {
     if (
       !confirm(
-        `Demander un rendez-vous du ${date(s.starts_at)} au ${date(s.ends_at)} ?`,
+        L(`Demander un rendez-vous du ${date(s.starts_at)} au ${date(s.ends_at)} ?`, `Request an appointment from ${date(s.starts_at)} to ${date(s.ends_at)}?`),
       )
     )
       return;
@@ -47,10 +50,10 @@
       p_end: s.ends_at,
     });
     if (error) throw error;
-    notice("Demande envoyée au consultant, en attente de confirmation.");
+    notice(L("Demande envoyée au consultant, en attente de confirmation.", "Request sent to your consultant, pending confirmation."));
   }
   const date = (t) =>
-    new Intl.DateTimeFormat("fr-CA", {
+    new Intl.DateTimeFormat(isEnglish() ? "en-CA" : "fr-CA", {
       dateStyle: "medium",
       timeStyle: "short",
       timeZone: "America/Toronto",
@@ -65,6 +68,9 @@
     phone: "Téléphone",
     in_person: "En personne",
   };
+  const modeEn = { video: "Video conference", phone: "Phone", in_person: "In person" };
+  const statusEn = { requested: "Pending confirmation", confirmed: "Confirmed", declined: "Declined", cancelled: "Cancelled" };
+  const notificationLabelsEn = { requested: "New appointment request", confirmed: "Your appointment has been confirmed", declined: "Your appointment request was declined", cancelled: "An appointment was cancelled" };
   const status = {
     requested: "En attente de confirmation",
     confirmed: "Confirmé",
@@ -112,7 +118,7 @@
     last.setUTCDate(last.getUTCDate() + 6);
     const key = (d) => d.toISOString().slice(0, 10);
     const label = (d) =>
-      new Intl.DateTimeFormat("fr-CA", {
+      new Intl.DateTimeFormat(isEnglish() ? "en-CA" : "fr-CA", {
         weekday: "short",
         day: "numeric",
         month: "short",
@@ -120,6 +126,7 @@
       }).format(d);
     $("rdvWeekLabel").textContent = `${label(monday)} – ${label(last)}`;
     $("rdvPrevWeek").disabled = weekOffset <= 0;
+    refreshTranslation();
     const dateKey = (iso) => {
       const p = Object.fromEntries(
         fmt.formatToParts(new Date(iso)).map((x) => [x.type, x.value]),
@@ -139,24 +146,24 @@
       if (!daySlots.length) {
         const empty = document.createElement("p");
         empty.className = "madic-rdv-muted";
-        empty.textContent = "Aucun créneau";
+        empty.textContent = L("Aucun créneau", "No available slots");
         column.append(empty);
       }
       for (const s of daySlots) {
-        const time = new Intl.DateTimeFormat("fr-CA", {
+        const time = new Intl.DateTimeFormat(isEnglish() ? "en-CA" : "fr-CA", {
           timeZone: "America/Toronto",
           hour: "2-digit",
           minute: "2-digit",
           hourCycle: "h23",
         }).format(new Date(s.starts_at));
         const b = action(
-          `${time} · ${durationMinutes / 60} h · Demander`,
+          `${time} · ${durationMinutes / 60} h · ${L("Demander", "Request")}`,
           async () => {
             await bookPeriod(s);
           },
         );
         b.classList.add("madic-rdv-slot-button");
-        b.title = mode[s.mode] || s.mode;
+        b.title = L(mode[s.mode] || s.mode, modeEn[s.mode] || s.mode);
         column.append(b);
       }
       container.append(column);
@@ -175,7 +182,7 @@
     section.className = "panel madic-rdv-notifications";
     section.id = "rdvNotifications";
     const heading = document.createElement("h2");
-    heading.textContent = "Notifications de rendez-vous";
+    heading.textContent = L("Notifications de rendez-vous", "Appointment notifications");
     const summary = document.createElement("p");
     summary.id = "rdvNotificationSummary";
     summary.className = "madic-rdv-muted";
@@ -195,17 +202,17 @@
       .limit(30);
     if (error) {
       $("rdvNotificationSummary").textContent =
-        "Notifications indisponibles : " + error.message;
+        L("Notifications indisponibles: ", "Notifications unavailable: ") + error.message;
       return;
     }
     list.replaceChildren();
     const unread = (data || []).filter((n) => !n.read_at).length;
     $("rdvNotificationSummary").textContent = unread
-      ? `${unread} notification(s) non lue(s).`
-      : "Aucune notification non lue.";
+      ? L(`${unread} notification(s) non lue(s).`, `${unread} unread notification(s).`)
+      : L("Aucune notification non lue.", "No unread notifications.");
     if (!data?.length) {
       const p = document.createElement("p");
-      p.textContent = "Aucune notification pour le moment.";
+      p.textContent = L("Aucune notification pour le moment.", "No notifications at this time.");
       list.append(p);
     }
     for (const n of data || []) {
@@ -214,14 +221,14 @@
         "madic-rdv-notification" +
         (n.read_at ? "" : " madic-rdv-notification-unread");
       const info = document.createElement("span");
-      info.textContent = `${notificationLabels[n.event_type] || n.event_type} · ${date(n.created_at)}`;
+      info.textContent = `${L(notificationLabels[n.event_type] || n.event_type, notificationLabelsEn[n.event_type] || n.event_type)} · ${date(n.created_at)}`;
       if (!n.read_at) info.classList.add("madic-rdv-notification-title");
       line.append(info);
       if (!n.read_at) {
         const b = document.createElement("button");
         b.type = "button";
         b.className = "secondary";
-        b.textContent = "Marquer comme lue";
+        b.textContent = L("Marquer comme lue", "Mark as read");
         b.onclick = async () => {
           b.disabled = true;
           const { error } = await db.rpc("madic_rdv_mark_notification_read", {
@@ -238,12 +245,13 @@
       }
       list.append(line);
     }
+    refreshTranslation();
   }
 
   async function load() {
     const spaceId = $("rdvSpace").value;
     if (!spaces.some((x) => x.space_id === spaceId))
-      throw Error("Cabinet non autorisé.");
+      throw Error(L("Cabinet non autorisé.", "Unauthorized firm."));
     const [sr, ar] = await Promise.all([
       db.rpc("madic_rdv_available_periods", {
         p_space_id: spaceId,
@@ -267,18 +275,18 @@
       const r = sb.insertRow();
       td(r, date(s.starts_at));
       td(r, date(s.ends_at));
-      td(r, mode[s.mode]);
+      td(r, L(mode[s.mode], modeEn[s.mode]));
       r.insertCell().append(
-        action(`Demander ${durationMinutes / 60} h`, async () => {
+        action(`${L("Demander", "Request")} ${durationMinutes / 60} h`, async () => {
           await bookPeriod(s);
-          notice("Demande envoyée au consultant, en attente de confirmation.");
+          notice(L("Demande envoyée au consultant, en attente de confirmation.", "Request sent to your consultant, pending confirmation."));
         }),
       );
     }
     if (!slots.length) {
       const r = sb.insertRow();
       r.insertCell().colSpan = 4;
-      r.cells[0].textContent = "Aucun créneau disponible pour le moment.";
+      r.cells[0].textContent = L("Aucun créneau disponible pour le moment.", "No time slots available at this time.");
     }
     const allIds = [...new Set((ar.data || []).map((x) => x.slot_id))];
     let slotMap = new Map(slots.map((s) => [s.id, s]));
@@ -303,8 +311,8 @@
             ? `${date(s.starts_at)} – ${date(s.ends_at)}`
             : "-",
       );
-      td(r, s ? mode[s.mode] : "-");
-      const statusCell = td(r, status[a.status] || a.status);
+      td(r, s ? L(mode[s.mode], modeEn[s.mode]) : "-");
+      const statusCell = td(r, L(status[a.status] || a.status, statusEn[a.status] || a.status));
       statusCell.classList.add(
         "madic-rdv-status",
         `madic-rdv-status-${a.status}`,
@@ -312,29 +320,29 @@
       const detail = r.insertCell();
       detail.textContent =
         a.status === "confirmed"
-          ? "Disponible via « Voir le lien »"
+          ? L("Disponible via « Voir le lien »", "Available via ‘View link’")
           : a.status === "requested"
-            ? "Communiqué après confirmation"
+            ? L("Communiqué après confirmation", "Provided after confirmation")
             : "-";
       const cell = r.insertCell();
       cell.className = "madic-rdv-actions";
       if (a.status === "confirmed")
         cell.append(
-          action("Voir le lien", async () => {
+          action(L("Voir le lien", "View link"), async () => {
             const { data, error } = await db.rpc("madic_rdv_meeting_details", {
               p_appointment_id: a.id,
             });
             if (error) throw error;
             alert(
               data?.[0]?.location_info ||
-                "Le consultant n’a pas indiqué de lieu ou lien.",
+                L("Le consultant n’a pas indiqué de lieu ou lien.", "The consultant has not provided a location or link."),
             );
           }),
         );
       if (["requested", "confirmed"].includes(a.status))
         cell.append(
-          action("Annuler", async () => {
-            if (!confirm("Annuler ce rendez-vous ?")) return;
+          action(L("Annuler", "Cancel"), async () => {
+            if (!confirm(L("Annuler ce rendez-vous ?", "Cancel this appointment?"))) return;
             const { error } = await db.rpc("madic_rdv_set_status", {
               p_appointment_id: a.id,
               p_status: "cancelled",
@@ -346,21 +354,31 @@
     if (!ar.data?.length) {
       const r = br.insertRow();
       r.insertCell().colSpan = 5;
-      r.cells[0].textContent = "Aucun rendez-vous demandé.";
+      r.cells[0].textContent = L("Aucun rendez-vous demandé.", "No appointments requested.");
     }
     await loadNotifications(spaceId);
-    notice("Rendez-vous chargés.");
+    refreshTranslation();
+    notice(L("Rendez-vous chargés.", "Appointments loaded."));
   }
+  window.madicRdvRefreshLocale = () => {
+    renderCalendar();
+    durationPicker();
+    const durationLabel = document.querySelector("#rdvDurationPicker label");
+    if (durationLabel) durationLabel.textContent = L("Durée du rendez-vous : ", "Appointment duration: ");
+    const durationSelect = $("rdvDuration");
+    if (durationSelect) { durationSelect.options[0].textContent = L("1 heure", "1 hour"); durationSelect.options[1].textContent = L("2 heures", "2 hours"); }
+    load().catch(e => notice(e.message));
+  };
   try {
     const {
       data: { user },
       error: ue,
     } = await db.auth.getUser();
-    if (ue || !user) throw Error("Connexion client requise.");
+    if (ue || !user) throw Error(L("Connexion client requise.", "Client sign-in required."));
     const { data, error } = await db.rpc("madic_my_cric_client_spaces");
     if (error) throw error;
     spaces = data || [];
-    if (!spaces.length) throw Error("Aucun cabinet associé.");
+    if (!spaces.length) throw Error(L("Aucun cabinet associé.", "No associated firm."));
     for (const s of spaces) {
       const opt = document.createElement("option");
       opt.value = s.space_id;
@@ -384,7 +402,7 @@
     $("rdvApp").hidden = false;
     await load();
   } catch (e) {
-    notice("Chargement impossible : " + e.message);
+    notice(L("Chargement impossible: ", "Unable to load: ") + e.message);
   }
 })();
 
@@ -420,7 +438,7 @@
   toggle.addEventListener("click", () => {
     const editing = sidebar.classList.toggle("madic-editing");
     toggle.setAttribute("aria-pressed", String(editing));
-    toggle.textContent = editing ? "Terminer" : "Personnaliser le menu";
+    toggle.textContent = editing ? (localStorage.getItem("madic_ui_language") === "en" ? "Done" : "Terminer") : (localStorage.getItem("madic_ui_language") === "en" ? "Customize menu" : "Personnaliser le menu");
     reset.hidden = !editing;
     help.hidden = !editing;
   });
@@ -505,7 +523,7 @@
 
 /* Source consolidee : madic-footer(2).js */
 /* Footer commun MADIC : traduction des libellés sur les pages sans gestionnaire FR/EN. */
-(function(){"use strict";function apply(lang){lang=lang==="en"?"en":"fr";document.querySelectorAll(".madic-footer [data-fr][data-en]").forEach(function(el){el.textContent=el.getAttribute("data-"+lang);});}var lang="fr";try{lang=new URLSearchParams(location.search).get("lang")||localStorage.getItem("madic-lang")||"fr";}catch(e){}apply(lang);window.addEventListener("storage",function(e){if(e.key==="madic-lang")apply(e.newValue);});})();
+(function(){"use strict";function apply(lang){lang=String(lang).toLowerCase().startsWith("en")?"en":"fr";document.querySelectorAll(".madic-footer [data-fr][data-en]").forEach(function(el){el.textContent=el.getAttribute("data-"+lang);});}var lang="fr";try{lang=new URLSearchParams(location.search).get("lang")||localStorage.getItem("madic_ui_language")||localStorage.getItem("madic-lang")||"fr";}catch(e){}apply(lang);window.addEventListener("storage",function(e){if(e.key==="madic-lang")apply(e.newValue);});})();
 
 
 /* Script local original 1 */
@@ -514,7 +532,27 @@
       (function () {
         "use strict";
         const dict = {
-          Déconnexion: "Sign out",
+          "Espace client": "Client space",
+          "ESPACE CLIENT · CONSULTATIONS": "CLIENT SPACE · CONSULTATIONS",
+          "Choisissez un créneau, suivez vos demandes et retrouvez les informations de vos consultations.": "Choose a time slot, track your requests and find your consultation details.",
+          "Les horaires sont affichés à l'heure de Montréal (heure de l'Est). Vérifiez le décalage avec votre pays.": "Times are shown in Montréal time (Eastern Time). Check the time difference with your country.",
+          "Réinitialiser": "Reset",
+          "Terminer": "Done",
+          "Glissez les éléments ou utilisez les flèches pour choisir votre ordre.": "Drag items or use the arrows to choose their order.",
+          "Glisser pour déplacer": "Drag to move",
+          "Monter": "Move up",
+          "Descendre": "Move down",
+          "Outils du compte": "Account tools",
+          "Notifications de messagerie": "Messaging notifications",
+          "Navigation de mon espace client": "Client space navigation",
+          "Menu personnalisable": "Customizable menu",
+          "Calendrier des créneaux disponibles": "Available time slots calendar",
+          "Mes rendez-vous": "My appointments",
+          "Vérification des accès…": "Checking access…",
+          "Pied de page MADIC / MADIC footer": "MADIC footer",
+          "Liens du pied de page": "Footer links",
+          "Page à venir / Page coming soon": "Page coming soon",
+          "Déconnexion": "Sign out",
           Connexion: "Sign in",
           "Mon espace": "My space",
           "MON ESPACE": "MY SPACE",
@@ -620,6 +658,7 @@
               localStorage.setItem(key, code);
             } catch (_) {}
             apply();
+            if (typeof window.madicRdvRefreshLocale === "function") window.madicRdvRefreshLocale();
           });
           wrap.appendChild(b);
           buttons[code] = b;
@@ -644,9 +683,9 @@
           let node;
           while ((node = walker.nextNode())) {
             const raw = node.nodeValue,
-              word = raw.trim();
+              word = raw.trim().replace(/\s+/g, " ");
             if (Object.prototype.hasOwnProperty.call(map, word))
-              node.nodeValue = raw.replace(word, map[word]);
+              node.nodeValue = raw.replace(raw.trim(), map[word]);
           }
           for (const el of document.querySelectorAll(
             "[placeholder],[aria-label],[title]",
@@ -664,6 +703,7 @@
           for (const code of ["fr", "en"])
             buttons[code].setAttribute("aria-pressed", String(code === lang));
         }
+        window.madicTranslateAppointments = translate;
         apply();
       })();
     

@@ -2856,19 +2856,19 @@ body[data-page="cric-client-dashboard"] > header .madic-hero-notifications:hover
               display: none;
             }
 
-            html[lang="fr"] #page-formulaire .form-lang-fr {
+            html[lang^="fr"] #page-formulaire .form-lang-fr {
               display: inline;
             }
 
-            html[lang="fr"] #page-formulaire .form-lang-en {
+            html[lang^="fr"] #page-formulaire .form-lang-en {
               display: none;
             }
 
-            html[lang="en"] #page-formulaire .form-lang-fr {
+            html[lang^="en"] #page-formulaire .form-lang-fr {
               display: none;
             }
 
-            html[lang="en"] #page-formulaire .form-lang-en {
+            html[lang^="en"] #page-formulaire .form-lang-en {
               display: inline;
             }
           

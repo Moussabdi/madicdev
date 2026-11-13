@@ -306,26 +306,23 @@
         }
       });
   }
+     document.addEventListener('madic-contracts-language-changed', () => { if (!admin) renderClient(); });
      function renderClient() {
-     const dossierLabel=c=>{const d=dossiers.find(x=>x.id===c.dossier_id);return d?[d.reference,d.category].filter(Boolean).join(' - '):c.dossier_id?'Dossier associé (référence indisponible)':'Non renseigné';};
-     // Chaque instant est conserve en base; le navigateur du client determine son fuseau IANA.
+     const en=(()=>{try{return localStorage.getItem('madic-client-language')==='en';}catch(_){return document.documentElement.lang.toLowerCase().startsWith('en');}})();
+     const tr=(fr,english)=>en?english:fr;
+     const dossierLabel=c=>{const d=dossiers.find(x=>x.id===c.dossier_id);return d?[d.reference,d.category].filter(Boolean).join(' - '):c.dossier_id?tr('Dossier associé (référence indisponible)','Associated case (reference unavailable)'):tr('Non renseigné','Not specified');};
      const zone=Intl.DateTimeFormat().resolvedOptions().timeZone||'UTC';
-     const timestamp=x=>{if(!x)return '-';const d=new Date(x);if(Number.isNaN(d.getTime()))return '-';return new Intl.DateTimeFormat('fr-CA',{year:'numeric',month:'long',day:'numeric',hour:'2-digit',minute:'2-digit',timeZone:zone,timeZoneName:'short'}).format(d);};
-     // Historique complet : la liste est deja triee par created_at descendant.
-     // La version la plus recente est signalee pour chaque dossier.
+     const timestamp=x=>{if(!x)return '-';const d=new Date(x);if(Number.isNaN(d.getTime()))return '-';return new Intl.DateTimeFormat(en?'en-CA':'fr-CA',{year:'numeric',month:'long',day:'numeric',hour:'2-digit',minute:'2-digit',timeZone:zone,timeZoneName:'short'}).format(d);};
      const newest=new Set();
      const initialRows=initialContracts.map(c=>{
        const key=(c.space_id||'')+':'+(c.dossier_id||c.id);
-       const isLatest=!newest.has(key);
-       newest.add(key);
-       const signed=c.status==='signe';
-       const canSign=isLatest&&!signed;
-       const label=isLatest?'Version la plus récente':'Version antérieure';
-       return `<tr><td>Consultation initiale - ${esc(label)}</td><td>${esc(dossierLabel(c))}</td><td>${esc(timestamp(c.created_at))}</td><td>${esc(timestamp(c.client_signed_at||c.signed_at))}</td><td>${signed?'Signé':canSign?'Signature requise':'Version remplacée'}</td><td><a class="secondary madic-initial-open" href="contrat-initial-client.html?id=${encodeURIComponent(c.id)}">${canSign?'Consulter / signer':'Voir le contrat'}</a></td></tr>`;
+       const isLatest=!newest.has(key);newest.add(key);
+       const signed=c.status==='signe';const canSign=isLatest&&!signed;
+       const label=isLatest?tr('Version la plus récente','Latest version'):tr('Version antérieure','Previous version');
+       return `<tr><td>${tr('Consultation initiale','Initial consultation')} - ${esc(label)}</td><td>${esc(dossierLabel(c))}</td><td>${esc(timestamp(c.created_at))}</td><td>${esc(timestamp(c.client_signed_at||c.signed_at))}</td><td>${signed?tr('Signé','Signed'):canSign?tr('Signature requise','Signature required'):tr('Version remplacée','Superseded version')}</td><td><a class="secondary madic-initial-open" href="contrat-initial-client.html?id=${encodeURIComponent(c.id)}">${canSign?tr('Consulter / signer','Review / sign'):tr('Voir le contrat','View contract')}</a></td></tr>`;
      });
-     // Les contrats historiques restent visibles: ils proviennent d'une autre table.
-     const legacyRows=contracts.map(c=>`<tr><td>${esc(c.title||'Contrat de consultation')}</td><td>${esc(dossierLabel(c))}</td><td>${esc(timestamp(c.published_at||c.created_at))}</td><td>${esc(timestamp(c.signed_at))}</td><td>${esc(c.status==='signe'?'Signé':c.status==='publie'?'Signature requise':c.status==='brouillon'?'Brouillon':'Ancien contrat')}</td><td>${button(c.status==='publie'?'Signer le contrat':'Voir le contrat','view',c.id)}</td></tr>`);
-     root.innerHTML=`<h2>Mes contrats</h2><p>Dates et heures selon votre fuseau horaire (${esc(zone)}). Toutes les versions des contrats initiaux sont conservées, de la plus récente à la plus ancienne.</p><table><thead><tr><th>Contrat</th><th>Dossier</th><th>Transmission</th><th>Signature du client</th><th>État</th><th>Action</th></tr></thead><tbody>${initialRows.concat(legacyRows).join('')||'<tr><td colspan="6">Aucun contrat disponible.</td></tr>'}</tbody></table><div id="contract-preview"></div>`;
+     const legacyRows=contracts.map(c=>`<tr><td>${esc(c.title||tr('Contrat de consultation','Consultation contract'))}</td><td>${esc(dossierLabel(c))}</td><td>${esc(timestamp(c.published_at||c.created_at))}</td><td>${esc(timestamp(c.signed_at))}</td><td>${esc(c.status==='signe'?tr('Signé','Signed'):c.status==='publie'?tr('Signature requise','Signature required'):c.status==='brouillon'?tr('Brouillon','Draft'):tr('Ancien contrat','Previous contract'))}</td><td>${button(c.status==='publie'?tr('Signer le contrat','Sign contract'):tr('Voir le contrat','View contract'),'view',c.id)}</td></tr>`);
+     root.innerHTML=`<h2>${tr('Mes contrats','My contracts')}</h2><p>${tr('Dates et heures selon votre fuseau horaire','Dates and times in your time zone')} (${esc(zone)}). ${tr('Toutes les versions des contrats initiaux sont conservées, de la plus récente à la plus ancienne.','All versions of initial contracts are retained, from newest to oldest.')}</p><table><thead><tr><th>${tr('Contrat','Contract')}</th><th>${tr('Dossier','Case')}</th><th>${tr('Transmission','Sent')}</th><th>${tr('Signature du client','Client signature')}</th><th>${tr('État','Status')}</th><th>${tr('Action','Action')}</th></tr></thead><tbody>${initialRows.concat(legacyRows).join('')||`<tr><td colspan="6">${tr('Aucun contrat disponible.','No contracts available.')}</td></tr>`}</tbody></table><div id="contract-preview"></div>`;
    }
 function editContract(c) {
     const preview = root.querySelector("#contract-preview");
@@ -597,6 +594,7 @@ function editContract(c) {
       const value = el.getAttribute('data-' + language);
       if (el.textContent !== value) el.textContent = value;
     });
+    document.querySelectorAll('[data-fr-aria-label][data-en-aria-label], [data-fr-title][data-en-title]').forEach(el => { for (const attr of ['aria-label','title']) { const v=el.getAttribute('data-'+language+'-'+attr); if(v!==null) el.setAttribute(attr,v); } });
     buttons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.lang === language)));
     const root = document.getElementById('madic-contracts');
     if (!root) return;
@@ -610,6 +608,7 @@ function editContract(c) {
     language = button.dataset.lang === 'en' ? 'en' : 'fr';
     try { localStorage.setItem('madic-client-language', language); } catch (_) {}
     translate();
+    document.dispatchEvent(new CustomEvent('madic-contracts-language-changed'));
   }));
   translate();
 })();

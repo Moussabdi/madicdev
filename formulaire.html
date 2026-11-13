@@ -71,7 +71,7 @@
             class="madic-side-logo"
             src="img/logo-madic.svg"
           />
-          <div><strong>MADIC PORTAIL</strong><small>Espace client</small></div>
+          <div><strong>MADIC PORTAIL</strong><small data-i18n="form.clientSpace">Espace client</small></div>
         </div>
         <div class="madic-side-caption">MON ESPACE</div>
         <div class="madic-nav-controls">
@@ -511,7 +511,7 @@
                     <div class="errorMessage"></div>
                   </div>
                   <div class="marg-bot">
-                    <label for="madic_age_calcule">Âge / Age :</label>
+                    <label data-i18n="form.calculatedAge" for="madic_age_calcule">Âge :</label>
                     <input
                       aria-live="polite"
                       class="champs-large"
@@ -1629,7 +1629,7 @@
                   </div>
                   <div class="marg-bot">
                     <label for="rue"
-                      >Nom de la rue / Street name :
+                       data-i18n="form.streetName">Nom de la rue :
                       <span class="req">*</span></label
                     >
                     <input
@@ -1637,7 +1637,7 @@
                       class="champs-large"
                       id="rue"
                       name="rue"
-                      placeholder="Nom de la rue / Street name"
+                      data-i18n-placeholder="form.streetNamePlaceholder" placeholder="Nom de la rue"
                       required=""
                       type="text"
                     />
@@ -2979,18 +2979,17 @@
                     </div>
                   </fieldset>
                   <div class="marg-bot madic-signature-place">
-                    <label for="lieu_signature"
-                      >Lieu de signature du contrat (ville) :</label
+                    <label for="lieu_signature" data-i18n="form.signaturePlace">Lieu de signature du contrat (ville) :</label
                     >
                     <input
                       autocomplete="address-level2"
                       class="champs-large"
                       id="lieu_signature"
                       name="lieu_signature"
-                      placeholder="Ville où le contrat sera signé"
+                      data-i18n-placeholder="form.signaturePlacePlaceholder" placeholder="Ville où le contrat sera signé"
                       type="text"
                     />
-                    <p class="madic-signature-help">
+                    <p class="madic-signature-help" data-i18n="form.signatureHelp">
                       Cette information servira à préremplir le lieu de
                       signature de vos contrats. Vous pourrez la confirmer avant
                       la signature.
