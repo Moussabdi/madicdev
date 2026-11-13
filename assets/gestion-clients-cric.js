@@ -656,7 +656,9 @@
     if (!pending.length) return;
     if (
       !window.confirm(
-        `Envoyer ${pending.length} invitation(s) individuelles ? Les clients devront accepter leur invitation.`,
+        (window.MadicCricLanguage?.get?.() === "en"
+          ? `Send ${pending.length} individual invitation(s)? Clients must accept their invitations.`
+          : `Envoyer ${pending.length} invitation(s) individuelles ? Les clients devront accepter leur invitation.`),
       )
     )
       return;
@@ -878,6 +880,7 @@
     [/^(\d+) ligne\(s\) analysée\(s\), (\d+) invitation\(s\) prête\(s\)\. Vérifiez avant de confirmer\.$/i, (_,total,ready) => `${total} row(s) analyzed, ${ready} invitation(s) ready. Review before confirming.`],
     [/^Traitement\s*:\s*(\d+) envoyée\(s\), (\d+) déjà associé\(s\), (\d+) échec\(s\)\.$/i, (_,sent,existing,failed) => `Processing: ${sent} sent, ${existing} already associated, ${failed} failed.`],
     [/^Terminé\s*:\s*(\d+) invitation\(s\) envoyée\(s\), (\d+) déjà associé\(s\), (\d+) échec\(s\)\.$/i, (_,sent,existing,failed) => `Completed: ${sent} invitation(s) sent, ${existing} already associated, ${failed} failed.`],
+    [/\s+Terminé\s*:\s*(\d+) invitation\(s\) envoyée\(s\), (\d+) déjà associé\(s\), (\d+) échec\(s\)\.$/i, (_,sent,existing,failed) => ` Completed: ${sent} invitation(s) sent, ${existing} already associated, ${failed} failed.`],
     [/^Envoyer (\d+) invitation\(s\) individuelles \? Les clients devront accepter leur invitation\.$/i, (_,n) => `Send ${n} individual invitation(s)? Clients must accept their invitations.`],
     [/^Espace professionnel\s*:\s*/i, 'Professional workspace: '],
     [/^Impossible de (?:charger les données|vérifier le profil professionnel)\s*:/i, text => text.replace('charger les données','load data').replace('vérifier le profil professionnel','verify professional profile').replace('Impossible de','Unable to')],
@@ -911,6 +914,12 @@
     if (Object.prototype.hasOwnProperty.call(dictionary, text)) return dictionary[text];
     for (const [pattern, replacement] of patterns) {
       if (pattern.test(text)) return text.replace(pattern, replacement);
+    }
+    // Mixed status text is assembled from multiple messages by the import workflow.
+    const compound = text.match(/^(.*?)(?:\s+)Terminé\s*:\s*(\d+) invitation\(s\) envoyée\(s\), (\d+) déjà associé\(s\), (\d+) échec\(s\)\.$/i);
+    if (compound) {
+      const prefix = toEnglish(compound[1]);
+      return `${prefix} Completed: ${compound[2]} invitation(s) sent, ${compound[3]} already associated, ${compound[4]} failed.`;
     }
     return value;
   }

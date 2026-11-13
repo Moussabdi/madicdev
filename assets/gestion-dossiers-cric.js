@@ -428,13 +428,19 @@
       el.title = el.dataset.lang === 'fr' ? 'Français' : 'English';
       return;
     }
-    if (ignored({parentElement:el})) return;
+    if (el.closest('script,style,code,pre,[contenteditable="true"],.madic-lang-controls')) return;
     let source = originalAttrs.get(el);
     let previous = renderedAttrs.get(el);
     if (!source) { source = {}; originalAttrs.set(el, source); }
     if (!previous) { previous = {}; renderedAttrs.set(el, previous); }
     for (const attr of attrs) {
       if (!el.hasAttribute(attr)) continue;
+      const explicit = el.getAttribute(lang === 'en' ? 'data-en-' + attr : 'data-fr-' + attr);
+      if (explicit !== null) {
+        if (el.getAttribute(attr) !== explicit) el.setAttribute(attr, explicit);
+        previous[attr] = explicit;
+        continue;
+      }
       const current = el.getAttribute(attr);
       if (!(attr in source) || previous[attr] !== current) source[attr] = current;
       const next = localized(source[attr]);
