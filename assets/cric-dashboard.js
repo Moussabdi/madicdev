@@ -1420,6 +1420,9 @@
     "Afficher / masquer l’historique des notifications":
       "Show / hide notification history",
     "🔔 Mes rappels prioritaires": "🔔 My priority reminders",
+    "Mes rappels prioritaires": "My priority reminders",
+    "Aucune échéance dépassée ou prévue dans les 7 prochains jours.": "No overdue deadlines or deadlines due in the next 7 days.",
+    "Aujourd’hui": "Today", "Aujourd'hui": "Today",
     "Voir toutes les échéances →": "View all deadlines →",
     "Chargement des rappels…": "Loading reminders…",
     "Personnalisez les invitations de votre cabinet avec vos coordonnées et votre logo.":
@@ -1528,9 +1531,10 @@
     if (!originals.has(node) || (rendered.has(node) && rendered.get(node) !== raw)) originals.set(node, raw);
     const source = originals.get(node);
     const trimmed = source.trim();
+    const normalized = trimmed.replace(/\s+/g, " ");
     let result = source;
     if (lang === "en") {
-      let target = dictionary[trimmed];
+      let target = dictionary[trimmed] || dictionary[normalized];
       if (!target && /^Bienvenue,\s*/.test(trimmed)) target = trimmed.replace(/^Bienvenue/, "Welcome");
       if (!target && /^Espace professionnel\s*:/.test(trimmed)) target = trimmed.replace(/^Espace professionnel/, "Professional workspace");
       if (!target && /^Numéro CRIC\s*:/.test(trimmed))
@@ -1557,6 +1561,12 @@
           target = `Payment - ${match[1]} - ${match[2]} day(s) overdue ${match[3]}`;
         else if ((match = trimmed.match(/^(Consultation initiale|Proposition personnalisée) · (.+)$/)))
           target = `${dictionary[match[1]] || match[1]} · ${match[2]}`;
+      }
+      if (!target && /Dépassée? de \d+ jour\(s\)/.test(trimmed)) {
+        target = normalized.replace(/Dépassée? de (\d+) jour\(s\)/g, "$1 day(s) overdue").replace(/^Paiement\b/, "Payment");
+      }
+      if (!target && /^(.+?) - (.+?) - (Aujourd.hui|Dans \d+ jour\(s\)) \(\d{4}-\d{2}-\d{2}\)$/.test(normalized)) {
+        target = normalized.replace(/^Paiement\b/, "Payment").replace(/ - Dossier - /, " - Case - ").replace(/Aujourd.hui/, "Today").replace(/Dans (\d+) jour\(s\)/, "In $1 day(s)");
       }
       if (target) result = source.replace(trimmed, target);
     } else {
