@@ -1505,7 +1505,12 @@
     "Consulter la messagerie": "Open messaging", "Fermer": "Close", "Dossier": "Case",
     "Aucun CRIC inscrit.": "No registered RCIC.", "Décision enregistrée": "Decision saved",
     "Autoriser": "Approve", "Refuser": "Reject", "En attente": "Pending",
-    "Choisir un client": "Select a client", "Statut de la demande": "Request status",
+    "Choisir un client": "Select a client", "Sélectionnez un client.": "Select a client.",
+    "Formulaire non soumis : création impossible.": "Form not submitted: request cannot be created.",
+    "Une demande existe déjà : création bloquée.": "A request already exists: creation blocked.",
+    "Formulaire soumis : demande autorisée.": "Form submitted: request can be created.",
+    "Connexion d'un client": "Client login",
+    "Statut de la demande": "Request status",
     "Consultation initiale": "Initial consultation", "Proposition personnalisée": "Customized proposal",
     "Rappel": "Reminder", "Paiement": "Payment", "Dépassé": "Overdue", "disponible(s)": "available",
     "Messages": "Messages", "Mon profil professionnel": "My professional profile",
@@ -1520,6 +1525,7 @@
   function translateText(node) {
     if (
       !node.parentElement ||
+      node.parentElement.closest(".madic-cric-notification time") ||
       node.parentElement.closest(
         'script,style,textarea,[contenteditable="true"],.madic-lang-controls',
       )
@@ -1568,6 +1574,13 @@
       if (!target && /^(.+?) - (.+?) - (Aujourd.hui|Dans \d+ jour\(s\)) \(\d{4}-\d{2}-\d{2}\)$/.test(normalized)) {
         target = normalized.replace(/^Paiement\b/, "Payment").replace(/ - Dossier - /, " - Case - ").replace(/Aujourd.hui/, "Today").replace(/Dans (\d+) jour\(s\)/, "In $1 day(s)");
       }
+      // Notifications are returned by the database in French; translate their
+      // display text without altering stored content or client names.
+      if (!target && /Un client de votre cabinet s.est connect[eé] [aà] son portail MADIC\.?/i.test(trimmed)) {
+        target = normalized.replace(/Un client de votre cabinet s.est connect[eé] [aà] son portail MADIC\.?/gi,
+          "A client from your practice signed in to their MADIC portal.");
+      }
+      if (!target && /^Connexion d[’']un client$/i.test(trimmed)) target = "Client login";
       if (target) result = source.replace(trimmed, target);
     } else {
       // Restore French when business scripts generated English content or data attributes.
@@ -1601,6 +1614,15 @@
       if (el.matches("input,textarea")) return;
       const translated = el.getAttribute("data-" + lang);
       if (translated !== null && el.textContent !== translated) el.textContent = translated;
+    });
+    root.querySelectorAll(".madic-cric-notification time[datetime]").forEach((el) => {
+      const date = new Date(el.dateTime);
+      if (!Number.isNaN(date.getTime())) {
+        const value = new Intl.DateTimeFormat(lang === "en" ? "en-CA" : "fr-CA", {
+          timeZone: "America/Toronto", dateStyle: "medium", timeStyle: "short"
+        }).format(date);
+        if (el.textContent !== value) el.textContent = value;
+      }
     });
     root
       .querySelectorAll("[placeholder],[title],[aria-label]")
