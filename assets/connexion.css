@@ -367,3 +367,13 @@ footer.madic-footer {
 
 .madic-footer,.madic-footer *{box-sizing:border-box}.madic-footer{font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;text-align:left}.madic-footer a:focus-visible{outline:3px solid #efb544;outline-offset:3px}
 
+
+/* Active FR/EN language button */
+.madic-lang-switch button[aria-pressed="true"],
+.madic-language-switch button[aria-pressed="true"],
+.madic-footer-langs button[aria-pressed="true"] {
+  background: #5ad5f2;
+  border-color: #5ad5f2;
+  color: #09264a;
+  font-weight: 700;
+}
