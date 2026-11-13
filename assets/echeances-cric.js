@@ -388,7 +388,7 @@ window.getMadicSupabase = function () {
     if (
       !dossiers.some((x) => x.id === dossier_id) ||
       !title ||
-      !/^\d{4}-\d{2}-\d{2}$/.test(due_date)
+      !/^\d{4}-\d{2}-\d{2}$/.test(due_date) || due_date < (() => { const d = new Date(); return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`; })()
     )
       return say("Vérifiez le dossier, la description et la date.");
     const submitButton = e.submitter || $("deadlineForm").querySelector("button[type=submit]");
@@ -540,7 +540,7 @@ window.getMadicSupabase = function () {
       const next=document.createElement('button'); next.type='button'; next.textContent='›'; next.setAttribute('aria-label',getLang()==='en'?'Next month':'Mois suivant');
       const label=document.createElement('strong'); label.textContent=shown.toLocaleDateString(locale(),{month:'long',year:'numeric'});
       const current = new Date();
-      const atCurrentMonth = false;
+      const atCurrentMonth = shown.getFullYear() === current.getFullYear() && shown.getMonth() <= current.getMonth();
       prev.disabled = atCurrentMonth;
       prev.onclick=()=>{if(atCurrentMonth)return;shown=new Date(shown.getFullYear(),shown.getMonth()-1,1);paint()};
       next.onclick=()=>{shown=new Date(shown.getFullYear(),shown.getMonth()+1,1);paint()};
@@ -555,6 +555,7 @@ window.getMadicSupabase = function () {
         const date=new Date(shown.getFullYear(),shown.getMonth(),day);
         const el=document.createElement('button');el.type='button';el.textContent=String(day);
         
+        if(dateValue(date)<todayIso()){el.disabled=true;el.className='madic-past-day'}
         if(dateValue(date)===hidden.value)el.className='selected';
         el.onclick=()=>{if(el.disabled)return;hidden.value=dateValue(date);panel.hidden=true;button.setAttribute('aria-expanded','false');paint()};
         grid.append(el);
@@ -563,7 +564,7 @@ window.getMadicSupabase = function () {
       const clear=document.createElement('button');clear.type='button';clear.className='madic-cal-clear';clear.textContent=getLang()==='en'?'Clear':'Effacer';
       clear.onclick=()=>{hidden.value='';panel.hidden=true;button.setAttribute('aria-expanded','false');paint()};panel.append(clear);
     }
-    button.onclick=()=>{shown=hidden.value ? new Date(hidden.value+'T12:00:00') : new Date();panel.hidden=!panel.hidden;button.setAttribute('aria-expanded',String(!panel.hidden));paint()};
+    button.onclick=()=>{if(hidden.value && hidden.value<todayIso())hidden.value='';shown=hidden.value ? new Date(hidden.value+'T12:00:00') : new Date();panel.hidden=!panel.hidden;button.setAttribute('aria-expanded',String(!panel.hidden));paint()};
     document.addEventListener('click',e=>{if(!e.target.closest('#madicDeadlineCalendar')){panel.hidden=true;button.setAttribute('aria-expanded','false')}});
     document.addEventListener('keydown',e=>{if(e.key==='Escape'){panel.hidden=true;button.setAttribute('aria-expanded','false')}});
     document.addEventListener('madic:languagechange',paint);
