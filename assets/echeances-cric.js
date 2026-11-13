@@ -573,3 +573,27 @@ window.getMadicSupabase = function () {
   }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',setup,{once:true});else setup();
 })();
+
+
+/* MADIC: localized required-field validation independent of browser UI language. */
+(() => {
+  const init = () => {
+    const form = document.getElementById('deadlineForm');
+    if (!form) return;
+    const fields = [...form.querySelectorAll('input[required], select[required]')].filter(el => el.type !== 'hidden');
+    const language = () => window.MadicCricLanguage?.get?.() === 'en' || document.documentElement.lang.toLowerCase().startsWith('en') ? 'en' : 'fr';
+    const reset = el => el.setCustomValidity('');
+    fields.forEach(el => {
+      el.addEventListener('invalid', () => {
+        if (el.validity.valueMissing || !el.value.trim()) {
+          el.setCustomValidity(language() === 'en' ? 'Please fill out this field.' : 'Veuillez renseigner ce champ.');
+        }
+      });
+      el.addEventListener('input', () => reset(el));
+      el.addEventListener('change', () => reset(el));
+    });
+    document.addEventListener('madic:languagechange', () => fields.forEach(reset));
+  };
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init, {once:true});
+  else init();
+})();

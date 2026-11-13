@@ -3,7 +3,8 @@
 window.MADIC_CRIC_I18N=(()=>{
  const storageKey='madic:lang';let language='fr';
  const phrases={"Profil du client chargé. Recherche des renseignements du formulaire préliminaire…": "Client profile loaded. Retrieving preliminary intake information…", "Profil et formulaire préliminaire chargés. Vérifiez les renseignements avant signature.": "Client profile and preliminary intake loaded. Verify details before signing.", "Profil du client chargé. Aucun formulaire préliminaire accessible; complétez les champs manquants.": "Client profile loaded. No preliminary intake available; complete missing fields.", "Aucune formule de consultation enregistrée pour ce client. Le contrat ne peut pas être publié.": "No consultation plan is recorded for this client. The agreement cannot be published.", "À compléter": "To be completed", "À convenir": "To be agreed", "Ville de signature": "City of signing", "Une version précédente existe et restera conservée. Vous pouvez publier une nouvelle version.": "A previous version exists and will be retained. You may publish a new version.", "Impossible de vérifier les contrats existants. La transmission est temporairement bloquée.": "Unable to verify existing agreements. Sending is temporarily blocked.", "Signer et transmettre une nouvelle version": "Sign and send a new version", "Signer et transmettre au client": "Sign and send to client", "Contrat de consultation initiale": "Initial consultation agreement", "CONTRAT DE CONSULTATION INITIALE À TAUX FORFAITAIRE": "FLAT-FEE INITIAL CONSULTATION AGREEMENT", "CONTRAT DE CONSULTATION INITIALE À TAUX HORAIRE": "HOURLY INITIAL CONSULTATION AGREEMENT", "Aucune formule enregistrée : publication bloquée": "No plan recorded: publication blocked", "Renseignements à compléter": "Information to complete", "Continuer la saisie": "Continue editing", "Veuillez confirmer votre signature avant de transmettre le contrat.": "Please confirm your signature before sending the agreement.", "Le document contient encore « À compléter ». Verifiez les champs et les informations du profil CRIC.": "The document still contains “To be completed”. Check the fields and RCIC profile information.", "Publication en cours…": "Publishing…", "Signature électronique du consultant (aperçu, non encore publiée)": "Consultant electronic signature (preview, not yet published)", "Chargement du nom officiel": "Loading official name", "Client": "Client", "Courriel": "Email", "Téléphone": "Phone", "Adresse": "Address", "Date de naissance": "Date of birth", "Date du contrat": "Agreement date", "Lieu": "Place", "Dossier": "Case", "Objet": "Purpose", "Honoraires": "Fees"};
- const translateText=(value)=>{if(language==='fr')return value;const raw=String(value||'');const key=raw.trim().replace(/\s+/g,' ');return phrases[key]||raw};
+ Object.assign(phrases,{'Client non identifié':'Client not identified','Stockage local indisponible : les logos ne seront pas conservés.':'Local storage unavailable: logos will not be retained.','Logo mis à jour et conservé sur ce navigateur pour cet espace CRIC.':'Logo updated and saved in this browser for this RCIC workspace.','Espace de stockage insuffisant : choisissez une image plus légère.':'Insufficient storage space: choose a smaller image.','Le logo du cabinet se modifie dans Mon profil professionnel.':'Change the practice logo in My professional profile.','Logo par défaut rétabli pour cet espace CRIC.':'Default logo restored for this RCIC workspace.','Le site Web doit être une URL HTTPS valide.':'The website must be a valid HTTPS URL.','Profil professionnel introuvable ou modification non autorisée.':'Professional profile not found or changes not authorized.','Coordonnées du cabinet enregistrées dans votre profil professionnel.':'Practice contact details saved to your professional profile.','Inscription CRIC approuvée introuvable.':'Approved RCIC registration not found.','Profil professionnel introuvable. Complétez votre profil professionnel avant de créer un contrat.':'Professional profile not found. Complete your professional profile before creating an agreement.','Identité CRIC non vérifiée.':'RCIC identity not verified.','Identité CRIC modifiée : rechargez la page.':'RCIC identity changed: reload the page.','Logo professionnel non chargé. Vérifiez le profil CRIC.':'Professional logo not loaded. Check the RCIC profile.','Emplacement de signature du CRIC introuvable.':'RCIC signature area not found.','Sélectionner un dossier':'Select a case','Profil chargé; formulaire préliminaire non accessible : ':'Profile loaded; preliminary intake unavailable: ','Profil chargé, mais lecture du formulaire préliminaire impossible : ':'Profile loaded, but preliminary intake could not be read: ','Tél. : ':'Tel.: ','Compléter : ':'Complete: ','Champ issu du profil CRIC : modifiez-le dans Mon profil professionnel, puis rechargez le contrat.':'This field comes from the RCIC profile: update it in My professional profile, then reload the agreement.','Transmission bloquée : vérification indisponible.':'Sending blocked: verification unavailable.','Complétez les renseignements indiqués pour transmettre le contrat.':'Complete the indicated information before sending the agreement.','Publication bloquée : profil non enregistré : ':'Publication blocked: profile not saved: ','Publication bloquee : ':'Publication blocked: ','Sélectionnez un client et un dossier avant la publication.':'Select a client and case before publication.','Publier cette version du contrat dans l’espace du client ? Elle ne pourra plus être modifiée après activation.':'Publish this version of the agreement to the client workspace? It cannot be changed after activation.','Nouvelle version publiée pour le client. Référence : ':'New version published for the client. Reference: ','Ce contrat est déjà transmis au client.':'This agreement has already been sent to the client.','Transmission impossible : ':'Unable to send: ','Signature électronique du consultant · ':'Consultant electronic signature · ','Veuillez compléter les ':'Please complete the ',' renseignement(s) ci-dessous avant de poursuivre.':' item(s) below before continuing.','Aucune formule enregistrée : publication bloquée':'No plan recorded: publication blocked','À taux horaire - 159 $ US/heure':'Hourly rate - US$159/hour','À taux forfaitaire - Personne célibataire : 599 $ US':'Flat fee - Single person: US$599','À taux forfaitaire - Couple : 749 $ US':'Flat fee - Couple: US$749'});
+ const translateText=(value)=>{if(language==='fr')return value;const raw=String(value||'');const key=raw.trim().replace(/\s+/g,' ');if(phrases[key])return phrases[key];let translated=raw;for(const [fr,en] of Object.entries(phrases).sort((a,b)=>b[0].length-a[0].length)){if(fr.length>7&&translated.includes(fr))translated=translated.split(fr).join(en)}return translated};
  const apply=(root=document)=>{
   document.documentElement.lang=language==='en'?'en-CA':'fr-CA';
   root.querySelectorAll('[data-fr][data-en]').forEach(el=>{const v=el.getAttribute('data-'+language);if(el.children.length===0)el.textContent=v;else if(el.matches('[data-aria-label-fr]')){} });
@@ -166,7 +167,7 @@ window.MADIC_CONTRAT_PREFILL = (() => {
 const logoSlots=[{key:'cric',input:'contractLogoCric',image:'contractLogoCricPreview',reset:'contractLogoCricReset'},{key:'professional',input:'contractLogoProfessional',image:'contractLogoProfessionalPreview',reset:'contractLogoProfessionalReset'}];
 const logoDefaults={};
 function logoStorageKey(slot){return 'madic:contract-logo:'+spaceId+':'+slot.key}
-function logoNotice(text,bad=false){const el=$('contractLogoStatus');if(el){el.textContent=text;el.style.color=bad?'#b42318':''}}
+function logoNotice(text,bad=false){const el=$('contractLogoStatus');if(el){el.textContent=window.MADIC_CRIC_I18N.t(text);el.style.color=bad?'#b42318':''}}
 function syncProfessionalPageLogos(){for(const [id,cls] of [['contractLogoCricPreview','.madic-logo-cric-repeat'],['contractLogoProfessionalPreview','.madic-logo-professional-repeat']]){const src=$(id)?.getAttribute('src')||'';document.querySelectorAll(cls).forEach(img=>{if(src)img.src=src;else img.removeAttribute('src')});}}
 function applyLogo(slot,data){const image=$(slot.image);if(image){const src=data||logoDefaults[slot.key];if(src)image.src=src;else image.removeAttribute('src');syncProfessionalPageLogos()}}
 function setupLogos(){
@@ -272,7 +273,7 @@ function showConsultantSignature(doc,signature){
   target.textContent=signature.name;
   target.classList.add('madic-signed-name');
   const stamp=doc.querySelector('#cricSignatureTimestamp');
-  if(stamp)stamp.textContent='Signature électronique du consultant · '+(signature.city?signature.city+' · ':'')+new Intl.DateTimeFormat('fr-CA',{year:'numeric',month:'short',day:'numeric',hour:'2-digit',minute:'2-digit',second:'2-digit',timeZone:consultantTimeZone(),timeZoneName:'short'}).format(new Date(signature.signed_at));
+  if(stamp)stamp.textContent=window.MADIC_CRIC_I18N.t('Signature électronique du consultant · ')+(signature.city?signature.city+' · ':'')+new Intl.DateTimeFormat(window.MADIC_CRIC_I18N.language==='en'?'en-CA':'fr-CA',{year:'numeric',month:'short',day:'numeric',hour:'2-digit',minute:'2-digit',second:'2-digit',timeZone:consultantTimeZone(),timeZoneName:'short'}).format(new Date(signature.signed_at));
 }
 
 
@@ -366,7 +367,7 @@ function message(s){status.textContent=window.MADIC_CRIC_I18N.t(s)}function opti
  const version=++selectionVersion;
  const select=$('contractClient'), dossierSelect=$('contractDossier');
  const c=clients.find(x=>String(x.id)===select.value);
- dossierSelect.replaceChildren(new Option('Sélectionner un dossier',''));
+ dossierSelect.replaceChildren(new Option(window.MADIC_CRIC_I18N.t('Sélectionner un dossier'),''));
  for(const d of dossiers.filter(x=>x.client_id===c?.id))option(dossierSelect,d.id,`${d.reference}-${d.category||''}`);
  const keys=['nom','prenom','courriel','telephone','adresse','naissance','lieu',...(isInitial?['objet']:[])];
  for(const key of keys)if(f.namedItem(key))f.namedItem(key).value='';
@@ -458,8 +459,26 @@ function showCompletionGuide(force=false){
  if(!incomplete){const modal=$('madicCompletionOverlay');if(modal)modal.hidden=true;reminderDismissed=false;return true}
  if(!force&&reminderDismissed)return false;
  const modal=ensureGuide(),list=$('madicCompletionList');list.replaceChildren();
- $('madicCompletionText').textContent=`Veuillez compléter les ${missing.length} renseignement(s) ci-dessous avant de poursuivre.`;
- for(const key of missing){const btn=document.createElement('button');btn.type='button';btn.textContent='Compléter : '+(fieldLabels[key]||key);btn.addEventListener('click',()=>{modal.hidden=true;const input=key==='client_id'?$('contractClient'):key==='dossier_id'?$('contractDossier'):(key==='cricSignatureCity'?$('cricSignatureCity'):f.namedItem(key));input?.scrollIntoView({behavior:'smooth',block:'center'});if(!input?.readOnly)input?.focus();else message('Champ issu du profil CRIC : modifiez-le dans Mon profil professionnel, puis rechargez le contrat.');});list.append(btn)}
+ $('madicCompletionText').textContent=window.MADIC_CRIC_I18N.language==='en'?`Please complete the ${missing.length} item(s) below before continuing.`:`Veuillez compléter les ${missing.length} renseignement(s) ci-dessous avant de poursuivre.`;
+ for(const key of missing){
+  const btn=document.createElement('button');btn.type='button';
+  const en=window.MADIC_CRIC_I18N.language==='en';
+  btn.textContent=key==='tarif'&&isInitial
+    ?(en?'Unavailable: client-selected consultation plan':'Indisponible : formule de consultation choisie par le client')
+    :window.MADIC_CRIC_I18N.t('Compléter : ')+window.MADIC_CRIC_I18N.t(fieldLabels[key]||key);
+  btn.addEventListener('click',()=>{
+    modal.hidden=true;
+    if(key==='tarif'&&isInitial){
+      const display=$('madicInitialTariffDisplay');
+      display?.scrollIntoView({behavior:'smooth',block:'center'});
+      message(en?'No consultation plan could be retrieved for this client. Verify the plan recorded in the client’s initial service request. This amount cannot be edited in the agreement.':'Aucune formule de consultation n’a pu être récupérée pour ce client. Vérifiez la formule enregistrée dans sa demande initiale de service. Ce montant ne peut pas être modifié dans le contrat.');
+      return;
+    }
+    const input=key==='client_id'?$('contractClient'):key==='dossier_id'?$('contractDossier'):(key==='cricSignatureCity'?$('cricSignatureCity'):f.namedItem(key));
+    input?.scrollIntoView({behavior:'smooth',block:'center'});
+    if(!input?.readOnly)input?.focus();else message('Champ issu du profil CRIC : modifiez-le dans Mon profil professionnel, puis rechargez le contrat.');
+  });list.append(btn)
+}
  if(hasPlaceholder&&!missing.length){const p=document.createElement('p');p.textContent='Le document contient encore « À compléter ». Verifiez les champs et les informations du profil CRIC.';list.append(p)}
  modal.hidden=false;$('madicCompletionClose').focus();return false;
 }
@@ -508,7 +527,7 @@ function setupIrccFees(){
  $('madicBioCategory')?.addEventListener('change',()=>applyIrccFees(true));
  loadIrccFees().catch(e=>irccNotice('Tarifs IRCC non vérifiés : '+(e?.message||e),true));
 }
-function irccNotice(text,error=false){const node=$('madicIrccStatus');if(node){node.textContent=text;node.dataset.error=String(error)}}
+function irccNotice(text,error=false){const node=$('madicIrccStatus');if(node){node.textContent=window.MADIC_CRIC_I18N.t(text);node.dataset.error=String(error)}}
 function applyIrccFees(categoryChanged=false){
  if(!irccFeeRates)return;
  const category=$('madicBioCategory')?.value||'personne';
@@ -536,3 +555,21 @@ async function loadIrccFees(){
 }
 
 async function init(){if(!db){message('Configuration Supabase indisponible.');return}try{const {data:auth,error:ae}=await db.auth.getUser();if(ae||!auth?.user)throw Error('Connexion professionnelle requise.');const uid=auth.user.id;const {data:app,error:ap}=await db.from('madic_cric_applications').select('status').eq('user_id',uid).maybeSingle();if(ap||app?.status!=='approved')throw Error('Compte CRIC non approuvé.');const {data:spaces,error:se}=await db.from('madic_cric_spaces').select('id,access_status').eq('owner_user_id',uid).limit(1);if(se||!spaces?.length||spaces[0].access_status!=='active')throw Error('Espace professionnel indisponible.');spaceId=spaces[0].id;setupLogos();setupProfessional();setupIrccFees();const {data:allowed,error:pe}=await db.rpc('madic_can_manage_cric_space',{p_space_id:spaceId});if(pe||allowed!==true)throw Error('Accès non autorisé.');await loadOfficialIdentity(uid);const {data:associations,error:ce}=await db.from('madic_cric_clients').select('client_id').eq('space_id',spaceId);if(ce)throw ce;const ids=[...new Set((associations||[]).map(x=>x.client_id))];if(ids.length){const {data:profiles,error:pr}=await db.from('profiles').select('*').in('id',ids);if(pr)throw pr;clients=profiles||[]}const {data:ds,error:de}=await db.from('dossiers').select('id,client_id,reference,category').eq('space_id',spaceId);if(de)throw de;dossiers=(ds||[]).filter(x=>ids.includes(x.client_id));for(const c of clients)option($('contractClient'),c.id,clientName(c));$('contractClient').addEventListener('change',async()=>{await chooseClient();reminderDismissed=false});$('contractDossier').addEventListener('change',()=>{publishedSignature=null;preview();if(isInitial)checkExistingInitialContract().catch(e=>message('Vérification du contrat : '+e.message))});$('contractPreview').addEventListener('click',preview);form.addEventListener('input',()=>{publishedSignature=null;preview()});$('contractPrint').addEventListener('click',async()=>{if(!showCompletionGuide(true))return;clearTimeout(saveTimer);try{await saveProfessional()}catch(e){message('Impression bloquée : profil non enregistré : '+e.message);return}try{verifyIdentity()}catch(e){message('Impression bloquée : '+e.message);return}if(!form.reportValidity())return;preview();window.print()});$('cricSignatureCity')?.addEventListener('input',()=>{publishedSignature=null;preview()});$('cricSignatureConsent')?.addEventListener('change',()=>{publishedSignature=null;preview()});if(isInitial)$('contractActivate')?.addEventListener('click',activateInitialContract);f.date.value=new Date().toLocaleDateString('en-CA');if(params.get('client')&&clients.some(c=>c.id===params.get('client')))$('contractClient').value=params.get('client');await chooseClient();$('contractWorkspace').hidden=false;setTimeout(()=>showCompletionGuide(false),0)}catch(e){message('Accès impossible : '+(e.message||e))}}init()})();
+/* Keep file selection labels aligned with MADIC language, not browser locale. */
+(()=>{
+ const ids=['contractLogoCric','contractLogoProfessional'];
+ function refresh(){
+  const lang=window.MADIC_CRIC_I18N?.language==='en'?'en':'fr';
+  for(const id of ids){
+   const input=document.getElementById(id);if(!input)continue;
+   const picker=input.closest('.madic-contract-file-picker');if(!picker)continue;
+   const name=picker.querySelector('.madic-contract-file-name');
+   if(name)name.textContent=input.files?.[0]?.name||(lang==='en'?'No file selected':'Aucun fichier choisi');
+  }
+ }
+ document.addEventListener('DOMContentLoaded',()=>{
+  for(const id of ids){const input=document.getElementById(id);if(input){input.addEventListener('change',refresh);input.addEventListener('click',()=>{});}}
+  refresh();
+ });
+ document.addEventListener('madic:languagechange',refresh);
+})();
