@@ -145,7 +145,7 @@ window.getMadicSupabase = function () {
     day.min = now.slice(0, 10);
     if (day.value && day.value < day.min) day.value = "";
     const previous = hour.value;
-    hour.replaceChildren(new Option("Choisir une heure", ""));
+    hour.replaceChildren(new Option(english() ? "Choose a time" : "Choisir une heure", ""));
     if (day.value) {
       for (let h = 0; h < 24; h++) {
         const hh = String(h).padStart(2, "0");
@@ -153,7 +153,7 @@ window.getMadicSupabase = function () {
         try {
           const instant = localToIso(local);
           if (Date.parse(instant) <= Date.now()) continue;
-          hour.add(new Option(`${hh} h 00`, hh));
+          hour.add(new Option(english() ? new Date(2020, 0, 1, h).toLocaleTimeString("en-CA", {hour:"numeric",minute:"2-digit",hour12:true}) : `${hh} h 00`, hh));
         } catch (_) {
           /* Heure inexistante ou ambigue lors du changement d'heure. */
         }
@@ -1728,4 +1728,59 @@ window.getMadicSupabase = function () {
   window.addEventListener('focus',()=>{void refresh();});
   document.addEventListener('visibilitychange',()=>{if(!document.hidden)void refresh();});
   window.setInterval(()=>{void refresh();},30000);
+})();
+
+
+/* MADIC: bilingual date picker; existing #slotDate ISO value and listeners remain intact. */
+(() => {
+  const pad = n => String(n).padStart(2, '0');
+  const iso = d => `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+  const lang = () => window.MadicCricLanguage?.get?.() === 'en' ? 'en' : 'fr';
+  const locale = () => lang() === 'en' ? 'en-CA' : 'fr-CA';
+  function setup() {
+    const input = document.getElementById('slotDate');
+    const button = document.getElementById('madicRdvDateToggle');
+    const panel = document.getElementById('madicRdvDatePanel');
+    if (!input || !button || !panel) return;
+    let shown = new Date();
+    const today = () => input.min || iso(new Date());
+    const close = () => { panel.hidden = true; button.setAttribute('aria-expanded', 'false'); };
+    const label = () => input.value ? new Date(input.value + 'T12:00:00').toLocaleDateString(locale(), {year:'numeric',month:'short',day:'numeric'}) : (lang()==='en' ? 'Select a date' : 'Choisir une date');
+    function paint() {
+      button.textContent = label();
+      const aria = lang()==='en' ? 'Choose start date' : 'Choisir la date de début';
+      button.setAttribute('aria-label', aria); panel.setAttribute('aria-label', aria);
+      panel.replaceChildren();
+      const header = document.createElement('div'); header.className='madic-cal-head';
+      const prev=document.createElement('button'); prev.type='button'; prev.textContent='‹'; prev.setAttribute('aria-label',lang()==='en'?'Previous month':'Mois précédent');
+      const next=document.createElement('button'); next.type='button'; next.textContent='›'; next.setAttribute('aria-label',lang()==='en'?'Next month':'Mois suivant');
+      const heading=document.createElement('strong'); heading.textContent=shown.toLocaleDateString(locale(),{month:'long',year:'numeric'});
+      const firstAllowed=today().slice(0,7); prev.disabled=iso(new Date(shown.getFullYear(),shown.getMonth(),1)).slice(0,7)<=firstAllowed;
+      prev.onclick=()=>{shown=new Date(shown.getFullYear(),shown.getMonth()-1,1);paint()};
+      next.onclick=()=>{shown=new Date(shown.getFullYear(),shown.getMonth()+1,1);paint()};
+      header.append(prev,heading,next);panel.append(header);
+      const grid=document.createElement('div');grid.className='madic-cal-grid';
+      (lang()==='en'?['Sun','Mon','Tue','Wed','Thu','Fri','Sat']:['dim.','lun.','mar.','mer.','jeu.','ven.','sam.']).forEach(s=>{const el=document.createElement('span');el.textContent=s;grid.append(el)});
+      const first=new Date(shown.getFullYear(),shown.getMonth(),1).getDay();
+      for(let i=0;i<first;i++)grid.append(document.createElement('span'));
+      const count=new Date(shown.getFullYear(),shown.getMonth()+1,0).getDate();
+      for(let d=1;d<=count;d++){
+        const date=iso(new Date(shown.getFullYear(),shown.getMonth(),d));
+        const el=document.createElement('button');el.type='button';el.textContent=String(d);
+        if(date<today()){el.disabled=true;el.className='madic-past-day'}
+        if(date===input.value)el.className='selected';
+        el.onclick=()=>{input.value=date;input.dispatchEvent(new Event('change',{bubbles:true}));close();paint()};grid.append(el);
+      }
+      panel.append(grid);
+      const clear=document.createElement('button');clear.type='button';clear.className='madic-cal-clear';clear.textContent=lang()==='en'?'Clear':'Effacer';
+      clear.onclick=()=>{input.value='';input.dispatchEvent(new Event('change',{bubbles:true}));close();paint()};panel.append(clear);
+    }
+    button.onclick=()=>{if(input.value && input.value<today()){input.value='';input.dispatchEvent(new Event('change',{bubbles:true}))}shown=input.value?new Date(input.value+'T12:00:00'):new Date();panel.hidden=!panel.hidden;button.setAttribute('aria-expanded',String(!panel.hidden));paint()};
+    document.addEventListener('click',e=>{if(!e.target.closest?.('#madicRdvCalendar'))close()});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});
+    document.addEventListener('madic:languagechange',paint);
+    input.addEventListener('change',paint);
+    paint();
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',setup,{once:true});else setup();
 })();

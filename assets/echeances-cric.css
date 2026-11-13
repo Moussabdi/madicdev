@@ -1620,3 +1620,22 @@ body.madic-unified[data-page="echeances-cric"] .madic-unified-content > footer.m
 body.madic-unified[data-page="echeances-cric"] .madic-unified-content > footer.madic-footer > :is(.madic-footer-inner,.madic-footer-bottom){width:100%!important;max-width:none!important;margin-left:0!important;margin-right:0!important;padding-left:0!important;padding-right:0!important;}
 @media(min-width:801px) and (max-width:1080px){body.madic-unified[data-page="echeances-cric"] .madic-unified-content > main.deadline-shell{padding:20px 18px 36px!important}body.madic-unified[data-page="echeances-cric"] .madic-unified-content > footer.madic-footer{padding-left:18px!important;padding-right:18px!important}}
 @media(max-width:800px){body.madic-unified[data-page="echeances-cric"] .madic-unified-content > main.deadline-shell{padding:18px 16px 45px!important}body.madic-unified[data-page="echeances-cric"] .madic-unified-content > footer.madic-footer{padding:32px 16px 23px!important}}
+
+/* Localized deadline date selector, matching document requests. */
+.madic-calendar{position:relative;width:100%;}
+.madic-date-toggle{width:100%;min-height:44px;text-align:left;background:#fff;color:#143254;border:1px solid #b8cfe8;border-radius:9px;padding:10px 14px;cursor:pointer;font:inherit}
+.madic-date-toggle:after{content:"▦";float:right}
+.madic-calendar-panel{position:absolute;z-index:200;top:calc(100% + 5px);left:0;width:min(320px,100%);padding:12px;border-radius:10px;border:1px solid #b8cfe8;background:#fff;box-shadow:0 10px 25px #09203a33;color:#143254}
+.madic-calendar-panel[hidden]{display:none!important}
+.madic-cal-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}
+.madic-cal-head button,.madic-cal-grid button,.madic-cal-clear{background:#f0f5fa;color:#143254;border:0;border-radius:6px;cursor:pointer;min-height:32px}
+.madic-cal-head button{width:34px}
+.madic-cal-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:3px;text-align:center}
+.madic-cal-grid span{font-size:12px;padding:7px 0}
+.madic-cal-grid button.selected{background:#24648b;color:#fff}
+.madic-cal-grid button:hover{background:#d3edf8}
+.madic-cal-clear{margin-top:10px;padding:5px 12px}
+
+/* Past due dates are not selectable. */
+.madic-cal-grid button.madic-past-day,.madic-cal-grid button:disabled,.madic-cal-head button:disabled{opacity:.35;cursor:not-allowed;background:#eef1f5;color:#657589}
+.madic-cal-grid button:disabled:hover{background:#eef1f5}

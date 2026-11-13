@@ -224,13 +224,11 @@
                   placeholder="Ex. Date limite de transmission"
                   required=""
                 /><label for="deadlineDate">Date limite *</label>
-                <input
-                  id="deadlineDate"
-                  lang="fr-CA"
-                  name="deadlineDate"
-                  required=""
-                  type="date"
-                />
+                <input id="deadlineDate" name="deadlineDate" required type="hidden" />
+                <div class="madic-calendar" id="madicDeadlineCalendar">
+                  <button type="button" id="madicDeadlineDateToggle" class="madic-date-toggle" aria-haspopup="dialog" aria-expanded="false">Choisir une date</button>
+                  <div class="madic-calendar-panel" id="madicDeadlineDatePanel" role="dialog" aria-label="Choisir la date limite" hidden></div>
+                </div>
                 <button type="submit">Enregistrer l'échéance</button>
               </form>
             </section>

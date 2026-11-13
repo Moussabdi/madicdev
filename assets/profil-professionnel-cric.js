@@ -671,3 +671,27 @@ window.getMadicSupabase = function () {
   }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
 })();
+
+/* Bilingual upload captions; native file input remains unchanged for Supabase uploads. */
+(function(){
+  function refresh(){
+    const en = (window.MadicCricLanguage?.get?.() || document.documentElement.lang || 'fr').startsWith('en');
+    for (const kind of ['logo','photo']) {
+      const input=document.getElementById(kind);
+      const wrapper=input?.closest('.madic-local-file-control');
+      if(!wrapper) continue;
+      const button=wrapper.querySelector('.madic-local-file-button');
+      const name=wrapper.querySelector('.madic-local-file-name');
+      if(button) button.textContent=en?'Choose file':'Choisir un fichier';
+      if(name) name.textContent=input.files?.[0]?.name || (en?'No file selected':'Aucun fichier choisi');
+    }
+  }
+  function init(){
+    ['logo','photo'].forEach(kind=>document.getElementById(kind)?.addEventListener('change',refresh));
+    document.addEventListener('madic:languagechange',refresh);
+    document.getElementById('profileForm')?.addEventListener('reset',()=>requestAnimationFrame(refresh));
+    document.getElementById('profileForm')?.addEventListener('submit',()=>setTimeout(refresh,0));
+    refresh();
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',init,{once:true}); else init();
+})();

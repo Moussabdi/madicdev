@@ -515,3 +515,60 @@ window.getMadicSupabase = function () {
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init, {once:true});
   else init();
 })();
+
+/* Self-contained localized calendar; ISO value remains in #deadlineDate for Supabase. */
+(() => {
+  const pad = n => String(n).padStart(2,'0');
+  const dateValue = d => `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+  let shown = new Date();
+  const getLang = () => window.MadicCricLanguage?.get?.() === 'en' ? 'en' : 'fr';
+  const locale = () => getLang() === 'en' ? 'en-CA' : 'fr-CA';
+  function setup() {
+    const hidden = document.getElementById('deadlineDate');
+    const button = document.getElementById('madicDeadlineDateToggle');
+    const panel = document.getElementById('madicDeadlineDatePanel');
+    if (!hidden || !button || !panel) return;
+    const todayIso = () => dateValue(new Date());
+    const title = () => hidden.value ? new Date(hidden.value+'T12:00:00').toLocaleDateString(locale(),{year:'numeric',month:'short',day:'numeric'}) : (getLang()==='en'?'Select a date':'Choisir une date');
+    function paint() {
+      button.textContent=title();
+      button.setAttribute('aria-label',getLang()==='en'?'Choose due date':'Choisir la date limite');
+      panel.setAttribute('aria-label',getLang()==='en'?'Choose due date':'Choisir la date limite');
+      panel.replaceChildren();
+      const header=document.createElement('div'); header.className='madic-cal-head';
+      const prev=document.createElement('button'); prev.type='button'; prev.textContent='‹'; prev.setAttribute('aria-label',getLang()==='en'?'Previous month':'Mois précédent');
+      const next=document.createElement('button'); next.type='button'; next.textContent='›'; next.setAttribute('aria-label',getLang()==='en'?'Next month':'Mois suivant');
+      const label=document.createElement('strong'); label.textContent=shown.toLocaleDateString(locale(),{month:'long',year:'numeric'});
+      const current = new Date();
+      const atCurrentMonth = false;
+      prev.disabled = atCurrentMonth;
+      prev.onclick=()=>{if(atCurrentMonth)return;shown=new Date(shown.getFullYear(),shown.getMonth()-1,1);paint()};
+      next.onclick=()=>{shown=new Date(shown.getFullYear(),shown.getMonth()+1,1);paint()};
+      header.append(prev,label,next); panel.append(header);
+      const grid=document.createElement('div');grid.className='madic-cal-grid';
+      const weekdays=getLang()==='en'?['Sun','Mon','Tue','Wed','Thu','Fri','Sat']:['dim.','lun.','mar.','mer.','jeu.','ven.','sam.'];
+      weekdays.forEach(day=>{const el=document.createElement('span');el.textContent=day;grid.append(el)});
+      const first=new Date(shown.getFullYear(),shown.getMonth(),1).getDay();
+      for(let i=0;i<first;i++)grid.append(document.createElement('span'));
+      const count=new Date(shown.getFullYear(),shown.getMonth()+1,0).getDate();
+      for(let day=1;day<=count;day++){
+        const date=new Date(shown.getFullYear(),shown.getMonth(),day);
+        const el=document.createElement('button');el.type='button';el.textContent=String(day);
+        
+        if(dateValue(date)===hidden.value)el.className='selected';
+        el.onclick=()=>{if(el.disabled)return;hidden.value=dateValue(date);panel.hidden=true;button.setAttribute('aria-expanded','false');paint()};
+        grid.append(el);
+      }
+      panel.append(grid);
+      const clear=document.createElement('button');clear.type='button';clear.className='madic-cal-clear';clear.textContent=getLang()==='en'?'Clear':'Effacer';
+      clear.onclick=()=>{hidden.value='';panel.hidden=true;button.setAttribute('aria-expanded','false');paint()};panel.append(clear);
+    }
+    button.onclick=()=>{shown=hidden.value ? new Date(hidden.value+'T12:00:00') : new Date();panel.hidden=!panel.hidden;button.setAttribute('aria-expanded',String(!panel.hidden));paint()};
+    document.addEventListener('click',e=>{if(!e.target.closest('#madicDeadlineCalendar')){panel.hidden=true;button.setAttribute('aria-expanded','false')}});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape'){panel.hidden=true;button.setAttribute('aria-expanded','false')}});
+    document.addEventListener('madic:languagechange',paint);
+    document.getElementById('deadlineForm')?.addEventListener('reset',()=>setTimeout(paint,0));
+    paint();
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',setup,{once:true});else setup();
+})();

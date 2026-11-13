@@ -278,13 +278,11 @@
                   Saisissez le taux applicable à votre situation. MADIC ne
                   détermine pas les obligations fiscales de votre cabinet.
                 </p>
-                <label
-                  >Date d'échéance<input
-                    id="due"
-                    lang="fr-CA"
-                    name="due"
-                    type="date" /></label
-                ><label
+                <label>Date d'échéance<input id="due" name="due" type="hidden" />
+                  <div class="madic-calendar" id="madicInvoiceCalendar">
+                    <button type="button" id="madicInvoiceDateToggle" class="madic-date-toggle" aria-haspopup="dialog" aria-expanded="false">Choisir une date</button>
+                    <div class="madic-calendar-panel" id="madicInvoiceDatePanel" role="dialog" aria-label="Choisir une date d’échéance" hidden></div>
+                  </div></label><label
                   >Notes<textarea id="notes" maxlength="1000"></textarea></label
                 ><button id="save" type="submit">Créer la facture</button>
               </form>

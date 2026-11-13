@@ -221,10 +221,7 @@
               <h2>Publier une disponibilité</h2>
               <form class="madic-rdv-grid" id="slotForm">
                 <label
-                  >Date de début (heure de Montréal)<input
-                    id="slotDate"
-                    required=""
-                    type="date" /></label
+                  >Date de début (heure de Montréal)<input id="slotDate" required="" type="hidden" /><div class="madic-calendar" id="madicRdvCalendar"><button type="button" id="madicRdvDateToggle" class="madic-date-toggle" aria-haspopup="dialog" aria-expanded="false">Choisir une date</button><div id="madicRdvDatePanel" class="madic-calendar-panel" role="dialog" aria-label="Choisir la date de début" hidden></div></div></label
                 ><label
                   >Heure de début (heure de Montréal)<select
                     id="slotHour"
