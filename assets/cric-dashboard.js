@@ -1516,6 +1516,25 @@
     "Messages": "Messages", "Mon profil professionnel": "My professional profile",
 
   };
+  Object.assign(dictionary, {
+    "Accès réservé au super administrateur MADIC.": "Access restricted to the MADIC super administrator.",
+    "Autorisé": "Approved", "Refusé": "Rejected", "Erreur :": "Error:",
+    "Votre demande CRIC est en attente de validation.": "Your RCIC application is awaiting approval.",
+    "Votre demande CRIC a été refusée.": "Your RCIC application was rejected.",
+    "Aucun compte CRIC autorisé associé à votre session.": "No authorized RCIC account is associated with your session.",
+    "À renseigner dans votre compte CRIC": "To be completed in your RCIC account",
+    "Notification non autorisée ou introuvable.": "Notification not authorized or not found.",
+    "Demande créée. Le parcours client sera actualisé automatiquement.": "Request created. The client journey will update automatically.",
+    "À vérifier": "To review", "Non publié": "Not published", "Aucun disponible": "None available",
+    "Demande reçue": "Request received", "Dernière demande refusée": "Latest request declined",
+    "Formulaire": "Form", "Demande": "Request", "Analyse": "Assessment", "Réponse": "Response",
+    "Votre formulaire est soumis. Vous pouvez choisir votre prochaine étape.": "Your form has been submitted. You can choose your next step.",
+    "Complétez votre formulaire pour commencer votre parcours.": "Complete your form to begin your journey.",
+    "Vous pouvez consulter les créneaux publiés par votre consultant et demander un rendez-vous.": "You can view your consultant's published time slots and request an appointment.",
+    "Voir les disponibilités →": "View availability →",
+    "État du contrat :": "Agreement status:",
+    "Accès réservé": "Restricted access"
+  });
   const storageKey = "madic_ui_language";
   const originals = new WeakMap();
   const rendered = new WeakMap();
@@ -1563,6 +1582,22 @@
           target = `Request status for ${match[1]}`;
         else if ((match = trimmed.match(/^Et (\d+) autre\(s\) échéance\(s\) prioritaire\(s\)\.$/)))
           target = `And ${match[1]} other priority deadline(s).`;
+        else if ((match = trimmed.match(/^Étape (\d+) sur 4$/)))
+          target = `Step ${match[1]} of 4`;
+        else if ((match = trimmed.match(/^Erreur : (.+)$/)))
+          target = `Error: ${match[1]}`;
+        else if ((match = trimmed.match(/^Chargement impossible : (.+)$/)))
+          target = `Unable to load: ${match[1]}`;
+        else if ((match = trimmed.match(/^Création impossible : (.+)$/)))
+          target = `Unable to create: ${match[1]}`;
+        else if ((match = trimmed.match(/^Impossible de vérifier vos droits : (.+)$/)))
+          target = `Unable to verify your permissions: ${match[1]}`;
+        else if ((match = trimmed.match(/^Suivi momentanément indisponible : (.+)$/)))
+          target = `Tracking temporarily unavailable: ${match[1]}`;
+        else if ((match = trimmed.match(/^Et (\d+) autre\(s\) échéance\(s\) prioritaire\(s\)\.$/)))
+          target = `And ${match[1]} other priority deadline(s).`;
+        else if ((match = trimmed.match(/^(.+) \(\S+\) \? Vérifiez son permis professionnel au préalable\.$/)))
+          target = `${match[1]} (${match[2]})? Verify their professional licence first.`;
         else if ((match = trimmed.match(/^Paiement - (.+) - Dépassé de (\d+) jour\(s\) (.+)$/)))
           target = `Payment - ${match[1]} - ${match[2]} day(s) overdue ${match[3]}`;
         else if ((match = trimmed.match(/^(Consultation initiale|Proposition personnalisée) · (.+)$/)))
