@@ -380,7 +380,7 @@ body[data-page="cric-signup"]>header .toplinks{margin-left:auto}
 body[data-page="cric-signup"]>header .toplinks a{color:#5ad5f2;font-weight:400}
 body[data-page="cric-signup"] .madic-lang-switch{padding:0;gap:.65rem}
 body[data-page="cric-signup"] .madic-lang-switch button{background:transparent;color:#e9f1ff;border:1px solid #8b939e;min-height:0;padding:.35rem .65rem}
-body[data-page="cric-signup"] .madic-lang-switch button[aria-pressed="true"]{background:transparent;color:#e9f1ff;border:2px solid #8b939e}
+body[data-page="cric-signup"] .madic-lang-switch button[aria-pressed="true"]{background:#5ad5f2;color:#09264a;border:2px solid #5ad5f2;font-weight:700}
 body[data-page="cric-signup"]>main{box-sizing:border-box;width:100%;max-width:1100px;margin:45px auto;padding:0 24px;flex:1 0 auto}
 body[data-page="cric-signup"]>main .auth.panel{width:100%;max-width:460px;margin:60px auto;background:#101e33;color:#e9f1ff;border:1px solid #2a425d;box-shadow:0 16px 45px #0004}
 body[data-page="cric-signup"]>main h1{color:#e9f1ff}
