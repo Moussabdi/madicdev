@@ -476,6 +476,11 @@ window.getMadicSupabase = function () {
         !title
       )
         return notice("Client, dossier et document obligatoires.");
+      const dueValue = $("docreqDue").value;
+      const today = new Date();
+      const todayIso = [today.getFullYear(), String(today.getMonth()+1).padStart(2,"0"), String(today.getDate()).padStart(2,"0")].join("-");
+      if (dueValue && (!/^\d{4}-\d{2}-\d{2}$/.test(dueValue) || dueValue < todayIso))
+        return notice(window.MadicCricLanguage?.get?.() === "en" ? "The due date must be today or later." : "La date limite doit être aujourd’hui ou une date ultérieure.");
       const { error } = await db.from("madic_cric_document_requests").insert({
         space_id: spaceId,
         client_id,
@@ -751,6 +756,7 @@ window.getMadicSupabase = function () {
     const button = document.getElementById('madicDateToggle');
     const panel = document.getElementById('madicDatePanel');
     if (!hidden || !button || !panel) return;
+    const todayIso = () => dateValue(new Date());
     const title = () => hidden.value ? new Date(hidden.value+'T12:00:00').toLocaleDateString(locale(),{year:'numeric',month:'short',day:'numeric'}) : (getLang()==='en'?'Select a date':'Choisir une date');
     function paint() {
       button.textContent=title();
@@ -761,7 +767,10 @@ window.getMadicSupabase = function () {
       const prev=document.createElement('button'); prev.type='button'; prev.textContent='‹'; prev.setAttribute('aria-label',getLang()==='en'?'Previous month':'Mois précédent');
       const next=document.createElement('button'); next.type='button'; next.textContent='›'; next.setAttribute('aria-label',getLang()==='en'?'Next month':'Mois suivant');
       const label=document.createElement('strong'); label.textContent=shown.toLocaleDateString(locale(),{month:'long',year:'numeric'});
-      prev.onclick=()=>{shown=new Date(shown.getFullYear(),shown.getMonth()-1,1);paint()};
+      const current = new Date();
+      const atCurrentMonth = shown.getFullYear() === current.getFullYear() && shown.getMonth() <= current.getMonth();
+      prev.disabled = atCurrentMonth;
+      prev.onclick=()=>{if(atCurrentMonth)return;shown=new Date(shown.getFullYear(),shown.getMonth()-1,1);paint()};
       next.onclick=()=>{shown=new Date(shown.getFullYear(),shown.getMonth()+1,1);paint()};
       header.append(prev,label,next); panel.append(header);
       const grid=document.createElement('div');grid.className='madic-cal-grid';
@@ -773,15 +782,16 @@ window.getMadicSupabase = function () {
       for(let day=1;day<=count;day++){
         const date=new Date(shown.getFullYear(),shown.getMonth(),day);
         const el=document.createElement('button');el.type='button';el.textContent=String(day);
+        if(dateValue(date)<todayIso()){el.disabled=true;el.className='madic-past-day'}
         if(dateValue(date)===hidden.value)el.className='selected';
-        el.onclick=()=>{hidden.value=dateValue(date);panel.hidden=true;button.setAttribute('aria-expanded','false');paint()};
+        el.onclick=()=>{if(el.disabled)return;hidden.value=dateValue(date);panel.hidden=true;button.setAttribute('aria-expanded','false');paint()};
         grid.append(el);
       }
       panel.append(grid);
       const clear=document.createElement('button');clear.type='button';clear.className='madic-cal-clear';clear.textContent=getLang()==='en'?'Clear':'Effacer';
       clear.onclick=()=>{hidden.value='';panel.hidden=true;button.setAttribute('aria-expanded','false');paint()};panel.append(clear);
     }
-    button.onclick=()=>{panel.hidden=!panel.hidden;button.setAttribute('aria-expanded',String(!panel.hidden));paint()};
+    button.onclick=()=>{if(hidden.value && hidden.value < todayIso())hidden.value='';shown=new Date();panel.hidden=!panel.hidden;button.setAttribute('aria-expanded',String(!panel.hidden));paint()};
     document.addEventListener('click',e=>{if(!e.target.closest('#madicCalendar')){panel.hidden=true;button.setAttribute('aria-expanded','false')}});
     document.addEventListener('keydown',e=>{if(e.key==='Escape'){panel.hidden=true;button.setAttribute('aria-expanded','false')}});
     document.addEventListener('madic:languagechange',paint);

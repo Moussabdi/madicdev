@@ -245,8 +245,25 @@
                       >Date limite (facultatif)<input
                         id="docreqDue"
                         lang="fr-CA"
-                        type="hidden"
-                    /><div class="madic-calendar" id="madicCalendar"><button type="button" id="madicDateToggle" class="madic-date-toggle" aria-haspopup="dialog" aria-expanded="false">Select a date</button><div class="madic-calendar-panel" id="madicDatePanel" role="dialog" aria-label="Choose due date" hidden></div></div></label>
+                        type="hidden" />
+                      <div class="madic-calendar" id="madicCalendar">
+                        <button
+                          type="button"
+                          id="madicDateToggle"
+                          class="madic-date-toggle"
+                          aria-haspopup="dialog"
+                          aria-expanded="false"
+                        >
+                          Select a date
+                        </button>
+                        <div
+                          class="madic-calendar-panel"
+                          id="madicDatePanel"
+                          role="dialog"
+                          aria-label="Choose due date"
+                          hidden
+                        ></div></div
+                    ></label>
                     <div><button type="submit">Envoyer la demande</button></div>
                   </div>
                 </details>
@@ -269,9 +286,14 @@
                         type="file"
                         aria-label="Fichier à transmettre"
                       />
-                      <span class="madic-local-file-button" aria-hidden="true">Choisir un fichier</span>
-                      <span class="madic-local-file-name" aria-hidden="true">Aucun fichier choisi</span>
-                    </span></label>
+                      <span class="madic-local-file-button" aria-hidden="true"
+                        >Choisir un fichier</span
+                      >
+                      <span class="madic-local-file-name" aria-hidden="true"
+                        >Aucun fichier choisi</span
+                      >
+                    </span></label
+                  >
                   <label for="docsendTitle"
                     >Nom du document (facultatif)
                     <input

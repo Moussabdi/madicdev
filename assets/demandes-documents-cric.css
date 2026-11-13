@@ -1500,3 +1500,7 @@ body.madic-unified[data-page="demandes-documents-cric"] .madic-cric-standard-hea
 .madic-cal-grid button.selected{background:#24648b;color:#fff}
 .madic-cal-grid button:hover{background:#d3edf8}
 .madic-cal-clear{margin-top:10px;padding:5px 12px}
+
+/* Past due dates are not selectable. */
+.madic-cal-grid button.madic-past-day,.madic-cal-grid button:disabled,.madic-cal-head button:disabled{opacity:.35;cursor:not-allowed;background:#eef1f5;color:#657589}
+.madic-cal-grid button:disabled:hover{background:#eef1f5}
