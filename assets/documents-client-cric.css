@@ -2121,11 +2121,13 @@ body[data-page="cric-client-dashboard"] > header .madic-hero-notifications:hover
       body[data-madic-view="dossiers"] #dossiersHint {
         display: none !important;
       }
-    
-/* Bilingual file picker: keep the native input for upload and validation. */
-.madic-upload-file-picker { position:relative; display:flex; align-items:center; flex-wrap:wrap; gap:12px; min-height:58px; padding:10px 13px; border:1px solid #b9cce5; border-radius:9px; background:#f4f7fc; color:#102b50; }
-.madic-upload-file-picker > input[type="file"] { position:absolute; width:1px; height:1px; opacity:0; overflow:hidden; clip-path:inset(50%); }
-.madic-upload-file-button { display:inline-flex; align-items:center; justify-content:center; padding:9px 13px; border:1px solid #b9cce5; border-radius:7px; background:white; color:#102b50; cursor:pointer; font-weight:500; margin:0; }
-.madic-upload-file-button:hover { background:#e8f1fb; }
-.madic-upload-file-picker:focus-within .madic-upload-file-button { outline:2px solid #1c89ba; outline-offset:2px; }
-.madic-upload-file-name { overflow-wrap:anywhere; }
+/* File picker: CSS-only language selection; native input retained for uploads. */
+.madic-upload-file-picker{position:relative;display:flex;align-items:center;flex-wrap:wrap;gap:12px;min-height:58px;padding:10px 13px;border:1px solid #b9cce5;border-radius:9px;background:#f4f7fc;color:#102b50}
+.madic-upload-file-picker>input[type="file"]{position:absolute;width:1px;height:1px;opacity:0;overflow:hidden;clip-path:inset(50%)}
+.madic-upload-file-button{display:inline-flex;align-items:center;justify-content:center;padding:9px 13px;border:1px solid #b9cce5;border-radius:7px;background:#fff;color:#102b50;cursor:pointer;font-weight:500;margin:0}
+.madic-upload-file-button:hover{background:#e8f1fb}
+.madic-upload-file-picker:focus-within .madic-upload-file-button{outline:2px solid #1c89ba;outline-offset:2px}
+.madic-upload-file-name{overflow-wrap:anywhere}
+.madic-picker-en{display:none}
+html[lang^="en"] .madic-picker-en{display:inline}
+html[lang^="en"] .madic-picker-fr{display:none}

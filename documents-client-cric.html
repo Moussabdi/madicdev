@@ -1340,16 +1340,17 @@
               </select>
               <label for="file">Document</label>
               <div class="madic-upload-file-picker">
-                <input
-                  accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png"
-                  id="file"
-                  name="file"
-                  required=""
-                  type="file"
-                  aria-describedby="madicUploadFileName"
-                />
-                <label class="madic-upload-file-button" for="file" id="madicUploadFileChoose">Choisir un fichier</label>
-                <span id="madicUploadFileName" class="madic-upload-file-name" aria-live="polite">Aucun fichier choisi</span>
+                <input accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png"
+                  id="file" name="file" required="" type="file"
+                  aria-describedby="madicUploadFileName" />
+                <label class="madic-upload-file-button" for="file">
+                  <span class="madic-picker-fr">Choisir un fichier</span>
+                  <span class="madic-picker-en">Choose file</span>
+                </label>
+                <span id="madicUploadFileName" class="madic-upload-file-name" aria-live="polite">
+                  <span class="madic-picker-fr">Aucun fichier choisi</span>
+                  <span class="madic-picker-en">No file selected</span>
+                </span>
               </div>
               <div class="actions">
                 <button disabled="" id="uploadButton" type="submit">

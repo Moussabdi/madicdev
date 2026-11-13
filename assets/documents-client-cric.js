@@ -2476,32 +2476,19 @@
       })();
     
 ;
-/* Upload document: bilingual file chooser without changing upload logic. */
+
+/* Selected filename only; language labels are switched by CSS. */
 (function () {
-  "use strict";
-  function init() {
+  function initFileName() {
     const input = document.getElementById("file");
-    const button = document.getElementById("madicUploadFileChoose");
     const name = document.getElementById("madicUploadFileName");
-    if (!input || !button || !name) return;
-    function english() {
-      const lang = document.documentElement.lang.toLowerCase();
-      if (lang.startsWith("en")) return true;
-      if (lang.startsWith("fr")) return false;
-      try { return localStorage.getItem("madic-lang") === "en"; } catch (_) { return false; }
-    }
-    function update() {
-      const en = english();
-      button.textContent = en ? "Choose file" : "Choisir un fichier";
-      name.textContent = input.files && input.files.length ? input.files[0].name : (en ? "No file selected" : "Aucun fichier choisi");
-    }
-    input.addEventListener("change", update);
-    document.getElementById("upload")?.addEventListener("reset", () => queueMicrotask(update));
-    new MutationObserver(update).observe(document.documentElement, { attributes:true, attributeFilter:["lang"] });
-    window.addEventListener("storage", (e) => { if (e.key === "madic-lang") update(); });
-    document.querySelectorAll(".madic-language-switch button").forEach(b => b.addEventListener("click", () => queueMicrotask(update)));
-    update();
+    if (!input || !name) return;
+    const emptyMarkup = name.innerHTML;
+    input.addEventListener("change", function () {
+      if (input.files && input.files.length) name.textContent = input.files[0].name;
+      else name.innerHTML = emptyMarkup;
+    });
   }
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init, { once:true });
-  else init();
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", initFileName, {once:true});
+  else initFileName();
 })();
