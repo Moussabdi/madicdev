@@ -1338,14 +1338,19 @@
               ><select id="dossier" name="dossier" required="">
                 <option value="">Aucun dossier actif</option>
               </select>
-              <label for="file">Document</label
-              ><input
-                accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png"
-                id="file"
-                name="file"
-                required=""
-                type="file"
-              />
+              <label for="file">Document</label>
+              <div class="madic-upload-file-picker">
+                <input
+                  accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png"
+                  id="file"
+                  name="file"
+                  required=""
+                  type="file"
+                  aria-describedby="madicUploadFileName"
+                />
+                <label class="madic-upload-file-button" for="file" id="madicUploadFileChoose">Choisir un fichier</label>
+                <span id="madicUploadFileName" class="madic-upload-file-name" aria-live="polite">Aucun fichier choisi</span>
+              </div>
               <div class="actions">
                 <button disabled="" id="uploadButton" type="submit">
                   Transmettre
