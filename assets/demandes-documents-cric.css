@@ -1485,3 +1485,18 @@ body.madic-unified[data-page="demandes-documents-cric"] .madic-cric-standard-hea
 .madic-local-file-button { display:inline-block; border:1px solid #a8bbd0; border-radius:5px; padding:5px 10px; background:#f1f5f9; color:#102b4a; font-size:14px; white-space:nowrap; }
 .madic-local-file-name { color:#102b4a; font-size:14px; overflow-wrap:anywhere; }
 .madic-local-file-control:focus-within { outline:2px solid #4bb8d3; outline-offset:2px; border-radius:5px; }
+
+/* Localized self-contained calendar */
+.madic-calendar{position:relative;width:100%;}
+.madic-date-toggle{width:100%;min-height:44px;text-align:left;background:#fff;color:#143254;border:1px solid #b8cfe8;border-radius:9px;padding:10px 14px;cursor:pointer;font:inherit}
+.madic-date-toggle:after{content:"▦";float:right}
+.madic-calendar-panel{position:absolute;z-index:200;top:calc(100% + 5px);left:0;width:min(320px,100%);padding:12px;border-radius:10px;border:1px solid #b8cfe8;background:#fff;box-shadow:0 10px 25px #09203a33;color:#143254}
+.madic-calendar-panel[hidden]{display:none!important}
+.madic-cal-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}
+.madic-cal-head button,.madic-cal-grid button,.madic-cal-clear{background:#f0f5fa;color:#143254;border:0;border-radius:6px;cursor:pointer;min-height:32px}
+.madic-cal-head button{width:34px}
+.madic-cal-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:3px;text-align:center}
+.madic-cal-grid span{font-size:12px;padding:7px 0}
+.madic-cal-grid button.selected{background:#24648b;color:#fff}
+.madic-cal-grid button:hover{background:#d3edf8}
+.madic-cal-clear{margin-top:10px;padding:5px 12px}

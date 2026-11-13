@@ -257,6 +257,13 @@ window.getMadicSupabase = function () {
     }
   }
   async function refresh() {
+    const selectedClient = $("docreqClient").value;
+    const selectedCase = $("docreqDossier").value;
+    if (!selectedClient || !selectedCase ||
+        !dossiers.some(d => d.id === selectedCase && d.client_id === selectedClient)) {
+      $("docreqRows").replaceChildren();
+      return;
+    }
     const { data, error } = await db
       .from("madic_cric_document_requests")
       .select("id,client_id,dossier_id,title,due_on,status,created_at")
@@ -606,7 +613,7 @@ window.getMadicSupabase = function () {
   const originalAttrs = new WeakMap();
   const renderedAttrs = new WeakMap();
   const attrs = ['placeholder', 'title', 'aria-label'];
-  const ignored = node => !!node.parentElement?.closest('script,style,code,pre,textarea,[contenteditable="true"],.madic-lang-controls,[data-madic-user-content="true"]');
+  const ignored = node => !!node.parentElement?.closest('script,style,code,pre,[contenteditable="true"],.madic-lang-controls,[data-madic-user-content="true"]');
   const patterns = [
     [/^Nouvelle demande de rendez-vous\s*-\s*/i, 'New appointment request - '],
     [/^Dernière vérification automatique\s*:/i, 'Last automatic check:'],
@@ -681,6 +688,8 @@ window.getMadicSupabase = function () {
     if (dateField) dateField.lang = lang === 'en' ? 'en-CA' : 'fr-CA';
     const root = document.body;
     if (!root) return;
+    const details = document.getElementById('docreqInstructions');
+    if (details) details.placeholder = lang === 'en' ? 'Optional details' : 'Précisions facultatives';
     const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT | NodeFilter.SHOW_ELEMENT);
     let node;
     while ((node = walker.nextNode())) {
@@ -729,3 +738,55 @@ window.getMadicSupabase = function () {
 
 /* MADIC sign-out */
 (()=>{const init=()=>{const b=document.getElementById('logout');if(!b)return;b.addEventListener('click',async()=>{b.disabled=true;try{const db=window.getMadicSupabase();const {error}=await db.auth.signOut();if(error)throw error;location.href='connexion-cric.html';}catch(e){b.disabled=false;const n=document.getElementById('docreqNotice');if(n)n.textContent='Déconnexion impossible : '+e.message;}})};if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();})();
+
+/* Self-contained localized calendar; ISO value remains in #docreqDue for Supabase. */
+(() => {
+  const pad = n => String(n).padStart(2,'0');
+  const dateValue = d => `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+  let shown = new Date();
+  const getLang = () => window.MadicCricLanguage?.get?.() === 'en' ? 'en' : 'fr';
+  const locale = () => getLang() === 'en' ? 'en-CA' : 'fr-CA';
+  function setup() {
+    const hidden = document.getElementById('docreqDue');
+    const button = document.getElementById('madicDateToggle');
+    const panel = document.getElementById('madicDatePanel');
+    if (!hidden || !button || !panel) return;
+    const title = () => hidden.value ? new Date(hidden.value+'T12:00:00').toLocaleDateString(locale(),{year:'numeric',month:'short',day:'numeric'}) : (getLang()==='en'?'Select a date':'Choisir une date');
+    function paint() {
+      button.textContent=title();
+      button.setAttribute('aria-label',getLang()==='en'?'Choose due date':'Choisir la date limite');
+      panel.setAttribute('aria-label',getLang()==='en'?'Choose due date':'Choisir la date limite');
+      panel.replaceChildren();
+      const header=document.createElement('div'); header.className='madic-cal-head';
+      const prev=document.createElement('button'); prev.type='button'; prev.textContent='‹'; prev.setAttribute('aria-label',getLang()==='en'?'Previous month':'Mois précédent');
+      const next=document.createElement('button'); next.type='button'; next.textContent='›'; next.setAttribute('aria-label',getLang()==='en'?'Next month':'Mois suivant');
+      const label=document.createElement('strong'); label.textContent=shown.toLocaleDateString(locale(),{month:'long',year:'numeric'});
+      prev.onclick=()=>{shown=new Date(shown.getFullYear(),shown.getMonth()-1,1);paint()};
+      next.onclick=()=>{shown=new Date(shown.getFullYear(),shown.getMonth()+1,1);paint()};
+      header.append(prev,label,next); panel.append(header);
+      const grid=document.createElement('div');grid.className='madic-cal-grid';
+      const weekdays=getLang()==='en'?['Sun','Mon','Tue','Wed','Thu','Fri','Sat']:['dim.','lun.','mar.','mer.','jeu.','ven.','sam.'];
+      weekdays.forEach(day=>{const el=document.createElement('span');el.textContent=day;grid.append(el)});
+      const first=new Date(shown.getFullYear(),shown.getMonth(),1).getDay();
+      for(let i=0;i<first;i++)grid.append(document.createElement('span'));
+      const count=new Date(shown.getFullYear(),shown.getMonth()+1,0).getDate();
+      for(let day=1;day<=count;day++){
+        const date=new Date(shown.getFullYear(),shown.getMonth(),day);
+        const el=document.createElement('button');el.type='button';el.textContent=String(day);
+        if(dateValue(date)===hidden.value)el.className='selected';
+        el.onclick=()=>{hidden.value=dateValue(date);panel.hidden=true;button.setAttribute('aria-expanded','false');paint()};
+        grid.append(el);
+      }
+      panel.append(grid);
+      const clear=document.createElement('button');clear.type='button';clear.className='madic-cal-clear';clear.textContent=getLang()==='en'?'Clear':'Effacer';
+      clear.onclick=()=>{hidden.value='';panel.hidden=true;button.setAttribute('aria-expanded','false');paint()};panel.append(clear);
+    }
+    button.onclick=()=>{panel.hidden=!panel.hidden;button.setAttribute('aria-expanded',String(!panel.hidden));paint()};
+    document.addEventListener('click',e=>{if(!e.target.closest('#madicCalendar')){panel.hidden=true;button.setAttribute('aria-expanded','false')}});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape'){panel.hidden=true;button.setAttribute('aria-expanded','false')}});
+    document.addEventListener('madic:languagechange',paint);
+    document.getElementById('docreqForm')?.addEventListener('submit',()=>setTimeout(paint,50));
+    paint();
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',setup,{once:true});else setup();
+})();
