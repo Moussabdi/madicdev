@@ -1996,6 +1996,19 @@
     "Motif / commentaire": "Reason / comment",
     Action: "Action",
     "Aucun document transmis.": "No documents uploaded.",
+    "Aucun document demandé.": "No documents requested.",
+    "Télécharger": "Download",
+    "Accepté": "Accepted",
+    "Refusé": "Rejected",
+    "En attente": "Pending",
+    "Terminé": "Completed",
+    "Demandé": "Requested",
+    "Manque de signature": "Missing signature",
+    "Sélectionnez un document.": "Select a document.",
+    "Sélectionnez un dossier actif de ce consultant.": "Select an active case for this consultant.",
+    "Aucun dossier attribué par ce consultant.": "No case assigned by this consultant.",
+    "Aucun document transmis.": "No documents uploaded.",
+
     "Mes factures": "My invoices",
     "Factures émises par le cabinet CRIC sélectionné. Les brouillons ne sont pas affichés.":
       "Invoices issued by the selected RCIC firm. Drafts are not displayed.",
@@ -2224,8 +2237,18 @@
     const raw = node.nodeValue;
     const trimmed = raw.trim();
     const normalized = trimmed.replace(/\s+/g, " ");
-    if (!normalized || !Object.prototype.hasOwnProperty.call(dict, normalized))
+    if (!normalized) return;
+    const countFr = normalized.match(/^(\d+) demande\(s\)\. Transmettez les pièces demandées dans le formulaire ci-dessous\.$/);
+    const countEn = normalized.match(/^(\d+) request\(s\)\. Upload the requested documents using the form below\.$/);
+    if (language === "en" && countFr) {
+      node.nodeValue = raw.replace(trimmed, countFr[1] + " request(s). Upload the requested documents using the form below.");
       return;
+    }
+    if (language === "fr" && countEn) {
+      node.nodeValue = raw.replace(trimmed, countEn[1] + " demande(s). Transmettez les pièces demandées dans le formulaire ci-dessous.");
+      return;
+    }
+    if (!Object.prototype.hasOwnProperty.call(dict, normalized)) return;
     const translated = dict[normalized];
     if (translated === normalized) return;
     const next = raw.replace(trimmed, translated);

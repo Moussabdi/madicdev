@@ -144,7 +144,7 @@
     conversations = [],
     selectedId = null;
   const date = (value) =>
-    new Intl.DateTimeFormat("fr-CA", {
+    new Intl.DateTimeFormat(document.documentElement.lang === "en-CA" ? "en-CA" : "fr-CA", {
       dateStyle: "medium",
       timeStyle: "short",
       timeZone: "America/Toronto",
@@ -230,8 +230,15 @@
       btn.type = "button";
       btn.setAttribute("aria-current", String(c.id === selectedId));
       btn.dataset.conversationId = c.id;
-      btn.textContent =
-        c.subject + (count ? ` (${count} non lu${count > 1 ? "s" : ""})` : "");
+      const subject = document.createElement("span");
+      subject.className = "madic-conversation-subject";
+      subject.textContent = c.subject;
+      btn.append(subject);
+      if (count) {
+        const unread = document.createElement("span");
+        unread.textContent = ` (${count} non lu${count > 1 ? "s" : ""})`;
+        btn.append(unread);
+      }
       const latest = latestMessages.get(c.id);
       small.textContent = latest
         ? "Dernier message : " + date(latest.created_at)
@@ -881,6 +888,10 @@
           "Échanges confidentiels avec votre consultant.":
             "Confidential exchanges with your consultant.",
           "Messagerie du client chargée.": "Client messaging loaded.",
+          "Conversation générale": "General conversation",
+          "Dernière vérification automatique :": "Last automatic check:",
+          "Dernier message :": "Last message:",
+          "Vous :": "You:",
           "Cabinet CRIC": "RCIC firm",
           Conversations: "Conversations",
           Actualiser: "Refresh",
@@ -964,6 +975,10 @@
           "Logo MADIC Portail": "MADIC Portal logo",
           "Espace client": "Client space",
           "Messagerie du client chargée.": "Client messaging loaded.",
+          "Conversation générale": "General conversation",
+          "Dernière vérification automatique :": "Last automatic check:",
+          "Dernier message :": "Last message:",
+          "Vous :": "You:",
           "Configuration Supabase manquante.": "Supabase configuration missing.",
           "Cabinet non autorisé.": "Unauthorized firm.",
           "Conversation non disponible.": "Conversation unavailable.",
@@ -1018,13 +1033,15 @@
         // Translate UI text, including status messages inserted after Supabase loads.
         // Never translate conversation subjects, message bodies, or uploaded filenames.
         function protectedContent(el) {
-          return !!el?.closest('.madic-client-msg-bubble, .madic-client-msg-preview, .madic-attachment-filename, #clientMsgConversations button');
+          return !!el?.closest('.madic-client-msg-bubble, .madic-client-msg-preview, .madic-attachment-filename, .madic-conversation-subject');
         }
         function convert(value, map) {
           if (Object.prototype.hasOwnProperty.call(map, value)) return map[value];
           if (lang !== 'en') return value;
           const patterns = [
             [/^(\d+) non lus?$/, (_, n) => n + ' unread'],
+            [/^Dernière vérification automatique : (.*)$/, (_, t) => 'Last automatic check: ' + t],
+            [/^Actualisation automatique en erreur : (.*)$/, (_, e) => 'Automatic refresh error: ' + e],
             [/^Dernier message : (.*)$/, (_, d) => 'Last message: ' + d],
             [/^Conversation créée : (.*)$/, (_, d) => 'Conversation created: ' + d],
             [/^Vous : (.*)$/, (_, body) => 'You: ' + body],
