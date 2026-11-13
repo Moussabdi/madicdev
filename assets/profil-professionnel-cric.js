@@ -515,6 +515,15 @@ window.getMadicSupabase = function () {
     "valeur enregistrée": "saved value",
     "Aucune donnée enregistrée pour ce cabinet.": "No data recorded for this practice."
   });
+  Object.assign(dictionary, {
+    "FACTURATION ET ENCAISSEMENT": "BILLING AND PAYMENTS",
+    "Modes de paiement": "Payment methods",
+    "Virement Interac": "Interac e-Transfer",
+    "Paiement remis directement au cabinet": "Payment made directly to the practice",
+    "Option de paiement par le portail": "Payment option through the portal",
+    "Enregistrer mon profil": "Save my profile",
+    "Valeurs de l’entreprise (facultatif)": "Company values (optional)"
+  });
   const key = 'madic_ui_language';
   let lang = 'fr';
   try { lang = localStorage.getItem(key) === 'en' ? 'en' : 'fr'; } catch (_) {}

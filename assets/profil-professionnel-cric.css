@@ -2804,3 +2804,11 @@ body[data-page="profil-professionnel-cric"] .madic-local-file-control input[type
 body[data-page="profil-professionnel-cric"] .madic-local-file-button { display:inline-block; border:1px solid #a8bbd0; border-radius:5px; padding:5px 10px; background:#f1f5f9; color:#102b4a; font-size:14px; white-space:nowrap; }
 body[data-page="profil-professionnel-cric"] .madic-local-file-name { color:#102b4a; font-size:14px; overflow-wrap:anywhere; }
 body[data-page="profil-professionnel-cric"] .madic-local-file-control:focus-within { outline:2px solid #4bb8d3; outline-offset:2px; border-radius:5px; }
+
+/* Profile payment section: override global light-theme text rules. */
+body.madic-unified[data-page="profil-professionnel-cric"] .madic-unified-content .madic-profile-form .madic-payment-section .madic-payment-eyebrow {color:#65d9f0 !important;}
+body.madic-unified[data-page="profil-professionnel-cric"] .madic-unified-content .madic-profile-form .madic-payment-section h2 {color:#f4faff !important;}
+body.madic-unified[data-page="profil-professionnel-cric"] .madic-unified-content .madic-profile-form .madic-payment-section :is(.muted,.madic-payment-footnote) {color:#d4e5f1 !important;}
+body.madic-unified[data-page="profil-professionnel-cric"] .madic-unified-content .madic-profile-form .madic-payment-section .madic-payment-choice-text strong {color:#f4faff !important;}
+body.madic-unified[data-page="profil-professionnel-cric"] .madic-unified-content .madic-profile-form .madic-payment-section .madic-payment-choice-text small {color:#c7dce9 !important;}
+body.madic-unified[data-page="profil-professionnel-cric"] .madic-unified-content .madic-profile-form .madic-payment-section .madic-payment-detail label {color:#f4faff !important;}
