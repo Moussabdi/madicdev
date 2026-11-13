@@ -2,18 +2,20 @@
 (function(){
 "use strict";
 const words={
-"Aucune demande visible.":"No requests available.","Traitée":"Processed","Approuver":"Approve","Refuser":"Reject","Aucune prévalidation confirmée.":"No confirmed prevalidations.","Confirmé":"Confirmed","Non confirmé":"Not confirmed","Connexion administrateur requise.":"Administrator sign-in required.","Accès réservé au super administrateur.":"Access restricted to the super administrator.","Accès réservé au super administrateur MADIC.":"Access restricted to the MADIC super administrator.","Configuration Supabase absente.":"Supabase configuration missing.","Décision enregistrée.":"Decision saved.","Veuillez documenter votre décision.":"Please document your decision.","Décision enregistrée. Aucun compte professionnel n’a été créé.":"Decision saved. No professional account was created."};
+"Aucune demande visible.":"No requests available.","Traitée":"Processed","Approuver":"Approve","Refuser":"Reject","Aucune prévalidation confirmée.":"No confirmed prevalidations.","Confirmé":"Confirmed","Non confirmé":"Not confirmed","Connexion administrateur requise.":"Administrator sign-in required.","Accès réservé au super administrateur.":"Access restricted to the super administrator.","Accès réservé au super administrateur MADIC.":"Access restricted to the MADIC super administrator.","Configuration Supabase absente.":"Supabase configuration missing.","Décision enregistrée.":"Decision saved.","Veuillez documenter votre décision.":"Please document your decision.","Décision enregistrée. Aucun compte professionnel n’a été créé.":"Decision saved. No professional account was created.","Configuration Supabase manquante.":"Supabase configuration missing.","Approbation annulée : vérification du registre non confirmée.":"Approval cancelled: official register verification not confirmed.","Erreur de lecture : ":"Read error: ","Décision non enregistrée : ":"Decision not saved: ","Erreur : ":"Error: ","pending (expirée)":"pending (expired)","approved":"approved","rejected":"rejected","pending":"pending"};
 let language='fr';
 try{language=(new URLSearchParams(location.search).get('lang')||localStorage.getItem('madic-lang')||localStorage.getItem('madic-language')||'fr').toLowerCase()==='en'?'en':'fr'}catch(e){}
 function t(value){return language==='en'?(words[value]||value):value}
-function render(){document.documentElement.lang=language==='en'?'en-CA':'fr-CA';document.querySelectorAll('[data-fr][data-en]').forEach(el=>{el.textContent=el.dataset[language]});document.querySelectorAll('[data-aria-label-fr][data-aria-label-en]').forEach(el=>el.setAttribute('aria-label',el.dataset['ariaLabel'+(language==='en'?'En':'Fr')]));document.querySelectorAll('#madicHeroLanguage button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.lang===language)));document.title=language==='en'?'RCIC verification | MADIC':'Validation CRIC | MADIC';document.querySelectorAll('.madic-unified-brand strong[data-fr][data-en],header .brand small[data-fr][data-en]').forEach(el=>{el.textContent=el.dataset[language]});}
+function translateMessage(value){if(language!=='en')return value;const s=String(value??'');return words[s]||s.replace(/^(Erreur de lecture : |Décision non enregistrée : |Erreur : )/,p=>words[p]||p)}
+function render(){document.documentElement.lang=language==='en'?'en-CA':'fr-CA';document.querySelectorAll('[data-fr][data-en]').forEach(el=>{el.textContent=el.dataset[language]});document.querySelectorAll('[data-aria-label-fr][data-aria-label-en]').forEach(el=>el.setAttribute('aria-label',el.dataset['ariaLabel'+(language==='en'?'En':'Fr')]));document.querySelectorAll('[data-title-fr][data-title-en]').forEach(el=>el.title=el.dataset['title'+(language==='en'?'En':'Fr')]);document.querySelectorAll('#madicHeroLanguage button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.lang===language)));document.title=language==='en'?'RCIC verification | MADIC':'Validation CRIC | MADIC';document.querySelectorAll('.madic-unified-brand strong[data-fr][data-en],header .brand small[data-fr][data-en]').forEach(el=>{el.textContent=el.dataset[language]});}
 function setLanguage(next){language=next==='en'?'en':'fr';try{localStorage.setItem('madic-lang',language);localStorage.setItem('madic-language',language)}catch(e){}render();refreshDynamic();}
-function refreshDynamic(){document.querySelectorAll('#cricApplications td,#cricPrevalidations td,#cricApplications button,#cricPrevalidations button').forEach(el=>{const fr=el.dataset.frOriginal||el.textContent.trim();if(!el.dataset.frOriginal)el.dataset.frOriginal=fr;el.textContent=t(fr)});}
+function formatValidationDate(s){return s?new Date(s).toLocaleString(language==='en'?'en-CA':'fr-CA'):'-'}
+function refreshDynamic(){document.querySelectorAll('#cricApplications td:not(:has(button)),#cricPrevalidations td:not(:has(button)),#cricApplications button,#cricPrevalidations button').forEach(el=>{const fr=el.dataset.frOriginal||el.textContent.trim();if(!el.dataset.frOriginal)el.dataset.frOriginal=fr;el.textContent=t(fr)});document.querySelectorAll('#cricPrevalidations td[data-timestamp]').forEach(el=>{el.textContent=formatValidationDate(el.dataset.timestamp)});document.querySelectorAll('#cricMessage,#cricPrevalidationMessage').forEach(el=>{if(el.dataset.frMessage)el.textContent=translateMessage(el.dataset.frMessage)});}
 window.madicValidationLanguage={get:()=>language,t,set:setLanguage,refresh:refreshDynamic};
 document.querySelectorAll('#madicHeroLanguage button').forEach(b=>b.addEventListener('click',()=>setLanguage(b.dataset.lang)));
 render();
-const obs=new MutationObserver(()=>{obs.disconnect();refreshDynamic();obs.observe(document.getElementById('cricApprovalMain')||document.body,{subtree:true,childList:true});});
-obs.observe(document.getElementById('cricApprovalMain')||document.body,{subtree:true,childList:true});
+// Refresh translations only after explicit page updates, not on every DOM mutation.
+// The previous MutationObserver retriggered itself while rewriting table cells.
 function loadSupabase(){return new Promise((resolve,reject)=>{if(window.supabase){resolve();return;}const s=document.createElement('script');s.src='https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js';s.onload=resolve;s.onerror=()=>reject(new Error('Supabase unavailable'));document.head.appendChild(s);});}
 loadSupabase().then(()=>{startApproval();startPrevalidations();}).catch(e=>{const m=document.getElementById('cricMessage');if(m)m.textContent=e.message;});
 document.querySelectorAll('[data-madic-signout]').forEach(link=>link.addEventListener('click',async event=>{event.preventDefault();try{await window.getMadicSupabase?.()?.auth.signOut();}catch(e){}location.href=link.getAttribute('href')||'connexion-client-cric.html';}));
@@ -78,7 +80,7 @@ function startApproval(){
     popup.querySelector(".madic-cric-x").focus();
   };
   const show = (s) => {
-    if (msg) msg.textContent = s;
+    if (msg) {msg.dataset.frMessage=s;msg.textContent=translateMessage(s);}
     if (document.body.dataset.page === "cric-signup" && s && !s.startsWith("Demande déjà enregistrée") && !s.startsWith("Permis CRIC confirmé automatiquement")) {
       openPopup(s, /^Erreur|non confirm|refus|invalide/i.test(s) ? "Résultat de la vérification CRIC" : "Information sur votre demande CRIC");
     }
@@ -183,6 +185,7 @@ function startApproval(){
         }
         const body = document.getElementById("cricApplications");
         body.replaceChildren();
+    queueMicrotask(refreshDynamic);
         if (!data.length) {
           const tr = body.insertRow();
           tr.insertCell().colSpan = 5;
@@ -213,18 +216,18 @@ function startApproval(){
             button.addEventListener("click", async () => {
               if (
                 !confirm(
-                  `${label} la demande de ${item.full_name} (${item.license_number}) ?`,
+                  language==='en'?`${approve?"Approve":"Reject"} the request from ${item.full_name} (${item.license_number})?`:`${label} la demande de ${item.full_name} (${item.license_number}) ?`,
                 )
               )
                 return;
               if (approve) {
                 const registryUrl = "https://registre.college-ic.ca/Public-Register-FR/RCIC_Search.aspx";
                 const confirmed = window.prompt(
-                  "Avant approbation, consultez le registre officiel du CCIC :\n" +
+                  (language==='en'?"Before approving, check the official CICC register:\n":"Avant approbation, consultez le registre officiel du CCIC :\n") +
                   registryUrl + "\n\n" +
-                  "Vérifiez le numéro, le nom et le statut professionnel.\n" +
-                  "Si et seulement si ces éléments correspondent, saisissez exactement le numéro " +
-                  item.license_number + " pour confirmer :",
+                  (language==='en'?"Verify the licence number, name and professional status.\n":"Vérifiez le numéro, le nom et le statut professionnel.\n") +
+                  (language==='en'?"Only if all details match, enter the exact licence number ":"Si et seulement si ces éléments correspondent, saisissez exactement le numéro ") +
+                  item.license_number + (language==='en' ? " to confirm:" : " pour confirmer :"),
                   "",
                 );
                 if (confirmed === null) return;
@@ -233,7 +236,7 @@ function startApproval(){
                   return;
                 }
               }
-              const note = prompt("Note interne (facultative) :") ?? "";
+              const note = prompt(language==='en'?"Internal note (optional):":"Note interne (facultative) :") ?? "";
               button.disabled = true;
               const { error } = await db.rpc("madic_review_cric", {
                 p_user_id: item.user_id,
@@ -264,7 +267,7 @@ function startPrevalidations(){
   const message = document.getElementById("cricPrevalidationMessage");
   if (!tbody) return;
   const setMessage = (text) => {
-    message.textContent = text;
+    message.dataset.frMessage=text;message.textContent=translateMessage(text);
   };
   const db = window.getMadicSupabase?.();
   if (!db) {
@@ -276,7 +279,7 @@ function startPrevalidations(){
     td.textContent = String(value ?? "-");
     return td;
   };
-  const formatDate = (s) => (s ? new Date(s).toLocaleString("fr-CA") : "-");
+  const formatDate = formatValidationDate;
   async function refresh() {
     const { data: auth, error: authError } = await db.auth.getUser();
     if (authError || !auth?.user) {
@@ -298,6 +301,7 @@ function startPrevalidations(){
       return;
     }
     tbody.replaceChildren();
+    queueMicrotask(refreshDynamic);
     if (!data?.length) {
       const tr = tbody.insertRow();
       cell(tr, "Aucune prévalidation confirmée.").colSpan = 6;
@@ -308,7 +312,7 @@ function startPrevalidations(){
       cell(tr, item.full_name);
       cell(tr, item.license_number);
       cell(tr, item.registry_verified ? "Confirmé" : "Non confirmé");
-      cell(tr, formatDate(item.created_at));
+      const dateCell=cell(tr, formatDate(item.created_at));dateCell.dataset.timestamp=item.created_at;
       const expired =
         item.expires_at && new Date(item.expires_at).getTime() <= Date.now();
       cell(
@@ -333,12 +337,14 @@ function startPrevalidations(){
         button.textContent = label;
         button.style.marginRight = "0.5rem";
         button.addEventListener("click", async () => {
-          const confirmation = approve
+          const confirmation = language==='en'
+            ? (approve ? `Do you confirm that you independently verified the identity of licence holder ${item.license_number}, in addition to the CICC register? This action does not grant professional access. Continue?` : `Reject the prevalidation of ${item.full_name} (${item.license_number})?`)
+            : approve
             ? `Vous confirmez avoir vérifié l'identité du titulaire du permis ${item.license_number}, indépendamment du registre CCIC. Cette action n'ouvre aucun accès professionnel. Continuer ?`
             : `Refuser la prévalidation de ${item.full_name} (${item.license_number}) ?`;
           if (!window.confirm(confirmation)) return;
           const note = window.prompt(
-            "Motif et preuve de vérification (obligatoire, minimum 5 caractères) :",
+            language==='en'?"Reason and verification evidence (required, at least 5 characters):":"Motif et preuve de vérification (obligatoire, minimum 5 caractères) :",
           );
           if (note === null) return;
           if (note.trim().length < 5) {
