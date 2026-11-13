@@ -109,6 +109,22 @@ window.getMadicSupabase = function () {
     "Temps et honoraires": "Time and fees",
     "Aucune donnée enregistrée pour ce cabinet.": "No data recorded for this practice."
   });
+  Object.assign(dictionary, {
+    "Configuration Supabase indisponible.": "Supabase configuration unavailable.",
+    "Dossier": "Case", "Terminée": "Completed", "Dépassée": "Overdue",
+    "Aujourd’hui": "Today", "Demain": "Tomorrow", "À venir": "Upcoming",
+    "Réouvrir": "Reopen", "Marquer terminée": "Mark completed",
+    "Aucune échéance enregistrée.": "No deadlines recorded.",
+    "Modification refusée par les autorisations.": "Update denied by permissions.",
+    "Échéance mise à jour.": "Deadline updated.", "Échéances actualisées.": "Deadlines refreshed.",
+    "Vérifiez le dossier, la description et la date.": "Check the case, description and date.",
+    "Enregistrement non confirmé.": "Save not confirmed.",
+    "Échéance enregistrée.": "Deadline saved.",
+    "Compte CRIC non approuvé.": "RCIC account not approved.",
+    "Espace CRIC absent ou suspendu.": "RCIC workspace missing or suspended.",
+    "Accès au cabinet refusé.": "Practice access denied.",
+    "Créez d’abord un dossier dans votre espace CRIC.": "Create a case in your RCIC workspace first."
+  });
   const key = 'madic_ui_language';
   let lang = 'fr';
   try { lang = localStorage.getItem(key) === 'en' ? 'en' : 'fr'; } catch (_) {}
@@ -139,13 +155,22 @@ window.getMadicSupabase = function () {
     const text = normalized(value);
     return reverse.get(text) || value;
   }
+  function dynamicEnglish(text) {
+    let match = text.match(/^Dans (\d+) jours$/);
+    if (match) return `In ${match[1]} days`;
+    match = text.match(/^(\d+) échéances? · (\d+) dépassées? · (\d+) à traiter dans les 7 prochains jours\.$/);
+    if (match) return `${match[1]} deadline(s) · ${match[2]} overdue · ${match[3]} due within the next 7 days.`;
+    const prefixes = {"Erreur : ":"Error: ","Création impossible : ":"Unable to create: ","Accès impossible : ":"Unable to access: ","Cabinet : ":"Practice: "};
+    for (const [fr,en] of Object.entries(prefixes)) if(text.startsWith(fr)) return en + (dictionary[text.slice(fr.length)] || text.slice(fr.length));
+    return null;
+  }
   function toEnglish(value) {
     const text = normalized(value);
     if (Object.prototype.hasOwnProperty.call(dictionary, text)) return dictionary[text];
     for (const [pattern, replacement] of patterns) {
       if (pattern.test(text)) return text.replace(pattern, replacement);
     }
-    return value;
+    return dynamicEnglish(text) ?? value;
   }
   function localized(original) {
     const trimmed = normalized(original);

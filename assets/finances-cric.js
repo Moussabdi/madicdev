@@ -16,9 +16,10 @@
   const labels = {activity_date:'Date',client_id:'Client',description:'Description',minutes_worked:'Minutes',hourly_rate_cents:'Taux horaire (¢)',billable:'Facturable',invoice_number:'Facture',issued_on:'Émise le',amount_cents:'Montant HT (¢)',paid_cents:'Payé (¢)',status:'Statut',name:'Compte',account_type:'Type',currency:'Devise',created_at:'Création',transaction_date:'Date',account_id:'Compte',entry_type:'Mouvement',reference:'Référence'};
   function setStatus(message, error=false) { $('status').textContent = message; $('status').className = error ? 'error' : 'muted'; }
   function node(tag, text, className) { const e=document.createElement(tag); if(text!==undefined)e.textContent=String(text); if(className)e.className=className; return e; }
-  const money = (value) => (Number(value || 0) / 100).toLocaleString('fr-CA', {style:'currency',currency:'CAD'});
+  const money = (value) => (Number(value || 0) / 100).toLocaleString(document.documentElement.lang.startsWith('en') ? 'en-CA' : 'fr-CA', {style:'currency',currency:'CAD'});
   const displayValue = (key, value) => {
     if (value === null || value === undefined) return '-';
+    if (['activity_date','issued_on','created_at','transaction_date'].includes(key) && /^\d{4}-\d{2}-\d{2}/.test(String(value))) { const d = new Date(String(value).slice(0,10) + 'T12:00:00'); if (!Number.isNaN(d.getTime())) return d.toLocaleDateString(document.documentElement.lang.startsWith('en') ? 'en-CA' : 'fr-CA'); }
     if (typeof value === 'boolean') return value ? 'Oui' : 'Non';
     if (['amount_cents','paid_cents','hourly_rate_cents'].includes(key)) return money(value);
     if (key === 'status') return ({draft:'Brouillon',issued:'Émise',cancelled:'Annulée'})[value] || value;
@@ -175,6 +176,7 @@
       setStatus('Consultation - '+(data?.length||0)+' ligne(s) affichée(s).');
     }catch(e){if(requestId!==requestNumber)return;body.replaceChildren(empty('Impossible de charger les données : '+(e?.message||'Erreur inconnue')));setStatus('Vérifiez les autorisations Supabase et le contexte du cabinet.',true);}
   }
+  document.addEventListener('madic:languagechange', () => { if (context.supabase && context.spaceId) select(current); });
   sections.forEach(([key,title])=>{const b=node('button',title);b.type='button';b.dataset.tab=key;b.setAttribute('aria-selected',String(key===current));b.addEventListener('click',()=>select(key));$('tabs').append(b);});
   $('cabinet').textContent=context.spaceName||context.spaceId||'Non sélectionné';
   (async () => {
@@ -290,6 +292,88 @@
     "Temps et honoraires": "Time and fees",
     "Aucune donnée enregistrée pour ce cabinet.": "No data recorded for this practice."
   });
+  Object.assign(dictionary, {
+    "Temps et honoraires": "Time and fees",
+    "Facturation": "Invoicing",
+    "Paiements": "Payments",
+    "Fidéicommis": "Trust accounting",
+    "Comptabilité": "Accounting",
+    "Rapports": "Reports",
+    "Taux horaire (¢)": "Hourly rate (¢)",
+    "Facturable": "Billable",
+    "Facture": "Invoice",
+    "Émise le": "Issued on",
+    "Montant HT (¢)": "Amount before tax (¢)",
+    "Payé (¢)": "Paid (¢)",
+    "Statut": "Status",
+    "Compte": "Account",
+    "Devise": "Currency",
+    "Création": "Created",
+    "Mouvement": "Entry type",
+    "Référence": "Reference",
+    "Oui": "Yes",
+    "Non": "No",
+    "Brouillon": "Draft",
+    "Émise": "Issued",
+    "Annulée": "Cancelled",
+    "Exploitation": "Operating",
+    "Ajouter un compte": "Add account",
+    "Nom du compte": "Account name",
+    "Ex. Compte bancaire d’exploitation": "E.g. operating bank account",
+    "Type de compte": "Account type",
+    "Devise : CAD": "Currency: CAD",
+    "Enregistrer le compte": "Save account",
+    "Veuillez saisir un nom valide (150 caractères maximum).": "Enter a valid name (maximum 150 characters).",
+    "Enregistrement en cours…": "Saving…",
+    "Aucun identifiant de compte retourné.": "No account ID returned.",
+    "Compte financier créé avec succès.": "Financial account created successfully.",
+    "Création impossible :": "Unable to create:",
+    "Erreur inconnue": "Unknown error",
+    "Méthode de gestion des fonds clients": "Client funds management method",
+    "Sélectionnez le modèle utilisé par votre cabinet pour l’année de vérification. Ce paramètre ne déplace pas de fonds et ne modifie aucune écriture existante.": "Select the model used by your practice for the audit year. This setting does not move funds or change existing entries.",
+    "Année de vérification": "Audit year",
+    "Modèle de compte client": "Client account model",
+    "Modèle 1 - Tous les fonds reçus des clients passent par le compte client": "Model 1 - All funds received from clients go through the client account",
+    "Modèle 2 - Fonds non gagnés et non facturés dans le compte client": "Model 2 - Unearned and unbilled funds in the client account",
+    "Enregistrer le modèle": "Save model",
+    "Le modèle choisi doit être appliqué uniformément pendant l’année de vérification, sous réserve des règles actuellement applicables. La modification d’une année comportant des écritures est bloquée.": "The selected model must be applied consistently throughout the audit year, subject to applicable rules. Changes are blocked for years with existing entries.",
+    "Chargement du modèle…": "Loading model…",
+    "Paramètres indisponibles :": "Settings unavailable:",
+    "Modèle enregistré pour": "Model saved for",
+    "Aucun modèle enregistré pour": "No model saved for",
+    "Modèle": "Model",
+    "enregistré pour": "saved for",
+    "Enregistrement impossible :": "Unable to save:",
+    "Chargement…": "Loading…",
+    "Connexion au cabinet requise. Voir les instructions du fichier JavaScript.": "Practice connection required. See the JavaScript file instructions.",
+    "Intégration au portail existant nécessaire.": "Integration with the existing portal is required.",
+    "Comptes d’exploitation et comptes en fidéicommis de votre cabinet. La création d’un compte ici ne réalise aucune opération bancaire.": "Your practice operating and trust accounts. Creating an account here does not perform any banking transaction.",
+    "Factures consultées": "Invoices reviewed",
+    "Paiements cumulés déclarés": "Total reported payments",
+    "Montants HT des factures actives": "Pre-tax amounts of active invoices",
+    "Ces montants proviennent des factures du cabinet (100 dernières au maximum). Les paiements représentent des cumuls enregistrés, et non un journal de transactions ni un rapprochement bancaire.": "These amounts come from practice invoices (up to the latest 100). Payments are recorded totals, not a transaction ledger or bank reconciliation.",
+    "Rapport de consultation uniquement : aucune attestation comptable ou fiscale n’est produite.": "For review only: no accounting or tax certification is provided.",
+    "Ouvrir la facturation pour enregistrer les paiements": "Open invoicing to record payments",
+    "Aucune donnée enregistrée pour ce cabinet.": "No data recorded for this practice.",
+    "Affichage limité aux 100 enregistrements les plus récents.": "Display limited to the 100 most recent records.",
+    "Consultation -": "Viewing -",
+    "ligne(s) affichée(s).": "row(s) displayed.",
+    "Impossible de charger les données :": "Unable to load data:",
+    "Vérifiez les autorisations Supabase et le contexte du cabinet.": "Check Supabase permissions and the practice context.",
+    "Non sélectionné": "Not selected",
+    "Configuration Supabase manquante.": "Supabase configuration missing.",
+    "Aucun espace CRIC actif accessible.": "No active RCIC workspace available.",
+    "Accès financier non autorisé pour ce cabinet.": "Financial access is not authorized for this practice.",
+    "Accès impossible.": "Access unavailable.",
+    "Accès aux données financières indisponible.": "Financial data access unavailable.",
+    "Navigation du portail": "Portal navigation",
+    "Navigation du compte": "Account navigation",
+    "Modules financiers": "Financial modules",
+    "Liens du pied de page": "Footer links",
+    "Pied de page MADIC / MADIC footer": "MADIC footer",
+    "Page à venir / Page coming soon": "Page coming soon",
+    "Notifications": "Notifications"
+});
   const key = 'madic_ui_language';
   let lang = 'fr';
   try { lang = localStorage.getItem(key) === 'en' ? 'en' : 'fr'; } catch (_) {}
@@ -305,6 +389,11 @@
   const attrs = ['placeholder', 'title', 'aria-label'];
   const ignored = node => !!node.parentElement?.closest('script,style,code,pre,textarea,[contenteditable="true"],.madic-lang-controls');
   const patterns = [
+    [/^Consultation\s*-\s*\d+\s+ligne\(s\) affichée\(s\)\.$/i, s => s.replace(/^Consultation/, 'Viewing').replace('ligne(s) affichée(s)', 'row(s) displayed')],
+    [/^Modèle (1|2) enregistré pour (\d{4})\.$/i, s => s.replace(/^Modèle/, 'Model').replace('enregistré pour', 'saved for')],
+    [/^Modèle enregistré pour (\d{4})\.$/i, s => s.replace('Modèle enregistré pour', 'Model saved for')],
+    [/^Aucun modèle enregistré pour (\d{4})\.$/i, s => s.replace('Aucun modèle enregistré pour', 'No model saved for')],
+    [/^(Création impossible|Enregistrement impossible|Paramètres indisponibles|Impossible de charger les données)\s*:/i, s => s.replace(/^(Création impossible|Enregistrement impossible|Paramètres indisponibles|Impossible de charger les données)/i, x => dictionary[x + ' :']?.replace(/ :$/, '') || x)],
     [/^Nouvelle demande de rendez-vous\s*-\s*/i, 'New appointment request - '],
     [/^Dernière vérification automatique\s*:/i, 'Last automatic check:'],
     [/^Documents du dossier\s*:/i, 'Case documents:'],

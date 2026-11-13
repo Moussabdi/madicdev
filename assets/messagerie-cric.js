@@ -637,7 +637,7 @@
         if (currentId && !document.hidden) await loadMessages();
         refreshLabel(
           "Dernière vérification automatique : " +
-            new Date().toLocaleTimeString("fr-CA", {
+            new Date().toLocaleTimeString(document.documentElement.lang.startsWith("en") ? "en-CA" : "fr-CA", {
               hour: "2-digit",
               minute: "2-digit",
               second: "2-digit",
@@ -1099,6 +1099,17 @@
     "Envoi impossible": "Unable to send",
     "Message sans texte": "Message without text",
     "Professionnel": "Professional",
+    "Nom du client ou objet…": "Client name or subject…",
+    "Vérification des autorisations…": "Checking permissions…",
+    "Aucun cabinet CRIC actif associé à ce compte.": "No active RCIC practice is associated with this account.",
+    "Fichier indisponible.": "File unavailable.",
+    "Le fichier doit mesurer entre 1 octet et 10 Mo.": "The file must be between 1 byte and 10 MB.",
+    "La conversation a change pendant le transfert. Verifiez le fichier avant de continuer.": "The conversation changed during the upload. Check the file before continuing.",
+    "(Message sans texte)": "(Message without text)",
+    "Sélectionnez une conversation.": "Select a conversation.",
+    "messages non lus": "unread messages",
+    "Navigation du portail": "Portal navigation",
+    "Navigation du compte": "Account navigation",
     "Sélectionnez un client": "Select a client",
     "Dernière vérification automatique :": "Last automatic check:",
     "Client du cabinet": "Practice client",
@@ -1126,6 +1137,8 @@
   const ignored = node => !!node.parentElement?.closest('script,style,code,pre,textarea,[contenteditable="true"],.madic-lang-controls,.madic-msg-bubble,.madic-attachment-list .madic-attachment-filename');
   const patterns = [
     [/^Nouvelle demande de rendez-vous\s*-\s*/i, 'New appointment request - '],
+    [/^\d+\s+messages? non lus?$/i, s => s.replace(/messages? non lus?/i, 'unread messages')],
+    [/\bnon lus?\b/i, s => s.replace(/\bnon lus?\b/gi, 'unread')],
     [/^Dernière vérification automatique\s*:/i, 'Last automatic check:'],
     [/^Dernier message\s*:/i, 'Last message:'],
     [/^Créée\s*:/i, 'Created:'],
@@ -1270,4 +1283,18 @@
     document.addEventListener('DOMContentLoaded', updateDefaultSubject, {once: true});
   } else updateDefaultSubject();
   document.addEventListener('madic:languagechange', updateDefaultSubject);
+})();
+
+/* Keep unread badge accessible in the selected interface language. */
+;(() => {
+  function update() {
+    const badge = document.getElementById('msgUnreadCount');
+    if (!badge) return;
+    const n = Number(badge.textContent) || 0;
+    badge.setAttribute('aria-label', document.documentElement.lang.startsWith('en')
+      ? `${n} unread messages` : `${n} messages non lus`);
+  }
+  document.addEventListener('madic:languagechange', update);
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', update);
+  else update();
 })();

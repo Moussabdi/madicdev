@@ -137,7 +137,7 @@ window.getMadicSupabase = function () {
     for (const doc of data || []) {
       const row = body.insertRow();
       const received = doc.created_at
-        ? new Date(doc.created_at).toLocaleDateString("fr-CA")
+        ? new Date(doc.created_at).toLocaleDateString(window.MadicCricLanguage?.get?.() === "en" ? "en-CA" : "fr-CA")
         : "-";
       const review =
         { accepte: "Accepté", refuse: "Refusé", en_attente: "En attente" }[
@@ -623,6 +623,12 @@ window.getMadicSupabase = function () {
     [/^Nouvelle demande de rendez-vous\s*-\s*/i, 'New appointment request - '],
     [/^Dernière vérification automatique\s*:/i, 'Last automatic check:'],
     [/^Documents du dossier\s*:/i, 'Case documents:'],
+    [/^Lecture impossible\s*:/i, 'Unable to load:'],
+    [/^Évaluation impossible\s*:/i, 'Unable to review:'],
+    [/^Téléchargement impossible\s*:/i, 'Download failed:'],
+    [/^Transmission impossible\s*:/i, 'Unable to send:'],
+    [/^Création impossible\s*:/i, 'Unable to create:'],
+    [/^Chargement impossible\s*:/i, 'Unable to load:'],
     [/^Espace professionnel\s*:/i, 'Professional workspace:'],
     [/^Espace de facturation du cabinet\s*:/i, 'Practice invoicing workspace:'],
     [/^Cabinet\s*:/i, 'Practice:'],

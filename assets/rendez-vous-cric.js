@@ -23,7 +23,7 @@ window.getMadicSupabase = function () {
   const $ = (id) => document.getElementById(id),
     notice = (t) => ($("rdvNotice").textContent = t);
   if (typeof window.getMadicSupabase !== "function")
-    return notice("Configuration Supabase manquante.");
+    return notice(localStorage.getItem("madic_ui_language") === "en" ? "Supabase configuration missing." : "Configuration Supabase manquante.");
   const db = window.getMadicSupabase();
   let spaceId,
     slots = [];
@@ -71,7 +71,7 @@ window.getMadicSupabase = function () {
   };
   function localToIso(value) {
     if (!/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/.test(value))
-      throw Error("Date invalide");
+      throw Error(tr("Date invalide", "Invalid date"));
     // Saisie locale interpretee dans le fuseau de Montreal, y compris les transitions DST.
     const [ymd, hm] = value.split("T");
     const [y, m, d] = ymd.split("-").map(Number),
@@ -179,7 +179,7 @@ window.getMadicSupabase = function () {
       const finish = montrealLocal(
         new Date(Date.parse(start) + duration * 60000),
       );
-      endInput.value = finish.replace("T", " à ") + " (Montréal)";
+      endInput.value = finish.replace("T", english() ? " at " : " à ") + (english() ? " (Montreal)" : " (Montréal)");
     } catch (_) {
       /* Conserver la fin vide si invalide. */
     }
@@ -201,13 +201,19 @@ window.getMadicSupabase = function () {
     declined: "Votre demande de rendez-vous a été refusée",
     cancelled: "Un rendez-vous a été annulé",
   };
+  const notificationLabelsEn = {
+    requested: "New appointment request",
+    confirmed: "Your appointment has been confirmed",
+    declined: "Your appointment request was declined",
+    cancelled: "An appointment was cancelled",
+  };
   function setupNotifications() {
     if ($("rdvNotifications")) return;
     const section = document.createElement("section");
     section.className = "panel";
     section.id = "rdvNotifications";
     const heading = document.createElement("h2");
-    heading.textContent = "Notifications de rendez-vous";
+    heading.textContent = tr("Notifications de rendez-vous", "Appointment notifications");
     const summary = document.createElement("p");
     summary.id = "rdvNotificationSummary";
     summary.className = "madic-rdv-muted";
@@ -227,17 +233,17 @@ window.getMadicSupabase = function () {
       .limit(30);
     if (error) {
       $("rdvNotificationSummary").textContent =
-        "Notifications indisponibles : " + error.message;
+        tr("Notifications indisponibles : ", "Notifications unavailable: ") + error.message;
       return;
     }
     list.replaceChildren();
     const unread = (data || []).filter((n) => !n.read_at).length;
     $("rdvNotificationSummary").textContent = unread
-      ? `${unread} notification(s) non lue(s).`
-      : "Aucune notification non lue.";
+      ? tr(`${unread} notification(s) non lue(s).`, `${unread} unread notification(s).`)
+      : tr("Aucune notification non lue.", "No unread notifications.");
     if (!data?.length) {
       const p = document.createElement("p");
-      p.textContent = "Aucune notification pour le moment.";
+      p.textContent = tr("Aucune notification pour le moment.", "No notifications at this time.");
       list.append(p);
     }
     for (const n of data || []) {
@@ -245,21 +251,21 @@ window.getMadicSupabase = function () {
       line.style.cssText =
         "display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;padding:10px 0;border-bottom:1px solid #ddd";
       const info = document.createElement("span");
-      info.textContent = `${notificationLabels[n.event_type] || n.event_type} - ${date(n.created_at)}`;
+      info.textContent = `${tr(notificationLabels[n.event_type] || n.event_type, notificationLabelsEn[n.event_type] || n.event_type)} - ${date(n.created_at)}`;
       if (!n.read_at) info.style.fontWeight = "700";
       line.append(info);
       if (!n.read_at) {
         const b = document.createElement("button");
         b.type = "button";
         b.className = "secondary";
-        b.textContent = "Marquer comme lue";
+        b.textContent = tr("Marquer comme lue", "Mark as read");
         b.onclick = async () => {
           b.disabled = true;
           const { error } = await db.rpc("madic_rdv_mark_notification_read", {
             p_notification_id: n.id,
           });
           if (error) {
-            notice("Notification : " + error.message);
+            notice(tr("Notification : ", "Notification: ") + error.message);
             b.disabled = false;
             return;
           }
@@ -587,7 +593,7 @@ window.getMadicSupabase = function () {
       .limit(1);
     if (se) throw se;
     const space = spaces?.[0];
-    if (!space) throw Error("Aucun espace professionnel CRIC associé à votre compte. Vérifiez l'association du cabinet et les droits RLS.");
+    if (!space) throw Error(tr("Aucun espace professionnel CRIC associé à votre compte. Vérifiez l'association du cabinet et les droits RLS.", "No RCIC professional workspace is associated with your account. Check the practice association and RLS permissions."));
     if (space.access_status !== "active")
       throw Error("Votre espace professionnel CRIC est suspendu ou inactif.");
     const { data: allowed, error: ae } = await db.rpc(
@@ -621,10 +627,10 @@ window.getMadicSupabase = function () {
           minutes > 480 ||
           minutes % 60 !== 0
         )
-          throw Error("Choisissez une durée autorisée.");
+          throw Error(tr("Choisissez une durée autorisée.", "Choose an allowed duration."));
         const end = new Date(Date.parse(start) + minutes * 60000).toISOString();
         if (new Date(start).getTime() <= Date.now())
-          throw Error("Le début doit être dans le futur.");
+          throw Error(tr("Le début doit être dans le futur.", "The start time must be in the future."));
         const duration = new Date(end).getTime() - new Date(start).getTime();
         if (duration <= 0 || duration > 8 * 60 * 60 * 1000)
           throw Error(
@@ -641,16 +647,16 @@ window.getMadicSupabase = function () {
         $("slotForm").reset();
         updateDateLimits();
         await load();
-        notice("Créneau publié.");
+        notice(tr("Créneau publié.", "Time slot published."));
       } catch (err) {
-        notice("Création impossible : " + err.message);
+        notice(tr("Création impossible : ", "Unable to create: ") + err.message);
       } finally {
         btn.disabled = false;
       }
     };
     await load();
   } catch (e) {
-    notice("Chargement impossible : " + e.message);
+    notice(tr("Chargement impossible : ", "Unable to load: ") + e.message);
   }
 })();
 
@@ -767,6 +773,14 @@ window.getMadicSupabase = function () {
 (() => {
   "use strict";
   const dictionary = {
+    "Notifications de rendez-vous": "Appointment notifications",
+    "Nouvelle demande de rendez-vous": "New appointment request",
+    "Votre rendez-vous a été confirmé": "Your appointment has been confirmed",
+    "Votre demande de rendez-vous a été refusée": "Your appointment request was declined",
+    "Un rendez-vous a été annulé": "An appointment was cancelled",
+    "Marquer comme lue": "Mark as read",
+    "Aucune notification pour le moment.": "No notifications at this time.",
+    "Créneau publié.": "Time slot published.",
     "Calculée automatiquement": "Calculated automatically",
     "Adresse ou lien Teams": "Address or Teams link",
     "Sélectionnez une journée pour afficher ses consultations.": "Select a day to view its consultations.",

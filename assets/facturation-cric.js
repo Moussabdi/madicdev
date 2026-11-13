@@ -147,6 +147,9 @@ window.getMadicSupabase = function () {
       addOption(sel, d.id, d.reference || d.id);
   }
   function showInvoice(i) {
+    const en = (() => { try { return localStorage.getItem("madic_ui_language") === "en"; } catch (_) { return document.documentElement.lang.startsWith("en"); } })();
+    const t = (fr, english) => en ? english : fr;
+    const formatMoney = (value) => (Number(value) / 100).toLocaleString(en ? "en-CA" : "fr-CA", {style:"currency",currency:"CAD"});
     const c = clients.find((x) => x.id === i.client_id),
       d = dossiers.find((x) => x.id === i.dossier_id);
     const w = window.open("", "_blank");
@@ -157,7 +160,7 @@ window.getMadicSupabase = function () {
     const doc = w.document;
     doc.open();
     doc.write(
-      '<!doctype html><html lang="fr-CA"><head><meta charset="utf-8"><title>Facture</title><style>body{font:15px Arial,sans-serif;max-width:800px;margin:45px auto;color:#182331}h1{border-bottom:3px solid #162c49;padding-bottom:12px}section{margin:22px 0}table{width:100%;border-collapse:collapse}td,th{padding:10px;border-bottom:1px solid #ccc;text-align:left}.right{text-align:right}.logo{max-height:95px;max-width:210px;object-fit:contain}button{margin-top:30px;padding:12px}@media print{button{display:none}body{margin:20px}}</style></head><body><main id="content"></main><button onclick="window.print()">Imprimer / Enregistrer en PDF</button></body></html>',
+      '<!doctype html><html lang="' + (en ? "en-CA" : "fr-CA") + '"><head><meta charset="utf-8"><title>' + t("Facture", "Invoice") + '</title><style>body{font:15px Arial,sans-serif;max-width:800px;margin:45px auto;color:#182331}h1{border-bottom:3px solid #162c49;padding-bottom:12px}section{margin:22px 0}table{width:100%;border-collapse:collapse}td,th{padding:10px;border-bottom:1px solid #ccc;text-align:left}.right{text-align:right}.logo{max-height:95px;max-width:210px;object-fit:contain}button{margin-top:30px;padding:12px}@media print{button{display:none}body{margin:20px}}</style></head><body><main id="content"></main><button onclick="window.print()">' + t("Imprimer / Enregistrer en PDF", "Print / Save as PDF") + '</button></body></html>',
     );
     doc.close();
     const root = doc.getElementById("content");
@@ -175,27 +178,27 @@ window.getMadicSupabase = function () {
       const img = doc.createElement("img");
       img.src = i.logo_data_url;
       img.className = "logo";
-      img.alt = "Logo du cabinet";
+      img.alt = t("Logo du cabinet", "Practice logo");
       root.append(img);
     }
-    el("h1", "FACTURE " + i.invoice_number);
+    el("h1", t("FACTURE ", "INVOICE ") + i.invoice_number);
     el("h2", i.cabinet_name);
     if (i.cabinet_address) el("p", i.cabinet_address);
     if (i.cabinet_tax_numbers)
-      el("p", "Numéros de taxes : " + i.cabinet_tax_numbers);
+      el("p", t("Numéros de taxes : ", "Tax numbers: ") + i.cabinet_tax_numbers);
     const sec = el("section", "");
-    el("h3", "Facturé à", sec);
+    el("h3", t("Facturé à", "Billed to"), sec);
     el("p", c ? name(c) : i.client_id, sec);
     if (c?.email) el("p", c.email, sec);
     el(
       "p",
-      "Date : " + i.issued_on + (i.due_on ? " · Échéance : " + i.due_on : ""),
+      t("Date : ", "Date: ") + i.issued_on + (i.due_on ? t(" · Échéance : ", " · Due: ") + i.due_on : ""),
       sec,
     );
-    if (d) el("p", "Dossier : " + d.reference, sec);
+    if (d) el("p", t("Dossier : ", "Case: ") + d.reference, sec);
     const table = el("table", "");
     const head = el("tr", "", table);
-    for (const x of ["Description", "Qté", "Prix unitaire", "Montant"])
+    for (const x of ["Description", t("Qté", "Qty"), t("Prix unitaire", "Unit price"), t("Montant", "Amount")])
       el("th", x, head);
     const items =
       Array.isArray(i.items) && i.items.length
@@ -211,33 +214,33 @@ window.getMadicSupabase = function () {
       const r = el("tr", "", table);
       el("td", item.description, r);
       el("td", String(item.quantity), r);
-      el("td", money(item.unit_price_cents), r);
-      el("td", money(item.quantity * item.unit_price_cents), r).className =
+      el("td", formatMoney(item.unit_price_cents), r);
+      el("td", formatMoney(item.quantity * item.unit_price_cents), r).className =
         "right";
     }
     for (const [label, value] of [
-      ["Sous-total", money(i.amount_cents)],
+      [t("Sous-total", "Subtotal"), formatMoney(i.amount_cents)],
       [
-        "Taxes (" + (Number(i.tax_rate) * 100).toLocaleString("fr-CA") + " %)",
-        money(total(i) - i.amount_cents),
+        t("Taxes (", "Taxes (") + (Number(i.tax_rate) * 100).toLocaleString(en ? "en-CA" : "fr-CA") + " %)",
+        formatMoney(total(i) - i.amount_cents),
       ],
-      ["TOTAL", money(total(i))],
-      ["Paiements reçus", money(i.paid_cents)],
-      ["Solde", money(total(i) - i.paid_cents)],
+      ["TOTAL", formatMoney(total(i))],
+      [t("Paiements reçus", "Payments received"), formatMoney(i.paid_cents)],
+      [t("Solde", "Balance"), formatMoney(total(i) - i.paid_cents)],
     ]) {
       const r = el("tr", "", table);
       el("td", label, r).colSpan = 3;
       el("td", value, r).className = "right";
     }
-    if (i.notes) el("p", "Notes : " + i.notes);
+    if (i.notes) el("p", t("Notes : ", "Notes: ") + i.notes);
     el(
       "p",
-      "Statut : " +
+      t("Statut : ", "Status: ") +
         (i.status === "cancelled"
-          ? "Annulée"
+          ? t("Annulée", "Cancelled")
           : i.status === "draft"
-            ? "Brouillon"
-            : "Émise"),
+            ? t("Brouillon", "Draft")
+            : t("Émise", "Issued")),
     );
     w.focus();
   }
@@ -1543,6 +1546,10 @@ document.getElementById("cricLogout")?.addEventListener("click", async () => {
       'script,style,code,pre,textarea,[contenteditable="true"],.madic-lang-controls',
     );
   const patterns = [
+    [/^Connexion Stripe impossible\s*:/i, "Stripe connection failed:"],
+    [/^Erreur de chargement\s*:/i, "Loading error:"],
+    [/^Erreur de paiement\s*:/i, "Payment error:"],
+    [/^Erreur\s*:/i, "Error:"],
     [/^Nouvelle demande de rendez-vous\s*-\s*/i, "New appointment request - "],
     [/^Dernière vérification automatique\s*:/i, "Last automatic check:"],
     [/^Documents du dossier\s*:/i, "Case documents:"],
