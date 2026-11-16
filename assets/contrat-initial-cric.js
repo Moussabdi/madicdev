@@ -429,7 +429,7 @@ function updateInitialLetterhead(){
  }
  set('letterheadDate',date);
 }
-document.addEventListener('madic:languagechange',()=>{preview();window.MADIC_CRIC_I18N.apply();});
+document.addEventListener('madic:languagechange',()=>{preview();window.MADIC_CRIC_I18N.apply();if(!$('madicCompletionOverlay')?.hidden){showCompletionGuide(true);}});
 function preview(){const d=dossiers.find(x=>x.id===$('contractDossier').value);const fields=[['Client',[f.prenom.value,f.nom.value].filter(Boolean).join(' ')],['Courriel',f.courriel.value],['Téléphone',f.telephone.value],['Adresse',f.adresse.value],['Date de naissance',f.naissance.value],['Date du contrat',f.date.value],['Lieu',f.lieu.value],['Dossier',d?.reference||''],['Objet',f.objet.value],['Honoraires',f.tarif.value?f.tarif.value+' '+(isInitial&&initialTariff?.currency==='USD'?'$ US':'$ CA')+(isInitial&&initialTariff?.type==='horaire'?' / heure':''):'À convenir']];if(f.avance)fields.push(['Avance',f.avance.value?f.avance.value+' $ CA':'À convenir']);if(f.langue)fields.push(['Langue des services',f.langue.value]);if(f.conseils)fields.push(['Conseils préliminaires',f.conseils.value]);if(document.body.dataset.contractKind==='initial'){updateInitialLetterhead();updateSource();updateConsultantSignaturePreview();return}updateConsultantSignaturePreview();const target=$('contractFilled');if(!target){updateSource();return}target.replaceChildren();for(const [k,v] of fields){const p=document.createElement('p'),strong=document.createElement('strong');strong.textContent=k+' : ';p.append(strong,document.createTextNode(v||'À compléter'));target.append(p)}if(document.body.dataset.contractKind==='initial')updateSource()}
 // Controle de completude : aucune version contenant « A completer » ne peut etre publiee.
 const fieldLabels={client_id:'Client associe',dossier_id:'Dossier',nom:'Nom du client',prenom:'Prenom du client',courriel:'Courriel du client',telephone:'Telephone du client',adresse:'Adresse de residence',naissance:'Date de naissance',date:'Date du contrat',lieu:'Lieu de signature',objet:isInitial?'Objet de la consultation':'Objet du mandat',proNom:'Nom du consultant',proNumero:'Numero CRIC',proEntreprise:'Entreprise / cabinet',proAdresse:'Adresse professionnelle',proTelephone:'Telephone professionnel',proCourriel:'Courriel professionnel',proSite:'Site Web professionnel',proPaiement:'Coordonnees de paiement',cricSignatureCity:'Lieu de signature du consultant',tarif:'Honoraires convenus',avance:'Avance convenue',conseils:'Résumé des conseils préliminaires',registreQuebec:'Permis du registre québécois',phase1:'Honoraires – phase 1',phase2:'Honoraires – phase 2',phase3:'Honoraires – phase 3',fraisBio:'Frais biométriques',fraisPermis:'Frais permis d’études'};
@@ -445,7 +445,7 @@ function ensureGuide(){
  let overlay=$('madicCompletionOverlay');if(overlay)return overlay;
  const unusedCss=`#madicCompletionOverlay{position:fixed;inset:0;z-index:99999;background:rgba(4,16,30,.78);display:flex;align-items:center;justify-content:center;padding:16px}#madicCompletionOverlay[hidden]{display:none}#madicCompletionDialog{width:min(620px,100%);max-height:88vh;overflow:auto;background:#fff;color:#14253a;border-radius:14px;padding:25px;box-shadow:0 18px 70px #0007}#madicCompletionDialog h2{margin:0 0 12px;color:#14253a}#madicCompletionDialog p{line-height:1.5}#madicCompletionList{display:grid;gap:7px;margin:14px 0}#madicCompletionList button{width:100%;padding:10px 12px;text-align:left;border:1px solid #bfd5e0;border-radius:8px;background:#f1f8fb;color:#123b52;cursor:pointer}#madicCompletionClose{padding:11px 17px;border:0;border-radius:8px;background:#176c85;color:white;cursor:pointer}@media print{#madicCompletionOverlay{display:none!important}body.madic-incomplete-print #contractDocument{display:none!important}body.madic-incomplete-print:after{content:'IMPRESSION BLOQUEE : CONTRAT INCOMPLET';display:block;font-size:24pt;color:#000}}`;
  
- overlay=document.createElement('div');overlay.id='madicCompletionOverlay';overlay.hidden=true;overlay.innerHTML='<section id="madicCompletionDialog" role="dialog" aria-modal="true" aria-labelledby="madicCompletionTitle"><h2 id="madicCompletionTitle">Renseignements à compléter</h2><p id="madicCompletionText"></p><div id="madicCompletionList"></div><button type="button" id="madicCompletionClose">Continuer la saisie</button></section>';
+ overlay=document.createElement('div');overlay.id='madicCompletionOverlay';overlay.hidden=true;overlay.innerHTML='<section id="madicCompletionDialog" role="dialog" aria-modal="true" aria-labelledby="madicCompletionTitle"><h2 id="madicCompletionTitle" data-fr="Renseignements à compléter" data-en="Information to complete">Renseignements à compléter</h2><p id="madicCompletionText"></p><div id="madicCompletionList"></div><button type="button" id="madicCompletionClose" data-fr="Continuer la saisie" data-en="Continue editing">Continuer la saisie</button></section>';
  document.body.append(overlay);
  $('madicCompletionClose').addEventListener('click',()=>{overlay.hidden=true;reminderDismissed=true});
  return overlay;
@@ -459,6 +459,7 @@ function showCompletionGuide(force=false){
  if(!incomplete){const modal=$('madicCompletionOverlay');if(modal)modal.hidden=true;reminderDismissed=false;return true}
  if(!force&&reminderDismissed)return false;
  const modal=ensureGuide(),list=$('madicCompletionList');list.replaceChildren();
+ window.MADIC_CRIC_I18N.apply(modal);
  $('madicCompletionText').textContent=window.MADIC_CRIC_I18N.language==='en'?`Please complete the ${missing.length} item(s) below before continuing.`:`Veuillez compléter les ${missing.length} renseignement(s) ci-dessous avant de poursuivre.`;
  for(const key of missing){
   const btn=document.createElement('button');btn.type='button';
@@ -479,7 +480,7 @@ function showCompletionGuide(force=false){
     if(!input?.readOnly)input?.focus();else message('Champ issu du profil CRIC : modifiez-le dans Mon profil professionnel, puis rechargez le contrat.');
   });list.append(btn)
 }
- if(hasPlaceholder&&!missing.length){const p=document.createElement('p');p.textContent='Le document contient encore « À compléter ». Verifiez les champs et les informations du profil CRIC.';list.append(p)}
+ if(hasPlaceholder&&!missing.length){const p=document.createElement('p');p.textContent=window.MADIC_CRIC_I18N.t('Le document contient encore « À compléter ». Verifiez les champs et les informations du profil CRIC.');list.append(p)}
  modal.hidden=false;$('madicCompletionClose').focus();return false;
 }
 
