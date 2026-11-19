@@ -15,6 +15,59 @@
     <link href="assets/mes-contrats.css" rel="stylesheet" />
   </head>
   <body class="madic-client-secondary" data-page="cric-client-dashboard">
+    <header aria-label="En-tête MADIC PORTAIL" class="madic-contracts-topbar">
+      <a class="madic-contracts-brand" href="connexion-client-cric.html"
+        >MADI<span>C</span> <small>PORTAIL</small></a
+      >
+      <nav aria-label="Navigation du portail" class="madic-contracts-actions">
+        <a
+          data-en="Sign out"
+          data-fr="Déconnexion"
+          href="connexion-client-cric.html"
+          id="madicHeaderSignout"
+          >Déconnexion</a
+        ><a
+          data-en="My space"
+          data-fr="Mon espace"
+          href="dashboard-client-cric.html#madic-top"
+          >Mon espace</a
+        >
+      </nav>
+      <div class="madic-contracts-tools">
+        <a
+          aria-label="Notifications de messagerie"
+          data-fr-aria-label="Notifications de messagerie"
+          data-en-aria-label="Messaging notifications"
+          class="madic-contracts-notifications"
+          href="messagerie-client-cric.html"
+          title="Notifications de messagerie"
+          data-fr-title="Notifications de messagerie"
+          data-en-title="Messaging notifications"
+          ><svg
+            aria-hidden="true"
+            fill="none"
+            height="22"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1.8"
+            viewbox="0 0 24 24"
+            width="22"
+          >
+            <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"></path>
+            <path d="M10 21h4"></path>
+          </svg>
+        </a>
+        <div
+          aria-label="Langue / Language"
+          class="madic-contracts-language"
+          role="group"
+        >
+          <button aria-pressed="true" data-lang="fr" type="button">FR</button
+          ><button aria-pressed="false" data-lang="en" type="button">EN</button>
+        </div>
+      </div>
+    </header>
     <main class="madic-app-layout">
       <aside
         aria-label="Navigation de mon espace client"
@@ -539,73 +592,13 @@
           >
         </div>
       </aside>
-      <div class="madic-app-content">
-        <header
-          aria-label="En-tête MADIC PORTAIL"
-          class="madic-contracts-topbar"
+      <div class="madic-app-content" id="madic-top">
+        <section
+          class="madic-contracts-main"
+          aria-labelledby="madicContractsTitle"
         >
-          <a class="madic-contracts-brand" href="connexion-client-cric.html"
-            >MADI<span>C</span> <small>PORTAIL</small></a
-          >
-          <nav
-            aria-label="Navigation du portail"
-            class="madic-contracts-actions"
-          >
-            <a
-              data-en="Sign out"
-              data-fr="Déconnexion"
-              href="connexion-client-cric.html"
-              id="madicHeaderSignout"
-              >Déconnexion</a
-            ><a
-              data-en="My space"
-              data-fr="Mon espace"
-              href="dashboard-client-cric.html#madic-top"
-              >Mon espace</a
-            >
-          </nav>
-          <div class="madic-contracts-tools">
-            <a
-              aria-label="Notifications de messagerie"
-              data-fr-aria-label="Notifications de messagerie"
-              data-en-aria-label="Messaging notifications"
-              class="madic-contracts-notifications"
-              href="messagerie-client-cric.html"
-              title="Notifications de messagerie"
-              data-fr-title="Notifications de messagerie"
-              data-en-title="Messaging notifications"
-              ><svg
-                aria-hidden="true"
-                fill="none"
-                height="22"
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="1.8"
-                viewbox="0 0 24 24"
-                width="22"
-              >
-                <path
-                  d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"
-                ></path>
-                <path d="M10 21h4"></path>
-              </svg>
-            </a>
-            <div
-              aria-label="Langue / Language"
-              class="madic-contracts-language"
-              role="group"
-            >
-              <button aria-pressed="true" data-lang="fr" type="button">
-                FR</button
-              ><button aria-pressed="false" data-lang="en" type="button">
-                EN
-              </button>
-            </div>
-          </div>
-        </header>
-        <main class="madic-contracts-main">
           <h1
+            id="madicContractsTitle"
             data-en="My consultation contracts"
             data-fr="Mes contrats de consultation"
           >
@@ -617,7 +610,7 @@
             data-mode="client"
             id="madic-contracts"
           ></section>
-        </main>
+        </section>
       </div>
     </main>
 
@@ -686,6 +679,6 @@
 
     <script src="assets/config.js"></script>
     <script src="assets/madic-footer.js"></script>
-    <script src="assets/mes-contrats.js?v=7ff4ef6b1d28"></script>
+    <script src="assets/mes-contrats.js?v=87852f00e14c"></script>
   </body>
 </html>

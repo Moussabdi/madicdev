@@ -721,18 +721,31 @@
     const exit = element("a");
     exit.href = accessUrl.href;
     label(exit, "Mes accès invités", "My guest accesses");
-    const signout = action("Déconnexion", "Sign out", async () => {
-      const { error } = await db.auth.signOut();
-      if (error) throw error;
-      location.replace(accessUrl.href);
-    });
-
     const actions = element("div", null, "madic-guest-banner__actions");
-    actions.append(exit, signout);
+    actions.append(exit);
     banner.append(identity, actions, notice);
     if (portalHeader) portalHeader.after(banner);
     else content.prepend(banner);
-    // Les boutons natifs de déconnexion suivent également le parcours invité.
+    let signingOut = false;
+    async function signOutGuest() {
+      if (signingOut) return;
+      signingOut = true;
+      try {
+        const guestDb = db || window.getMadicSupabase();
+        const { error } = await guestDb.auth.signOut();
+        if (error) throw error;
+        location.replace(accessUrl.href);
+      } catch {
+        label(
+          notice,
+          "Impossible de vous déconnecter. Réessayez.",
+          "Unable to sign out. Please try again.",
+        );
+        signingOut = false;
+      }
+    }
+
+    // Les commandes de déconnexion suivent le parcours invité.
     for (const control of document.querySelectorAll(
       '#logout,#madicHeaderSignout,[data-madic-signout="true"]',
     )) {
@@ -741,7 +754,7 @@
         (event) => {
           event.preventDefault();
           event.stopImmediatePropagation();
-          signout.click();
+          void signOutGuest();
         },
         true,
       );
