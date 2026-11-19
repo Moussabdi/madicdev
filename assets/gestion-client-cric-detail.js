@@ -308,6 +308,7 @@ window.getMadicSupabase = function () {
     $("spaceName").textContent = "Espace professionnel : " + space.name;
     renderDossiers();
     $("workspace").hidden = false;
+    setupGuestAccess(db, space.id, clientId);
     msg("Dossiers du client chargés.");
     $("refresh").addEventListener("click", async () => {
       try {
@@ -380,3 +381,94 @@ const nodes=[...document.querySelectorAll('body *')].filter(el=>!['SCRIPT','STYL
 function apply(lang){lang=lang==='en'?'en':'fr';document.documentElement.lang=lang==='en'?'en-CA':'fr-CA';for(const [node,raw] of original){if(!node.isConnected)continue;const trimmed=raw.trim();const translated=translations[trimmed]||translations[trimmed.replace(/^←\s*/, '')];node.textContent=lang==='en'&&translated?raw.replace(trimmed,trimmed.startsWith('←')?'← '+translated:translated):raw}document.querySelectorAll('[data-fr][data-en]').forEach(el=>{if(!el.children.length)el.textContent=el.getAttribute('data-'+lang)});document.querySelectorAll('[data-lang]').forEach(b=>{b.setAttribute('aria-pressed',String(b.dataset.lang===lang))});}
 let lang='fr';try{lang=localStorage.getItem('madic-lang')||'fr'}catch(e){}document.querySelectorAll('[data-lang]').forEach(b=>b.addEventListener('click',()=>{lang=b.dataset.lang;try{localStorage.setItem('madic-lang',lang)}catch(e){}apply(lang)}));apply(lang);
 })();
+
+
+function setupGuestAccess(db, spaceId, clientId) {
+  const el = id => document.getElementById("cricGuest" + id);
+  const form = el("Form"), revoke = el("Revoke"), invite = el("Invite");
+  const args = { p_space: spaceId, p_client: clientId };
+  const english = () => document.documentElement.lang.startsWith("en");
+  const tr = (fr, en) => english() ? en : fr;
+  let current, busy = false, notice = [];
+  const states = {
+    pending: ["Invitation en attente", "Invitation pending"],
+    active: ["Accès actif", "Access active"],
+    expired: ["Invitation expirée", "Invitation expired"],
+    revoked: ["Accès révoqué", "Access revoked"],
+  };
+  function render() {
+    const exclusive = current && ["pending", "active"].includes(current.status);
+    form.hidden = current === undefined || Boolean(exclusive);
+    revoke.hidden = !exclusive;
+    invite.disabled = revoke.disabled = busy;
+    let status = current ? current.email + " · " + tr(...states[current.status])
+      : current === null ? tr("Aucun accès invité.", "No guest access.") : "";
+    if (current?.status === "pending") {
+      status += " · " + new Date(current.expires).toLocaleString(english() ? "en-CA" : "fr-CA");
+    }
+    el("Current").textContent = status;
+    el("Status").textContent = notice.length ? tr(...notice) : "";
+  }
+  async function load(revokeId) {
+    const { data, error } = await db.rpc("madic_guest_manage",
+      revokeId ? { ...args, p_revoke: revokeId } : args);
+    if (error) throw error;
+    current = data;
+  }
+  async function perform(action) {
+    if (busy) return;
+    busy = true;
+    notice = [];
+    render();
+    try {
+      await action();
+    } catch {
+      notice = ["Opération impossible. Actualisez la fiche et réessayez.",
+        "Unable to complete the action. Refresh this page and try again."];
+    } finally {
+      busy = false;
+      render();
+    }
+  }
+  form.addEventListener("submit", event => {
+    event.preventDefault();
+    perform(async () => {
+      const { data, error } = await db.functions.invoke("madic-send-client-invitation", {
+        body: { action: "guest_invite", space_id: spaceId, client_id: clientId, email: el("Email").value.trim() },
+      });
+      if (error || !data?.invitation_url) {
+        await load();
+        throw error || Error("Missing invitation URL");
+      }
+      el("Link").value = data.invitation_url;
+      el("LinkBox").hidden = false;
+      notice = data.email_sent ? ["Invitation envoyée.", "Invitation sent."]
+        : ["Invitation créée. Copiez le lien personnel pour le transmettre.", "Invitation created. Copy the personal link to share it."];
+      form.reset();
+      await load();
+    });
+  });
+  revoke.addEventListener("click", () => {
+    if (busy || !current || !window.confirm(tr("Révoquer cet accès ou cette invitation ?", "Revoke this access or invitation?"))) return;
+    perform(async () => {
+      await load(current.id);
+      el("LinkBox").hidden = true;
+      el("Link").value = "";
+      notice = current?.status === "revoked"
+        ? ["Accès révoqué.", "Access revoked."]
+        : ["L’état a changé. Vérifiez l’accès affiché.", "The status changed. Check the displayed access."];
+    });
+  });
+  el("Copy").addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText(el("Link").value);
+      notice = ["Lien copié.", "Link copied."];
+    } catch {
+      el("Link").select();
+      notice = ["Sélectionnez et copiez le lien.", "Select and copy the link."];
+    }
+    render();
+  });
+  new MutationObserver(render).observe(document.documentElement, { attributes: true, attributeFilter: ["lang"] });
+  perform(() => load());
+}

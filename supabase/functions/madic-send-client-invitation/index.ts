@@ -25,6 +25,8 @@ const esc = (s: string) =>
         c
       ] || c,
   );
+const isUuid = (value: unknown): value is string => typeof value === "string" &&
+  /^[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}$/i.test(value);
 Deno.serve(async (req: Request): Promise<Response> => {
   const origin = req.headers.get("Origin") || "";
   const headers: Record<string, string> = {
@@ -32,6 +34,7 @@ Deno.serve(async (req: Request): Promise<Response> => {
       ? origin
       : "https://madic.ca",
     Vary: "Origin",
+    "Cache-Control": "private, no-store",
     "Access-Control-Allow-Headers":
       "authorization, apikey, content-type, x-client-info",
     "Access-Control-Allow-Methods": "POST, OPTIONS",
@@ -66,6 +69,36 @@ Deno.serve(async (req: Request): Promise<Response> => {
     } catch {
       return reply({ error: "Corps JSON invalide." }, 400);
     }
+    if (payload.action === "guest_download") {
+      const { grant_id: grantId, bucket, path } = payload;
+      if (!isUuid(grantId) || !["madic-documents", "madic-message-attachments", "madic-profile-avatars"].includes(String(bucket)) ||
+          typeof path !== "string" || !path || path.length > 1024 ||
+          !path.split("/").every(segment => segment && segment !== "." && segment !== ".." && !/[\\%]/.test(segment))) {
+        return reply({ error: "Fichier invalide." }, 400);
+      }
+      const { data: permitted, error } = await userDb.rpc("madic_guest_file", {
+        p_grant: grantId, p_bucket: bucket, p_path: path,
+      });
+      if (error || permitted !== true) return reply({ error: "Fichier inaccessible." }, 403);
+      const serviceKey = env("SUPABASE_SERVICE_ROLE_KEY");
+      const objectPath = path.split("/").map(encodeURIComponent).join("/");
+      const file = await fetch(`${env("SUPABASE_URL")}/storage/v1/object/authenticated/${bucket}/${objectPath}`, {
+        headers: { apikey: serviceKey, Authorization: `Bearer ${serviceKey}` },
+        redirect: "error",
+      });
+      if (!file.ok || !file.body) return reply({ error: "Fichier indisponible." }, 404);
+      return new Response(file.body, {
+        headers: {
+          ...headers,
+          "Content-Type": "application/octet-stream",
+          "Content-Disposition": "attachment",
+          "Cache-Control": "private, no-store",
+          "X-Madic-File-Type": file.headers.get("Content-Type") || "",
+          "Access-Control-Expose-Headers": "X-Madic-File-Type",
+          "X-Content-Type-Options": "nosniff",
+        },
+      });
+    }
     const spaceId =
       typeof payload.space_id === "string" ? payload.space_id.trim() : "";
     const email =
@@ -89,6 +122,39 @@ Deno.serve(async (req: Request): Promise<Response> => {
       .single();
     if (spaceError || !space || space.access_status !== "active")
       return reply({ error: "Espace CRIC inactif ou inaccessible." }, 403);
+    if (payload.action === "guest_invite") {
+      if (!isUuid(payload.client_id)) return reply({ error: "Client invalide." }, 400);
+      const resendKey = env("RESEND_API_KEY");
+      const sender = env("MADIC_EMAIL_FROM");
+      const { data: guestToken, error } = await userDb.rpc("madic_guest_create", {
+        p_space: spaceId, p_client: payload.client_id, p_email: email,
+      });
+      if (error || typeof guestToken !== "string" || !/^[a-f0-9]{64}$/.test(guestToken)) {
+        return reply({ error: "Impossible de créer l’invitation." }, error?.code === "23505" ? 409 : 400);
+      }
+      const portalOrigin = publicPortalOrigins.get(origin) ?? "https://madic.ca";
+      const url = new URL("/invitation-client-cric.html", portalOrigin);
+      url.searchParams.set("invite", guestToken);
+      const text = [
+        `${space.name} vous invite à consulter un dossier MADIC en lecture seule.`,
+        "Utilisez votre propre compte et l’adresse qui reçoit ce message. Le lien est valide 7 jours.",
+        `${space.name} has invited you to view a MADIC client file in read-only mode.`,
+        "Use your own account and the email address that received this message. The link is valid for 7 days.",
+        url.href,
+      ].join("\n\n");
+      let sent = false;
+      try {
+        const response = await fetch("https://api.resend.com/emails", {
+          method: "POST",
+          headers: { Authorization: `Bearer ${resendKey}`, "Content-Type": "application/json" },
+          body: JSON.stringify({ from: sender, to: [email], subject: "MADIC | Accès invité / Guest access", text }),
+        });
+        sent = response.ok;
+      } catch {
+        // L'invitation existe déjà, le CRIC peut copier son lien.
+      }
+      return reply({ email_sent: sent, invitation_url: url.href });
+    }
     const { data: profile, error: profileError } = await userDb
       .from("madic_cric_professional_profiles")
       .select(

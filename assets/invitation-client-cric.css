@@ -387,3 +387,23 @@ footer.madic-footer {
     
 /* Invitation CRIC : harmonisation avec les pages publiques MADIC. */
 html,body{min-height:100%;}body.madic-unified-auth{background:#f1f6fc;color:#143453;display:flex;flex-direction:column;min-height:100vh}body.madic-unified-auth>.madic-invitation-header{background:#fff;border:0;border-bottom:1px solid #dbe7f2;border-radius:0;box-shadow:none;margin:0;width:100%;padding:15px clamp(20px,4vw,54px);min-height:72px;display:flex;align-items:center;justify-content:space-between}body.madic-unified-auth .brand{color:#143453}body.madic-unified-auth .brand small{color:#286c91}body.madic-unified-auth main{width:min(100%,1120px);margin:0 auto;padding:32px clamp(16px,3vw,36px) 52px;flex:1}body.madic-unified-auth .panel{background:#fff;color:#173b5b;border:1px solid #dbe7f2;box-shadow:0 10px 30px #153a5b12}body.madic-unified-auth .auth{margin:16px auto;max-width:590px}body.madic-unified-auth .muted,body.madic-unified-auth .invitation-help{color:#536c82}body.madic-unified-auth label{color:#173b5b}body.madic-unified-auth input{background:#fff;color:#143453;border:1px solid #b9ccdf}body.madic-unified-auth #switchAccount{color:#195d7c;border-color:#b9ccdf}body.madic-unified-auth #switchAccount:hover{background:#e9f3fa}body.madic-unified-auth .eyebrow{color:#087c9d}body.madic-unified-auth .madic-lang-controls{display:flex;gap:6px}body.madic-unified-auth .madic-lang-controls button{padding:8px 12px;background:#eef8fc;color:#173b5b;border:1px solid #b8d9e9;border-radius:8px}body.madic-unified-auth .madic-lang-controls button[aria-pressed="true"]{background:#238eb0;color:#fff}body.madic-unified-auth .madic-footer{width:100%;margin-top:auto;background:#e9f5fc;color:#173b5b;border-top:1px solid #d2e7f5}body.madic-unified-auth .madic-footer a{color:#176080}@media(max-width:620px){body.madic-unified-auth>.madic-invitation-header{padding:12px 16px;flex-wrap:wrap;gap:10px}body.madic-unified-auth main{padding:20px 14px 40px}}
+
+#ordinaryInvitation[hidden], #guestPortal[hidden], #guestPortal [hidden] { display:none !important; }
+#guestPortal { margin: 0 auto; max-width: 900px; }
+#guestAuth { max-width: 28rem; }
+#guestPortal label { display: block; margin-top: 16px; }
+#guestPortal select { width: min(100%, 30rem); color: #143453; background: #fff; border: 1px solid #a7bbce; padding: 8px; border-radius: 8px; }
+.guest-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; margin: 14px 0; }
+#guestPortal button { width: auto; }
+#guestContent { margin-top: 18px; overflow-wrap: anywhere; }
+#guestContent article { background: #f3f8fc; padding: 14px; border: 1px solid #d2e3ee; border-radius: 8px; margin: 12px 0; }
+#guestContent dl { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 3fr); gap: 6px 12px; margin: 0 0 12px; }
+#guestContent dt { font-weight: 650; }
+#guestContent dd { margin: 0; white-space: pre-wrap; }
+#guestContent article button { margin: 0 8px 8px 0; }
+#guestContent .guest-contract { display: block; width: 100%; white-space: pre-wrap; }
+#guestContent iframe.guest-contract { height: 70vh; border: 1px solid #c4d8e5; background: #fff; }
+@media (max-width: 520px) {
+  #guestContent dl { grid-template-columns: minmax(0, 1fr); }
+  #guestContent dd { margin-bottom: 8px; }
+}

@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="fr-CA">
   <head>
+    <meta name="referrer" content="no-referrer" />
     <meta charset="utf-8" />
     <meta content="width=device-width,initial-scale=1" name="viewport" />
     <meta content="noindex,nofollow" name="robots" />
@@ -26,7 +27,7 @@
       </div>
     </header>
     <main id="madic8-main">
-      <section class="auth panel">
+      <section class="auth panel" id="ordinaryInvitation">
         <div
           class="eyebrow"
           data-en="SECURE INVITATION"
@@ -106,6 +107,120 @@
             >Déjà client ? Connexion</a
           >
         </p>
+      </section>
+      <section
+        id="guestPortal"
+        class="panel"
+        aria-labelledby="guestTitle"
+        hidden
+      >
+        <h1
+          id="guestTitle"
+          data-fr="Consultation en lecture seule"
+          data-en="Read-only access"
+        >
+          Consultation en lecture seule
+        </h1>
+        <p id="guestNotice" role="status"></p>
+        <form id="guestAuth" hidden>
+          <label
+            for="guestEmail"
+            data-fr="Adresse courriel invitée"
+            data-en="Invited email address"
+            >Adresse courriel invitée</label
+          >
+          <input
+            id="guestEmail"
+            type="email"
+            autocomplete="email"
+            required
+            maxlength="254"
+          />
+          <label for="guestPassword" data-fr="Mot de passe" data-en="Password"
+            >Mot de passe</label
+          >
+          <input
+            id="guestPassword"
+            type="password"
+            autocomplete="current-password"
+            required
+          />
+          <div class="guest-actions">
+            <button type="submit" data-fr="Se connecter" data-en="Sign in">
+              Se connecter
+            </button>
+            <button
+              type="submit"
+              id="guestSignup"
+              data-fr="Créer un compte"
+              data-en="Create an account"
+            >
+              Créer un compte
+            </button>
+          </div>
+        </form>
+        <div class="guest-actions">
+          <button
+            type="button"
+            id="guestAccept"
+            hidden
+            data-fr="Accepter l’invitation"
+            data-en="Accept invitation"
+          >
+            Accepter l’invitation
+          </button>
+          <button
+            type="button"
+            id="guestSignOut"
+            hidden
+            data-fr="Déconnecter ce compte"
+            data-en="Sign out of this account"
+          >
+            Déconnecter ce compte
+          </button>
+          <a
+            id="guestAccessLink"
+            href="invitation-client-cric.html?guest=1"
+            data-fr="Mes accès invités"
+            data-en="My guest access"
+            >Mes accès invités</a
+          >
+        </div>
+        <div id="guestWorkspace" hidden>
+          <label
+            for="guestGrant"
+            data-fr="Dossier partagé"
+            data-en="Shared file"
+            >Dossier partagé</label
+          >
+          <select id="guestGrant"></select>
+          <label
+            for="guestSection"
+            data-fr="Section à consulter"
+            data-en="Section to view"
+            >Section à consulter</label
+          >
+          <select id="guestSection"></select>
+          <div id="guestContent" aria-live="polite"></div>
+          <div class="guest-actions" id="guestPager" hidden>
+            <button
+              type="button"
+              id="guestPrevious"
+              data-fr="Précédent"
+              data-en="Previous"
+            >
+              Précédent
+            </button>
+            <button
+              type="button"
+              id="guestNext"
+              data-fr="Suivant"
+              data-en="Next"
+            >
+              Suivant
+            </button>
+          </div>
+        </div>
       </section>
     </main>
     <footer aria-label="Pied de page MADIC / MADIC footer" class="madic-footer">
