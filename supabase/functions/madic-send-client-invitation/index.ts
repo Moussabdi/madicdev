@@ -1,5 +1,10 @@
 import { createClient } from "npm:@supabase/supabase-js@2";
-const PORTAL_URL = "https://madic.ca/invitation-client-cric.html";
+// Sur un portail public, garder l'invitation dans le portail de l'expediteur.
+const publicPortalOrigins = new Map([
+  ["https://madic.ca", "https://madic.ca"],
+  ["https://www.madic.ca", "https://madic.ca"],
+  ["https://madicdev.netlify.app", "https://madicdev.netlify.app"],
+]);
 const allowedOrigins = new Set([
   "https://madic.ca",
   "https://www.madic.ca",
@@ -155,7 +160,8 @@ Deno.serve(async (req: Request): Promise<Response> => {
         },
         400,
       );
-    const invitationUrl = new URL(PORTAL_URL);
+    const portalOrigin = publicPortalOrigins.get(origin) ?? "https://madic.ca";
+    const invitationUrl = new URL("/invitation-client-cric.html", portalOrigin);
     invitationUrl.searchParams.set("token", invitationToken);
     const cabinet = profile.business_name.trim();
     const consultant = `${profile.first_name.trim()} ${profile.last_name.trim()}`;
