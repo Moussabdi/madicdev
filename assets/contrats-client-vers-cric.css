@@ -2088,7 +2088,7 @@ input:focus-visible {
     }
   }
 
-  /* Étape 3 — accessibilité et ergonomie, sans altérer la mise en page d'impression. */
+  /* Étape 3 - accessibilité et ergonomie, sans altérer la mise en page d'impression. */
   @media screen {
     #contractForm :is(input, select, textarea, button):focus-visible,
     .actions button:focus-visible {
@@ -2145,7 +2145,7 @@ input:focus-visible {
     }
   }
 
-  /* MADIC — Étape 3 : interface CRIC modernisée. Écran seulement.
+  /* MADIC - Étape 3 : interface CRIC modernisée. Écran seulement.
    Les documents juridiques et les styles d'impression sont préservés. */
   @media screen {
     body[data-contract-kind="initial"],

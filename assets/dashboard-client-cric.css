@@ -2282,7 +2282,7 @@ body[data-page="cric-client-dashboard"] .madic-side-nav {
   }
 }
 
-/* 2026-11-03 — correction ciblée de la structure client, référence portail CRIC.
+/* 2026-11-03 - correction ciblée de la structure client, référence portail CRIC.
    Le menu occupe toute la hauteur de la page; l'entête ne couvre que le contenu.
    Aucun script, identifiant ou lien fonctionnel modifié. */
 @media (min-width: 801px) {
@@ -2944,7 +2944,9 @@ body[data-page="cric-client-dashboard"] .madic-guest-banner__name {
   gap: 10px;
 }
 
-body[data-page="cric-client-dashboard"] .madic-guest-banner__actions :is(a, button) {
+body[data-page="cric-client-dashboard"]
+  .madic-guest-banner__actions
+  :is(a, button) {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -2972,7 +2974,9 @@ body[data-page="cric-client-dashboard"] .madic-guest-banner__actions button {
   color: #fff;
 }
 
-body[data-page="cric-client-dashboard"] .madic-guest-banner__actions button:hover:not(:disabled) {
+body[data-page="cric-client-dashboard"]
+  .madic-guest-banner__actions
+  button:hover:not(:disabled) {
   background: #315d86;
 }
 
@@ -3001,13 +3005,19 @@ body[data-page="cric-client-dashboard"] .madic-guest-banner__picker {
 }
 
 /* La page des contrats place son en-tête à l’intérieur de la zone client. */
-body[data-page="cric-client-dashboard"] .madic-app-content > header + .madic-guest-banner {
+body[data-page="cric-client-dashboard"]
+  .madic-app-content
+  > header
+  + .madic-guest-banner {
   margin-block-start: 24px;
   margin-inline: max(32px, calc((100% - 1236px) / 2));
 }
 
 @media (max-width: 800px) {
-  body[data-page="cric-client-dashboard"] .madic-app-content > header + .madic-guest-banner {
+  body[data-page="cric-client-dashboard"]
+    .madic-app-content
+    > header
+    + .madic-guest-banner {
     margin-block-start: 16px;
     margin-inline: 16px;
   }

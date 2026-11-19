@@ -147,9 +147,19 @@ window.getMadicSupabase = function () {
       addOption(sel, d.id, d.reference || d.id);
   }
   function showInvoice(i) {
-    const en = (() => { try { return localStorage.getItem("madic_ui_language") === "en"; } catch (_) { return document.documentElement.lang.startsWith("en"); } })();
-    const t = (fr, english) => en ? english : fr;
-    const formatMoney = (value) => (Number(value) / 100).toLocaleString(en ? "en-CA" : "fr-CA", {style:"currency",currency:"CAD"});
+    const en = (() => {
+      try {
+        return localStorage.getItem("madic_ui_language") === "en";
+      } catch (_) {
+        return document.documentElement.lang.startsWith("en");
+      }
+    })();
+    const t = (fr, english) => (en ? english : fr);
+    const formatMoney = (value) =>
+      (Number(value) / 100).toLocaleString(en ? "en-CA" : "fr-CA", {
+        style: "currency",
+        currency: "CAD",
+      });
     const c = clients.find((x) => x.id === i.client_id),
       d = dossiers.find((x) => x.id === i.dossier_id);
     const w = window.open("", "_blank");
@@ -160,7 +170,13 @@ window.getMadicSupabase = function () {
     const doc = w.document;
     doc.open();
     doc.write(
-      '<!doctype html><html lang="' + (en ? "en-CA" : "fr-CA") + '"><head><meta charset="utf-8"><title>' + t("Facture", "Invoice") + '</title><style>body{font:15px Arial,sans-serif;max-width:800px;margin:45px auto;color:#182331}h1{border-bottom:3px solid #162c49;padding-bottom:12px}section{margin:22px 0}table{width:100%;border-collapse:collapse}td,th{padding:10px;border-bottom:1px solid #ccc;text-align:left}.right{text-align:right}.logo{max-height:95px;max-width:210px;object-fit:contain}button{margin-top:30px;padding:12px}@media print{button{display:none}body{margin:20px}}</style></head><body><main id="content"></main><button onclick="window.print()">' + t("Imprimer / Enregistrer en PDF", "Print / Save as PDF") + '</button></body></html>',
+      '<!doctype html><html lang="' +
+        (en ? "en-CA" : "fr-CA") +
+        '"><head><meta charset="utf-8"><title>' +
+        t("Facture", "Invoice") +
+        '</title><style>body{font:15px Arial,sans-serif;max-width:800px;margin:45px auto;color:#182331}h1{border-bottom:3px solid #162c49;padding-bottom:12px}section{margin:22px 0}table{width:100%;border-collapse:collapse}td,th{padding:10px;border-bottom:1px solid #ccc;text-align:left}.right{text-align:right}.logo{max-height:95px;max-width:210px;object-fit:contain}button{margin-top:30px;padding:12px}@media print{button{display:none}body{margin:20px}}</style></head><body><main id="content"></main><button onclick="window.print()">' +
+        t("Imprimer / Enregistrer en PDF", "Print / Save as PDF") +
+        "</button></body></html>",
     );
     doc.close();
     const root = doc.getElementById("content");
@@ -185,20 +201,30 @@ window.getMadicSupabase = function () {
     el("h2", i.cabinet_name);
     if (i.cabinet_address) el("p", i.cabinet_address);
     if (i.cabinet_tax_numbers)
-      el("p", t("Numéros de taxes : ", "Tax numbers: ") + i.cabinet_tax_numbers);
+      el(
+        "p",
+        t("Numéros de taxes : ", "Tax numbers: ") + i.cabinet_tax_numbers,
+      );
     const sec = el("section", "");
     el("h3", t("Facturé à", "Billed to"), sec);
     el("p", c ? name(c) : i.client_id, sec);
     if (c?.email) el("p", c.email, sec);
     el(
       "p",
-      t("Date : ", "Date: ") + i.issued_on + (i.due_on ? t(" · Échéance : ", " · Due: ") + i.due_on : ""),
+      t("Date : ", "Date: ") +
+        i.issued_on +
+        (i.due_on ? t(" · Échéance : ", " · Due: ") + i.due_on : ""),
       sec,
     );
     if (d) el("p", t("Dossier : ", "Case: ") + d.reference, sec);
     const table = el("table", "");
     const head = el("tr", "", table);
-    for (const x of ["Description", t("Qté", "Qty"), t("Prix unitaire", "Unit price"), t("Montant", "Amount")])
+    for (const x of [
+      "Description",
+      t("Qté", "Qty"),
+      t("Prix unitaire", "Unit price"),
+      t("Montant", "Amount"),
+    ])
       el("th", x, head);
     const items =
       Array.isArray(i.items) && i.items.length
@@ -215,13 +241,18 @@ window.getMadicSupabase = function () {
       el("td", item.description, r);
       el("td", String(item.quantity), r);
       el("td", formatMoney(item.unit_price_cents), r);
-      el("td", formatMoney(item.quantity * item.unit_price_cents), r).className =
-        "right";
+      el(
+        "td",
+        formatMoney(item.quantity * item.unit_price_cents),
+        r,
+      ).className = "right";
     }
     for (const [label, value] of [
       [t("Sous-total", "Subtotal"), formatMoney(i.amount_cents)],
       [
-        t("Taxes (", "Taxes (") + (Number(i.tax_rate) * 100).toLocaleString(en ? "en-CA" : "fr-CA") + " %)",
+        t("Taxes (", "Taxes (") +
+          (Number(i.tax_rate) * 100).toLocaleString(en ? "en-CA" : "fr-CA") +
+          " %)",
         formatMoney(total(i) - i.amount_cents),
       ],
       ["TOTAL", formatMoney(total(i))],
@@ -1720,61 +1751,162 @@ document.getElementById("cricLogout")?.addEventListener("click", async () => {
   else init();
 })();
 
-
 /* Bilingual due-date picker: #due retains the ISO date used by invoice submission. */
 (() => {
-  const pad = n => String(n).padStart(2, '0');
-  const iso = d => `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
-  const getLang = () => window.MadicCricLanguage?.get?.() === 'en' ? 'en' : 'fr';
-  const locale = () => getLang() === 'en' ? 'en-CA' : 'fr-CA';
+  const pad = (n) => String(n).padStart(2, "0");
+  const iso = (d) =>
+    `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+  const getLang = () =>
+    window.MadicCricLanguage?.get?.() === "en" ? "en" : "fr";
+  const locale = () => (getLang() === "en" ? "en-CA" : "fr-CA");
   function setup() {
-    const input = document.getElementById('due');
-    const button = document.getElementById('madicInvoiceDateToggle');
-    const panel = document.getElementById('madicInvoiceDatePanel');
-    const wrapper = document.getElementById('madicInvoiceCalendar');
+    const input = document.getElementById("due");
+    const button = document.getElementById("madicInvoiceDateToggle");
+    const panel = document.getElementById("madicInvoiceDatePanel");
+    const wrapper = document.getElementById("madicInvoiceCalendar");
     if (!input || !button || !panel || !wrapper) return;
-    let shown = input.value && /^\d{4}-\d{2}-\d{2}$/.test(input.value) ? new Date(input.value+'T12:00:00') : new Date();
+    let shown =
+      input.value && /^\d{4}-\d{2}-\d{2}$/.test(input.value)
+        ? new Date(input.value + "T12:00:00")
+        : new Date();
     const today = () => iso(new Date());
-    const close = () => { panel.hidden = true; button.setAttribute('aria-expanded', 'false'); };
+    const close = () => {
+      panel.hidden = true;
+      button.setAttribute("aria-expanded", "false");
+    };
     function paint() {
-      button.textContent = input.value ? new Date(input.value+'T12:00:00').toLocaleDateString(locale(), {year:'numeric',month:'short',day:'numeric'}) : (getLang()==='en' ? 'Select a date' : 'Choisir une date');
-      button.setAttribute('aria-label', getLang()==='en' ? 'Choose due date' : 'Choisir la date d’échéance');
-      panel.setAttribute('aria-label', getLang()==='en' ? 'Choose due date' : 'Choisir la date d’échéance');
+      button.textContent = input.value
+        ? new Date(input.value + "T12:00:00").toLocaleDateString(locale(), {
+            year: "numeric",
+            month: "short",
+            day: "numeric",
+          })
+        : getLang() === "en"
+          ? "Select a date"
+          : "Choisir une date";
+      button.setAttribute(
+        "aria-label",
+        getLang() === "en" ? "Choose due date" : "Choisir la date d’échéance",
+      );
+      panel.setAttribute(
+        "aria-label",
+        getLang() === "en" ? "Choose due date" : "Choisir la date d’échéance",
+      );
       panel.replaceChildren();
-      const head = document.createElement('div'); head.className='madic-cal-head';
-      const prev = document.createElement('button'); prev.type='button'; prev.textContent='‹'; prev.setAttribute('aria-label',getLang()==='en'?'Previous month':'Mois précédent');
-      const next = document.createElement('button'); next.type='button'; next.textContent='›'; next.setAttribute('aria-label',getLang()==='en'?'Next month':'Mois suivant');
-      const label = document.createElement('strong'); label.textContent=shown.toLocaleDateString(locale(),{month:'long',year:'numeric'});
+      const head = document.createElement("div");
+      head.className = "madic-cal-head";
+      const prev = document.createElement("button");
+      prev.type = "button";
+      prev.textContent = "‹";
+      prev.setAttribute(
+        "aria-label",
+        getLang() === "en" ? "Previous month" : "Mois précédent",
+      );
+      const next = document.createElement("button");
+      next.type = "button";
+      next.textContent = "›";
+      next.setAttribute(
+        "aria-label",
+        getLang() === "en" ? "Next month" : "Mois suivant",
+      );
+      const label = document.createElement("strong");
+      label.textContent = shown.toLocaleDateString(locale(), {
+        month: "long",
+        year: "numeric",
+      });
       const current = new Date();
-      const earliest = shown.getFullYear()===current.getFullYear() && shown.getMonth()<=current.getMonth();
-      prev.disabled=earliest;
-      prev.onclick=()=>{if(earliest)return;shown=new Date(shown.getFullYear(),shown.getMonth()-1,1);paint();};
-      next.onclick=()=>{shown=new Date(shown.getFullYear(),shown.getMonth()+1,1);paint();};
-      head.append(prev,label,next);panel.append(head);
-      const grid=document.createElement('div');grid.className='madic-cal-grid';
-      const weekdays=getLang()==='en'?['Sun','Mon','Tue','Wed','Thu','Fri','Sat']:['dim.','lun.','mar.','mer.','jeu.','ven.','sam.'];
-      weekdays.forEach(day=>{const span=document.createElement('span');span.textContent=day;grid.append(span);});
-      for(let i=0;i<new Date(shown.getFullYear(),shown.getMonth(),1).getDay();i++)grid.append(document.createElement('span'));
-      const days=new Date(shown.getFullYear(),shown.getMonth()+1,0).getDate();
-      for(let day=1;day<=days;day++){
-        const date=new Date(shown.getFullYear(),shown.getMonth(),day);
-        const cell=document.createElement('button');cell.type='button';cell.textContent=String(day);
-        if(iso(date)<today()){cell.disabled=true;cell.className='madic-past-day';}
-        if(iso(date)===input.value)cell.className='selected';
-        cell.onclick=()=>{if(cell.disabled)return;input.value=iso(date);input.dispatchEvent(new Event('change',{bubbles:true}));close();paint();};
+      const earliest =
+        shown.getFullYear() === current.getFullYear() &&
+        shown.getMonth() <= current.getMonth();
+      prev.disabled = earliest;
+      prev.onclick = () => {
+        if (earliest) return;
+        shown = new Date(shown.getFullYear(), shown.getMonth() - 1, 1);
+        paint();
+      };
+      next.onclick = () => {
+        shown = new Date(shown.getFullYear(), shown.getMonth() + 1, 1);
+        paint();
+      };
+      head.append(prev, label, next);
+      panel.append(head);
+      const grid = document.createElement("div");
+      grid.className = "madic-cal-grid";
+      const weekdays =
+        getLang() === "en"
+          ? ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+          : ["dim.", "lun.", "mar.", "mer.", "jeu.", "ven.", "sam."];
+      weekdays.forEach((day) => {
+        const span = document.createElement("span");
+        span.textContent = day;
+        grid.append(span);
+      });
+      for (
+        let i = 0;
+        i < new Date(shown.getFullYear(), shown.getMonth(), 1).getDay();
+        i++
+      )
+        grid.append(document.createElement("span"));
+      const days = new Date(
+        shown.getFullYear(),
+        shown.getMonth() + 1,
+        0,
+      ).getDate();
+      for (let day = 1; day <= days; day++) {
+        const date = new Date(shown.getFullYear(), shown.getMonth(), day);
+        const cell = document.createElement("button");
+        cell.type = "button";
+        cell.textContent = String(day);
+        if (iso(date) < today()) {
+          cell.disabled = true;
+          cell.className = "madic-past-day";
+        }
+        if (iso(date) === input.value) cell.className = "selected";
+        cell.onclick = () => {
+          if (cell.disabled) return;
+          input.value = iso(date);
+          input.dispatchEvent(new Event("change", { bubbles: true }));
+          close();
+          paint();
+        };
         grid.append(cell);
       }
       panel.append(grid);
-      const clear=document.createElement('button');clear.type='button';clear.className='madic-cal-clear';clear.textContent=getLang()==='en'?'Clear':'Effacer';
-      clear.onclick=()=>{input.value='';input.dispatchEvent(new Event('change',{bubbles:true}));close();paint();};panel.append(clear);
+      const clear = document.createElement("button");
+      clear.type = "button";
+      clear.className = "madic-cal-clear";
+      clear.textContent = getLang() === "en" ? "Clear" : "Effacer";
+      clear.onclick = () => {
+        input.value = "";
+        input.dispatchEvent(new Event("change", { bubbles: true }));
+        close();
+        paint();
+      };
+      panel.append(clear);
     }
-    button.onclick=()=>{shown=input.value && input.value>=today()?new Date(input.value+'T12:00:00'):new Date();panel.hidden=!panel.hidden;button.setAttribute('aria-expanded',String(!panel.hidden));paint();};
-    document.addEventListener('click',event=>{if(!wrapper.contains(event.target))close();});
-    document.addEventListener('keydown',event=>{if(event.key==='Escape')close();});
-    document.addEventListener('madic:languagechange',paint);
-    document.getElementById('invoiceForm')?.addEventListener('reset',()=>setTimeout(paint,0));
-    input.addEventListener('change',paint);
+    button.onclick = () => {
+      shown =
+        input.value && input.value >= today()
+          ? new Date(input.value + "T12:00:00")
+          : new Date();
+      panel.hidden = !panel.hidden;
+      button.setAttribute("aria-expanded", String(!panel.hidden));
+      paint();
+    };
+    document.addEventListener("click", (event) => {
+      if (!wrapper.contains(event.target)) close();
+    });
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") close();
+    });
+    document.addEventListener("madic:languagechange", paint);
+    document
+      .getElementById("invoiceForm")
+      ?.addEventListener("reset", () => setTimeout(paint, 0));
+    input.addEventListener("change", paint);
     paint();
   }
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',setup,{once:true});else setup();
+  if (document.readyState === "loading")
+    document.addEventListener("DOMContentLoaded", setup, { once: true });
+  else setup();
 })();

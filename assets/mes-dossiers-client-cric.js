@@ -4,16 +4,27 @@
   const params = new URLSearchParams(location.search);
   if (params.get("guest") !== "1" && !params.has("access")) return;
 
-  const page = location.pathname.split("/").pop().replace(/\.html$/, "");
+  const page = location.pathname
+    .split("/")
+    .pop()
+    .replace(/\.html$/, "");
   const pages = new Set([
-    "dashboard-client-cric", "actualites-client-cric", "profil-client-cric",
-    "mes-dossiers-client-cric", "documents-client-cric", "factures-client-cric",
-    "mes-rendez-vous-cric", "messagerie-client-cric", "mes-contrats", "formulaire",
+    "dashboard-client-cric",
+    "actualites-client-cric",
+    "profil-client-cric",
+    "mes-dossiers-client-cric",
+    "documents-client-cric",
+    "factures-client-cric",
+    "mes-rendez-vous-cric",
+    "messagerie-client-cric",
+    "mes-contrats",
+    "formulaire",
   ]);
-  const id = name => document.getElementById(name);
-  const lang = () => document.documentElement.lang.startsWith("en") ? "en" : "fr";
-  const tr = (fr, en) => lang() === "en" ? en : fr;
-  const locale = () => lang() === "en" ? "en-CA" : "fr-CA";
+  const id = (name) => document.getElementById(name);
+  const lang = () =>
+    document.documentElement.lang.startsWith("en") ? "en" : "fr";
+  const tr = (fr, en) => (lang() === "en" ? en : fr);
+  const locale = () => (lang() === "en" ? "en-CA" : "fr-CA");
   const i18n = new Map();
   function label(node, fr, en) {
     if (!node) return;
@@ -26,17 +37,28 @@
     if (className) node.className = className;
     return node;
   }
-  const accessUrl = new URL("invitation-client-cric.html?guest=1", location.href);
-  let db, access, banner, notice, content, checking = false;
+  const accessUrl = new URL(
+    "invitation-client-cric.html?guest=1",
+    location.href,
+  );
+  let db,
+    access,
+    banner,
+    notice,
+    content,
+    checking = false;
   let portalHeader;
   const urls = new Set();
   function showError() {
-    label(notice, "Impossible de charger cette information. Actualisez la page ou vérifiez que l’accès est encore actif.",
-      "Unable to load this information. Refresh the page or check that the access is still active.");
+    label(
+      notice,
+      "Impossible de charger cette information. Actualisez la page ou vérifiez que l’accès est encore actif.",
+      "Unable to load this information. Refresh the page or check that the access is still active.",
+    );
   }
   function failAccess(fr, en) {
     // Supprimer les pièces et les données déjà rendues dès que la révocation est détectée.
-    urls.forEach(url => URL.revokeObjectURL(url));
+    urls.forEach((url) => URL.revokeObjectURL(url));
     urls.clear();
     access = null;
     if (content) {
@@ -58,8 +80,13 @@
     label(button, fr, en);
     button.addEventListener("click", async () => {
       button.disabled = true;
-      try { await run(); } catch { showError(); }
-      finally { button.disabled = false; }
+      try {
+        await run();
+      } catch {
+        showError();
+      } finally {
+        button.disabled = false;
+      }
     });
     return button;
   }
@@ -67,7 +94,8 @@
     if (!window.supabase) {
       await new Promise((resolve, reject) => {
         const script = document.createElement("script");
-        script.src = "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js";
+        script.src =
+          "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js";
         script.onload = resolve;
         script.onerror = reject;
         document.head.append(script);
@@ -84,16 +112,28 @@
     const { data: grants, error } = await db.rpc("madic_guest_list");
     if (error) throw error;
     const wanted = params.get("access");
-    access = wanted ? grants?.find(item => item.grant_id === wanted) : grants?.[0];
+    access = wanted
+      ? grants?.find((item) => item.grant_id === wanted)
+      : grants?.[0];
     if (!access) {
-      failAccess("Cet accès invité est indisponible ou a été révoqué.",
-        "This guest access is unavailable or has been revoked.");
+      failAccess(
+        "Cet accès invité est indisponible ou a été révoqué.",
+        "This guest access is unavailable or has been revoked.",
+      );
       return false;
     }
     if (!wanted) history.replaceState(null, "", scoped(location.href));
     for (const anchor of document.querySelectorAll("a[href]")) {
       const url = new URL(anchor.href, location.href);
-      if (url.origin === location.origin && pages.has(url.pathname.split("/").pop().replace(/\.html$/, ""))) {
+      if (
+        url.origin === location.origin &&
+        pages.has(
+          url.pathname
+            .split("/")
+            .pop()
+            .replace(/\.html$/, ""),
+        )
+      ) {
         anchor.href = scoped(url).href;
       }
     }
@@ -101,9 +141,16 @@
     if (grants.length > 1) {
       const select = element("select");
       const caption = element("label", null, "madic-guest-banner__picker");
-      select.append(...grants.map(item => new Option(item.client_name + " · " + item.cabinet, item.grant_id)));
+      select.append(
+        ...grants.map(
+          (item) =>
+            new Option(item.client_name + " · " + item.cabinet, item.grant_id),
+        ),
+      );
       select.value = access.grant_id;
-      select.addEventListener("change", () => location.assign(scoped(location.href, select.value)));
+      select.addEventListener("change", () =>
+        location.assign(scoped(location.href, select.value)),
+      );
       const captionText = element("span");
       label(captionText, "Dossier partagé", "Shared file");
       caption.append(captionText, select);
@@ -114,20 +161,30 @@
 
   // La promesse attend la construction du bandeau et l’exécution des modules d’interface existants.
   let resolveStart;
-  const started = new Promise(resolve => { resolveStart = resolve; });
+  const started = new Promise((resolve) => {
+    resolveStart = resolve;
+  });
   async function read(section, offset = 0) {
-    if (!await started || !access) throw Error("Guest access unavailable");
+    if (!(await started) || !access) throw Error("Guest access unavailable");
     const grant = access.grant_id;
-    const { data, error } = await db.rpc("madic_guest_read",
-      { p_grant: grant, p_section: section, p_offset: offset });
-    if (error || access?.grant_id !== grant) throw error || Error("Guest access unavailable");
+    const { data, error } = await db.rpc("madic_guest_read", {
+      p_grant: grant,
+      p_section: section,
+      p_offset: offset,
+    });
+    if (error || access?.grant_id !== grant)
+      throw error || Error("Guest access unavailable");
     return data;
   }
   window.MADIC_GUEST_PORTAL = { read, showError };
-  document.addEventListener("submit", event => {
-    event.preventDefault();
-    event.stopImmediatePropagation();
-  }, true);
+  document.addEventListener(
+    "submit",
+    (event) => {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+    },
+    true,
+  );
 
   function clearText(name) {
     const node = id(name);
@@ -137,38 +194,61 @@
     }
   }
   const statuses = {
-    actif: ["Actif", "Active"], en_attente: ["En attente", "Pending"], ferme: ["Fermé", "Closed"],
-    confirme: ["Confirmé", "Confirmed"], confirmed: ["Confirmé", "Confirmed"],
-    pending: ["En attente", "Pending"], requested: ["Demandé", "Requested"],
-    cancelled: ["Annulé", "Cancelled"], canceled: ["Annulé", "Cancelled"],
-    completed: ["Terminé", "Completed"], refused: ["Refusé", "Declined"], declined: ["Refusé", "Declined"],
-    accepte: ["Accepté", "Accepted"], refuse: ["Refusé", "Declined"], recu: ["Reçu", "Received"],
-    publie: ["Publié", "Published"], signe: ["Signé", "Signed"], client_signe: ["Signé par le client", "Signed by client"],
+    actif: ["Actif", "Active"],
+    en_attente: ["En attente", "Pending"],
+    ferme: ["Fermé", "Closed"],
+    confirme: ["Confirmé", "Confirmed"],
+    confirmed: ["Confirmé", "Confirmed"],
+    pending: ["En attente", "Pending"],
+    requested: ["Demandé", "Requested"],
+    cancelled: ["Annulé", "Cancelled"],
+    canceled: ["Annulé", "Cancelled"],
+    completed: ["Terminé", "Completed"],
+    refused: ["Refusé", "Declined"],
+    declined: ["Refusé", "Declined"],
+    accepte: ["Accepté", "Accepted"],
+    refuse: ["Refusé", "Declined"],
+    recu: ["Reçu", "Received"],
+    publie: ["Publié", "Published"],
+    signe: ["Signé", "Signed"],
+    client_signe: ["Signé par le client", "Signed by client"],
     deux_signatures: ["Signé par les deux parties", "Signed by both parties"],
-    received: ["Reçue", "Received"], reviewing: ["En analyse", "Under review"], responded: ["Réponse envoyée", "Responded"],
-    closed: ["Fermée", "Closed"], requested_doc: ["Demandé", "Requested"], uploaded: ["Transmis", "Uploaded"],
-    video: ["Vidéo", "Video"], phone: ["Téléphone", "Phone"], in_person: ["En personne", "In person"],
-    consultation: ["Consultation", "Consultation"], proposition: ["Proposition", "Proposal"],
+    received: ["Reçue", "Received"],
+    reviewing: ["En analyse", "Under review"],
+    responded: ["Réponse envoyée", "Responded"],
+    closed: ["Fermée", "Closed"],
+    requested_doc: ["Demandé", "Requested"],
+    uploaded: ["Transmis", "Uploaded"],
+    video: ["Vidéo", "Video"],
+    phone: ["Téléphone", "Phone"],
+    in_person: ["En personne", "In person"],
+    consultation: ["Consultation", "Consultation"],
+    proposition: ["Proposition", "Proposal"],
   };
   function status(value) {
-    const span = element("span", value || "—");
+    const span = element("span", value || "-");
     if (Object.hasOwn(statuses, value)) label(span, ...statuses[value]);
     return span;
   }
   function date(value) {
-    if (!value) return "—";
+    if (!value) return "-";
     if (/^\d{4}-\d{2}-\d{2}$/.test(value)) return value;
     const parsed = new Date(value);
-    return Number.isNaN(+parsed) ? "—" : parsed.toLocaleString(locale(), {timeZone: "America/Toronto"});
+    return Number.isNaN(+parsed)
+      ? "-"
+      : parsed.toLocaleString(locale(), { timeZone: "America/Toronto" });
   }
   function money(value, currency) {
     const code = /^[A-Z]{3}$/.test(currency || "") ? currency : "CAD";
-    return new Intl.NumberFormat(locale(), {style: "currency", currency: code}).format((Number(value) || 0) / 100);
+    return new Intl.NumberFormat(locale(), {
+      style: "currency",
+      currency: code,
+    }).format((Number(value) || 0) / 100);
   }
   function cell(row, value) {
     const td = row.insertCell();
     if (value instanceof Node) td.append(value);
-    else td.textContent = value ?? "—";
+    else td.textContent = value ?? "-";
   }
   async function table(tbody, section, columns) {
     let offset = 0;
@@ -180,9 +260,16 @@
         td.colSpan = columns.length;
         label(td, "Aucun élément à afficher.", "Nothing to display.");
       }
-      rows.slice(0, 25).forEach(record => {
+      rows.slice(0, 25).forEach((record) => {
         const line = tbody.insertRow();
-        columns.forEach(property => cell(line, typeof property === "function" ? property(record) : record[property]));
+        columns.forEach((property) =>
+          cell(
+            line,
+            typeof property === "function"
+              ? property(record)
+              : record[property],
+          ),
+        );
       });
       if (rows.length > 25) {
         offset += 25;
@@ -198,22 +285,36 @@
   async function fileBlob(row) {
     const grant = access?.grant_id;
     if (!grant) throw Error("Guest access unavailable");
-    const { data, error } = await db.functions.invoke("madic-send-client-invitation", {
-      body: { action: "guest_download", grant_id: grant, bucket: row.bucket, path: row.file },
-    });
-    if (error || !(data instanceof Blob) || access?.grant_id !== grant) throw error || Error("File unavailable");
+    const { data, error } = await db.functions.invoke(
+      "madic-send-client-invitation",
+      {
+        body: {
+          action: "guest_download",
+          grant_id: grant,
+          bucket: row.bucket,
+          path: row.file,
+        },
+      },
+    );
+    if (error || !(data instanceof Blob) || access?.grant_id !== grant)
+      throw error || Error("File unavailable");
     return data;
   }
   function download(row) {
-    return row.file ? action("Télécharger", "Download", async () => {
-      const url = URL.createObjectURL(await fileBlob(row));
-      urls.add(url);
-      const link = element("a");
-      link.href = url;
-      link.download = row.original_name || row.filename || "MADIC.pdf";
-      link.click();
-      setTimeout(() => { URL.revokeObjectURL(url); urls.delete(url); }, 5000);
-    }) : "—";
+    return row.file
+      ? action("Télécharger", "Download", async () => {
+          const url = URL.createObjectURL(await fileBlob(row));
+          urls.add(url);
+          const link = element("a");
+          link.href = url;
+          link.download = row.original_name || row.filename || "MADIC.pdf";
+          link.click();
+          setTimeout(() => {
+            URL.revokeObjectURL(url);
+            urls.delete(url);
+          }, 5000);
+        })
+      : "-";
   }
   function show(idName) {
     const node = id(idName);
@@ -225,12 +326,17 @@
     if (node) node.hidden = true;
   }
   async function showAvatar(profile) {
-    const images = [id("madicClientAvatarImage"), id("madicProfileAvatarImage")].filter(Boolean);
+    const images = [
+      id("madicClientAvatarImage"),
+      id("madicProfileAvatarImage"),
+    ].filter(Boolean);
     if (!images.length || !profile.file) return;
     try {
       const url = URL.createObjectURL(await fileBlob(profile));
       urls.add(url);
-      images.forEach(image => { image.src = url; });
+      images.forEach((image) => {
+        image.src = url;
+      });
     } catch {
       // L’avatar neutre du portail reste affiché.
     }
@@ -240,11 +346,14 @@
     hide("toggleProfile");
     hide("profileHint");
     const form = id("profile");
-    const mapped = {first: "first_name", last: "last_name"};
+    const mapped = { first: "first_name", last: "last_name" };
     for (const field of form.querySelectorAll("input, select, textarea")) {
       const value = profile[mapped[field.id] || field.name || field.id];
       if (field.type !== "file" && value != null) {
-        if (field.tagName === "SELECT" && ![...field.options].some(opt => opt.value === String(value))) {
+        if (
+          field.tagName === "SELECT" &&
+          ![...field.options].some((opt) => opt.value === String(value))
+        ) {
           field.add(new Option(String(value), String(value)));
         }
         field.value = value;
@@ -254,7 +363,11 @@
         field.closest("[hidden]")?.removeAttribute("hidden");
       }
     }
-    form.querySelectorAll('button, .madic-profile-photo-actions').forEach(node => { node.hidden = true; });
+    form
+      .querySelectorAll("button, .madic-profile-photo-actions")
+      .forEach((node) => {
+        node.hidden = true;
+      });
   }
   function invoiceDetail(invoice) {
     const details = element("details");
@@ -264,8 +377,20 @@
     if (invoice.description) details.append(element("p", invoice.description));
     if (Array.isArray(invoice.items)) {
       const list = element("ul");
-      invoice.items.forEach(item => list.append(element("li", [item.description, item.quantity,
-        money(item.unit_price_cents, invoice.currency)].filter(value => value != null).join(" · "))));
+      invoice.items.forEach((item) =>
+        list.append(
+          element(
+            "li",
+            [
+              item.description,
+              item.quantity,
+              money(item.unit_price_cents, invoice.currency),
+            ]
+              .filter((value) => value != null)
+              .join(" · "),
+          ),
+        ),
+      );
       details.append(list);
     }
     if (invoice.notes) details.append(element("p", invoice.notes));
@@ -276,13 +401,24 @@
     const upload = id("upload-heading");
     if (upload) {
       upload.hidden = true;
-      if (upload.nextElementSibling?.tagName === "P") upload.nextElementSibling.hidden = true;
+      if (upload.nextElementSibling?.tagName === "P")
+        upload.nextElementSibling.hidden = true;
     }
     clearText("docreqClientNotice");
     await Promise.all([
-      table(id("docreqClientRows"), "requests", ["title", "instructions", r => date(r.due_on), r => status(r.status)]),
-      table(id("documents"), "documents", ["original_name", r => date(r.created_at),
-        r => status(r.review_status || r.status), "review_reason", download]),
+      table(id("docreqClientRows"), "requests", [
+        "title",
+        "instructions",
+        (r) => date(r.due_on),
+        (r) => status(r.status),
+      ]),
+      table(id("documents"), "documents", [
+        "original_name",
+        (r) => date(r.created_at),
+        (r) => status(r.review_status || r.status),
+        "review_reason",
+        download,
+      ]),
     ]);
   }
   async function appointments() {
@@ -292,32 +428,45 @@
     clearText("rdvNotice");
     show("rdvApp");
     await table(id("bookingRows"), "appointments", [
-      r => date(r.starts_at), r => status(r.mode), r => status(r.status),
-      r => r.location_info || "—", () => "—",
+      (r) => date(r.starts_at),
+      (r) => status(r.mode),
+      (r) => status(r.status),
+      (r) => r.location_info || "-",
+      () => "-",
     ]);
   }
   async function overview() {
     const [service, appointments, messages] = await Promise.all([
-      read("service"), read("appointments"), read("messages"),
+      read("service"),
+      read("appointments"),
+      read("messages"),
     ]);
     if (service) {
       show("madicJourneyPanel");
       id("madicJourneyStage").replaceChildren(status(service.status));
-      id("madicJourneyStatus").replaceChildren(status(service.service_type),
-        document.createTextNode(" · " + date(service.updated_at)));
+      id("madicJourneyStatus").replaceChildren(
+        status(service.service_type),
+        document.createTextNode(" · " + date(service.updated_at)),
+      );
     }
     show("madicImmigrationFormCard");
     show("madicClientMessagingCard");
     const summary = id("madicClientMessagesSummary");
-    if (messages.length) summary.textContent = messages[0].subject + " · " + date(messages[0].created_at);
+    if (messages.length)
+      summary.textContent =
+        messages[0].subject + " · " + date(messages[0].created_at);
     else label(summary, "Aucun message.", "No messages.");
     const rdv = id("madic-appointments")?.querySelector("p");
-    if (appointments.length) rdv?.replaceChildren(
-      document.createTextNode(date(appointments[0].starts_at) + " · "), status(appointments[0].status));
+    if (appointments.length)
+      rdv?.replaceChildren(
+        document.createTextNode(date(appointments[0].starts_at) + " · "),
+        status(appointments[0].status),
+      );
     else label(rdv, "Aucun rendez-vous.", "No appointments.");
   }
   async function messages() {
-    const list = id("clientMsgConversations"), historyNode = id("clientMsgMessages");
+    const list = id("clientMsgConversations"),
+      historyNode = id("clientMsgMessages");
     id("clientMsgCabinet").append(new Option(access.cabinet));
     id("clientMsgCabinet").disabled = true;
     hide("clientMsgSendForm");
@@ -325,41 +474,66 @@
     clearText("clientMsgStatus");
     hide("madicConsultantPresence");
     show("clientMsgApp");
-    let selected, version = 0;
+    let selected,
+      version = 0;
     async function open(conversation, button) {
       selected = conversation.conversation_id;
       const activeVersion = ++version;
-      list.querySelectorAll("button[aria-current]").forEach(node =>
-        node.setAttribute("aria-current", String(node === button)));
+      list
+        .querySelectorAll("button[aria-current]")
+        .forEach((node) =>
+          node.setAttribute("aria-current", String(node === button)),
+        );
       id("clientMsgTitle").textContent = conversation.subject;
       clearText("clientMsgSubject");
       historyNode.replaceChildren();
-      let messageOffset = 0, attachmentOffset = 0;
-      const timeline = element("div"), attachments = element("div");
+      let messageOffset = 0,
+        attachmentOffset = 0;
+      const timeline = element("div"),
+        attachments = element("div");
       historyNode.append(timeline, attachments);
       async function pageMessages(more) {
         const records = await read("messages:" + selected, messageOffset);
         if (activeVersion !== version) return;
         more?.remove();
         const entries = records.slice(0, 25);
-        const bubbles = entries.reverse().map(item => {
-          const bubble = element("div", item.body,
-            "madic-client-msg-bubble" + (item.sender === "client" ? " madic-client-msg-own" : ""));
+        const bubbles = entries.reverse().map((item) => {
+          const bubble = element(
+            "div",
+            item.body,
+            "madic-client-msg-bubble" +
+              (item.sender === "client" ? " madic-client-msg-own" : ""),
+          );
           const time = element("time");
           time.dateTime = item.created_at;
-          label(time, (item.sender === "client" ? "Client" : "Cabinet") + " · " + date(item.created_at),
-            (item.sender === "client" ? "Client" : "Firm") + " · " + date(item.created_at));
+          label(
+            time,
+            (item.sender === "client" ? "Client" : "Cabinet") +
+              " · " +
+              date(item.created_at),
+            (item.sender === "client" ? "Client" : "Firm") +
+              " · " +
+              date(item.created_at),
+          );
           bubble.append(time);
           return bubble;
         });
         timeline.prepend(...bubbles);
         if (records.length > 25) {
           messageOffset += 25;
-          const previous = action("Afficher les messages précédents", "Show earlier messages", () => pageMessages(previous));
+          const previous = action(
+            "Afficher les messages précédents",
+            "Show earlier messages",
+            () => pageMessages(previous),
+          );
           timeline.prepend(previous);
         } else if (!timeline.children.length) {
           const empty = element("p");
-          label(empty, "Aucun message dans cette conversation.", "No messages in this conversation.");
+          label(
+            empty,
+            "Aucun message dans cette conversation.",
+            "No messages in this conversation.",
+          );
           timeline.append(empty);
         }
       }
@@ -374,13 +548,18 @@
         }
         if (records.length > 25) {
           attachmentOffset += 25;
-          const moreFiles = action("Afficher les autres pièces jointes", "Show more attachments", () => pageAttachments(moreFiles));
+          const moreFiles = action(
+            "Afficher les autres pièces jointes",
+            "Show more attachments",
+            () => pageAttachments(moreFiles),
+          );
           attachments.append(moreFiles);
         }
       }
       await Promise.all([pageMessages(), pageAttachments()]);
     }
-    let offset = 0, request = 0;
+    let offset = 0,
+      request = 0;
     async function loadList(reset = false) {
       const pending = ++request;
       if (reset) offset = 0;
@@ -393,7 +572,9 @@
       } else list.querySelector("[data-guest-more]")?.remove();
       for (const item of records.slice(0, 25)) {
         const li = element("li");
-        const button = action(item.subject, item.subject, () => open(item, button));
+        const button = action(item.subject, item.subject, () =>
+          open(item, button),
+        );
         button.setAttribute("aria-current", "false");
         li.append(button);
         list.append(li);
@@ -415,7 +596,9 @@
         if (first) first.click();
       }
     }
-    id("clientMsgRefresh").addEventListener("click", () => loadList(true).catch(showError));
+    id("clientMsgRefresh").addEventListener("click", () =>
+      loadList(true).catch(showError),
+    );
     await loadList(true);
   }
   async function contracts() {
@@ -423,17 +606,29 @@
     clearText("contract-message");
     const list = element("table");
     const head = list.createTHead().insertRow();
-    [["Contrat", "Contract"], ["Statut", "Status"], ["Date", "Date"], ["Consulter", "View"], ["Copie", "Copy"]]
-      .forEach(names => { const th = element("th"); label(th, ...names); head.append(th); });
-    const primary = list.createTBody(), legacy = list.createTBody();
+    [
+      ["Contrat", "Contract"],
+      ["Statut", "Status"],
+      ["Date", "Date"],
+      ["Consulter", "View"],
+      ["Copie", "Copy"],
+    ].forEach((names) => {
+      const th = element("th");
+      label(th, ...names);
+      head.append(th);
+    });
+    const primary = list.createTBody(),
+      legacy = list.createTBody();
     const preview = element("div");
     root.replaceChildren(list, preview);
     let revision = 0;
     function openContract(item, isLegacy) {
       return action("Voir le contrat", "View contract", async () => {
         const current = ++revision;
-        const { data, error } = await db.rpc(isLegacy ? "madic_guest_legacy_contract" : "madic_guest_contract",
-          { p_grant: access?.grant_id, p_contract: item.contract_id });
+        const { data, error } = await db.rpc(
+          isLegacy ? "madic_guest_legacy_contract" : "madic_guest_contract",
+          { p_grant: access?.grant_id, p_contract: item.contract_id },
+        );
         if (!access || current !== revision) return;
         if (error || !data) throw error || Error("Contract unavailable");
         if (isLegacy) {
@@ -448,19 +643,37 @@
         frame.height = "650";
         const template = element("template");
         template.innerHTML = data;
-        template.content.querySelectorAll("script,iframe,object,embed,form,button,input,textarea,select,link,meta,base,svg,math")
-          .forEach(node => node.remove());
-        template.content.querySelectorAll("a,area").forEach(node => node.removeAttribute("href"));
-        frame.srcdoc = '<!doctype html><meta charset="utf-8">' +
-          '<meta http-equiv="Content-Security-Policy" content="default-src \'none\'; img-src data:; style-src \'unsafe-inline\'; form-action \'none\'; base-uri \'none\'">' +
+        template.content
+          .querySelectorAll(
+            "script,iframe,object,embed,form,button,input,textarea,select,link,meta,base,svg,math",
+          )
+          .forEach((node) => node.remove());
+        template.content
+          .querySelectorAll("a,area")
+          .forEach((node) => node.removeAttribute("href"));
+        frame.srcdoc =
+          '<!doctype html><meta charset="utf-8">' +
+          "<meta http-equiv=\"Content-Security-Policy\" content=\"default-src 'none'; img-src data:; style-src 'unsafe-inline'; form-action 'none'; base-uri 'none'\">" +
           template.innerHTML;
         preview.replaceChildren(frame);
-        frame.scrollIntoView({block: "nearest"});
+        frame.scrollIntoView({ block: "nearest" });
       });
     }
     await Promise.all([
-      table(primary, "contracts", ["reference", r => status(r.status), r => date(r.created_at), r => openContract(r, false), download]),
-      table(legacy, "legacy_contracts", ["title", r => status(r.status), r => date(r.published_at), r => openContract(r, true), () => "—"]),
+      table(primary, "contracts", [
+        "reference",
+        (r) => status(r.status),
+        (r) => date(r.created_at),
+        (r) => openContract(r, false),
+        download,
+      ]),
+      table(legacy, "legacy_contracts", [
+        "title",
+        (r) => status(r.status),
+        (r) => date(r.published_at),
+        (r) => openContract(r, true),
+        () => "-",
+      ]),
     ]);
   }
 
@@ -470,13 +683,17 @@
     try {
       const { data, error } = await db.rpc("madic_guest_list");
       if (error) throw error;
-      if (!data?.some(item => item.grant_id === access?.grant_id)) {
-        failAccess("Cet accès invité est indisponible ou a été révoqué.",
-          "This guest access is unavailable or has been revoked.");
+      if (!data?.some((item) => item.grant_id === access?.grant_id)) {
+        failAccess(
+          "Cet accès invité est indisponible ou a été révoqué.",
+          "This guest access is unavailable or has been revoked.",
+        );
       }
     } catch {
-      failAccess("Impossible de vérifier cet accès. Actualisez la page.",
-        "Unable to verify this access. Refresh the page.");
+      failAccess(
+        "Impossible de vérifier cet accès. Actualisez la page.",
+        "Unable to verify this access. Refresh the page.",
+      );
     } finally {
       checking = false;
     }
@@ -516,12 +733,18 @@
     if (portalHeader) portalHeader.after(banner);
     else content.prepend(banner);
     // Les boutons natifs de déconnexion suivent également le parcours invité.
-    for (const control of document.querySelectorAll('#logout,#madicHeaderSignout,[data-madic-signout="true"]')) {
-      control.addEventListener("click", event => {
-        event.preventDefault();
-        event.stopImmediatePropagation();
-        signout.click();
-      }, true);
+    for (const control of document.querySelectorAll(
+      '#logout,#madicHeaderSignout,[data-madic-signout="true"]',
+    )) {
+      control.addEventListener(
+        "click",
+        (event) => {
+          event.preventDefault();
+          event.stopImmediatePropagation();
+          signout.click();
+        },
+        true,
+      );
     }
     let renderedLanguage = lang();
     const observer = new MutationObserver(() => {
@@ -537,7 +760,7 @@
         if (node.textContent !== translated) node.textContent = translated;
       }
     });
-    observer.observe(document.documentElement, {attributeFilter: ["lang"]});
+    observer.observe(document.documentElement, { attributeFilter: ["lang"] });
     try {
       const allowed = await initialize();
       resolveStart(allowed);
@@ -551,14 +774,28 @@
       hide("madicClientMessagesUnread");
       const formCard = id("madicImmigrationFormCard");
       if (formCard) {
-        label(formCard.querySelector("p"), "Consultez les réponses enregistrées au questionnaire.",
-          "View the saved questionnaire responses.");
-        label(formCard.querySelector("a"), "Consulter le formulaire →", "View the form →");
+        label(
+          formCard.querySelector("p"),
+          "Consultez les réponses enregistrées au questionnaire.",
+          "View the saved questionnaire responses.",
+        );
+        label(
+          formCard.querySelector("a"),
+          "Consulter le formulaire →",
+          "View the form →",
+        );
       }
       if (page === "formulaire") {
-        label(document.querySelector(".form-hero__content h1"), "Formulaire d’immigration", "Immigration form");
-        label(document.querySelector(".form-hero__content p"), "Consultez les réponses enregistrées par le client.",
-          "View the answers saved by the client.");
+        label(
+          document.querySelector(".form-hero__content h1"),
+          "Formulaire d’immigration",
+          "Immigration form",
+        );
+        label(
+          document.querySelector(".form-hero__content p"),
+          "Consultez les réponses enregistrées par le client.",
+          "View the answers saved by the client.",
+        );
       }
       const welcome = id("welcome");
       if (welcome) welcome.textContent = access.client_name;
@@ -573,14 +810,24 @@
         "mes-dossiers-client-cric": async () => {
           hide("toggleDossiers");
           show("dossiersContent");
-          await table(id("dossiers"), "dossiers", ["reference", "category", row => status(row.status)]);
+          await table(id("dossiers"), "dossiers", [
+            "reference",
+            "category",
+            (row) => status(row.status),
+          ]);
         },
         "documents-client-cric": documents,
         "factures-client-cric": async () => {
           show("clientInvoicesPanel");
           clearText("clientInvoicesNotice");
-          await table(id("clientInvoicesRows"), "invoices", ["invoice_number", r => date(r.issued_on),
-            r => date(r.due_on), r => money(r.total_cents, r.currency), r => money(r.balance_cents, r.currency), invoiceDetail]);
+          await table(id("clientInvoicesRows"), "invoices", [
+            "invoice_number",
+            (r) => date(r.issued_on),
+            (r) => date(r.due_on),
+            (r) => money(r.total_cents, r.currency),
+            (r) => money(r.balance_cents, r.currency),
+            invoiceDetail,
+          ]);
         },
         "mes-rendez-vous-cric": appointments,
         "messagerie-client-cric": messages,
@@ -594,288 +841,260 @@
     } catch {
       resolveStart(false);
       if (access) showError();
-      else failAccess("Impossible de vérifier l’accès invité. Actualisez la page.",
-        "Unable to verify guest access. Refresh the page.");
+      else
+        failAccess(
+          "Impossible de vérifier l’accès invité. Actualisez la page.",
+          "Unable to verify guest access. Refresh the page.",
+        );
     }
   }
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", start, {once: true});
+    document.addEventListener("DOMContentLoaded", start, { once: true });
   } else {
     void start();
   }
 })();
 
-;
 /* MADIC - Scripts autonomes de mes-dossiers-client-cric.html */
 
 /* MODULE: inline */
 
-      for (const [buttonId, contentId, hintId, openText] of [
-        ["toggleProfile", "profileContent", "profileHint", "Modifier"],
-        ["toggleDossiers", "dossiersContent", "dossiersHint", "Consulter"],
-      ]) {
-        const button = document.getElementById(buttonId),
-          content = document.getElementById(contentId),
-          hint = document.getElementById(hintId);
-        button.addEventListener("click", () => {
-          const opening = content.hidden;
-          content.hidden = !opening;
-          hint.hidden = opening;
-          button.setAttribute("aria-expanded", String(opening));
-          button.textContent = opening ? "Fermer" : openText;
-        });
-      }
-    
-;
+for (const [buttonId, contentId, hintId, openText] of [
+  ["toggleProfile", "profileContent", "profileHint", "Modifier"],
+  ["toggleDossiers", "dossiersContent", "dossiersHint", "Consulter"],
+]) {
+  const button = document.getElementById(buttonId),
+    content = document.getElementById(contentId),
+    hint = document.getElementById(hintId);
+  button.addEventListener("click", () => {
+    const opening = content.hidden;
+    content.hidden = !opening;
+    hint.hidden = opening;
+    button.setAttribute("aria-expanded", String(opening));
+    button.textContent = opening ? "Fermer" : openText;
+  });
+}
 
 /* MODULE: inline */
 
-      /* Personnalisation locale du menu, sans effet sur les données du portail. */
-      (function () {
-        const sidebar = document.querySelector(".madic-side-nav");
-        const nav = sidebar && sidebar.querySelector(".madic-side-links");
-        const toggle = document.getElementById("madicCustomizeNav");
-        const reset = document.getElementById("madicResetNav");
-        const help = document.getElementById("madicNavHelp");
-        if (!sidebar || !nav || !toggle || !reset || !help) return;
+/* Personnalisation locale du menu, sans effet sur les données du portail. */
+(function () {
+  const sidebar = document.querySelector(".madic-side-nav");
+  const nav = sidebar && sidebar.querySelector(".madic-side-links");
+  const toggle = document.getElementById("madicCustomizeNav");
+  const reset = document.getElementById("madicResetNav");
+  const help = document.getElementById("madicNavHelp");
+  if (!sidebar || !nav || !toggle || !reset || !help) return;
 
-        const storageKey = "madic-client-nav-order-v2";
-        const items = () =>
-          Array.from(nav.querySelectorAll(".madic-nav-entry"));
-        const initialOrder = items().map((el) => el.dataset.navKey);
-        const labels = {
-          edit: { fr: "Personnaliser le menu", en: "Customize menu" },
-          done: { fr: "Terminer", en: "Done" },
-        };
-        let editing = false;
-        let dragged = null;
-        const currentLanguage = () =>
-          document.documentElement.lang.toLowerCase().startsWith("en")
-            ? "en"
-            : "fr";
-        const updateLabel = () => {
-          const lang = currentLanguage();
-          toggle.textContent = labels[editing ? "done" : "edit"][lang];
-        };
-        const save = () => {
-          try {
-            localStorage.setItem(
-              storageKey,
-              JSON.stringify(items().map((el) => el.dataset.navKey)),
-            );
-          } catch (_) {
-            /* Stockage local facultatif. */
-          }
-        };
-        const applyOrder = (keys) => {
-          const byKey = new Map(items().map((el) => [el.dataset.navKey, el]));
-          keys.forEach((key) => {
-            if (byKey.has(key)) nav.appendChild(byKey.get(key));
-          });
-          items().forEach((el) => nav.appendChild(el));
-        };
-        try {
-          const saved = JSON.parse(localStorage.getItem(storageKey) || "null");
-          if (Array.isArray(saved)) applyOrder(saved);
-        } catch (_) {
-          /* Revenir à l'ordre HTML si préférence invalide. */
-        }
+  const storageKey = "madic-client-nav-order-v2";
+  const items = () => Array.from(nav.querySelectorAll(".madic-nav-entry"));
+  const initialOrder = items().map((el) => el.dataset.navKey);
+  const labels = {
+    edit: { fr: "Personnaliser le menu", en: "Customize menu" },
+    done: { fr: "Terminer", en: "Done" },
+  };
+  let editing = false;
+  let dragged = null;
+  const currentLanguage = () =>
+    document.documentElement.lang.toLowerCase().startsWith("en") ? "en" : "fr";
+  const updateLabel = () => {
+    const lang = currentLanguage();
+    toggle.textContent = labels[editing ? "done" : "edit"][lang];
+  };
+  const save = () => {
+    try {
+      localStorage.setItem(
+        storageKey,
+        JSON.stringify(items().map((el) => el.dataset.navKey)),
+      );
+    } catch (_) {
+      /* Stockage local facultatif. */
+    }
+  };
+  const applyOrder = (keys) => {
+    const byKey = new Map(items().map((el) => [el.dataset.navKey, el]));
+    keys.forEach((key) => {
+      if (byKey.has(key)) nav.appendChild(byKey.get(key));
+    });
+    items().forEach((el) => nav.appendChild(el));
+  };
+  try {
+    const saved = JSON.parse(localStorage.getItem(storageKey) || "null");
+    if (Array.isArray(saved)) applyOrder(saved);
+  } catch (_) {
+    /* Revenir à l'ordre HTML si préférence invalide. */
+  }
 
-        const setEditing = (value) => {
-          editing = Boolean(value);
-          sidebar.classList.toggle("madic-editing", editing);
-          toggle.setAttribute("aria-pressed", String(editing));
-          toggle.setAttribute("aria-expanded", String(editing));
-          reset.hidden = !editing;
-          help.hidden = !editing;
-          nav.querySelectorAll(".madic-drag-handle").forEach((handle) => {
-            handle.draggable = editing;
-          });
-          updateLabel();
-        };
-        toggle.setAttribute("aria-controls", "madicNavHelp madicResetNav");
-        toggle.addEventListener("click", () => setEditing(!editing));
-        reset.addEventListener("click", () => {
-          applyOrder(initialOrder);
-          save();
-        });
+  const setEditing = (value) => {
+    editing = Boolean(value);
+    sidebar.classList.toggle("madic-editing", editing);
+    toggle.setAttribute("aria-pressed", String(editing));
+    toggle.setAttribute("aria-expanded", String(editing));
+    reset.hidden = !editing;
+    help.hidden = !editing;
+    nav.querySelectorAll(".madic-drag-handle").forEach((handle) => {
+      handle.draggable = editing;
+    });
+    updateLabel();
+  };
+  toggle.setAttribute("aria-controls", "madicNavHelp madicResetNav");
+  toggle.addEventListener("click", () => setEditing(!editing));
+  reset.addEventListener("click", () => {
+    applyOrder(initialOrder);
+    save();
+  });
 
-        nav.addEventListener("click", (event) => {
-          const button = event.target.closest("button[data-move]");
-          if (!button || !editing) return;
-          const item = button.closest(".madic-nav-entry");
-          if (!item) return;
-          if (button.dataset.move === "up" && item.previousElementSibling) {
-            nav.insertBefore(item, item.previousElementSibling);
-          } else if (
-            button.dataset.move === "down" &&
-            item.nextElementSibling
-          ) {
-            nav.insertBefore(item.nextElementSibling, item);
-          }
-          save();
-          button.focus();
-        });
-        nav.addEventListener("dragstart", (event) => {
-          const handle = event.target.closest(".madic-drag-handle");
-          if (!editing || !handle) {
-            event.preventDefault();
-            return;
-          }
-          dragged = handle.closest(".madic-nav-entry");
-          if (!dragged || !event.dataTransfer) return;
-          dragged.classList.add("madic-dragging");
-          event.dataTransfer.effectAllowed = "move";
-          event.dataTransfer.setData("text/plain", dragged.dataset.navKey);
-        });
-        nav.addEventListener("dragover", (event) => {
-          const target = event.target.closest(".madic-nav-entry");
-          if (!editing || !dragged || !target || target === dragged) return;
-          event.preventDefault();
-          if (event.dataTransfer) event.dataTransfer.dropEffect = "move";
-          items().forEach((el) =>
-            el.classList.toggle("madic-drag-over", el === target),
-          );
-        });
-        nav.addEventListener("drop", (event) => {
-          const target = event.target.closest(".madic-nav-entry");
-          if (!editing || !dragged || !target || target === dragged) return;
-          event.preventDefault();
-          const rect = target.getBoundingClientRect();
-          const after = window.matchMedia("(max-width: 800px)").matches
-            ? event.clientX > rect.left + rect.width / 2
-            : event.clientY > rect.top + rect.height / 2;
-          nav.insertBefore(dragged, after ? target.nextSibling : target);
-          save();
-        });
-        nav.addEventListener("dragend", () => {
-          items().forEach((el) =>
-            el.classList.remove("madic-drag-over", "madic-dragging"),
-          );
-          dragged = null;
-        });
-        setEditing(false);
-      })();
-    
-;
+  nav.addEventListener("click", (event) => {
+    const button = event.target.closest("button[data-move]");
+    if (!button || !editing) return;
+    const item = button.closest(".madic-nav-entry");
+    if (!item) return;
+    if (button.dataset.move === "up" && item.previousElementSibling) {
+      nav.insertBefore(item, item.previousElementSibling);
+    } else if (button.dataset.move === "down" && item.nextElementSibling) {
+      nav.insertBefore(item.nextElementSibling, item);
+    }
+    save();
+    button.focus();
+  });
+  nav.addEventListener("dragstart", (event) => {
+    const handle = event.target.closest(".madic-drag-handle");
+    if (!editing || !handle) {
+      event.preventDefault();
+      return;
+    }
+    dragged = handle.closest(".madic-nav-entry");
+    if (!dragged || !event.dataTransfer) return;
+    dragged.classList.add("madic-dragging");
+    event.dataTransfer.effectAllowed = "move";
+    event.dataTransfer.setData("text/plain", dragged.dataset.navKey);
+  });
+  nav.addEventListener("dragover", (event) => {
+    const target = event.target.closest(".madic-nav-entry");
+    if (!editing || !dragged || !target || target === dragged) return;
+    event.preventDefault();
+    if (event.dataTransfer) event.dataTransfer.dropEffect = "move";
+    items().forEach((el) =>
+      el.classList.toggle("madic-drag-over", el === target),
+    );
+  });
+  nav.addEventListener("drop", (event) => {
+    const target = event.target.closest(".madic-nav-entry");
+    if (!editing || !dragged || !target || target === dragged) return;
+    event.preventDefault();
+    const rect = target.getBoundingClientRect();
+    const after = window.matchMedia("(max-width: 800px)").matches
+      ? event.clientX > rect.left + rect.width / 2
+      : event.clientY > rect.top + rect.height / 2;
+    nav.insertBefore(dragged, after ? target.nextSibling : target);
+    save();
+  });
+  nav.addEventListener("dragend", () => {
+    items().forEach((el) =>
+      el.classList.remove("madic-drag-over", "madic-dragging"),
+    );
+    dragged = null;
+  });
+  setEditing(false);
+})();
 
 /* MODULE: inline */
 
-      /* Navigation du tableau de bord client : cible, panneau et etat actif. */
-      (function () {
-        "use strict";
-        const nav = document.querySelector(".madic-side-links");
-        if (!nav) return;
-        const links = Array.from(nav.querySelectorAll('a[href^="#"]'));
-        const targets = new Map(
-          links.map((link) => [link.getAttribute("href"), link]),
-        );
-        const panels = {
-          "#profile-heading": [
-            "profileContent",
-            "profileHint",
-            "toggleProfile",
-          ],
-          "#dossiers-heading": [
-            "dossiersContent",
-            "dossiersHint",
-            "toggleDossiers",
-          ],
-        };
-        function activate(link) {
-          links.forEach((item) => {
-            const active = item === link;
-            item.classList.toggle("madic-nav-active", active);
-            if (active) item.setAttribute("aria-current", "location");
-            else item.removeAttribute("aria-current");
-          });
-        }
-        function reveal(hash) {
-          const ids = panels[hash];
-          if (!ids) return;
-          const content = document.getElementById(ids[0]);
-          const hint = document.getElementById(ids[1]);
-          const button = document.getElementById(ids[2]);
-          if (!content || !button || !content.hidden) return;
-          // Utiliser le gestionnaire existant, qui gere aussi aria-expanded.
-          button.click();
-          if (hint && !content.hidden) hint.hidden = true;
-        }
-        function navigate(hash, updateHistory) {
-          const link = targets.get(hash);
-          if (!link) return;
-          const target = document.getElementById(hash.slice(1));
-          if (!target) return;
-          // Les cartes facultatives restent sous le controle des scripts metier.
-          if (target.hidden || target.closest("[hidden]")) return;
-          reveal(hash);
-          activate(link);
-          if (updateHistory && location.hash !== hash)
-            history.pushState(null, "", hash);
-          // Les ancres sur un titre doivent positionner la carte complete.
-          const destination = target.closest("section.panel") || target;
-          requestAnimationFrame(() => {
-            const top =
-              destination.getBoundingClientRect().top + window.scrollY - 16;
-            window.scrollTo({ top: Math.max(0, top), behavior: "auto" });
-          });
-        }
-        nav.addEventListener("click", (event) => {
-          const link = event.target.closest('a[href^="#"]');
-          if (!link || !nav.contains(link)) return;
-          event.preventDefault();
-          navigate(link.getAttribute("href"), true);
-        });
-        window.addEventListener("hashchange", () =>
-          navigate(location.hash, false),
-        );
-        window.addEventListener("popstate", () =>
-          navigate(location.hash, false),
-        );
-        // Laisser les scripts du portail terminer leur initialisation.
-        window.addEventListener("load", () => {
-          if (targets.has(location.hash)) navigate(location.hash, false);
-          else activate(targets.get("#madic-top"));
-        });
-      })();
-    
-;
+/* Navigation du tableau de bord client : cible, panneau et etat actif. */
+(function () {
+  "use strict";
+  const nav = document.querySelector(".madic-side-links");
+  if (!nav) return;
+  const links = Array.from(nav.querySelectorAll('a[href^="#"]'));
+  const targets = new Map(
+    links.map((link) => [link.getAttribute("href"), link]),
+  );
+  const panels = {
+    "#profile-heading": ["profileContent", "profileHint", "toggleProfile"],
+    "#dossiers-heading": ["dossiersContent", "dossiersHint", "toggleDossiers"],
+  };
+  function activate(link) {
+    links.forEach((item) => {
+      const active = item === link;
+      item.classList.toggle("madic-nav-active", active);
+      if (active) item.setAttribute("aria-current", "location");
+      else item.removeAttribute("aria-current");
+    });
+  }
+  function reveal(hash) {
+    const ids = panels[hash];
+    if (!ids) return;
+    const content = document.getElementById(ids[0]);
+    const hint = document.getElementById(ids[1]);
+    const button = document.getElementById(ids[2]);
+    if (!content || !button || !content.hidden) return;
+    // Utiliser le gestionnaire existant, qui gere aussi aria-expanded.
+    button.click();
+    if (hint && !content.hidden) hint.hidden = true;
+  }
+  function navigate(hash, updateHistory) {
+    const link = targets.get(hash);
+    if (!link) return;
+    const target = document.getElementById(hash.slice(1));
+    if (!target) return;
+    // Les cartes facultatives restent sous le controle des scripts metier.
+    if (target.hidden || target.closest("[hidden]")) return;
+    reveal(hash);
+    activate(link);
+    if (updateHistory && location.hash !== hash)
+      history.pushState(null, "", hash);
+    // Les ancres sur un titre doivent positionner la carte complete.
+    const destination = target.closest("section.panel") || target;
+    requestAnimationFrame(() => {
+      const top = destination.getBoundingClientRect().top + window.scrollY - 16;
+      window.scrollTo({ top: Math.max(0, top), behavior: "auto" });
+    });
+  }
+  nav.addEventListener("click", (event) => {
+    const link = event.target.closest('a[href^="#"]');
+    if (!link || !nav.contains(link)) return;
+    event.preventDefault();
+    navigate(link.getAttribute("href"), true);
+  });
+  window.addEventListener("hashchange", () => navigate(location.hash, false));
+  window.addEventListener("popstate", () => navigate(location.hash, false));
+  // Laisser les scripts du portail terminer leur initialisation.
+  window.addEventListener("load", () => {
+    if (targets.has(location.hash)) navigate(location.hash, false);
+    else activate(targets.get("#madic-top"));
+  });
+})();
 
 /* MODULE: inline */
 
-      /* Suit le sélecteur FR/EN existant sans modifier le module i18n. */
-      (function () {
-        const root = document.getElementById("madicPublications");
-        if (!root) return;
-        const update = () => {
-          const lang = (document.documentElement.lang || "fr")
-            .toLowerCase()
-            .startsWith("en")
-            ? "en"
-            : "fr";
-          document
-            .querySelectorAll(
-              "[data-madic-publication-fr][data-madic-publication-en]",
-            )
-            .forEach((node) => {
-              const desired = node.getAttribute(
-                "data-madic-publication-" + lang,
-              );
-              if (node.textContent !== desired) node.textContent = desired;
-            });
-        };
-        new MutationObserver(update).observe(document.documentElement, {
-          attributes: true,
-          attributeFilter: ["lang"],
-        });
-        document.addEventListener("click", (event) => {
-          if (event.target.closest(".madic-language-switch"))
-            queueMicrotask(update);
-        });
-        update();
-      })();
-    
-;
+/* Suit le sélecteur FR/EN existant sans modifier le module i18n. */
+(function () {
+  const root = document.getElementById("madicPublications");
+  if (!root) return;
+  const update = () => {
+    const lang = (document.documentElement.lang || "fr")
+      .toLowerCase()
+      .startsWith("en")
+      ? "en"
+      : "fr";
+    document
+      .querySelectorAll(
+        "[data-madic-publication-fr][data-madic-publication-en]",
+      )
+      .forEach((node) => {
+        const desired = node.getAttribute("data-madic-publication-" + lang);
+        if (node.textContent !== desired) node.textContent = desired;
+      });
+  };
+  new MutationObserver(update).observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ["lang"],
+  });
+  document.addEventListener("click", (event) => {
+    if (event.target.closest(".madic-language-switch")) queueMicrotask(update);
+  });
+  update();
+})();
 
 /* MODULE: cric-client-dashboard.js */
 /* MADIC - tableau de bord client CRIC. RLS Supabase obligatoire. */
@@ -979,19 +1198,33 @@
     let photoPreviewUrl = null;
     const photoNotice = (message, bad = false) => {
       const el = $("madicProfilePhotoStatus");
-      if (el) { el.textContent = message; el.style.color = bad ? "#ffb4b4" : "#b3f2e4"; }
+      if (el) {
+        el.textContent = message;
+        el.style.color = bad ? "#ffb4b4" : "#b3f2e4";
+      }
     };
     const setBothAvatars = (src, alt) => {
       for (const id of ["madicClientAvatarImage", "madicProfileAvatarImage"]) {
         const image = $(id);
-        if (image) { image.src = src; image.alt = alt; }
+        if (image) {
+          image.src = src;
+          image.alt = alt;
+        }
       }
     };
     const refreshPhoto = async () => {
       updateClientAvatar(profile.gender);
       if (!photoPath) return;
-      const { data, error } = await db.storage.from(avatarBucket).createSignedUrl(photoPath, 3600);
-      if (error || !data?.signedUrl) { photoNotice("Photo non accessible : " + (error?.message || "lien indisponible"), true); return; }
+      const { data, error } = await db.storage
+        .from(avatarBucket)
+        .createSignedUrl(photoPath, 3600);
+      if (error || !data?.signedUrl) {
+        photoNotice(
+          "Photo non accessible : " + (error?.message || "lien indisponible"),
+          true,
+        );
+        return;
+      }
       setBothAvatars(data.signedUrl, "Photo personnelle du client");
     };
     updateClientAvatar(profile.gender);
@@ -999,56 +1232,107 @@
     $("madicProfilePhotoFile")?.addEventListener("change", (event) => {
       if (photoPreviewUrl) URL.revokeObjectURL(photoPreviewUrl);
       const file = event.target.files?.[0];
-      if (!file) { refreshPhoto(); return; }
-      if (!["image/jpeg", "image/png", "image/webp"].includes(file.type) || file.size > 2 * 1024 * 1024 || !file.size) {
+      if (!file) {
+        refreshPhoto();
+        return;
+      }
+      if (
+        !["image/jpeg", "image/png", "image/webp"].includes(file.type) ||
+        file.size > 2 * 1024 * 1024 ||
+        !file.size
+      ) {
         event.target.value = "";
-        photoNotice("Choisissez une image JPG, PNG ou WebP de 2 Mo maximum.", true);
+        photoNotice(
+          "Choisissez une image JPG, PNG ou WebP de 2 Mo maximum.",
+          true,
+        );
         return;
       }
       photoPreviewUrl = URL.createObjectURL(file);
       setBothAvatars(photoPreviewUrl, "Aperçu de la nouvelle photo");
-      photoNotice("Aperçu uniquement : cliquez sur Enregistrer la photo pour la conserver.");
+      photoNotice(
+        "Aperçu uniquement : cliquez sur Enregistrer la photo pour la conserver.",
+      );
     });
     $("madicUploadProfilePhoto")?.addEventListener("click", async () => {
       const file = $("madicProfilePhotoFile")?.files?.[0];
       if (!file) return photoNotice("Sélectionnez d'abord une photo.", true);
-      if (!["image/jpeg", "image/png", "image/webp"].includes(file.type) || file.size > 2 * 1024 * 1024 || !file.size)
+      if (
+        !["image/jpeg", "image/png", "image/webp"].includes(file.type) ||
+        file.size > 2 * 1024 * 1024 ||
+        !file.size
+      )
         return photoNotice("Format ou taille non autorisé.", true);
-      const button = $("madicUploadProfilePhoto"); button.disabled = true;
+      const button = $("madicUploadProfilePhoto");
+      button.disabled = true;
       try {
-        const extension = {"image/jpeg":"jpg","image/png":"png","image/webp":"webp"}[file.type];
+        const extension = {
+          "image/jpeg": "jpg",
+          "image/png": "png",
+          "image/webp": "webp",
+        }[file.type];
         const nextPath = `${user.id}/${crypto.randomUUID()}.${extension}`;
-        const { error: uploadError } = await db.storage.from(avatarBucket).upload(nextPath, file, { contentType:file.type, upsert:false });
+        const { error: uploadError } = await db.storage
+          .from(avatarBucket)
+          .upload(nextPath, file, { contentType: file.type, upsert: false });
         if (uploadError) throw uploadError;
-        const { error: metadataError } = await db.auth.updateUser({ data: { madic_avatar_path: nextPath } });
-        if (metadataError) { await db.storage.from(avatarBucket).remove([nextPath]); throw metadataError; }
+        const { error: metadataError } = await db.auth.updateUser({
+          data: { madic_avatar_path: nextPath },
+        });
+        if (metadataError) {
+          await db.storage.from(avatarBucket).remove([nextPath]);
+          throw metadataError;
+        }
         const previousPath = photoPath;
         photoPath = nextPath;
-        if (previousPath && previousPath !== nextPath && previousPath.startsWith(user.id + "/"))
+        if (
+          previousPath &&
+          previousPath !== nextPath &&
+          previousPath.startsWith(user.id + "/")
+        )
           await db.storage.from(avatarBucket).remove([previousPath]);
         $("madicProfilePhotoFile").value = "";
         await refreshPhoto();
-        if (photoPreviewUrl) { URL.revokeObjectURL(photoPreviewUrl); photoPreviewUrl = null; }
+        if (photoPreviewUrl) {
+          URL.revokeObjectURL(photoPreviewUrl);
+          photoPreviewUrl = null;
+        }
         photoNotice("Photo enregistrée.");
-      } catch (error) { photoNotice("Enregistrement impossible : " + error.message, true); }
-      finally { button.disabled = false; }
+      } catch (error) {
+        photoNotice("Enregistrement impossible : " + error.message, true);
+      } finally {
+        button.disabled = false;
+      }
     });
     $("madicRemoveProfilePhoto")?.addEventListener("click", async () => {
-      const button = $("madicRemoveProfilePhoto"); button.disabled = true;
+      const button = $("madicRemoveProfilePhoto");
+      button.disabled = true;
       try {
         const previousPath = photoPath;
-        const { error } = await db.auth.updateUser({ data: { madic_avatar_path: null } });
+        const { error } = await db.auth.updateUser({
+          data: { madic_avatar_path: null },
+        });
         if (error) throw error;
         photoPath = "";
-        if (previousPath && previousPath.startsWith(user.id + "/")) await db.storage.from(avatarBucket).remove([previousPath]);
+        if (previousPath && previousPath.startsWith(user.id + "/"))
+          await db.storage.from(avatarBucket).remove([previousPath]);
         $("madicProfilePhotoFile").value = "";
-        if (photoPreviewUrl) { URL.revokeObjectURL(photoPreviewUrl); photoPreviewUrl = null; }
+        if (photoPreviewUrl) {
+          URL.revokeObjectURL(photoPreviewUrl);
+          photoPreviewUrl = null;
+        }
         updateClientAvatar(profile.gender);
         photoNotice("Photo supprimée. Avatar par défaut rétabli.");
-      } catch (error) { photoNotice("Suppression impossible : " + error.message, true); }
-      finally { button.disabled = false; }
+      } catch (error) {
+        photoNotice("Suppression impossible : " + error.message, true);
+      } finally {
+        button.disabled = false;
+      }
     });
-    $("gender")?.addEventListener("change", () => { if (!photoPath && !$("madicProfilePhotoFile")?.files?.length) updateClientAvatar($("gender").value); });
+    $("gender")?.addEventListener("change", () => {
+      if (!photoPath && !$("madicProfilePhotoFile")?.files?.length)
+        updateClientAvatar($("gender").value);
+    });
     $("welcome").textContent =
       "Bienvenue, " +
       (profile.first_name || user.email?.split("@")[0] || "client");
@@ -1297,8 +1581,6 @@
   }
 })();
 
-;
-
 /* MODULE: madic-messagerie-client-badge.js */
 /* MADIC - compteur de messages non lus du client CRIC.
    Lecture uniquement : les RLS Supabase restent la source des autorisations. */
@@ -1396,8 +1678,6 @@
   window.addEventListener("focus", refresh);
   await refresh();
 })();
-
-;
 
 /* MODULE: madic-client-invoices.js */
 /* MADIC 3.2 - Lecture des factures émises du client via RPC dédiée. */
@@ -1598,8 +1878,6 @@
   if ($("cabinet").value) await load().catch((e) => notice(e.message));
 })();
 
-;
-
 /* MODULE: madic-document-requests-client.js */
 (async () => {
   "use strict";
@@ -1663,8 +1941,6 @@
     );
   await load();
 })();
-
-;
 
 /* MODULE: madic-notifications.js */
 /* MADIC 7.8 - Notifications de messagerie dans les tableaux de bord.
@@ -1849,8 +2125,6 @@
   );
 })();
 
-;
-
 /* MODULE: madic-service-journey.js */
 /* MADIC - suivi de demandes isole par cabinet. Module independant des scripts historiques. */
 (async () => {
@@ -1902,11 +2176,16 @@
     const requestSearch = $("madicServiceSearch");
     function applyRequestFilters() {
       const status = requestFilter?.value || "all";
-      const query = (requestSearch?.value || "").trim().toLocaleLowerCase("fr-CA");
+      const query = (requestSearch?.value || "")
+        .trim()
+        .toLocaleLowerCase("fr-CA");
       for (const article of list.querySelectorAll(".madic-service-item")) {
-        const matchesName = !query || (article.dataset.clientName || "").includes(query);
-        const matchesStatus = status === "all" ||
-          (status === "received" && article.dataset.requestStatus === "received") ||
+        const matchesName =
+          !query || (article.dataset.clientName || "").includes(query);
+        const matchesStatus =
+          status === "all" ||
+          (status === "received" &&
+            article.dataset.requestStatus === "received") ||
           (status === "signed" && article.dataset.contractSigned === "true");
         article.hidden = !(matchesName && matchesStatus);
         // Les styles de cartes ne doivent pas annuler l'attribut hidden.
@@ -1914,8 +2193,9 @@
       }
     }
     function updateSignedCount() {
-      const count = Array.from(list.querySelectorAll(".madic-service-item"))
-        .filter((article) => article.dataset.contractSigned === "true").length;
+      const count = Array.from(
+        list.querySelectorAll(".madic-service-item"),
+      ).filter((article) => article.dataset.contractSigned === "true").length;
       const counter = $("madicServiceOtherCount");
       if (counter) counter.textContent = String(count);
     }
@@ -2074,10 +2354,13 @@
         const pending = requests.filter(
           (r) => r.request_status === "received",
         ).length;
-        $("madicServiceTotalCount") && ($("madicServiceTotalCount").textContent = String(requests.length));
-        $("madicServiceReceivedCount") && ($("madicServiceReceivedCount").textContent = String(pending));
+        $("madicServiceTotalCount") &&
+          ($("madicServiceTotalCount").textContent = String(requests.length));
+        $("madicServiceReceivedCount") &&
+          ($("madicServiceReceivedCount").textContent = String(pending));
         // Ce compteur porte desormais sur les contrats effectivement signes.
-        $("madicServiceOtherCount") && ($("madicServiceOtherCount").textContent = "0");
+        $("madicServiceOtherCount") &&
+          ($("madicServiceOtherCount").textContent = "0");
         badge.textContent = String(pending);
         badge.hidden = !pending;
         notice.textContent = requests.length
@@ -2086,7 +2369,9 @@
         for (const item of requests) {
           const article = document.createElement("article");
           article.className = "madic-service-item";
-          article.dataset.clientName = (item.client_name || "Client").toLocaleLowerCase("fr-CA");
+          article.dataset.clientName = (
+            item.client_name || "Client"
+          ).toLocaleLowerCase("fr-CA");
           article.dataset.requestStatus = item.request_status || "received";
           article.dataset.contractSigned = "false";
           const header = document.createElement("div");
@@ -2110,19 +2395,34 @@
           const summaryType = document.createElement("small");
           summaryType.textContent = `${services[item.service_type] || item.service_type} · ${niceDate(item.request_updated_at)}`;
           summaryMain.append(summaryName, summaryType);
-          const summaryStatus = pill(labels[item.request_status] || "Reçue", "info");
+          const summaryStatus = pill(
+            labels[item.request_status] || "Reçue",
+            "info",
+          );
           const summaryContract = pill("Vérification…");
           const summaryAppointment = pill("Vérification…");
           const summaryContractGroup = document.createElement("span");
           summaryContractGroup.className = "madic-service-row-indicator";
-          summaryContractGroup.append(document.createTextNode("Contrat"), summaryContract);
+          summaryContractGroup.append(
+            document.createTextNode("Contrat"),
+            summaryContract,
+          );
           const summaryAppointmentGroup = document.createElement("span");
           summaryAppointmentGroup.className = "madic-service-row-indicator";
-          summaryAppointmentGroup.append(document.createTextNode("Rendez-vous"), summaryAppointment);
+          summaryAppointmentGroup.append(
+            document.createTextNode("Rendez-vous"),
+            summaryAppointment,
+          );
           const summaryChevron = document.createElement("span");
           summaryChevron.className = "madic-service-chevron";
           summaryChevron.textContent = "Détails";
-          summary.append(summaryMain, summaryStatus, summaryContractGroup, summaryAppointmentGroup, summaryChevron);
+          summary.append(
+            summaryMain,
+            summaryStatus,
+            summaryContractGroup,
+            summaryAppointmentGroup,
+            summaryChevron,
+          );
           const expandedBody = document.createElement("div");
           expandedBody.className = "madic-service-expanded-body";
           expanded.append(summary, expandedBody);
@@ -2132,12 +2432,22 @@
               target.className = source.className;
               if (isContract) {
                 // "À contresigner" est signe par le client, mais pas finalise.
-                article.dataset.contractSigned = /^(Signé|Contresigné)$/.test(source.textContent.trim()) ? "true" : "false";
+                article.dataset.contractSigned = /^(Signé|Contresigné)$/.test(
+                  source.textContent.trim(),
+                )
+                  ? "true"
+                  : "false";
                 updateSignedCount();
                 applyRequestFilters();
               }
             };
-            new MutationObserver(sync).observe(source, {childList:true, characterData:true, subtree:true, attributes:true, attributeFilter:["class"]});
+            new MutationObserver(sync).observe(source, {
+              childList: true,
+              characterData: true,
+              subtree: true,
+              attributes: true,
+              attributeFilter: ["class"],
+            });
             sync();
           }
           const actions = document.createElement("div");
@@ -2206,17 +2516,24 @@
                   .in("status", ["client_signe", "deux_signatures"])
                   .order("created_at", { ascending: false })
                   .limit(1);
-                if (clientError) console.warn("Contrat Client vers CRIC :", clientError.message);
+                if (clientError)
+                  console.warn(
+                    "Contrat Client vers CRIC :",
+                    clientError.message,
+                  );
                 const signed = !clientError && clientContracts?.[0];
                 if (signed) {
                   // Un contrat transmis par le client se consulte et se contresigne
                   // dans le parcours Client -> CRIC, sans ouvrir le formulaire de creation.
                   open.href = "contrats-client-vers-cric.html";
-                  open.textContent = signed.status === "deux_signatures"
-                    ? "Consulter le contrat contresigné →"
-                    : "Consulter et contresigner le contrat →";
-                  contractState.badge.textContent = signed.status === "deux_signatures"
-                    ? "Contresigné" : "À contresigner";
+                  open.textContent =
+                    signed.status === "deux_signatures"
+                      ? "Consulter le contrat contresigné →"
+                      : "Consulter et contresigner le contrat →";
+                  contractState.badge.textContent =
+                    signed.status === "deux_signatures"
+                      ? "Contresigné"
+                      : "À contresigner";
                   contractState.badge.className =
                     "madic-service-state madic-service-state-success";
                   signatureState.badge.textContent = "Signée";
@@ -2225,10 +2542,13 @@
                   return;
                 }
                 // Conserver la logique historique des contrats CRIC -> Client.
-                const { data, error } = await db.rpc("madic_service_contract_state", {
-                  p_space_id: spaceId,
-                  p_client_id: item.client_id,
-                });
+                const { data, error } = await db.rpc(
+                  "madic_service_contract_state",
+                  {
+                    p_space_id: spaceId,
+                    p_client_id: item.client_id,
+                  },
+                );
                 if (error) throw error;
                 const row = Array.isArray(data) ? data[0] : data;
                 const state = row?.contract_status;
@@ -2246,9 +2566,14 @@
                   signatureState.badge.textContent = "En attente";
                   signatureState.badge.className =
                     "madic-service-state madic-service-state-pending";
-                } else if (state === "client_signe" || state === "deux_signatures") {
-                  contractState.badge.textContent = state === "deux_signatures"
-                    ? "Contresigné" : "À contresigner";
+                } else if (
+                  state === "client_signe" ||
+                  state === "deux_signatures"
+                ) {
+                  contractState.badge.textContent =
+                    state === "deux_signatures"
+                      ? "Contresigné"
+                      : "À contresigner";
                   contractState.badge.className =
                     "madic-service-state madic-service-state-success";
                   signatureState.badge.textContent = "Signée";
@@ -2506,8 +2831,6 @@
   }
 })();
 
-;
-
 /* MODULE: madic-i18n-dashboard.js */
 /* MADIC Phase 3 - interface translation only; no Supabase or business data changes. */
 (function () {
@@ -2637,22 +2960,26 @@
     "Notifications de messagerie": "Message notifications",
     "Espace client": "Client space",
     "MADIC PORTAIL": "MADIC PORTAL",
-    "Aucun cabinet CRIC associé à votre compte. Contactez votre consultant.": "No RCIC firm is linked to your account. Contact your consultant.",
-    "Aucun dossier attribué par ce consultant.": "No case assigned by this consultant.",
+    "Aucun cabinet CRIC associé à votre compte. Contactez votre consultant.":
+      "No RCIC firm is linked to your account. Contact your consultant.",
+    "Aucun dossier attribué par ce consultant.":
+      "No case assigned by this consultant.",
     "En attente": "Pending",
-    "Télécharger": "Download",
-    "Sélectionnez un dossier actif de ce consultant.": "Select an active case from this consultant.",
+    Télécharger: "Download",
+    "Sélectionnez un dossier actif de ce consultant.":
+      "Select an active case from this consultant.",
     "Aucun message non lu.": "No unread messages.",
     "Erreur Stripe": "Stripe error",
     "Chargement des factures…": "Loading invoices…",
     "Aucune facture émise pour ce cabinet.": "No invoices issued by this firm.",
     "Aucun cabinet associé.": "No associated firm.",
     "Aucun document demandé.": "No documents requested.",
-    "Aucune demande de service pour le moment.": "No service requests at this time.",
-    "Reçue": "Received",
+    "Aucune demande de service pour le moment.":
+      "No service requests at this time.",
+    Reçue: "Received",
     "Vérification…": "Checking…",
-    "Contrat": "Contract",
-    "Détails": "Details",
+    Contrat: "Contract",
+    Détails: "Details",
     "Statut de la demande de ": "Request status for ",
     "Contrat professionnel et signature": "Professional contract and signature",
     "Contrat initial et signature": "Initial contract and signature",
@@ -2660,22 +2987,23 @@
     "Préparer / consulter le contrat →": "Prepare / view contract →",
     "Brouillon uniquement": "Draft only",
     "Non disponible": "Unavailable",
-    "La publication et la signature électronique du contrat professionnel ne sont pas encore activées. Aucun contrat initial ne sera utilisé pour ce mandat.": "Publication and electronic signing of the professional contract are not yet enabled. No initial contract will be used for this mandate.",
+    "La publication et la signature électronique du contrat professionnel ne sont pas encore activées. Aucun contrat initial ne sera utilisé pour ce mandat.":
+      "Publication and electronic signing of the professional contract are not yet enabled. No initial contract will be used for this mandate.",
     "Consulter le contrat contresigné →": "View countersigned contract →",
     "Consulter et contresigner le contrat →": "View and countersign contract →",
-    "Contresigné": "Countersigned",
+    Contresigné: "Countersigned",
     "À contresigner": "Awaiting countersignature",
-    "Signée": "Signed",
-    "Signé": "Signed",
-    "Publié": "Published",
+    Signée: "Signed",
+    Signé: "Signed",
+    Publié: "Published",
     "À vérifier": "Needs review",
     "Non publié": "Not published",
-    "Indisponible": "Unavailable",
+    Indisponible: "Unavailable",
     "État du client": "Client status",
     "Aucune demande": "No request",
     "Créneaux du cabinet": "Firm appointment slots",
     "Aucun disponible": "None available",
-    "Confirmé": "Confirmed",
+    Confirmé: "Confirmed",
     "Demande reçue": "Request received",
     "Dernière demande refusée": "Last request declined",
     "Chargement des actualités officielles…": "Loading official news…",
@@ -2735,7 +3063,8 @@
             el.setAttribute(attr, dict[v]);
         }
       const pageLanguage = language === "en" ? "en-CA" : "fr-CA";
-      if (document.documentElement.lang !== pageLanguage) document.documentElement.lang = pageLanguage;
+      if (document.documentElement.lang !== pageLanguage)
+        document.documentElement.lang = pageLanguage;
       document.title =
         language === "en"
           ? "My RCIC client space | MADIC"
@@ -2810,137 +3139,237 @@
   else start();
 })();
 
-;
-
 /* MODULE: madic-ircc-news.js */
 /* MADIC - Actualites officielles IRCC. Aucun acces aux donnees du portail. */
 (() => {
-  'use strict';
-  const target = document.getElementById('madicActualitesItems');
+  "use strict";
+  const target = document.getElementById("madicActualitesItems");
   if (!target) return;
   const sources = {
-    fr: 'https://api.io.canada.ca/io-server/gc/news/fr/v2?dept=departmentofcitizenshipandimmigration&sort=publishedDate&orderBy=desc&pick=20&format=atom',
-    en: 'https://api.io.canada.ca/io-server/gc/news/en/v2?dept=departmentofcitizenshipandimmigration&sort=publishedDate&orderBy=desc&pick=20&format=atom'
+    fr: "https://api.io.canada.ca/io-server/gc/news/fr/v2?dept=departmentofcitizenshipandimmigration&sort=publishedDate&orderBy=desc&pick=20&format=atom",
+    en: "https://api.io.canada.ca/io-server/gc/news/en/v2?dept=departmentofcitizenshipandimmigration&sort=publishedDate&orderBy=desc&pick=20&format=atom",
   };
   const fallback = {
-    fr: 'https://www.canada.ca/fr/nouvelles/rechercher/recherche-avancee.html?sort=descending&allq=&dprtmnt=Immigration%2C+R%C3%A9fugi%C3%A9s+et+Citoyennet%C3%A9+Canada&declaredtype=communiqu%C3%A9s+de+presse&startdate=&enddate=',
-    en: 'https://www.canada.ca/en/news/advanced-news-search/news-results.html?sort=descending&allq=&dprtmnt=Immigration%2C+Refugees+and+Citizenship+Canada'
+    fr: "https://www.canada.ca/fr/nouvelles/rechercher/recherche-avancee.html?sort=descending&allq=&dprtmnt=Immigration%2C+R%C3%A9fugi%C3%A9s+et+Citoyennet%C3%A9+Canada&declaredtype=communiqu%C3%A9s+de+presse&startdate=&enddate=",
+    en: "https://www.canada.ca/en/news/advanced-news-search/news-results.html?sort=descending&allq=&dprtmnt=Immigration%2C+Refugees+and+Citizenship+Canada",
   };
   const words = {
-    fr: {loading:'Chargement des actualités officielles…', unavailable:'Le service d’actualités est temporairement inaccessible.', link:'Consulter les communiqués officiels', read:'Lire la suite', source:'Immigration, Réfugiés et Citoyenneté Canada'},
-    en: {loading:'Loading official news…', unavailable:'The news service is temporarily unavailable.', link:'View official news releases', read:'Read more', source:'Immigration, Refugees and Citizenship Canada'}
+    fr: {
+      loading: "Chargement des actualités officielles…",
+      unavailable: "Le service d’actualités est temporairement inaccessible.",
+      link: "Consulter les communiqués officiels",
+      read: "Lire la suite",
+      source: "Immigration, Réfugiés et Citoyenneté Canada",
+    },
+    en: {
+      loading: "Loading official news…",
+      unavailable: "The news service is temporarily unavailable.",
+      link: "View official news releases",
+      read: "Read more",
+      source: "Immigration, Refugees and Citizenship Canada",
+    },
   };
-  let lastLang = '', requestId = 0;
-  const lang = () => document.documentElement.lang.toLowerCase().startsWith('en') ? 'en' : 'fr';
-  const clean = value => (value || '').replace(/<[^>]*>/g,' ').replace(/\s+/g,' ').trim();
-  const child = (element, name) => Array.from(element.children).find(n => n.localName === name);
-  const val = (element, name) => child(element,name)?.textContent?.trim() || '';
+  let lastLang = "",
+    requestId = 0;
+  const lang = () =>
+    document.documentElement.lang.toLowerCase().startsWith("en") ? "en" : "fr";
+  const clean = (value) =>
+    (value || "")
+      .replace(/<[^>]*>/g, " ")
+      .replace(/\s+/g, " ")
+      .trim();
+  const child = (element, name) =>
+    Array.from(element.children).find((n) => n.localName === name);
+  const val = (element, name) =>
+    child(element, name)?.textContent?.trim() || "";
   function parse(xml) {
-    const doc = new DOMParser().parseFromString(xml,'application/xml');
-    if (doc.querySelector('parsererror')) throw new Error('Invalid XML');
-    const entries = Array.from(doc.getElementsByTagName('*')).filter(n => n.localName === 'entry' || n.localName === 'item');
-    return entries.map(e => {
-      const links = Array.from(e.children).filter(n => n.localName === 'link');
-      const href = links.find(n => n.getAttribute('rel') === 'alternate')?.getAttribute('href') || links.find(n => n.getAttribute('href'))?.getAttribute('href') || links[0]?.textContent?.trim() || '';
-      const rawDate = val(e,'published') || val(e,'pubDate') || val(e,'updated');
-      const timestamp = Date.parse(rawDate);
-      return { title:val(e,'title'), summary:clean(val(e,'summary') || val(e,'description') || val(e,'content')).slice(0,310), href, date:Number.isFinite(timestamp)?timestamp:0 };
-    }).filter(item => item.title && item.date && /^https:\/\//i.test(item.href)).sort((a,b) => b.date-a.date).slice(0,3);
+    const doc = new DOMParser().parseFromString(xml, "application/xml");
+    if (doc.querySelector("parsererror")) throw new Error("Invalid XML");
+    const entries = Array.from(doc.getElementsByTagName("*")).filter(
+      (n) => n.localName === "entry" || n.localName === "item",
+    );
+    return entries
+      .map((e) => {
+        const links = Array.from(e.children).filter(
+          (n) => n.localName === "link",
+        );
+        const href =
+          links
+            .find((n) => n.getAttribute("rel") === "alternate")
+            ?.getAttribute("href") ||
+          links.find((n) => n.getAttribute("href"))?.getAttribute("href") ||
+          links[0]?.textContent?.trim() ||
+          "";
+        const rawDate =
+          val(e, "published") || val(e, "pubDate") || val(e, "updated");
+        const timestamp = Date.parse(rawDate);
+        return {
+          title: val(e, "title"),
+          summary: clean(
+            val(e, "summary") || val(e, "description") || val(e, "content"),
+          ).slice(0, 310),
+          href,
+          date: Number.isFinite(timestamp) ? timestamp : 0,
+        };
+      })
+      .filter(
+        (item) => item.title && item.date && /^https:\/\//i.test(item.href),
+      )
+      .sort((a, b) => b.date - a.date)
+      .slice(0, 3);
   }
   function showFallback(language) {
-    const p=document.createElement('p');p.className='madic-publication-empty';p.textContent=words[language].unavailable;
-    const a=document.createElement('a');a.href=fallback[language];a.target='_blank';a.rel='noopener noreferrer';a.textContent=words[language].link;
-    target.replaceChildren(p,a);
+    const p = document.createElement("p");
+    p.className = "madic-publication-empty";
+    p.textContent = words[language].unavailable;
+    const a = document.createElement("a");
+    a.href = fallback[language];
+    a.target = "_blank";
+    a.rel = "noopener noreferrer";
+    a.textContent = words[language].link;
+    target.replaceChildren(p, a);
   }
-  function render(items,language) {
+  function render(items, language) {
     if (!items.length) return showFallback(language);
-    const fragment=document.createDocumentFragment();
+    const fragment = document.createDocumentFragment();
     for (const item of items) {
-      const article=document.createElement('article');article.className='madic-ircc-article';
-      const date=document.createElement('time');date.dateTime=new Date(item.date).toISOString();date.textContent=new Intl.DateTimeFormat(language==='fr'?'fr-CA':'en-CA',{year:'numeric',month:'long',day:'numeric'}).format(item.date);
-      const title=document.createElement('h3');const a=document.createElement('a');a.href=item.href;a.target='_blank';a.rel='noopener noreferrer';a.textContent=item.title;title.append(a);
-      const source=document.createElement('small');source.textContent=words[language].source;
-      article.append(date,title,source);
-      if(item.summary){const p=document.createElement('p');p.textContent=item.summary;article.append(p);}
-      const read=document.createElement('a');read.href=item.href;read.target='_blank';read.rel='noopener noreferrer';read.textContent=words[language].read+' ↗';article.append(read);
+      const article = document.createElement("article");
+      article.className = "madic-ircc-article";
+      const date = document.createElement("time");
+      date.dateTime = new Date(item.date).toISOString();
+      date.textContent = new Intl.DateTimeFormat(
+        language === "fr" ? "fr-CA" : "en-CA",
+        { year: "numeric", month: "long", day: "numeric" },
+      ).format(item.date);
+      const title = document.createElement("h3");
+      const a = document.createElement("a");
+      a.href = item.href;
+      a.target = "_blank";
+      a.rel = "noopener noreferrer";
+      a.textContent = item.title;
+      title.append(a);
+      const source = document.createElement("small");
+      source.textContent = words[language].source;
+      article.append(date, title, source);
+      if (item.summary) {
+        const p = document.createElement("p");
+        p.textContent = item.summary;
+        article.append(p);
+      }
+      const read = document.createElement("a");
+      read.href = item.href;
+      read.target = "_blank";
+      read.rel = "noopener noreferrer";
+      read.textContent = words[language].read + " ↗";
+      article.append(read);
       fragment.append(article);
     }
     target.replaceChildren(fragment);
   }
-  async function load(force=false) {
-    const language=lang();if (!force && lastLang===language) return;
-    lastLang=language;const id=++requestId;target.textContent=words[language].loading;
-    const controller=new AbortController();const timeout=setTimeout(()=>controller.abort(),12000);
+  async function load(force = false) {
+    const language = lang();
+    if (!force && lastLang === language) return;
+    lastLang = language;
+    const id = ++requestId;
+    target.textContent = words[language].loading;
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 12000);
     try {
-      const response=await fetch(sources[language],{signal:controller.signal,headers:{Accept:'application/atom+xml,application/xml,text/xml'}});
-      if(!response.ok)throw new Error('HTTP '+response.status);
-      const entries=parse(await response.text());if(id!==requestId)return;
-      render(entries,language);
-    } catch(error) {if(id===requestId){console.warn('MADIC IRCC feed unavailable:',error);showFallback(language);}}
-    finally {clearTimeout(timeout);}
+      const response = await fetch(sources[language], {
+        signal: controller.signal,
+        headers: { Accept: "application/atom+xml,application/xml,text/xml" },
+      });
+      if (!response.ok) throw new Error("HTTP " + response.status);
+      const entries = parse(await response.text());
+      if (id !== requestId) return;
+      render(entries, language);
+    } catch (error) {
+      if (id === requestId) {
+        console.warn("MADIC IRCC feed unavailable:", error);
+        showFallback(language);
+      }
+    } finally {
+      clearTimeout(timeout);
+    }
   }
-  new MutationObserver(()=>load()).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
+  new MutationObserver(() => load()).observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ["lang"],
+  });
   load();
-  setInterval(()=>load(true),15*60*1000);
+  setInterval(() => load(true), 15 * 60 * 1000);
 })();
-
-;
 
 /* MODULE: madic-footer.js */
 /* Footer commun MADIC : traduction des libellés sur les pages sans gestionnaire FR/EN. */
-(function(){"use strict";function apply(lang){lang=lang==="en"?"en":"fr";document.querySelectorAll(".madic-footer [data-fr][data-en]").forEach(function(el){el.textContent=el.getAttribute("data-"+lang);});}var lang="fr";try{lang=new URLSearchParams(location.search).get("lang")||localStorage.getItem("madic-lang")||"fr";}catch(e){}apply(lang);window.addEventListener("storage",function(e){if(e.key==="madic-lang")apply(e.newValue);});})();
-
-;
+(function () {
+  "use strict";
+  function apply(lang) {
+    lang = lang === "en" ? "en" : "fr";
+    document
+      .querySelectorAll(".madic-footer [data-fr][data-en]")
+      .forEach(function (el) {
+        el.textContent = el.getAttribute("data-" + lang);
+      });
+  }
+  var lang = "fr";
+  try {
+    lang =
+      new URLSearchParams(location.search).get("lang") ||
+      localStorage.getItem("madic-lang") ||
+      "fr";
+  } catch (e) {}
+  apply(lang);
+  window.addEventListener("storage", function (e) {
+    if (e.key === "madic-lang") apply(e.newValue);
+  });
+})();
 
 /* MODULE: inline */
 
-      /* Navigation and logout only; no observers, no changes to page applications. */
-      (function () {
-        "use strict";
-        var nav = document.querySelector(".madic-side-links");
-        var desired = [
-          "nav-0",
-          "nav-news",
-          "nav-7",
-          "nav-1",
-          "nav-contracts",
-          "nav-3",
-          "nav-4",
-          "nav-5",
-          "nav-2",
-          "nav-6",
-        ];
-        if (nav) {
-          var nodes = Array.from(
-            nav.querySelectorAll(":scope > .madic-nav-entry"),
-          );
-          var map = new Map(
-            nodes.map(function (node) {
-              return [node.getAttribute("data-nav-key"), node];
-            }),
-          );
-          desired.forEach(function (key) {
-            if (map.has(key)) nav.appendChild(map.get(key));
-          });
-          try {
-            localStorage.setItem(
-              "madic-client-nav-order-v2",
-              JSON.stringify(desired),
-            );
-          } catch (_) {}
-        }
-        var signout = document.getElementById("madicHeaderSignout");
-        if (signout)
-          signout.addEventListener("click", async function (event) {
-            event.preventDefault();
-            if (typeof window.getMadicSupabase !== "function") return;
-            try {
-              await window.getMadicSupabase().auth.signOut();
-              window.location.replace("connexion-client-cric.html");
-            } catch (error) {
-              console.error("MADIC sign out:", error);
-            }
-          });
-      })();
-    
-;
+/* Navigation and logout only; no observers, no changes to page applications. */
+(function () {
+  "use strict";
+  var nav = document.querySelector(".madic-side-links");
+  var desired = [
+    "nav-0",
+    "nav-news",
+    "nav-7",
+    "nav-1",
+    "nav-contracts",
+    "nav-3",
+    "nav-4",
+    "nav-5",
+    "nav-2",
+    "nav-6",
+  ];
+  if (nav) {
+    var nodes = Array.from(nav.querySelectorAll(":scope > .madic-nav-entry"));
+    var map = new Map(
+      nodes.map(function (node) {
+        return [node.getAttribute("data-nav-key"), node];
+      }),
+    );
+    desired.forEach(function (key) {
+      if (map.has(key)) nav.appendChild(map.get(key));
+    });
+    try {
+      localStorage.setItem(
+        "madic-client-nav-order-v2",
+        JSON.stringify(desired),
+      );
+    } catch (_) {}
+  }
+  var signout = document.getElementById("madicHeaderSignout");
+  if (signout)
+    signout.addEventListener("click", async function (event) {
+      event.preventDefault();
+      if (typeof window.getMadicSupabase !== "function") return;
+      try {
+        await window.getMadicSupabase().auth.signOut();
+        window.location.replace("connexion-client-cric.html");
+      } catch (error) {
+        console.error("MADIC sign out:", error);
+      }
+    });
+})();

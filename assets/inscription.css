@@ -185,7 +185,6 @@ code {
   }
 }
 
-
 /* Source: madic-datahubz-auth(4).css */
 body {
   background-color: #071626;
@@ -202,7 +201,6 @@ textarea {
   max-width: 100%;
   box-sizing: border-box;
 }
-
 
 /* Source: madic-i18n-login(20261111-210341).css */
 .madic-lang-switch {
@@ -263,10 +261,24 @@ textarea {
 }
 
 /* Dashboard switch: retain the same spacing as the login pages. */
-.madic-language-switch {display:inline-flex;align-items:center;gap:0.65rem;margin-left:12px;flex-wrap:wrap}
-.madic-language-switch button {min-width:3.25rem;margin:0;cursor:pointer;padding:0.35rem 0.65rem;border-radius:0.6rem}
-.madic-language-switch button[aria-pressed="true"] {border:2px solid #40c9d4;font-weight:700}
-
+.madic-language-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-left: 12px;
+  flex-wrap: wrap;
+}
+.madic-language-switch button {
+  min-width: 3.25rem;
+  margin: 0;
+  cursor: pointer;
+  padding: 0.35rem 0.65rem;
+  border-radius: 0.6rem;
+}
+.madic-language-switch button[aria-pressed="true"] {
+  border: 2px solid #40c9d4;
+  font-weight: 700;
+}
 
 /* Source: madic-footer.css */
 footer.madic-footer {
@@ -367,22 +379,190 @@ footer.madic-footer {
   font-size: 0.78rem;
 }
 
-@media (max-width:600px){.madic-footer-inner{display:block}.madic-footer-right{justify-content:flex-start;gap:14px;margin-top:23px}.madic-footer-bottom{margin-top:23px}}
+@media (max-width: 600px) {
+  .madic-footer-inner {
+    display: block;
+  }
+  .madic-footer-right {
+    justify-content: flex-start;
+    gap: 14px;
+    margin-top: 23px;
+  }
+  .madic-footer-bottom {
+    margin-top: 23px;
+  }
+}
 
-.madic-footer,.madic-footer *{box-sizing:border-box}.madic-footer{font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;text-align:left}.madic-footer a:focus-visible{outline:3px solid #efb544;outline-offset:3px}
+.madic-footer,
+.madic-footer * {
+  box-sizing: border-box;
+}
+.madic-footer {
+  font-family:
+    Inter,
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    sans-serif;
+  text-align: left;
+}
+.madic-footer a:focus-visible {
+  outline: 3px solid #efb544;
+  outline-offset: 3px;
+}
 
 /* Inscription client : harmonisation avec cric-dashboard, page publique. */
-html,body{min-height:100%;}body[data-page="invitation-information"]{background:radial-gradient(ellipse at 85% 5%, #15385a 0, transparent 42%), #07101f;color:#143453;min-height:100vh;display:flex;flex-direction:column;}
-body[data-page="invitation-information"]>header{width:100%;min-height:74px;margin:0;padding:12px max(22px,calc((100% - 1120px)/2 + 20px));background:#fff;border:0;border-bottom:1px solid #dbe7f2;border-radius:0;box-shadow:none;display:flex;align-items:center;gap:18px;flex-wrap:wrap;}
-body[data-page="invitation-information"]>header .brand{color:#102d4c;font-size:22px;font-weight:800;white-space:nowrap;}body[data-page="invitation-information"]>header .brand span{color:#50bfdf;}body[data-page="invitation-information"]>header .brand small{color:#21618d;font-size:.75em;}
-body[data-page="invitation-information"]>header .toplinks{display:flex;align-items:center;gap:18px;margin-left:auto;}body[data-page="invitation-information"]>header .toplinks a{color:#123553;font-weight:650;}
-body[data-page="invitation-information"]>header .madic-lang-switch{padding:0;gap:9px;}body[data-page="invitation-information"]>header .madic-lang-switch button{background:#eef8fc;color:#123553;border:1px solid #54b7d9;min-height:38px;cursor:pointer;}body[data-page="invitation-information"]>header .madic-lang-switch button[aria-pressed="true"]{background:#389ec0;color:#fff;border-color:#389ec0;}
-body[data-page="invitation-information"]>main{width:100%;max-width:1120px;margin:0 auto;flex:1;padding:45px 20px 60px;}body[data-page="invitation-information"]>main .auth.panel{max-width:680px;margin:0 auto;padding:34px;background:#fff;border:1px solid #dbe6f1;border-radius:15px;box-shadow:0 8px 26px #153a5b0b;color:#173b5b;}
-body[data-page="invitation-information"]>main h1{color:#143453;}body[data-page="invitation-information"]>main .eyebrow{color:#0879a6;}body[data-page="invitation-information"]>main .muted{color:#526b83;}body[data-page="invitation-information"]>main a{color:#0879a6;}
-body[data-page="invitation-information"]>footer.madic-footer{width:100%;background:#eef3f9;color:#526b83;border-top:1px solid #a9bacd;padding:32px max(20px,calc((100% - 1120px)/2 + 20px)) 23px;}
-body[data-page="invitation-information"] .madic-footer-inner,body[data-page="invitation-information"] .madic-footer-bottom{max-width:1120px;margin-left:auto;margin-right:auto;}
-body[data-page="invitation-information"] .madic-footer :is(.madic-footer-name,.madic-footer-subtitle,.madic-footer-desc,.madic-footer-bottom,.madic-footer-unavailable){color:#526b83;}body[data-page="invitation-information"] .madic-footer .madic-footer-name{color:#143453;}body[data-page="invitation-information"] .madic-footer .madic-footer-right a{color:#35729d;}body[data-page="invitation-information"] .madic-footer .madic-footer-bottom{border-top-color:#a9bacd;}
-@media(max-width:680px){body[data-page="invitation-information"]>header{padding:15px 18px;}body[data-page="invitation-information"]>header .toplinks{order:3;width:100%;margin-left:0;flex-wrap:wrap;}body[data-page="invitation-information"]>main{padding:26px 16px 40px;}body[data-page="invitation-information"]>main .auth.panel{padding:24px;}body[data-page="invitation-information"]>footer.madic-footer{padding:30px 16px 22px;}}
+html,
+body {
+  min-height: 100%;
+}
+body[data-page="invitation-information"] {
+  background:
+    radial-gradient(ellipse at 85% 5%, #15385a 0, transparent 42%), #07101f;
+  color: #143453;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+body[data-page="invitation-information"] > header {
+  width: 100%;
+  min-height: 74px;
+  margin: 0;
+  padding: 12px max(22px, calc((100% - 1120px) / 2 + 20px));
+  background: #fff;
+  border: 0;
+  border-bottom: 1px solid #dbe7f2;
+  border-radius: 0;
+  box-shadow: none;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+body[data-page="invitation-information"] > header .brand {
+  color: #102d4c;
+  font-size: 22px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+body[data-page="invitation-information"] > header .brand span {
+  color: #50bfdf;
+}
+body[data-page="invitation-information"] > header .brand small {
+  color: #21618d;
+  font-size: 0.75em;
+}
+body[data-page="invitation-information"] > header .toplinks {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-left: auto;
+}
+body[data-page="invitation-information"] > header .toplinks a {
+  color: #123553;
+  font-weight: 650;
+}
+body[data-page="invitation-information"] > header .madic-lang-switch {
+  padding: 0;
+  gap: 9px;
+}
+body[data-page="invitation-information"] > header .madic-lang-switch button {
+  background: #eef8fc;
+  color: #123553;
+  border: 1px solid #54b7d9;
+  min-height: 38px;
+  cursor: pointer;
+}
+body[data-page="invitation-information"]
+  > header
+  .madic-lang-switch
+  button[aria-pressed="true"] {
+  background: #389ec0;
+  color: #fff;
+  border-color: #389ec0;
+}
+body[data-page="invitation-information"] > main {
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+  flex: 1;
+  padding: 45px 20px 60px;
+}
+body[data-page="invitation-information"] > main .auth.panel {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 34px;
+  background: #fff;
+  border: 1px solid #dbe6f1;
+  border-radius: 15px;
+  box-shadow: 0 8px 26px #153a5b0b;
+  color: #173b5b;
+}
+body[data-page="invitation-information"] > main h1 {
+  color: #143453;
+}
+body[data-page="invitation-information"] > main .eyebrow {
+  color: #0879a6;
+}
+body[data-page="invitation-information"] > main .muted {
+  color: #526b83;
+}
+body[data-page="invitation-information"] > main a {
+  color: #0879a6;
+}
+body[data-page="invitation-information"] > footer.madic-footer {
+  width: 100%;
+  background: #eef3f9;
+  color: #526b83;
+  border-top: 1px solid #a9bacd;
+  padding: 32px max(20px, calc((100% - 1120px) / 2 + 20px)) 23px;
+}
+body[data-page="invitation-information"] .madic-footer-inner,
+body[data-page="invitation-information"] .madic-footer-bottom {
+  max-width: 1120px;
+  margin-left: auto;
+  margin-right: auto;
+}
+body[data-page="invitation-information"]
+  .madic-footer
+  :is(
+    .madic-footer-name,
+    .madic-footer-subtitle,
+    .madic-footer-desc,
+    .madic-footer-bottom,
+    .madic-footer-unavailable
+  ) {
+  color: #526b83;
+}
+body[data-page="invitation-information"] .madic-footer .madic-footer-name {
+  color: #143453;
+}
+body[data-page="invitation-information"] .madic-footer .madic-footer-right a {
+  color: #35729d;
+}
+body[data-page="invitation-information"] .madic-footer .madic-footer-bottom {
+  border-top-color: #a9bacd;
+}
+@media (max-width: 680px) {
+  body[data-page="invitation-information"] > header {
+    padding: 15px 18px;
+  }
+  body[data-page="invitation-information"] > header .toplinks {
+    order: 3;
+    width: 100%;
+    margin-left: 0;
+    flex-wrap: wrap;
+  }
+  body[data-page="invitation-information"] > main {
+    padding: 26px 16px 40px;
+  }
+  body[data-page="invitation-information"] > main .auth.panel {
+    padding: 24px;
+  }
+  body[data-page="invitation-information"] > footer.madic-footer {
+    padding: 30px 16px 22px;
+  }
+}
 
 /* Correction ciblée : fond bleu marine uniforme avec la page Connexion.
    Conserver intégralement la carte blanche et la logique existante. */
@@ -391,22 +571,53 @@ body[data-page="invitation-information"] > header {
   border-bottom: 1px solid #26344b;
   box-shadow: none;
 }
-body[data-page="invitation-information"] > header .brand { color: #ffffff; }
-body[data-page="invitation-information"] > header .brand small { color: #a5b7cc; }
-body[data-page="invitation-information"] > header .toplinks a { color: #5ad5f2; }
-body[data-page="invitation-information"] > header .madic-lang-switch button {
-  background: transparent; color: #e9f1ff; border: 1px solid #8296af;
+body[data-page="invitation-information"] > header .brand {
+  color: #ffffff;
 }
-body[data-page="invitation-information"] > header .madic-lang-switch button[aria-pressed="true"] {
-  background: #5ad5f2; color: #09264a; border-color: #5ad5f2;
+body[data-page="invitation-information"] > header .brand small {
+  color: #a5b7cc;
+}
+body[data-page="invitation-information"] > header .toplinks a {
+  color: #5ad5f2;
+}
+body[data-page="invitation-information"] > header .madic-lang-switch button {
+  background: transparent;
+  color: #e9f1ff;
+  border: 1px solid #8296af;
+}
+body[data-page="invitation-information"]
+  > header
+  .madic-lang-switch
+  button[aria-pressed="true"] {
+  background: #5ad5f2;
+  color: #09264a;
+  border-color: #5ad5f2;
 }
 body[data-page="invitation-information"] > footer.madic-footer {
-  background: #070f22; color: #dce8f5; border-top: 1px solid #1b2c49;
+  background: #070f22;
+  color: #dce8f5;
+  border-top: 1px solid #1b2c49;
 }
-body[data-page="invitation-information"] .madic-footer :is(.madic-footer-name,.madic-footer-subtitle,.madic-footer-desc,.madic-footer-bottom,.madic-footer-unavailable) {color:#a5b7cc;}
-body[data-page="invitation-information"] .madic-footer .madic-footer-name {color:#fff;}
-body[data-page="invitation-information"] .madic-footer .madic-footer-right a {color:#dce8f5;}
-body[data-page="invitation-information"] .madic-footer .madic-footer-bottom {border-top-color:#1b2c49;}
+body[data-page="invitation-information"]
+  .madic-footer
+  :is(
+    .madic-footer-name,
+    .madic-footer-subtitle,
+    .madic-footer-desc,
+    .madic-footer-bottom,
+    .madic-footer-unavailable
+  ) {
+  color: #a5b7cc;
+}
+body[data-page="invitation-information"] .madic-footer .madic-footer-name {
+  color: #fff;
+}
+body[data-page="invitation-information"] .madic-footer .madic-footer-right a {
+  color: #dce8f5;
+}
+body[data-page="invitation-information"] .madic-footer .madic-footer-bottom {
+  border-top-color: #1b2c49;
+}
 
 /* Harmonisation finale : carte d'invitation identique au theme sombre de connexion. */
 body[data-page="invitation-information"] > main .auth.panel {
@@ -415,7 +626,15 @@ body[data-page="invitation-information"] > main .auth.panel {
   color: #e9f1ff;
   box-shadow: 0 16px 45px #0004;
 }
-body[data-page="invitation-information"] > main h1 { color: #e9f1ff; }
-body[data-page="invitation-information"] > main .eyebrow { color: #59d7ec; }
-body[data-page="invitation-information"] > main .muted { color: #a5b7cc; }
-body[data-page="invitation-information"] > main a { color: #5ad5f2; }
+body[data-page="invitation-information"] > main h1 {
+  color: #e9f1ff;
+}
+body[data-page="invitation-information"] > main .eyebrow {
+  color: #59d7ec;
+}
+body[data-page="invitation-information"] > main .muted {
+  color: #a5b7cc;
+}
+body[data-page="invitation-information"] > main a {
+  color: #5ad5f2;
+}

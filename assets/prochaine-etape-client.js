@@ -82,7 +82,9 @@ window.getMadicSupabase = function () {
     if (!error && data?.service_type) {
       const r = form.querySelector('input[value="' + data.service_type + '"]');
       if (r) r.checked = true;
-      const t = form.querySelector('input[name="tariff"][value="' + data.tariff_code + '"]');
+      const t = form.querySelector(
+        'input[name="tariff"][value="' + data.tariff_code + '"]',
+      );
       if (t) t.checked = true;
     }
   } catch (e) {
@@ -117,17 +119,15 @@ window.getMadicSupabase = function () {
     send.disabled = true;
     say("Enregistrement de votre demande…", "Saving your request…");
     try {
-      const { error } = await db
-        .from("madic_initial_service_requests")
-        .upsert(
-          {
-            user_id: user.id,
-            service_type: choice.value,
-            tariff_code: choice.value === "consultation" ? tariff : null,
-            updated_at: new Date().toISOString(),
-          },
-          { onConflict: "user_id" },
-        );
+      const { error } = await db.from("madic_initial_service_requests").upsert(
+        {
+          user_id: user.id,
+          service_type: choice.value,
+          tariff_code: choice.value === "consultation" ? tariff : null,
+          updated_at: new Date().toISOString(),
+        },
+        { onConflict: "user_id" },
+      );
       if (error) throw error;
       try {
         sessionStorage.setItem(
@@ -157,32 +157,50 @@ window.getMadicSupabase = function () {
   });
 })();
 
-
 /* MADIC : choix de langue persistant et deconnexion client */
 (() => {
-  const key = 'madic-lang';
-  const langButton = document.getElementById('lang');
-  const originalText = { fr: 'English', en: 'Français' };
+  const key = "madic-lang";
+  const langButton = document.getElementById("lang");
+  const originalText = { fr: "English", en: "Français" };
   const setLanguage = (code) => {
-    document.documentElement.lang = code === 'en' ? 'en' : 'fr';
-    document.querySelectorAll('[data-fr][data-en]').forEach(el => { el.textContent = el.dataset[code]; });
+    document.documentElement.lang = code === "en" ? "en" : "fr";
+    document.querySelectorAll("[data-fr][data-en]").forEach((el) => {
+      el.textContent = el.dataset[code];
+    });
     if (langButton) langButton.textContent = originalText[code];
-    try { localStorage.setItem(key, code); } catch (_) {}
-  };
-  const saved = (() => { try { return localStorage.getItem(key); } catch (_) { return null; } })();
-  if (saved === 'en') { setLanguage('en'); if (langButton) langButton.click(); }
-  if (langButton) langButton.addEventListener('click', () => {
-    const code = document.documentElement.lang === 'en' ? 'en' : 'fr';
-    setLanguage(code);
-  });
-  document.getElementById('madicSignout')?.addEventListener('click', async () => {
-    const btn = document.getElementById('madicSignout');
-    btn.disabled = true;
     try {
-      const db = window.getMadicSupabase();
-      const { error } = await db.auth.signOut();
-      if (error) throw error;
-      location.assign('connexion-client-cric.html');
-    } catch (err) { console.error('MADIC signout', err); btn.disabled = false; }
-  });
+      localStorage.setItem(key, code);
+    } catch (_) {}
+  };
+  const saved = (() => {
+    try {
+      return localStorage.getItem(key);
+    } catch (_) {
+      return null;
+    }
+  })();
+  if (saved === "en") {
+    setLanguage("en");
+    if (langButton) langButton.click();
+  }
+  if (langButton)
+    langButton.addEventListener("click", () => {
+      const code = document.documentElement.lang === "en" ? "en" : "fr";
+      setLanguage(code);
+    });
+  document
+    .getElementById("madicSignout")
+    ?.addEventListener("click", async () => {
+      const btn = document.getElementById("madicSignout");
+      btn.disabled = true;
+      try {
+        const db = window.getMadicSupabase();
+        const { error } = await db.auth.signOut();
+        if (error) throw error;
+        location.assign("connexion-client-cric.html");
+      } catch (err) {
+        console.error("MADIC signout", err);
+        btn.disabled = false;
+      }
+    });
 })();

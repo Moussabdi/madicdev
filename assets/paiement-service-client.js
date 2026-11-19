@@ -73,8 +73,11 @@ window.getMadicSupabase = function () {
     const recordedTariff = request.data.tariff_code;
     // Le tarif provient de la demande enregistrée en base, non de sessionStorage.
     const allowedTariffs = { hourly: 159, single: 599, couple: 749 };
-    const tariffSelection = state.service === "consultation" &&
-      Object.hasOwn(allowedTariffs, recordedTariff) ? recordedTariff : null;
+    const tariffSelection =
+      state.service === "consultation" &&
+      Object.hasOwn(allowedTariffs, recordedTariff)
+        ? recordedTariff
+        : null;
     const tariffNames = {
       hourly: ["À taux horaire", "Hourly rate"],
       single: [
@@ -113,7 +116,8 @@ window.getMadicSupabase = function () {
     if (!existing.error && existing.data?.status === "verified") {
       $("paymentForm").hidden = true;
       $("success").hidden = false;
-      $("successMessage").textContent = "Votre paiement a déjà été confirmé par votre CRIC.";
+      $("successMessage").textContent =
+        "Votre paiement a déjà été confirmé par votre CRIC.";
       if (state.service === "consultation") {
         const link = $("initialContractLink");
         link.href = "contrat-initial-demande-client.html";
@@ -330,14 +334,28 @@ window.getMadicSupabase = function () {
   render();
 })();
 
-
 /* Commandes de session de la page client, sans dépendance métier supplémentaire. */
-document.addEventListener('DOMContentLoaded', () => {
- const btn=document.getElementById('paymentSignout');
- btn?.addEventListener('click',async()=>{
-  try { const db=window.getMadicSupabase?.(); if(!db) throw new Error('Supabase unavailable'); await db.auth.signOut(); window.location.assign('connexion-client-cric.html'); }
-  catch(err){ console.error('MADIC signout:',err); const notice=document.getElementById('notice'); if(notice) notice.textContent=document.documentElement.lang==='en'?'Unable to sign out. Please try again.':'Déconnexion impossible. Veuillez réessayer.'; }
- });
- const lang=document.getElementById('lang');
- lang?.addEventListener('click',()=>{ const en=document.documentElement.lang.startsWith('en'); btn.textContent=en?'Sign out':'Déconnexion'; });
+document.addEventListener("DOMContentLoaded", () => {
+  const btn = document.getElementById("paymentSignout");
+  btn?.addEventListener("click", async () => {
+    try {
+      const db = window.getMadicSupabase?.();
+      if (!db) throw new Error("Supabase unavailable");
+      await db.auth.signOut();
+      window.location.assign("connexion-client-cric.html");
+    } catch (err) {
+      console.error("MADIC signout:", err);
+      const notice = document.getElementById("notice");
+      if (notice)
+        notice.textContent =
+          document.documentElement.lang === "en"
+            ? "Unable to sign out. Please try again."
+            : "Déconnexion impossible. Veuillez réessayer.";
+    }
+  });
+  const lang = document.getElementById("lang");
+  lang?.addEventListener("click", () => {
+    const en = document.documentElement.lang.startsWith("en");
+    btn.textContent = en ? "Sign out" : "Déconnexion";
+  });
 });

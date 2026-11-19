@@ -454,7 +454,6 @@
   }
 })();
 
-
 /* Source: cric-approved-tracking(2).js */
 /* Suivi administratif des prévalidations approuvées. Aucune création de compte. */
 (async () => {
@@ -533,7 +532,6 @@
     cell(row, "Données indisponibles.").colSpan = 6;
   }
 })();
-
 
 /* Source: madic-admin-cabinets(2).js */
 /* MADIC - Administration des cabinets. Mutations uniquement via RPC super-admin. */
@@ -696,11 +694,30 @@
   }
 })();
 
-
 /* Source: madic-footer(20261109-013844).js */
 /* Footer commun MADIC : traduction des libellés sur les pages sans gestionnaire FR/EN. */
-(function(){"use strict";function apply(lang){lang=lang==="en"?"en":"fr";document.querySelectorAll(".madic-footer [data-fr][data-en]").forEach(function(el){el.textContent=el.getAttribute("data-"+lang);});}var lang="fr";try{lang=new URLSearchParams(location.search).get("lang")||localStorage.getItem("madic-lang")||"fr";}catch(e){}apply(lang);window.addEventListener("storage",function(e){if(e.key==="madic-lang")apply(e.newValue);});})();
-
+(function () {
+  "use strict";
+  function apply(lang) {
+    lang = lang === "en" ? "en" : "fr";
+    document
+      .querySelectorAll(".madic-footer [data-fr][data-en]")
+      .forEach(function (el) {
+        el.textContent = el.getAttribute("data-" + lang);
+      });
+  }
+  var lang = "fr";
+  try {
+    lang =
+      new URLSearchParams(location.search).get("lang") ||
+      localStorage.getItem("madic-lang") ||
+      "fr";
+  } catch (e) {}
+  apply(lang);
+  window.addEventListener("storage", function (e) {
+    if (e.key === "madic-lang") apply(e.newValue);
+  });
+})();
 
 /* Source: madic-datahubz-unified(20261109-013853).js */
 /* MADIC : navigation CRIC uniforme. Icones Heroicons identiques au tableau de bord. */
@@ -708,23 +725,49 @@
   "use strict";
   const init = () => {
     const sidebar = document.querySelector(".madic-unified-sidebar");
-    if (!sidebar || !sidebar.querySelector(".madic-unified-brand small")?.textContent.includes("Espace professionnel")) return;
+    if (
+      !sidebar ||
+      !sidebar
+        .querySelector(".madic-unified-brand small")
+        ?.textContent.includes("Espace professionnel")
+    )
+      return;
     const nav = sidebar.querySelector("nav");
     if (!nav) return;
-    const iconBase = "https://raw.githubusercontent.com/tailwindlabs/heroicons/v2.2.0/optimized/24/outline/";
+    const iconBase =
+      "https://raw.githubusercontent.com/tailwindlabs/heroicons/v2.2.0/optimized/24/outline/";
     const items = [
       ["cric-dashboard.html", "Vue d’ensemble", "squares-2x2", ""],
       ["gestion-clients-cric.html", "Clients", "users", "madic-v2-group-start"],
       ["gestion-dossiers-cric.html", "Outils CRIC", "folder-open", ""],
-      ["messagerie-cric.html", "Messagerie", "chat-bubble-left-right", "madic-v2-group-start"],
+      [
+        "messagerie-cric.html",
+        "Messagerie",
+        "chat-bubble-left-right",
+        "madic-v2-group-start",
+      ],
       ["rendez-vous-cric.html", "Rendez-vous", "calendar-days", ""],
       ["demandes-documents-cric.html", "Documents", "document-text", ""],
       ["echeances-cric.html", "Échéances", "calendar-days", ""],
-      ["facturation-cric.html", "Facturation", "receipt-percent", "madic-v2-group-start"],
+      [
+        "facturation-cric.html",
+        "Facturation",
+        "receipt-percent",
+        "madic-v2-group-start",
+      ],
       ["finances-cric.html", "Finances", "banknotes", ""],
-      ["profil-professionnel-cric.html", "Mon profil professionnel", "identification", ""]
+      [
+        "profil-professionnel-cric.html",
+        "Mon profil professionnel",
+        "identification",
+        "",
+      ],
     ];
-    const current = (location.pathname.split("/").pop() || "cric-dashboard").replace(/\.html$/, "") + ".html";
+    const current =
+      (location.pathname.split("/").pop() || "cric-dashboard").replace(
+        /\.html$/,
+        "",
+      ) + ".html";
     const fragment = document.createDocumentFragment();
     for (const [href, label, iconName, group] of items) {
       const link = document.createElement("a");
@@ -754,10 +797,10 @@
       brand.replaceChildren(logo);
     }
   };
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init, {once:true});
+  if (document.readyState === "loading")
+    document.addEventListener("DOMContentLoaded", init, { once: true });
   else init();
 })();
-
 
 /* Source: madic-admin-sections(1).js */
 /* MADIC - sections et tableaux, sans mutation Supabase ni changement des actions existantes. */
@@ -835,104 +878,213 @@
 
 /* Original inline navigation logic */
 
-      (function () {
-        function sync() {
-          const h = location.hash;
-          document
-            .querySelectorAll(".madic-unified-sidebar nav a")
-            .forEach((a) => {
-              if (
-                a.getAttribute("href") ===
-                  "gestion-cric.html#payment-management" ||
-                a.getAttribute("href") ===
-                  "gestion-cric.html#cabinet-management"
-              ) {
-                if (h && a.getAttribute("href").endsWith(h))
-                  a.setAttribute("aria-current", "page");
-                else a.removeAttribute("aria-current");
-              } else if (a.getAttribute("href") === "gestion-cric.html") {
-                if (!h) a.setAttribute("aria-current", "page");
-                else a.removeAttribute("aria-current");
-              }
-            });
-        }
-        window.addEventListener("hashchange", sync);
-        sync();
-      })();
-    
+(function () {
+  function sync() {
+    const h = location.hash;
+    document.querySelectorAll(".madic-unified-sidebar nav a").forEach((a) => {
+      if (
+        a.getAttribute("href") === "gestion-cric.html#payment-management" ||
+        a.getAttribute("href") === "gestion-cric.html#cabinet-management"
+      ) {
+        if (h && a.getAttribute("href").endsWith(h))
+          a.setAttribute("aria-current", "page");
+        else a.removeAttribute("aria-current");
+      } else if (a.getAttribute("href") === "gestion-cric.html") {
+        if (!h) a.setAttribute("aria-current", "page");
+        else a.removeAttribute("aria-current");
+      }
+    });
+  }
+  window.addEventListener("hashchange", sync);
+  sync();
+})();
 
 /* Gestion CRIC: gestion bilingue locale, sans dépendance supplémentaire. */
 (() => {
- "use strict";
- const phrases = new Map(Object.entries({
-  "Configuration Supabase manquante.":"Supabase configuration is missing.",
-  "Accès réservé au super administrateur MADIC.":"Access restricted to the MADIC super administrator.",
-  "Aucun CRIC inscrit.":"No RCIC registered.","En attente":"Pending","Autorisé":"Authorized","Refusé":"Rejected",
-  "Décision enregistrée":"Decision recorded","Décision enregistrée.":"Decision saved.","Autoriser":"Approve","Refuser":"Reject",
-  "Note interne (facultative) :":"Internal note (optional):","Erreur :":"Error:",
-  "Aucune prévalidation approuvée.":"No approved prevalidations.","Confirmée":"Confirmed","Non confirmée":"Not confirmed",
-  "Approuvée par MADIC":"Approved by MADIC","Aucun compte associé":"No linked account","Compte autorisé":"Account authorized",
-  "Invitation / association sécurisée à effectuer":"Secure invitation / account linking required","Voir le tableau des comptes ci-dessus":"See the account table above",
-  "Données indisponibles.":"Data unavailable.","Gratuit":"Free","Payant":"Paid","Actif":"Active","Suspendu":"Suspended",
-  "Sans objet":"Not applicable","À jour":"Up to date","Non créé":"Not created","Demande non approuvée":"Application not approved",
-  "Créer le cabinet":"Create firm","Modifier la formule":"Change plan","Suspendre":"Suspend","Activer":"Activate",
-  "Traitement en cours…":"Processing…","Opération enregistrée.":"Operation saved.","Motif obligatoire.":"Reason required.",
-  "Aucun consultant enregistré.":"No consultant registered.","Aucun abonnement CRIC approuvé à afficher.":"No approved RCIC subscription to display.",
-  "Statuts administratifs des abonnements chargés. Aucun paiement n’est confirmé depuis cette page.":"Administrative subscription statuses loaded. No payment is confirmed on this page.",
-  "Gestion des cabinets disponible.":"Firm management available.","Chargement…":"Loading…",
-  "Vérification des droits du super administrateur…":"Checking super administrator permissions…"
- }));
- const reverse = new Map([...phrases].map(([fr,en])=>[en,fr]));
- const original = new WeakMap();
- let language="fr", busy=false;
- const translate = (value, lang) => {
-   const raw=String(value); const trim=raw.trim();
-   const fr=reverse.get(trim)||trim;
-   let translated=lang==="en"?(phrases.get(fr)||fr):fr;
-   if(lang==="en" && translated===fr){
-     const prefixes=[
-       [/^Erreur : (.*)$/,"Error: $1"],[/^Chargement impossible : (.*)$/,"Unable to load: $1"],
-       [/^Impossible de charger le suivi CRIC : (.*)$/,"Unable to load RCIC tracking: $1"],
-       [/^Impossible de vérifier vos droits : (.*)$/,"Unable to verify permissions: $1"],
-       [/^Compte : (.*)$/,"Account: $1"],[/^Confirmer : (.*) \?$/,"Confirm: $1?"],
-       [/^Page (\d+) \/ (\d+)$/,"Page $1 / $2"],[/^(\d+) résultat\(s\)$/,"$1 result(s)"]
-     ];
-     for(const [pattern,replacement] of prefixes) if(pattern.test(fr)){translated=fr.replace(pattern,replacement);break;}
-   }
-   return raw.replace(trim,translated);
- };
- function apply(){
-   if(busy)return;busy=true;
-   observer.disconnect();
-   try {
-     document.documentElement.lang=language==="en"?"en":"fr-CA";
-     document.title=language==="en"?"RCIC Management | MADIC":"Gestion des CRIC | MADIC";
-     document.querySelectorAll(".madic-unified-brand strong[data-fr][data-en],header .brand small[data-fr][data-en]").forEach(el=>{el.textContent=el.getAttribute("data-"+language);});
-     document.querySelectorAll('[data-fr][data-en]').forEach(el=>{
-       const value=el.getAttribute('data-'+language);
-       if(el.children.length===0 && el.textContent!==value)el.textContent=value;
-     });
-     document.querySelectorAll('[data-placeholder-fr]').forEach(el=>el.placeholder=el.getAttribute('data-placeholder-'+language));
-     document.querySelectorAll('[data-aria-label-fr]').forEach(el=>el.setAttribute('aria-label',el.getAttribute('data-aria-label-'+language)));
-     document.querySelectorAll('#madicHeroLanguage button[data-lang]').forEach(btn=>btn.setAttribute('aria-pressed',String(btn.dataset.lang===language)));
-     const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);
-     const nodes=[];while(walker.nextNode())nodes.push(walker.currentNode);
-     for(const node of nodes){
-       const parent=node.parentElement;if(!parent||parent.closest('script,style,[data-fr][data-en]'))continue;
-       const current=node.nodeValue;if(!current.trim())continue;
-       let fr=original.get(node);
-       if(fr===undefined || (current!==fr && current!==translate(fr,"en"))){fr=reverse.get(current.trim())||current;original.set(node,fr);}
-       const next=translate(fr,language);if(current!==next)node.nodeValue=next;
-     }
-   } finally {
-     busy=false;
-     observer.observe(document.body,{subtree:true,childList:true,characterData:true});
-   }
- }
- function change(lang){language=lang==="en"?"en":"fr";try{localStorage.setItem('madic-lang',language)}catch(e){}apply();}
- try{const query=new URLSearchParams(location.search).get('lang');language=(query||localStorage.getItem('madic-lang'))==="en"?"en":"fr";}catch(e){}
- document.querySelectorAll('#madicHeroLanguage button[data-lang]').forEach(btn=>btn.addEventListener('click',()=>change(btn.dataset.lang)));
- const observer=new MutationObserver(()=>{if(!busy)apply();});
- apply();
- window.addEventListener('storage',event=>{if(event.key==='madic-lang')change(event.newValue)});
+  "use strict";
+  const phrases = new Map(
+    Object.entries({
+      "Configuration Supabase manquante.": "Supabase configuration is missing.",
+      "Accès réservé au super administrateur MADIC.":
+        "Access restricted to the MADIC super administrator.",
+      "Aucun CRIC inscrit.": "No RCIC registered.",
+      "En attente": "Pending",
+      Autorisé: "Authorized",
+      Refusé: "Rejected",
+      "Décision enregistrée": "Decision recorded",
+      "Décision enregistrée.": "Decision saved.",
+      Autoriser: "Approve",
+      Refuser: "Reject",
+      "Note interne (facultative) :": "Internal note (optional):",
+      "Erreur :": "Error:",
+      "Aucune prévalidation approuvée.": "No approved prevalidations.",
+      Confirmée: "Confirmed",
+      "Non confirmée": "Not confirmed",
+      "Approuvée par MADIC": "Approved by MADIC",
+      "Aucun compte associé": "No linked account",
+      "Compte autorisé": "Account authorized",
+      "Invitation / association sécurisée à effectuer":
+        "Secure invitation / account linking required",
+      "Voir le tableau des comptes ci-dessus": "See the account table above",
+      "Données indisponibles.": "Data unavailable.",
+      Gratuit: "Free",
+      Payant: "Paid",
+      Actif: "Active",
+      Suspendu: "Suspended",
+      "Sans objet": "Not applicable",
+      "À jour": "Up to date",
+      "Non créé": "Not created",
+      "Demande non approuvée": "Application not approved",
+      "Créer le cabinet": "Create firm",
+      "Modifier la formule": "Change plan",
+      Suspendre: "Suspend",
+      Activer: "Activate",
+      "Traitement en cours…": "Processing…",
+      "Opération enregistrée.": "Operation saved.",
+      "Motif obligatoire.": "Reason required.",
+      "Aucun consultant enregistré.": "No consultant registered.",
+      "Aucun abonnement CRIC approuvé à afficher.":
+        "No approved RCIC subscription to display.",
+      "Statuts administratifs des abonnements chargés. Aucun paiement n’est confirmé depuis cette page.":
+        "Administrative subscription statuses loaded. No payment is confirmed on this page.",
+      "Gestion des cabinets disponible.": "Firm management available.",
+      "Chargement…": "Loading…",
+      "Vérification des droits du super administrateur…":
+        "Checking super administrator permissions…",
+    }),
+  );
+  const reverse = new Map([...phrases].map(([fr, en]) => [en, fr]));
+  const original = new WeakMap();
+  let language = "fr",
+    busy = false;
+  const translate = (value, lang) => {
+    const raw = String(value);
+    const trim = raw.trim();
+    const fr = reverse.get(trim) || trim;
+    let translated = lang === "en" ? phrases.get(fr) || fr : fr;
+    if (lang === "en" && translated === fr) {
+      const prefixes = [
+        [/^Erreur : (.*)$/, "Error: $1"],
+        [/^Chargement impossible : (.*)$/, "Unable to load: $1"],
+        [
+          /^Impossible de charger le suivi CRIC : (.*)$/,
+          "Unable to load RCIC tracking: $1",
+        ],
+        [
+          /^Impossible de vérifier vos droits : (.*)$/,
+          "Unable to verify permissions: $1",
+        ],
+        [/^Compte : (.*)$/, "Account: $1"],
+        [/^Confirmer : (.*) \?$/, "Confirm: $1?"],
+        [/^Page (\d+) \/ (\d+)$/, "Page $1 / $2"],
+        [/^(\d+) résultat\(s\)$/, "$1 result(s)"],
+      ];
+      for (const [pattern, replacement] of prefixes)
+        if (pattern.test(fr)) {
+          translated = fr.replace(pattern, replacement);
+          break;
+        }
+    }
+    return raw.replace(trim, translated);
+  };
+  function apply() {
+    if (busy) return;
+    busy = true;
+    observer.disconnect();
+    try {
+      document.documentElement.lang = language === "en" ? "en" : "fr-CA";
+      document.title =
+        language === "en"
+          ? "RCIC Management | MADIC"
+          : "Gestion des CRIC | MADIC";
+      document
+        .querySelectorAll(
+          ".madic-unified-brand strong[data-fr][data-en],header .brand small[data-fr][data-en]",
+        )
+        .forEach((el) => {
+          el.textContent = el.getAttribute("data-" + language);
+        });
+      document.querySelectorAll("[data-fr][data-en]").forEach((el) => {
+        const value = el.getAttribute("data-" + language);
+        if (el.children.length === 0 && el.textContent !== value)
+          el.textContent = value;
+      });
+      document
+        .querySelectorAll("[data-placeholder-fr]")
+        .forEach(
+          (el) =>
+            (el.placeholder = el.getAttribute("data-placeholder-" + language)),
+        );
+      document
+        .querySelectorAll("[data-aria-label-fr]")
+        .forEach((el) =>
+          el.setAttribute(
+            "aria-label",
+            el.getAttribute("data-aria-label-" + language),
+          ),
+        );
+      document
+        .querySelectorAll("#madicHeroLanguage button[data-lang]")
+        .forEach((btn) =>
+          btn.setAttribute(
+            "aria-pressed",
+            String(btn.dataset.lang === language),
+          ),
+        );
+      const walker = document.createTreeWalker(
+        document.body,
+        NodeFilter.SHOW_TEXT,
+      );
+      const nodes = [];
+      while (walker.nextNode()) nodes.push(walker.currentNode);
+      for (const node of nodes) {
+        const parent = node.parentElement;
+        if (!parent || parent.closest("script,style,[data-fr][data-en]"))
+          continue;
+        const current = node.nodeValue;
+        if (!current.trim()) continue;
+        let fr = original.get(node);
+        if (
+          fr === undefined ||
+          (current !== fr && current !== translate(fr, "en"))
+        ) {
+          fr = reverse.get(current.trim()) || current;
+          original.set(node, fr);
+        }
+        const next = translate(fr, language);
+        if (current !== next) node.nodeValue = next;
+      }
+    } finally {
+      busy = false;
+      observer.observe(document.body, {
+        subtree: true,
+        childList: true,
+        characterData: true,
+      });
+    }
+  }
+  function change(lang) {
+    language = lang === "en" ? "en" : "fr";
+    try {
+      localStorage.setItem("madic-lang", language);
+    } catch (e) {}
+    apply();
+  }
+  try {
+    const query = new URLSearchParams(location.search).get("lang");
+    language =
+      (query || localStorage.getItem("madic-lang")) === "en" ? "en" : "fr";
+  } catch (e) {}
+  document
+    .querySelectorAll("#madicHeroLanguage button[data-lang]")
+    .forEach((btn) =>
+      btn.addEventListener("click", () => change(btn.dataset.lang)),
+    );
+  const observer = new MutationObserver(() => {
+    if (!busy) apply();
+  });
+  apply();
+  window.addEventListener("storage", (event) => {
+    if (event.key === "madic-lang") change(event.newValue);
+  });
 })();

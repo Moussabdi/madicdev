@@ -16,19 +16,22 @@ window.getMadicSupabase = function () {
   return window.madicSupabaseClient;
 };
 
-
 /* SOURCE: madic-appointments-cric.js */
 (async () => {
   "use strict";
   const $ = (id) => document.getElementById(id),
     notice = (t) => ($("rdvNotice").textContent = t);
   if (typeof window.getMadicSupabase !== "function")
-    return notice(localStorage.getItem("madic_ui_language") === "en" ? "Supabase configuration missing." : "Configuration Supabase manquante.");
+    return notice(
+      localStorage.getItem("madic_ui_language") === "en"
+        ? "Supabase configuration missing."
+        : "Configuration Supabase manquante.",
+    );
   const db = window.getMadicSupabase();
   let spaceId,
     slots = [];
   const english = () => localStorage.getItem("madic_ui_language") === "en";
-  const tr = (fr, en) => english() ? en : fr;
+  const tr = (fr, en) => (english() ? en : fr);
   const date = (t) =>
     new Intl.DateTimeFormat(english() ? "en-CA" : "fr-CA", {
       dateStyle: "medium",
@@ -41,15 +44,29 @@ window.getMadicSupabase = function () {
     return c;
   };
   const mode = {
-    get video() { return tr("Visioconférence", "Video call"); },
-    get phone() { return tr("Téléphone", "Phone call"); },
-    get in_person() { return tr("En personne", "In person"); },
+    get video() {
+      return tr("Visioconférence", "Video call");
+    },
+    get phone() {
+      return tr("Téléphone", "Phone call");
+    },
+    get in_person() {
+      return tr("En personne", "In person");
+    },
   };
   const status = {
-    get requested() { return tr("Demandé", "Requested"); },
-    get confirmed() { return tr("Confirmé", "Confirmed"); },
-    get declined() { return tr("Refusé", "Declined"); },
-    get cancelled() { return tr("Annulé", "Cancelled"); },
+    get requested() {
+      return tr("Demandé", "Requested");
+    },
+    get confirmed() {
+      return tr("Confirmé", "Confirmed");
+    },
+    get declined() {
+      return tr("Refusé", "Declined");
+    },
+    get cancelled() {
+      return tr("Annulé", "Cancelled");
+    },
   };
   const button = (label, fn) => {
     const b = document.createElement("button");
@@ -145,7 +162,9 @@ window.getMadicSupabase = function () {
     day.min = now.slice(0, 10);
     if (day.value && day.value < day.min) day.value = "";
     const previous = hour.value;
-    hour.replaceChildren(new Option(english() ? "Choose a time" : "Choisir une heure", ""));
+    hour.replaceChildren(
+      new Option(english() ? "Choose a time" : "Choisir une heure", ""),
+    );
     if (day.value) {
       for (let h = 0; h < 24; h++) {
         const hh = String(h).padStart(2, "0");
@@ -153,7 +172,18 @@ window.getMadicSupabase = function () {
         try {
           const instant = localToIso(local);
           if (Date.parse(instant) <= Date.now()) continue;
-          hour.add(new Option(english() ? new Date(2020, 0, 1, h).toLocaleTimeString("en-CA", {hour:"numeric",minute:"2-digit",hour12:true}) : `${hh} h 00`, hh));
+          hour.add(
+            new Option(
+              english()
+                ? new Date(2020, 0, 1, h).toLocaleTimeString("en-CA", {
+                    hour: "numeric",
+                    minute: "2-digit",
+                    hour12: true,
+                  })
+                : `${hh} h 00`,
+              hh,
+            ),
+          );
         } catch (_) {
           /* Heure inexistante ou ambigue lors du changement d'heure. */
         }
@@ -179,7 +209,9 @@ window.getMadicSupabase = function () {
       const finish = montrealLocal(
         new Date(Date.parse(start) + duration * 60000),
       );
-      endInput.value = finish.replace("T", english() ? " at " : " à ") + (english() ? " (Montreal)" : " (Montréal)");
+      endInput.value =
+        finish.replace("T", english() ? " at " : " à ") +
+        (english() ? " (Montreal)" : " (Montréal)");
     } catch (_) {
       /* Conserver la fin vide si invalide. */
     }
@@ -213,7 +245,10 @@ window.getMadicSupabase = function () {
     section.className = "panel";
     section.id = "rdvNotifications";
     const heading = document.createElement("h2");
-    heading.textContent = tr("Notifications de rendez-vous", "Appointment notifications");
+    heading.textContent = tr(
+      "Notifications de rendez-vous",
+      "Appointment notifications",
+    );
     const summary = document.createElement("p");
     summary.id = "rdvNotificationSummary";
     summary.className = "madic-rdv-muted";
@@ -233,17 +268,24 @@ window.getMadicSupabase = function () {
       .limit(30);
     if (error) {
       $("rdvNotificationSummary").textContent =
-        tr("Notifications indisponibles : ", "Notifications unavailable: ") + error.message;
+        tr("Notifications indisponibles : ", "Notifications unavailable: ") +
+        error.message;
       return;
     }
     list.replaceChildren();
     const unread = (data || []).filter((n) => !n.read_at).length;
     $("rdvNotificationSummary").textContent = unread
-      ? tr(`${unread} notification(s) non lue(s).`, `${unread} unread notification(s).`)
+      ? tr(
+          `${unread} notification(s) non lue(s).`,
+          `${unread} unread notification(s).`,
+        )
       : tr("Aucune notification non lue.", "No unread notifications.");
     if (!data?.length) {
       const p = document.createElement("p");
-      p.textContent = tr("Aucune notification pour le moment.", "No notifications at this time.");
+      p.textContent = tr(
+        "Aucune notification pour le moment.",
+        "No notifications at this time.",
+      );
       list.append(p);
     }
     for (const n of data || []) {
@@ -338,19 +380,25 @@ window.getMadicSupabase = function () {
       if (confirmed) {
         const chip = document.createElement("em");
         chip.className = "is-confirmed";
-        chip.textContent = english() ? `${confirmed} confirmed` : `${confirmed} confirmé${confirmed > 1 ? "s" : ""}`;
+        chip.textContent = english()
+          ? `${confirmed} confirmed`
+          : `${confirmed} confirmé${confirmed > 1 ? "s" : ""}`;
         summary.append(chip);
       }
       if (requested) {
         const chip = document.createElement("em");
         chip.className = "is-requested";
-        chip.textContent = english() ? `${requested} requested` : `${requested} demande${requested > 1 ? "s" : ""}`;
+        chip.textContent = english()
+          ? `${requested} requested`
+          : `${requested} demande${requested > 1 ? "s" : ""}`;
         summary.append(chip);
       }
       if (available) {
         const chip = document.createElement("em");
         chip.className = "is-free";
-        chip.textContent = english() ? `${available} available` : `${available} libre${available > 1 ? "s" : ""}`;
+        chip.textContent = english()
+          ? `${available} available`
+          : `${available} libre${available > 1 ? "s" : ""}`;
         summary.append(chip);
       }
       if (daily.some((x) => !x.is_open)) {
@@ -362,7 +410,9 @@ window.getMadicSupabase = function () {
       b.append(summary);
       b.setAttribute(
         "aria-label",
-        english() ? `${key}, ${daily.length} slots, ${reservations.length} bookings` : `${key}, ${daily.length} créneau(x), ${reservations.length} réservation(s)`,
+        english()
+          ? `${key}, ${daily.length} slots, ${reservations.length} bookings`
+          : `${key}, ${daily.length} créneau(x), ${reservations.length} réservation(s)`,
       );
       b.addEventListener("click", () => {
         if (key >= today) {
@@ -375,14 +425,20 @@ window.getMadicSupabase = function () {
         b.classList.add("is-selected");
         detail.replaceChildren();
         const title = document.createElement("strong");
-        title.textContent = new Intl.DateTimeFormat(english() ? "en-CA" : "fr-CA", {
-          dateStyle: "full",
-          timeZone: "UTC",
-        }).format(new Date(`${key}T12:00:00Z`));
+        title.textContent = new Intl.DateTimeFormat(
+          english() ? "en-CA" : "fr-CA",
+          {
+            dateStyle: "full",
+            timeZone: "UTC",
+          },
+        ).format(new Date(`${key}T12:00:00Z`));
         detail.append(title);
         if (!daily.length && !reservations.length) {
           const p = document.createElement("p");
-          p.textContent = tr("Aucun créneau ni réservation pour cette journée.", "No time slots or bookings for this day.");
+          p.textContent = tr(
+            "Aucun créneau ni réservation pour cette journée.",
+            "No time slots or bookings for this day.",
+          );
           detail.append(p);
         }
         for (const x of daily) {
@@ -399,8 +455,10 @@ window.getMadicSupabase = function () {
     if (!detail.childElementCount) {
       const p = document.createElement("p");
       p.className = "madic-rdv-muted";
-      p.textContent =
-        tr("Sélectionnez une journée pour afficher ses consultations.", "Select a day to view its consultations.");
+      p.textContent = tr(
+        "Sélectionnez une journée pour afficher ses consultations.",
+        "Select a day to view its consultations.",
+      );
       detail.append(p);
     }
   }
@@ -469,7 +527,10 @@ window.getMadicSupabase = function () {
         !s.is_open
           ? tr("Fermé", "Closed")
           : active.has(s.id)
-            ? tr("Réservation(s) en cours - autres heures potentiellement disponibles", "Booking(s) in progress - other times may be available")
+            ? tr(
+                "Réservation(s) en cours - autres heures potentiellement disponibles",
+                "Booking(s) in progress - other times may be available",
+              )
             : tr("Disponible", "Available"),
       );
       const cell = r.insertCell();
@@ -488,7 +549,10 @@ window.getMadicSupabase = function () {
     if (!slots.length) {
       const r = sb.insertRow();
       r.insertCell().colSpan = 5;
-      r.cells[0].textContent = tr("Aucun créneau à venir.", "No upcoming time slots.");
+      r.cells[0].textContent = tr(
+        "Aucun créneau à venir.",
+        "No upcoming time slots.",
+      );
     }
     const ids = [...new Set((ar.data || []).map((a) => a.client_id))];
     let names = new Map();
@@ -539,7 +603,10 @@ window.getMadicSupabase = function () {
             if (error) throw error;
           }),
           button(tr("Refuser", "Decline"), async () => {
-            if (!confirm(tr("Refuser cette demande ?", "Decline this request?"))) return;
+            if (
+              !confirm(tr("Refuser cette demande ?", "Decline this request?"))
+            )
+              return;
             const { error } = await db.rpc("madic_rdv_set_status", {
               p_appointment_id: a.id,
               p_status: "declined",
@@ -551,7 +618,12 @@ window.getMadicSupabase = function () {
       if (a.status === "confirmed")
         cell.append(
           button(tr("Annuler", "Cancel"), async () => {
-            if (!confirm(tr("Annuler ce rendez-vous ?", "Cancel this appointment?"))) return;
+            if (
+              !confirm(
+                tr("Annuler ce rendez-vous ?", "Cancel this appointment?"),
+              )
+            )
+              return;
             const { error } = await db.rpc("madic_rdv_set_status", {
               p_appointment_id: a.id,
               p_status: "cancelled",
@@ -566,7 +638,13 @@ window.getMadicSupabase = function () {
               p_appointment_id: a.id,
             });
             if (error) throw error;
-            alert(data?.[0]?.location_info || tr("Aucun lieu ou lien indiqué.", "No location or link provided."));
+            alert(
+              data?.[0]?.location_info ||
+                tr(
+                  "Aucun lieu ou lien indiqué.",
+                  "No location or link provided.",
+                ),
+            );
           }),
         );
     }
@@ -576,7 +654,12 @@ window.getMadicSupabase = function () {
       r.cells[0].textContent = tr("Aucune réservation.", "No bookings.");
     }
     await loadNotifications(spaceId);
-    notice(tr("Disponibilités et réservations actualisées.", "Availability and bookings updated."));
+    notice(
+      tr(
+        "Disponibilités et réservations actualisées.",
+        "Availability and bookings updated.",
+      ),
+    );
   }
   try {
     const {
@@ -593,7 +676,13 @@ window.getMadicSupabase = function () {
       .limit(1);
     if (se) throw se;
     const space = spaces?.[0];
-    if (!space) throw Error(tr("Aucun espace professionnel CRIC associé à votre compte. Vérifiez l'association du cabinet et les droits RLS.", "No RCIC professional workspace is associated with your account. Check the practice association and RLS permissions."));
+    if (!space)
+      throw Error(
+        tr(
+          "Aucun espace professionnel CRIC associé à votre compte. Vérifiez l'association du cabinet et les droits RLS.",
+          "No RCIC professional workspace is associated with your account. Check the practice association and RLS permissions.",
+        ),
+      );
     if (space.access_status !== "active")
       throw Error("Votre espace professionnel CRIC est suspendu ou inactif.");
     const { data: allowed, error: ae } = await db.rpc(
@@ -627,10 +716,20 @@ window.getMadicSupabase = function () {
           minutes > 480 ||
           minutes % 60 !== 0
         )
-          throw Error(tr("Choisissez une durée autorisée.", "Choose an allowed duration."));
+          throw Error(
+            tr(
+              "Choisissez une durée autorisée.",
+              "Choose an allowed duration.",
+            ),
+          );
         const end = new Date(Date.parse(start) + minutes * 60000).toISOString();
         if (new Date(start).getTime() <= Date.now())
-          throw Error(tr("Le début doit être dans le futur.", "The start time must be in the future."));
+          throw Error(
+            tr(
+              "Le début doit être dans le futur.",
+              "The start time must be in the future.",
+            ),
+          );
         const duration = new Date(end).getTime() - new Date(start).getTime();
         if (duration <= 0 || duration > 8 * 60 * 60 * 1000)
           throw Error(
@@ -649,7 +748,9 @@ window.getMadicSupabase = function () {
         await load();
         notice(tr("Créneau publié.", "Time slot published."));
       } catch (err) {
-        notice(tr("Création impossible : ", "Unable to create: ") + err.message);
+        notice(
+          tr("Création impossible : ", "Unable to create: ") + err.message,
+        );
       } finally {
         btn.disabled = false;
       }
@@ -776,23 +877,27 @@ window.getMadicSupabase = function () {
     "Notifications de rendez-vous": "Appointment notifications",
     "Nouvelle demande de rendez-vous": "New appointment request",
     "Votre rendez-vous a été confirmé": "Your appointment has been confirmed",
-    "Votre demande de rendez-vous a été refusée": "Your appointment request was declined",
+    "Votre demande de rendez-vous a été refusée":
+      "Your appointment request was declined",
     "Un rendez-vous a été annulé": "An appointment was cancelled",
     "Marquer comme lue": "Mark as read",
     "Aucune notification pour le moment.": "No notifications at this time.",
     "Créneau publié.": "Time slot published.",
     "Calculée automatiquement": "Calculated automatically",
     "Adresse ou lien Teams": "Address or Teams link",
-    "Sélectionnez une journée pour afficher ses consultations.": "Select a day to view its consultations.",
-    "Aucun créneau ni réservation pour cette journée.": "No time slots or bookings for this day.",
-    "Réservation(s) en cours - autres heures potentiellement disponibles": "Booking(s) in progress - other times may be available",
+    "Sélectionnez une journée pour afficher ses consultations.":
+      "Select a day to view its consultations.",
+    "Aucun créneau ni réservation pour cette journée.":
+      "No time slots or bookings for this day.",
+    "Réservation(s) en cours - autres heures potentiellement disponibles":
+      "Booking(s) in progress - other times may be available",
     "Lieu / lien": "Location / link",
-    "Fermé": "Closed",
-    "Disponible": "Available",
-    "Confirmé": "Confirmed",
-    "Annulé": "Cancelled",
-    "Visioconférence": "Video call",
-    "Téléphone": "Phone call",
+    Fermé: "Closed",
+    Disponible: "Available",
+    Confirmé: "Confirmed",
+    Annulé: "Cancelled",
+    Visioconférence: "Video call",
+    Téléphone: "Phone call",
     "En personne": "In person",
     "Aucune réservation.": "No bookings.",
     "Aucun créneau à venir.": "No upcoming time slots.",
@@ -1696,91 +1801,230 @@ window.getMadicSupabase = function () {
 })();
 
 /* MADIC: sign out from appointment workspace */
-(function(){const init=()=>{const btn=document.getElementById('logout');if(!btn)return;btn.addEventListener('click',async()=>{try{const db=window.getMadicSupabase();await db.auth.signOut();window.location.assign('connexion.html');}catch(e){console.error('MADIC sign out failed',e);}})};if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();})();
-
-/* Header notification count: dashboard-equivalent authorized CRIC RPCs. */
-(function(){
-  'use strict';
-  const badge=document.querySelector('.madic-top-notification-count');
-  if(!badge)return;
-  let busy=false;
-  async function refresh(){
-    if(busy||document.hidden||typeof window.getMadicSupabase!=='function')return;
-    busy=true;
-    try{
-      const db=window.getMadicSupabase();
-      const {data:{user}={},error:authError}=await db.auth.getUser();
-      if(authError||!user)return;
-      const {data:spaces,error:spaceError}=await db.from('madic_cric_spaces').select('id').eq('owner_user_id',user.id).eq('access_status','active').limit(1);
-      if(spaceError||!spaces?.length)return;
-      const spaceId=spaces[0].id;
-      const {data:allowed,error:permissionError}=await db.rpc('madic_can_manage_cric_space',{p_space_id:spaceId});
-      if(permissionError||allowed!==true)return;
-      const {data:count,error:countError}=await db.rpc('madic_cric_clients_connexions_non_lues',{p_space_id:spaceId});
-      if(countError)return;
-      const value=Number(count)||0;
-      badge.hidden=value<=0;
-      badge.textContent=value>99?'99+':value>0?String(value):'';
-    }catch(error){console.warn('MADIC: compteur de notifications indisponible',error);}
-    finally{busy=false;}
-  }
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>{void refresh();},{once:true});else void refresh();
-  window.addEventListener('focus',()=>{void refresh();});
-  document.addEventListener('visibilitychange',()=>{if(!document.hidden)void refresh();});
-  window.setInterval(()=>{void refresh();},30000);
+(function () {
+  const init = () => {
+    const btn = document.getElementById("logout");
+    if (!btn) return;
+    btn.addEventListener("click", async () => {
+      try {
+        const db = window.getMadicSupabase();
+        await db.auth.signOut();
+        window.location.assign("connexion.html");
+      } catch (e) {
+        console.error("MADIC sign out failed", e);
+      }
+    });
+  };
+  if (document.readyState === "loading")
+    document.addEventListener("DOMContentLoaded", init, { once: true });
+  else init();
 })();
 
+/* Header notification count: dashboard-equivalent authorized CRIC RPCs. */
+(function () {
+  "use strict";
+  const badge = document.querySelector(".madic-top-notification-count");
+  if (!badge) return;
+  let busy = false;
+  async function refresh() {
+    if (
+      busy ||
+      document.hidden ||
+      typeof window.getMadicSupabase !== "function"
+    )
+      return;
+    busy = true;
+    try {
+      const db = window.getMadicSupabase();
+      const { data: { user } = {}, error: authError } = await db.auth.getUser();
+      if (authError || !user) return;
+      const { data: spaces, error: spaceError } = await db
+        .from("madic_cric_spaces")
+        .select("id")
+        .eq("owner_user_id", user.id)
+        .eq("access_status", "active")
+        .limit(1);
+      if (spaceError || !spaces?.length) return;
+      const spaceId = spaces[0].id;
+      const { data: allowed, error: permissionError } = await db.rpc(
+        "madic_can_manage_cric_space",
+        { p_space_id: spaceId },
+      );
+      if (permissionError || allowed !== true) return;
+      const { data: count, error: countError } = await db.rpc(
+        "madic_cric_clients_connexions_non_lues",
+        { p_space_id: spaceId },
+      );
+      if (countError) return;
+      const value = Number(count) || 0;
+      badge.hidden = value <= 0;
+      badge.textContent = value > 99 ? "99+" : value > 0 ? String(value) : "";
+    } catch (error) {
+      console.warn("MADIC: compteur de notifications indisponible", error);
+    } finally {
+      busy = false;
+    }
+  }
+  if (document.readyState === "loading")
+    document.addEventListener(
+      "DOMContentLoaded",
+      () => {
+        void refresh();
+      },
+      { once: true },
+    );
+  else void refresh();
+  window.addEventListener("focus", () => {
+    void refresh();
+  });
+  document.addEventListener("visibilitychange", () => {
+    if (!document.hidden) void refresh();
+  });
+  window.setInterval(() => {
+    void refresh();
+  }, 30000);
+})();
 
 /* MADIC: bilingual date picker; existing #slotDate ISO value and listeners remain intact. */
 (() => {
-  const pad = n => String(n).padStart(2, '0');
-  const iso = d => `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
-  const lang = () => window.MadicCricLanguage?.get?.() === 'en' ? 'en' : 'fr';
-  const locale = () => lang() === 'en' ? 'en-CA' : 'fr-CA';
+  const pad = (n) => String(n).padStart(2, "0");
+  const iso = (d) =>
+    `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+  const lang = () => (window.MadicCricLanguage?.get?.() === "en" ? "en" : "fr");
+  const locale = () => (lang() === "en" ? "en-CA" : "fr-CA");
   function setup() {
-    const input = document.getElementById('slotDate');
-    const button = document.getElementById('madicRdvDateToggle');
-    const panel = document.getElementById('madicRdvDatePanel');
+    const input = document.getElementById("slotDate");
+    const button = document.getElementById("madicRdvDateToggle");
+    const panel = document.getElementById("madicRdvDatePanel");
     if (!input || !button || !panel) return;
     let shown = new Date();
     const today = () => input.min || iso(new Date());
-    const close = () => { panel.hidden = true; button.setAttribute('aria-expanded', 'false'); };
-    const label = () => input.value ? new Date(input.value + 'T12:00:00').toLocaleDateString(locale(), {year:'numeric',month:'short',day:'numeric'}) : (lang()==='en' ? 'Select a date' : 'Choisir une date');
+    const close = () => {
+      panel.hidden = true;
+      button.setAttribute("aria-expanded", "false");
+    };
+    const label = () =>
+      input.value
+        ? new Date(input.value + "T12:00:00").toLocaleDateString(locale(), {
+            year: "numeric",
+            month: "short",
+            day: "numeric",
+          })
+        : lang() === "en"
+          ? "Select a date"
+          : "Choisir une date";
     function paint() {
       button.textContent = label();
-      const aria = lang()==='en' ? 'Choose start date' : 'Choisir la date de début';
-      button.setAttribute('aria-label', aria); panel.setAttribute('aria-label', aria);
+      const aria =
+        lang() === "en" ? "Choose start date" : "Choisir la date de début";
+      button.setAttribute("aria-label", aria);
+      panel.setAttribute("aria-label", aria);
       panel.replaceChildren();
-      const header = document.createElement('div'); header.className='madic-cal-head';
-      const prev=document.createElement('button'); prev.type='button'; prev.textContent='‹'; prev.setAttribute('aria-label',lang()==='en'?'Previous month':'Mois précédent');
-      const next=document.createElement('button'); next.type='button'; next.textContent='›'; next.setAttribute('aria-label',lang()==='en'?'Next month':'Mois suivant');
-      const heading=document.createElement('strong'); heading.textContent=shown.toLocaleDateString(locale(),{month:'long',year:'numeric'});
-      const firstAllowed=today().slice(0,7); prev.disabled=iso(new Date(shown.getFullYear(),shown.getMonth(),1)).slice(0,7)<=firstAllowed;
-      prev.onclick=()=>{shown=new Date(shown.getFullYear(),shown.getMonth()-1,1);paint()};
-      next.onclick=()=>{shown=new Date(shown.getFullYear(),shown.getMonth()+1,1);paint()};
-      header.append(prev,heading,next);panel.append(header);
-      const grid=document.createElement('div');grid.className='madic-cal-grid';
-      (lang()==='en'?['Sun','Mon','Tue','Wed','Thu','Fri','Sat']:['dim.','lun.','mar.','mer.','jeu.','ven.','sam.']).forEach(s=>{const el=document.createElement('span');el.textContent=s;grid.append(el)});
-      const first=new Date(shown.getFullYear(),shown.getMonth(),1).getDay();
-      for(let i=0;i<first;i++)grid.append(document.createElement('span'));
-      const count=new Date(shown.getFullYear(),shown.getMonth()+1,0).getDate();
-      for(let d=1;d<=count;d++){
-        const date=iso(new Date(shown.getFullYear(),shown.getMonth(),d));
-        const el=document.createElement('button');el.type='button';el.textContent=String(d);
-        if(date<today()){el.disabled=true;el.className='madic-past-day'}
-        if(date===input.value)el.className='selected';
-        el.onclick=()=>{input.value=date;input.dispatchEvent(new Event('change',{bubbles:true}));close();paint()};grid.append(el);
+      const header = document.createElement("div");
+      header.className = "madic-cal-head";
+      const prev = document.createElement("button");
+      prev.type = "button";
+      prev.textContent = "‹";
+      prev.setAttribute(
+        "aria-label",
+        lang() === "en" ? "Previous month" : "Mois précédent",
+      );
+      const next = document.createElement("button");
+      next.type = "button";
+      next.textContent = "›";
+      next.setAttribute(
+        "aria-label",
+        lang() === "en" ? "Next month" : "Mois suivant",
+      );
+      const heading = document.createElement("strong");
+      heading.textContent = shown.toLocaleDateString(locale(), {
+        month: "long",
+        year: "numeric",
+      });
+      const firstAllowed = today().slice(0, 7);
+      prev.disabled =
+        iso(new Date(shown.getFullYear(), shown.getMonth(), 1)).slice(0, 7) <=
+        firstAllowed;
+      prev.onclick = () => {
+        shown = new Date(shown.getFullYear(), shown.getMonth() - 1, 1);
+        paint();
+      };
+      next.onclick = () => {
+        shown = new Date(shown.getFullYear(), shown.getMonth() + 1, 1);
+        paint();
+      };
+      header.append(prev, heading, next);
+      panel.append(header);
+      const grid = document.createElement("div");
+      grid.className = "madic-cal-grid";
+      (lang() === "en"
+        ? ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+        : ["dim.", "lun.", "mar.", "mer.", "jeu.", "ven.", "sam."]
+      ).forEach((s) => {
+        const el = document.createElement("span");
+        el.textContent = s;
+        grid.append(el);
+      });
+      const first = new Date(shown.getFullYear(), shown.getMonth(), 1).getDay();
+      for (let i = 0; i < first; i++)
+        grid.append(document.createElement("span"));
+      const count = new Date(
+        shown.getFullYear(),
+        shown.getMonth() + 1,
+        0,
+      ).getDate();
+      for (let d = 1; d <= count; d++) {
+        const date = iso(new Date(shown.getFullYear(), shown.getMonth(), d));
+        const el = document.createElement("button");
+        el.type = "button";
+        el.textContent = String(d);
+        if (date < today()) {
+          el.disabled = true;
+          el.className = "madic-past-day";
+        }
+        if (date === input.value) el.className = "selected";
+        el.onclick = () => {
+          input.value = date;
+          input.dispatchEvent(new Event("change", { bubbles: true }));
+          close();
+          paint();
+        };
+        grid.append(el);
       }
       panel.append(grid);
-      const clear=document.createElement('button');clear.type='button';clear.className='madic-cal-clear';clear.textContent=lang()==='en'?'Clear':'Effacer';
-      clear.onclick=()=>{input.value='';input.dispatchEvent(new Event('change',{bubbles:true}));close();paint()};panel.append(clear);
+      const clear = document.createElement("button");
+      clear.type = "button";
+      clear.className = "madic-cal-clear";
+      clear.textContent = lang() === "en" ? "Clear" : "Effacer";
+      clear.onclick = () => {
+        input.value = "";
+        input.dispatchEvent(new Event("change", { bubbles: true }));
+        close();
+        paint();
+      };
+      panel.append(clear);
     }
-    button.onclick=()=>{if(input.value && input.value<today()){input.value='';input.dispatchEvent(new Event('change',{bubbles:true}))}shown=input.value?new Date(input.value+'T12:00:00'):new Date();panel.hidden=!panel.hidden;button.setAttribute('aria-expanded',String(!panel.hidden));paint()};
-    document.addEventListener('click',e=>{if(!e.target.closest?.('#madicRdvCalendar'))close()});
-    document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});
-    document.addEventListener('madic:languagechange',paint);
-    input.addEventListener('change',paint);
+    button.onclick = () => {
+      if (input.value && input.value < today()) {
+        input.value = "";
+        input.dispatchEvent(new Event("change", { bubbles: true }));
+      }
+      shown = input.value ? new Date(input.value + "T12:00:00") : new Date();
+      panel.hidden = !panel.hidden;
+      button.setAttribute("aria-expanded", String(!panel.hidden));
+      paint();
+    };
+    document.addEventListener("click", (e) => {
+      if (!e.target.closest?.("#madicRdvCalendar")) close();
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") close();
+    });
+    document.addEventListener("madic:languagechange", paint);
+    input.addEventListener("change", paint);
     paint();
   }
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',setup,{once:true});else setup();
+  if (document.readyState === "loading")
+    document.addEventListener("DOMContentLoaded", setup, { once: true });
+  else setup();
 })();

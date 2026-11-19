@@ -211,10 +211,59 @@
   else init();
 })();
 
-
 /* Footer commun MADIC : traduction des libellés sur les pages sans gestionnaire FR/EN. */
-(function(){"use strict";function apply(lang){lang=lang==="en"?"en":"fr";document.querySelectorAll(".madic-footer [data-fr][data-en]").forEach(function(el){el.textContent=el.getAttribute("data-"+lang);});}var lang="fr";try{lang=new URLSearchParams(location.search).get("lang")||localStorage.getItem("madic-lang")||"fr";}catch(e){}apply(lang);window.addEventListener("storage",function(e){if(e.key==="madic-lang")apply(e.newValue);});})();
-
+(function () {
+  "use strict";
+  function apply(lang) {
+    lang = lang === "en" ? "en" : "fr";
+    document
+      .querySelectorAll(".madic-footer [data-fr][data-en]")
+      .forEach(function (el) {
+        el.textContent = el.getAttribute("data-" + lang);
+      });
+  }
+  var lang = "fr";
+  try {
+    lang =
+      new URLSearchParams(location.search).get("lang") ||
+      localStorage.getItem("madic-lang") ||
+      "fr";
+  } catch (e) {}
+  apply(lang);
+  window.addEventListener("storage", function (e) {
+    if (e.key === "madic-lang") apply(e.newValue);
+  });
+})();
 
 /* Synchronisation de la traduction du pied de page avec les boutons FR/EN. */
-(function(){"use strict";function update(lang){lang=lang==="en"?"en":"fr";document.querySelectorAll(".madic-footer [data-fr][data-en]").forEach(function(el){el.textContent=el.getAttribute("data-"+lang);});try{localStorage.setItem("madic-lang",lang);}catch(e){}}function init(){var lang="fr";try{lang=localStorage.getItem("madic_ui_language")||"fr";}catch(e){}update(lang);document.querySelectorAll(".madic-lang-switch [data-lang]").forEach(function(button){button.addEventListener("click",function(){update(button.dataset.lang);});});}if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init,{once:true});else init();})();
+(function () {
+  "use strict";
+  function update(lang) {
+    lang = lang === "en" ? "en" : "fr";
+    document
+      .querySelectorAll(".madic-footer [data-fr][data-en]")
+      .forEach(function (el) {
+        el.textContent = el.getAttribute("data-" + lang);
+      });
+    try {
+      localStorage.setItem("madic-lang", lang);
+    } catch (e) {}
+  }
+  function init() {
+    var lang = "fr";
+    try {
+      lang = localStorage.getItem("madic_ui_language") || "fr";
+    } catch (e) {}
+    update(lang);
+    document
+      .querySelectorAll(".madic-lang-switch [data-lang]")
+      .forEach(function (button) {
+        button.addEventListener("click", function () {
+          update(button.dataset.lang);
+        });
+      });
+  }
+  if (document.readyState === "loading")
+    document.addEventListener("DOMContentLoaded", init, { once: true });
+  else init();
+})();

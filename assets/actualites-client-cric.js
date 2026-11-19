@@ -151,15 +151,15 @@
     consultation: ["Consultation", "Consultation"], proposition: ["Proposition", "Proposal"],
   };
   function status(value) {
-    const span = element("span", value || "—");
+    const span = element("span", value || "-");
     if (Object.hasOwn(statuses, value)) label(span, ...statuses[value]);
     return span;
   }
   function date(value) {
-    if (!value) return "—";
+    if (!value) return "-";
     if (/^\d{4}-\d{2}-\d{2}$/.test(value)) return value;
     const parsed = new Date(value);
-    return Number.isNaN(+parsed) ? "—" : parsed.toLocaleString(locale(), {timeZone: "America/Toronto"});
+    return Number.isNaN(+parsed) ? "-" : parsed.toLocaleString(locale(), {timeZone: "America/Toronto"});
   }
   function money(value, currency) {
     const code = /^[A-Z]{3}$/.test(currency || "") ? currency : "CAD";
@@ -168,7 +168,7 @@
   function cell(row, value) {
     const td = row.insertCell();
     if (value instanceof Node) td.append(value);
-    else td.textContent = value ?? "—";
+    else td.textContent = value ?? "-";
   }
   async function table(tbody, section, columns) {
     let offset = 0;
@@ -213,7 +213,7 @@
       link.download = row.original_name || row.filename || "MADIC.pdf";
       link.click();
       setTimeout(() => { URL.revokeObjectURL(url); urls.delete(url); }, 5000);
-    }) : "—";
+    }) : "-";
   }
   function show(idName) {
     const node = id(idName);
@@ -293,7 +293,7 @@
     show("rdvApp");
     await table(id("bookingRows"), "appointments", [
       r => date(r.starts_at), r => status(r.mode), r => status(r.status),
-      r => r.location_info || "—", () => "—",
+      r => r.location_info || "-", () => "-",
     ]);
   }
   async function overview() {
@@ -460,7 +460,7 @@
     }
     await Promise.all([
       table(primary, "contracts", ["reference", r => status(r.status), r => date(r.created_at), r => openContract(r, false), download]),
-      table(legacy, "legacy_contracts", ["title", r => status(r.status), r => date(r.published_at), r => openContract(r, true), () => "—"]),
+      table(legacy, "legacy_contracts", ["title", r => status(r.status), r => date(r.published_at), r => openContract(r, true), () => "-"]),
     ]);
   }
 
@@ -606,7 +606,7 @@
 })();
 
 ;
-/* MADIC Actualites client CRIC — regroupement des scripts fournis. */
+/* MADIC Actualites client CRIC - regroupement des scripts fournis. */
 
 /* inline 1 */
 {

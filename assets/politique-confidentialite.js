@@ -22,7 +22,8 @@
     });
     Object.keys(buttons).forEach(function (key) {
       buttons[key].setAttribute("aria-pressed", String(key === lang));
-      if (footerButtons[key]) footerButtons[key].setAttribute("aria-pressed", String(key === lang));
+      if (footerButtons[key])
+        footerButtons[key].setAttribute("aria-pressed", String(key === lang));
     });
     try {
       localStorage.setItem("madic-lang", lang);
@@ -39,12 +40,14 @@
   buttons.en.addEventListener("click", function () {
     setLanguage("en");
   });
-  if (footerButtons.fr) footerButtons.fr.addEventListener("click", function () {
-    setLanguage("fr");
-  });
-  if (footerButtons.en) footerButtons.en.addEventListener("click", function () {
-    setLanguage("en");
-  });
+  if (footerButtons.fr)
+    footerButtons.fr.addEventListener("click", function () {
+      setLanguage("fr");
+    });
+  if (footerButtons.en)
+    footerButtons.en.addEventListener("click", function () {
+      setLanguage("en");
+    });
   var lang = new URLSearchParams(location.search).get("lang");
   if (lang !== "fr" && lang !== "en") {
     try {

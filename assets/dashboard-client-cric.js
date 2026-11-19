@@ -226,16 +226,16 @@
     proposition: ["Proposition", "Proposal"],
   };
   function status(value) {
-    const span = element("span", value || "—");
+    const span = element("span", value || "-");
     if (Object.hasOwn(statuses, value)) label(span, ...statuses[value]);
     return span;
   }
   function date(value) {
-    if (!value) return "—";
+    if (!value) return "-";
     if (/^\d{4}-\d{2}-\d{2}$/.test(value)) return value;
     const parsed = new Date(value);
     return Number.isNaN(+parsed)
-      ? "—"
+      ? "-"
       : parsed.toLocaleString(locale(), { timeZone: "America/Toronto" });
   }
   function money(value, currency) {
@@ -248,7 +248,7 @@
   function cell(row, value) {
     const td = row.insertCell();
     if (value instanceof Node) td.append(value);
-    else td.textContent = value ?? "—";
+    else td.textContent = value ?? "-";
   }
   async function table(tbody, section, columns) {
     let offset = 0;
@@ -314,7 +314,7 @@
             urls.delete(url);
           }, 5000);
         })
-      : "—";
+      : "-";
   }
   function show(idName) {
     const node = id(idName);
@@ -431,8 +431,8 @@
       (r) => date(r.starts_at),
       (r) => status(r.mode),
       (r) => status(r.status),
-      (r) => r.location_info || "—",
-      () => "—",
+      (r) => r.location_info || "-",
+      () => "-",
     ]);
   }
   async function overview() {
@@ -672,7 +672,7 @@
         (r) => status(r.status),
         (r) => date(r.published_at),
         (r) => openContract(r, true),
-        () => "—",
+        () => "-",
       ]),
     ]);
   }

@@ -185,7 +185,6 @@ code {
   }
 }
 
-
 /* SOURCE: cric-workspace.css */
 #cricSearch {
   width: 100%;
@@ -323,7 +322,6 @@ code {
     padding: 16px;
   }
 }
-
 
 /* SOURCE: madic-appointments.css */
 .madic-rdv-shell {
@@ -479,59 +477,290 @@ code {
 }
 
 /* Etape 5 : lisibilite et accessibilite du planning CRIC. */
-.madic-rdv-shell .panel{border-radius:16px;min-width:0}
-.madic-rdv-shell .panel h2{margin-top:0;line-height:1.35}
-.madic-rdv-shell .madic-rdv-table{border:1px solid #dce6ed;border-radius:12px}
-.madic-rdv-shell .madic-rdv-table th,.madic-rdv-shell .madic-rdv-table td{padding:12px 14px;vertical-align:middle}
-.madic-rdv-shell .madic-rdv-table tbody tr:hover{background:rgba(56,189,212,.05)}
-.madic-rdv-shell :is(button,input,select,a):focus-visible{outline:3px solid #38bfd8;outline-offset:3px}
-.madic-rdv-shell button:disabled{opacity:.55;cursor:not-allowed}
-.madic-rdv-shell #rdvNotificationList>div{border-radius:10px;padding:12px 14px!important}
-@media(max-width:700px){.madic-rdv-shell{margin:1rem auto;padding:0 12px}.madic-rdv-shell .panel{padding:16px}.madic-rdv-top{align-items:flex-start}.madic-rdv-table{max-width:100%}}
-@media(prefers-reduced-motion:reduce){.madic-rdv-shell *{scroll-behavior:auto!important;transition:none!important}}
+.madic-rdv-shell .panel {
+  border-radius: 16px;
+  min-width: 0;
+}
+.madic-rdv-shell .panel h2 {
+  margin-top: 0;
+  line-height: 1.35;
+}
+.madic-rdv-shell .madic-rdv-table {
+  border: 1px solid #dce6ed;
+  border-radius: 12px;
+}
+.madic-rdv-shell .madic-rdv-table th,
+.madic-rdv-shell .madic-rdv-table td {
+  padding: 12px 14px;
+  vertical-align: middle;
+}
+.madic-rdv-shell .madic-rdv-table tbody tr:hover {
+  background: rgba(56, 189, 212, 0.05);
+}
+.madic-rdv-shell :is(button, input, select, a):focus-visible {
+  outline: 3px solid #38bfd8;
+  outline-offset: 3px;
+}
+.madic-rdv-shell button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.madic-rdv-shell #rdvNotificationList > div {
+  border-radius: 10px;
+  padding: 12px 14px !important;
+}
+@media (max-width: 700px) {
+  .madic-rdv-shell {
+    margin: 1rem auto;
+    padding: 0 12px;
+  }
+  .madic-rdv-shell .panel {
+    padding: 16px;
+  }
+  .madic-rdv-top {
+    align-items: flex-start;
+  }
+  .madic-rdv-table {
+    max-width: 100%;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .madic-rdv-shell * {
+    scroll-behavior: auto !important;
+    transition: none !important;
+  }
+}
 
-/* Étape 5/9 — harmonisation finale des rendez-vous, sans dépendance ajoutée. */
-.madic-rdv-shell{width:100%;box-sizing:border-box}
-.madic-rdv-shell .panel{min-width:0;overflow-wrap:anywhere}
-.madic-rdv-shell .panel h2{font-size:clamp(1.05rem,1.5vw,1.3rem)}
-.madic-rdv-shell .madic-rdv-grid{align-items:end}
-.madic-rdv-shell .madic-rdv-grid label{font-weight:600;line-height:1.45}
-.madic-rdv-shell .madic-rdv-grid input,.madic-rdv-shell .madic-rdv-grid select{min-height:44px;border-radius:9px}
-.madic-rdv-shell .madic-rdv-grid input[readonly]{opacity:.85}
-.madic-rdv-shell .madic-rdv-table{overscroll-behavior-x:contain}
-.madic-rdv-shell .madic-rdv-table th{white-space:nowrap;text-align:left}
-.madic-rdv-shell .madic-rdv-table td{line-height:1.45}
-.madic-rdv-shell .madic-rdv-actions{min-width:135px}
-.madic-rdv-shell #rdvNotice{line-height:1.5}
-@media(max-width:700px){.madic-rdv-shell .madic-rdv-grid{grid-template-columns:minmax(0,1fr)}.madic-rdv-shell .madic-rdv-actions{min-width:0}}
+/* Étape 5/9 - harmonisation finale des rendez-vous, sans dépendance ajoutée. */
+.madic-rdv-shell {
+  width: 100%;
+  box-sizing: border-box;
+}
+.madic-rdv-shell .panel {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.madic-rdv-shell .panel h2 {
+  font-size: clamp(1.05rem, 1.5vw, 1.3rem);
+}
+.madic-rdv-shell .madic-rdv-grid {
+  align-items: end;
+}
+.madic-rdv-shell .madic-rdv-grid label {
+  font-weight: 600;
+  line-height: 1.45;
+}
+.madic-rdv-shell .madic-rdv-grid input,
+.madic-rdv-shell .madic-rdv-grid select {
+  min-height: 44px;
+  border-radius: 9px;
+}
+.madic-rdv-shell .madic-rdv-grid input[readonly] {
+  opacity: 0.85;
+}
+.madic-rdv-shell .madic-rdv-table {
+  overscroll-behavior-x: contain;
+}
+.madic-rdv-shell .madic-rdv-table th {
+  white-space: nowrap;
+  text-align: left;
+}
+.madic-rdv-shell .madic-rdv-table td {
+  line-height: 1.45;
+}
+.madic-rdv-shell .madic-rdv-actions {
+  min-width: 135px;
+}
+.madic-rdv-shell #rdvNotice {
+  line-height: 1.5;
+}
+@media (max-width: 700px) {
+  .madic-rdv-shell .madic-rdv-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .madic-rdv-shell .madic-rdv-actions {
+    min-width: 0;
+  }
+}
 
 /* Etape 5 : agenda mensuel CRIC, styles limites a la page rendez-vous. */
-body[data-page="rendez-vous-cric"] .madic-rdv-shell{max-width:1400px}
-body[data-page="rendez-vous-cric"] .madic-rdv-planning-panel{background:#fff;color:#173b5b}
-.madic-rdv-planning-head{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;flex-wrap:wrap}
-.madic-rdv-planning-head h2{margin:4px 0 8px!important}
-.madic-rdv-planning-kicker{margin:0;color:#087b9c;font-size:.72rem;font-weight:800;letter-spacing:.13em}
-.madic-rdv-planning-controls{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
-.madic-rdv-planning-controls strong{min-width:155px;text-align:center;text-transform:capitalize}
-.madic-rdv-planning-controls button{width:auto!important;padding:8px 12px!important;min-height:38px}
-.madic-rdv-planning-legend{display:flex;gap:15px;flex-wrap:wrap;margin:15px 0;font-size:.82rem;color:#46617b}
-.madic-rdv-planning-legend span{display:inline-flex;align-items:center;gap:6px}
-.madic-rdv-legend-dot{display:inline-block;width:9px;height:9px;border-radius:50%}
-.madic-rdv-legend-dot.is-free{background:#07856e}.madic-rdv-legend-dot.is-requested{background:#d99b22}.madic-rdv-legend-dot.is-confirmed{background:#287cc2}.madic-rdv-legend-dot.is-closed{background:#8b9aad}
-.madic-rdv-month-weekdays,.madic-rdv-month-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px}
-.madic-rdv-month-weekdays span{text-align:center;font-weight:700;font-size:.8rem;padding:9px;color:#4a6075}
-.madic-rdv-month-day,.madic-rdv-month-empty{min-width:0;min-height:100px;border-radius:11px}
-body[data-page="rendez-vous-cric"] .madic-rdv-month-day{display:flex;flex-direction:column;align-items:flex-start;gap:8px;text-align:left;background:#f8fbfe!important;border:1px solid #d9e6ef!important;color:#183b59!important;padding:10px!important;font-weight:500;box-shadow:none}
-body[data-page="rendez-vous-cric"] .madic-rdv-month-day:hover{background:#edf8fc!important;border-color:#38bfd8!important}
-body[data-page="rendez-vous-cric"] .madic-rdv-month-day.is-today{border-color:#178cb4!important}
-body[data-page="rendez-vous-cric"] .madic-rdv-month-day.is-selected{outline:3px solid #38bfd8;outline-offset:0}
-.madic-rdv-month-day-summary{display:flex;flex-direction:column;align-items:flex-start;gap:3px;width:100%}
-.madic-rdv-month-day-summary em{font-style:normal;font-size:.69rem;line-height:1.3;padding:3px 6px;border-radius:6px;max-width:100%;overflow-wrap:anywhere}
-.madic-rdv-month-day-summary .is-free{background:#d9f6e9;color:#076b52}.madic-rdv-month-day-summary .is-requested{background:#fff0ce;color:#815b08}.madic-rdv-month-day-summary .is-confirmed{background:#dcefff;color:#195b94}.madic-rdv-month-day-summary .is-closed{background:#e8edf3;color:#536577}
-.madic-rdv-selected-day{border-top:1px solid #d9e6ef;margin-top:15px;padding-top:14px;line-height:1.55}
-.madic-rdv-selected-day p{margin:7px 0;color:#526b83}
-@media(max-width:700px){.madic-rdv-month-weekdays,.madic-rdv-month-grid{gap:3px}.madic-rdv-month-day,.madic-rdv-month-empty{min-height:66px}body[data-page="rendez-vous-cric"] .madic-rdv-month-day{padding:5px!important;font-size:.8rem}.madic-rdv-month-day-summary em{font-size:.57rem;padding:2px}.madic-rdv-planning-controls strong{min-width:120px}}
-
+body[data-page="rendez-vous-cric"] .madic-rdv-shell {
+  max-width: 1400px;
+}
+body[data-page="rendez-vous-cric"] .madic-rdv-planning-panel {
+  background: #fff;
+  color: #173b5b;
+}
+.madic-rdv-planning-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+.madic-rdv-planning-head h2 {
+  margin: 4px 0 8px !important;
+}
+.madic-rdv-planning-kicker {
+  margin: 0;
+  color: #087b9c;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+}
+.madic-rdv-planning-controls {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  flex-wrap: wrap;
+}
+.madic-rdv-planning-controls strong {
+  min-width: 155px;
+  text-align: center;
+  text-transform: capitalize;
+}
+.madic-rdv-planning-controls button {
+  width: auto !important;
+  padding: 8px 12px !important;
+  min-height: 38px;
+}
+.madic-rdv-planning-legend {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  margin: 15px 0;
+  font-size: 0.82rem;
+  color: #46617b;
+}
+.madic-rdv-planning-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.madic-rdv-legend-dot {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+}
+.madic-rdv-legend-dot.is-free {
+  background: #07856e;
+}
+.madic-rdv-legend-dot.is-requested {
+  background: #d99b22;
+}
+.madic-rdv-legend-dot.is-confirmed {
+  background: #287cc2;
+}
+.madic-rdv-legend-dot.is-closed {
+  background: #8b9aad;
+}
+.madic-rdv-month-weekdays,
+.madic-rdv-month-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 6px;
+}
+.madic-rdv-month-weekdays span {
+  text-align: center;
+  font-weight: 700;
+  font-size: 0.8rem;
+  padding: 9px;
+  color: #4a6075;
+}
+.madic-rdv-month-day,
+.madic-rdv-month-empty {
+  min-width: 0;
+  min-height: 100px;
+  border-radius: 11px;
+}
+body[data-page="rendez-vous-cric"] .madic-rdv-month-day {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  text-align: left;
+  background: #f8fbfe !important;
+  border: 1px solid #d9e6ef !important;
+  color: #183b59 !important;
+  padding: 10px !important;
+  font-weight: 500;
+  box-shadow: none;
+}
+body[data-page="rendez-vous-cric"] .madic-rdv-month-day:hover {
+  background: #edf8fc !important;
+  border-color: #38bfd8 !important;
+}
+body[data-page="rendez-vous-cric"] .madic-rdv-month-day.is-today {
+  border-color: #178cb4 !important;
+}
+body[data-page="rendez-vous-cric"] .madic-rdv-month-day.is-selected {
+  outline: 3px solid #38bfd8;
+  outline-offset: 0;
+}
+.madic-rdv-month-day-summary {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3px;
+  width: 100%;
+}
+.madic-rdv-month-day-summary em {
+  font-style: normal;
+  font-size: 0.69rem;
+  line-height: 1.3;
+  padding: 3px 6px;
+  border-radius: 6px;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+.madic-rdv-month-day-summary .is-free {
+  background: #d9f6e9;
+  color: #076b52;
+}
+.madic-rdv-month-day-summary .is-requested {
+  background: #fff0ce;
+  color: #815b08;
+}
+.madic-rdv-month-day-summary .is-confirmed {
+  background: #dcefff;
+  color: #195b94;
+}
+.madic-rdv-month-day-summary .is-closed {
+  background: #e8edf3;
+  color: #536577;
+}
+.madic-rdv-selected-day {
+  border-top: 1px solid #d9e6ef;
+  margin-top: 15px;
+  padding-top: 14px;
+  line-height: 1.55;
+}
+.madic-rdv-selected-day p {
+  margin: 7px 0;
+  color: #526b83;
+}
+@media (max-width: 700px) {
+  .madic-rdv-month-weekdays,
+  .madic-rdv-month-grid {
+    gap: 3px;
+  }
+  .madic-rdv-month-day,
+  .madic-rdv-month-empty {
+    min-height: 66px;
+  }
+  body[data-page="rendez-vous-cric"] .madic-rdv-month-day {
+    padding: 5px !important;
+    font-size: 0.8rem;
+  }
+  .madic-rdv-month-day-summary em {
+    font-size: 0.57rem;
+    padding: 2px;
+  }
+  .madic-rdv-planning-controls strong {
+    min-width: 120px;
+  }
+}
 
 /* SOURCE: madic-datahubz-modules.css */
 /* MADIC DataHubz v15 - uniformisation visuelle; aucune logique metier */
@@ -688,16 +917,66 @@ body.madic-unified .madic-unified-sidebar nav svg {
 }
 
 /* CRIC : composants en mode clair, en coherence avec le tableau de bord. */
-body.madic-unified:not([data-page="cric-dashboard"]) .madic-unified-content :is(.panel,.madic-cric-card,.madic-home-card,.madic-logo-slot,.madic-msg-side,.madic-msg-chat) {background:#fff;color:#173b5b;border-color:#dbe6f1;box-shadow:0 8px 26px #153a5b0b;}
-body.madic-unified:not([data-page="cric-dashboard"]) .madic-unified-content :is(input:not([type="checkbox"]):not([type="radio"]),select,textarea) {background:#fff;color:#173b5b;border-color:#b9ccdf;}
-body.madic-unified:not([data-page="cric-dashboard"]) .madic-unified-content :is(.madic-msg-messages,.madic-client-messages-history) {background:#f6f9fd;border-color:#dbe6f1;}
-body.madic-unified:not([data-page="cric-dashboard"]) .madic-unified-content :is(.madic-msg-bubble,.madic-client-msg-bubble) {background:#f2f7fc;color:#173b5b;border-color:#dbe6f1;}
-body.madic-unified:not([data-page="cric-dashboard"]) .madic-unified-content :is(.madic-msg-own,.madic-client-msg-own) {background:#dff3f9;border-color:#89cfdf;}
-body.madic-unified:not([data-page="cric-dashboard"]) .madic-unified-content :is(.muted,small,.hint) {color:#5a7086;}
-body.madic-unified:not([data-page="cric-dashboard"]) .madic-unified-content :is(th,.madic-admin-table-wrap thead th) {background:#eaf3fa!important;color:#183b59!important;border-color:#d6e4f0;}
-body.madic-unified:not([data-page="cric-dashboard"]) .madic-unified-content td {color:#23445f;border-color:#dbe6f0;}
-body.madic-unified:not([data-page="cric-dashboard"]) .madic-unified-content a {color:#0879a6;}
-
+body.madic-unified:not([data-page="cric-dashboard"])
+  .madic-unified-content
+  :is(
+    .panel,
+    .madic-cric-card,
+    .madic-home-card,
+    .madic-logo-slot,
+    .madic-msg-side,
+    .madic-msg-chat
+  ) {
+  background: #fff;
+  color: #173b5b;
+  border-color: #dbe6f1;
+  box-shadow: 0 8px 26px #153a5b0b;
+}
+body.madic-unified:not([data-page="cric-dashboard"])
+  .madic-unified-content
+  :is(input:not([type="checkbox"]):not([type="radio"]), select, textarea) {
+  background: #fff;
+  color: #173b5b;
+  border-color: #b9ccdf;
+}
+body.madic-unified:not([data-page="cric-dashboard"])
+  .madic-unified-content
+  :is(.madic-msg-messages, .madic-client-messages-history) {
+  background: #f6f9fd;
+  border-color: #dbe6f1;
+}
+body.madic-unified:not([data-page="cric-dashboard"])
+  .madic-unified-content
+  :is(.madic-msg-bubble, .madic-client-msg-bubble) {
+  background: #f2f7fc;
+  color: #173b5b;
+  border-color: #dbe6f1;
+}
+body.madic-unified:not([data-page="cric-dashboard"])
+  .madic-unified-content
+  :is(.madic-msg-own, .madic-client-msg-own) {
+  background: #dff3f9;
+  border-color: #89cfdf;
+}
+body.madic-unified:not([data-page="cric-dashboard"])
+  .madic-unified-content
+  :is(.muted, small, .hint) {
+  color: #5a7086;
+}
+body.madic-unified:not([data-page="cric-dashboard"])
+  .madic-unified-content
+  :is(th, .madic-admin-table-wrap thead th) {
+  background: #eaf3fa !important;
+  color: #183b59 !important;
+  border-color: #d6e4f0;
+}
+body.madic-unified:not([data-page="cric-dashboard"]) .madic-unified-content td {
+  color: #23445f;
+  border-color: #dbe6f0;
+}
+body.madic-unified:not([data-page="cric-dashboard"]) .madic-unified-content a {
+  color: #0879a6;
+}
 
 /* SOURCE: madic-datahubz-unified.css */
 /* MADIC DataHubz : couche visuelle sans modification des traitements */
@@ -713,21 +992,10 @@ body.madic-unified {
 }
 body.madic-unified .madic-unified-layout {
   display: grid;
-  
+
   min-height: 100vh;
   width: 100%;
 }
-
-
-
-
-
-
-
-
-
-
-
 
 body.madic-unified .madic-unified-content {
   min-width: 0;
@@ -772,12 +1040,8 @@ body.madic-unified .madic-unified-content .cric-scroll {
 }
 @media (max-width: 850px) {
   body.madic-unified .madic-unified-layout {
-    
   }
-  
-  
-  
-  
+
   body.madic-unified .madic-unified-content {
     padding: 15px;
   }
@@ -785,243 +1049,628 @@ body.madic-unified .madic-unified-content .cric-scroll {
 
 /* Affichage identite CRIC sur le tableau de bord; aucune regle RLS modifiee. */
 
-
-
-
-
-
-
-
 /* Étape 4 : lisibilité du menu CRIC uniquement */
 
-
-
-@media(max-width:850px){}
+@media (max-width: 850px) {
+}
 
 /* Etape 5 : navigation professionnelle compacte et accessible. */
 
-
-
-
-@media(max-width:850px){}
+@media (max-width: 850px) {
+}
 
 /* Menu professionnel CRIC : harmonisation avec cric-dashboard.html. */
 
-
-
-
-
-
-
-
-
-
-@media(max-width:850px){}
+@media (max-width: 850px) {
+}
 
 /* MADIC 2026 - Harmonisation des pages professionnelles sur le dashboard CRIC.
    Exclusivement visuel : pas de modification des traitements ni de Supabase. */
 body.madic-unified:not([data-page="cric-dashboard"]) {
-  --dh-bg:#f1f6fc;--dh-card:#fff;--dh-line:#d9e5f1;--dh-text:#143453;
-  --madic-bg:#f1f6fc;--madic-surface:#fff;--madic-line:#d9e5f1;
-  --madic-ink:#143453;--madic-muted:#526b83;
-  background:#f1f6fc;color:#143453;
+  --dh-bg: #f1f6fc;
+  --dh-card: #fff;
+  --dh-line: #d9e5f1;
+  --dh-text: #143453;
+  --madic-bg: #f1f6fc;
+  --madic-surface: #fff;
+  --madic-line: #d9e5f1;
+  --madic-ink: #143453;
+  --madic-muted: #526b83;
+  background: #f1f6fc;
+  color: #143453;
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 body.madic-unified:not([data-page="cric-dashboard"]) .madic-unified-content {
-  background:#f1f6fc;color:#143453;padding:20px clamp(15px,2.5vw,36px) 48px;
+  background: #f1f6fc;
+  color: #143453;
+  padding: 20px clamp(15px, 2.5vw, 36px) 48px;
 }
-body.madic-unified:not([data-page="cric-dashboard"]) .madic-unified-content>header {
-  background:#fff;border:1px solid #dbe7f2;border-radius:12px;
-  box-shadow:0 4px 14px #153a5b0a;color:#173b5c;
+body.madic-unified:not([data-page="cric-dashboard"])
+  .madic-unified-content
+  > header {
+  background: #fff;
+  border: 1px solid #dbe7f2;
+  border-radius: 12px;
+  box-shadow: 0 4px 14px #153a5b0a;
+  color: #173b5c;
 }
-body.madic-unified:not([data-page="cric-dashboard"]) .madic-unified-content>main {max-width:1450px;}
-body.madic-unified:not([data-page="cric-dashboard"]) .madic-unified-content :is(h1,h2,h3,h4) {color:#143453;}
-body.madic-unified:not([data-page="cric-dashboard"]) .madic-unified-content :is(.panel,.madic-cric-card,.madic-home-card,.madic-msg-side,.madic-msg-chat) {
-  background:#fff;color:#173b5b;border:1px solid #dbe6f1;
-  border-radius:15px;box-shadow:0 8px 26px #153a5b0b;
+body.madic-unified:not([data-page="cric-dashboard"])
+  .madic-unified-content
+  > main {
+  max-width: 1450px;
 }
-body.madic-unified:not([data-page="cric-dashboard"]) .madic-unified-content :is(input:not([type="checkbox"]):not([type="radio"]),select,textarea) {
-  background:#fff;color:#183b5a;border:1px solid #b9ccdf;border-radius:9px;
+body.madic-unified:not([data-page="cric-dashboard"])
+  .madic-unified-content
+  :is(h1, h2, h3, h4) {
+  color: #143453;
 }
-body.madic-unified:not([data-page="cric-dashboard"]) .madic-unified-content :is(input,select,textarea)::placeholder {color:#71879c;}
-body.madic-unified:not([data-page="cric-dashboard"]) .madic-unified-content :is(.muted,.hint,small) {color:#5a7086;}
-body.madic-unified:not([data-page="cric-dashboard"]) .madic-unified-content :is(th,.madic-admin-table-wrap thead th) {
-  background:#eaf3fa!important;color:#183b59!important;border-color:#d6e4f0;
+body.madic-unified:not([data-page="cric-dashboard"])
+  .madic-unified-content
+  :is(
+    .panel,
+    .madic-cric-card,
+    .madic-home-card,
+    .madic-msg-side,
+    .madic-msg-chat
+  ) {
+  background: #fff;
+  color: #173b5b;
+  border: 1px solid #dbe6f1;
+  border-radius: 15px;
+  box-shadow: 0 8px 26px #153a5b0b;
 }
-body.madic-unified:not([data-page="cric-dashboard"]) .madic-unified-content td {color:#23445f;border-color:#dbe6f0;}
-body.madic-unified:not([data-page="cric-dashboard"]) .madic-unified-content a {color:#0879a6;}
-body.madic-unified:not([data-page="cric-dashboard"]) .madic-unified-content :is(button,.btn) {border-radius:9px;}
-body.madic-unified:not([data-page="cric-dashboard"]) .madic-unified-content :is(a,button,input,select,textarea,summary):focus-visible {outline:3px solid #178cb4;outline-offset:2px;}
-body.madic-unified:not([data-page="cric-dashboard"]) .madic-unified-content [hidden] {display:none!important;}
-@media(max-width:850px) {
-  
-  
-  body.madic-unified:not([data-page="cric-dashboard"]) .madic-unified-content {padding:15px;}
+body.madic-unified:not([data-page="cric-dashboard"])
+  .madic-unified-content
+  :is(input:not([type="checkbox"]):not([type="radio"]), select, textarea) {
+  background: #fff;
+  color: #183b5a;
+  border: 1px solid #b9ccdf;
+  border-radius: 9px;
 }
-@media(prefers-reduced-motion:reduce) {}
-
+body.madic-unified:not([data-page="cric-dashboard"])
+  .madic-unified-content
+  :is(input, select, textarea)::placeholder {
+  color: #71879c;
+}
+body.madic-unified:not([data-page="cric-dashboard"])
+  .madic-unified-content
+  :is(.muted, .hint, small) {
+  color: #5a7086;
+}
+body.madic-unified:not([data-page="cric-dashboard"])
+  .madic-unified-content
+  :is(th, .madic-admin-table-wrap thead th) {
+  background: #eaf3fa !important;
+  color: #183b59 !important;
+  border-color: #d6e4f0;
+}
+body.madic-unified:not([data-page="cric-dashboard"]) .madic-unified-content td {
+  color: #23445f;
+  border-color: #dbe6f0;
+}
+body.madic-unified:not([data-page="cric-dashboard"]) .madic-unified-content a {
+  color: #0879a6;
+}
+body.madic-unified:not([data-page="cric-dashboard"])
+  .madic-unified-content
+  :is(button, .btn) {
+  border-radius: 9px;
+}
+body.madic-unified:not([data-page="cric-dashboard"])
+  .madic-unified-content
+  :is(a, button, input, select, textarea, summary):focus-visible {
+  outline: 3px solid #178cb4;
+  outline-offset: 2px;
+}
+body.madic-unified:not([data-page="cric-dashboard"])
+  .madic-unified-content
+  [hidden] {
+  display: none !important;
+}
+@media (max-width: 850px) {
+  body.madic-unified:not([data-page="cric-dashboard"]) .madic-unified-content {
+    padding: 15px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+}
 
 /* MADIC - NAVIGATION CRIC COMMUNE : source unique pour toutes les pages. */
-body.madic-unified .madic-unified-layout{grid-template-columns:244px minmax(0,1fr)}
-body.madic-unified .madic-unified-sidebar{background:linear-gradient(175deg,#092342,#0b3152 60%,#08213d);border-right:1px solid #244867;padding:22px 14px;gap:19px;display:flex;flex-direction:column;position:sticky;top:0;height:100vh;box-sizing:border-box;overflow-y:auto;z-index:3}
-body.madic-unified .madic-unified-brand{display:flex;align-items:center;gap:10px;padding:7px 7px 18px;border-bottom:1px solid #ffffff25;color:#f2fbff}
-body.madic-unified .madic-unified-monogram{display:grid;place-items:center;width:53px;height:53px;flex:0 0 53px;background:transparent;border-radius:0}
-body.madic-unified .madic-unified-monogram img{display:block;width:100%;height:100%;object-fit:contain}
-body.madic-unified .madic-unified-brand strong{display:block;font-size:14px;letter-spacing:.02em;color:#f2fbff}
-body.madic-unified .madic-unified-brand small{display:block;color:#d5e9f6;font-size:11px;margin-top:5px}
-body.madic-unified .madic-unified-caption{font-size:10px;color:#a7c9db;letter-spacing:.18em;margin:5px 12px -12px}
-body.madic-unified .madic-unified-sidebar nav{display:flex;flex-direction:column;gap:5px}
-body.madic-unified .madic-unified-sidebar nav a{display:flex;align-items:center;gap:12px;min-height:43px;padding:10px 12px;box-sizing:border-box;border-radius:10px;font-size:.83rem;font-weight:600;color:#c8dce9!important;text-decoration:none!important;border:1px solid transparent;transition:background .16s ease,transform .16s ease}
-body.madic-unified .madic-unified-sidebar nav a span{display:grid;place-items:center;flex:0 0 23px;width:23px;text-align:center}
-body.madic-unified .madic-unified-sidebar nav .madic-heroicon{display:block;width:21px;height:21px;object-fit:contain;filter:brightness(0) invert(1);opacity:.85}
-body.madic-unified .madic-unified-sidebar nav a.madic-v2-group-start{margin-top:12px;border-top:1px solid #294a61;padding-top:15px}
-body.madic-unified .madic-unified-sidebar nav a:hover{background:#194e70;transform:translateX(2px)}
-body.madic-unified .madic-unified-sidebar nav a[aria-current="page"]{background:#1a6482;color:#fff!important;border:1px solid #62cbd5;box-shadow:inset 3px 0 #81e7e5,0 4px 14px #001c3038}
-body.madic-unified .madic-unified-sidebar nav a:focus-visible{outline:3px solid #70e4e5;outline-offset:2px}
-body.madic-unified .madic-unified-foot{margin-top:auto;border:1px solid #35638b;border-radius:12px;padding:14px 12px;background:#143657;color:#dceefe;font-size:11px}
-@media(max-width:850px){
- body.madic-unified .madic-unified-layout{grid-template-columns:minmax(0,1fr)}
- body.madic-unified .madic-unified-sidebar{position:relative;height:auto;padding:13px;gap:10px}
- body.madic-unified .madic-unified-sidebar nav{flex-direction:row;overflow-x:auto;gap:7px;padding-bottom:5px}
- body.madic-unified .madic-unified-sidebar nav a{white-space:nowrap;min-height:36px}
- body.madic-unified .madic-unified-sidebar nav a:hover{transform:none}
- body.madic-unified .madic-unified-caption,body.madic-unified .madic-unified-foot{display:none}
+body.madic-unified .madic-unified-layout {
+  grid-template-columns: 244px minmax(0, 1fr);
 }
-@media(prefers-reduced-motion:reduce){body.madic-unified .madic-unified-sidebar nav a{transition:none}}
-
+body.madic-unified .madic-unified-sidebar {
+  background: linear-gradient(175deg, #092342, #0b3152 60%, #08213d);
+  border-right: 1px solid #244867;
+  padding: 22px 14px;
+  gap: 19px;
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  box-sizing: border-box;
+  overflow-y: auto;
+  z-index: 3;
+}
+body.madic-unified .madic-unified-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 7px 18px;
+  border-bottom: 1px solid #ffffff25;
+  color: #f2fbff;
+}
+body.madic-unified .madic-unified-monogram {
+  display: grid;
+  place-items: center;
+  width: 53px;
+  height: 53px;
+  flex: 0 0 53px;
+  background: transparent;
+  border-radius: 0;
+}
+body.madic-unified .madic-unified-monogram img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+body.madic-unified .madic-unified-brand strong {
+  display: block;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  color: #f2fbff;
+}
+body.madic-unified .madic-unified-brand small {
+  display: block;
+  color: #d5e9f6;
+  font-size: 11px;
+  margin-top: 5px;
+}
+body.madic-unified .madic-unified-caption {
+  font-size: 10px;
+  color: #a7c9db;
+  letter-spacing: 0.18em;
+  margin: 5px 12px -12px;
+}
+body.madic-unified .madic-unified-sidebar nav {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+body.madic-unified .madic-unified-sidebar nav a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 43px;
+  padding: 10px 12px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  font-size: 0.83rem;
+  font-weight: 600;
+  color: #c8dce9 !important;
+  text-decoration: none !important;
+  border: 1px solid transparent;
+  transition:
+    background 0.16s ease,
+    transform 0.16s ease;
+}
+body.madic-unified .madic-unified-sidebar nav a span {
+  display: grid;
+  place-items: center;
+  flex: 0 0 23px;
+  width: 23px;
+  text-align: center;
+}
+body.madic-unified .madic-unified-sidebar nav .madic-heroicon {
+  display: block;
+  width: 21px;
+  height: 21px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  opacity: 0.85;
+}
+body.madic-unified .madic-unified-sidebar nav a.madic-v2-group-start {
+  margin-top: 12px;
+  border-top: 1px solid #294a61;
+  padding-top: 15px;
+}
+body.madic-unified .madic-unified-sidebar nav a:hover {
+  background: #194e70;
+  transform: translateX(2px);
+}
+body.madic-unified .madic-unified-sidebar nav a[aria-current="page"] {
+  background: #1a6482;
+  color: #fff !important;
+  border: 1px solid #62cbd5;
+  box-shadow:
+    inset 3px 0 #81e7e5,
+    0 4px 14px #001c3038;
+}
+body.madic-unified .madic-unified-sidebar nav a:focus-visible {
+  outline: 3px solid #70e4e5;
+  outline-offset: 2px;
+}
+body.madic-unified .madic-unified-foot {
+  margin-top: auto;
+  border: 1px solid #35638b;
+  border-radius: 12px;
+  padding: 14px 12px;
+  background: #143657;
+  color: #dceefe;
+  font-size: 11px;
+}
+@media (max-width: 850px) {
+  body.madic-unified .madic-unified-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  body.madic-unified .madic-unified-sidebar {
+    position: relative;
+    height: auto;
+    padding: 13px;
+    gap: 10px;
+  }
+  body.madic-unified .madic-unified-sidebar nav {
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 7px;
+    padding-bottom: 5px;
+  }
+  body.madic-unified .madic-unified-sidebar nav a {
+    white-space: nowrap;
+    min-height: 36px;
+  }
+  body.madic-unified .madic-unified-sidebar nav a:hover {
+    transform: none;
+  }
+  body.madic-unified .madic-unified-caption,
+  body.madic-unified .madic-unified-foot {
+    display: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  body.madic-unified .madic-unified-sidebar nav a {
+    transition: none;
+  }
+}
 
 /* MADIC CRIC 2026-11-02 : presentation partagee, sans modification des traitements. */
-@media(min-width:851px){
-body.madic-unified .madic-unified-layout{grid-template-columns:244px minmax(0,1fr)!important}
-body.madic-unified .madic-unified-sidebar{width:244px!important;min-width:244px!important;position:sticky!important;top:0!important;height:100vh!important;padding:22px 14px!important;gap:19px!important;box-sizing:border-box!important}
-body.madic-unified .madic-unified-sidebar nav{gap:5px!important}
-body.madic-unified .madic-unified-sidebar nav a{min-height:43px!important;padding:10px 12px!important;font-size:.83rem!important;line-height:1.25!important}
-body.madic-unified .madic-unified-brand{padding:7px 7px 18px!important;gap:10px!important}
-body.madic-unified .madic-unified-monogram{width:53px!important;height:53px!important;flex:0 0 53px!important}
-body.madic-unified .madic-unified-foot{margin-top:auto!important}
+@media (min-width: 851px) {
+  body.madic-unified .madic-unified-layout {
+    grid-template-columns: 244px minmax(0, 1fr) !important;
+  }
+  body.madic-unified .madic-unified-sidebar {
+    width: 244px !important;
+    min-width: 244px !important;
+    position: sticky !important;
+    top: 0 !important;
+    height: 100vh !important;
+    padding: 22px 14px !important;
+    gap: 19px !important;
+    box-sizing: border-box !important;
+  }
+  body.madic-unified .madic-unified-sidebar nav {
+    gap: 5px !important;
+  }
+  body.madic-unified .madic-unified-sidebar nav a {
+    min-height: 43px !important;
+    padding: 10px 12px !important;
+    font-size: 0.83rem !important;
+    line-height: 1.25 !important;
+  }
+  body.madic-unified .madic-unified-brand {
+    padding: 7px 7px 18px !important;
+    gap: 10px !important;
+  }
+  body.madic-unified .madic-unified-monogram {
+    width: 53px !important;
+    height: 53px !important;
+    flex: 0 0 53px !important;
+  }
+  body.madic-unified .madic-unified-foot {
+    margin-top: auto !important;
+  }
 }
-body.madic-unified:not([data-page="cric-dashboard"]) .madic-unified-content>header.madic-cric-standard-header{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:18px!important;min-height:62px!important;box-sizing:border-box!important;padding:12px 20px!important;background:#fff!important;border:1px solid #dbe7f2!important;border-radius:13px!important;margin-bottom:22px!important;color:#123553!important}
-body.madic-unified .madic-cric-standard-header .brand{font-size:22px!important;font-weight:800!important;text-decoration:none!important;color:#102d4c!important;white-space:nowrap}
-body.madic-unified .madic-cric-standard-header .brand span{color:#50bfdf!important}
-body.madic-unified .madic-cric-standard-header .brand small{font-size:.75em!important;color:#21618d!important}
-body.madic-unified .madic-cric-standard-header .toplinks{display:flex!important;align-items:center!important;justify-content:flex-end!important;gap:12px!important;flex-wrap:wrap}
-body.madic-unified .madic-cric-standard-header .toplinks>a{font-weight:700!important;text-decoration:none!important;color:#123553!important}
-body.madic-unified .madic-cric-standard-header .madic-lang-controls{display:flex!important;align-items:center!important;gap:5px!important}
-body.madic-unified .madic-cric-standard-header .madic-lang-controls button{min-width:44px!important;min-height:39px!important;padding:8px 11px!important;border:1px solid #54b7d9!important;border-radius:10px!important;background:#eef8fc!important;color:#123553!important;font-weight:700!important;cursor:default!important;opacity:1!important}
-body.madic-unified .madic-cric-standard-header .madic-lang-controls button[data-lang="fr"]{background:#389ec0!important;color:#fff!important}
-body.madic-unified:not([data-page="cric-dashboard"]) .madic-unified-content .madic-cric-standard-header a{color:#123553!important}
+body.madic-unified:not([data-page="cric-dashboard"])
+  .madic-unified-content
+  > header.madic-cric-standard-header {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 18px !important;
+  min-height: 62px !important;
+  box-sizing: border-box !important;
+  padding: 12px 20px !important;
+  background: #fff !important;
+  border: 1px solid #dbe7f2 !important;
+  border-radius: 13px !important;
+  margin-bottom: 22px !important;
+  color: #123553 !important;
+}
+body.madic-unified .madic-cric-standard-header .brand {
+  font-size: 22px !important;
+  font-weight: 800 !important;
+  text-decoration: none !important;
+  color: #102d4c !important;
+  white-space: nowrap;
+}
+body.madic-unified .madic-cric-standard-header .brand span {
+  color: #50bfdf !important;
+}
+body.madic-unified .madic-cric-standard-header .brand small {
+  font-size: 0.75em !important;
+  color: #21618d !important;
+}
+body.madic-unified .madic-cric-standard-header .toplinks {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  gap: 12px !important;
+  flex-wrap: wrap;
+}
+body.madic-unified .madic-cric-standard-header .toplinks > a {
+  font-weight: 700 !important;
+  text-decoration: none !important;
+  color: #123553 !important;
+}
+body.madic-unified .madic-cric-standard-header .madic-lang-controls {
+  display: flex !important;
+  align-items: center !important;
+  gap: 5px !important;
+}
+body.madic-unified .madic-cric-standard-header .madic-lang-controls button {
+  min-width: 44px !important;
+  min-height: 39px !important;
+  padding: 8px 11px !important;
+  border: 1px solid #54b7d9 !important;
+  border-radius: 10px !important;
+  background: #eef8fc !important;
+  color: #123553 !important;
+  font-weight: 700 !important;
+  cursor: default !important;
+  opacity: 1 !important;
+}
+body.madic-unified
+  .madic-cric-standard-header
+  .madic-lang-controls
+  button[data-lang="fr"] {
+  background: #389ec0 !important;
+  color: #fff !important;
+}
+body.madic-unified:not([data-page="cric-dashboard"])
+  .madic-unified-content
+  .madic-cric-standard-header
+  a {
+  color: #123553 !important;
+}
 /* Conserver les surfaces de travail foncees et y restaurer la lisibilite. */
-body.madic-unified[data-page="messagerie-cric"] .madic-unified-content :is(.madic-msg-side,.madic-msg-chat),
-body.madic-unified[data-page="profil-professionnel-cric"] .madic-unified-content :is(.madic-profile-address,.madic-profile-address-section){color:#e8f3fa}
-body.madic-unified[data-page="messagerie-cric"] .madic-unified-content :is(.madic-msg-side,.madic-msg-chat) :is(h2,h3,h4,label,small),
-body.madic-unified[data-page="profil-professionnel-cric"] .madic-unified-content :is(.madic-profile-address,.madic-profile-address-section) :is(h2,h3,h4,label,small){color:#e8f3fa}
-@media(max-width:850px){body.madic-unified .madic-cric-standard-header{flex-wrap:wrap!important}body.madic-unified .madic-cric-standard-header .brand{font-size:18px!important}}
+body.madic-unified[data-page="messagerie-cric"]
+  .madic-unified-content
+  :is(.madic-msg-side, .madic-msg-chat),
+body.madic-unified[data-page="profil-professionnel-cric"]
+  .madic-unified-content
+  :is(.madic-profile-address, .madic-profile-address-section) {
+  color: #e8f3fa;
+}
+body.madic-unified[data-page="messagerie-cric"]
+  .madic-unified-content
+  :is(.madic-msg-side, .madic-msg-chat)
+  :is(h2, h3, h4, label, small),
+body.madic-unified[data-page="profil-professionnel-cric"]
+  .madic-unified-content
+  :is(.madic-profile-address, .madic-profile-address-section)
+  :is(h2, h3, h4, label, small) {
+  color: #e8f3fa;
+}
+@media (max-width: 850px) {
+  body.madic-unified .madic-cric-standard-header {
+    flex-wrap: wrap !important;
+  }
+  body.madic-unified .madic-cric-standard-header .brand {
+    font-size: 18px !important;
+  }
+}
 
 /* MADIC 2026-11-02 : correction de contraste limitee aux deux pages CRIC. */
 /* Les panneaux fonces ne doivent pas heriter des titres et libelles du theme clair. */
-body.madic-unified[data-page="profil-professionnel-cric"] .madic-unified-content .madic-address-section {
-  background:#10263b!important; color:#edf6fc!important; border-color:#42617b!important;
+body.madic-unified[data-page="profil-professionnel-cric"]
+  .madic-unified-content
+  .madic-address-section {
+  background: #10263b !important;
+  color: #edf6fc !important;
+  border-color: #42617b !important;
 }
-body.madic-unified[data-page="profil-professionnel-cric"] .madic-unified-content .madic-address-section :is(h2,h3,label),
-body.madic-unified[data-page="profil-professionnel-cric"] .madic-unified-content .madic-address-section label {
-  color:#f0f8ff!important; opacity:1!important;
+body.madic-unified[data-page="profil-professionnel-cric"]
+  .madic-unified-content
+  .madic-address-section
+  :is(h2, h3, label),
+body.madic-unified[data-page="profil-professionnel-cric"]
+  .madic-unified-content
+  .madic-address-section
+  label {
+  color: #f0f8ff !important;
+  opacity: 1 !important;
 }
-body.madic-unified[data-page="profil-professionnel-cric"] .madic-unified-content .madic-address-section :is(p,.muted,small) {
-  color:#c6dbe9!important; opacity:1!important;
+body.madic-unified[data-page="profil-professionnel-cric"]
+  .madic-unified-content
+  .madic-address-section
+  :is(p, .muted, small) {
+  color: #c6dbe9 !important;
+  opacity: 1 !important;
 }
-body.madic-unified[data-page="profil-professionnel-cric"] .madic-unified-content .madic-address-section :is(input,select,textarea) {
-  background:#fff!important; color:#173653!important; border:1px solid #a7bfd2!important; opacity:1!important;
+body.madic-unified[data-page="profil-professionnel-cric"]
+  .madic-unified-content
+  .madic-address-section
+  :is(input, select, textarea) {
+  background: #fff !important;
+  color: #173653 !important;
+  border: 1px solid #a7bfd2 !important;
+  opacity: 1 !important;
 }
-body.madic-unified[data-page="profil-professionnel-cric"] .madic-unified-content .madic-address-section :is(input,select,textarea)[readonly] {
-  background:#e8eff6!important; color:#27445d!important; opacity:1!important;
+body.madic-unified[data-page="profil-professionnel-cric"]
+  .madic-unified-content
+  .madic-address-section
+  :is(input, select, textarea)[readonly] {
+  background: #e8eff6 !important;
+  color: #27445d !important;
+  opacity: 1 !important;
 }
-body.madic-unified[data-page="profil-professionnel-cric"] .madic-unified-content #profileStatus {
-  color:#eaf7ff!important; background:#142c43!important; border-left-color:#55d4e2!important;
+body.madic-unified[data-page="profil-professionnel-cric"]
+  .madic-unified-content
+  #profileStatus {
+  color: #eaf7ff !important;
+  background: #142c43 !important;
+  border-left-color: #55d4e2 !important;
 }
-body.madic-unified[data-page="messagerie-cric"] .madic-unified-content :is(.madic-msg-side,.madic-msg-chat) {
-  background:#132940!important; color:#f0f8ff!important; border-color:#3e6078!important;
+body.madic-unified[data-page="messagerie-cric"]
+  .madic-unified-content
+  :is(.madic-msg-side, .madic-msg-chat) {
+  background: #132940 !important;
+  color: #f0f8ff !important;
+  border-color: #3e6078 !important;
 }
-body.madic-unified[data-page="messagerie-cric"] .madic-unified-content :is(.madic-msg-side,.madic-msg-chat) :is(h2,h3,h4,label,small),
-body.madic-unified[data-page="messagerie-cric"] .madic-unified-content .madic-msg-conversations :is(li,button,.madic-client-group-toggle),
-body.madic-unified[data-page="messagerie-cric"] .madic-unified-content .madic-msg-bubble {
-  color:#f0f8ff!important;
+body.madic-unified[data-page="messagerie-cric"]
+  .madic-unified-content
+  :is(.madic-msg-side, .madic-msg-chat)
+  :is(h2, h3, h4, label, small),
+body.madic-unified[data-page="messagerie-cric"]
+  .madic-unified-content
+  .madic-msg-conversations
+  :is(li, button, .madic-client-group-toggle),
+body.madic-unified[data-page="messagerie-cric"]
+  .madic-unified-content
+  .madic-msg-bubble {
+  color: #f0f8ff !important;
 }
-body.madic-unified[data-page="messagerie-cric"] .madic-unified-content :is(.madic-msg-side,.madic-msg-chat) :is(.muted,time),
-body.madic-unified[data-page="messagerie-cric"] .madic-unified-content #msgAutoRefreshState {
-  color:#c5dbea!important; opacity:1!important;
+body.madic-unified[data-page="messagerie-cric"]
+  .madic-unified-content
+  :is(.madic-msg-side, .madic-msg-chat)
+  :is(.muted, time),
+body.madic-unified[data-page="messagerie-cric"]
+  .madic-unified-content
+  #msgAutoRefreshState {
+  color: #c5dbea !important;
+  opacity: 1 !important;
 }
-body.madic-unified[data-page="messagerie-cric"] .madic-unified-content .madic-msg-conversations .madic-client-group-toggle {
-  background:#25465d!important; border-color:#53758d!important;
+body.madic-unified[data-page="messagerie-cric"]
+  .madic-unified-content
+  .madic-msg-conversations
+  .madic-client-group-toggle {
+  background: #25465d !important;
+  border-color: #53758d !important;
 }
-body.madic-unified[data-page="messagerie-cric"] .madic-unified-content .madic-msg-conversations ul button {
-  background:#18344a!important; border-color:#496a82!important;
+body.madic-unified[data-page="messagerie-cric"]
+  .madic-unified-content
+  .madic-msg-conversations
+  ul
+  button {
+  background: #18344a !important;
+  border-color: #496a82 !important;
 }
-body.madic-unified[data-page="messagerie-cric"] .madic-unified-content .madic-msg-conversations ul button[aria-current="true"] {
-  background:#205568!important; border-color:#70d5df!important;
+body.madic-unified[data-page="messagerie-cric"]
+  .madic-unified-content
+  .madic-msg-conversations
+  ul
+  button[aria-current="true"] {
+  background: #205568 !important;
+  border-color: #70d5df !important;
 }
-body.madic-unified[data-page="messagerie-cric"] .madic-unified-content .madic-msg-bubble time,
-body.madic-unified[data-page="messagerie-cric"] .madic-unified-content .madic-msg-conversations small {
-  color:#d0e2ef!important; opacity:1!important;
+body.madic-unified[data-page="messagerie-cric"]
+  .madic-unified-content
+  .madic-msg-bubble
+  time,
+body.madic-unified[data-page="messagerie-cric"]
+  .madic-unified-content
+  .madic-msg-conversations
+  small {
+  color: #d0e2ef !important;
+  opacity: 1 !important;
 }
-body.madic-unified[data-page="messagerie-cric"] .madic-unified-content .madic-message-attachments :is(h3,.madic-attachment-filename,.madic-attachment-count,.madic-attachment-meta,.madic-attachment-size) {
-  color:#f0f8ff!important; opacity:1!important;
+body.madic-unified[data-page="messagerie-cric"]
+  .madic-unified-content
+  .madic-message-attachments
+  :is(
+    h3,
+    .madic-attachment-filename,
+    .madic-attachment-count,
+    .madic-attachment-meta,
+    .madic-attachment-size
+  ) {
+  color: #f0f8ff !important;
+  opacity: 1 !important;
 }
-
 
 /* MADIC - 2026-11-02 : lisibilite des outils professionnels CRIC.
    Correction circonscrite a cette page; aucune modification fonctionnelle. */
-body.madic-unified[data-page="gestion-dossiers-cric"] .madic-unified-content .madic-stage-hero {
-  color:#f3f9ff;
+body.madic-unified[data-page="gestion-dossiers-cric"]
+  .madic-unified-content
+  .madic-stage-hero {
+  color: #f3f9ff;
 }
-body.madic-unified[data-page="gestion-dossiers-cric"] .madic-unified-content .madic-stage-hero h2 {
-  color:#ffffff!important;
-  opacity:1!important;
+body.madic-unified[data-page="gestion-dossiers-cric"]
+  .madic-unified-content
+  .madic-stage-hero
+  h2 {
+  color: #ffffff !important;
+  opacity: 1 !important;
 }
-body.madic-unified[data-page="gestion-dossiers-cric"] .madic-unified-content .madic-stage-hero :is(p,.madic-stage-kicker) {
-  color:#e1f2fc!important;
-  opacity:1!important;
+body.madic-unified[data-page="gestion-dossiers-cric"]
+  .madic-unified-content
+  .madic-stage-hero
+  :is(p, .madic-stage-kicker) {
+  color: #e1f2fc !important;
+  opacity: 1 !important;
 }
-body.madic-unified[data-page="gestion-dossiers-cric"] .madic-unified-content .madic-stage-stats article :is(span,small) {
-  color:#d4e7f6!important;
-  opacity:1!important;
+body.madic-unified[data-page="gestion-dossiers-cric"]
+  .madic-unified-content
+  .madic-stage-stats
+  article
+  :is(span, small) {
+  color: #d4e7f6 !important;
+  opacity: 1 !important;
 }
-body.madic-unified[data-page="gestion-dossiers-cric"] .madic-unified-content .madic-stage-stats article strong {
-  color:#ffffff!important;
-  opacity:1!important;
+body.madic-unified[data-page="gestion-dossiers-cric"]
+  .madic-unified-content
+  .madic-stage-stats
+  article
+  strong {
+  color: #ffffff !important;
+  opacity: 1 !important;
 }
-body.madic-unified[data-page="gestion-dossiers-cric"] .madic-unified-content .madic-tools-shortcuts a {
-  color:#ffffff!important;
-  background:#173b56;
-  border-color:#426981;
-  opacity:1!important;
-  text-decoration:none;
+body.madic-unified[data-page="gestion-dossiers-cric"]
+  .madic-unified-content
+  .madic-tools-shortcuts
+  a {
+  color: #ffffff !important;
+  background: #173b56;
+  border-color: #426981;
+  opacity: 1 !important;
+  text-decoration: none;
 }
-body.madic-unified[data-page="gestion-dossiers-cric"] .madic-unified-content .madic-tools-shortcuts a:hover,
-body.madic-unified[data-page="gestion-dossiers-cric"] .madic-unified-content .madic-tools-shortcuts a:focus-visible {
-  color:#ffffff!important;
-  background:#236181;
-  border-color:#79dce5;
+body.madic-unified[data-page="gestion-dossiers-cric"]
+  .madic-unified-content
+  .madic-tools-shortcuts
+  a:hover,
+body.madic-unified[data-page="gestion-dossiers-cric"]
+  .madic-unified-content
+  .madic-tools-shortcuts
+  a:focus-visible {
+  color: #ffffff !important;
+  background: #236181;
+  border-color: #79dce5;
 }
-body.madic-unified[data-page="gestion-dossiers-cric"] .madic-unified-content .madic-page-lead {
-  color:#47627e!important;
-  opacity:1!important;
+body.madic-unified[data-page="gestion-dossiers-cric"]
+  .madic-unified-content
+  .madic-page-lead {
+  color: #47627e !important;
+  opacity: 1 !important;
 }
-body.madic-unified[data-page="gestion-dossiers-cric"] .madic-unified-content .cric-return-link {
-  color:#ffffff!important;
+body.madic-unified[data-page="gestion-dossiers-cric"]
+  .madic-unified-content
+  .cric-return-link {
+  color: #ffffff !important;
 }
-
 
 /* SOURCE: madic-footer.css */
 footer.madic-footer {
@@ -1122,115 +1771,542 @@ footer.madic-footer {
   font-size: 0.78rem;
 }
 
-@media (max-width:600px){.madic-footer-inner{display:block}.madic-footer-right{justify-content:flex-start;gap:14px;margin-top:23px}.madic-footer-bottom{margin-top:23px}}
+@media (max-width: 600px) {
+  .madic-footer-inner {
+    display: block;
+  }
+  .madic-footer-right {
+    justify-content: flex-start;
+    gap: 14px;
+    margin-top: 23px;
+  }
+  .madic-footer-bottom {
+    margin-top: 23px;
+  }
+}
 
-.madic-footer,.madic-footer *{box-sizing:border-box}.madic-footer{font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;text-align:left}.madic-footer a:focus-visible{outline:3px solid #efb544;outline-offset:3px}
-
+.madic-footer,
+.madic-footer * {
+  box-sizing: border-box;
+}
+.madic-footer {
+  font-family:
+    Inter,
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    sans-serif;
+  text-align: left;
+}
+.madic-footer a:focus-visible {
+  outline: 3px solid #efb544;
+  outline-offset: 3px;
+}
 
 /* SOURCE: inline */
 
-      body.madic-unified
-        .madic-cric-standard-header
-        .madic-lang-controls
-        button[data-lang] {
-        background: #eef8fc !important;
-        color: #123553 !important;
-        cursor: pointer !important;
-      }
-      body.madic-unified
-        .madic-cric-standard-header
-        .madic-lang-controls
-        button[data-lang].madic-lang-active {
-        background: #389ec0 !important;
-        color: #fff !important;
-      }
-    
+body.madic-unified
+  .madic-cric-standard-header
+  .madic-lang-controls
+  button[data-lang] {
+  background: #eef8fc !important;
+  color: #123553 !important;
+  cursor: pointer !important;
+}
+body.madic-unified
+  .madic-cric-standard-header
+  .madic-lang-controls
+  button[data-lang].madic-lang-active {
+  background: #389ec0 !important;
+  color: #fff !important;
+}
+
 /* Alignement final sur Gestion des clients */
 
 body.madic-unified[data-page="rendez-vous-cric"] .madic-unified-content {
-  padding:0 !important; display:flex; flex-direction:column; min-height:100vh; min-width:0; background:#eef3f9;
+  padding: 0 !important;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-width: 0;
+  background: #eef3f9;
 }
-body.madic-unified[data-page="rendez-vous-cric"] .madic-unified-content > header {
-  width:100%; max-width:none; min-height:78px; margin:0; padding:12px 34px !important;
-  border:0; border-bottom:1px solid #dbe6f0; border-radius:0; background:#fff !important; box-shadow:none; backdrop-filter:none;
+body.madic-unified[data-page="rendez-vous-cric"]
+  .madic-unified-content
+  > header {
+  width: 100%;
+  max-width: none;
+  min-height: 78px;
+  margin: 0;
+  padding: 12px 34px !important;
+  border: 0;
+  border-bottom: 1px solid #dbe6f0;
+  border-radius: 0;
+  background: #fff !important;
+  box-shadow: none;
+  backdrop-filter: none;
 }
-body.madic-unified[data-page="rendez-vous-cric"] .madic-unified-content > main.madic-rdv-shell {
-  box-sizing:border-box; width:100%; max-width:none; margin:0; padding:26px 34px 48px; flex:1 0 auto;
+body.madic-unified[data-page="rendez-vous-cric"]
+  .madic-unified-content
+  > main.madic-rdv-shell {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 26px 34px 48px;
+  flex: 1 0 auto;
 }
-body.madic-unified[data-page="rendez-vous-cric"] .madic-unified-content > footer.madic-footer {
-  box-sizing:border-box; width:100%; max-width:none; margin:0; padding:40px 34px 23px !important;
-  border-radius:0; flex-shrink:0; background:#eef3f9 !important; border-top:1px solid #a9bacd !important; color:#526b83 !important;
+body.madic-unified[data-page="rendez-vous-cric"]
+  .madic-unified-content
+  > footer.madic-footer {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 40px 34px 23px !important;
+  border-radius: 0;
+  flex-shrink: 0;
+  background: #eef3f9 !important;
+  border-top: 1px solid #a9bacd !important;
+  color: #526b83 !important;
 }
-body.madic-unified[data-page="rendez-vous-cric"] footer.madic-footer > .madic-footer-inner,
-body.madic-unified[data-page="rendez-vous-cric"] footer.madic-footer > .madic-footer-bottom {
-  box-sizing:border-box; width:100%; max-width:none; margin-left:0; margin-right:0; padding-left:0; padding-right:0;
+body.madic-unified[data-page="rendez-vous-cric"]
+  footer.madic-footer
+  > .madic-footer-inner,
+body.madic-unified[data-page="rendez-vous-cric"]
+  footer.madic-footer
+  > .madic-footer-bottom {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: none;
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 0;
+  padding-right: 0;
 }
-body.madic-unified[data-page="rendez-vous-cric"] footer.madic-footer :is(.madic-footer-name,.madic-footer-subtitle,.madic-footer-desc,.madic-footer-bottom,.madic-footer-unavailable) {color:#526b83 !important;}
-body.madic-unified[data-page="rendez-vous-cric"] footer.madic-footer .madic-footer-name {color:#143453 !important;}
-body.madic-unified[data-page="rendez-vous-cric"] footer.madic-footer .madic-footer-right a {color:#35729d !important;}
-body.madic-unified[data-page="rendez-vous-cric"] footer.madic-footer .madic-footer-bottom {border-top-color:#a9bacd !important;}
+body.madic-unified[data-page="rendez-vous-cric"]
+  footer.madic-footer
+  :is(
+    .madic-footer-name,
+    .madic-footer-subtitle,
+    .madic-footer-desc,
+    .madic-footer-bottom,
+    .madic-footer-unavailable
+  ) {
+  color: #526b83 !important;
+}
+body.madic-unified[data-page="rendez-vous-cric"]
+  footer.madic-footer
+  .madic-footer-name {
+  color: #143453 !important;
+}
+body.madic-unified[data-page="rendez-vous-cric"]
+  footer.madic-footer
+  .madic-footer-right
+  a {
+  color: #35729d !important;
+}
+body.madic-unified[data-page="rendez-vous-cric"]
+  footer.madic-footer
+  .madic-footer-bottom {
+  border-top-color: #a9bacd !important;
+}
 body.madic-unified[data-page="rendez-vous-cric"] .toplinks #logout {
-  display:inline-flex; align-items:center; justify-content:center; padding:6px 4px !important; min-height:38px;
-  border:0 !important; border-radius:0 !important; background:transparent !important; color:#123553 !important;
-  box-shadow:none !important; font:inherit; font-weight:500; cursor:pointer; white-space:nowrap;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 4px !important;
+  min-height: 38px;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: #123553 !important;
+  box-shadow: none !important;
+  font: inherit;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
 }
-body.madic-unified[data-page="rendez-vous-cric"] .toplinks #logout:hover {text-decoration:underline;}
-body.madic-unified[data-page="rendez-vous-cric"] .toplinks #logout:focus-visible {outline:2px solid #178cb4;outline-offset:3px;}
-@media (min-width:801px) and (max-width:1080px) {
- body.madic-unified[data-page="rendez-vous-cric"] .madic-unified-content > header {padding:12px 18px !important;}
- body.madic-unified[data-page="rendez-vous-cric"] .madic-unified-content > main.madic-rdv-shell {padding:20px 18px 36px;}
- body.madic-unified[data-page="rendez-vous-cric"] .madic-unified-content > footer.madic-footer {padding-left:18px !important;padding-right:18px !important;}
+body.madic-unified[data-page="rendez-vous-cric"] .toplinks #logout:hover {
+  text-decoration: underline;
 }
-@media (max-width:800px) {
- body.madic-unified[data-page="rendez-vous-cric"] .madic-unified-content > header {padding:18px 22px !important;}
- body.madic-unified[data-page="rendez-vous-cric"] .madic-unified-content > main.madic-rdv-shell {padding:18px 16px 45px;}
- body.madic-unified[data-page="rendez-vous-cric"] .madic-unified-content > footer.madic-footer {padding:32px 16px 23px !important;}
+body.madic-unified[data-page="rendez-vous-cric"]
+  .toplinks
+  #logout:focus-visible {
+  outline: 2px solid #178cb4;
+  outline-offset: 3px;
+}
+@media (min-width: 801px) and (max-width: 1080px) {
+  body.madic-unified[data-page="rendez-vous-cric"]
+    .madic-unified-content
+    > header {
+    padding: 12px 18px !important;
+  }
+  body.madic-unified[data-page="rendez-vous-cric"]
+    .madic-unified-content
+    > main.madic-rdv-shell {
+    padding: 20px 18px 36px;
+  }
+  body.madic-unified[data-page="rendez-vous-cric"]
+    .madic-unified-content
+    > footer.madic-footer {
+    padding-left: 18px !important;
+    padding-right: 18px !important;
+  }
+}
+@media (max-width: 800px) {
+  body.madic-unified[data-page="rendez-vous-cric"]
+    .madic-unified-content
+    > header {
+    padding: 18px 22px !important;
+  }
+  body.madic-unified[data-page="rendez-vous-cric"]
+    .madic-unified-content
+    > main.madic-rdv-shell {
+    padding: 18px 16px 45px;
+  }
+  body.madic-unified[data-page="rendez-vous-cric"]
+    .madic-unified-content
+    > footer.madic-footer {
+    padding: 32px 16px 23px !important;
+  }
 }
 
-
-body.madic-unified[data-page="rendez-vous-cric"] .madic-unified-content > main.madic-rdv-shell {max-width:none;min-width:0;}
-body.madic-unified[data-page="rendez-vous-cric"] .madic-unified-content > header .toplinks{display:flex;align-items:center;gap:18px;}
-body.madic-unified[data-page="rendez-vous-cric"] .madic-unified-content > footer.madic-footer {text-align:left;}
-body.madic-unified[data-page="rendez-vous-cric"] .madic-unified-content > footer.madic-footer .madic-footer-inner {max-width:none;}
-body.madic-unified[data-page="rendez-vous-cric"] .madic-unified-sidebar a[aria-current="page"] {background:#1a6482;color:#fff!important;border:1px solid #62cbd5;}
-@media(max-width:800px){body.madic-unified[data-page="rendez-vous-cric"] .madic-unified-content > main.madic-rdv-shell{padding:20px 15px 32px;}body.madic-unified[data-page="rendez-vous-cric"] .madic-unified-content > header{padding:12px 15px!important;}body.madic-unified[data-page="rendez-vous-cric"] .madic-unified-content > footer.madic-footer{padding:30px 15px!important;}}
+body.madic-unified[data-page="rendez-vous-cric"]
+  .madic-unified-content
+  > main.madic-rdv-shell {
+  max-width: none;
+  min-width: 0;
+}
+body.madic-unified[data-page="rendez-vous-cric"]
+  .madic-unified-content
+  > header
+  .toplinks {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+body.madic-unified[data-page="rendez-vous-cric"]
+  .madic-unified-content
+  > footer.madic-footer {
+  text-align: left;
+}
+body.madic-unified[data-page="rendez-vous-cric"]
+  .madic-unified-content
+  > footer.madic-footer
+  .madic-footer-inner {
+  max-width: none;
+}
+body.madic-unified[data-page="rendez-vous-cric"]
+  .madic-unified-sidebar
+  a[aria-current="page"] {
+  background: #1a6482;
+  color: #fff !important;
+  border: 1px solid #62cbd5;
+}
+@media (max-width: 800px) {
+  body.madic-unified[data-page="rendez-vous-cric"]
+    .madic-unified-content
+    > main.madic-rdv-shell {
+    padding: 20px 15px 32px;
+  }
+  body.madic-unified[data-page="rendez-vous-cric"]
+    .madic-unified-content
+    > header {
+    padding: 12px 15px !important;
+  }
+  body.madic-unified[data-page="rendez-vous-cric"]
+    .madic-unified-content
+    > footer.madic-footer {
+    padding: 30px 15px !important;
+  }
+}
 
 /* Header CRIC: strict dashboard geometry and notification icon */
-body.madic-unified[data-page="rendez-vous-cric"] .madic-unified-content {padding-top:0!important;padding-left:0!important;padding-right:0!important;}
-body.madic-unified[data-page="rendez-vous-cric"] .madic-unified-content > header.madic-cric-standard-header {width:100%!important;min-height:78px!important;height:78px!important;margin:0 0 22px!important;padding:12px 34px!important;border:0!important;border-bottom:1px solid #dbe6f0!important;border-radius:0!important;box-shadow:none!important;background:#fff!important;gap:18px!important;}
-body.madic-unified[data-page="rendez-vous-cric"] .madic-unified-content > header .toplinks {gap:12px!important;flex-wrap:nowrap!important;}
-body.madic-unified[data-page="rendez-vous-cric"] .madic-unified-content > header .madic-top-notification {display:grid!important;place-items:center!important;order:10!important;position:relative;flex:0 0 42px;width:42px;height:42px;border:1px solid #dce6f1;border-radius:50%;background:#fff;text-decoration:none;}
-body.madic-unified[data-page="rendez-vous-cric"] .madic-unified-content > header .madic-top-notification .madic-heroicon {display:block;width:21px;height:21px;filter:none;}
-body.madic-unified[data-page="rendez-vous-cric"] .madic-unified-content > header .madic-top-notification-count:not([hidden]) {position:absolute;right:-7px;top:-7px;display:grid;place-items:center;min-width:18px;height:18px;padding:0 4px;border-radius:12px;background:#b52e47;color:white;font-size:10px;font-weight:800;}
-body.madic-unified[data-page="rendez-vous-cric"] .madic-unified-content > header .madic-top-notification-count[hidden]{display:none!important;}
-body.madic-unified[data-page="rendez-vous-cric"] .madic-unified-content > main,body.madic-unified[data-page="rendez-vous-cric"] .madic-unified-content > footer {margin-left:34px;margin-right:34px;}
-@media(max-width:850px){body.madic-unified[data-page="rendez-vous-cric"] .madic-unified-content > header.madic-cric-standard-header{padding:12px 18px!important;min-height:78px!important;height:auto!important;flex-wrap:wrap!important;}body.madic-unified[data-page="rendez-vous-cric"] .madic-unified-content > header .toplinks{flex-wrap:wrap!important;}body.madic-unified[data-page="rendez-vous-cric"] .madic-unified-content > main,body.madic-unified[data-page="rendez-vous-cric"] .madic-unified-content > footer{margin-left:15px;margin-right:15px;}}
+body.madic-unified[data-page="rendez-vous-cric"] .madic-unified-content {
+  padding-top: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+body.madic-unified[data-page="rendez-vous-cric"]
+  .madic-unified-content
+  > header.madic-cric-standard-header {
+  width: 100% !important;
+  min-height: 78px !important;
+  height: 78px !important;
+  margin: 0 0 22px !important;
+  padding: 12px 34px !important;
+  border: 0 !important;
+  border-bottom: 1px solid #dbe6f0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  background: #fff !important;
+  gap: 18px !important;
+}
+body.madic-unified[data-page="rendez-vous-cric"]
+  .madic-unified-content
+  > header
+  .toplinks {
+  gap: 12px !important;
+  flex-wrap: nowrap !important;
+}
+body.madic-unified[data-page="rendez-vous-cric"]
+  .madic-unified-content
+  > header
+  .madic-top-notification {
+  display: grid !important;
+  place-items: center !important;
+  order: 10 !important;
+  position: relative;
+  flex: 0 0 42px;
+  width: 42px;
+  height: 42px;
+  border: 1px solid #dce6f1;
+  border-radius: 50%;
+  background: #fff;
+  text-decoration: none;
+}
+body.madic-unified[data-page="rendez-vous-cric"]
+  .madic-unified-content
+  > header
+  .madic-top-notification
+  .madic-heroicon {
+  display: block;
+  width: 21px;
+  height: 21px;
+  filter: none;
+}
+body.madic-unified[data-page="rendez-vous-cric"]
+  .madic-unified-content
+  > header
+  .madic-top-notification-count:not([hidden]) {
+  position: absolute;
+  right: -7px;
+  top: -7px;
+  display: grid;
+  place-items: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 4px;
+  border-radius: 12px;
+  background: #b52e47;
+  color: white;
+  font-size: 10px;
+  font-weight: 800;
+}
+body.madic-unified[data-page="rendez-vous-cric"]
+  .madic-unified-content
+  > header
+  .madic-top-notification-count[hidden] {
+  display: none !important;
+}
+body.madic-unified[data-page="rendez-vous-cric"] .madic-unified-content > main,
+body.madic-unified[data-page="rendez-vous-cric"]
+  .madic-unified-content
+  > footer {
+  margin-left: 34px;
+  margin-right: 34px;
+}
+@media (max-width: 850px) {
+  body.madic-unified[data-page="rendez-vous-cric"]
+    .madic-unified-content
+    > header.madic-cric-standard-header {
+    padding: 12px 18px !important;
+    min-height: 78px !important;
+    height: auto !important;
+    flex-wrap: wrap !important;
+  }
+  body.madic-unified[data-page="rendez-vous-cric"]
+    .madic-unified-content
+    > header
+    .toplinks {
+    flex-wrap: wrap !important;
+  }
+  body.madic-unified[data-page="rendez-vous-cric"]
+    .madic-unified-content
+    > main,
+  body.madic-unified[data-page="rendez-vous-cric"]
+    .madic-unified-content
+    > footer {
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+}
 
 /* Bilingual appointment date picker (matching document requests) */
-.madic-calendar{position:relative;width:100%;}
-.madic-date-toggle{width:100%;min-height:44px;text-align:left;background:#fff;color:#143254;border:1px solid #b8cfe8;border-radius:9px;padding:10px 14px;cursor:pointer;font:inherit}
-.madic-date-toggle:after{content:"▦";float:right}
-.madic-calendar-panel{position:absolute;z-index:200;top:calc(100% + 5px);left:0;width:min(320px,100%);padding:12px;border-radius:10px;border:1px solid #b8cfe8;background:#fff;box-shadow:0 10px 25px #09203a33;color:#143254}
-.madic-calendar-panel[hidden]{display:none!important}
-.madic-cal-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}
-.madic-cal-head button,.madic-cal-grid button,.madic-cal-clear{background:#f0f5fa;color:#143254;border:0;border-radius:6px;cursor:pointer;min-height:32px}
-.madic-cal-head button{width:34px}
-.madic-cal-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:3px;text-align:center}
-.madic-cal-grid span{font-size:12px;padding:7px 0}
-.madic-cal-grid button.selected{background:#24648b;color:#fff}
-.madic-cal-grid button:hover{background:#d3edf8}
-.madic-cal-clear{margin-top:10px;padding:5px 12px}
+.madic-calendar {
+  position: relative;
+  width: 100%;
+}
+.madic-date-toggle {
+  width: 100%;
+  min-height: 44px;
+  text-align: left;
+  background: #fff;
+  color: #143254;
+  border: 1px solid #b8cfe8;
+  border-radius: 9px;
+  padding: 10px 14px;
+  cursor: pointer;
+  font: inherit;
+}
+.madic-date-toggle:after {
+  content: "▦";
+  float: right;
+}
+.madic-calendar-panel {
+  position: absolute;
+  z-index: 200;
+  top: calc(100% + 5px);
+  left: 0;
+  width: min(320px, 100%);
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #b8cfe8;
+  background: #fff;
+  box-shadow: 0 10px 25px #09203a33;
+  color: #143254;
+}
+.madic-calendar-panel[hidden] {
+  display: none !important;
+}
+.madic-cal-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.madic-cal-head button,
+.madic-cal-grid button,
+.madic-cal-clear {
+  background: #f0f5fa;
+  color: #143254;
+  border: 0;
+  border-radius: 6px;
+  cursor: pointer;
+  min-height: 32px;
+}
+.madic-cal-head button {
+  width: 34px;
+}
+.madic-cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 3px;
+  text-align: center;
+}
+.madic-cal-grid span {
+  font-size: 12px;
+  padding: 7px 0;
+}
+.madic-cal-grid button.selected {
+  background: #24648b;
+  color: #fff;
+}
+.madic-cal-grid button:hover {
+  background: #d3edf8;
+}
+.madic-cal-clear {
+  margin-top: 10px;
+  padding: 5px 12px;
+}
 
 /* Past due dates are not selectable. */
-.madic-cal-grid button.madic-past-day,.madic-cal-grid button:disabled,.madic-cal-head button:disabled{opacity:.35;cursor:not-allowed;background:#eef1f5;color:#657589}
-.madic-cal-grid button:disabled:hover{background:#eef1f5}
+.madic-cal-grid button.madic-past-day,
+.madic-cal-grid button:disabled,
+.madic-cal-head button:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  background: #eef1f5;
+  color: #657589;
+}
+.madic-cal-grid button:disabled:hover {
+  background: #eef1f5;
+}
 
 /* Calendar styling harmonized with echeances-cric: compact, single-line day numbers. */
-body.madic-unified[data-page="rendez-vous-cric"] .madic-calendar-panel .madic-cal-grid {grid-template-columns:repeat(7,minmax(0,1fr));gap:3px;width:100%;}
-body.madic-unified[data-page="rendez-vous-cric"] .madic-calendar-panel .madic-cal-grid button {box-sizing:border-box;display:flex;align-items:center;justify-content:center;justify-self:stretch;width:100%;min-width:0;min-height:34px;height:34px;margin:0;padding:0 1px!important;white-space:nowrap!important;word-break:normal!important;overflow-wrap:normal!important;line-height:1!important;font-size:13px!important;border-radius:6px;background:#f0f5fa;color:#143254;}
-body.madic-unified[data-page="rendez-vous-cric"] .madic-calendar-panel .madic-cal-grid button.selected {background:#24648b;color:#fff;}
-body.madic-unified[data-page="rendez-vous-cric"] .madic-calendar-panel .madic-cal-grid button:hover:not(:disabled) {background:#d3edf8;color:#143254;}
-body.madic-unified[data-page="rendez-vous-cric"] .madic-calendar-panel .madic-cal-grid button:disabled {opacity:.35;cursor:not-allowed;background:#eef1f5;color:#657589;}
-body.madic-unified[data-page="rendez-vous-cric"] .madic-calendar-panel .madic-cal-head button {box-sizing:border-box;width:34px;min-width:34px;height:34px;min-height:34px;padding:0!important;display:inline-flex;align-items:center;justify-content:center;}
-body.madic-unified[data-page="rendez-vous-cric"] .madic-calendar-panel .madic-cal-clear {width:auto;min-width:0;padding:7px 12px!important;}
-body.madic-unified[data-page="rendez-vous-cric"] .madic-calendar-panel .madic-cal-grid span {min-width:0;white-space:nowrap;overflow-wrap:normal;word-break:normal;}
+body.madic-unified[data-page="rendez-vous-cric"]
+  .madic-calendar-panel
+  .madic-cal-grid {
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 3px;
+  width: 100%;
+}
+body.madic-unified[data-page="rendez-vous-cric"]
+  .madic-calendar-panel
+  .madic-cal-grid
+  button {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-self: stretch;
+  width: 100%;
+  min-width: 0;
+  min-height: 34px;
+  height: 34px;
+  margin: 0;
+  padding: 0 1px !important;
+  white-space: nowrap !important;
+  word-break: normal !important;
+  overflow-wrap: normal !important;
+  line-height: 1 !important;
+  font-size: 13px !important;
+  border-radius: 6px;
+  background: #f0f5fa;
+  color: #143254;
+}
+body.madic-unified[data-page="rendez-vous-cric"]
+  .madic-calendar-panel
+  .madic-cal-grid
+  button.selected {
+  background: #24648b;
+  color: #fff;
+}
+body.madic-unified[data-page="rendez-vous-cric"]
+  .madic-calendar-panel
+  .madic-cal-grid
+  button:hover:not(:disabled) {
+  background: #d3edf8;
+  color: #143254;
+}
+body.madic-unified[data-page="rendez-vous-cric"]
+  .madic-calendar-panel
+  .madic-cal-grid
+  button:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  background: #eef1f5;
+  color: #657589;
+}
+body.madic-unified[data-page="rendez-vous-cric"]
+  .madic-calendar-panel
+  .madic-cal-head
+  button {
+  box-sizing: border-box;
+  width: 34px;
+  min-width: 34px;
+  height: 34px;
+  min-height: 34px;
+  padding: 0 !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+body.madic-unified[data-page="rendez-vous-cric"]
+  .madic-calendar-panel
+  .madic-cal-clear {
+  width: auto;
+  min-width: 0;
+  padding: 7px 12px !important;
+}
+body.madic-unified[data-page="rendez-vous-cric"]
+  .madic-calendar-panel
+  .madic-cal-grid
+  span {
+  min-width: 0;
+  white-space: nowrap;
+  overflow-wrap: normal;
+  word-break: normal;
+}

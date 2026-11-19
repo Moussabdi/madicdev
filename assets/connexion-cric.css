@@ -178,7 +178,6 @@ code {
   }
 }
 
-
 body {
   background-color: #071626;
   color: #e8f3fa;
@@ -194,7 +193,6 @@ textarea {
   max-width: 100%;
   box-sizing: border-box;
 }
-
 
 .madic-lang-switch {
   display: flex;
@@ -254,9 +252,24 @@ textarea {
 }
 
 /* Dashboard switch: retain the same spacing as the login pages. */
-.madic-language-switch {display:inline-flex;align-items:center;gap:0.65rem;margin-left:12px;flex-wrap:wrap}
-.madic-language-switch button {min-width:3.25rem;margin:0;cursor:pointer;padding:0.35rem 0.65rem;border-radius:0.6rem}
-.madic-language-switch button[aria-pressed="true"] {border:2px solid #40c9d4;font-weight:700}
+.madic-language-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-left: 12px;
+  flex-wrap: wrap;
+}
+.madic-language-switch button {
+  min-width: 3.25rem;
+  margin: 0;
+  cursor: pointer;
+  padding: 0.35rem 0.65rem;
+  border-radius: 0.6rem;
+}
+.madic-language-switch button[aria-pressed="true"] {
+  border: 2px solid #40c9d4;
+  font-weight: 700;
+}
 
 /* Active FR/EN language button */
 .madic-lang-switch button[aria-pressed="true"] {

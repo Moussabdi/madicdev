@@ -1,86 +1,86 @@
 (() => {
-"use strict";
-const conf = window.MADIC_CONFIG;
-const $ = (s) => document.querySelector(s);
-const status = (text, error = false) => {
-  const e = $("#message");
-  if (e) {
-    e.textContent = text;
-    e.className = error ? "notice danger" : "notice ok";
-  }
-};
-const ready =
-  conf && typeof conf.url === "string" &&
-  /^https:\/\/[a-z0-9-]+\.supabase\.co$/.test(conf.url) &&
-  typeof conf.anonKey === "string" && !conf.anonKey.includes("YOUR_") &&
-  window.supabase;
-if (!ready)
-  status(
-    "Configuration Supabase manquante.",
-    true,
-  );
-const db = ready ? window.getMadicSupabase() : null;
-const page = document.body.dataset.page;
-// Routage selon les droits confirmés par Supabase (jamais selon le formulaire local).
-async function cricDestination(uid) {
-  const { data: application, error: appError } = await db
-    .from("madic_cric_applications")
-    .select("status")
-    .eq("user_id", uid)
-    .maybeSingle();
-  if (appError) throw appError;
-  const { data: isOwner, error: ownerError } = await db.rpc(
-    "madic_is_super_admin",
-  );
-  if (ownerError) throw ownerError;
-  return isOwner
-    ? "administration.html"
-    : application
-      ? "cric-dashboard.html"
-      : "dashboard.html";
-}
-if (page === "login") {
-  $("#login")?.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    if (!db) return;
-    const f = e.currentTarget;
-    const { data, error } = await db.auth.signInWithPassword({
-      email: f.elements.namedItem("email").value.trim(),
-      password: f.elements.namedItem("password").value,
-    });
-    if (error) return status(error.message, true);
-    try {
-      location.replace(await cricDestination(data.user.id));
-    } catch (err) {
-      status(
-        "Connexion réussie, mais vérification des droits impossible : " +
-          err.message,
-        true,
-      );
+  "use strict";
+  const conf = window.MADIC_CONFIG;
+  const $ = (s) => document.querySelector(s);
+  const status = (text, error = false) => {
+    const e = $("#message");
+    if (e) {
+      e.textContent = text;
+      e.className = error ? "notice danger" : "notice ok";
     }
-  });
-  $("#forgot")?.addEventListener("click", async () => {
-    if (!db) return;
-    const email = $("#email").value.trim();
-    if (!email) return status("Saisissez votre courriel.", true);
-    const { error } = await db.auth.resetPasswordForEmail(email, {
-      redirectTo: new URL("reset.html", location.href).href,
-    });
-    status(
-      error
-        ? error.message
-        : "Si le compte existe, un courriel de réinitialisation sera envoyé.",
-      !!error,
+  };
+  const ready =
+    conf &&
+    typeof conf.url === "string" &&
+    /^https:\/\/[a-z0-9-]+\.supabase\.co$/.test(conf.url) &&
+    typeof conf.anonKey === "string" &&
+    !conf.anonKey.includes("YOUR_") &&
+    window.supabase;
+  if (!ready) status("Configuration Supabase manquante.", true);
+  const db = ready ? window.getMadicSupabase() : null;
+  const page = document.body.dataset.page;
+  // Routage selon les droits confirmés par Supabase (jamais selon le formulaire local).
+  async function cricDestination(uid) {
+    const { data: application, error: appError } = await db
+      .from("madic_cric_applications")
+      .select("status")
+      .eq("user_id", uid)
+      .maybeSingle();
+    if (appError) throw appError;
+    const { data: isOwner, error: ownerError } = await db.rpc(
+      "madic_is_super_admin",
     );
-  });
-}
-
+    if (ownerError) throw ownerError;
+    return isOwner
+      ? "administration.html"
+      : application
+        ? "cric-dashboard.html"
+        : "dashboard.html";
+  }
+  if (page === "login") {
+    $("#login")?.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      if (!db) return;
+      const f = e.currentTarget;
+      const { data, error } = await db.auth.signInWithPassword({
+        email: f.elements.namedItem("email").value.trim(),
+        password: f.elements.namedItem("password").value,
+      });
+      if (error) return status(error.message, true);
+      try {
+        location.replace(await cricDestination(data.user.id));
+      } catch (err) {
+        status(
+          "Connexion réussie, mais vérification des droits impossible : " +
+            err.message,
+          true,
+        );
+      }
+    });
+    $("#forgot")?.addEventListener("click", async () => {
+      if (!db) return;
+      const email = $("#email").value.trim();
+      if (!email) return status("Saisissez votre courriel.", true);
+      const { error } = await db.auth.resetPasswordForEmail(email, {
+        redirectTo: new URL("reset.html", location.href).href,
+      });
+      status(
+        error
+          ? error.message
+          : "Si le compte existe, un courriel de réinitialisation sera envoyé.",
+        !!error,
+      );
+    });
+  }
 })();
 
 (() => {
   "use strict";
   const dict = {
-    "client.login.title": {fr:"Connexion | MADIC PORTAIL", en:"Sign in | MADIC PORTAL"},
+    "client.login.title": {
+      fr: "Connexion | MADIC PORTAIL",
+      en: "Sign in | MADIC PORTAL",
+    },
 
     "signup.client.title": {
       fr: "Accès client sur invitation | MADIC PORTAIL",
@@ -243,7 +243,11 @@ if (page === "login") {
       .forEach((el) =>
         el.setAttribute("aria-pressed", String(el.dataset.lang === language)),
       );
-    document.querySelectorAll(".madic-footer [data-fr][data-en]").forEach(el => {el.textContent=el.getAttribute("data-"+language);});
+    document
+      .querySelectorAll(".madic-footer [data-fr][data-en]")
+      .forEach((el) => {
+        el.textContent = el.getAttribute("data-" + language);
+      });
     updatePasswordToggle();
     try {
       localStorage.setItem("madic_ui_language", language);

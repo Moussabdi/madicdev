@@ -1,4 +1,3 @@
-
 /* SOURCE : script.js */
 ///////////////////////////////////////////////////////////
 /* Mobile*/
@@ -2011,10 +2010,8 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-;
-
 /* SOURCE : evaluation(1).js */
-"use strict";
+("use strict");
 /* MADIC CRS estimator - point tables: IRCC CRS criteria, consulted 2026-10-08.
    No network requests or personal-data storage. */
 (() => {
@@ -2656,10 +2653,8 @@ document.addEventListener("DOMContentLoaded", function () {
   );
 })();
 
-;
-
 /* SOURCE : quebec.js */
-"use strict";
+("use strict");
 const $ = (id) => document.getElementById(id),
   v = (id) => $(id).value,
   n = (id) => (v(id) === "" ? null : Number(v(id)));
@@ -3100,10 +3095,8 @@ $("assessment").addEventListener("reset", () =>
   }, 0),
 );
 
-;
-
 /* SOURCE : madix-menu.js */
-"use strict";
+("use strict");
 (() => {
   const root = document.getElementById("madix-nav");
   if (!root) return;
@@ -3140,8 +3133,6 @@ $("assessment").addEventListener("reset", () =>
   const active = document.querySelector(".lang-btn.active[data-lang]");
   updateLanguage(active ? active.dataset.lang : "fr");
 })();
-
-;
 
 /* SOURCE : saskatchewan.js */
 (() => {
@@ -3419,5 +3410,3 @@ $("assessment").addEventListener("reset", () =>
     out.hidden = true;
   });
 })();
-
-;

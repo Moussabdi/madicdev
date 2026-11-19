@@ -105,13 +105,13 @@ small {
 }
 
 .madic-saskatchewan-main {
-  max-width:1120px;
-  margin:0 auto;
-  padding:32px 20px 65px;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 32px 20px 65px;
 }
 
 .madic-saskatchewan-main[hidden] {
-  display:none!important;
+  display: none !important;
 }
 
 body.madic-unified {
@@ -168,223 +168,227 @@ body.madic-unified .madic-unified-content textarea {
 }
 
 body.madic-unified .madic-unified-layout {
-  grid-template-columns:244px minmax(0,1fr);
+  grid-template-columns: 244px minmax(0, 1fr);
 }
 
 body.madic-unified .madic-unified-sidebar {
-  background:linear-gradient(175deg,#092342,#0b3152 60%,#08213d);
-  border-right:1px solid #244867;
-  padding:22px 14px;
-  gap:19px;
-  display:flex;
-  flex-direction:column;
-  position:sticky;
-  top:0;
-  height:100vh;
-  box-sizing:border-box;
-  overflow-y:auto;
-  z-index:3;
+  background: linear-gradient(175deg, #092342, #0b3152 60%, #08213d);
+  border-right: 1px solid #244867;
+  padding: 22px 14px;
+  gap: 19px;
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  box-sizing: border-box;
+  overflow-y: auto;
+  z-index: 3;
 }
 
 body.madic-unified .madic-unified-brand {
-  display:flex;
-  align-items:center;
-  gap:10px;
-  padding:7px 7px 18px;
-  border-bottom:1px solid #ffffff25;
-  color:#f2fbff;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 7px 18px;
+  border-bottom: 1px solid #ffffff25;
+  color: #f2fbff;
 }
 
 body.madic-unified .madic-unified-monogram {
-  display:grid;
-  place-items:center;
-  width:53px;
-  height:53px;
-  flex:0 0 53px;
-  background:transparent;
-  border-radius:0;
+  display: grid;
+  place-items: center;
+  width: 53px;
+  height: 53px;
+  flex: 0 0 53px;
+  background: transparent;
+  border-radius: 0;
 }
 
 body.madic-unified .madic-unified-monogram img {
-  display:block;
-  width:100%;
-  height:100%;
-  object-fit:contain;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 body.madic-unified .madic-unified-brand strong {
-  display:block;
-  font-size:14px;
-  letter-spacing:.02em;
-  color:#f2fbff;
+  display: block;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  color: #f2fbff;
 }
 
 body.madic-unified .madic-unified-brand small {
-  display:block;
-  color:#d5e9f6;
-  font-size:11px;
-  margin-top:5px;
+  display: block;
+  color: #d5e9f6;
+  font-size: 11px;
+  margin-top: 5px;
 }
 
 body.madic-unified .madic-unified-caption {
-  font-size:10px;
-  color:#a7c9db;
-  letter-spacing:.18em;
-  margin:5px 12px -12px;
+  font-size: 10px;
+  color: #a7c9db;
+  letter-spacing: 0.18em;
+  margin: 5px 12px -12px;
 }
 
 body.madic-unified .madic-unified-sidebar nav {
-  display:flex;
-  flex-direction:column;
-  gap:5px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
 
 body.madic-unified .madic-unified-sidebar nav a {
-  display:flex;
-  align-items:center;
-  gap:12px;
-  min-height:43px;
-  padding:10px 12px;
-  box-sizing:border-box;
-  border-radius:10px;
-  font-size:.83rem;
-  font-weight:600;
-  color:#c8dce9!important;
-  text-decoration:none!important;
-  border:1px solid transparent;
-  transition:background .16s ease,transform .16s ease;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 43px;
+  padding: 10px 12px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  font-size: 0.83rem;
+  font-weight: 600;
+  color: #c8dce9 !important;
+  text-decoration: none !important;
+  border: 1px solid transparent;
+  transition:
+    background 0.16s ease,
+    transform 0.16s ease;
 }
 
 body.madic-unified .madic-unified-sidebar nav a span {
-  display:grid;
-  place-items:center;
-  flex:0 0 23px;
-  width:23px;
-  text-align:center;
+  display: grid;
+  place-items: center;
+  flex: 0 0 23px;
+  width: 23px;
+  text-align: center;
 }
 
 body.madic-unified .madic-unified-sidebar nav .madic-heroicon {
-  display:block;
-  width:21px;
-  height:21px;
-  object-fit:contain;
-  filter:brightness(0) invert(1);
-  opacity:.85;
+  display: block;
+  width: 21px;
+  height: 21px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  opacity: 0.85;
 }
 
 body.madic-unified .madic-unified-sidebar nav a.madic-v2-group-start {
-  margin-top:12px;
-  border-top:1px solid #294a61;
-  padding-top:15px;
+  margin-top: 12px;
+  border-top: 1px solid #294a61;
+  padding-top: 15px;
 }
 
 body.madic-unified .madic-unified-sidebar nav a:hover {
-  background:#194e70;
-  transform:translateX(2px);
+  background: #194e70;
+  transform: translateX(2px);
 }
 
 body.madic-unified .madic-unified-sidebar nav a[aria-current="page"] {
-  background:#1a6482;
-  color:#fff!important;
-  border:1px solid #62cbd5;
-  box-shadow:inset 3px 0 #81e7e5,0 4px 14px #001c3038;
+  background: #1a6482;
+  color: #fff !important;
+  border: 1px solid #62cbd5;
+  box-shadow:
+    inset 3px 0 #81e7e5,
+    0 4px 14px #001c3038;
 }
 
 body.madic-unified .madic-unified-sidebar nav a:focus-visible {
-  outline:3px solid #70e4e5;
-  outline-offset:2px;
+  outline: 3px solid #70e4e5;
+  outline-offset: 2px;
 }
 
 body.madic-unified .madic-unified-foot {
-  margin-top:auto;
-  border:1px solid #35638b;
-  border-radius:12px;
-  padding:14px 12px;
-  background:#143657;
-  color:#dceefe;
-  font-size:11px;
+  margin-top: auto;
+  border: 1px solid #35638b;
+  border-radius: 12px;
+  padding: 14px 12px;
+  background: #143657;
+  color: #dceefe;
+  font-size: 11px;
 }
 
-@media(max-width:850px) {
+@media (max-width: 850px) {
   body.madic-unified .madic-unified-layout {
-    grid-template-columns:minmax(0,1fr);
+    grid-template-columns: minmax(0, 1fr);
   }
 
   body.madic-unified .madic-unified-sidebar {
-    position:relative;
-    height:auto;
-    padding:13px;
-    gap:10px;
+    position: relative;
+    height: auto;
+    padding: 13px;
+    gap: 10px;
   }
 
   body.madic-unified .madic-unified-sidebar nav {
-    flex-direction:row;
-    overflow-x:auto;
-    gap:7px;
-    padding-bottom:5px;
+    flex-direction: row;
+    overflow-x: auto;
+    gap: 7px;
+    padding-bottom: 5px;
   }
 
   body.madic-unified .madic-unified-sidebar nav a {
-    white-space:nowrap;
-    min-height:36px;
+    white-space: nowrap;
+    min-height: 36px;
   }
 
   body.madic-unified .madic-unified-sidebar nav a:hover {
-    transform:none;
+    transform: none;
   }
 
   body.madic-unified .madic-unified-caption,
   body.madic-unified .madic-unified-foot {
-    display:none;
+    display: none;
   }
 }
 
-@media(prefers-reduced-motion:reduce) {
+@media (prefers-reduced-motion: reduce) {
   body.madic-unified .madic-unified-sidebar nav a {
-    transition:none;
+    transition: none;
   }
 }
 
-@media(min-width:851px) {
+@media (min-width: 851px) {
   body.madic-unified .madic-unified-layout {
-    grid-template-columns:244px minmax(0,1fr)!important;
+    grid-template-columns: 244px minmax(0, 1fr) !important;
   }
 
   body.madic-unified .madic-unified-sidebar {
-    width:244px!important;
-    min-width:244px!important;
-    position:sticky!important;
-    top:0!important;
-    height:100vh!important;
-    padding:22px 14px!important;
-    gap:19px!important;
-    box-sizing:border-box!important;
+    width: 244px !important;
+    min-width: 244px !important;
+    position: sticky !important;
+    top: 0 !important;
+    height: 100vh !important;
+    padding: 22px 14px !important;
+    gap: 19px !important;
+    box-sizing: border-box !important;
   }
 
   body.madic-unified .madic-unified-sidebar nav {
-    gap:5px!important;
+    gap: 5px !important;
   }
 
   body.madic-unified .madic-unified-sidebar nav a {
-    min-height:43px!important;
-    padding:10px 12px!important;
-    font-size:.83rem!important;
-    line-height:1.25!important;
+    min-height: 43px !important;
+    padding: 10px 12px !important;
+    font-size: 0.83rem !important;
+    line-height: 1.25 !important;
   }
 
   body.madic-unified .madic-unified-brand {
-    padding:7px 7px 18px!important;
-    gap:10px!important;
+    padding: 7px 7px 18px !important;
+    gap: 10px !important;
   }
 
   body.madic-unified .madic-unified-monogram {
-    width:53px!important;
-    height:53px!important;
-    flex:0 0 53px!important;
+    width: 53px !important;
+    height: 53px !important;
+    flex: 0 0 53px !important;
   }
 
   body.madic-unified .madic-unified-foot {
-    margin-top:auto!important;
+    margin-top: auto !important;
   }
 }
 
@@ -536,263 +540,279 @@ body.madic-unified[data-page="saskatchewan"]
 }
 
 body.madic-unified[data-page="saskatchewan"] {
-  background:#f1f5fb;
-  color:#122746;
+  background: #f1f5fb;
+  color: #122746;
 }
 
 body.madic-unified[data-page="saskatchewan"] .madic-unified-content {
-  padding:0 22px 45px;
-  background:#f2f6fc;
+  padding: 0 22px 45px;
+  background: #f2f6fc;
 }
 
 body.madic-unified[data-page="saskatchewan"] .madic-unified-content > header {
-  background:#fff;
-  border:0;
-  border-bottom:1px solid #dce6f1;
-  border-radius:0;
-  box-shadow:0 4px 14px #16345c10;
-  margin:0 -22px 18px;
-  padding:14px 24px;
-  min-height:65px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:16px;
+  background: #fff;
+  border: 0;
+  border-bottom: 1px solid #dce6f1;
+  border-radius: 0;
+  box-shadow: 0 4px 14px #16345c10;
+  margin: 0 -22px 18px;
+  padding: 14px 24px;
+  min-height: 65px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
 }
 
-body.madic-unified[data-page="saskatchewan"] .madic-unified-content > header .brand {
-  color:#122a50!important;
-  font-weight:800;
-  letter-spacing:.015em;
-  text-decoration:none;
-  font-size:1.35rem;
+body.madic-unified[data-page="saskatchewan"]
+  .madic-unified-content
+  > header
+  .brand {
+  color: #122a50 !important;
+  font-weight: 800;
+  letter-spacing: 0.015em;
+  text-decoration: none;
+  font-size: 1.35rem;
 }
 
-body.madic-unified[data-page="saskatchewan"] .madic-unified-content > header .brand small {
-  color:#155d87;
-  font-size:.8em;
+body.madic-unified[data-page="saskatchewan"]
+  .madic-unified-content
+  > header
+  .brand
+  small {
+  color: #155d87;
+  font-size: 0.8em;
 }
 
 body.madic-unified[data-page="saskatchewan"] .toplinks {
-  display:flex;
-  align-items:center;
-  gap:14px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
 }
 
-body.madic-unified[data-page="saskatchewan"] .toplinks>a {
-  color:#183759!important;
-  text-decoration:none;
-  font-weight:700;
+body.madic-unified[data-page="saskatchewan"] .toplinks > a {
+  color: #183759 !important;
+  text-decoration: none;
+  font-weight: 700;
 }
 
 body.madic-unified[data-page="saskatchewan"] .madic-top-notification {
-  display:grid;
-  place-items:center;
-  width:34px;
-  height:34px;
-  border:1px solid #dce6f1;
-  border-radius:50%;
-  font-size:1.3rem;
-  order:2;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid #dce6f1;
+  border-radius: 50%;
+  font-size: 1.3rem;
+  order: 2;
 }
 
 body.madic-unified[data-page="saskatchewan"] .madic-lang-controls {
-  display:flex;
-  gap:5px;
-  align-items:center;
+  display: flex;
+  gap: 5px;
+  align-items: center;
 }
 
 body.madic-unified[data-page="saskatchewan"] .madic-lang-controls button {
-  border-radius:9px;
-  background:#e5f1fa!important;
-  color:#15415e!important;
-  min-width:40px;
+  border-radius: 9px;
+  background: #e5f1fa !important;
+  color: #15415e !important;
+  min-width: 40px;
 }
 
-body.madic-unified[data-page="saskatchewan"] .madic-lang-controls button[aria-pressed="true"],
-body.madic-unified[data-page="saskatchewan"] .madic-lang-controls button.active {
-  background:#1b9fc0!important;
-  color:#fff!important;
+body.madic-unified[data-page="saskatchewan"]
+  .madic-lang-controls
+  button[aria-pressed="true"],
+body.madic-unified[data-page="saskatchewan"]
+  .madic-lang-controls
+  button.active {
+  background: #1b9fc0 !important;
+  color: #fff !important;
 }
 
 body.madic-unified[data-page="saskatchewan"] .madic-unified-content > main {
-  max-width:1550px;
+  max-width: 1550px;
 }
 
 body.madic-unified[data-page="saskatchewan"] .madic-saskatchewan-main {
-  padding:0 0 55px;
+  padding: 0 0 55px;
 }
 
 body.madic-unified[data-page="saskatchewan"] #logout {
-  background:#153a5c!important;
-  color:#fff!important;
-  border:1px solid #94bbd0;
-  white-space:nowrap;
+  background: #153a5c !important;
+  color: #fff !important;
+  border: 1px solid #94bbd0;
+  white-space: nowrap;
 }
 
-@media(max-width:720px) {
-  body.madic-unified[data-page="saskatchewan"] .madic-unified-content>header {
-    padding:12px 14px;
-    flex-wrap:wrap;
+@media (max-width: 720px) {
+  body.madic-unified[data-page="saskatchewan"] .madic-unified-content > header {
+    padding: 12px 14px;
+    flex-wrap: wrap;
   }
 }
 
 body.madic-unified[data-page="saskatchewan"] .madic-top-notification {
-  font-size:1rem;
+  font-size: 1rem;
 }
 
-@media(max-width:600px) {
+@media (max-width: 600px) {
   body.madic-unified[data-page="saskatchewan"] .madic-unified-content {
-    padding:0 12px 30px;
+    padding: 0 12px 30px;
   }
 
-  body.madic-unified[data-page="saskatchewan"] .madic-unified-content>header {
-    margin:0 -12px 14px;
+  body.madic-unified[data-page="saskatchewan"] .madic-unified-content > header {
+    margin: 0 -12px 14px;
   }
 }
 
 body.madic-unified[data-page="saskatchewan"] .madic-saskatchewan-main {
-  padding-bottom:28px;
+  padding-bottom: 28px;
 }
 
 body.madic-unified[data-page="saskatchewan"] .madic-top-notification {
-  position:relative;
-  flex-shrink:0;
+  position: relative;
+  flex-shrink: 0;
 }
 
-body.madic-unified[data-page="saskatchewan"] .madic-top-notification-count:not([hidden]) {
-  position:absolute;
-  right:-7px;
-  top:-7px;
-  display:grid;
-  place-items:center;
-  min-width:18px;
-  height:18px;
-  padding:0 4px;
-  border-radius:12px;
-  background:#b52e47;
-  color:white;
-  font-size:10px;
-  font-weight:800;
-  line-height:1;
+body.madic-unified[data-page="saskatchewan"]
+  .madic-top-notification-count:not([hidden]) {
+  position: absolute;
+  right: -7px;
+  top: -7px;
+  display: grid;
+  place-items: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 4px;
+  border-radius: 12px;
+  background: #b52e47;
+  color: white;
+  font-size: 10px;
+  font-weight: 800;
+  line-height: 1;
 }
 
-@media(max-width:480px) {
+@media (max-width: 480px) {
   body.madic-unified[data-page="saskatchewan"] .toplinks {
-    gap:8px;
+    gap: 8px;
   }
 
   body.madic-unified[data-page="saskatchewan"] .madic-lang-controls button {
-    min-width:35px;
-    padding:7px;
+    min-width: 35px;
+    padding: 7px;
   }
 }
 
 body.madic-unified[data-page="saskatchewan"] .madic-heroicon {
-  display:block;
-  width:22px;
-  height:22px;
-  object-fit:contain;
-  flex:none;
+  display: block;
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+  flex: none;
 }
 
-body.madic-unified[data-page="saskatchewan"] .madic-top-notification .madic-heroicon {
-  width:21px;
-  height:21px;
+body.madic-unified[data-page="saskatchewan"]
+  .madic-top-notification
+  .madic-heroicon {
+  width: 21px;
+  height: 21px;
 }
 
 body.madic-unified[data-page="saskatchewan"] {
-  --cric-ink:#183451;
-  --cric-muted:#526a82;
-  --cric-primary:#126b91;
-  --cric-stroke:#dbe5f0;
-  --cric-surface:#ffffff;
-  --cric-canvas:#f3f7fc;
-  --cric-shadow:0 8px 28px rgba(19,48,84,.065);
-  background:var(--cric-canvas);
-  color:var(--cric-ink);
+  --cric-ink: #183451;
+  --cric-muted: #526a82;
+  --cric-primary: #126b91;
+  --cric-stroke: #dbe5f0;
+  --cric-surface: #ffffff;
+  --cric-canvas: #f3f7fc;
+  --cric-shadow: 0 8px 28px rgba(19, 48, 84, 0.065);
+  background: var(--cric-canvas);
+  color: var(--cric-ink);
 }
 
 body.madic-unified[data-page="saskatchewan"] .madic-unified-content {
-  background:var(--cric-canvas);
-  padding:0 clamp(15px,2.4vw,38px) 48px;
+  background: var(--cric-canvas);
+  padding: 0 clamp(15px, 2.4vw, 38px) 48px;
 }
 
-body.madic-unified[data-page="saskatchewan"] .madic-unified-content>header {
-  position:relative;
-  background:#fff;
-  border-bottom:1px solid var(--cric-stroke);
-  padding:15px clamp(18px,2.5vw,35px);
-  min-height:72px;
-  margin:0 calc(-1 * clamp(15px,2.4vw,38px)) 22px;
-  box-shadow:0 3px 16px #12304c0a;
+body.madic-unified[data-page="saskatchewan"] .madic-unified-content > header {
+  position: relative;
+  background: #fff;
+  border-bottom: 1px solid var(--cric-stroke);
+  padding: 15px clamp(18px, 2.5vw, 35px);
+  min-height: 72px;
+  margin: 0 calc(-1 * clamp(15px, 2.4vw, 38px)) 22px;
+  box-shadow: 0 3px 16px #12304c0a;
 }
 
-body.madic-unified[data-page="saskatchewan"] .madic-unified-content>main {
-  max-width:1480px;
-  margin:0 auto;
+body.madic-unified[data-page="saskatchewan"] .madic-unified-content > main {
+  max-width: 1480px;
+  margin: 0 auto;
 }
 
 body.madic-unified[data-page="saskatchewan"] #logout {
-  border-radius:11px;
-  padding:11px 16px;
+  border-radius: 11px;
+  padding: 11px 16px;
 }
 
-body.madic-unified[data-page="saskatchewan"] .madic-unified-content :is(a,button,input,select,summary):focus-visible {
-  outline:3px solid #1689b4;
-  outline-offset:3px;
+body.madic-unified[data-page="saskatchewan"]
+  .madic-unified-content
+  :is(a, button, input, select, summary):focus-visible {
+  outline: 3px solid #1689b4;
+  outline-offset: 3px;
 }
 
 body.madic-unified[data-page="saskatchewan"] .madic-unified-content [hidden] {
-  display:none!important;
+  display: none !important;
 }
 
-@media(max-width:850px) {
+@media (max-width: 850px) {
   body.madic-unified[data-page="saskatchewan"] .madic-unified-content {
-    padding:0 15px 32px;
+    padding: 0 15px 32px;
   }
 
-  body.madic-unified[data-page="saskatchewan"] .madic-unified-content>header {
-    margin:0 -15px 17px;
+  body.madic-unified[data-page="saskatchewan"] .madic-unified-content > header {
+    margin: 0 -15px 17px;
   }
 }
 
-@media(max-width:620px) {
+@media (max-width: 620px) {
   body.madic-unified[data-page="saskatchewan"] #logout {
-    align-self:flex-start;
+    align-self: flex-start;
   }
 }
 
 body.madic-unified[data-page="saskatchewan"] [hidden] {
-  display:none !important;
+  display: none !important;
 }
 
 body.madic-unified[data-page="saskatchewan"] .madic-skip-link {
-  position:fixed;
-  z-index:10000;
-  left:16px;
-  top:-90px;
-  padding:12px 18px;
-  background:#fff;
-  color:#123a59;
-  border:2px solid #0a83ad;
-  border-radius:10px;
-  font-weight:750;
-  box-shadow:0 8px 20px #102b4350;
+  position: fixed;
+  z-index: 10000;
+  left: 16px;
+  top: -90px;
+  padding: 12px 18px;
+  background: #fff;
+  color: #123a59;
+  border: 2px solid #0a83ad;
+  border-radius: 10px;
+  font-weight: 750;
+  box-shadow: 0 8px 20px #102b4350;
 }
 
 body.madic-unified[data-page="saskatchewan"] .madic-skip-link:focus {
-  top:12px;
+  top: 12px;
 }
 
-@media(max-width:620px) {
-  body.madic-unified[data-page="saskatchewan"] .madic-unified-content>header {
-    gap:10px;
+@media (max-width: 620px) {
+  body.madic-unified[data-page="saskatchewan"] .madic-unified-content > header {
+    gap: 10px;
   }
 
   body.madic-unified[data-page="saskatchewan"] .toplinks {
-    flex-wrap:wrap;
-    justify-content:flex-end;
+    flex-wrap: wrap;
+    justify-content: flex-end;
   }
 }
 
@@ -886,94 +906,99 @@ footer.madic-footer {
   font-size: 0.78rem;
 }
 
-@media (max-width:600px) {
+@media (max-width: 600px) {
   .madic-footer-inner {
-    display:block;
+    display: block;
   }
 
   .madic-footer-right {
-    justify-content:flex-start;
-    gap:14px;
-    margin-top:23px;
+    justify-content: flex-start;
+    gap: 14px;
+    margin-top: 23px;
   }
 
   .madic-footer-bottom {
-    margin-top:23px;
+    margin-top: 23px;
   }
 }
 
 .madic-footer,
 .madic-footer * {
-  box-sizing:border-box;
+  box-sizing: border-box;
 }
 
 .madic-footer {
-  font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;
-  text-align:left;
+  font-family:
+    Inter,
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    sans-serif;
+  text-align: left;
 }
 
 .madic-footer a:focus-visible {
-  outline:3px solid #efb544;
-  outline-offset:3px;
+  outline: 3px solid #efb544;
+  outline-offset: 3px;
 }
 
 .madic-unified-content {
-  min-width:0;
-  width:100%;
-  box-sizing:border-box;
+  min-width: 0;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-.madic-unified-content>header,
-.madic-unified-content>.madic-footer,
-.madic-unified-content>footer {
-  box-sizing:border-box;
-  width:100%;
+.madic-unified-content > header,
+.madic-unified-content > .madic-footer,
+.madic-unified-content > footer {
+  box-sizing: border-box;
+  width: 100%;
 }
 
-.madic-unified-content>header {
-  padding-left:max(20px,calc((100% - 1120px)/2 + 20px));
-  padding-right:max(20px,calc((100% - 1120px)/2 + 20px));
+.madic-unified-content > header {
+  padding-left: max(20px, calc((100% - 1120px) / 2 + 20px));
+  padding-right: max(20px, calc((100% - 1120px) / 2 + 20px));
 }
 
 .madic-unified-content .madic-saskatchewan-main {
-  width:100%;
-  max-width:1120px;
-  box-sizing:border-box;
-  margin-left:auto;
-  margin-right:auto;
-  padding-left:20px;
-  padding-right:20px;
+  width: 100%;
+  max-width: 1120px;
+  box-sizing: border-box;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .madic-unified-content .madic-footer-inner,
 .madic-unified-content .madic-footer-bottom {
-  box-sizing:border-box;
-  max-width:1120px;
-  margin-left:auto;
-  margin-right:auto;
-  padding-left:20px;
-  padding-right:20px;
+  box-sizing: border-box;
+  max-width: 1120px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
-@media(max-width:768px) {
-  .madic-unified-content>header {
-    padding-left:20px;
-    padding-right:20px;
+@media (max-width: 768px) {
+  .madic-unified-content > header {
+    padding-left: 20px;
+    padding-right: 20px;
   }
 
   .madic-unified-content .madic-saskatchewan-main {
-    padding-left:20px;
-    padding-right:20px;
+    padding-left: 20px;
+    padding-right: 20px;
   }
 }
 
-@media(max-width:480px) {
-  .madic-unified-content>header,
+@media (max-width: 480px) {
+  .madic-unified-content > header,
   .madic-unified-content .madic-saskatchewan-main,
   .madic-unified-content .madic-footer-inner,
   .madic-unified-content .madic-footer-bottom {
-    padding-left:16px;
-    padding-right:16px;
+    padding-left: 16px;
+    padding-right: 16px;
   }
 }
 
@@ -998,7 +1023,9 @@ body.madic-unified[data-page="saskatchewan"] .madic-unified-content > header {
   backdrop-filter: none;
 }
 
-body.madic-unified[data-page="saskatchewan"] .madic-unified-content > main.madic-saskatchewan-main {
+body.madic-unified[data-page="saskatchewan"]
+  .madic-unified-content
+  > main.madic-saskatchewan-main {
   width: 100%;
   max-width: none;
   margin: 0;
@@ -1006,7 +1033,9 @@ body.madic-unified[data-page="saskatchewan"] .madic-unified-content > main.madic
   flex: 1 0 auto;
 }
 
-body.madic-unified[data-page="saskatchewan"] .madic-unified-content > footer.madic-footer {
+body.madic-unified[data-page="saskatchewan"]
+  .madic-unified-content
+  > footer.madic-footer {
   width: 100%;
   max-width: none;
   margin: 0;
@@ -1015,8 +1044,14 @@ body.madic-unified[data-page="saskatchewan"] .madic-unified-content > footer.mad
   flex-shrink: 0;
 }
 
-body.madic-unified[data-page="saskatchewan"] .madic-unified-content > footer.madic-footer > .madic-footer-inner,
-body.madic-unified[data-page="saskatchewan"] .madic-unified-content > footer.madic-footer > .madic-footer-bottom {
+body.madic-unified[data-page="saskatchewan"]
+  .madic-unified-content
+  > footer.madic-footer
+  > .madic-footer-inner,
+body.madic-unified[data-page="saskatchewan"]
+  .madic-unified-content
+  > footer.madic-footer
+  > .madic-footer-bottom {
   width: 100%;
   max-width: none;
   margin-left: 0;
@@ -1030,11 +1065,15 @@ body.madic-unified[data-page="saskatchewan"] .madic-unified-content > footer.mad
     padding: 12px 18px !important;
   }
 
-  body.madic-unified[data-page="saskatchewan"] .madic-unified-content > main.madic-saskatchewan-main {
+  body.madic-unified[data-page="saskatchewan"]
+    .madic-unified-content
+    > main.madic-saskatchewan-main {
     padding: 20px 18px 36px;
   }
 
-  body.madic-unified[data-page="saskatchewan"] .madic-unified-content > footer.madic-footer {
+  body.madic-unified[data-page="saskatchewan"]
+    .madic-unified-content
+    > footer.madic-footer {
     padding-left: 18px !important;
     padding-right: 18px !important;
   }
@@ -1045,66 +1084,87 @@ body.madic-unified[data-page="saskatchewan"] .madic-unified-content > footer.mad
     padding: 18px 22px !important;
   }
 
-  body.madic-unified[data-page="saskatchewan"] .madic-unified-content > main.madic-saskatchewan-main {
+  body.madic-unified[data-page="saskatchewan"]
+    .madic-unified-content
+    > main.madic-saskatchewan-main {
     padding: 18px 16px 45px;
   }
 
-  body.madic-unified[data-page="saskatchewan"] .madic-unified-content > footer.madic-footer {
+  body.madic-unified[data-page="saskatchewan"]
+    .madic-unified-content
+    > footer.madic-footer {
     padding: 32px 16px 23px !important;
   }
 }
 
-body.madic-unified[data-page="saskatchewan"] .madic-unified-content > footer.madic-footer {
+body.madic-unified[data-page="saskatchewan"]
+  .madic-unified-content
+  > footer.madic-footer {
   background: #eef3f9 !important;
   border-top: 1px solid #a9bacd !important;
   color: #526b83 !important;
 }
 
-body.madic-unified[data-page="saskatchewan"] footer.madic-footer :is(.madic-footer-name,.madic-footer-subtitle,.madic-footer-desc,.madic-footer-bottom,.madic-footer-unavailable) {
+body.madic-unified[data-page="saskatchewan"]
+  footer.madic-footer
+  :is(
+    .madic-footer-name,
+    .madic-footer-subtitle,
+    .madic-footer-desc,
+    .madic-footer-bottom,
+    .madic-footer-unavailable
+  ) {
   color: #526b83 !important;
 }
 
-body.madic-unified[data-page="saskatchewan"] footer.madic-footer .madic-footer-name {
-  color:#143453 !important;
+body.madic-unified[data-page="saskatchewan"]
+  footer.madic-footer
+  .madic-footer-name {
+  color: #143453 !important;
 }
 
-body.madic-unified[data-page="saskatchewan"] footer.madic-footer .madic-footer-right a {
-  color:#35729d !important;
+body.madic-unified[data-page="saskatchewan"]
+  footer.madic-footer
+  .madic-footer-right
+  a {
+  color: #35729d !important;
 }
 
-body.madic-unified[data-page="saskatchewan"] footer.madic-footer .madic-footer-bottom {
-  border-top-color:#a9bacd !important;
+body.madic-unified[data-page="saskatchewan"]
+  footer.madic-footer
+  .madic-footer-bottom {
+  border-top-color: #a9bacd !important;
 }
 
 body.madic-unified[data-page="saskatchewan"] .toplinks #logout {
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   padding: 6px 4px !important;
-  min-height:38px;
-  border:0 !important;
-  border-radius:0 !important;
-  background:transparent !important;
-  color:#123553 !important;
-  box-shadow:none !important;
-  font:inherit;
-  font-weight:500;
-  cursor:pointer;
-  white-space:nowrap;
+  min-height: 38px;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: #123553 !important;
+  box-shadow: none !important;
+  font: inherit;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
 }
 
 body.madic-unified[data-page="saskatchewan"] .toplinks #logout:hover {
-  text-decoration:underline;
+  text-decoration: underline;
 }
 
 body.madic-unified[data-page="saskatchewan"] .toplinks #logout:focus-visible {
-  outline:2px solid #178cb4;
-  outline-offset:3px;
+  outline: 2px solid #178cb4;
+  outline-offset: 3px;
 }
 
-@media(max-width:600px) {
+@media (max-width: 600px) {
   body.madic-unified[data-page="saskatchewan"] .toplinks #logout {
-    font-size:.83rem;
+    font-size: 0.83rem;
   }
 }
 

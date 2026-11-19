@@ -184,7 +184,6 @@ code {
   }
 }
 
-
 body {
   background-color: #071626;
   color: #e8f3fa;
@@ -200,7 +199,6 @@ textarea {
   max-width: 100%;
   box-sizing: border-box;
 }
-
 
 .madic-lang-switch {
   display: flex;
@@ -260,10 +258,24 @@ textarea {
 }
 
 /* Dashboard switch: retain the same spacing as the login pages. */
-.madic-language-switch {display:inline-flex;align-items:center;gap:0.65rem;margin-left:12px;flex-wrap:wrap}
-.madic-language-switch button {min-width:3.25rem;margin:0;cursor:pointer;padding:0.35rem 0.65rem;border-radius:0.6rem}
-.madic-language-switch button[aria-pressed="true"] {border:2px solid #40c9d4;font-weight:700}
-
+.madic-language-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-left: 12px;
+  flex-wrap: wrap;
+}
+.madic-language-switch button {
+  min-width: 3.25rem;
+  margin: 0;
+  cursor: pointer;
+  padding: 0.35rem 0.65rem;
+  border-radius: 0.6rem;
+}
+.madic-language-switch button[aria-pressed="true"] {
+  border: 2px solid #40c9d4;
+  font-weight: 700;
+}
 
 footer.madic-footer {
   background: #070f22;
@@ -363,10 +375,37 @@ footer.madic-footer {
   font-size: 0.78rem;
 }
 
-@media (max-width:600px){.madic-footer-inner{display:block}.madic-footer-right{justify-content:flex-start;gap:14px;margin-top:23px}.madic-footer-bottom{margin-top:23px}}
+@media (max-width: 600px) {
+  .madic-footer-inner {
+    display: block;
+  }
+  .madic-footer-right {
+    justify-content: flex-start;
+    gap: 14px;
+    margin-top: 23px;
+  }
+  .madic-footer-bottom {
+    margin-top: 23px;
+  }
+}
 
-.madic-footer,.madic-footer *{box-sizing:border-box}.madic-footer{font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;text-align:left}.madic-footer a:focus-visible{outline:3px solid #efb544;outline-offset:3px}
-
+.madic-footer,
+.madic-footer * {
+  box-sizing: border-box;
+}
+.madic-footer {
+  font-family:
+    Inter,
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    sans-serif;
+  text-align: left;
+}
+.madic-footer a:focus-visible {
+  outline: 3px solid #efb544;
+  outline-offset: 3px;
+}
 
 /* Active FR/EN language button */
 .madic-lang-switch button[aria-pressed="true"],

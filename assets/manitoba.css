@@ -1,85 +1,569 @@
-
-/* MADIC PORTAIL — habillage autonome des outils provinciaux.
+/* MADIC PORTAIL - habillage autonome des outils provinciaux.
    Référence visuelle : tableau de bord CRIC, sans importer cric-dashboard.css. */
-:root{font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;color:#17324b;background:#f4f7fb}
-*,*::before,*::after{box-sizing:border-box}
-body.madic-unified{margin:0;min-height:100vh;background:#f4f7fb;color:#17324b}
-body.madic-unified .madic-unified-layout{display:grid;grid-template-columns:258px minmax(0,1fr);min-height:100vh}
-body.madic-unified .madic-unified-sidebar{position:sticky;top:0;height:100vh;display:flex;flex-direction:column;gap:16px;padding:25px 14px;background:#10283b;color:#e8f3fb;overflow-y:auto}
-body.madic-unified .madic-unified-brand{display:flex;align-items:center;gap:11px;padding:7px 9px 17px;border-bottom:1px solid #355166}
-body.madic-unified .madic-unified-monogram{width:42px;height:42px;display:grid;place-items:center;border-radius:12px;background:#fff;padding:5px;flex-shrink:0}
-body.madic-unified .madic-unified-monogram img{width:100%;height:100%;object-fit:contain}
-body.madic-unified .madic-unified-brand strong{display:block;font-size:14px;letter-spacing:.04em;color:#fff}
-body.madic-unified .madic-unified-brand small{display:block;font-size:11px;color:#b6cbd9;margin-top:3px}
-body.madic-unified .madic-unified-caption{font-size:11px;letter-spacing:.14em;color:#9eb8c9;padding:0 12px;font-weight:700}
-body.madic-unified .madic-unified-sidebar nav{display:grid;gap:4px}
-body.madic-unified .madic-unified-sidebar nav a{display:flex;align-items:center;gap:11px;padding:11px 12px;border-radius:10px;text-decoration:none;color:#dceaf3;font-size:13px;font-weight:600;line-height:1.3}
-body.madic-unified .madic-unified-sidebar nav a:hover,body.madic-unified .madic-unified-sidebar nav a[aria-current=page]{background:#25475c;color:#fff}
-body.madic-unified .madic-unified-sidebar nav a.madic-v2-group-start{margin-top:8px}
-body.madic-unified .madic-unified-sidebar nav a span{display:inline-flex;width:19px;height:19px;align-items:center;justify-content:center;flex-shrink:0}
-body.madic-unified .madic-unified-sidebar nav .madic-heroicon{width:19px;height:19px;filter:brightness(0) invert(1);opacity:.86}
-body.madic-unified .madic-unified-foot{margin-top:auto;padding:15px 12px;border-top:1px solid #355166;color:#9eb8c9;font-size:11px}
-body.madic-unified .madic-unified-content{min-width:0;display:flex;flex-direction:column;min-height:100vh}
-body.madic-unified .madic-unified-content>header{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:76px;padding:16px clamp(20px,3vw,48px);background:#fff;border-bottom:1px solid #e1e9f0;flex-wrap:wrap}
-body.madic-unified .madic-unified-content>header .brand{font-size:22px;font-weight:850;color:#15374e;letter-spacing:.04em;text-decoration:none}
-body.madic-unified .madic-unified-content>header .brand span{color:#087f8b}
-body.madic-unified .madic-unified-content>header .brand small{font-size:10px;letter-spacing:.1em;margin-left:6px}
-body.madic-unified .toplinks{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
-body.madic-unified .toplinks>a{color:#15546a;text-decoration:none;font-weight:650;font-size:13px}
-body.madic-unified .madic-header-signout{background:transparent;border:0;color:#15546a;cursor:pointer;font-weight:650;font-size:13px;padding:7px}
-body.madic-unified .madic-lang-controls{display:flex;gap:4px;padding:3px;border:1px solid #d8e5ed;border-radius:9px;background:#f4f8fa}
-body.madic-unified .madic-lang-controls button{padding:6px 10px;border:0;border-radius:6px;background:transparent;color:#31576b;font-weight:750;cursor:pointer}
-body.madic-unified .madic-lang-controls button[aria-pressed=true]{background:#15546a;color:#fff}
-body.madic-unified .madic-unified-content>main{width:min(100% - 48px,1200px);max-width:1200px;margin:30px auto 50px;padding:0}
-body.madic-unified .madic-unified-content>footer{margin-top:auto}
-body.madic-unified .madic-skip-link{position:absolute;top:-100px;left:12px;z-index:100;background:#fff;padding:10px 14px}
-body.madic-unified .madic-skip-link:focus{top:12px}
-body.madic-unified .madic-unified-content a:focus-visible,body.madic-unified button:focus-visible{outline:3px solid #15a9ba;outline-offset:3px}
-@media(max-width:950px){body.madic-unified .madic-unified-layout{grid-template-columns:1fr}body.madic-unified .madic-unified-sidebar{position:static;height:auto;gap:10px;padding:14px}body.madic-unified .madic-unified-sidebar nav{display:flex;flex-wrap:wrap}body.madic-unified .madic-unified-sidebar nav a{padding:9px}body.madic-unified .madic-unified-foot{display:none}}
-@media(max-width:600px){body.madic-unified .madic-unified-content>main{width:calc(100% - 28px);margin:20px auto 36px}body.madic-unified .madic-unified-content>header{padding:12px 15px}body.madic-unified .madic-unified-sidebar nav a{font-size:12px}body.madic-unified .madic-provincial-main section{padding:17px}}
+:root {
+  font-family:
+    Inter,
+    system-ui,
+    -apple-system,
+    Segoe UI,
+    sans-serif;
+  color: #17324b;
+  background: #f4f7fb;
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+body.madic-unified {
+  margin: 0;
+  min-height: 100vh;
+  background: #f4f7fb;
+  color: #17324b;
+}
+body.madic-unified .madic-unified-layout {
+  display: grid;
+  grid-template-columns: 258px minmax(0, 1fr);
+  min-height: 100vh;
+}
+body.madic-unified .madic-unified-sidebar {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 25px 14px;
+  background: #10283b;
+  color: #e8f3fb;
+  overflow-y: auto;
+}
+body.madic-unified .madic-unified-brand {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 7px 9px 17px;
+  border-bottom: 1px solid #355166;
+}
+body.madic-unified .madic-unified-monogram {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: #fff;
+  padding: 5px;
+  flex-shrink: 0;
+}
+body.madic-unified .madic-unified-monogram img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+body.madic-unified .madic-unified-brand strong {
+  display: block;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  color: #fff;
+}
+body.madic-unified .madic-unified-brand small {
+  display: block;
+  font-size: 11px;
+  color: #b6cbd9;
+  margin-top: 3px;
+}
+body.madic-unified .madic-unified-caption {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: #9eb8c9;
+  padding: 0 12px;
+  font-weight: 700;
+}
+body.madic-unified .madic-unified-sidebar nav {
+  display: grid;
+  gap: 4px;
+}
+body.madic-unified .madic-unified-sidebar nav a {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 11px 12px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: #dceaf3;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+body.madic-unified .madic-unified-sidebar nav a:hover,
+body.madic-unified .madic-unified-sidebar nav a[aria-current="page"] {
+  background: #25475c;
+  color: #fff;
+}
+body.madic-unified .madic-unified-sidebar nav a.madic-v2-group-start {
+  margin-top: 8px;
+}
+body.madic-unified .madic-unified-sidebar nav a span {
+  display: inline-flex;
+  width: 19px;
+  height: 19px;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+body.madic-unified .madic-unified-sidebar nav .madic-heroicon {
+  width: 19px;
+  height: 19px;
+  filter: brightness(0) invert(1);
+  opacity: 0.86;
+}
+body.madic-unified .madic-unified-foot {
+  margin-top: auto;
+  padding: 15px 12px;
+  border-top: 1px solid #355166;
+  color: #9eb8c9;
+  font-size: 11px;
+}
+body.madic-unified .madic-unified-content {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+body.madic-unified .madic-unified-content > header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 76px;
+  padding: 16px clamp(20px, 3vw, 48px);
+  background: #fff;
+  border-bottom: 1px solid #e1e9f0;
+  flex-wrap: wrap;
+}
+body.madic-unified .madic-unified-content > header .brand {
+  font-size: 22px;
+  font-weight: 850;
+  color: #15374e;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+}
+body.madic-unified .madic-unified-content > header .brand span {
+  color: #087f8b;
+}
+body.madic-unified .madic-unified-content > header .brand small {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  margin-left: 6px;
+}
+body.madic-unified .toplinks {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+body.madic-unified .toplinks > a {
+  color: #15546a;
+  text-decoration: none;
+  font-weight: 650;
+  font-size: 13px;
+}
+body.madic-unified .madic-header-signout {
+  background: transparent;
+  border: 0;
+  color: #15546a;
+  cursor: pointer;
+  font-weight: 650;
+  font-size: 13px;
+  padding: 7px;
+}
+body.madic-unified .madic-lang-controls {
+  display: flex;
+  gap: 4px;
+  padding: 3px;
+  border: 1px solid #d8e5ed;
+  border-radius: 9px;
+  background: #f4f8fa;
+}
+body.madic-unified .madic-lang-controls button {
+  padding: 6px 10px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: #31576b;
+  font-weight: 750;
+  cursor: pointer;
+}
+body.madic-unified .madic-lang-controls button[aria-pressed="true"] {
+  background: #15546a;
+  color: #fff;
+}
+body.madic-unified .madic-unified-content > main {
+  width: min(100% - 48px, 1200px);
+  max-width: 1200px;
+  margin: 30px auto 50px;
+  padding: 0;
+}
+body.madic-unified .madic-unified-content > footer {
+  margin-top: auto;
+}
+body.madic-unified .madic-skip-link {
+  position: absolute;
+  top: -100px;
+  left: 12px;
+  z-index: 100;
+  background: #fff;
+  padding: 10px 14px;
+}
+body.madic-unified .madic-skip-link:focus {
+  top: 12px;
+}
+body.madic-unified .madic-unified-content a:focus-visible,
+body.madic-unified button:focus-visible {
+  outline: 3px solid #15a9ba;
+  outline-offset: 3px;
+}
+@media (max-width: 950px) {
+  body.madic-unified .madic-unified-layout {
+    grid-template-columns: 1fr;
+  }
+  body.madic-unified .madic-unified-sidebar {
+    position: static;
+    height: auto;
+    gap: 10px;
+    padding: 14px;
+  }
+  body.madic-unified .madic-unified-sidebar nav {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  body.madic-unified .madic-unified-sidebar nav a {
+    padding: 9px;
+  }
+  body.madic-unified .madic-unified-foot {
+    display: none;
+  }
+}
+@media (max-width: 600px) {
+  body.madic-unified .madic-unified-content > main {
+    width: calc(100% - 28px);
+    margin: 20px auto 36px;
+  }
+  body.madic-unified .madic-unified-content > header {
+    padding: 12px 15px;
+  }
+  body.madic-unified .madic-unified-sidebar nav a {
+    font-size: 12px;
+  }
+  body.madic-unified .madic-provincial-main section {
+    padding: 17px;
+  }
+}
 
 /* MADIC provincial tool: portal dashboard design */
-.madic-provincial-main{max-width:1300px!important;margin:0 auto!important;padding:12px 0 48px!important;color:inherit}
-.madic-provincial-main h1{font-size:clamp(1.65rem,3vw,2.4rem);margin:20px 0 12px}
-.madic-provincial-main>p{margin:0 0 22px;color:#587187}
-.madic-provincial-main section{background:#fff;border:1px solid #dce6ef;border-radius:16px;padding:26px;margin:20px 0;box-shadow:0 6px 22px rgba(10,37,64,.05)}
-.madic-provincial-main section h2{margin-top:0;color:#163954}
-.madic-provincial-main section a,.madic-provincial-main .back{color:#087f8b;font-weight:700}
-.madic-provincial-toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 18px;border-radius:12px;background:#10283b;color:#e9f7ff}
-.madic-provincial-toolbar button{border:1px solid #5c8c9d;background:#183d51;color:#fff;border-radius:8px;padding:7px 12px;cursor:pointer;margin-left:5px}
-.madic-provincial-main .back{display:inline-block;margin-bottom:16px}
-.madic-provincial-main>small{display:block;margin-top:20px;color:#5c7184}
-@media(max-width:650px){.madic-provincial-main section{padding:17px}.madic-provincial-toolbar{flex-wrap:wrap}}
-
+.madic-provincial-main {
+  max-width: 1300px !important;
+  margin: 0 auto !important;
+  padding: 12px 0 48px !important;
+  color: inherit;
+}
+.madic-provincial-main h1 {
+  font-size: clamp(1.65rem, 3vw, 2.4rem);
+  margin: 20px 0 12px;
+}
+.madic-provincial-main > p {
+  margin: 0 0 22px;
+  color: #587187;
+}
+.madic-provincial-main section {
+  background: #fff;
+  border: 1px solid #dce6ef;
+  border-radius: 16px;
+  padding: 26px;
+  margin: 20px 0;
+  box-shadow: 0 6px 22px rgba(10, 37, 64, 0.05);
+}
+.madic-provincial-main section h2 {
+  margin-top: 0;
+  color: #163954;
+}
+.madic-provincial-main section a,
+.madic-provincial-main .back {
+  color: #087f8b;
+  font-weight: 700;
+}
+.madic-provincial-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  border-radius: 12px;
+  background: #10283b;
+  color: #e9f7ff;
+}
+.madic-provincial-toolbar button {
+  border: 1px solid #5c8c9d;
+  background: #183d51;
+  color: #fff;
+  border-radius: 8px;
+  padding: 7px 12px;
+  cursor: pointer;
+  margin-left: 5px;
+}
+.madic-provincial-main .back {
+  display: inline-block;
+  margin-bottom: 16px;
+}
+.madic-provincial-main > small {
+  display: block;
+  margin-top: 20px;
+  color: #5c7184;
+}
+@media (max-width: 650px) {
+  .madic-provincial-main section {
+    padding: 17px;
+  }
+  .madic-provincial-toolbar {
+    flex-wrap: wrap;
+  }
+}
 
 /* Header: exact dashboard CRIC reference values, independently maintained. */
-body.madic-unified[data-page="manitoba"] .madic-unified-content {padding:0;display:flex;flex-direction:column;min-height:100vh;background:#eef3f9}
-body.madic-unified[data-page="manitoba"] .madic-unified-content > header {width:100%;min-height:78px;margin:0;padding:12px 34px!important;border-radius:0;border:0;border-bottom:1px solid #dbe6f0;background:#fff!important;box-shadow:none;backdrop-filter:none;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:nowrap}
-body.madic-unified[data-page="manitoba"] .madic-unified-content > header .brand {color:#122a50!important;font-weight:800;letter-spacing:.015em;text-decoration:none;font-size:1.35rem;white-space:nowrap}
-body.madic-unified[data-page="manitoba"] .madic-unified-content > header .brand span {color:#50bfdf!important}
-body.madic-unified[data-page="manitoba"] .madic-unified-content > header .brand small {color:#155d87;font-size:.8em;letter-spacing:inherit;margin-left:0}
-body.madic-unified[data-page="manitoba"] .toplinks {display:flex;align-items:center;gap:14px;flex-wrap:nowrap;font-size:inherit}
-body.madic-unified[data-page="manitoba"] .toplinks > a:not(.madic-top-notification),body.madic-unified[data-page="manitoba"] .madic-header-signout {color:#183759;font-weight:700;font-size:inherit;text-decoration:none;white-space:nowrap}
-body.madic-unified[data-page="manitoba"] .madic-header-signout {background:transparent;border:0;padding:11px 16px;border-radius:11px;cursor:pointer}
-body.madic-unified[data-page="manitoba"] .madic-lang-controls {display:flex;gap:5px;align-items:center;order:1;padding:0;background:transparent;border:0;margin-left:0}
-body.madic-unified[data-page="manitoba"] .madic-lang-controls button {min-width:40px;min-height:39px;padding:8px 11px;border:1px solid #54b7d9;border-radius:9px;background:#e5f1fa!important;color:#15415e!important;font-weight:700;cursor:pointer}
-body.madic-unified[data-page="manitoba"] .madic-lang-controls button[aria-pressed="true"],body.madic-unified[data-page="manitoba"] .madic-lang-controls button.active {background:#1b9fc0!important;color:#fff!important}
-body.madic-unified[data-page="manitoba"] .madic-top-notification {position:relative;order:2;display:grid;place-items:center;width:34px;height:34px;border:1px solid #dce6f1;border-radius:50%;flex-shrink:0}
-body.madic-unified[data-page="manitoba"] .madic-top-notification .madic-heroicon {width:21px;height:21px;filter:none;opacity:1}
-body.madic-unified[data-page="manitoba"] .madic-top-notification-count:not([hidden]) {position:absolute;right:-7px;top:-7px;display:grid;place-items:center;min-width:18px;height:18px;padding:0 4px;border-radius:12px;background:#b52e47;color:white;font-size:10px;font-weight:800;line-height:1}
-body.madic-unified[data-page="manitoba"] .madic-unified-content > main.madic-cric-reference-main {width:100%;max-width:none;margin:0;padding:26px 34px 48px!important;flex:1 0 auto}
-@media (min-width:801px) and (max-width:1080px){body.madic-unified[data-page="manitoba"] .madic-unified-content > header{padding:12px 18px!important}}
-@media(max-width:800px){body.madic-unified[data-page="manitoba"] .madic-unified-content > header{padding:18px 22px!important;flex-wrap:wrap}body.madic-unified[data-page="manitoba"] .madic-unified-content > main.madic-cric-reference-main{padding:20px 18px 36px!important}}
-
-
+body.madic-unified[data-page="manitoba"] .madic-unified-content {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: #eef3f9;
+}
+body.madic-unified[data-page="manitoba"] .madic-unified-content > header {
+  width: 100%;
+  min-height: 78px;
+  margin: 0;
+  padding: 12px 34px !important;
+  border-radius: 0;
+  border: 0;
+  border-bottom: 1px solid #dbe6f0;
+  background: #fff !important;
+  box-shadow: none;
+  backdrop-filter: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: nowrap;
+}
+body.madic-unified[data-page="manitoba"]
+  .madic-unified-content
+  > header
+  .brand {
+  color: #122a50 !important;
+  font-weight: 800;
+  letter-spacing: 0.015em;
+  text-decoration: none;
+  font-size: 1.35rem;
+  white-space: nowrap;
+}
+body.madic-unified[data-page="manitoba"]
+  .madic-unified-content
+  > header
+  .brand
+  span {
+  color: #50bfdf !important;
+}
+body.madic-unified[data-page="manitoba"]
+  .madic-unified-content
+  > header
+  .brand
+  small {
+  color: #155d87;
+  font-size: 0.8em;
+  letter-spacing: inherit;
+  margin-left: 0;
+}
+body.madic-unified[data-page="manitoba"] .toplinks {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: nowrap;
+  font-size: inherit;
+}
+body.madic-unified[data-page="manitoba"]
+  .toplinks
+  > a:not(.madic-top-notification),
+body.madic-unified[data-page="manitoba"] .madic-header-signout {
+  color: #183759;
+  font-weight: 700;
+  font-size: inherit;
+  text-decoration: none;
+  white-space: nowrap;
+}
+body.madic-unified[data-page="manitoba"] .madic-header-signout {
+  background: transparent;
+  border: 0;
+  padding: 11px 16px;
+  border-radius: 11px;
+  cursor: pointer;
+}
+body.madic-unified[data-page="manitoba"] .madic-lang-controls {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  order: 1;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  margin-left: 0;
+}
+body.madic-unified[data-page="manitoba"] .madic-lang-controls button {
+  min-width: 40px;
+  min-height: 39px;
+  padding: 8px 11px;
+  border: 1px solid #54b7d9;
+  border-radius: 9px;
+  background: #e5f1fa !important;
+  color: #15415e !important;
+  font-weight: 700;
+  cursor: pointer;
+}
+body.madic-unified[data-page="manitoba"]
+  .madic-lang-controls
+  button[aria-pressed="true"],
+body.madic-unified[data-page="manitoba"] .madic-lang-controls button.active {
+  background: #1b9fc0 !important;
+  color: #fff !important;
+}
+body.madic-unified[data-page="manitoba"] .madic-top-notification {
+  position: relative;
+  order: 2;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid #dce6f1;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+body.madic-unified[data-page="manitoba"]
+  .madic-top-notification
+  .madic-heroicon {
+  width: 21px;
+  height: 21px;
+  filter: none;
+  opacity: 1;
+}
+body.madic-unified[data-page="manitoba"]
+  .madic-top-notification-count:not([hidden]) {
+  position: absolute;
+  right: -7px;
+  top: -7px;
+  display: grid;
+  place-items: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 4px;
+  border-radius: 12px;
+  background: #b52e47;
+  color: white;
+  font-size: 10px;
+  font-weight: 800;
+  line-height: 1;
+}
+body.madic-unified[data-page="manitoba"]
+  .madic-unified-content
+  > main.madic-cric-reference-main {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 26px 34px 48px !important;
+  flex: 1 0 auto;
+}
+@media (min-width: 801px) and (max-width: 1080px) {
+  body.madic-unified[data-page="manitoba"] .madic-unified-content > header {
+    padding: 12px 18px !important;
+  }
+}
+@media (max-width: 800px) {
+  body.madic-unified[data-page="manitoba"] .madic-unified-content > header {
+    padding: 18px 22px !important;
+    flex-wrap: wrap;
+  }
+  body.madic-unified[data-page="manitoba"]
+    .madic-unified-content
+    > main.madic-cric-reference-main {
+    padding: 20px 18px 36px !important;
+  }
+}
 
 /* Pied de page : valeurs du cric-dashboard de reference, sans dependance CSS. */
-body.madic-unified[data-page="manitoba"] .madic-unified-content > footer.madic-footer {width:100%;max-width:none;margin:0;padding:40px 34px 23px!important;border-radius:0;flex-shrink:0;background:#eef3f9!important;border-top:1px solid #a9bacd!important;color:#526b83!important;}
-body.madic-unified[data-page="manitoba"] .madic-unified-content > footer.madic-footer > .madic-footer-inner,
-body.madic-unified[data-page="manitoba"] .madic-unified-content > footer.madic-footer > .madic-footer-bottom {width:100%;max-width:none;margin-left:0;margin-right:0;padding-left:0;padding-right:0;}
-body.madic-unified[data-page="manitoba"] footer.madic-footer :is(.madic-footer-name,.madic-footer-subtitle,.madic-footer-desc,.madic-footer-bottom,.madic-footer-unavailable) {color:#526b83!important;}
-body.madic-unified[data-page="manitoba"] footer.madic-footer .madic-footer-name {color:#143453!important;}
-body.madic-unified[data-page="manitoba"] footer.madic-footer .madic-footer-right a {color:#35729d!important;}
-body.madic-unified[data-page="manitoba"] footer.madic-footer .madic-footer-bottom {border-top-color:#a9bacd!important;}
-@media (min-width:801px) and (max-width:1080px) {body.madic-unified[data-page="manitoba"] .madic-unified-content > footer.madic-footer {padding-left:18px!important;padding-right:18px!important;}}
-@media (max-width:800px) {body.madic-unified[data-page="manitoba"] .madic-unified-content > footer.madic-footer {padding:32px 16px 23px!important;}}
+body.madic-unified[data-page="manitoba"]
+  .madic-unified-content
+  > footer.madic-footer {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 40px 34px 23px !important;
+  border-radius: 0;
+  flex-shrink: 0;
+  background: #eef3f9 !important;
+  border-top: 1px solid #a9bacd !important;
+  color: #526b83 !important;
+}
+body.madic-unified[data-page="manitoba"]
+  .madic-unified-content
+  > footer.madic-footer
+  > .madic-footer-inner,
+body.madic-unified[data-page="manitoba"]
+  .madic-unified-content
+  > footer.madic-footer
+  > .madic-footer-bottom {
+  width: 100%;
+  max-width: none;
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 0;
+  padding-right: 0;
+}
+body.madic-unified[data-page="manitoba"]
+  footer.madic-footer
+  :is(
+    .madic-footer-name,
+    .madic-footer-subtitle,
+    .madic-footer-desc,
+    .madic-footer-bottom,
+    .madic-footer-unavailable
+  ) {
+  color: #526b83 !important;
+}
+body.madic-unified[data-page="manitoba"]
+  footer.madic-footer
+  .madic-footer-name {
+  color: #143453 !important;
+}
+body.madic-unified[data-page="manitoba"]
+  footer.madic-footer
+  .madic-footer-right
+  a {
+  color: #35729d !important;
+}
+body.madic-unified[data-page="manitoba"]
+  footer.madic-footer
+  .madic-footer-bottom {
+  border-top-color: #a9bacd !important;
+}
+@media (min-width: 801px) and (max-width: 1080px) {
+  body.madic-unified[data-page="manitoba"]
+    .madic-unified-content
+    > footer.madic-footer {
+    padding-left: 18px !important;
+    padding-right: 18px !important;
+  }
+}
+@media (max-width: 800px) {
+  body.madic-unified[data-page="manitoba"]
+    .madic-unified-content
+    > footer.madic-footer {
+    padding: 32px 16px 23px !important;
+  }
+}

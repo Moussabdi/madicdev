@@ -13,7 +13,10 @@
       Détail du client CRIC | MADIC Portail
     </title>
     <link href="assets/madic-footer.css" rel="stylesheet" />
-    <link href="assets/gestion-client-cric-detail.css?v=bc0351fcb644" rel="stylesheet" />
+    <link
+      href="assets/gestion-client-cric-detail.css?v=bc0351fcb644"
+      rel="stylesheet"
+    />
   </head>
   <body
     class="madic-unified"
@@ -121,12 +124,41 @@
           <p aria-live="polite" id="message" role="status"></p>
           <div hidden="" id="workspace">
             <p id="clientDetailName">Chargement du client…</p>
-<section class="panel madic-intake-panel" id="madicClientIntakePanel" aria-labelledby="madicClientIntakeHeading">
-<h2 id="madicClientIntakeHeading" data-fr="Formulaire d’immigration du client" data-en="Client immigration form">Formulaire d’immigration du client</h2>
-<p class="cric-muted" data-fr="Réponses enregistrées par le client — consultation en lecture seule." data-en="Answers saved by the client — read-only access.">Réponses enregistrées par le client — consultation en lecture seule.</p>
-<p id="madicClientIntakeStatus" role="status" aria-live="polite" data-fr="Chargement du formulaire…" data-en="Loading form…">Chargement du formulaire…</p>
-<div id="madicClientIntakeAnswers" class="madic-intake-answers" hidden></div>
-</section>
+            <section
+              class="panel madic-intake-panel"
+              id="madicClientIntakePanel"
+              aria-labelledby="madicClientIntakeHeading"
+            >
+              <h2
+                id="madicClientIntakeHeading"
+                data-fr="Formulaire d’immigration du client"
+                data-en="Client immigration form"
+              >
+                Formulaire d’immigration du client
+              </h2>
+              <p
+                class="cric-muted"
+                data-fr="Réponses enregistrées par le client - consultation en lecture seule."
+                data-en="Answers saved by the client - read-only access."
+              >
+                Réponses enregistrées par le client - consultation en lecture
+                seule.
+              </p>
+              <p
+                id="madicClientIntakeStatus"
+                role="status"
+                aria-live="polite"
+                data-fr="Chargement du formulaire…"
+                data-en="Loading form…"
+              >
+                Chargement du formulaire…
+              </p>
+              <div
+                id="madicClientIntakeAnswers"
+                class="madic-intake-answers"
+                hidden
+              ></div>
+            </section>
 
             <section class="panel">
               <h2>Créer un dossier</h2>
@@ -196,20 +228,76 @@
                 </table>
               </div>
             </section>
-            <section class="panel" id="cricGuestSection" aria-labelledby="cricGuestHeading">
-              <h2 id="cricGuestHeading" data-fr="Accès d’une personne de confiance" data-en="Trusted person access">Accès d’une personne de confiance</h2>
-              <p data-fr="Invitez un proche à consulter le dossier avec son propre compte, en lecture seule. Une personne par client." data-en="Invite a trusted person to view this client’s file in read-only mode using their own account. One person per client.">Invitez un proche à consulter le dossier avec son propre compte, en lecture seule. Une personne par client.</p>
+            <section
+              class="panel"
+              id="cricGuestSection"
+              aria-labelledby="cricGuestHeading"
+            >
+              <h2
+                id="cricGuestHeading"
+                data-fr="Accès d’une personne de confiance"
+                data-en="Trusted person access"
+              >
+                Accès d’une personne de confiance
+              </h2>
+              <p
+                data-fr="Invitez un proche à consulter le dossier avec son propre compte, en lecture seule. Une personne par client."
+                data-en="Invite a trusted person to view this client’s file in read-only mode using their own account. One person per client."
+              >
+                Invitez un proche à consulter le dossier avec son propre compte,
+                en lecture seule. Une personne par client.
+              </p>
               <p id="cricGuestCurrent" aria-live="polite"></p>
               <form id="cricGuestForm" hidden>
-                <label for="cricGuestEmail" data-fr="Courriel de la personne invitée" data-en="Guest email address">Courriel de la personne invitée</label>
-                <input type="email" id="cricGuestEmail" maxlength="254" autocomplete="off" required>
-                <button type="submit" id="cricGuestInvite" data-fr="Envoyer l’invitation" data-en="Send invitation">Envoyer l’invitation</button>
+                <label
+                  for="cricGuestEmail"
+                  data-fr="Courriel de la personne invitée"
+                  data-en="Guest email address"
+                  >Courriel de la personne invitée</label
+                >
+                <input
+                  type="email"
+                  id="cricGuestEmail"
+                  maxlength="254"
+                  autocomplete="off"
+                  required
+                />
+                <button
+                  type="submit"
+                  id="cricGuestInvite"
+                  data-fr="Envoyer l’invitation"
+                  data-en="Send invitation"
+                >
+                  Envoyer l’invitation
+                </button>
               </form>
-              <button type="button" id="cricGuestRevoke" class="secondary" hidden data-fr="Révoquer l’accès ou l’invitation" data-en="Revoke access or invitation">Révoquer l’accès ou l’invitation</button>
+              <button
+                type="button"
+                id="cricGuestRevoke"
+                class="secondary"
+                hidden
+                data-fr="Révoquer l’accès ou l’invitation"
+                data-en="Revoke access or invitation"
+              >
+                Révoquer l’accès ou l’invitation
+              </button>
               <div id="cricGuestLinkBox" hidden>
-                <label for="cricGuestLink" data-fr="Lien d’invitation personnel" data-en="Personal invitation link">Lien d’invitation personnel</label>
-                <input type="url" id="cricGuestLink" readonly>
-                <button type="button" id="cricGuestCopy" class="secondary" data-fr="Copier le lien" data-en="Copy link">Copier le lien</button>
+                <label
+                  for="cricGuestLink"
+                  data-fr="Lien d’invitation personnel"
+                  data-en="Personal invitation link"
+                  >Lien d’invitation personnel</label
+                >
+                <input type="url" id="cricGuestLink" readonly />
+                <button
+                  type="button"
+                  id="cricGuestCopy"
+                  class="secondary"
+                  data-fr="Copier le lien"
+                  data-en="Copy link"
+                >
+                  Copier le lien
+                </button>
               </div>
               <p id="cricGuestStatus" role="status"></p>
             </section>

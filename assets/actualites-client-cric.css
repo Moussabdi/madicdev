@@ -1577,7 +1577,7 @@ body[data-page="cric-client-dashboard"] .madic-side-nav {
 }
 
 
-/* 2026-11-03 — correction ciblée de la structure client, référence portail CRIC.
+/* 2026-11-03 - correction ciblée de la structure client, référence portail CRIC.
    Le menu occupe toute la hauteur de la page; l'entête ne couvre que le contenu.
    Aucun script, identifiant ou lien fonctionnel modifié. */
 @media (min-width: 801px) {

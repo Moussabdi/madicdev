@@ -208,7 +208,13 @@
         <main class="cric-shell" id="madic-clients-main">
           <div class="cric-heading madic-clients-hero">
             <div>
-              <p class="cric-eyebrow" data-fr="MADIC PORTAIL / ESPACE PROFESSIONNEL" data-en="MADIC PORTAL / PROFESSIONAL WORKSPACE">MADIC PORTAIL / ESPACE PROFESSIONNEL</p>
+              <p
+                class="cric-eyebrow"
+                data-fr="MADIC PORTAIL / ESPACE PROFESSIONNEL"
+                data-en="MADIC PORTAL / PROFESSIONAL WORKSPACE"
+              >
+                MADIC PORTAIL / ESPACE PROFESSIONNEL
+              </p>
               <h1>Gestion des clients CRIC</h1>
               <p>
                 <a href="demandes-documents-cric.html"
@@ -229,17 +235,17 @@
             >
               <article class="madic-clients-stat">
                 <span>Clients associés</span
-                ><strong id="madicTotalClients">—</strong
+                ><strong id="madicTotalClients">-</strong
                 ><small>Dans votre espace professionnel</small>
               </article>
               <article class="madic-clients-stat">
                 <span>Dossiers associés</span
-                ><strong id="madicTotalDossiers">—</strong
+                ><strong id="madicTotalDossiers">-</strong
                 ><small>Pour les clients autorisés</small>
               </article>
               <article class="madic-clients-stat">
                 <span>Résultats de recherche</span
-                ><strong id="madicVisibleClients">—</strong
+                ><strong id="madicVisibleClients">-</strong
                 ><small>Clients affichés ci-dessous</small>
               </article>
             </section>
@@ -358,8 +364,21 @@
                   type="file"
                   aria-describedby="madicImportFileName"
                 />
-                <label for="madicImportFile" class="madic-import-file-button" data-fr="Choisir un fichier" data-en="Choose file">Choisir un fichier</label>
-                <span id="madicImportFileName" role="status" aria-live="polite" data-fr="Aucun fichier choisi" data-en="No file selected">Aucun fichier choisi</span>
+                <label
+                  for="madicImportFile"
+                  class="madic-import-file-button"
+                  data-fr="Choisir un fichier"
+                  data-en="Choose file"
+                  >Choisir un fichier</label
+                >
+                <span
+                  id="madicImportFileName"
+                  role="status"
+                  aria-live="polite"
+                  data-fr="Aucun fichier choisi"
+                  data-en="No file selected"
+                  >Aucun fichier choisi</span
+                >
               </div>
               <p class="cric-muted">
                 Seuls les courriels sont utilisés pour les invitations. Les
@@ -382,12 +401,12 @@
                 </table>
               </div>
               <div class="madic-import-actions">
-              <button disabled="" id="madicImportStart" type="button">
-                Confirmer et envoyer les invitations
-              </button>
-              <button class="secondary" id="madicImportCancel" type="button">
-                Annuler / effacer
-              </button>
+                <button disabled="" id="madicImportStart" type="button">
+                  Confirmer et envoyer les invitations
+                </button>
+                <button class="secondary" id="madicImportCancel" type="button">
+                  Annuler / effacer
+                </button>
               </div>
             </section>
           </div>
