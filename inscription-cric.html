@@ -38,9 +38,8 @@
         </div>
         <h1 data-i18n="signup.cric.heading">Demande d’accès CRIC</h1>
         <p class="muted" data-i18n="signup.cric.description">
-          Cette page publique transmet uniquement une demande de vérification du
-          permis. Aucun compte professionnel n’est créé ici. MADIC examine
-          ensuite la demande dans son espace administratif.
+          Vérifiez votre permis, puis enregistrez vos coordonnées
+          professionnelles pour l’examen de votre demande par MADIC.
         </p>
         <form id="cricSignup">
           <div id="cricVerifyStep">
@@ -82,6 +81,68 @@
           </button>
         </form>
         <p id="cricMessage" role="status"></p>
+        <section id="cricContactStep" aria-labelledby="cricContactTitle" hidden>
+          <h2
+            id="cricContactTitle"
+            data-i18n="signup.cric.contact.title"
+            tabindex="-1"
+          >
+            Information sur votre demande CRIC
+          </h2>
+          <p data-i18n="signup.cric.contact.verified">
+            Permis vérifié dans le registre officiel CCIC. La demande est
+            enregistrée pour examen administratif MADIC. Aucun compte n’a été
+            créé.
+          </p>
+          <form id="cricContactForm">
+            <fieldset id="cricContactFields">
+              <legend data-i18n="signup.cric.contact.legend">
+                Coordonnées professionnelles
+              </legend>
+              <label
+                for="cricContactEmail"
+                data-i18n="signup.cric.contact.email"
+                >Courriel professionnel</label
+              >
+              <input
+                id="cricContactEmail"
+                type="email"
+                autocomplete="work email"
+                maxlength="254"
+                required
+              />
+              <label
+                for="cricContactPhone"
+                data-i18n="signup.cric.contact.phone"
+                >Numéro de téléphone</label
+              >
+              <input
+                id="cricContactPhone"
+                type="tel"
+                autocomplete="work tel"
+                maxlength="48"
+                required
+              />
+              <label
+                for="cricContactAddress"
+                data-i18n="signup.cric.contact.address"
+                >Adresse professionnelle</label
+              >
+              <textarea
+                id="cricContactAddress"
+                autocomplete="work street-address"
+                rows="3"
+                minlength="5"
+                maxlength="500"
+                required
+              ></textarea>
+              <button type="submit" data-i18n="signup.cric.contact.save">
+                Enregistrer mes coordonnées
+              </button>
+            </fieldset>
+          </form>
+          <p id="cricContactStatus" role="status"></p>
+        </section>
       </section>
       <section class="auth panel" id="cricOnboarding" hidden>
         <h1
@@ -283,6 +344,6 @@
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
     <script src="assets/config.js?v=310a5db74c1f"></script>
-    <script defer src="assets/inscription-cric.js?v=759232537ec9"></script>
+    <script defer src="assets/inscription-cric.js?v=d9b9e872f964"></script>
   </body>
 </html>

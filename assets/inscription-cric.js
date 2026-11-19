@@ -90,7 +90,7 @@
       openPopup(
         "1. Saisissez votre nom complet et votre numéro de permis CRIC.\n" +
           "2. Cliquez sur « Vérifier mon permis CRIC ». MADIC consulte le registre officiel du CCIC.\n" +
-          "3. Si le permis est confirmé, la prévalidation est transmise à MADIC sans création de compte.\n" +
+          "3. Si le permis est confirmé, enregistrez vos coordonnées professionnelles.\n" +
           "4. MADIC examine votre identité dans la page administrative de validation.\n\n" +
           "Si le permis n’est pas confirmé, vérifiez les informations saisies. Vous pouvez fermer cette fenêtre à tout moment.",
         "Guide d'inscription CRIC",
@@ -102,7 +102,26 @@
     const licenseInput = document.getElementById("cricLicense");
     const verifyButton = document.getElementById("cricVerify");
     const checkButton = document.getElementById("cricCheckStatus");
+    const contactStep = document.getElementById("cricContactStep");
+    const contactForm = document.getElementById("cricContactForm");
+    const contactFields = document.getElementById("cricContactFields");
+    const contactPhone = document.getElementById("cricContactPhone");
+    const contactAddress = document.getElementById("cricContactAddress");
+    const contactStatus = document.getElementById("cricContactStatus");
     const key = "madic_cric_prevalidation_v1";
+    let contactMessage = null;
+    const renderContactStatus = () => {
+      const english = document.documentElement.lang.startsWith("en");
+      contactStatus.textContent = contactMessage?.[english ? 1 : 0] || "";
+    };
+    const setContactStatus = (fr, en) => {
+      contactMessage = [fr, en];
+      renderContactStatus();
+    };
+    new MutationObserver(renderContactStatus).observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["lang"],
+    });
     const invoke = async (body) => {
       const { data, error } = await db.functions.invoke(
         "madic-verify-cric-license",
@@ -126,15 +145,29 @@
         return null;
       }
     };
+    const revealContact = (saved, focus = false) => {
+      contactStep.hidden = false;
+      contactForm.hidden = saved.contactsSaved === true;
+      if (saved.contactsSaved) {
+        setContactStatus("Vos coordonnées professionnelles sont enregistrées.", "Your professional contact details have been saved.");
+      } else {
+        setContactStatus("", "");
+      }
+      if (focus) document.getElementById("cricContactTitle").focus();
+    };
     const saved = getSaved();
     if (saved?.token && saved.name && saved.license) {
       nameInput.value = saved.name;
       licenseInput.value = saved.license;
       checkButton.hidden = false;
+      if (typeof saved.contactsSaved === "boolean") revealContact(saved);
     }
     const invalidate = () => {
       localStorage.removeItem(key);
       checkButton.hidden = true;
+      contactStep.hidden = true;
+      contactForm.reset();
+      setContactStatus("", "");
     };
     nameInput.addEventListener("input", invalidate);
     licenseInput.addEventListener("input", invalidate);
@@ -146,6 +179,9 @@
         return;
       }
       verifyButton.disabled = true;
+      checkButton.disabled = true;
+      nameInput.readOnly = true;
+      licenseInput.readOnly = true;
       try {
         const data = await invoke({
           action: "request",
@@ -160,18 +196,19 @@
           data.registry?.registry_license !== license
         )
           throw Error("La vérification officielle n’a pas été confirmée.");
-        localStorage.setItem(
-          key,
-          JSON.stringify({ name, license, token: data.token }),
-        );
+        const request = { name, license, token: data.token, contactsSaved: false };
+        localStorage.setItem(key, JSON.stringify(request));
+        contactForm.reset();
         checkButton.hidden = false;
-        show(
-          "Permis vérifié dans le registre officiel CCIC. La demande est enregistrée pour examen administratif MADIC. Aucun compte n’a été créé.",
-        );
+        msg.textContent = "";
+        revealContact(request, true);
       } catch (e) {
         show("Erreur : " + e.message);
       } finally {
         verifyButton.disabled = false;
+        checkButton.disabled = false;
+        nameInput.readOnly = false;
+        licenseInput.readOnly = false;
       }
     });
     checkButton.addEventListener("click", async () => {
@@ -187,11 +224,22 @@
       checkButton.disabled = true;
       try {
         const data = await invoke({ action: "status", token: saved.token });
+        if (getSaved()?.token !== saved.token) return;
+        if (data.status === "expired") {
+          invalidate();
+          show("La demande est expirée. Vérifiez de nouveau votre permis.");
+          return;
+        }
         if (
           data.full_name !== saved.name ||
           data.license_number !== saved.license
         )
           throw Error("Référence incohérente.");
+        if (data.status === "pending" && data.registry_verified === true) {
+          revealContact(saved);
+        } else if (!saved.contactsSaved) {
+          contactStep.hidden = true;
+        }
         const labels = {
           pending: "en attente de validation administrative",
           approved: "validée par MADIC (sans compte créé)",
@@ -207,6 +255,50 @@
         show("Erreur : " + e.message);
       } finally {
         checkButton.disabled = false;
+      }
+    });
+    contactForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const request = getSaved();
+      if (!request?.token || request.contactsSaved || contactStep.hidden || contactFields.disabled) return;
+      const email = document.getElementById("cricContactEmail").value.trim();
+      const phone = contactPhone.value.trim();
+      const address = contactAddress.value.trim();
+      const validPhone = phone.replace(/[^0-9]/g, "").length >= 7;
+      if (!validPhone || address.length < 5) {
+        setContactStatus(
+          "Vérifiez le numéro de téléphone et indiquez une adresse professionnelle complète.",
+          "Check the phone number and enter a complete business address.",
+        );
+        (validPhone ? contactAddress : contactPhone).focus();
+        return;
+      }
+      contactFields.disabled = true;
+      verifyButton.disabled = true;
+      setContactStatus("Enregistrement en cours…", "Saving…");
+      try {
+        const { data, error } = await db.rpc("madic_save_cric_prevalidation_contact", {
+          p_token: request.token,
+          p_email: email,
+          p_phone: phone,
+          p_address: address,
+        });
+        if (getSaved()?.token !== request.token) return;
+        if (error || data !== true) throw new Error("Contact save failed");
+        request.contactsSaved = true;
+        localStorage.setItem(key, JSON.stringify(request));
+        contactForm.reset();
+        revealContact(request, true);
+      } catch {
+        if (getSaved()?.token === request.token) {
+          setContactStatus(
+            "Impossible d’enregistrer vos coordonnées. Vérifiez le statut de votre demande ou réessayez.",
+            "Unable to save your contact details. Check your request status or try again.",
+          );
+        }
+      } finally {
+        contactFields.disabled = false;
+        verifyButton.disabled = false;
       }
     });
     document
@@ -370,8 +462,8 @@
       en: "RCIC access request",
     },
     "signup.cric.description": {
-      fr: "Cette page publique transmet uniquement une demande de vérification du permis. Aucun compte professionnel n’est créé ici. MADIC examine ensuite la demande dans son espace administratif.",
-      en: "This public page only submits a request for licence verification. No professional account is created here. MADIC subsequently reviews the request through its administrative portal.",
+      fr: "Vérifiez votre permis, puis enregistrez vos coordonnées professionnelles pour l’examen de votre demande par MADIC.",
+      en: "Verify your licence, then save your professional contact details so MADIC can review your request.",
     },
     "signup.cric.name": { fr: "Nom complet", en: "Full name" },
     "signup.cric.license": {
@@ -394,6 +486,16 @@
       fr: "Vérifier le statut de ma demande",
       en: "Check my request status",
     },
+    "signup.cric.contact.title": { fr: "Information sur votre demande CRIC", en: "Information about your RCIC request" },
+    "signup.cric.contact.verified": {
+      fr: "Permis vérifié dans le registre officiel CCIC. La demande est enregistrée pour examen administratif MADIC. Aucun compte n’a été créé.",
+      en: "Your licence was verified in the official CICC register. Your request was recorded for MADIC’s administrative review. No account was created.",
+    },
+    "signup.cric.contact.legend": { fr: "Coordonnées professionnelles", en: "Professional contact details" },
+    "signup.cric.contact.email": { fr: "Courriel professionnel", en: "Professional email" },
+    "signup.cric.contact.phone": { fr: "Numéro de téléphone", en: "Phone number" },
+    "signup.cric.contact.address": { fr: "Adresse professionnelle", en: "Business address" },
+    "signup.cric.contact.save": { fr: "Enregistrer mes coordonnées", en: "Save my contact details" },
     "common.brand.portal": { fr: "PORTAIL", en: "PORTAL" },
     "client.login.madic_portail_acc_s_client_sur_invitation": {
       fr: "© MADIC PORTAIL · Accès client sur invitation",

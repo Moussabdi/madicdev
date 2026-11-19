@@ -629,6 +629,49 @@ body[data-page="cric-signup"] .madic-cric-guide:focus-visible {
   outline-offset: 2px;
 }
 
-main > .auth[hidden], #cricOnboarding [hidden] { display:none!important; }
-#cricOnboarding select { width:100%; padding:.6rem; font:inherit; }
-#cricOnboarding button { margin:.6rem .3rem 0 0; }
+main > .auth[hidden],
+#cricOnboarding [hidden] {
+  display: none !important;
+}
+#cricOnboarding select {
+  width: 100%;
+  padding: 0.6rem;
+  font: inherit;
+}
+#cricOnboarding button {
+  margin: 0.6rem 0.3rem 0 0;
+}
+
+#cricContactStep {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid #38516b;
+}
+
+#cricContactFields {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+#cricContactFields legend {
+  font-weight: 700;
+}
+
+#cricContactAddress {
+  display: block;
+  width: 100%;
+  margin-bottom: 16px;
+  padding: 12px;
+  border: 1px solid #47617b;
+  border-radius: 9px;
+  background: #09192c;
+  color: #fff;
+  font: inherit;
+  resize: vertical;
+}
+
+#cricContactStatus:empty {
+  display: none;
+}
