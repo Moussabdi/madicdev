@@ -227,6 +227,55 @@ function isMadicGuestPage() {
     notice = fr ? [fr, en] : [];
     el("Notice").textContent = notice.length ? tr(...notice) : "";
   }
+  function promptGuestSignIn() {
+    if (token) {
+      say("Utilisez l’adresse invitée et le mot de passe de votre compte MADIC. Si vous n’avez pas encore de compte, cliquez sur « Créer un compte ».",
+        "Use the invited email address and your MADIC account password. If you do not have an account yet, select ‘Create an account’.");
+    } else {
+      say("Connectez-vous avec votre compte MADIC. Pour créer votre compte ou accepter une première invitation, ouvrez le lien reçu par courriel.",
+        "Sign in with your MADIC account. To create an account or accept your first invitation, open the link you received by email.");
+    }
+  }
+  function showAuthError(error, signup) {
+    switch (error.code) {
+      case "email_not_confirmed":
+        return say("Confirmez votre adresse à l’aide du courriel de confirmation MADIC, puis revenez à votre invitation.",
+          "Confirm your address using the MADIC confirmation email, then return to your invitation.");
+      case "weak_password":
+        return say("Le mot de passe ne respecte pas les exigences de sécurité. Choisissez un mot de passe plus robuste.",
+          "This password does not meet the security requirements. Choose a stronger password.");
+      case "email_address_invalid":
+        return say("Vérifiez que l’adresse courriel est correctement saisie.",
+          "Check that the email address is entered correctly.");
+      case "over_email_send_rate_limit":
+      case "over_request_rate_limit":
+        return say("Trop de tentatives. Patientez quelques minutes avant de réessayer.",
+          "Too many attempts. Wait a few minutes before trying again.");
+      case "signup_disabled":
+      case "email_provider_disabled":
+        return say("La création de compte par courriel est présentement indisponible. Communiquez avec votre cabinet.",
+          "Email sign-up is currently unavailable. Contact your firm.");
+      case "user_already_exists":
+      case "email_exists":
+        return say("Si vous avez déjà un compte MADIC, cliquez sur « Se connecter ».",
+          "If you already have a MADIC account, select ‘Sign in’.");
+      case "invalid_credentials":
+        if (!signup && token) {
+          return say("Connexion refusée. Vérifiez l’adresse invitée et le mot de passe de votre compte MADIC. Si vous n’avez pas de compte, cliquez sur « Créer un compte ».",
+            "Sign-in failed. Check the invited email address and your MADIC account password. If you do not have an account, select ‘Create an account’.");
+        }
+        if (!signup) {
+          return say("Connexion refusée. Vérifiez votre adresse et votre mot de passe MADIC. Pour créer un compte, ouvrez le lien d’invitation reçu par courriel.",
+            "Sign-in failed. Check your MADIC email address and password. To create an account, open the invitation link you received by email.");
+        }
+    }
+    if (signup) {
+      return say("La création du compte a échoué. Vérifiez l’adresse invitée et réessayez.",
+        "Account creation failed. Check the invited email address and try again.");
+    }
+    say("La connexion est indisponible. Réessayez dans quelques instants.",
+      "Sign-in is unavailable. Try again in a moment.");
+  }
   function failed() {
     say("La consultation est indisponible. Vérifiez votre accès et réessayez.",
       "Unable to load this view. Check your access and try again.");
@@ -407,15 +456,14 @@ function isMadicGuestPage() {
     authAction(async () => {
       const email = el("Email").value.trim();
       const password = el("Password").value;
-      const signup = event.submitter === el("Signup");
+      const signup = Boolean(token) && event.submitter === el("Signup");
       const redirect = new URL(location.href);
       redirect.hash = "";
       const response = signup
         ? await db.auth.signUp({ email, password, options: { emailRedirectTo: redirect.href } })
         : await db.auth.signInWithPassword({ email, password });
       if (response.error) {
-        say("Impossible de vous connecter ou de créer le compte. Vérifiez vos renseignements.",
-          "Unable to sign in or create the account. Check your details.");
+        showAuthError(response.error, signup);
         return;
       }
       el("Auth").reset();
@@ -448,7 +496,7 @@ function isMadicGuestPage() {
     grants = [];
     grant = "";
     result = null;
-    say();
+    promptGuestSignIn();
     renderContent();
   }));
   el("Grant").addEventListener("change", () => {
@@ -483,6 +531,7 @@ function isMadicGuestPage() {
     const { data } = await db.auth.getUser();
     user = data?.user;
     if (user) await openPortal(params.get("access"));
+    else promptGuestSignIn();
   });
   async function recheck() {
     if (!user || token || !grant || authBusy) return;
