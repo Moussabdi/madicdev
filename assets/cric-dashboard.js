@@ -279,86 +279,134 @@
       const refresh = $("cricNotificationsRefresh");
       if (panel && summary && list && counter && refresh) {
         panel.hidden = false;
-        const loadClientNotifications = async () => {
+        const historyLabel = list.closest("details")?.querySelector("summary");
+        if (historyLabel) historyLabel.textContent = "Afficher / masquer les 50 dernières connexions client";
+        let notificationLoad = null;
+        let lastRows = null;
+        let notificationReadVersion = 0;
+        let reloadAfterMark = false;
+        const marking = new Set();
+        const loadClientNotifications = () => {
+          if (notificationLoad || marking.size) return notificationLoad;
           refresh.disabled = true;
-          try {
-            const { data, error } = await db.rpc(
-              "madic_cric_notifications_avec_clients",
-              { p_space_id: space.id },
-            );
-            if (error) throw error;
-            const notifications = data || [];
-            const unread = notifications.filter((n) => !n.is_read).length;
-            // Le compteur des clients distincts est calcule par une RPC securisee
-            // sur toutes les notifications du cabinet, pas seulement les 50 affichees.
-            const { data: uniqueUnread, error: countError } = await db.rpc(
-              "madic_cric_clients_connexions_non_lues",
-              { p_space_id: space.id },
-            );
-            if (countError) throw countError;
-            const unreadClients = Number(uniqueUnread) || 0;
-            counter.textContent = String(unreadClients);
-            counter.hidden = unreadClients === 0;
-            summary.textContent = notifications.length
-              ? `${unreadClients} client(s) distinct(s) avec une connexion non lue. ${unread} notification(s) non lue(s) parmi les ${notifications.length} dernières affichées.`
-              : `${unreadClients} client(s) distinct(s) avec une connexion non lue. Aucune notification récente à afficher.`;
-            list.replaceChildren();
-            for (const notification of notifications) {
-              const item = document.createElement("li");
-              item.className =
-                "madic-cric-notification" +
-                (notification.is_read ? "" : " madic-cric-notification-unread");
-              const details = document.createElement("div");
-              const title = document.createElement("strong");
-              title.textContent = notification.title || "Activité client";
-              const message = document.createElement("p");
-              message.textContent = notification.client_name
-                ? `${notification.client_name} - ${notification.message || ""}`
-                : notification.message || "";
-              const date = document.createElement("time");
-              date.dateTime = notification.created_at;
-              date.textContent = new Intl.DateTimeFormat("fr-CA", {
-                timeZone: "America/Toronto",
-                dateStyle: "medium",
-                timeStyle: "short",
-              }).format(new Date(notification.created_at));
-              details.append(title, message, date);
-              item.append(details);
-              if (!notification.is_read) {
-                const button = document.createElement("button");
-                button.type = "button";
-                button.className = "secondary";
-                button.textContent = "Marquer comme lue";
-                button.addEventListener("click", async () => {
-                  button.disabled = true;
-                  try {
-                    const { data: marked, error: markError } = await db.rpc(
-                      "madic_mark_cric_notification_read",
-                      { p_notification_id: notification.id },
-                    );
-                    if (markError) throw markError;
-                    if (marked !== true)
-                      throw Error("Notification non autorisée ou introuvable.");
-                    await loadClientNotifications();
-                  } catch (err) {
-                    summary.textContent =
-                      "Modification impossible : " +
-                      (err.message || String(err));
-                    button.disabled = false;
-                  }
-                });
-                item.append(button);
+          const readVersion = notificationReadVersion;
+          notificationLoad = (async () => {
+            try {
+              const [history, count] = await Promise.all([
+                db.rpc("madic_cric_notifications_avec_clients", { p_space_id: space.id }),
+                db.rpc("madic_cric_clients_connexions_non_lues", { p_space_id: space.id }),
+              ]);
+              if (readVersion !== notificationReadVersion || marking.size) return;
+              if (history.error) throw history.error;
+              if (count.error) throw count.error;
+              // Conserver les connexions distinctes, avec une seule ligne par ID de notification.
+              const notifications = [...new Map((history.data || []).map((n) => [n.id, n])).values()];
+              const unread = notifications.filter((n) => !n.is_read).length;
+              const unreadClients = Number(count.data) || 0;
+              const countText = String(unreadClients);
+              if (counter.textContent !== countText) counter.textContent = countText;
+              counter.hidden = unreadClients === 0;
+              const nextSummary = `Connexions affichées : ${notifications.length} sur un maximum de 50. Connexions non lues dans la liste : ${unread}. Clients distincts avec une connexion non lue : ${unreadClients}.`;
+              // Éviter de recréer l'historique et de perturber le défilement à chaque vérification.
+              const snapshot = JSON.stringify(notifications);
+              if (snapshot !== lastRows) {
+                renderNotifications(notifications);
+                lastRows = snapshot;
               }
-              list.append(item);
+              setNotificationSummary(nextSummary);
+            } catch (err) {
+              if (readVersion === notificationReadVersion && !marking.size) {
+                setNotificationSummary("Notifications indisponibles : " + (err.message || String(err)));
+              }
+            } finally {
+              refresh.disabled = false;
+              notificationLoad = null;
             }
-          } catch (err) {
-            summary.textContent =
-              "Notifications indisponibles : " + (err.message || String(err));
-          } finally {
-            refresh.disabled = false;
-          }
+          })();
+          return notificationLoad;
         };
+
+        let lastSummary = "";
+        function setNotificationSummary(text) {
+          if (text === lastSummary) return;
+          lastSummary = text;
+          summary.textContent = text;
+        }
+
+        function renderNotifications(notifications) {
+          const scrollTop = list.scrollTop;
+          const rows = document.createDocumentFragment();
+          for (const notification of notifications) {
+            const item = document.createElement("li");
+            item.className =
+              "madic-cric-notification" +
+              (notification.is_read ? "" : " madic-cric-notification-unread");
+            const details = document.createElement("div");
+            const title = document.createElement("strong");
+            title.textContent = notification.title || "Activité client";
+            const message = document.createElement("p");
+            const clientName = notification.client_name?.trim();
+            message.textContent = clientName
+              ? `${clientName} de votre cabinet s’est connecté à son portail MADIC.`
+              : "Un client de votre cabinet s’est connecté à son portail MADIC.";
+            const date = document.createElement("time");
+            date.dateTime = notification.created_at;
+            date.textContent = new Intl.DateTimeFormat("fr-CA", {
+              timeZone: "America/Toronto",
+              dateStyle: "medium",
+              timeStyle: "short",
+            }).format(new Date(notification.created_at));
+            details.append(title, message, date);
+            item.append(details);
+            if (!notification.is_read) {
+              const button = document.createElement("button");
+              button.type = "button";
+              button.className = "secondary";
+              button.textContent = "Marquer comme lue";
+              button.addEventListener("click", async () => {
+                if (marking.has(notification.id)) return;
+                marking.add(notification.id);
+                button.disabled = true;
+                try {
+                  const { data: marked, error: markError } = await db.rpc(
+                    "madic_mark_cric_notification_read",
+                    { p_notification_id: notification.id },
+                  );
+                  if (markError) throw markError;
+                  if (marked !== true)
+                    throw Error("Notification non autorisée ou introuvable.");
+                  notificationReadVersion++;
+                  reloadAfterMark = true;
+                } catch (err) {
+                  setNotificationSummary("Modification impossible : " + (err.message || String(err)));
+                  button.disabled = false;
+                } finally {
+                  marking.delete(notification.id);
+                  if (reloadAfterMark && !marking.size) {
+                    reloadAfterMark = false;
+                    await notificationLoad;
+                    await loadClientNotifications();
+                  }
+                }
+              });
+              item.append(button);
+            }
+            rows.append(item);
+          }
+          list.replaceChildren(rows);
+          list.scrollTop = scrollTop;
+        }
+
+        function refreshVisibleNotifications() {
+          if (!document.hidden) void loadClientNotifications();
+        }
         refresh.addEventListener("click", loadClientNotifications);
+        window.addEventListener("focus", refreshVisibleNotifications);
+        window.addEventListener("pageshow", (event) => {
+          if (event.persisted) refreshVisibleNotifications();
+        });
+        document.addEventListener("visibilitychange", refreshVisibleNotifications);
+        window.setInterval(refreshVisibleNotifications, 10000);
         await loadClientNotifications();
       }
     }
@@ -1419,6 +1467,8 @@
     "Chargement des notifications…": "Loading notifications…",
     "Afficher / masquer l’historique des notifications":
       "Show / hide notification history",
+    "Afficher / masquer les 50 dernières connexions client":
+      "Show / hide the latest 50 client logins",
     "🔔 Mes rappels prioritaires": "🔔 My priority reminders",
     "Mes rappels prioritaires": "My priority reminders",
     "Aucune échéance dépassée ou prévue dans les 7 prochains jours.": "No overdue deadlines or deadlines due in the next 7 days.",
@@ -1568,10 +1618,8 @@
         let match;
         if ((match = trimmed.match(/^(\d+) demande\(s\), dont (\d+) à traiter\.$/)))
           target = `${match[1]} request(s), including ${match[2]} to process.`;
-        else if ((match = trimmed.match(/^(\d+) client\(s\) distinct\(s\) avec une connexion non lue\. (\d+) notification\(s\) non lue\(s\) parmi les (\d+) dernières affichées\.$/)))
-          target = `${match[1]} distinct client(s) with an unread login. ${match[2]} unread notification(s) among the last ${match[3]} displayed.`;
-        else if ((match = trimmed.match(/^(\d+) client\(s\) distinct\(s\) avec une connexion non lue\. Aucune notification récente à afficher\.$/)))
-          target = `${match[1]} distinct client(s) with an unread login. No recent notifications to display.`;
+        else if ((match = trimmed.match(/^Connexions affichées : (\d+) sur un maximum de 50\. Connexions non lues dans la liste : (\d+)\. Clients distincts avec une connexion non lue : (\d+)\.$/)))
+          target = `Logins displayed: ${match[1]} out of a maximum of 50. Unread logins in the list: ${match[2]}. Distinct clients with an unread login: ${match[3]}.`;
         else if ((match = trimmed.match(/^(\d+) rappel\(s\) prioritaire\(s\), dont (\d+) dépassé\(s\)\.$/)))
           target = `${match[1]} priority reminder(s), including ${match[2]} overdue.`;
         else if ((match = trimmed.match(/^(\d+) message\(s\) non lu\(s\) dans (\d+) conversation\(s\)\.$/)))
@@ -1614,6 +1662,10 @@
       if (!target && /Un client de votre cabinet s.est connect[eé] [aà] son portail MADIC\.?/i.test(trimmed)) {
         target = normalized.replace(/Un client de votre cabinet s.est connect[eé] [aà] son portail MADIC\.?/gi,
           "A client from your practice signed in to their MADIC portal.");
+      }
+      if (!target) {
+        const loginMessage = trimmed.match(/^(.+) de votre cabinet s’est connecté à son portail MADIC\.$/);
+        if (loginMessage) target = `${loginMessage[1]} from your practice signed in to their MADIC portal.`;
       }
       if (!target && /^Connexion d[’']un client$/i.test(trimmed)) target = "Client login";
       if (target) result = source.replace(trimmed, target);

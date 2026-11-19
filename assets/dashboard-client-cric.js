@@ -338,6 +338,16 @@
       );
       return;
     }
+    // Couvre aussi les arrivées après invitation ou avec une session encore
+    // active. La RPC ne crée qu’une notification par session et par cabinet.
+    void (async () => {
+      try {
+        const { error } = await db.rpc("madic_record_client_portal_login");
+        if (error) throw error;
+      } catch (error) {
+        console.warn("MADIC : connexion client non journalisée :", error.message);
+      }
+    })();
     const { data: profile, error: profileError } = await db
       .from("profiles")
       .select("*")
