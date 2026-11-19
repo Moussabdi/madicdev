@@ -23,6 +23,12 @@
     localStorage.setItem("madic-language",language);
     localStorage.setItem("madic_ui_language",language);
     document.querySelectorAll("[data-fr][data-en]").forEach(node => { node.textContent = node.dataset[language]; });
+    for (const attribute of ["aria-label", "title"]) {
+      const translation = "data-" + attribute + "-" + language;
+      document.querySelectorAll("[" + translation + "]").forEach(node => {
+        node.setAttribute(attribute, node.getAttribute(translation));
+      });
+    }
     document.querySelectorAll("[data-language]").forEach(node => { node.setAttribute("aria-pressed",String(node.dataset.language === language)); });
     if (message) show(...message);
     if (data) { updateFirms(); render(); }
@@ -179,7 +185,12 @@
     await load();
   }
   document.querySelectorAll("[data-language]").forEach(node=> { node.addEventListener("click",()=>setLanguage(node.dataset.language)); });
-  $("radarLogout").addEventListener("click",async()=>{ if (db) await db.auth.signOut();location.href="connexion.html"; });
+  $("radarLogout").addEventListener("click", async event => {
+    event.preventDefault();
+    const destination = event.currentTarget.href;
+    if (db) await db.auth.signOut();
+    location.href = destination;
+  });
   elements.days.addEventListener("change",()=>void load());
   elements.plan.addEventListener("change",()=>{ if (data) {updateFirms();render();} });
   elements.firm.addEventListener("change",()=>{ if (data) render(); });
