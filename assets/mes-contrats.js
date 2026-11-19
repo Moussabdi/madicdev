@@ -1,7 +1,7 @@
 /* MADIC - Mes contrats : scripts de la page consolides. */
 (async function () {
   "use strict";
-  if (!window.supabase) {
+  if (!window.supabase && !window.MADIC_GUEST_PORTAL) {
     await new Promise((resolve, reject) => {
       const s = document.createElement("script");
       s.src = "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js";
@@ -14,6 +14,7 @@
 /* MADIC - module de contrats. Prototype : ne constitue pas une signature electronique qualifiee. */
 (() => {
   "use strict";
+  if (window.MADIC_GUEST_PORTAL) return;
   const config = window.MADIC_CONFIG;
   const root = document.getElementById("madic-contracts");
   if (!root) return;

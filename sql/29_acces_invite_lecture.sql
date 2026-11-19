@@ -1,4 +1,3 @@
--- Exécuter après les migrations du portail client et avant le déploiement Web.
 begin;
 
 create table if not exists public.madic_client_guest_access (
@@ -134,16 +133,24 @@ declare
   g record;
   rows jsonb;
   page_offset integer := greatest(0, p_offset);
+  section_name text := split_part(p_section, ':', 1);
+  conversation_filter text := nullif(split_part(p_section, ':', 2), '');
 begin
   select * into g from public.madic_guest_grants() a where a.grant_id = p_grant;
   if not found then raise exception 'Guest access unavailable' using errcode = '42501'; end if;
-  case p_section
+  if conversation_filter is not null and section_name not in ('messages', 'attachments') then
+    raise exception 'Unknown guest section' using errcode = '22023';
+  end if;
+  case section_name
     when 'profile' then
-      return (select jsonb_build_object('name', g.client_name, 'email', p.email, 'phone', p.phone, 'country', p.country,
+      return (select jsonb_build_object('name', g.client_name, 'first_name', p.first_name, 'last_name', p.last_name, 'email', p.email, 'phone', p.phone, 'country', p.country,
                 'gender', to_jsonb(p)->'gender', 'date_of_birth', to_jsonb(p)->'date_of_birth',
                 'address_number', to_jsonb(p)->'address_number', 'address_street', to_jsonb(p)->'address_street',
                 'address_apartment', to_jsonb(p)->'address_apartment', 'address_city', to_jsonb(p)->'address_city',
                 'address_region', to_jsonb(p)->'address_region', 'address_postal_code', to_jsonb(p)->'address_postal_code',
+                'ircc_application_category', to_jsonb(p)->'ircc_application_category',
+                'ircc_application_type', to_jsonb(p)->'ircc_application_type',
+                'ircc_followup_answer', to_jsonb(p)->'ircc_followup_answer',
                 'file', case when split_part(u.raw_user_meta_data->>'madic_avatar_path','/',1) = p.id::text
                              then u.raw_user_meta_data->>'madic_avatar_path' end,
                 'bucket', 'madic-profile-avatars')
@@ -167,6 +174,7 @@ begin
     when 'documents' then
       select jsonb_agg(to_jsonb(x)) into rows from (
         select d.reference, f.original_name, f.status, f.created_at, f.storage_path as file,
+               to_jsonb(f)->>'review_status' as review_status, to_jsonb(f)->>'review_reason' as review_reason,
                'madic-documents' as bucket
         from public.documents f join public.dossiers d on d.id = f.dossier_id and d.client_id = f.client_id
         where d.space_id = g.space_id and f.client_id = g.client_id
@@ -181,20 +189,29 @@ begin
         where a.space_id = g.space_id and a.client_id = g.client_id
         order by s.starts_at desc, a.id desc limit 26 offset page_offset
       ) x;
+    when 'conversations' then
+      select jsonb_agg(to_jsonb(x)) into rows from (
+        select c.id as conversation_id, c.subject, c.created_at
+        from public.madic_cric_conversations c
+        where c.space_id = g.space_id and c.client_id = g.client_id
+        order by c.created_at desc, c.id desc limit 26 offset page_offset
+      ) x;
     when 'messages' then
       select jsonb_agg(to_jsonb(x)) into rows from (
-        select c.subject, m.body, m.created_at,
+        select c.id as conversation_id, c.subject, m.body, m.created_at,
                case when m.sender_id = g.client_id then 'client' else 'cabinet' end as sender
         from public.madic_cric_messages m join public.madic_cric_conversations c on c.id = m.conversation_id
         where c.space_id = g.space_id and c.client_id = g.client_id
+          and (conversation_filter is null or c.id::text = conversation_filter)
         order by m.created_at desc, m.id desc limit 26 offset page_offset
       ) x;
     when 'attachments' then
       select jsonb_agg(to_jsonb(x)) into rows from (
-        select c.subject, a.filename, a.created_at, a.storage_path as file, 'madic-message-attachments' as bucket
+        select c.id as conversation_id, c.subject, a.filename, a.created_at, a.storage_path as file, 'madic-message-attachments' as bucket
         from public.madic_cric_message_attachments a
         join public.madic_cric_conversations c on c.id = a.conversation_id
         where c.space_id = g.space_id and c.client_id = g.client_id
+          and (conversation_filter is null or c.id::text = conversation_filter)
         order by a.created_at desc, a.id desc limit 26 offset page_offset
       ) x;
     when 'invoices' then

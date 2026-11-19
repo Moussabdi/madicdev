@@ -12,18 +12,23 @@
     >
       Invitation client CRIC | MADIC Portail
     </title>
-    <link href="assets/invitation-client-cric.css" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/connexion-client-cric.css" />
+    <link rel="stylesheet" href="assets/invitation-client-cric.css?v=1debcdfdf488" />
     <link href="assets/madic-footer.css" rel="stylesheet" />
   </head>
-  <body class="madic-unified-auth" data-page="cric-invitation">
-    <a class="madic8-skip" href="#madic8-main">Aller au contenu principal</a>
+  <body data-page="cric-invitation">
+    <a class="madic8-skip" href="#madic8-main" data-fr="Aller au contenu principal" data-en="Skip to main content">Aller au contenu principal</a>
     <header class="madic-invitation-header">
       <a class="brand" href="connexion-client-cric.html"
-        >MADI<span>C</span> <small>PORTAIL CLIENT CRIC</small></a
+        >MADI<span>C</span> <small data-fr="PORTAIL" data-en="PORTAL">PORTAIL</small></a
       >
-      <div aria-label="Langue / Language" class="madic-lang-controls">
-        <button data-lang="fr" type="button">FR</button
-        ><button data-lang="en" type="button">EN</button>
+      <nav class="toplinks" aria-label="Navigation">
+        <a href="connexion-client-cric.html" data-fr="Connexion" data-en="Sign in">Connexion</a>
+        <a href="inscription.html" data-fr="Inscription" data-en="Sign up">Inscription</a>
+      </nav>
+      <div class="madic-lang-switch" role="group" aria-label="Langue / Language">
+        <button data-lang="fr" type="button" aria-pressed="true">FR</button>
+        <button data-lang="en" type="button" aria-pressed="false">EN</button>
       </div>
     </header>
     <main id="madic8-main">
@@ -67,11 +72,37 @@
             >Mot de passe</label
           ><input
             id="invitePassword"
+            autocomplete="current-password"
             minlength="12"
             required=""
             type="password"
           />
-          <div class="invitation-actions">
+          <div class="madic-password-toggle-row">
+            <button
+              type="button"
+              data-password-toggle
+              class="password-toggle"
+              aria-controls="invitePassword"
+              aria-pressed="false"
+              aria-label="Afficher le mot de passe"
+            >
+              <svg
+                class="icon"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Z" />
+                <circle cx="12" cy="12" r="3" />
+              </svg>
+              <span data-password-label>Afficher</span>
+            </button>
+          </div>
+          <div class="actions invitation-actions">
             <button
               data-en="Continue and accept my invitation"
               data-fr="Continuer et accepter mon invitation"
@@ -84,6 +115,7 @@
               data-fr="Changer de compte"
               hidden=""
               id="switchAccount"
+              class="secondary"
               type="button"
             >
               Changer de compte
@@ -98,7 +130,7 @@
             </p>
           </div>
         </form>
-        <p id="message" role="status"></p>
+        <p id="message" class="notice" role="status"></p>
         <p>
           <a
             data-en="Already a client? Sign in"
@@ -110,7 +142,7 @@
       </section>
       <section
         id="guestPortal"
-        class="panel"
+        class="auth panel"
         aria-labelledby="guestTitle"
         hidden
       >
@@ -121,7 +153,7 @@
         >
           Consultation en lecture seule
         </h1>
-        <p id="guestNotice" role="status"></p>
+        <p id="guestNotice" class="muted" role="status"></p>
         <form id="guestAuth" hidden>
           <label
             for="guestEmail"
@@ -145,7 +177,32 @@
             autocomplete="current-password"
             required
           />
-          <div class="guest-actions">
+          <div class="madic-password-toggle-row">
+            <button
+              type="button"
+              data-password-toggle
+              class="password-toggle"
+              aria-controls="guestPassword"
+              aria-pressed="false"
+              aria-label="Afficher le mot de passe"
+            >
+              <svg
+                class="icon"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Z" />
+                <circle cx="12" cy="12" r="3" />
+              </svg>
+              <span data-password-label>Afficher</span>
+            </button>
+          </div>
+          <div class="actions guest-actions">
             <button type="submit" data-fr="Se connecter" data-en="Sign in">
               Se connecter
             </button>
@@ -159,7 +216,7 @@
             </button>
           </div>
         </form>
-        <div class="guest-actions">
+        <div class="actions guest-actions">
           <button
             type="button"
             id="guestAccept"
@@ -172,6 +229,7 @@
           <button
             type="button"
             id="guestSignOut"
+            class="secondary"
             hidden
             data-fr="Déconnecter ce compte"
             data-en="Sign out of this account"
@@ -185,41 +243,6 @@
             data-en="My guest access"
             >Mes accès invités</a
           >
-        </div>
-        <div id="guestWorkspace" hidden>
-          <label
-            for="guestGrant"
-            data-fr="Dossier partagé"
-            data-en="Shared file"
-            >Dossier partagé</label
-          >
-          <select id="guestGrant"></select>
-          <label
-            for="guestSection"
-            data-fr="Section à consulter"
-            data-en="Section to view"
-            >Section à consulter</label
-          >
-          <select id="guestSection"></select>
-          <div id="guestContent" aria-live="polite"></div>
-          <div class="guest-actions" id="guestPager" hidden>
-            <button
-              type="button"
-              id="guestPrevious"
-              data-fr="Précédent"
-              data-en="Previous"
-            >
-              Précédent
-            </button>
-            <button
-              type="button"
-              id="guestNext"
-              data-fr="Suivant"
-              data-en="Next"
-            >
-              Suivant
-            </button>
-          </div>
         </div>
       </section>
     </main>
@@ -286,7 +309,7 @@
       </div>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
-    <script src="assets/invitation-client-cric.js"></script>
+    <script src="assets/invitation-client-cric.js?v=67a3343b0b2b"></script>
     <script src="assets/madic-footer.js"></script>
   </body>
 </html>

@@ -271,6 +271,7 @@
 /* MADIC - tableau de bord client CRIC. RLS Supabase obligatoire. */
 (async () => {
   "use strict";
+  if (window.MADIC_GUEST_PORTAL) return;
   const $ = (id) => document.getElementById(id);
   const status = (message, bad = false) => {
     const n = $("message");
@@ -809,6 +810,7 @@
    Lecture uniquement : les RLS Supabase restent la source des autorisations. */
 (async () => {
   "use strict";
+  if (window.MADIC_GUEST_PORTAL) return;
   const badge = document.getElementById("madicClientMessagesUnread");
   const summary = document.getElementById("madicClientMessagesSummary");
   const card = document.getElementById("madicClientMessagingCard");
@@ -907,6 +909,7 @@
 /* MADIC 3.2 - Lecture des factures émises du client via RPC dédiée. */
 (async () => {
   "use strict";
+  if (window.MADIC_GUEST_PORTAL) return;
   const $ = (id) => document.getElementById(id);
   const notice = (text) => {
     if ($("clientInvoicesNotice")) $("clientInvoicesNotice").textContent = text;
@@ -1108,6 +1111,7 @@
 /* Source originale: assets/madic-document-requests-client.js */
 (async () => {
   "use strict";
+  if (window.MADIC_GUEST_PORTAL) return;
   const $ = (id) => document.getElementById(id),
     notice = (s) => ($("docreqClientNotice").textContent = s);
   if (!window.getMadicSupabase) return notice("Configuration manquante.");
@@ -1175,6 +1179,7 @@
    Aucune cle privilegiee; requetes soumises aux politiques RLS Supabase. */
 (async () => {
   "use strict";
+  if (window.MADIC_GUEST_PORTAL) return;
   const page = location.pathname.split("/").pop().toLowerCase();
   const client = page === "dashboard-client-cric.html";
   const cric = page === "cric-dashboard.html";
@@ -1358,6 +1363,7 @@
 /* MADIC - suivi de demandes isole par cabinet. Module independant des scripts historiques. */
 (async () => {
   "use strict";
+  if (window.MADIC_GUEST_PORTAL) return;
   const $ = (id) => document.getElementById(id);
   if (
     !window.MADIC_CONFIG?.url ||

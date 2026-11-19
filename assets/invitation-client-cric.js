@@ -165,7 +165,68 @@ function isMadicGuestPage() {
   }
 
 })();
-(()=>{"use strict";const nodes=document.querySelectorAll("[data-fr][data-en]");function setLanguage(lang){lang=lang==="en"?"en":"fr";document.documentElement.lang=lang==="en"?"en":"fr-CA";nodes.forEach(el=>{el.textContent=el.dataset[lang]});document.querySelectorAll(".madic-lang-controls button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.lang===lang)));try{localStorage.setItem("madic-lang",lang)}catch(e){}}let initial="fr";try{initial=new URLSearchParams(location.search).get("lang")||localStorage.getItem("madic-lang")||"fr"}catch(e){}setLanguage(initial);document.querySelectorAll(".madic-lang-controls button").forEach(b=>b.addEventListener("click",()=>setLanguage(b.dataset.lang)));window.addEventListener("storage",e=>{if(e.key==="madic-lang")setLanguage(e.newValue)});})();
+(() => {
+  "use strict";
+  const labels = document.querySelectorAll("[data-fr][data-en]");
+  const languageButtons = document.querySelectorAll(".madic-lang-switch button[data-lang]");
+  const passwordToggles = Array.from(document.querySelectorAll("[data-password-toggle]"), button => ({
+    button,
+    field: document.getElementById(button.getAttribute("aria-controls")),
+    label: button.querySelector("[data-password-label]"),
+  })).filter(control => control.field && control.label);
+  let language = "fr";
+
+  function renderPasswordToggle({ button, field, label }) {
+    const visible = field.type === "text";
+    button.setAttribute("aria-pressed", String(visible));
+    label.textContent = language === "en"
+      ? (visible ? "Hide" : "Show")
+      : (visible ? "Masquer" : "Afficher");
+    button.setAttribute("aria-label", language === "en"
+      ? (visible ? "Hide password" : "Show password")
+      : (visible ? "Masquer le mot de passe" : "Afficher le mot de passe"));
+  }
+
+  function setLanguage(value) {
+    language = String(value).toLowerCase().startsWith("en") ? "en" : "fr";
+    document.documentElement.lang = language === "en" ? "en-CA" : "fr-CA";
+    labels.forEach(node => { node.textContent = node.dataset[language]; });
+    languageButtons.forEach(button => {
+      button.setAttribute("aria-pressed", String(button.dataset.lang === language));
+    });
+    passwordToggles.forEach(renderPasswordToggle);
+  }
+
+  for (const control of passwordToggles) {
+    const { button, field } = control;
+    button.addEventListener("click", () => {
+      field.type = field.type === "password" ? "text" : "password";
+      renderPasswordToggle(control);
+    });
+    const conceal = () => {
+      field.type = "password";
+      renderPasswordToggle(control);
+    };
+    field.form?.addEventListener("reset", conceal);
+    window.addEventListener("pagehide", conceal);
+  }
+
+  let initial = new URLSearchParams(location.search).get("lang");
+  try {
+    initial ||= localStorage.getItem("madic_ui_language") || localStorage.getItem("madic-lang");
+  } catch {}
+  setLanguage(initial || "fr");
+  languageButtons.forEach(button => button.addEventListener("click", () => {
+    setLanguage(button.dataset.lang);
+    try {
+      localStorage.setItem("madic_ui_language", language);
+      localStorage.setItem("madic-lang", language);
+    } catch {}
+  }));
+  window.addEventListener("storage", event => {
+    if (event.key === "madic-lang" && event.newValue) setLanguage(event.newValue);
+  });
+})();
 
 (() => {
   "use strict";
@@ -179,50 +240,8 @@ function isMadicGuestPage() {
   const tr = (fr, en) => english() ? en : fr;
   const params = new URLSearchParams(location.search);
   let token = params.get("invite");
-  let user = null, grants = [], grant = "", section = "profile", offset = 0;
-  let result = null, version = 0, notice = [], authBusy = false;
-  const sections = {
-    profile: ["Profil du client", "Client profile"],
-    dossiers: ["Dossiers", "Cases"],
-    intake: ["Questionnaire d’immigration", "Immigration questionnaire"],
-    requests: ["Demandes de documents", "Document requests"],
-    documents: ["Documents déposés", "Uploaded documents"],
-    appointments: ["Rendez-vous", "Appointments"],
-    messages: ["Messages", "Messages"],
-    attachments: ["Pièces jointes", "Attachments"],
-    invoices: ["Factures émises", "Issued invoices"],
-    contracts: ["Contrats initiaux", "Initial contracts"],
-    legacy_contracts: ["Contrats de consultation", "Consultation contracts"],
-    service: ["Suivi de la demande de service", "Service request progress"],
-  };
-  const labels = {
-    name: ["Nom", "Name"], phone: ["Téléphone", "Phone"], email: ["Courriel", "Email"], country: ["Pays", "Country"],
-    gender: ["Genre", "Gender"], date_of_birth: ["Date de naissance", "Date of birth"],
-    address_number: ["Numéro civique", "Street number"], address_street: ["Rue", "Street"],
-    address_apartment: ["Appartement", "Apartment"], address_city: ["Ville", "City"],
-    address_region: ["Province ou région", "Province or region"], address_postal_code: ["Code postal", "Postal code"],
-    reference: ["Référence", "Reference"], category: ["Catégorie", "Category"], status: ["Statut", "Status"],
-    created_at: ["Date", "Date"], updated_at: ["Mise à jour", "Updated"], title: ["Titre", "Title"],
-    instructions: ["Instructions", "Instructions"], due_on: ["Échéance", "Due date"], original_name: ["Fichier", "File"],
-    starts_at: ["Début", "Starts"], ends_at: ["Fin", "Ends"], mode: ["Mode", "Format"], location_info: ["Lieu ou lien", "Location or link"],
-    subject: ["Sujet", "Subject"], body: ["Message", "Message"], sender: ["Expéditeur", "Sender"], filename: ["Fichier", "File"],
-    invoice_number: ["Facture", "Invoice"], description: ["Description", "Description"], issued_on: ["Émise le", "Issued on"],
-    items: ["Détail", "Line items"], notes: ["Notes", "Notes"], total_cents: ["Total", "Total"], paid_cents: ["Payé", "Paid"],
-    balance_cents: ["Solde", "Balance"], client_signed_at: ["Signature du client", "Client signature"],
-    published_at: ["Publication", "Published"], signed_at: ["Signature", "Signed"], service_type: ["Service", "Service"],
-  };
-  const values = {
-    en_attente: ["En attente", "Pending"], actif: ["Actif", "Active"], ferme: ["Fermé", "Closed"],
-    requested: ["Demandé", "Requested"], completed: ["Terminé", "Completed"], cancelled: ["Annulé", "Cancelled"],
-    confirmed: ["Confirmé", "Confirmed"], declined: ["Refusé", "Declined"], video: ["Vidéo", "Video"],
-    phone: ["Téléphone", "Phone"], in_person: ["En personne", "In person"], client: ["Client", "Client"],
-    cabinet: ["Cabinet", "Firm"], publie: ["Publié", "Published"], signe: ["Signé", "Signed"],
-    client_signe: ["Signé par le client", "Signed by client"], deux_signatures: ["Signé par les deux parties", "Signed by both parties"],
-    received: ["Reçue", "Received"], reviewing: ["En cours d’analyse", "Under review"], responded: ["Réponse envoyée", "Responded"],
-    closed: ["Fermée", "Closed"], consultation: ["Consultation", "Consultation"], proposition: ["Proposition", "Proposal"],
-    recu: ["Reçu", "Received"], a_verifier: ["À vérifier", "Needs review"], accepte: ["Accepté", "Accepted"],
-    a_remplacer: ["À remplacer", "Replacement needed"],
-  };
+  let user = null;
+  let notice = [], authBusy = false;
   function say(fr, en) {
     notice = fr ? [fr, en] : [];
     el("Notice").textContent = notice.length ? tr(...notice) : "";
@@ -282,167 +301,15 @@ function isMadicGuestPage() {
   }
   if (!window.supabase) { failed(); return; }
   const db = window.getMadicSupabase();
-  function setUrl() {
-    const url = new URL(location.href);
-    url.hash = "";
-    url.searchParams.delete("invite");
-    url.searchParams.set("guest", "1");
-    if (grant) url.searchParams.set("access", grant);
-    else url.searchParams.delete("access");
-    history.replaceState(null, "", url);
-  }
-  function addOptions(select, entries, current) {
-    select.replaceChildren(...entries.map(([value, title]) => new Option(title, value)));
-    select.value = current;
-  }
   function updateControls() {
     el("Auth").hidden = Boolean(user);
     el("Signup").hidden = !token;
     el("SignOut").hidden = !user;
     el("Accept").hidden = !user || !token;
-    el("Workspace").hidden = !user || !grant || Boolean(token);
     [el("Accept"), el("SignOut"), ...el("Auth").querySelectorAll("button")].forEach(button => {
       button.disabled = authBusy;
     });
-    addOptions(el("Grant"), grants.map(access => [access.grant_id, access.client_name + " · " + access.cabinet]), grant);
-    addOptions(el("Section"), Object.entries(sections).map(([key, title]) => [key, tr(...title)]), section);
     el("Notice").textContent = notice.length ? tr(...notice) : "";
-  }
-  function prettyKey(key) {
-    return key.replace(/_/g, " ").replace(/^./, letter => letter.toUpperCase());
-  }
-  function formatValue(key, value, row) {
-    const locale = english() ? "en-CA" : "fr-CA";
-    if (value == null || value === "") return "—";
-    if (key.endsWith("_cents")) {
-      return new Intl.NumberFormat(locale, { style: "currency", currency: row.currency || "CAD" }).format(value / 100);
-    }
-    if (/^\d{4}-\d\d-\d\dT/.test(String(value)) && !Number.isNaN(Date.parse(value))) {
-      return new Date(value).toLocaleString(locale);
-    }
-    if (["status", "mode", "sender", "service_type"].includes(key) && Object.hasOwn(values, value)) {
-      return tr(...values[value]);
-    }
-    if (typeof value === "boolean") return value ? tr("Oui", "Yes") : tr("Non", "No");
-    return String(value);
-  }
-  function detailList(row) {
-    const fields = document.createElement("dl");
-    for (const [key, value] of Object.entries(row)) {
-      if (["file", "bucket", "contract_id", "currency"].includes(key) || key.startsWith("madic_")) continue;
-      const title = document.createElement("dt");
-      title.textContent = Object.hasOwn(labels, key) ? tr(...labels[key]) : prettyKey(key);
-      const detail = document.createElement("dd");
-      if (value && typeof value === "object") detail.append(detailList(value));
-      else detail.textContent = formatValue(key, value, row);
-      fields.append(title, detail);
-    }
-    return fields;
-  }
-  function action(fr, en, run) {
-    const button = document.createElement("button");
-    button.type = "button";
-    button.textContent = tr(fr, en);
-    button.addEventListener("click", async () => {
-      button.disabled = true;
-      try { await run(); } catch { failed(); }
-      finally { button.disabled = false; }
-    });
-    return button;
-  }
-  async function download(row) {
-    const requestVersion = version;
-    const { data, error, response } = await db.functions.invoke("madic-send-client-invitation", {
-      body: { action: "guest_download", grant_id: grant, bucket: row.bucket, path: row.file },
-    });
-    if (error || !(data instanceof Blob)) throw error || Error("Missing file");
-    if (requestVersion !== version) return;
-    const url = URL.createObjectURL(data);
-    const link = document.createElement("a");
-    link.href = url;
-    const imageExtension = { "image/jpeg": "jpg", "image/png": "png", "image/webp": "webp" }[
-      response?.headers.get("X-Madic-File-Type")?.split(";")[0]
-    ];
-    link.download = row.original_name || row.filename || (imageExtension ? "MADIC." + imageExtension : "MADIC.pdf");
-    link.click();
-    setTimeout(() => URL.revokeObjectURL(url), 1000);
-  }
-  async function showContract(card, id) {
-    const isLegacy = section === "legacy_contracts";
-    const requestVersion = version;
-    const { data, error } = await db.rpc(isLegacy ? "madic_guest_legacy_contract" : "madic_guest_contract",
-      { p_grant: grant, p_contract: id });
-    if (error || !data) throw error || Error("Missing contract");
-    if (requestVersion !== version || !card.isConnected) return;
-    card.querySelector(".guest-contract")?.remove();
-    if (isLegacy) {
-      const copy = document.createElement("p");
-      copy.className = "guest-contract";
-      copy.textContent = data;
-      card.append(copy);
-      return;
-    }
-    const frame = document.createElement("iframe");
-    frame.className = "guest-contract";
-    frame.title = tr("Contrat en lecture seule", "Read-only contract");
-    frame.setAttribute("sandbox", "");
-    frame.referrerPolicy = "no-referrer";
-    const template = document.createElement("template");
-    template.innerHTML = data;
-    template.content.querySelectorAll("script, iframe, object, embed, form, button, input, textarea, select, link, meta, base, svg, math")
-      .forEach(item => item.remove());
-    template.content.querySelectorAll("a, area").forEach(item => item.removeAttribute("href"));
-    frame.srcdoc = '<!doctype html><meta charset="utf-8">' +
-      '<meta http-equiv="Content-Security-Policy" content="default-src \'none\'; img-src data:; style-src \'unsafe-inline\'; form-action \'none\'; base-uri \'none\'">' +
-      template.innerHTML;
-    card.append(frame);
-  }
-  function renderContent() {
-    const content = el("Content");
-    content.replaceChildren();
-    el("Pager").hidden = true;
-    if (!grant || result == null) return;
-    const rows = Array.isArray(result) ? result : [result];
-    if (!rows.length) {
-      content.textContent = tr("Aucun élément à afficher.", "There is nothing to show.");
-    }
-    for (const row of rows.slice(0, 25)) {
-      const card = document.createElement("article");
-      card.append(detailList(row));
-      if (row.file) card.append(action("Télécharger", "Download", () => download(row)));
-      if (row.contract_id) card.append(action("Voir le contrat", "View contract", () => showContract(card, row.contract_id)));
-      content.append(card);
-    }
-    el("Pager").hidden = offset === 0 && rows.length < 26;
-    el("Previous").disabled = offset === 0;
-    el("Next").disabled = rows.length < 26;
-  }
-  async function loadSection() {
-    const requestVersion = ++version;
-    result = null;
-    renderContent();
-    if (!grant) return;
-    say("Chargement…", "Loading…");
-    try {
-      const { data, error } = await db.rpc("madic_guest_read", { p_grant: grant, p_section: section, p_offset: offset });
-      if (requestVersion !== version) return;
-      if (error) throw error;
-      result = data ?? [];
-      say();
-      renderContent();
-    } catch {
-      if (requestVersion === version) failed();
-    }
-  }
-  async function loadGrants(preferred) {
-    const signedInUser = user;
-    if (!signedInUser) return;
-    const { data, error } = await db.rpc("madic_guest_list");
-    if (signedInUser !== user) return;
-    if (error) throw error;
-    grants = data || [];
-    grant = grants.some(access => access.grant_id === preferred) ? preferred : (grants[0]?.grant_id || "");
-    updateControls();
   }
   async function authAction(run) {
     if (authBusy) return;
@@ -473,7 +340,7 @@ function isMadicGuestPage() {
         return;
       }
       user = response.data.session.user;
-      await openPortal();
+      await openPortal(params.get("access"));
     });
   });
   el("Accept").addEventListener("click", () => authAction(async () => {
@@ -484,78 +351,35 @@ function isMadicGuestPage() {
       return;
     }
     token = null;
-    grant = data;
-    setUrl();
-    await openPortal(data);
+    openDashboard(data);
   }));
   el("SignOut").addEventListener("click", () => authAction(async () => {
     const { error } = await db.auth.signOut({ scope: "local" });
     if (error) throw error;
     user = null;
-    version++;
-    grants = [];
-    grant = "";
-    result = null;
     promptGuestSignIn();
-    renderContent();
   }));
-  el("Grant").addEventListener("change", () => {
-    grant = el("Grant").value;
-    if (!token) setUrl();
-    section = "profile";
-    offset = 0;
-    updateControls();
-    loadSection();
-  });
-  el("Section").addEventListener("change", () => {
-    section = el("Section").value;
-    offset = 0;
-    loadSection();
-  });
-  el("Previous").addEventListener("click", () => { offset = Math.max(0, offset - 25); loadSection(); });
-  el("Next").addEventListener("click", () => { offset += 25; loadSection(); });
-  new MutationObserver(() => {
-    updateControls();
-    renderContent();
-  }).observe(document.documentElement, { attributes: true, attributeFilter: ["lang"] });
+  new MutationObserver(updateControls).observe(document.documentElement, {attributes: true, attributeFilter: ["lang"]});
 
+  function openDashboard(grant) {
+    const destination = new URL("dashboard-client-cric.html", location.href);
+    destination.searchParams.set("access", grant);
+    destination.searchParams.set("guest", "1");
+    location.replace(destination.href);
+  }
   async function openPortal(preferred) {
-    await loadGrants(preferred);
     if (token) return say("Compte connecté : " + user.email + ". Vous pouvez accepter l’invitation.",
       "Signed in as " + user.email + ". You can accept the invitation.");
-    if (!grant) return say("Aucun accès invité actif pour ce compte.", "This account has no active guest access.");
-    setUrl();
-    await loadSection();
+    const { data: grants, error } = await db.rpc("madic_guest_list");
+    if (error) throw error;
+    const access = preferred ? grants?.find(item => item.grant_id === preferred) : grants?.[0];
+    if (!access) return say("Aucun accès invité actif pour ce compte ou ce dossier.", "There is no active guest access for this account or file.");
+    openDashboard(access.grant_id);
   }
   authAction(async () => {
     const { data } = await db.auth.getUser();
     user = data?.user;
     if (user) await openPortal(params.get("access"));
     else promptGuestSignIn();
-  });
-  async function recheck() {
-    if (!user || token || !grant || authBusy) return;
-    const previous = grant;
-    try {
-      await loadGrants(previous);
-      if (previous !== grant) {
-        offset = 0;
-        result = null;
-        version++;
-        renderContent();
-        setUrl();
-        if (grant) await loadSection();
-        else say("Cet accès a pris fin.", "This access has ended.");
-      }
-    } catch {
-      version++;
-      result = null;
-      renderContent();
-      failed();
-    }
-  }
-  setInterval(recheck, 60000);
-  document.addEventListener("visibilitychange", () => {
-    if (!document.hidden) recheck();
   });
 })();

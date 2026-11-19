@@ -60,6 +60,7 @@ const profileIrccEnglish = Object.freeze({
   const form = document.getElementById("madic-intake-form");
   const status = document.getElementById("madic-form-status");
   if (!form || !status) return;
+  const guest = window.MADIC_GUEST_PORTAL;
   const message = (s, error = false) => {
     status.textContent = s;
     status.hidden = !error;
@@ -85,8 +86,8 @@ const profileIrccEnglish = Object.freeze({
   const {
     data: { user },
     error: authError,
-  } = await db.auth.getUser();
-  if (authError || !user) {
+  } = guest ? {data: {user: null}} : await db.auth.getUser();
+  if (!guest && (authError || !user)) {
     location.replace("connexion-client-cric.html");
     return;
   }
@@ -123,7 +124,7 @@ const profileIrccEnglish = Object.freeze({
   };
   let profile = null;
   try {
-    const result = await db
+    const result = guest ? {data: await guest.read("profile")} : await db
       .from("profiles")
       .select("*")
       .eq("id", user.id)
@@ -181,7 +182,7 @@ const profileIrccEnglish = Object.freeze({
         overwrite,
       );
     }
-    setField("courriel", profile.email || user.email, overwrite);
+    setField("courriel", profile.email || user?.email, overwrite);
     applyProfileProject();
     syncQuebecQuestions();
     profileBaseline = profileFields();
@@ -222,7 +223,7 @@ const profileIrccEnglish = Object.freeze({
       group.hidden = source?.value !== value || source.closest("[data-qc-show]")?.hidden === true;
     }
     for (const field of quebecSection.querySelectorAll("input, select")) {
-      field.disabled = !!field.closest("[hidden]");
+      field.disabled = Boolean(guest) || !!field.closest("[hidden]");
     }
   }
   syncQuebecQuestions();
@@ -270,6 +271,19 @@ const profileIrccEnglish = Object.freeze({
       e.dispatchEvent(new Event("change", { bubbles: true }));
     }
   };
+  if (guest) {
+    try {
+      const answers = await guest.read("intake");
+      if (answers) restore(answers);
+      fillFromProfile(true);
+    } catch {
+      guest.showError();
+    } finally {
+      fields.forEach(field => { field.disabled = true; });
+      form.querySelectorAll('[type="submit"]').forEach(button => { button.hidden = true; });
+    }
+    return;
+  }
   let saveInProgress = Promise.resolve();
   let autosaveTimer;
   let loadingComplete = false;

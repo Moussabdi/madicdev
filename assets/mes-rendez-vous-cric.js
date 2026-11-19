@@ -3,6 +3,7 @@
 /* Source consolidee : madic-appointments-client(20261107-040956).js */
 (async () => {
   "use strict";
+  if (window.MADIC_GUEST_PORTAL) return;
   const isEnglish = () => { try { return (localStorage.getItem("madic_ui_language") || "fr") === "en"; } catch (_) { return document.documentElement.lang.startsWith("en"); } };
   const L = (fr, en) => isEnglish() ? en : fr;
   const refreshTranslation = () => { if (typeof window.madicTranslateAppointments === "function") window.madicTranslateAppointments(); };

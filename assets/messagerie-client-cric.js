@@ -1,6 +1,6 @@
 /* MADIC messagerie client : scripts regroupes, ordre original conserve. */
 (async function(){
-  if (!window.supabase) { await new Promise((resolve,reject)=>{const s=document.createElement("script");s.src='https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js';s.onload=resolve;s.onerror=()=>reject(new Error("Supabase CDN unavailable"));document.head.appendChild(s);}); }
+  if (!window.supabase && !window.MADIC_GUEST_PORTAL) { await new Promise((resolve,reject)=>{const s=document.createElement("script");s.src='https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js';s.onload=resolve;s.onerror=()=>reject(new Error("Supabase CDN unavailable"));document.head.appendChild(s);}); }
 
 /* --- madic-presence.js --- */
 /* MADIC Presence v2 : canal partagé par cabinet, diagnostic explicite. */
@@ -128,6 +128,7 @@
 /* MADIC 7.3 : messagerie du client, accès filtré par les RLS Supabase. */
 (async () => {
   "use strict";
+  if (window.MADIC_GUEST_PORTAL) return;
   const $ = (id) => document.getElementById(id);
   const status = (value) => {
     $("clientMsgStatus").textContent = value;
@@ -458,6 +459,7 @@
 /* MADIC : pièces jointes des conversations, sans changement aux scripts de messagerie. */
 (async () => {
   "use strict";
+  if (window.MADIC_GUEST_PORTAL) return;
   const isClient = !!document.getElementById("clientMsgSendForm");
   const prefix = isClient ? "clientMsg" : "msg";
   const form = document.getElementById(prefix + "SendForm");
