@@ -2981,3 +2981,14 @@ body[data-page="cric-client-dashboard"].madic-form-portal #page-formulaire > .co
   padding-left: 0;
   padding-right: 0;
 }
+
+#madic-intake-quebec {
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid #45617c;
+}
+
+#madic-intake-quebec[hidden],
+#madic-intake-quebec [hidden] {
+  display: none !important;
+}

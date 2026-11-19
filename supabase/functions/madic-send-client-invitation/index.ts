@@ -5,6 +5,7 @@ const allowedOrigins = new Set([
   "https://www.madic.ca",
   "http://127.0.0.1:5500",
   "http://localhost:5500",
+  "https://madicdev.netlify.app",
 ]);
 const env = (name: string) => {
   const v = Deno.env.get(name);
@@ -167,34 +168,59 @@ Deno.serve(async (req: Request): Promise<Response> => {
       try {
         const parsed = new URL(websiteRaw);
         if (parsed.protocol !== "https:" || parsed.username || parsed.password)
-          return reply({ error: "Le site Web professionnel doit être une adresse HTTPS valide." }, 400);
+          return reply(
+            {
+              error:
+                "Le site Web professionnel doit être une adresse HTTPS valide.",
+            },
+            400,
+          );
         website = parsed.toString();
-      } catch { return reply({ error: "Site Web professionnel invalide." }, 400); }
+      } catch {
+        return reply({ error: "Site Web professionnel invalide." }, 400);
+      }
     }
-    const safeCabinet = esc(cabinet), safeConsultant = esc(consultant);
-    const safeTitle = esc(professionalTitle), safeLicense = esc(licenseNumber);
-    const safePhone = esc(phone), safeUrl = esc(invitationUrl.toString());
-    const websiteHtml = website ? `<p style="margin:4px 0">Site Web : <a href="${esc(website)}">${esc(website)}</a></p>` : "";
+    const safeCabinet = esc(cabinet),
+      safeConsultant = esc(consultant);
+    const safeTitle = esc(professionalTitle),
+      safeLicense = esc(licenseNumber);
+    const safePhone = esc(phone),
+      safeUrl = esc(invitationUrl.toString());
+    const websiteHtml = website
+      ? `<p style="margin:4px 0">Site Web : <a href="${esc(website)}">${esc(website)}</a></p>`
+      : "";
 
     // URL signée de 7 jours : bucket privé, sans CID non pris en charge par certains lecteurs.
     const { data: logoLink, error: logoLinkError } = await userDb.storage
-      .from("madic-cric-branding").createSignedUrl(profile.logo_path, 7 * 24 * 60 * 60);
+      .from("madic-cric-branding")
+      .createSignedUrl(profile.logo_path, 7 * 24 * 60 * 60);
     if (logoLinkError || !logoLink?.signedUrl)
-      return reply({ error: "Impossible de préparer le logo du cabinet." }, 502);
+      return reply(
+        { error: "Impossible de préparer le logo du cabinet." },
+        502,
+      );
     const safeLogoUrl = esc(logoLink.signedUrl);
 
     const subject = `MADIC | Invitation à votre espace client - ${cabinet}`;
     const text = [
-      "Bonjour,", "",
+      "Bonjour,",
+      "",
       `Vous êtes invité(e) à accéder à votre espace client sécurisé auprès de ${cabinet}.`,
-      `Votre consultant en immigration : ${consultant}`, "",
+      `Votre consultant en immigration : ${consultant}`,
+      "",
       "Pour accepter votre invitation, utilisez ce lien personnel :",
-      invitationUrl.toString(), "",
+      invitationUrl.toString(),
+      "",
       "Cette invitation est valable pendant 7 jours.",
-      "Ce lien est personnel et confidentiel. Ne le transmettez à personne.", "",
-      "Si vous n'attendiez pas cette invitation, vous pouvez ignorer ce message.", "",
-      "Cordialement,", consultant, professionalTitle,
-      `Numéro de permis CRIC : ${licenseNumber}`, cabinet,
+      "Ce lien est personnel et confidentiel. Ne le transmettez à personne.",
+      "",
+      "Si vous n'attendiez pas cette invitation, vous pouvez ignorer ce message.",
+      "",
+      "Cordialement,",
+      consultant,
+      professionalTitle,
+      `Numéro de permis CRIC : ${licenseNumber}`,
+      cabinet,
       `Téléphone : ${phone}`,
       ...(website ? [`Site Web : ${website}`] : []),
       "Invitation envoyée via MADIC PORTAIL",

@@ -1,3 +1,58 @@
+const profileIrccEnglish = Object.freeze({
+  "Résidence temporaire (visite, étude, travail)": "Temporary residence (visit, study, work)",
+  "Catégorie de l’immigration économique": "Economic immigration class",
+  "Parrainage d’un membre de la famille": "Family sponsorship",
+  "Réfugiés": "Refugees",
+  "Cas pour circonstances d’ordre humanitaire": "Humanitarian and compassionate considerations",
+  "Passeport": "Passport",
+  "Citoyenneté": "Citizenship",
+  "Cartes de résident permanent": "Permanent resident cards",
+  "Remplacement ou modification de documents, vérification d’un statut": "Document replacement or amendment, or verification of status",
+  "Visa de visiteur (de l’étranger)": "Visitor visa from outside Canada",
+  "Visa de visiteur (à partir du Canada)": "Visitor visa from within Canada",
+  "Prolongation de séjour à titre de visiteur (Fiche du visiteur)": "Visitor extension (visitor record)",
+  "Super visa (parents et grands-parents)": "Super visa for parents and grandparents",
+  "Permis d’études (de l’étranger)": "Study permit from outside Canada",
+  "Permis d’études du Canada": "Study permit from within Canada",
+  "Prolongation d’un permis d’études au Canada": "Study permit extension in Canada",
+  "Permis de travail (de l’étranger)": "Work permit from outside Canada",
+  "Permis de travail du Canada": "Work permit from within Canada",
+  "Prolongation du permis de travail du Canada": "Canadian work permit extension",
+  "Dans le cadre du Programme des travailleurs agricoles saisonniers": "Seasonal Agricultural Worker Program",
+  "Expérience internationale Canada": "International Experience Canada",
+  "Autorisation de voyage électronique (AVE)": "Electronic travel authorization (eTA)",
+  "Entrée express": "Express Entry",
+  "Travailleurs qualifiés (fédéral)": "Federal Skilled Worker Program",
+  "Catégorie de l’expérience canadienne": "Canadian Experience Class",
+  "Métiers spécialisés (fédéral)": "Federal Skilled Trades Program",
+  "Programme des candidats des provinces": "Provincial Nominee Program",
+  "Travailleurs qualifiés sélectionnés par le Québec": "Quebec-selected skilled workers",
+  "Gens d’affaires (immigration économique)": "Business immigration (economic class)",
+  "Autre demande d’immigration économique": "Other economic immigration application",
+  "Époux, conjoint de fait ou partenaire conjugal": "Spouse, common-law or conjugal partner",
+  "Enfant à charge": "Dependent child",
+  "Parents ou grands-parents": "Parents or grandparents",
+  "Autre membre de la famille": "Other family member",
+  "Demande d’asile présentée au Canada": "Refugee claim made in Canada",
+  "Réinstallation des réfugiés depuis l’étranger": "Refugee resettlement from abroad",
+  "Personne protégée – résidence permanente": "Protected person – permanent residence",
+  "Autre demande concernant les réfugiés": "Other refugee application",
+  "Demande pour considérations d’ordre humanitaire": "Humanitarian and compassionate application",
+  "Nouveau passeport canadien": "New Canadian passport",
+  "Renouvellement de passeport canadien": "Canadian passport renewal",
+  "Remplacement de passeport canadien": "Canadian passport replacement",
+  "Attribution de la citoyenneté canadienne": "Grant of Canadian citizenship",
+  "Certificat de citoyenneté": "Citizenship certificate",
+  "Reprise de la citoyenneté canadienne": "Resumption of Canadian citizenship",
+  "Renonciation à la citoyenneté canadienne": "Renunciation of Canadian citizenship",
+  "Première carte de résident permanent": "First permanent resident card",
+  "Renouvellement de la carte de résident permanent": "Permanent resident card renewal",
+  "Remplacement de la carte de résident permanent": "Permanent resident card replacement",
+  "Remplacement d’un document d’immigration": "Replacement of an immigration document",
+  "Modification d’un document d’immigration": "Amendment of an immigration document",
+  "Vérification du statut": "Verification of status"
+});
+
 /* SOURCE: assets/madic-formulaire-supabase.js */
 /* MADIC - Formulaire client. Enregistrement direct dans Supabase avec RLS. */
 (async () => {
@@ -7,6 +62,7 @@
   if (!form || !status) return;
   const message = (s, error = false) => {
     status.textContent = s;
+    status.hidden = !error;
     status.style.color = error ? "#ffa3a3" : "#a5b7cc";
     status.classList.toggle("madic-status-hidden", !error);
   };
@@ -42,10 +98,10 @@
     date_naissance: "date_of_birth",
     no_appart: "address_apartment",
     no_rue: "address_number",
+    rue: "address_street",
     ville: "address_city",
     code_postale: "address_postal_code",
     province: "address_region",
-    pays: "country",
   };
   const normalize = (v) =>
     String(v ?? "")
@@ -77,6 +133,38 @@
   } catch (e) {
     message("Profil indisponible : " + e.message, true);
   }
+  const profileFields = () => ({
+    ...Object.fromEntries(Object.keys(profileMap).map(name => [name, form.elements.namedItem(name)?.value.trim() || ""])),
+    sex: form.elements.namedItem("sex")?.value || "",
+  });
+  let profileBaseline = {};
+  // Le projet IRCC du profil apporte du contexte. Un choix déjà saisi
+  // dans le formulaire prime sur les suggestions du profil.
+  function applyProfileProject() {
+    const category = profile?.ircc_application_category;
+    const type = profile?.ircc_application_type;
+    const section = document.getElementById("madic-profile-ircc-context");
+    if (!section) return;
+    section.hidden = !category && !type;
+    for (const [suffix, value] of [["category", category], ["type", type]]) {
+      const line = document.getElementById("madic-profile-ircc-" + suffix);
+      const text = typeof value === "string" ? value.trim() : "";
+      line.hidden = !text;
+      line.dataset.profileLabel = text;
+      const english = document.documentElement.lang.startsWith("en");
+      line.textContent = english ? profileIrccEnglish[text] ?? text : text;
+    }
+    const permanent = form.elements.namedItem("residence_permanente");
+    const temporary = form.elements.namedItem("residence_temporaire");
+    if (type !== "Travailleurs qualifiés sélectionnés par le Québec" ||
+        (temporary?.value && temporary.value !== "aucun") || permanent?.disabled ||
+        (permanent?.value && permanent.value !== "immigration_economique")) return;
+    setField("province_destination", "quebec");
+    if (form.elements.namedItem("province_destination")?.value === "quebec") {
+      setField("residence_permanente", "immigration_economique");
+      permanent.dispatchEvent(new Event("change", { bubbles: true }));
+    }
+  }
   function fillFromProfile(overwrite = false) {
     if (!profile) return;
     for (const [field, column] of Object.entries(profileMap))
@@ -94,19 +182,21 @@
       );
     }
     setField("courriel", profile.email || user.email, overwrite);
+    applyProfileProject();
+    syncQuebecQuestions();
+    profileBaseline = profileFields();
   }
   async function updateProfileFromForm() {
     if (!profile) return;
+    const formValues = profileFields();
     const changes = {};
     for (const [field, column] of Object.entries(profileMap)) {
-      if (!(column in profile)) continue;
-      const e = [...form.elements].find((el) => el.name === field);
-      if (e?.value?.trim()) changes[column] = e.value.trim();
+      if (!(column in profile) || !formValues[field] || formValues[field] === profileBaseline[field]) continue;
+      changes[column] = formValues[field];
     }
-    if ("gender" in profile) {
-      const gender = form.elements.namedItem("sex")?.value;
-      if (gender === "salle") changes.gender = "male";
-      if (gender === "terrasse") changes.gender = "female";
+    if ("gender" in profile && formValues.sex !== profileBaseline.sex) {
+      if (formValues.sex === "salle") changes.gender = "Homme";
+      if (formValues.sex === "terrasse") changes.gender = "Femme";
     }
     // Ne pas modifier l'adresse de connexion du compte Auth depuis ce formulaire.
     if (!Object.keys(changes).length) return;
@@ -120,13 +210,31 @@
           error.message,
       );
     Object.assign(profile, changes);
+    profileBaseline = formValues;
   }
+  const quebecSection = document.getElementById("madic-intake-quebec");
+  function syncQuebecQuestions() {
+    if (!quebecSection) return;
+    quebecSection.hidden = form.elements.namedItem("province_destination")?.value !== "quebec";
+    for (const group of quebecSection.querySelectorAll("[data-qc-show]")) {
+      const [name, value] = group.dataset.qcShow.split(":");
+      const source = form.elements.namedItem("qc_" + name);
+      group.hidden = source?.value !== value || source.closest("[data-qc-show]")?.hidden === true;
+    }
+    for (const field of quebecSection.querySelectorAll("input, select")) {
+      field.disabled = !!field.closest("[hidden]");
+    }
+  }
+  syncQuebecQuestions();
+  form.addEventListener("change", syncQuebecQuestions);
+
   const fields = [...form.elements].filter(
     (e) => e.name && !["submit", "button", "reset", "file"].includes(e.type),
   );
   const capture = () => {
     const values = {};
     for (const e of fields) {
+      if (e.name.startsWith("qc_") && e.disabled) continue;
       if (e.type === "radio") {
         if (e.checked) values[e.name] = e.value;
       } else if (e.type === "checkbox") {
@@ -137,6 +245,12 @@
       } else if (e.tagName === "SELECT" && e.multiple)
         values[e.name] = [...e.selectedOptions].map((o) => o.value);
       else values[e.name] = e.value;
+    }
+    if (profile?.ircc_application_category || profile?.ircc_application_type) {
+      values._madic_profile_ircc = {
+        category: profile.ircc_application_category || "",
+        type: profile.ircc_application_type || "",
+      };
     }
     values._madic_current_step = Number(form.dataset.madicCurrentStep || 0);
     return values;
@@ -1062,7 +1176,94 @@
   "form.signaturePlace": "Contract signing location (city):",
   "form.signaturePlacePlaceholder": "City where the contract will be signed",
   "form.signatureHelp": "This information will be used to prefill the signing location in your contracts. You can confirm it before signing.",
-  "form.submit": "Submit"
+  "form.submit": "Submit",
+  "form.profileIrcc": "Plans recorded in your profile",
+  "qc.heading": "Additional questions – Quebec",
+  "qc.hint": "Enter work experience in full-time equivalent months. For French, use the Quebec scale (0 to 12) based on an accepted test or document. Leave unknown answers blank.",
+  "qc.residence": "Where do you currently live?",
+  "qc.residence.qc": "In Quebec",
+  "qc.residence.canada": "Elsewhere in Canada",
+  "qc.residence.abroad": "Outside Canada",
+  "qc.status": "If you live in Quebec, what is your current status?",
+  "qc.status.valid": "Valid legal status",
+  "qc.status.none": "No legal status",
+  "qc.intent": "Do you intend to live and work in Quebec permanently?",
+  "qc.intent.yes": "Yes",
+  "qc.intent.no": "No",
+  "qc.noc": "NOC code for the primary occupation, if known (5 digits)",
+  "qc.regulated": "Is your intended occupation regulated in Quebec?",
+  "qc.regulated.yes": "Yes",
+  "qc.regulated.no": "No",
+  "qc.regulated.unknown": "I don’t know",
+  "qc.recognition": "Professional recognition in Quebec",
+  "qc.recognition.authorized": "Authorization to practise",
+  "qc.recognition.equivalence": "Partial or full recognition issued within the past five years",
+  "qc.recognition.pending": "In progress or no documentation",
+  "qc.exception": "Do you have recognized evidence of exceptional achievement or an opinion from a MIFI partner?",
+  "qc.exception.yes": "Yes",
+  "qc.exception.no": "No",
+  "qc.exception.unknown": "I don’t know",
+  "qc.work": "Months of paid work in your primary occupation over the past 5 years",
+  "qc.qcwork": "Of those, months in this occupation in Quebec",
+  "qc.workTotal": "Total months of work over the past 5 years across all occupations",
+  "qc.workQcTotal": "Of those, months of work in Quebec across all occupations",
+  "qc.validatedOffer": "Job offer in this occupation validated by MIFI",
+  "qc.validatedOffer.none": "No validated offer",
+  "qc.validatedOffer.cmm": "Within the Montréal Metropolitan Community",
+  "qc.validatedOffer.outside": "In Quebec outside the Montréal Metropolitan Community",
+  "qc.validatedOffer.unknown": "Validation or location to be confirmed",
+  "qc.degree": "Highest qualification type for the Quebec assessment, if known",
+  "qc.degree.secondary": "General secondary school",
+  "qc.degree.vocational": "Secondary vocational qualification comparable to a DVS or AVS",
+  "qc.degree.college": "College qualification comparable to an ACS or DCS",
+  "qc.degree.bachelor": "Bachelor’s degree or equivalent",
+  "qc.degree.master": "Master’s degree or equivalent",
+  "qc.degree.doctorate": "Doctorate",
+  "qc.degree.none": "No qualification",
+  "qc.degree.other": "Other qualification or type to be confirmed",
+  "qc.degreeplace": "Where did you obtain this qualification?",
+  "qc.degreeplace.qc": "In Quebec",
+  "qc.degreeplace.elsewhere": "Outside Quebec",
+  "qc.fulltime": "Was it a program of at least one year of full-time study?",
+  "qc.fulltime.yes": "Yes",
+  "qc.fulltime.no": "No",
+  "qc.hours": "Length of the vocational or college program in hours, if known",
+  "qc.credits": "Number of university credits, if known",
+  "qc.graduation": "Date the qualification was awarded",
+  "qc.oralListen": "French – listening",
+  "qc.oralSpeak": "French – speaking",
+  "qc.writtenRead": "French – reading",
+  "qc.writtenWrite": "French – writing",
+  "qc.spouse": "Will your spouse or partner accompany you?",
+  "qc.spouse.yes": "Yes",
+  "qc.spouse.no": "No",
+  "qc.spouseListen": "Spouse or partner’s French – listening",
+  "qc.spouseSpeak": "Spouse or partner’s French – speaking",
+  "qc.spouseRead": "Spouse or partner’s French – reading",
+  "qc.spouseWrite": "Spouse or partner’s French – writing",
+  "qc.spouseAge": "Age of spouse or partner",
+  "qc.spouseQcWork": "Spouse or partner’s months of work in Quebec over the past 5 years",
+  "qc.finance": "Can you support your family for the first three months under the applicable scale?",
+  "qc.finance.yes": "Yes",
+  "qc.finance.no": "No",
+  "qc.finance.unknown": "I don’t know",
+  "qc.scholarship": "Do you have an outstanding scholarship-related return obligation?",
+  "qc.scholarship.none": "No, or requirement already met",
+  "qc.scholarship.unmet": "Yes",
+  "qc.excluded": "Is the intended job in an excluded sector or in a business you control?",
+  "qc.excluded.yes": "Yes",
+  "qc.excluded.no": "No",
+  "qc.excluded.unknown": "I don’t know",
+  "qc.outsideCmm": "Do you currently live in Quebec outside the Montréal Metropolitan Community?",
+  "qc.outsideCmm.yes": "Yes",
+  "qc.outsideCmm.no": "No",
+  "qc.outsideResidenceMonths": "How many months have you lived outside this metropolitan area?",
+  "qc.regionalFamily": "Do you have a close relative in the Quebec region where you plan to settle, outside the Montréal metropolitan area?",
+  "qc.regionalFamily.yes": "Yes",
+  "qc.regionalFamily.no": "No",
+  "qc.regionalFamily.unknown": "I don’t know",
+  "qc.arrimaScore": "Full Arrima score, only if already known",
+  "qc.blank": "Select…"
 };
   const nodes = Array.from(document.querySelectorAll('[data-i18n], [data-i18n-placeholder], [data-i18n-value]'));
   const originals = new WeakMap();
@@ -1071,6 +1272,10 @@
   });
   function applyFormLanguage() {
     const english = document.documentElement.lang.toLowerCase().startsWith('en');
+    for (const line of document.querySelectorAll("[data-profile-label]")) {
+      const value = line.dataset.profileLabel;
+      line.textContent = english ? profileIrccEnglish[value] ?? value : value;
+    }
     nodes.forEach(el => {
       const original = originals.get(el);
       if (!original) return;

@@ -2106,6 +2106,9 @@
     "Pays de résidence (recherchez dans la liste)":
       "Country of residence (search the list)",
     "Rechercher un pays...": "Search for a country...",
+    "Votre formulaire reprend les renseignements communs de votre profil. Vérifiez-les et complétez les réponses propres à votre projet.":
+      "Your form uses information from your profile. Review it and complete the questions about your immigration plans.",
+    "Ouvrir mon formulaire d’immigration →": "Open my immigration form →",
     Enregistrer: "Save",
     Consulter: "View",
     "Consultez vos dossiers et leur état d'avancement.":

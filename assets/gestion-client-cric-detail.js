@@ -227,23 +227,67 @@ window.getMadicSupabase = function () {
     renderCategories();
     // MADIC : suggérer la catégorie depuis le formulaire du client, sans forcer le choix du CRIC.
     // La lecture est soumise aux politiques RLS de madic_client_intake.
-    async function suggestResidenceCategory() {
-      const { data, error } = await db
-        .from("madic_client_intake")
-        .select("answers")
-        .eq("user_id", clientId)
-        .maybeSingle();
+    function intakeLanguage() { return document.documentElement.lang.toLowerCase().startsWith("en") ? "en" : "fr"; }
+    const intakeLabels = {
+      residence_temporaire: ["Résidence temporaire", "Temporary residence"],
+      residence_permanente: ["Résidence permanente", "Permanent residence"]
+    };
+    function intakeLabel(key) {
+      if (intakeLabels[key]) return intakeLabels[key][intakeLanguage() === "en" ? 1 : 0];
+      return String(key).replace(/_/g, " ").replace(/([a-z])([A-Z])/g, "$1 $2").replace(/^./, c => c.toUpperCase());
+    }
+    function intakeValue(value) {
+      if (value === null || value === undefined || value === "") return "—";
+      if (typeof value === "boolean") return intakeLanguage() === "en" ? (value ? "Yes" : "No") : (value ? "Oui" : "Non");
+      if (Array.isArray(value)) return value.map(v => typeof v === "object" && v !== null ? JSON.stringify(v) : String(v)).join(", ") || "—";
+      return String(value);
+    }
+    function renderIntakeAnswers(answers) {
+      const target = $("madicClientIntakeAnswers");
+      target.replaceChildren();
+      const entries = Object.entries(answers || {});
+      for (const [key, value] of entries) {
+        const item = document.createElement("div");
+        item.className = "madic-intake-entry";
+        const dt = document.createElement("dt");
+        dt.textContent = intakeLabel(key);
+        const dd = document.createElement("dd");
+        if (value && typeof value === "object" && !Array.isArray(value)) {
+          item.classList.add("madic-intake-wide");
+          const nested = document.createElement("dl");
+          for (const [subkey, subvalue] of Object.entries(value)) {
+            const subdt = document.createElement("dt"); subdt.textContent = intakeLabel(subkey);
+            const subdd = document.createElement("dd"); subdd.textContent = intakeValue(subvalue);
+            nested.append(subdt, subdd);
+          }
+          dd.append(nested);
+        } else dd.textContent = intakeValue(value);
+        item.append(dt, dd); target.append(item);
+      }
+      target.hidden = entries.length === 0;
+      return entries.length;
+    }
+    async function loadClientIntake() {
+      const status = $("madicClientIntakeStatus");
+      const target = $("madicClientIntakeAnswers");
+      target.hidden = true;
+      const { data, error } = await db.from("madic_client_intake")
+        .select("answers").eq("user_id", clientId).maybeSingle();
       if (error) {
-        console.warn("MADIC : préselection de catégorie indisponible (droits de lecture du formulaire à vérifier).", error);
+        status.textContent = error.code === "42501" || error.code === "PGRST301"
+          ? "Accès non autorisé au formulaire du client."
+          : "Formulaire indisponible : " + error.message;
         return;
       }
-      const answers = data?.answers || {};
+      const answers = data?.answers && typeof data.answers === "object" ? data.answers : {};
+      const count = renderIntakeAnswers(answers);
+      status.textContent = count ? "Formulaire disponible — " + count + " réponse(s)." : "Formulaire non rempli ou non accessible.";
       const chosen = value => Boolean(value && value !== "aucun");
       const temp = chosen(answers.residence_temporaire);
       const perm = chosen(answers.residence_permanente);
-      if (temp === perm) return; // Aucune sélection ou brouillon contradictoire : ne rien imposer.
+      if (temp === perm) return;
       const categorySelect = $("category");
-      if (categoryTouched || categorySelect.value) return; // Respecter un choix déjà effectué.
+      if (categoryTouched || categorySelect.value) return;
       const suggested = temp ? "Résidence temporaire" : "Résidence permanente";
       if ([...categorySelect.options].some(option => option.value === suggested)) {
         categorySelect.value = suggested;
@@ -257,7 +301,7 @@ window.getMadicSupabase = function () {
     $("category").addEventListener("change", () => { categoryTouched = true; });
     const suggestIfUntouched = async () => {
       if (categoryTouched) return;
-      await suggestResidenceCategory();
+      await loadClientIntake();
     };
     // La catégorie reste modifiable et la création du dossier reste manuelle.
     await suggestIfUntouched();
@@ -268,6 +312,7 @@ window.getMadicSupabase = function () {
     $("refresh").addEventListener("click", async () => {
       try {
         await reload();
+        await loadClientIntake();
         msg("Dossiers actualisés.");
       } catch (e) {
         msg(e.message, true);
