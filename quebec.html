@@ -12,10 +12,12 @@
     <meta content="width=device-width, initial-scale=1" name="viewport" />
     <link href="img/favicon.png" rel="icon" />
     <link href="img/apple-touch-icon.png" rel="apple-touch-icon" />
-    <link href="assets/quebec.css?v=5c14728a02e6" rel="stylesheet" />
+    <link href="assets/quebec.css" rel="stylesheet" />
   </head>
   <body class="madic-unified madic-quebec-portal" data-page="quebec">
-    <a class="madic-skip-link" href="#main-content">Aller au contenu principal</a>
+    <a class="madic-skip-link" href="#main-content"
+      >Aller au contenu principal</a
+    >
     <div class="madic-unified-layout">
       <aside aria-label="Navigation du portail" class="madic-unified-sidebar">
         <div class="madic-unified-brand">
@@ -77,7 +79,9 @@
                 src="https://raw.githubusercontent.com/tailwindlabs/heroicons/v2.2.0/optimized/24/outline/chat-bubble-left-right.svg" /></span
             >Messagerie</a
           >
-          <a data-madic-page="rendez-vous-cric.html" href="rendez-vous-cric.html"
+          <a
+            data-madic-page="rendez-vous-cric.html"
+            href="rendez-vous-cric.html"
             ><span aria-hidden="true"
               ><img
                 alt=""
@@ -196,7 +200,12 @@
             </div>
           </nav>
         </header>
-        <p class="madic-signout-error" id="madicSignoutError" role="alert" hidden>
+        <p
+          class="madic-signout-error"
+          id="madicSignoutError"
+          role="alert"
+          hidden
+        >
           Impossible de vous déconnecter. Veuillez réessayer.
         </p>
         <main class="madic-quebec-form-main" id="main-content" tabindex="-1">
@@ -211,25 +220,60 @@
             du MIFI, ni une consultation professionnelle.
           </p>
           <div class="notice">
-            <strong>État des programmes en 2026.</strong> Les programmes pilotes Transformation alimentaire, Préposés aux bénéficiaires et IA/TI–effets visuels sont fermés aux nouvelles demandes depuis le 1er janvier 2026. La période de réception du PEQ s’est terminée le 31 octobre 2026.
+            <strong>État des programmes en 2026.</strong> Les programmes pilotes
+            Transformation alimentaire, Préposés aux bénéficiaires et
+            IA/TI–effets visuels sont fermés aux nouvelles demandes depuis le
+            1er janvier 2026. La période de réception du PEQ s’est terminée le
+            31 octobre 2026.
           </div>
           <div aria-live="polite" class="progress-note" id="progressNote">
             Remplissez votre profil une seule fois : les parcours sont analysés
             ensemble.
           </div>
           <section class="panel">
-            <h2 data-fr="Formulaire client soumis" data-en="Submitted client form">Formulaire client soumis</h2>
+            <h2
+              data-fr="Formulaire client soumis"
+              data-en="Submitted client form"
+            >
+              Formulaire client soumis
+            </h2>
             <div class="quebec-intake-controls">
               <label for="quebec-intake-client">
-                <span data-fr="Client de votre espace CRIC" data-en="Client in your RCIC workspace">Client de votre espace CRIC</span>
+                <span
+                  data-fr="Client de votre espace CRIC"
+                  data-en="Client in your RCIC workspace"
+                  >Client de votre espace CRIC</span
+                >
                 <select id="quebec-intake-client" disabled>
-                  <option value="" data-fr="Sélectionner un client…" data-en="Select a client…">Sélectionner un client…</option>
+                  <option
+                    value=""
+                    data-fr="Sélectionner un client…"
+                    data-en="Select a client…"
+                  >
+                    Sélectionner un client…
+                  </option>
                 </select>
               </label>
-              <button id="quebec-intake-retry" type="button" class="secondary" hidden data-fr="Réessayer" data-en="Try again">Réessayer</button>
+              <button
+                id="quebec-intake-retry"
+                type="button"
+                class="secondary"
+                hidden
+                data-fr="Réessayer"
+                data-en="Try again"
+              >
+                Réessayer
+              </button>
             </div>
             <p id="quebec-intake-status" aria-live="polite"></p>
-            <a id="quebec-intake-report-link" href="#results" hidden data-fr="Voir l’analyse générée" data-en="View the generated assessment">Voir l’analyse générée</a>
+            <a
+              id="quebec-intake-report-link"
+              href="#results"
+              hidden
+              data-fr="Voir l’analyse générée"
+              data-en="View the generated assessment"
+              >Voir l’analyse générée</a
+            >
           </section>
           <form id="assessment" novalidate="">
             <section class="panel">
@@ -530,7 +574,8 @@
               </p>
               <div class="fields">
                 <label
-                  >Expérience professionnelle totale en équivalent temps plein (mois)<input
+                  >Expérience professionnelle totale en équivalent temps plein
+                  (mois)<input
                     id="workTotal"
                     max="60"
                     min="0"
@@ -538,7 +583,8 @@
                     type="number"
                 /></label>
                 <label
-                  >Expérience professionnelle totale au Québec en équivalent temps plein (mois)<input
+                  >Expérience professionnelle totale au Québec en équivalent
+                  temps plein (mois)<input
                     id="workQcTotal"
                     max="60"
                     min="0"
@@ -551,8 +597,12 @@
                   >
                     <option value="">À déterminer…</option>
                     <option value="shortage">Déficit de main-d’œuvre</option>
-                    <option value="slightShortage">Léger déficit de main-d’œuvre</option>
-                    <option value="noDiagnosis">Aucun diagnostic officiel</option>
+                    <option value="slightShortage">
+                      Léger déficit de main-d’œuvre
+                    </option>
+                    <option value="noDiagnosis">
+                      Aucun diagnostic officiel
+                    </option>
                     <option value="balance">Équilibre</option>
                     <option value="surplus">Surplus</option>
                     <option value="unknown">Inconnu / à confirmer</option>
@@ -746,27 +796,64 @@
             <section class="panel">
               <h2>Pointage Arrima et facteurs évalués</h2>
               <div class="fields">
-                <label>Niveau de scolarité selon la catégorie du barème Arrima, si confirmé
+                <label
+                  >Niveau de scolarité selon la catégorie du barème Arrima, si
+                  confirmé
                   <select id="arrimaEducation">
                     <option value="">À confirmer</option>
                     <option value="none">Aucun diplôme</option>
-                    <option value="secondary">Secondaire général ou professionnel québécois de 600 à 899 h</option>
-                    <option value="vocational">Secondaire professionnel de 900 h au Québec ou d’au moins un an à temps plein hors Québec</option>
-                    <option value="general2">Postsecondaire général de 2 ans à temps plein</option>
-                    <option value="technical">Postsecondaire technique de 900 h au Québec ou de 1 à 2 ans à temps plein hors Québec</option>
-                    <option value="technical3">Postsecondaire technique de 3 ans à temps plein</option>
-                    <option value="undergrad1">Universitaire de 1er cycle – 1 an à temps plein</option>
-                    <option value="undergrad2">Universitaire de 1er cycle – 2 ans à temps plein</option>
-                    <option value="undergrad34">Universitaire de 1er cycle – 3 ou 4 ans à temps plein</option>
-                    <option value="undergrad5">Universitaire de 1er cycle – 5 ans ou plus à temps plein</option>
-                    <option value="grad1">Universitaire de 2e cycle – 1 an à temps plein</option>
-                    <option value="grad2">Universitaire de 2e cycle – 2 ans ou plus à temps plein</option>
-                    <option value="medical">Spécialisation médicale universitaire – 2 ans ou plus à temps plein</option>
+                    <option value="secondary">
+                      Secondaire général ou professionnel québécois de 600 à 899
+                      h
+                    </option>
+                    <option value="vocational">
+                      Secondaire professionnel de 900 h au Québec ou d’au moins
+                      un an à temps plein hors Québec
+                    </option>
+                    <option value="general2">
+                      Postsecondaire général de 2 ans à temps plein
+                    </option>
+                    <option value="technical">
+                      Postsecondaire technique de 900 h au Québec ou de 1 à 2
+                      ans à temps plein hors Québec
+                    </option>
+                    <option value="technical3">
+                      Postsecondaire technique de 3 ans à temps plein
+                    </option>
+                    <option value="undergrad1">
+                      Universitaire de 1er cycle – 1 an à temps plein
+                    </option>
+                    <option value="undergrad2">
+                      Universitaire de 1er cycle – 2 ans à temps plein
+                    </option>
+                    <option value="undergrad34">
+                      Universitaire de 1er cycle – 3 ou 4 ans à temps plein
+                    </option>
+                    <option value="undergrad5">
+                      Universitaire de 1er cycle – 5 ans ou plus à temps plein
+                    </option>
+                    <option value="grad1">
+                      Universitaire de 2e cycle – 1 an à temps plein
+                    </option>
+                    <option value="grad2">
+                      Universitaire de 2e cycle – 2 ans ou plus à temps plein
+                    </option>
+                    <option value="medical">
+                      Spécialisation médicale universitaire – 2 ans ou plus à
+                      temps plein
+                    </option>
                     <option value="doctorate">Universitaire de 3e cycle</option>
                   </select>
                 </label>
-                <label>Pointage Arrima complet, si connu
-                  <input id="arrimaScore" type="number" min="0" max="1400" step="1" />
+                <label
+                  >Pointage Arrima complet, si connu
+                  <input
+                    id="arrimaScore"
+                    type="number"
+                    min="0"
+                    max="1400"
+                    step="1"
+                  />
                 </label>
               </div>
             </section>
@@ -914,7 +1001,7 @@
         </footer>
       </div>
     </div>
-    <script src="assets/config.js"></script>
+    <script src="assets/config.js?v=ad4abf1871f6"></script>
     <script src="assets/quebec.js?v=d70e75dbe7f1"></script>
   </body>
 </html>

@@ -279,6 +279,7 @@
         return;
       }
       try {
+        if (!(await window.madicRequireMfa(db))) return;
         if (page === "cric-login") {
           const { data: admin, error: ae } = await db.rpc(
             "madic_is_super_admin",
@@ -367,6 +368,7 @@
           );
           return false;
         }
+        if (!(await window.madicRequireMfa(db))) return false;
         const { error } = await db.rpc("madic_accept_cric_invitation", {
           p_token: token,
         });

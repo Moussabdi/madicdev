@@ -2,7 +2,10 @@
 <html lang="fr-CA">
   <head>
     <meta charset="utf-8" />
-    <title data-en="Saskatchewan | MADIC PORTAL" data-fr="Saskatchewan | MADIC PORTAIL">
+    <title
+      data-en="Saskatchewan | MADIC PORTAL"
+      data-fr="Saskatchewan | MADIC PORTAIL"
+    >
       Saskatchewan | MADIC PORTAIL
     </title>
     <meta
@@ -12,10 +15,12 @@
     <meta content="width=device-width, initial-scale=1" name="viewport" />
     <link href="img/favicon.png" rel="icon" />
     <link href="img/apple-touch-icon.png" rel="apple-touch-icon" />
-    <link href="assets/saskatchewan.css?v=32a9989949a5" rel="stylesheet" />
+    <link href="assets/saskatchewan.css" rel="stylesheet" />
   </head>
   <body class="madic-unified" data-page="saskatchewan">
-    <a class="madic-skip-link" href="#main-content">Aller au contenu principal</a>
+    <a class="madic-skip-link" href="#main-content"
+      >Aller au contenu principal</a
+    >
     <div class="madic-unified-layout">
       <aside aria-label="Navigation du portail" class="madic-unified-sidebar">
         <div class="madic-unified-brand">
@@ -77,7 +82,9 @@
                 src="https://raw.githubusercontent.com/tailwindlabs/heroicons/v2.2.0/optimized/24/outline/chat-bubble-left-right.svg" /></span
             >Messagerie</a
           >
-          <a data-madic-page="rendez-vous-cric.html" href="rendez-vous-cric.html"
+          <a
+            data-madic-page="rendez-vous-cric.html"
+            href="rendez-vous-cric.html"
             ><span aria-hidden="true"
               ><img
                 alt=""
@@ -196,270 +203,403 @@
             </div>
           </nav>
         </header>
-        <p class="madic-signout-error" id="madicSignoutError" role="alert" hidden>
+        <p
+          class="madic-signout-error"
+          id="madicSignoutError"
+          role="alert"
+          hidden
+        >
           Impossible de vous déconnecter. Veuillez réessayer.
         </p>
-        <main class="sinp madic-saskatchewan-main" id="main-content" tabindex="-1">
-<header class="hero">
-<div class="brand">MAD IMMIGRATION CANADIENNE <span>• MADIC</span></div>
-<div class="headrow">
-<div>
-<p class="eyebrow">PROGRAMME DES CANDIDATS DE LA SASKATCHEWAN · 2026</p>
-<h1>Évaluation préliminaire SINP</h1>
-<p>
-              Découvrez les volets à examiner et estimez vos points sur la
-              grille des travailleurs qualifiés internationaux.
+        <main
+          class="sinp madic-saskatchewan-main"
+          id="main-content"
+          tabindex="-1"
+        >
+          <header class="hero">
+            <div class="brand">
+              MAD IMMIGRATION CANADIENNE <span>• MADIC</span>
+            </div>
+            <div class="headrow">
+              <div>
+                <p class="eyebrow">
+                  PROGRAMME DES CANDIDATS DE LA SASKATCHEWAN · 2026
+                </p>
+                <h1>Évaluation préliminaire SINP</h1>
+                <p>
+                  Découvrez les volets à examiner et estimez vos points sur la
+                  grille des travailleurs qualifiés internationaux.
+                </p>
+              </div>
+            </div>
+          </header>
+          <div class="notice">
+            <strong>Important :</strong> Cet outil indépendant n'est ni un
+            service gouvernemental ni une décision d'admissibilité. Le sélecteur
+            officiel de programmes a été archivé le 2 janvier 2026. Les
+            critères, quotas et périodes de réception peuvent changer. Les
+            réponses et pièces justificatives doivent être vérifiées avant toute
+            demande.
+          </div>
+          <form id="form">
+            <section class="panel">
+              <h2>1. Votre situation</h2>
+              <div class="fields">
+                <label
+                  >Âge
+                  <input
+                    max="110"
+                    min="0"
+                    name="age"
+                    placeholder="Ex. 32"
+                    required=""
+                    type="number" /></label
+                ><label
+                  >Lieu de résidence<select name="location" required="">
+                    <option value="">Sélectionner...</option>
+                    <option value="sk">En Saskatchewan</option>
+                    <option value="canada">Ailleurs au Canada</option>
+                    <option value="abroad">À l'extérieur du Canada</option>
+                  </select></label
+                ><label
+                  >Statut actuel au Canada<select name="permit">
+                    <option value="">Sélectionner...</option>
+                    <option value="outside">À l'extérieur du Canada</option>
+                    <option value="pgwp">
+                      Permis de travail postdiplôme (PTPD)
+                    </option>
+                    <option value="study">Permis d'études</option>
+                    <option value="lmia">Permis lié à une EIMT</option>
+                    <option value="franco">Permis Mobilité francophone</option>
+                    <option value="cuaet">Permis CUAET</option>
+                    <option value="otherwork">Autre permis de travail</option>
+                    <option value="spousal">
+                      Permis de travail ouvert pour conjoint
+                    </option>
+                    <option value="other">Autre statut légal</option>
+                    <option value="none">Sans statut légal / à vérifier</option>
+                  </select></label
+                ><label
+                  >Situation relative à une demande d'asile<select
+                    name="refugee"
+                    required=""
+                  >
+                    <option value="">Sélectionner...</option>
+                    <option value="no">Aucune demande d'asile en cours</option>
+                    <option value="pending">
+                      Demande d'asile en cours au Canada
+                    </option>
+                    <option value="refused">
+                      Demande refusée et dossier entièrement réglé
+                    </option>
+                    <option value="unclear">Situation à vérifier</option>
+                  </select></label
+                ><label
+                  >Intention réelle de vivre et travailler en
+                  Saskatchewan<select name="intent" required="">
+                    <option value="">Sélectionner...</option>
+                    <option value="yes">Oui</option>
+                    <option value="no">Non</option>
+                    <option value="unsure">À déterminer</option>
+                  </select></label
+                >
+              </div>
+              <label class="check"
+                ><input name="departure" type="checkbox" /> Si ma demande
+                d'asile a été refusée : tous les membres accompagnants et moi
+                avons quitté le Canada et je possède les documents requis (IMM
+                0056B ou ARC, selon le cas).</label
+              >
+            </section>
+            <section class="panel">
+              <h2>2. Offre d'emploi et profession</h2>
+              <div class="fields">
+                <label
+                  >Offre d'emploi permanente à temps plein d'un employeur en
+                  Saskatchewan<select name="offer" required="">
+                    <option value="">Sélectionner...</option>
+                    <option value="yes">Oui</option>
+                    <option value="no">Non</option>
+                  </select></label
+                ><label
+                  >Employer Position Assessment (EPA) valide / approuvée<select
+                    name="epa"
+                  >
+                    <option value="unknown">À confirmer</option>
+                    <option value="yes">Oui</option>
+                    <option value="no">Non</option>
+                  </select></label
+                ><label
+                  >Secteur de l'employeur<select name="sector" required="">
+                    <option value="">Sélectionner...</option>
+                    <option value="health">Santé</option>
+                    <option value="agri">Agriculture / agroalimentaire</option>
+                    <option value="tech">Technologie / innovation</option>
+                    <option value="trades">Métiers spécialisés</option>
+                    <option value="energy">Énergie</option>
+                    <option value="mining">Mines et minéraux</option>
+                    <option value="manufacturing">Fabrication</option>
+                    <option value="food">Hébergement / restauration</option>
+                    <option value="trucking">Transport routier</option>
+                    <option value="retail">Commerce de détail</option>
+                    <option value="other">Autre</option>
+                  </select></label
+                ><label
+                  >Code CNP 2021 (5 chiffres)<input
+                    inputmode="numeric"
+                    maxlength="5"
+                    name="noc"
+                    pattern="[0-9]{5}"
+                    placeholder="Ex. 21232" /></label
+                ><label
+                  >Catégorie FEER / TEER<select name="teer" required="">
+                    <option value="">Sélectionner...</option>
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                  </select></label
+                ><label
+                  >Profession réglementée / permis professionnel requis<select
+                    name="regulated"
+                  >
+                    <option value="unknown">À vérifier</option>
+                    <option value="yes">Oui</option>
+                    <option value="no">Non</option>
+                  </select></label
+                >
+              </div>
+            </section>
+            <section class="panel">
+              <h2>3. Formation et expérience</h2>
+              <div class="fields">
+                <label
+                  >Plus haut diplôme reconnu / équivalence canadienne<select
+                    name="education"
+                    required=""
+                  >
+                    <option value="">Sélectionner...</option>
+                    <option value="23">Maîtrise ou doctorat - 23 points</option>
+                    <option value="20">
+                      Baccalauréat ou programme ≥ 3 ans - 20 points
+                    </option>
+                    <option value="20">
+                      Certificat de métier équivalent compagnon - 20 points
+                    </option>
+                    <option value="15">
+                      Diplôme postsecondaire de 2 ans - 15 points
+                    </option>
+                    <option value="12">
+                      Certificat postsecondaire ≥ 2 semestres et &lt; 2 ans - 12
+                      points
+                    </option>
+                    <option value="0">
+                      Secondaire ou sans diplôme reconnu - 0 point
+                    </option>
+                  </select></label
+                ><label
+                  >Diplôme d'un établissement de la Saskatchewan<select
+                    name="skgrad"
+                  >
+                    <option value="no">Non</option>
+                    <option value="yes">Oui</option>
+                  </select></label
+                ><label
+                  >Études liées à l'emploi envisagé<select name="relatededu">
+                    <option value="unknown">À vérifier</option>
+                    <option value="yes">Oui</option>
+                    <option value="no">Non</option>
+                  </select></label
+                ><label
+                  >Années de travail qualifié lié à la profession au cours des 5
+                  dernières années<select name="exp5" required="">
+                    <option value="">Sélectionner...</option>
+                    <option value="0">Moins d'un an</option>
+                    <option value="1">1 an</option>
+                    <option value="2">2 ans</option>
+                    <option value="3">3 ans</option>
+                    <option value="4">4 ans</option>
+                    <option value="5">5 ans</option>
+                  </select></label
+                ><label
+                  >Années de travail qualifié lié à la profession durant les
+                  années 6 à 10 précédentes<select name="exp10" required="">
+                    <option value="">Sélectionner...</option>
+                    <option value="0">Moins d'un an</option>
+                    <option value="1">1 an</option>
+                    <option value="2">2 ans</option>
+                    <option value="3">3 ans</option>
+                    <option value="4">4 ans</option>
+                    <option value="5">5 ans</option>
+                  </select></label
+                ><label
+                  >Travail chez l'employeur offrant le poste en Saskatchewan
+                  (heures admissibles)<input
+                    min="0"
+                    name="employerhours"
+                    step="1"
+                    type="number"
+                    value="0" /></label
+                ><label
+                  >Expérience récente (années) dans la profession offerte<input
+                    max="50"
+                    min="0"
+                    name="recentyears"
+                    step="0.5"
+                    type="number"
+                    value="0" /></label
+                ><label
+                  >Expérience de travail admissible en Saskatchewan (12 mois
+                  dans les 5 dernières années)<select name="skwork">
+                    <option value="no">Non</option>
+                    <option value="yes">Oui</option>
+                  </select></label
+                ><label
+                  >Études antérieures en Saskatchewan (une année à temps
+                  plein)<select name="skstudy">
+                    <option value="no">Non</option>
+                    <option value="yes">Oui</option>
+                  </select></label
+                >
+              </div>
+            </section>
+            <section class="panel">
+              <h2>4. Langues officielles</h2>
+              <p class="hint">
+                Indiquez le niveau le plus faible parmi les quatre compétences
+                d'un test reconnu. Le niveau doit provenir d'un test valide, et
+                non d'une autoévaluation.
+                <a
+                  href="https://www.canada.ca/fr/immigration-refugies-citoyennete/services/immigrer-canada/entree-express/documents/examen-linguistique.html"
+                  rel="noopener"
+                  target="_blank"
+                  >Tableaux officiels de conversion IRCC</a
+                >.
+              </p>
+              <div class="fields">
+                <label
+                  >Première langue - test<select name="test1" required="">
+                    <option value="">Sélectionner...</option>
+                    <option value="ielts">IELTS General Training</option>
+                    <option value="celpip">CELPIP-G</option>
+                    <option value="pte">PTE Core</option>
+                    <option value="tef">TEF Canada</option>
+                    <option value="tcf">TCF Canada</option>
+                    <option value="none">Aucun test valide</option>
+                  </select></label
+                ><label
+                  >Plus faible CLB/NCLC des 4 compétences - première
+                  langue<select name="clb1" required="">
+                    <option value="">Sélectionner...</option>
+                    <option value="0">Aucun / moins de 4</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10 ou plus</option>
+                  </select></label
+                ><label
+                  >Deuxième langue - test<select name="test2">
+                    <option value="none">Sans objet</option>
+                    <option value="ielts">IELTS General Training</option>
+                    <option value="celpip">CELPIP-G</option>
+                    <option value="pte">PTE Core</option>
+                    <option value="tef">TEF Canada</option>
+                    <option value="tcf">TCF Canada</option>
+                  </select></label
+                ><label
+                  >Plus faible CLB/NCLC - deuxième langue<select name="clb2">
+                    <option value="0">Sans objet / moins de 4</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10 ou plus</option>
+                  </select></label
+                >
+              </div>
+            </section>
+            <section class="panel">
+              <h2>5. Liens avec la Saskatchewan et autres critères</h2>
+              <div class="fields">
+                <label
+                  >Parent proche admissible résidant en Saskatchewan<select
+                    name="relative"
+                  >
+                    <option value="no">Non</option>
+                    <option value="yes">
+                      Oui, et les conditions de soutien sont satisfaites
+                    </option>
+                    <option value="unknown">À vérifier</option>
+                  </select></label
+                ><label
+                  >Profil Entrée express et code de validation de recherche
+                  d'emploi valides<select name="ee">
+                    <option value="no">Non</option>
+                    <option value="yes">Oui</option>
+                    <option value="unknown">À vérifier</option>
+                  </select></label
+                ><label
+                  >Profession sur la liste des professions exclues (sans
+                  offre)<select name="excluded">
+                    <option value="unknown">À vérifier</option>
+                    <option value="no">Non</option>
+                    <option value="yes">Oui</option>
+                  </select></label
+                ><label
+                  >Fonds d'établissement et plan d'établissement (volets sans
+                  offre)<select name="funds">
+                    <option value="unknown">À vérifier</option>
+                    <option value="yes">Oui</option>
+                    <option value="no">Non</option>
+                  </select></label
+                >
+              </div>
+            </section>
+            <div class="actions">
+              <button type="submit">Évaluer mon profil SINP</button
+              ><button class="secondary" type="reset">Réinitialiser</button>
+            </div>
+          </form>
+          <section
+            aria-live="polite"
+            class="panel results"
+            hidden=""
+            id="results"
+          ></section>
+          <footer>
+            <p>
+              <strong>Sources officielles :</strong>
+              <a
+                href="https://www.saskatchewan.ca/residents/moving-to-saskatchewan/live-in-saskatchewan/by-immigrating/saskatchewan-immigrant-nominee-program/assess-your-eligibility"
+                rel="noopener"
+                target="_blank"
+                >Grille et évaluation SINP</a
+              >
+              ·
+              <a
+                href="https://www.saskatchewan.ca/residents/moving-to-saskatchewan/live-in-saskatchewan/by-immigrating/saskatchewan-immigrant-nominee-program/sinp-processing-statistics"
+                rel="noopener"
+                target="_blank"
+                >Quotas et périodes de réception 2026</a
+              >
+              ·
+              <a href="https://noc.esdc.gc.ca/" rel="noopener" target="_blank"
+                >CNP 2021</a
+              >.
             </p>
-</div>
-</div>
-</header>
-<div class="notice">
-<strong>Important :</strong> Cet outil indépendant n'est ni un service
-        gouvernemental ni une décision d'admissibilité. Le sélecteur officiel de
-        programmes a été archivé le 2 janvier 2026. Les critères, quotas et
-        périodes de réception peuvent changer. Les réponses et pièces
-        justificatives doivent être vérifiées avant toute demande.
-      </div>
-<form id="form">
-<section class="panel">
-<h2>1. Votre situation</h2>
-<div class="fields">
-<label>Âge
-              <input max="110" min="0" name="age" placeholder="Ex. 32" required="" type="number"/></label><label>Lieu de résidence<select name="location" required="">
-<option value="">Sélectionner...</option>
-<option value="sk">En Saskatchewan</option>
-<option value="canada">Ailleurs au Canada</option>
-<option value="abroad">À l'extérieur du Canada</option>
-</select></label><label>Statut actuel au Canada<select name="permit">
-<option value="">Sélectionner...</option>
-<option value="outside">À l'extérieur du Canada</option>
-<option value="pgwp">
-                  Permis de travail postdiplôme (PTPD)
-                </option>
-<option value="study">Permis d'études</option>
-<option value="lmia">Permis lié à une EIMT</option>
-<option value="franco">Permis Mobilité francophone</option>
-<option value="cuaet">Permis CUAET</option>
-<option value="otherwork">Autre permis de travail</option>
-<option value="spousal">
-                  Permis de travail ouvert pour conjoint
-                </option>
-<option value="other">Autre statut légal</option>
-<option value="none">Sans statut légal / à vérifier</option>
-</select></label><label>Situation relative à une demande d'asile<select name="refugee" required="">
-<option value="">Sélectionner...</option>
-<option value="no">Aucune demande d'asile en cours</option>
-<option value="pending">
-                  Demande d'asile en cours au Canada
-                </option>
-<option value="refused">
-                  Demande refusée et dossier entièrement réglé
-                </option>
-<option value="unclear">Situation à vérifier</option>
-</select></label><label>Intention réelle de vivre et travailler en Saskatchewan<select name="intent" required="">
-<option value="">Sélectionner...</option>
-<option value="yes">Oui</option>
-<option value="no">Non</option>
-<option value="unsure">À déterminer</option>
-</select></label>
-</div>
-<label class="check"><input name="departure" type="checkbox"/> Si ma demande d'asile a
-            été refusée : tous les membres accompagnants et moi avons quitté le
-            Canada et je possède les documents requis (IMM 0056B ou ARC, selon
-            le cas).</label>
-</section>
-<section class="panel">
-<h2>2. Offre d'emploi et profession</h2>
-<div class="fields">
-<label>Offre d'emploi permanente à temps plein d'un employeur en
-              Saskatchewan<select name="offer" required="">
-<option value="">Sélectionner...</option>
-<option value="yes">Oui</option>
-<option value="no">Non</option>
-</select></label><label>Employer Position Assessment (EPA) valide / approuvée<select name="epa">
-<option value="unknown">À confirmer</option>
-<option value="yes">Oui</option>
-<option value="no">Non</option>
-</select></label><label>Secteur de l'employeur<select name="sector" required="">
-<option value="">Sélectionner...</option>
-<option value="health">Santé</option>
-<option value="agri">Agriculture / agroalimentaire</option>
-<option value="tech">Technologie / innovation</option>
-<option value="trades">Métiers spécialisés</option>
-<option value="energy">Énergie</option>
-<option value="mining">Mines et minéraux</option>
-<option value="manufacturing">Fabrication</option>
-<option value="food">Hébergement / restauration</option>
-<option value="trucking">Transport routier</option>
-<option value="retail">Commerce de détail</option>
-<option value="other">Autre</option>
-</select></label><label>Code CNP 2021 (5 chiffres)<input inputmode="numeric" maxlength="5" name="noc" pattern="[0-9]{5}" placeholder="Ex. 21232"/></label><label>Catégorie FEER / TEER<select name="teer" required="">
-<option value="">Sélectionner...</option>
-<option value="0">0</option>
-<option value="1">1</option>
-<option value="2">2</option>
-<option value="3">3</option>
-<option value="4">4</option>
-<option value="5">5</option>
-</select></label><label>Profession réglementée / permis professionnel requis<select name="regulated">
-<option value="unknown">À vérifier</option>
-<option value="yes">Oui</option>
-<option value="no">Non</option>
-</select></label>
-</div>
-</section>
-<section class="panel">
-<h2>3. Formation et expérience</h2>
-<div class="fields">
-<label>Plus haut diplôme reconnu / équivalence canadienne<select name="education" required="">
-<option value="">Sélectionner...</option>
-<option value="23">Maîtrise ou doctorat - 23 points</option>
-<option value="20">
-                  Baccalauréat ou programme ≥ 3 ans - 20 points
-                </option>
-<option value="20">
-                  Certificat de métier équivalent compagnon - 20 points
-                </option>
-<option value="15">
-                  Diplôme postsecondaire de 2 ans - 15 points
-                </option>
-<option value="12">
-                  Certificat postsecondaire ≥ 2 semestres et &lt; 2 ans - 12
-                  points
-                </option>
-<option value="0">
-                  Secondaire ou sans diplôme reconnu - 0 point
-                </option>
-</select></label><label>Diplôme d'un établissement de la Saskatchewan<select name="skgrad">
-<option value="no">Non</option>
-<option value="yes">Oui</option>
-</select></label><label>Études liées à l'emploi envisagé<select name="relatededu">
-<option value="unknown">À vérifier</option>
-<option value="yes">Oui</option>
-<option value="no">Non</option>
-</select></label><label>Années de travail qualifié lié à la profession au cours des 5
-              dernières années<select name="exp5" required="">
-<option value="">Sélectionner...</option>
-<option value="0">Moins d'un an</option>
-<option value="1">1 an</option>
-<option value="2">2 ans</option>
-<option value="3">3 ans</option>
-<option value="4">4 ans</option>
-<option value="5">5 ans</option>
-</select></label><label>Années de travail qualifié lié à la profession durant les années
-              6 à 10 précédentes<select name="exp10" required="">
-<option value="">Sélectionner...</option>
-<option value="0">Moins d'un an</option>
-<option value="1">1 an</option>
-<option value="2">2 ans</option>
-<option value="3">3 ans</option>
-<option value="4">4 ans</option>
-<option value="5">5 ans</option>
-</select></label><label>Travail chez l'employeur offrant le poste en Saskatchewan (heures
-              admissibles)<input min="0" name="employerhours" step="1" type="number" value="0"/></label><label>Expérience récente (années) dans la profession offerte<input max="50" min="0" name="recentyears" step="0.5" type="number" value="0"/></label><label>Expérience de travail admissible en Saskatchewan (12 mois dans
-              les 5 dernières années)<select name="skwork">
-<option value="no">Non</option>
-<option value="yes">Oui</option>
-</select></label><label>Études antérieures en Saskatchewan (une année à temps
-              plein)<select name="skstudy">
-<option value="no">Non</option>
-<option value="yes">Oui</option>
-</select></label>
-</div>
-</section>
-<section class="panel">
-<h2>4. Langues officielles</h2>
-<p class="hint">
-            Indiquez le niveau le plus faible parmi les quatre compétences d'un
-            test reconnu. Le niveau doit provenir d'un test valide, et non d'une
-            autoévaluation.
-            <a href="https://www.canada.ca/fr/immigration-refugies-citoyennete/services/immigrer-canada/entree-express/documents/examen-linguistique.html" rel="noopener" target="_blank">Tableaux officiels de conversion IRCC</a>.
-          </p>
-<div class="fields">
-<label>Première langue - test<select name="test1" required="">
-<option value="">Sélectionner...</option>
-<option value="ielts">IELTS General Training</option>
-<option value="celpip">CELPIP-G</option>
-<option value="pte">PTE Core</option>
-<option value="tef">TEF Canada</option>
-<option value="tcf">TCF Canada</option>
-<option value="none">Aucun test valide</option>
-</select></label><label>Plus faible CLB/NCLC des 4 compétences - première langue<select name="clb1" required="">
-<option value="">Sélectionner...</option>
-<option value="0">Aucun / moins de 4</option>
-<option value="4">4</option>
-<option value="5">5</option>
-<option value="6">6</option>
-<option value="7">7</option>
-<option value="8">8</option>
-<option value="9">9</option>
-<option value="10">10 ou plus</option>
-</select></label><label>Deuxième langue - test<select name="test2">
-<option value="none">Sans objet</option>
-<option value="ielts">IELTS General Training</option>
-<option value="celpip">CELPIP-G</option>
-<option value="pte">PTE Core</option>
-<option value="tef">TEF Canada</option>
-<option value="tcf">TCF Canada</option>
-</select></label><label>Plus faible CLB/NCLC - deuxième langue<select name="clb2">
-<option value="0">Sans objet / moins de 4</option>
-<option value="4">4</option>
-<option value="5">5</option>
-<option value="6">6</option>
-<option value="7">7</option>
-<option value="8">8</option>
-<option value="9">9</option>
-<option value="10">10 ou plus</option>
-</select></label>
-</div>
-</section>
-<section class="panel">
-<h2>5. Liens avec la Saskatchewan et autres critères</h2>
-<div class="fields">
-<label>Parent proche admissible résidant en Saskatchewan<select name="relative">
-<option value="no">Non</option>
-<option value="yes">
-                  Oui, et les conditions de soutien sont satisfaites
-                </option>
-<option value="unknown">À vérifier</option>
-</select></label><label>Profil Entrée express et code de validation de recherche d'emploi
-              valides<select name="ee">
-<option value="no">Non</option>
-<option value="yes">Oui</option>
-<option value="unknown">À vérifier</option>
-</select></label><label>Profession sur la liste des professions exclues (sans
-              offre)<select name="excluded">
-<option value="unknown">À vérifier</option>
-<option value="no">Non</option>
-<option value="yes">Oui</option>
-</select></label><label>Fonds d'établissement et plan d'établissement (volets sans
-              offre)<select name="funds">
-<option value="unknown">À vérifier</option>
-<option value="yes">Oui</option>
-<option value="no">Non</option>
-</select></label>
-</div>
-</section>
-<div class="actions">
-<button type="submit">Évaluer mon profil SINP</button><button class="secondary" type="reset">Réinitialiser</button>
-</div>
-</form>
-<section aria-live="polite" class="panel results" hidden="" id="results"></section>
-<footer>
-<p>
-<strong>Sources officielles :</strong>
-<a href="https://www.saskatchewan.ca/residents/moving-to-saskatchewan/live-in-saskatchewan/by-immigrating/saskatchewan-immigrant-nominee-program/assess-your-eligibility" rel="noopener" target="_blank">Grille et évaluation SINP</a>
-          ·
-          <a href="https://www.saskatchewan.ca/residents/moving-to-saskatchewan/live-in-saskatchewan/by-immigrating/saskatchewan-immigrant-nominee-program/sinp-processing-statistics" rel="noopener" target="_blank">Quotas et périodes de réception 2026</a>
-          ·
-          <a href="https://noc.esdc.gc.ca/" rel="noopener" target="_blank">CNP 2021</a>.
-        </p>
-<p>
-          © MAD Immigration Canadienne - outil d'orientation indépendant. Aucune
-          information n'est envoyée à un serveur par ce formulaire.
-        </p>
-</footer>
-</main>
+            <p>
+              © MAD Immigration Canadienne - outil d'orientation indépendant.
+              Aucune information n'est envoyée à un serveur par ce formulaire.
+            </p>
+          </footer>
+        </main>
         <footer
           aria-label="Pied de page MADIC / MADIC footer"
           class="madic-footer"
@@ -527,7 +667,7 @@
         </footer>
       </div>
     </div>
-    <script src="assets/config.js"></script>
+    <script src="assets/config.js?v=ad4abf1871f6"></script>
     <script src="assets/saskatchewan.js?v=396b0633322f"></script>
   </body>
 </html>

@@ -1,20 +1,3 @@
-window.MADIC_CONFIG = {
-  url: "https://ezijsozitnydhjkxzqem.supabase.co",
-  anonKey: "sb_publishable_MQjW5_va454CjZ7weau0iQ_AdJ41yvi",
-};
-window.getMadicSupabase = function () {
-  if (!window.madicSupabaseClient) {
-    const cfg = window.MADIC_CONFIG;
-
-    window.madicSupabaseClient = window.supabase.createClient(
-      cfg.url,
-      cfg.anonKey,
-    );
-  }
-
-  return window.madicSupabaseClient;
-};
-
 function isMadicGuestPage() {
   const params = new URLSearchParams(location.search);
   return params.has("invite") || params.has("guest");
@@ -77,6 +60,7 @@ function isMadicGuestPage() {
         );
         return false;
       }
+      if (!(await window.madicRequireMfa(db))) return false;
       const { error } = await db.rpc("madic_accept_cric_invitation", {
         p_token: token,
       });
@@ -469,6 +453,11 @@ function isMadicGuestPage() {
     location.replace(destination.href);
   }
   async function openPortal(preferred) {
+    if (!(await window.madicRequireMfa(db))) {
+      user = null;
+      promptGuestSignIn();
+      return;
+    }
     if (token)
       return say(
         "Compte connecté : " +

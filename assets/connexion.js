@@ -48,6 +48,7 @@
       });
       if (error) return status(error.message, true);
       try {
+        if (!(await window.madicRequireMfa(db))) return;
         location.replace(await cricDestination(data.user.id));
       } catch (err) {
         status(

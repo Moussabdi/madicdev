@@ -13,10 +13,7 @@
       Détail du client CRIC | MADIC Portail
     </title>
     <link href="assets/madic-footer.css" rel="stylesheet" />
-    <link
-      href="assets/gestion-client-cric-detail.css?v=bc0351fcb644"
-      rel="stylesheet"
-    />
+    <link href="assets/gestion-client-cric-detail.css" rel="stylesheet" />
   </head>
   <body
     class="madic-unified"
@@ -228,6 +225,32 @@
                 </table>
               </div>
             </section>
+            <section class="panel" aria-labelledby="clientPortalAccessTitle">
+              <h2
+                id="clientPortalAccessTitle"
+                data-fr="Accès au portail client"
+                data-en="Client portal access"
+              >
+                Accès au portail client
+              </h2>
+              <p
+                data-fr="Révoquez l’accès de ce client à votre cabinet. Les dossiers demeurent dans votre espace professionnel."
+                data-en="Revoke this client’s access to your firm. Case records stay in your professional workspace."
+              >
+                Révoquez l’accès de ce client à votre cabinet. Les dossiers
+                demeurent dans votre espace professionnel.
+              </p>
+              <button
+                id="revokeClientPortal"
+                type="button"
+                class="secondary"
+                data-fr="Révoquer l’accès du client"
+                data-en="Revoke client access"
+              >
+                Révoquer l’accès du client
+              </button>
+              <p id="revokeClientPortalStatus" role="status"></p>
+            </section>
             <section
               class="panel"
               id="cricGuestSection"
@@ -372,6 +395,10 @@
       </div>
     </div>
     <script defer="" src="assets/madic-footer.js"></script>
-    <script defer="" src="assets/gestion-client-cric-detail.js"></script>
+    <script defer="" src="assets/config.js?v=ad4abf1871f6"></script>
+    <script
+      defer=""
+      src="assets/gestion-client-cric-detail.js?v=09f5b2d5b379"
+    ></script>
   </body>
 </html>

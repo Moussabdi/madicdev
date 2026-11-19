@@ -266,7 +266,12 @@
     $("spaceName").textContent = "Espace professionnel : " + space.name;
     await reload();
     $("workspace").hidden = false;
-    msg("Espace chargé. Les données sont soumises aux autorisations Supabase.");
+    if (new URLSearchParams(location.search).get("acces") === "revoque") {
+      const english = document.documentElement.lang.startsWith("en");
+      msg(english ? "Client portal access revoked." : "Accès du client au portail révoqué.");
+    } else {
+      msg("Espace chargé. Les données sont soumises aux autorisations Supabase.");
+    }
     if (page === "clients") {
       $("search")?.addEventListener("input", renderClients);
       $("refresh")?.addEventListener("click", async () => {

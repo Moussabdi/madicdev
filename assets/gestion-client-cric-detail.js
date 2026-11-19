@@ -1,20 +1,3 @@
-window.MADIC_CONFIG = {
-  url: "https://ezijsozitnydhjkxzqem.supabase.co",
-  anonKey: "sb_publishable_MQjW5_va454CjZ7weau0iQ_AdJ41yvi",
-};
-window.getMadicSupabase = function () {
-  if (!window.madicSupabaseClient) {
-    const cfg = window.MADIC_CONFIG;
-
-    window.madicSupabaseClient = window.supabase.createClient(
-      cfg.url,
-      cfg.anonKey,
-    );
-  }
-
-  return window.madicSupabaseClient;
-};
-
 /* MADIC CRIC: les politiques RLS Supabase constituent la protection des données. */
 (async () => {
   "use strict";
@@ -349,6 +332,7 @@ window.getMadicSupabase = function () {
     renderDossiers();
     $("workspace").hidden = false;
     setupGuestAccess(db, space.id, clientId);
+    setupClientRevocation(db, space.id, clientId);
     msg("Dossiers du client chargés.");
     $("refresh").addEventListener("click", async () => {
       try {
@@ -676,4 +660,41 @@ function setupGuestAccess(db, spaceId, clientId) {
     attributeFilter: ["lang"],
   });
   perform(() => load());
+}
+
+function setupClientRevocation(db, spaceId, clientId) {
+  const button = document.getElementById("revokeClientPortal");
+  const status = document.getElementById("revokeClientPortalStatus");
+  const tr = (fr, en) =>
+    document.documentElement.lang.startsWith("en") ? en : fr;
+  button.addEventListener("click", async () => {
+    if (
+      button.disabled ||
+      !window.confirm(
+        tr(
+          "Révoquer l’accès de ce client et de ses invités à votre cabinet? Pour redonner l’accès au client, envoyez une nouvelle invitation.",
+          "Revoke access to your firm for this client and their guests? To restore the client’s access, send a new invitation.",
+        ),
+      )
+    )
+      return;
+    button.disabled = true;
+    status.textContent = "";
+    try {
+      if (!(await window.madicRequireMfa(db))) return;
+      const { error } = await db.rpc("madic_revoke_cric_client", {
+        p_space_id: spaceId,
+        p_client_id: clientId,
+      });
+      if (error) throw error;
+      location.replace("gestion-clients-cric.html?acces=revoque");
+    } catch {
+      status.textContent = tr(
+        "La révocation a échoué. Actualisez la fiche et réessayez.",
+        "Unable to revoke access. Refresh the page and try again.",
+      );
+    } finally {
+      button.disabled = false;
+    }
+  });
 }

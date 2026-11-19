@@ -416,3 +416,43 @@ footer.madic-footer {
   color: #09264a;
   font-weight: 700;
 }
+
+.madic-mfa-dialog {
+  width: min(30rem, calc(100% - 2rem));
+  max-height: calc(100% - 2rem);
+  padding: 1.5rem;
+  border: 1px solid #cbd9e9;
+  border-radius: 1rem;
+  background: white;
+  color: #173657;
+  overflow: auto;
+}
+
+.madic-mfa-dialog::backdrop {
+  background: rgb(12 33 60 / 65%);
+}
+
+.madic-mfa-dialog img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin-block: 1rem .5rem;
+}
+
+.madic-mfa-dialog code {
+  display: block;
+  overflow-wrap: anywhere;
+}
+
+.madic-mfa-dialog input {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: .4rem;
+}
+
+.madic-mfa-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .75rem;
+}

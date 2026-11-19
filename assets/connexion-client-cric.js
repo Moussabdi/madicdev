@@ -147,6 +147,7 @@
           msg(error.message);
           return;
         }
+        if (!(await window.madicRequireMfa(db))) return;
         const { data: spaces, error: spacesError } = await db.rpc(
           "madic_my_cric_client_spaces",
         );
