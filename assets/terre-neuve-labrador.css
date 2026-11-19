@@ -1,5 +1,5 @@
 
-/* MADIC PORTAIL — habillage autonome des outils provinciaux.
+/* MADIC PORTAIL- habillage autonome des outils provinciaux.
    Référence visuelle : tableau de bord CRIC, sans importer cric-dashboard.css. */
 :root{font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;color:#17324b;background:#f4f7fb}
 *,*::before,*::after{box-sizing:border-box}
@@ -53,7 +53,7 @@ body.madic-unified .madic-unified-content a:focus-visible,body.madic-unified but
 
 /* En-tete et footer: styles de la version Alberta validee. */
 
-/* MADIC PORTAIL — habillage autonome des outils provinciaux.
+/* MADIC PORTAIL- habillage autonome des outils provinciaux.
    Référence visuelle : tableau de bord CRIC, sans importer cric-dashboard.css. */
 :root{font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;color:#17324b;background:#f4f7fb}
 *,*::before,*::after{box-sizing:border-box}

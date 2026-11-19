@@ -219,14 +219,14 @@ const $ = (id) => document.getElementById(id);
         s.l1 >= 4
       )
         add(
-          "Travailleurs qualifiés internationaux — Offre d’emploi",
+          "Travailleurs qualifiés internationaux- Offre d’emploi",
           true,
           "Grille ≥ 60/110, 1 an d’expérience liée dans les 10 dernières années, CLB 4, offre FEER 0–3 et EPA. Vérifier les exclusions professionnelles.",
           "offer",
         );
       else if (teer <= 3 && sector !== "health")
         add(
-          "Travailleurs qualifiés internationaux — Offre d’emploi",
+          "Travailleurs qualifiés internationaux- Offre d’emploi",
           false,
           "Nécessite notamment 60 points, un an d’expérience liée, CLB 4, offre FEER 0–3 et EPA.",
           "offer",
@@ -234,7 +234,7 @@ const $ = (id) => document.getElementById(id);
     } else {
       if (yes("ee"))
         add(
-          "Travailleurs qualifiés internationaux — Entrée express Saskatchewan",
+          "Travailleurs qualifiés internationaux- Entrée express Saskatchewan",
           s.noOfferTotal >= 60 &&
             educated &&
             exp >= 1 &&
@@ -245,7 +245,7 @@ const $ = (id) => document.getElementById(id);
         );
       else
         add(
-          "Travailleurs qualifiés internationaux — Professions en demande",
+          "Travailleurs qualifiés internationaux- Professions en demande",
           s.noOfferTotal >= 60 &&
             educated &&
             exp >= 1 &&
@@ -509,11 +509,11 @@ const englishLabels = new Map(
     "Catégorie des étudiants": "Student Category",
     "Travailleurs qualifiés avec un permis de travail valide":
       "Skilled Worker with Existing Work Permit",
-    "Travailleurs qualifiés internationaux — Offre d’emploi":
+    "Travailleurs qualifiés internationaux- Offre d’emploi":
       "International Skilled Worker: Employment Offer",
-    "Travailleurs qualifiés internationaux — Entrée express Saskatchewan":
+    "Travailleurs qualifiés internationaux- Entrée express Saskatchewan":
       "International Skilled Worker: Saskatchewan Express Entry",
-    "Travailleurs qualifiés internationaux — Professions en demande":
+    "Travailleurs qualifiés internationaux- Professions en demande":
       "International Skilled Worker: Occupations In-Demand",
   }),
 );

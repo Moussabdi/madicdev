@@ -531,7 +531,7 @@ code {
   }
 }
 
-/* Étape 5/9 — harmonisation finale des rendez-vous, sans dépendance ajoutée. */
+/* Étape 5/9- harmonisation finale des rendez-vous, sans dépendance ajoutée. */
 .madic-rdv-shell {
   width: 100%;
   box-sizing: border-box;
@@ -2626,7 +2626,7 @@ body.madic-unified[data-page="demandes-documents-cric"]
   }
 }
 
-/* Étape 5/9 — échéances CRIC, lisibilité et états. */
+/* Étape 5/9- échéances CRIC, lisibilité et états. */
 .deadline-shell {
   width: 100%;
   box-sizing: border-box;
