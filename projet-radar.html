@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="fr-CA">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex,nofollow" />
+    <title>Radar MADIC</title>
+    <link rel="icon" href="img/logo-madic.svg" />
+    <link rel="stylesheet" href="assets/madic-footer.css" />
+    <link rel="stylesheet" href="assets/projet-radar.css" />
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"
+    ></script>
+    <script defer src="assets/config.js"></script>
+    <script defer src="assets/projet-radar.js"></script>
+  </head>
+  <body>
+    <header class="masthead">
+      <a class="brand" href="administration.html"
+        ><img src="img/logo-madic.svg" width="33" height="33" alt="" />
+        <span data-fr="MADIC PORTAIL" data-en="MADIC PORTAL"
+          >MADIC PORTAIL</span
+        ></a
+      >
+      <nav aria-label="Administration">
+        <a
+          href="administration.html"
+          data-fr="Administration"
+          data-en="Administration"
+          >Administration</a
+        >
+        <a
+          href="validation-cric.html"
+          data-fr="Vérifications CRIC"
+          data-en="RCIC verifications"
+          >Vérifications CRIC</a
+        >
+        <a
+          href="projet-radar.html"
+          aria-current="page"
+          data-fr="Radar MADIC"
+          data-en="MADIC Radar"
+          >Radar MADIC</a
+        >
+      </nav>
+      <div class="languages" aria-label="Langue / Language">
+        <button type="button" data-language="fr" aria-pressed="true">FR</button>
+        <button type="button" data-language="en" aria-pressed="false">
+          EN
+        </button>
+        <button
+          type="button"
+          id="radarLogout"
+          data-fr="Déconnexion"
+          data-en="Sign out"
+        >
+          Déconnexion
+        </button>
+      </div>
+    </header>
+    <main>
+      <div class="title-row">
+        <h1 data-fr="Radar MADIC" data-en="MADIC Radar">Radar MADIC</h1>
+        <div id="radarFilters" class="filters" hidden>
+          <label
+            ><span data-fr="Période" data-en="Period">Période</span>
+            <select id="radarDays">
+              <option
+                value="7"
+                data-fr="7 derniers jours"
+                data-en="Last 7 days"
+              >
+                7 derniers jours
+              </option>
+              <option
+                value="30"
+                selected
+                data-fr="30 derniers jours"
+                data-en="Last 30 days"
+              >
+                30 derniers jours
+              </option>
+              <option
+                value="90"
+                data-fr="90 derniers jours"
+                data-en="Last 90 days"
+              >
+                90 derniers jours
+              </option>
+              <option
+                value="365"
+                data-fr="365 derniers jours"
+                data-en="Last 365 days"
+              >
+                365 derniers jours
+              </option>
+            </select>
+          </label>
+          <label
+            ><span data-fr="Formule" data-en="Plan">Formule</span>
+            <select id="radarPlan">
+              <option value="" data-fr="Toutes" data-en="All">Toutes</option>
+              <option value="free" data-fr="Gratuite" data-en="Free">
+                Gratuite
+              </option>
+              <option value="paid" data-fr="Payante" data-en="Paid">
+                Payante
+              </option>
+            </select>
+          </label>
+          <label
+            ><span data-fr="Cabinet" data-en="Firm">Cabinet</span
+            ><select id="radarFirm"></select
+          ></label>
+        </div>
+      </div>
+      <p id="radarStatus" role="status"></p>
+      <div id="radarData" hidden>
+        <div id="radarCards" class="metrics"></div>
+        <div class="analysis">
+          <section aria-labelledby="activityTitle" class="panel">
+            <h2
+              id="activityTitle"
+              data-fr="Connexions par période"
+              data-en="Sessions over time"
+            >
+              Connexions par période
+            </h2>
+            <p class="legend">
+              <span class="cric" data-fr="CRIC" data-en="RCIC">CRIC</span
+              ><span class="client" data-fr="Clients" data-en="Clients"
+                >Clients</span
+              >
+            </p>
+            <div id="radarChart" class="chart"></div>
+          </section>
+          <section aria-labelledby="geoTitle" class="panel">
+            <h2
+              id="geoTitle"
+              data-fr="Pays de connexion"
+              data-en="Session countries"
+            >
+              Pays de connexion
+            </h2>
+            <p
+              class="muted"
+              data-fr="Localisation approximative du réseau."
+              data-en="Approximate network location."
+            >
+              Localisation approximative du réseau.
+            </p>
+            <div id="radarGeo"></div>
+          </section>
+        </div>
+        <section class="panel" aria-labelledby="firmsTitle">
+          <h2
+            id="firmsTitle"
+            data-fr="Consultants, cabinets et clients"
+            data-en="Consultants, firms and clients"
+          >
+            Consultants, cabinets et clients
+          </h2>
+          <div class="table-scroll">
+            <table>
+              <thead>
+                <tr>
+                  <th data-fr="CRIC / cabinet" data-en="RCIC / firm">
+                    CRIC / cabinet
+                  </th>
+                  <th data-fr="Formule / accès" data-en="Plan / access">
+                    Formule / accès
+                  </th>
+                  <th data-fr="Clients associés" data-en="Linked clients">
+                    Clients associés
+                  </th>
+                  <th data-fr="Connexions CRIC" data-en="RCIC sessions">
+                    Connexions CRIC
+                  </th>
+                  <th data-fr="Connexions clients" data-en="Client sessions">
+                    Connexions clients
+                  </th>
+                  <th data-fr="Stockage attribué" data-en="Attributed storage">
+                    Stockage attribué
+                  </th>
+                </tr>
+              </thead>
+              <tbody id="radarRows"></tbody>
+            </table>
+          </div>
+          <p
+            class="muted"
+            data-fr="Le stockage reflète les fichiers attribuables à un cabinet au moment de la consultation. Un client rattaché à deux cabinets compte dans chacun."
+            data-en="Storage reflects files attributable to a firm at the time of viewing. A client linked to two firms is counted in each."
+          >
+            Le stockage reflète les fichiers attribuables à un cabinet au moment
+            de la consultation. Un client rattaché à deux cabinets compte dans
+            chacun.
+          </p>
+        </section>
+      </div>
+    </main>
+  </body>
+</html>

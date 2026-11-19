@@ -69,6 +69,12 @@
             href="gestion-cric.html#payment-management"
             >◷ Suivi des paiements</a
           >
+          <a
+            href="projet-radar.html"
+            data-fr="Radar MADIC"
+            data-en="MADIC Radar"
+            >Radar MADIC</a
+          >
         </nav>
         <div
           class="madic-unified-foot"
@@ -155,6 +161,24 @@
             Réservé au propriétaire MADIC. Vérifiez l’identité et le permis dans
             le registre officiel avant toute approbation.
           </p>
+          <dialog
+            id="cricIdentityPreview"
+            aria-labelledby="cricIdentityPreviewTitle"
+          >
+            <h2
+              id="cricIdentityPreviewTitle"
+              data-fr="Pièce d’identité avec photo"
+              data-en="Photo identification"
+            >
+              Pièce d’identité avec photo
+            </h2>
+            <img alt="" />
+            <form method="dialog">
+              <button class="secondary" data-fr="Fermer" data-en="Close">
+                Fermer
+              </button>
+            </form>
+          </dialog>
           <p aria-live="polite" id="cricMessage" role="status"></p>
           <section class="panel">
             <div class="validation-table-scroll">
@@ -167,12 +191,15 @@
                     <th data-en="Licence" data-fr="Permis">Permis</th>
                     <th data-en="Email" data-fr="Courriel">Courriel</th>
                     <th data-en="Status" data-fr="Statut">Statut</th>
+                    <th data-en="Photo ID" data-fr="Pièce d’identité">
+                      Pièce d’identité
+                    </th>
                     <th data-en="Decision" data-fr="Décision">Décision</th>
                   </tr>
                 </thead>
                 <tbody id="cricApplications">
                   <tr>
-                    <td colspan="5" data-en="Loading…" data-fr="Chargement…">
+                    <td colspan="6" data-en="Loading…" data-fr="Chargement…">
                       Chargement…
                     </td>
                   </tr>
@@ -312,6 +339,6 @@
 
     <script src="assets/config.js?v=ad4abf1871f6"></script>
     <script src="assets/madic-footer.js"></script>
-    <script src="assets/validation-cric.js"></script>
+    <script src="assets/validation-cric.js?v=44d72c3f99a6"></script>
   </body>
 </html>

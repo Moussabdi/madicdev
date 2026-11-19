@@ -1717,3 +1717,7 @@ body.madic-unified
     max-height: 78px !important;
   }
 }
+
+#cricIdentityPreview { max-width: min(92vw, 62rem); border: 1px solid #bdcddf; border-radius: 14px; background: #fff; color: #183956; }
+#cricIdentityPreview::backdrop { background: #102845b3; }
+#cricIdentityPreview img { display: block; max-width: 100%; max-height: 68vh; object-fit: contain; margin: 0 auto 1rem; }

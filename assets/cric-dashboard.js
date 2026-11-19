@@ -165,6 +165,7 @@
           canManage = allowed === true;
         }
         if (canManage) {
+          if (application?.status === "approved") void window.madicTrackRadarSession?.(db,"cric");
           if ($("cricEvaluationsCard")) $("cricEvaluationsCard").hidden = false;
           if ($("cricAppointmentsCard"))
             $("cricAppointmentsCard").hidden = false;

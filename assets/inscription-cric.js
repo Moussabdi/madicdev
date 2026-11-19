@@ -1,21 +1,3 @@
-/* Source : config.js */
-window.MADIC_CONFIG = {
-  url: "https://ezijsozitnydhjkxzqem.supabase.co",
-  anonKey: "sb_publishable_MQjW5_va454CjZ7weau0iQ_AdJ41yvi",
-};
-window.getMadicSupabase = function () {
-  if (!window.madicSupabaseClient) {
-    const cfg = window.MADIC_CONFIG;
-
-    window.madicSupabaseClient = window.supabase.createClient(
-      cfg.url,
-      cfg.anonKey,
-    );
-  }
-
-  return window.madicSupabaseClient;
-};
-
 /* Source : cric-registration(2).js */
 (() => {
   "use strict";
@@ -578,4 +560,168 @@ window.getMadicSupabase = function () {
   window.addEventListener("storage", function (e) {
     if (e.key === "madic-lang") apply(e.newValue);
   });
+})();
+
+(() => {
+  const panel = document.getElementById("cricOnboarding");
+  if (!panel) return;
+  const byId = (id) => document.getElementById(id);
+  const tokenKey = "madic-professional-invitation";
+  const fragment = new URLSearchParams(location.hash.slice(1));
+  const incoming = fragment.get("invitation");
+  if (incoming && /^[a-f0-9]{64}$/.test(incoming)) {
+    localStorage.setItem(tokenKey, incoming);
+    history.replaceState(null, "", location.pathname + location.search);
+  }
+  let token = localStorage.getItem(tokenKey);
+  const requested = new URLSearchParams(location.search).has("continuer");
+  if (!token && !requested) return;
+
+  document.getElementById("cricSignup").closest("section").hidden = true;
+  panel.hidden = false;
+  const db = window.getMadicSupabase();
+  const auth = byId("cricOnboardingAuth");
+  const resume = byId("cricOnboardingResume");
+  const switchAccount = byId("cricOnboardingSwitch");
+  const form = byId("cricOnboardingDocument");
+  const status = byId("cricOnboardingStatus");
+  let busy = false, userId, message;
+  const say = (fr, en) => {
+    message = [fr, en];
+    status.textContent = message[document.documentElement.lang.startsWith("en") ? 1 : 0];
+  };
+  const localize = () => {
+    const lang = document.documentElement.lang.startsWith("en") ? "en" : "fr";
+    panel.querySelectorAll("[data-fr][data-en]").forEach(element => { element.textContent = element.dataset[lang]; });
+    if (message) say(...message);
+  };
+  localize();
+  new MutationObserver(localize)
+    .observe(document.documentElement, { attributes:true, attributeFilter:["lang"] });
+  const checked = (result) => {
+    if (result.error) throw result.error;
+    return result.data;
+  };
+  async function run(task) {
+    if (busy) return;
+    busy = true;
+    const controls = [...panel.querySelectorAll("button")];
+    controls.forEach(button => { button.disabled = true; });
+    try { await task(); }
+    catch {
+      say("Impossible de poursuivre. Vérifiez que vous êtes connecté avec le courriel invité et que votre lien est valide.",
+        "Unable to continue. Check that you are signed in with the invited email and that the link is valid.");
+    } finally {
+      busy = false;
+      controls.forEach(button => { button.disabled = false; });
+    }
+  }
+  async function fillSession() {
+    const { session } = checked(await db.auth.getSession());
+    auth.hidden = !!session;
+    resume.hidden = switchAccount.hidden = !session;
+    if (session && document.visibilityState === "visible") {
+      say("Cliquez sur Continuer pour ouvrir votre dossier d’inscription.", "Select Continue to open your registration.");
+    } else if (!session && requested && !token) {
+      say("Si votre demande n’est pas encore associée, ouvrez le lien d’invitation MADIC reçu par courriel.",
+        "If your application is not linked yet, open the MADIC invitation link from your email.");
+    }
+  }
+  async function proceed() {
+    if (!(await window.madicRequireMfa(db))) return;
+    const { user } = checked(await db.auth.getUser());
+    userId = user.id;
+    if (token) {
+      checked(await db.rpc("madic_claim_cric_onboarding",{p_token:token}));
+      localStorage.removeItem(tokenKey);
+      token = null;
+      history.replaceState(null,"",location.pathname+"?continuer=1");
+    }
+    const step = checked(await db.rpc("madic_my_cric_identity"));
+    resume.hidden = true;
+    form.hidden = step !== "required";
+    if (step === "required") say("Déposez une pièce d’identité pour poursuivre.", "Submit photo identification to continue.");
+    else if (step === "submitted") say("Pièce reçue. Votre demande est en attente d’examen.", "ID received. Your application is awaiting review.");
+    else if (step === "approved") say("Votre demande est approuvée. Ouvrez votre espace CRIC.", "Your application is approved. Open your RCIC portal.");
+    else if (step === "rejected") say("Votre demande a été refusée. Communiquez avec MADIC.", "Your application was declined. Contact MADIC.");
+    else if (step === "verified") say("Identité vérifiée. Consultez votre espace CRIC pour la décision.", "Identity verified. Check your RCIC portal for the decision.");
+    else if (step === "refused") say("La pièce n’a pas été acceptée. Communiquez avec MADIC.", "Your ID was not accepted. Contact MADIC.");
+    else say("Aucun dossier d’invitation associé. Ouvrez le lien envoyé par MADIC.", "No invitation is linked to this account. Open the link from MADIC.");
+  }
+  resume.addEventListener("click", () => run(proceed));
+  switchAccount.addEventListener("click", () => run(async () => {
+    await db.auth.signOut({scope:"local"});
+    form.hidden = true;
+    auth.reset();
+    await fillSession();
+  }));
+  auth.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const signup = event.submitter?.value === "signup";
+    run(async () => {
+      const email = byId("onboardEmail").value.trim();
+      const password = byId("onboardPassword").value;
+      if (signup && !token) {
+        say("Ouvrez le lien d’invitation avant de créer un compte.", "Open the invitation link before creating an account.");
+        return;
+      }
+      let result;
+      if (signup) {
+        if (password.length < 8) {
+          say("Utilisez un mot de passe d’au moins huit caractères.", "Use a password of at least eight characters.");
+          return;
+        }
+        const allowed = checked(await db.rpc("madic_check_cric_onboarding",{p_token:token,p_email:email}));
+        if (allowed !== true) {
+          say("Ce courriel ne correspond pas à une invitation valide.", "This email does not match a valid invitation.");
+          return;
+        }
+        const emailRedirectTo = new URL("/inscription-cric.html?continuer=1",location.origin).href;
+        result = await db.auth.signUp({email,password,options:{emailRedirectTo}});
+      } else {
+        result = await db.auth.signInWithPassword({email,password});
+      }
+      const data = checked(result);
+      auth.reset();
+      if (!data.session) {
+        say("Confirmez votre courriel, puis revenez sur cette page ou rouvrez votre invitation.",
+          "Confirm your email, then return to this page or reopen your invitation.");
+        return;
+      }
+      await fillSession();
+      await proceed();
+    });
+  });
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    run(async () => {
+      const file = byId("onboardFile").files[0];
+      if (!file || !["image/jpeg","image/png","image/webp"].includes(file.type) || file.size < 1 || file.size > 8388608) {
+        say("Choisissez une image JPG, PNG ou WebP de 8 Mo ou moins.", "Choose a JPG, PNG or WebP image up to 8 MB.");
+        return;
+      }
+      const bucket = db.storage.from("madic-cric-identity");
+      const path = userId + "/photo";
+      const existing = checked(await db.rpc("madic_my_cric_identity"));
+      if (existing !== "required") { await proceed(); return; }
+      const selectedType = byId("onboardType").value;
+      const upload = await bucket.upload(path,file,{contentType:file.type,upsert:false});
+      if (upload.error) {
+        // Une autre session peut avoir déposé le fichier. Reprendre un dépôt
+        // interrompu seulement si le candidat confirme quel fichier sera examiné.
+        if (!["409","Duplicate"].includes(String(upload.error.statusCode || upload.error.code || ""))
+            && !/already exists/i.test(upload.error.message || "")) throw upload.error;
+        const english = document.documentElement.lang.startsWith("en");
+        const confirmed = window.confirm(english
+          ? "An image was already uploaded. Submit that image for review?"
+          : "Une image est déjà déposée. Transmettre cette image pour examen ?");
+        if (!confirmed) return;
+      }
+      checked(await db.rpc("madic_submit_cric_identity",{p_type:selectedType}));
+      form.reset();
+      form.hidden = true;
+      say("Pièce reçue. Votre demande est en attente d’examen.", "ID received. Your application is awaiting review.");
+    });
+  });
+  run(fillSession);
 })();

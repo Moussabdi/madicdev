@@ -3,8 +3,10 @@
   <head>
     <meta charset="utf-8" />
     <meta content="width=device-width,initial-scale=1" name="viewport" />
+    <meta name="referrer" content="no-referrer" />
     <meta content="noindex,nofollow" name="robots" />
     <link href="img/favicon.png" rel="icon" />
+    <link href="assets/madic-footer.css" rel="stylesheet" />
     <link href="assets/inscription-cric.css" rel="stylesheet" />
     <title
       data-en="RCIC Registration | MADIC Portal"
@@ -81,6 +83,135 @@
         </form>
         <p id="cricMessage" role="status"></p>
       </section>
+      <section class="auth panel" id="cricOnboarding" hidden>
+        <h1
+          data-fr="Poursuivre l’inscription CRIC"
+          data-en="Continue RCIC registration"
+        >
+          Poursuivre l’inscription CRIC
+        </h1>
+        <p
+          data-fr="Utilisez le courriel qui a reçu l’invitation MADIC."
+          data-en="Use the email address that received the MADIC invitation."
+        >
+          Utilisez le courriel qui a reçu l’invitation MADIC.
+        </p>
+        <form id="cricOnboardingAuth">
+          <label
+            for="onboardEmail"
+            data-fr="Courriel professionnel"
+            data-en="Professional email"
+            >Courriel professionnel</label
+          >
+          <input id="onboardEmail" type="email" autocomplete="email" required />
+          <label for="onboardPassword" data-fr="Mot de passe" data-en="Password"
+            >Mot de passe</label
+          >
+          <input
+            id="onboardPassword"
+            type="password"
+            autocomplete="current-password"
+            required
+          />
+          <button
+            type="submit"
+            value="signin"
+            data-fr="Se connecter"
+            data-en="Sign in"
+          >
+            Se connecter
+          </button>
+          <button
+            type="submit"
+            value="signup"
+            class="secondary"
+            data-fr="Créer mon compte"
+            data-en="Create my account"
+          >
+            Créer mon compte
+          </button>
+        </form>
+        <button
+          id="cricOnboardingResume"
+          type="button"
+          class="secondary"
+          hidden
+          data-fr="Continuer"
+          data-en="Continue"
+        >
+          Continuer
+        </button>
+        <button
+          id="cricOnboardingSwitch"
+          type="button"
+          class="secondary"
+          hidden
+          data-fr="Changer de compte"
+          data-en="Switch account"
+        >
+          Changer de compte
+        </button>
+        <form id="cricOnboardingDocument" hidden>
+          <h2
+            data-fr="Pièce d’identité avec photo"
+            data-en="Photo identification"
+          >
+            Pièce d’identité avec photo
+          </h2>
+          <p
+            data-fr="Une seule pièce lisible, autre qu’une carte d’assurance maladie. L’administration MADIC la consulte pour vérifier votre identité."
+            data-en="Submit one legible document other than a health card. The MADIC administrator reviews it to confirm your identity."
+          >
+            Une seule pièce lisible, autre qu’une carte d’assurance maladie.
+            L’administration MADIC la consulte pour vérifier votre identité.
+          </p>
+          <label
+            for="onboardType"
+            data-fr="Type de document"
+            data-en="Document type"
+            >Type de document</label
+          >
+          <select id="onboardType" required>
+            <option value="passport" data-fr="Passeport" data-en="Passport">
+              Passeport
+            </option>
+            <option
+              value="driver_licence"
+              data-fr="Permis de conduire"
+              data-en="Driver’s licence"
+            >
+              Permis de conduire
+            </option>
+            <option
+              value="photo_id"
+              data-fr="Autre pièce officielle avec photo"
+              data-en="Other government-issued photo ID"
+            >
+              Autre pièce officielle avec photo
+            </option>
+          </select>
+          <label
+            for="onboardFile"
+            data-fr="Image de la pièce (JPG, PNG ou WebP, 8 Mo maximum)"
+            data-en="ID image (JPG, PNG or WebP, up to 8 MB)"
+            >Image de la pièce (JPG, PNG ou WebP, 8 Mo maximum)</label
+          >
+          <input
+            id="onboardFile"
+            type="file"
+            accept="image/jpeg,image/png,image/webp"
+            required
+          />
+          <button
+            type="submit"
+            data-fr="Déposer pour examen"
+            data-en="Submit for review"
+          >
+            Déposer pour examen
+          </button>
+        </form>
+        <p id="cricOnboardingStatus" role="status"></p>
+      </section>
     </main>
     <footer aria-label="Pied de page MADIC / MADIC footer" class="madic-footer">
       <div class="madic-footer-inner">
@@ -151,6 +282,7 @@
       </div>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
-    <script defer src="assets/inscription-cric.js"></script>
+    <script src="assets/config.js?v=310a5db74c1f"></script>
+    <script defer src="assets/inscription-cric.js?v=759232537ec9"></script>
   </body>
 </html>

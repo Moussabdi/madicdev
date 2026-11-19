@@ -3,22 +3,11 @@ import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 const REGISTER =
   "https://registre.college-ic.ca/Public-Register-FR/RCIC_Search.aspx";
 
-const cors = {
-  "Access-Control-Allow-Origin": "https://madic.ca",
-  "Access-Control-Allow-Headers":
-    "authorization, x-client-info, apikey, content-type",
-  "Access-Control-Allow-Methods": "POST, OPTIONS",
-};
-
-const reply = (data: unknown, status = 200) =>
-  new Response(JSON.stringify(data), {
-    status,
-    headers: {
-      ...cors,
-      "Content-Type": "application/json; charset=utf-8",
-      "Cache-Control": "no-store",
-    },
-  });
+const allowedOrigins = new Set([
+  "https://madic.ca",
+  "https://www.madic.ca",
+  "https://madicdev.netlify.app",
+]);
 
 const hash = async (s: string) =>
   Array.from(
@@ -208,6 +197,28 @@ async function lookup(fullName: string, license: string) {
 }
 
 Deno.serve(async (req) => {
+  const origin = req.headers.get("Origin");
+  const cors = new Headers({
+    "Access-Control-Allow-Headers":
+      "authorization, x-client-info, apikey, content-type",
+    "Access-Control-Allow-Methods": "POST, OPTIONS",
+    Vary: "Origin",
+  });
+  if (origin && allowedOrigins.has(origin)) {
+    cors.set("Access-Control-Allow-Origin", origin);
+  }
+
+  const reply = (data: unknown, status = 200) => {
+    const headers = new Headers(cors);
+    headers.set("Content-Type", "application/json; charset=utf-8");
+    headers.set("Cache-Control", "no-store");
+    return new Response(JSON.stringify(data), { status, headers });
+  };
+
+  if (origin && !allowedOrigins.has(origin)) {
+    return reply({ error: "Origine non autorisée" }, 403);
+  }
+
   if (req.method === "OPTIONS") {
     return new Response(null, {
       status: 204,

@@ -628,3 +628,7 @@ body[data-page="cric-signup"] .madic-cric-guide:focus-visible {
   outline: 2px solid #5ad5f2;
   outline-offset: 2px;
 }
+
+main > .auth[hidden], #cricOnboarding [hidden] { display:none!important; }
+#cricOnboarding select { width:100%; padding:.6rem; font:inherit; }
+#cricOnboarding button { margin:.6rem .3rem 0 0; }

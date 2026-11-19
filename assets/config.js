@@ -288,3 +288,18 @@ window.getMadicSupabase = function () {
     });
   }
 })();
+
+
+window.madicTrackRadarSession = async function (db, actor) {
+  try {
+    const { data } = await db.auth.getSession();
+    if (!data?.session?.access_token) return;
+    await fetch("/api/madic-radar-session?actor=" + actor, {
+      method: "POST",
+      headers: { Authorization: "Bearer " + data.session.access_token },
+      keepalive: true,
+    });
+  } catch {
+    // Les mesures du radar ne bloquent pas le portail.
+  }
+};

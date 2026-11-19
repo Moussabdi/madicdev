@@ -1179,6 +1179,7 @@ for (const [buttonId, contentId, hintId, openText] of [
       );
       return;
     }
+    void window.madicTrackRadarSession?.(db,"client");
     // Couvre aussi les arrivées après invitation ou avec une session encore
     // active. La RPC ne crée qu’une notification par session et par cabinet.
     void (async () => {

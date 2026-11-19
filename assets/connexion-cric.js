@@ -1,6 +1,7 @@
 (() => {
   "use strict";
   const dict = {
+    "cric.resume": { fr: "Reprendre ma demande CRIC", en: "Resume my RCIC application" },
     "signup.client.title": {
       fr: "Accès client sur invitation | MADIC PORTAIL",
       en: "Invitation-only client access | MADIC PORTAL",

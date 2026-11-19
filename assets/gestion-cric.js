@@ -61,43 +61,12 @@
             action.textContent = "Décision enregistrée";
             continue;
           }
-          for (const [text, approved] of [
-            ["Autoriser", true],
-            ["Refuser", false],
-          ]) {
-            const button = document.createElement("button");
-            button.type = "button";
-            button.className = "secondary";
-            button.textContent = text;
-            button.addEventListener("click", async () => {
-              if (
-                !confirm(
-                  `${text} ${item.full_name} (${item.license_number}) ? Vérifiez son permis professionnel au préalable.`,
-                )
-              )
-                return;
-              const note = prompt("Note interne (facultative) :");
-              if (note === null) return;
-              button.disabled = true;
-              const { error } = await db.rpc("madic_review_cric", {
-                p_user_id: item.user_id,
-                p_approve: approved,
-                p_note: note,
-              });
-              if (error) {
-                $("cricAdminNotice").textContent = "Erreur : " + error.message;
-                button.disabled = false;
-                return;
-              }
-              $("cricAdminNotice").textContent = "Décision enregistrée.";
-              try {
-                await load();
-              } catch (err) {
-                $("cricAdminNotice").textContent = err.message;
-              }
-            });
-            action.append(button, document.createTextNode(" "));
-          }
+          const review = document.createElement("a");
+          review.href = "validation-cric.html#cricApplications";
+          review.dataset.fr = "Vérifier l’identité et décider";
+          review.dataset.en = "Verify identity and decide";
+          review.textContent = document.documentElement.lang.startsWith("en") ? review.dataset.en : review.dataset.fr;
+          action.append(review);
         }
       }
       await load();
@@ -518,12 +487,16 @@
             ? "Compte autorisé"
             : `Compte : ${account.status}`,
       );
-      cell(
-        row,
-        !account
-          ? "Invitation / association sécurisée à effectuer"
-          : "Voir le tableau des comptes ci-dessus",
-      );
+      if (account) cell(row,"Voir le tableau des comptes ci-dessus");
+      else {
+        const target = cell(row,"");
+        const link = document.createElement("a");
+        link.href = "validation-cric.html#cricPrevalidations";
+        link.dataset.fr = "Inviter depuis Vérifications CRIC";
+        link.dataset.en = "Invite from RCIC verifications";
+        link.textContent = document.documentElement.lang.startsWith("en") ? link.dataset.en : link.dataset.fr;
+        target.append(link);
+      }
     }
   } catch (e) {
     show("Impossible de charger le suivi CRIC : " + (e?.message || String(e)));

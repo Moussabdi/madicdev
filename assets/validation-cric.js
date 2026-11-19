@@ -2,8 +2,10 @@
 (function () {
   "use strict";
   const words = {
+    "Envoi de l’invitation accepté par le service de courriel.": "Invitation accepted by the email service.",
     "Aucune demande visible.": "No requests available.",
     Traitée: "Processed",
+    Révoqué: "Revoked",
     Approuver: "Approve",
     Refuser: "Reject",
     "Aucune prévalidation confirmée.": "No confirmed prevalidations.",
@@ -112,6 +114,14 @@
         "#cricApplications td:not(:has(button)),#cricPrevalidations td:not(:has(button)),#cricApplications button,#cricPrevalidations button",
       )
       .forEach((el) => {
+        if (el.dataset[language]) {
+          el.textContent = el.dataset[language];
+          return;
+        }
+        if (el.querySelector("[data-fr][data-en]")) {
+          el.querySelectorAll("[data-fr][data-en]").forEach(part => { part.textContent = part.dataset[language]; });
+          return;
+        }
         const fr = el.dataset.frOriginal || el.textContent.trim();
         if (!el.dataset.frOriginal) el.dataset.frOriginal = fr;
         el.textContent = t(fr);
@@ -433,12 +443,16 @@
               show(error.message);
               return;
             }
+            const state = await db.rpc("madic_admin_cric_onboarding_state");
+            if (state.error) { show("Erreur : " + state.error.message); return; }
+            const identities = new Map(state.data.identity.map(d => [d.user_id,d]));
+            const revoked = new Set(state.data.revoked);
             const body = document.getElementById("cricApplications");
             body.replaceChildren();
             queueMicrotask(refreshDynamic);
             if (!data.length) {
               const tr = body.insertRow();
-              tr.insertCell().colSpan = 5;
+              tr.insertCell().colSpan = 6;
               tr.cells[0].textContent = "Aucune demande visible.";
               return;
             }
@@ -448,17 +462,66 @@
                 item.full_name,
                 item.license_number,
                 item.professional_email,
-                item.status,
+                revoked.has(item.user_id) ? "Révoqué" : item.status,
               ].forEach((x) => (tr.insertCell().textContent = x));
+              const identityCell = tr.insertCell();
               const cell = tr.insertCell();
+              const identity = identities.get(item.user_id);
+              const report = show;
+              if (identity) {
+                const types = { passport:["Passeport","Passport"],driver_licence:["Permis de conduire","Driver’s licence"],photo_id:["Pièce officielle avec photo","Government-issued photo ID"] };
+                const labels = { submitted:["À vérifier","Awaiting review"],verified:["Identité vérifiée","Identity verified"],refused:["Pièce refusée","ID refused"] };
+                const [frType,enType] = types[identity.document_type];
+                const [frStatus,enStatus] = labels[identity.status];
+                statusLabel(identityCell, frType + " · " + frStatus + " ", enType + " · " + enStatus + " ");
+                if (identity.object_path) adminAction(identityCell,"Voir la pièce","View ID",() => showIdentity(db,identity),report);
+                if (identity.object_path && identity.status !== "submitted") {
+                  adminAction(identityCell,"Supprimer la copie","Remove copy",async () => {
+                    if (!confirm(language === "en" ? "Remove the image and keep the review record?" : "Supprimer l’image et conserver la décision de contrôle ?")) return;
+                    const { error } = await db.storage.from("madic-cric-identity").remove([identity.object_path]);
+                    if (error) throw error;
+                    await refresh();
+                  },report);
+                }
+              }
+              if (revoked.has(item.user_id)) continue;
+              if (item.status === "approved") {
+                adminAction(cell,"Révoquer l’accès","Revoke access",async () => {
+                  if (!confirm(language === "en" ? "Revoke professional access and suspend the firm portal? Records will be kept." : "Révoquer l’accès professionnel et suspendre le portail du cabinet ? Les dossiers seront conservés.")) return;
+                  const reason = prompt(language === "en" ? "Reason for revocation (5–500 characters):" : "Motif de la révocation (5 à 500 caractères) :");
+                  if (reason === null) return;
+                  const { error } = await db.rpc("madic_admin_revoke_cric",{p_user_id:item.user_id,p_reason:reason});
+                  if (error) throw error;
+                  show("Décision enregistrée.");
+                  await refresh();
+                },report);
+                continue;
+              }
               if (item.status !== "pending") {
-                cell.textContent = "Traitée";
+                if (!identity) cell.textContent = "Traitée";
+                continue;
+              }
+              if (!identity) {
+                statusLabel(identityCell, "Pièce d’identité attendue", "Awaiting photo ID");
+                continue;
+              }
+              if (identity.status === "submitted") {
+                for (const [fr,en,verified] of [["Valider la pièce","Verify ID",true],["Refuser la pièce","Reject ID",false]]) {
+                  adminAction(identityCell,fr,en,async () => {
+                    const note = prompt(language === "en" ? "After inspecting the photo ID, enter a review note (5–500 characters). Leave out document numbers." : "Après consultation de la pièce avec photo, saisissez une note (5 à 500 caractères) sans numéro de document.");
+                    if (note === null) return;
+                    const { error } = await db.rpc("madic_review_cric_identity",{p_user_id:item.user_id,p_verified:verified,p_note:note});
+                    if (error) throw error;
+                    await refresh();
+                  },report);
+                }
                 continue;
               }
               for (const [label, approve] of [
                 ["Approuver", true],
                 ["Refuser", false],
               ]) {
+                if (approve && identity.status !== "verified") continue;
                 const button = document.createElement("button");
                 button.type = "button";
                 button.textContent = label;
@@ -532,6 +595,47 @@
       }
     })();
   }
+  function adminAction(cell, fr, en, task, report) {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "secondary";
+    button.dataset.fr = fr;
+    button.dataset.en = en;
+    button.textContent = language === "en" ? en : fr;
+    button.addEventListener("click", async () => {
+      button.disabled = true;
+      try { await task(); }
+      catch (error) { report("Erreur : " + (error.message || String(error))); }
+      finally { button.disabled = false; }
+    });
+    cell.append(button, document.createTextNode(" "));
+  }
+  function statusLabel(cell, fr, en) {
+    const span = document.createElement("span");
+    span.dataset.fr = fr;
+    span.dataset.en = en;
+    span.textContent = language === "en" ? en : fr;
+    cell.append(span);
+  }
+  async function showIdentity(db, identity) {
+    const { data, error } = await db.storage.from("madic-cric-identity").download(identity.object_path);
+    if (error) throw error;
+    if (!["image/jpeg","image/png","image/webp"].includes(data.type)) {
+      throw new Error(language === "en" ? "Unsupported attachment type." : "Type de pièce non pris en charge.");
+    }
+    const dialog = document.getElementById("cricIdentityPreview");
+    const image = dialog.querySelector("img");
+    const url = URL.createObjectURL(data);
+    const close = () => {
+      image.removeAttribute("src");
+      URL.revokeObjectURL(url);
+    };
+    if (dialog.open) { close(); return; }
+    image.src = url;
+    dialog.addEventListener("close",close,{once:true});
+    dialog.showModal();
+  }
+
   function startPrevalidations() {
     (() => {
       "use strict";
@@ -573,6 +677,9 @@
           setMessage("Erreur de lecture : " + error.message);
           return;
         }
+        const state = await db.rpc("madic_admin_cric_onboarding_state");
+        if (state.error) { setMessage("Erreur : " + state.error.message); return; }
+        const invitations = new Map(state.data.invites.map(i => [i.prevalidation_id,i]));
         tbody.replaceChildren();
         queueMicrotask(refreshDynamic);
         if (!data?.length) {
@@ -597,60 +704,37 @@
               : item.status,
           );
           const actions = tr.insertCell();
-          if (item.status !== "pending") {
-            actions.textContent = "Traitée";
+          const invitation = invitations.get(item.id);
+          if (invitation?.claimed_at) {
+            statusLabel(actions,"Compte associé","Account linked");
             continue;
           }
-          for (const [label, approve] of [
-            ["Approuver", true],
-            ["Refuser", false],
-          ]) {
-            if (approve && expired) continue;
-            const button = document.createElement("button");
-            button.type = "button";
-            button.className = "secondary";
-            button.textContent = label;
-            button.style.marginRight = "0.5rem";
-            button.addEventListener("click", async () => {
-              const confirmation =
-                language === "en"
-                  ? approve
-                    ? `Do you confirm that you independently verified the identity of licence holder ${item.license_number}, in addition to the CICC register? This action does not grant professional access. Continue?`
-                    : `Reject the prevalidation of ${item.full_name} (${item.license_number})?`
-                  : approve
-                    ? `Vous confirmez avoir vérifié l'identité du titulaire du permis ${item.license_number}, indépendamment du registre CCIC. Cette action n'ouvre aucun accès professionnel. Continuer ?`
-                    : `Refuser la prévalidation de ${item.full_name} (${item.license_number}) ?`;
-              if (!window.confirm(confirmation)) return;
-              const note = window.prompt(
-                language === "en"
-                  ? "Reason and verification evidence (required, at least 5 characters):"
-                  : "Motif et preuve de vérification (obligatoire, minimum 5 caractères) :",
-              );
+          if (!item.registry_verified || expired || item.status === "rejected") {
+            statusLabel(actions, expired ? "Prévalidation expirée" : "Traitée", expired ? "Prevalidation expired" : "Processed");
+            continue;
+          }
+          if (invitation?.delivered_at) statusLabel(actions,"Envoi accepté par le service de courriel. ","Accepted by the email service. ");
+          adminAction(actions,invitation ? "Renvoyer l’invitation" : "Inviter le CRIC",invitation ? "Resend invitation" : "Invite RCIC",async () => {
+            const email = prompt(language === "en" ? "Verified professional email address:" : "Adresse de courriel professionnelle vérifiée :", invitation?.email || "");
+            if (email === null) return;
+            if (!confirm(language === "en" ? "Send a personal invitation to " + email.trim() + "?" : "Envoyer une invitation personnelle à " + email.trim() + " ?")) return;
+            const { data, error } = await db.functions.invoke("madic-invite-cric",{body:{prevalidation_id:item.id,email:email.trim()}});
+            if (error || !data?.accepted) {
+              const code = error?.context?.status;
+              throw new Error(language === "en" ? "Invitation could not be sent" + (code ? " (" + code + ")." : ".") : "Envoi de l’invitation impossible" + (code ? " (" + code + ")." : "."));
+            }
+            setMessage("Envoi de l’invitation accepté par le service de courriel.");
+            await refresh();
+          },setMessage);
+          if (item.status === "pending" && !invitation) {
+            adminAction(actions,"Refuser la prévalidation","Reject prevalidation",async () => {
+              const note = prompt(language === "en" ? "Reason (minimum 5 characters):" : "Motif (minimum 5 caractères) :");
               if (note === null) return;
-              if (note.trim().length < 5) {
-                setMessage("Veuillez documenter votre décision.");
-                return;
-              }
-              button.disabled = true;
-              const { error } = await db.rpc(
-                "madic_admin_review_cric_prevalidation",
-                {
-                  p_id: item.id,
-                  p_approve: approve,
-                  p_note: note.trim(),
-                },
-              );
-              if (error) {
-                setMessage("Décision non enregistrée : " + error.message);
-                button.disabled = false;
-                return;
-              }
-              setMessage(
-                "Décision enregistrée. Aucun compte professionnel n’a été créé.",
-              );
+              const { error } = await db.rpc("madic_admin_review_cric_prevalidation",{p_id:item.id,p_approve:false,p_note:note});
+              if (error) throw error;
+              setMessage("Décision enregistrée.");
               await refresh();
-            });
-            actions.append(button);
+            },setMessage);
           }
         }
       }
