@@ -25,6 +25,27 @@ const esc = (s: string) =>
         c
       ] || c,
   );
+function invitationEmail(input: {
+  title: string;
+  cabinet: string;
+  logoUrl?: string;
+  content: string;
+  footer: string;
+}): string {
+  const branding = input.logoUrl
+    ? `<img src="${esc(input.logoUrl)}" alt="Logo de ${esc(input.cabinet)}" width="160" style="max-width:160px;max-height:90px;width:auto;height:auto">`
+    : '<strong style="color:#174b78;font-size:17px;letter-spacing:.4px">MADIC PORTAIL</strong>';
+  return `<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head><body style="margin:0;padding:24px;background:#f4f7fb;font-family:Arial,sans-serif;color:#243247">
+    <div style="max-width:620px;margin:auto;background:#fff;border:1px solid #e4e9f1;border-radius:12px;padding:32px;line-height:1.65">
+      <div style="text-align:center;margin-bottom:20px">${branding}</div>
+      <h2 style="text-align:center;color:#174b78;margin:12px 0 24px">${esc(input.title)}</h2>
+      ${input.content}
+      <p style="color:#68788d;font-size:12px;margin-top:24px">${esc(input.footer)}</p>
+    </div></body></html>`;
+}
+function invitationAction(url: string, label: string): string {
+  return `<p style="text-align:center;margin:28px 0"><a href="${esc(url)}" style="display:inline-block;background:#174b78;color:#fff;padding:13px 24px;text-decoration:none;border-radius:6px;font-weight:bold">${esc(label)}</a></p>`;
+}
 const isUuid = (value: unknown): value is string => typeof value === "string" &&
   /^[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}$/i.test(value);
 Deno.serve(async (req: Request): Promise<Response> => {
@@ -135,19 +156,51 @@ Deno.serve(async (req: Request): Promise<Response> => {
       const portalOrigin = publicPortalOrigins.get(origin) ?? "https://madic.ca";
       const url = new URL("/invitation-client-cric.html", portalOrigin);
       url.searchParams.set("invite", guestToken);
+      const title = "Accès invité / Guest access";
+      let cabinet = space.name;
+      let logoUrl: string | undefined;
+      try {
+        const { data: branding } = await userDb
+          .from("madic_cric_professional_profiles")
+          .select("business_name,logo_path")
+          .eq("space_id", spaceId)
+          .maybeSingle();
+        cabinet = branding?.business_name?.trim() || cabinet;
+        if (branding?.logo_path?.startsWith(spaceId + "/")) {
+          const { data: logo } = await userDb.storage
+            .from("madic-cric-branding")
+            .createSignedUrl(branding.logo_path, 7 * 24 * 60 * 60);
+          logoUrl = logo?.signedUrl;
+        }
+      } catch {
+        // Le gabarit affiche le nom MADIC si le logo du cabinet est inaccessible.
+      }
+      const invitationFr = `${cabinet} vous invite à consulter un dossier MADIC en lecture seule.`;
+      const instructionsFr = "Utilisez votre propre compte associé à l’adresse qui reçoit ce courriel. Cette invitation est valable pendant 7 jours.";
+      const privacyFr = "Ce lien est personnel et confidentiel. Si vous n’attendiez pas cette invitation, vous pouvez ignorer ce message.";
+      const invitationEn = `${cabinet} has invited you to view a MADIC client file in read-only mode.`;
+      const instructionsEn = "Use your own account associated with the email address that received this message. This invitation is valid for 7 days.";
+      const privacyEn = "This link is personal and confidential. If you were not expecting this invitation, you can ignore this message.";
+      const action = "Accepter l’invitation / Accept invitation";
+      const footer = "Invitation envoyée via MADIC PORTAIL / Invitation sent via MADIC PORTAL";
       const text = [
-        `${space.name} vous invite à consulter un dossier MADIC en lecture seule.`,
-        "Utilisez votre propre compte et l’adresse qui reçoit ce message. Le lien est valide 7 jours.",
-        `${space.name} has invited you to view a MADIC client file in read-only mode.`,
-        "Use your own account and the email address that received this message. The link is valid for 7 days.",
-        url.href,
+        "Bonjour,", invitationFr, instructionsFr, privacyFr,
+        "Hello,", invitationEn, instructionsEn, privacyEn,
+        action, url.href, cabinet, footer,
       ].join("\n\n");
+      const html = invitationEmail({
+        title, cabinet, logoUrl, footer,
+        content: `<div lang="fr"><p>Bonjour,</p><p>${esc(invitationFr)}</p><p>${esc(instructionsFr)}</p><p>${esc(privacyFr)}</p></div>
+          <div lang="en" style="border-top:1px solid #e4e9f1;margin-top:22px;padding-top:8px"><p>Hello,</p><p>${esc(invitationEn)}</p><p>${esc(instructionsEn)}</p><p>${esc(privacyEn)}</p></div>
+          ${invitationAction(url.href, action)}
+          <div style="border-top:1px solid #e4e9f1;margin-top:26px;padding-top:20px"><p style="margin:0"><strong>${esc(cabinet)}</strong></p></div>`,
+      });
       let sent = false;
       try {
         const response = await fetch("https://api.resend.com/emails", {
           method: "POST",
           headers: { Authorization: `Bearer ${resendKey}`, "Content-Type": "application/json" },
-          body: JSON.stringify({ from: sender, to: [email], subject: "MADIC | Accès invité / Guest access", text }),
+          body: JSON.stringify({ from: sender, to: [email], subject: `MADIC | ${title}`, text, html }),
         });
         sent = response.ok;
       } catch {
@@ -256,8 +309,7 @@ Deno.serve(async (req: Request): Promise<Response> => {
       safeConsultant = esc(consultant);
     const safeTitle = esc(professionalTitle),
       safeLicense = esc(licenseNumber);
-    const safePhone = esc(phone),
-      safeUrl = esc(invitationUrl.toString());
+    const safePhone = esc(phone);
     const websiteHtml = website
       ? `<p style="margin:4px 0">Site Web : <a href="${esc(website)}">${esc(website)}</a></p>`
       : "";
@@ -271,7 +323,6 @@ Deno.serve(async (req: Request): Promise<Response> => {
         { error: "Impossible de préparer le logo du cabinet." },
         502,
       );
-    const safeLogoUrl = esc(logoLink.signedUrl);
 
     const subject = `MADIC | Invitation à votre espace client - ${cabinet}`;
     const text = [
@@ -297,14 +348,16 @@ Deno.serve(async (req: Request): Promise<Response> => {
       ...(website ? [`Site Web : ${website}`] : []),
       "Invitation envoyée via MADIC PORTAIL",
     ].join("\n");
-    const html = `<!doctype html><html><body style="margin:0;padding:24px;background:#f4f7fb;font-family:Arial,sans-serif;color:#243247">
-      <div style="max-width:620px;margin:auto;background:#fff;border:1px solid #e4e9f1;border-radius:12px;padding:32px;line-height:1.65">
-        <div style="text-align:center;margin-bottom:20px"><img src="${safeLogoUrl}" alt="Logo de ${safeCabinet}" width="160" style="max-width:160px;max-height:90px;width:auto;height:auto"></div>
-        <h2 style="text-align:center;color:#174b78;margin:12px 0 24px">Invitation à votre espace client</h2>
+    const html = invitationEmail({
+      title: "Invitation à votre espace client",
+      cabinet,
+      logoUrl: logoLink.signedUrl,
+      footer: "Invitation envoyée via MADIC PORTAIL",
+      content: `
         <p>Bonjour,</p>
         <p>Vous êtes invité(e) à accéder à votre espace client sécurisé auprès de <strong>${safeCabinet}</strong>.</p>
         <p><strong>Votre consultant en immigration :</strong> ${safeConsultant}</p>
-        <p style="text-align:center;margin:28px 0"><a href="${safeUrl}" style="display:inline-block;background:#174b78;color:#fff;padding:13px 24px;text-decoration:none;border-radius:6px;font-weight:bold">Accepter mon invitation</a></p>
+        ${invitationAction(invitationUrl.toString(), "Accepter mon invitation")}
         <p>Cette invitation est valable pendant <strong>7 jours</strong>.</p>
         <p>Ce lien est personnel et confidentiel. Ne le transmettez à personne.</p>
         <p>Si vous n'attendiez pas cette invitation, vous pouvez ignorer ce message.</p>
@@ -312,8 +365,8 @@ Deno.serve(async (req: Request): Promise<Response> => {
           <p style="margin:0">Cordialement,</p><p style="margin:8px 0 0"><strong>${safeConsultant}</strong></p>
           <p style="margin:2px 0">${safeTitle}</p><p style="margin:2px 0">Numéro de permis CRIC : ${safeLicense}</p>
           <p style="margin:8px 0 2px"><strong>${safeCabinet}</strong></p><p style="margin:2px 0">Téléphone : ${safePhone}</p>${websiteHtml}
-        </div><p style="color:#68788d;font-size:12px;margin-top:24px">Invitation envoyée via MADIC PORTAIL</p>
-      </div></body></html>`;
+        </div>`,
+    });
     let resendResponse: Response;
     try {
       resendResponse = await fetch("https://api.resend.com/emails", {
