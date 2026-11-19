@@ -47,6 +47,7 @@
     notice,
     content,
     checking = false;
+  let portalHeader;
   const urls = new Set();
   function showError() {
     label(
@@ -62,7 +63,7 @@
     access = null;
     if (content) {
       for (const child of [...content.children]) {
-        if (child !== banner) child.remove();
+        if (child !== banner && child !== portalHeader) child.remove();
       }
     }
     label(notice, fr, en);
@@ -139,7 +140,7 @@
     banner.querySelector("[data-guest-name]").textContent = access.client_name;
     if (grants.length > 1) {
       const select = element("select");
-      const caption = element("label");
+      const caption = element("label", null, "madic-guest-banner__picker");
       select.append(
         ...grants.map(
           (item) =>
@@ -704,12 +705,18 @@
       resolveStart(false);
       return;
     }
-    banner = element("section", null, "panel");
-    const title = element("strong"),
-      client = element("p");
-    label(title, "Lecture seule", "Read only");
+    portalHeader = content.querySelector(":scope > header");
+    banner = element("section", null, "madic-guest-banner");
+    banner.setAttribute("aria-labelledby", "madicGuestBannerLabel");
+    const identity = element("div");
+    const title = element("strong", null, "madic-guest-banner__label");
+    title.id = "madicGuestBannerLabel";
+    const client = element("p", null, "madic-guest-banner__name");
     client.dataset.guestName = "";
-    notice = element("p");
+    label(title, "Lecture seule", "Read only");
+    identity.append(title, client);
+
+    notice = element("p", null, "madic-guest-banner__notice");
     notice.setAttribute("role", "status");
     const exit = element("a");
     exit.href = accessUrl.href;
@@ -719,15 +726,12 @@
       if (error) throw error;
       location.replace(accessUrl.href);
     });
-    banner.append(
-      title,
-      client,
-      notice,
-      exit,
-      document.createTextNode(" "),
-      signout,
-    );
-    content.prepend(banner);
+
+    const actions = element("div", null, "madic-guest-banner__actions");
+    actions.append(exit, signout);
+    banner.append(identity, actions, notice);
+    if (portalHeader) portalHeader.after(banner);
+    else content.prepend(banner);
     // Les boutons natifs de déconnexion suivent également le parcours invité.
     for (const control of document.querySelectorAll(
       '#logout,#madicHeaderSignout,[data-madic-signout="true"]',

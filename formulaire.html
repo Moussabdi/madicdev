@@ -13,7 +13,7 @@
     <link href="img/favicon.png" rel="icon" />
     <link href="img/apple-touch-icon.png" rel="apple-touch-icon" />
     <link href="favicon.png" rel="icon" />
-    <link href="assets/formulaire.css?v=324670c91207" rel="stylesheet" />
+    <link href="assets/formulaire.css" rel="stylesheet" />
     <link href="assets/madic-footer.css" rel="stylesheet" />
   </head>
   <body
@@ -71,7 +71,10 @@
             class="madic-side-logo"
             src="img/logo-madic.svg"
           />
-          <div><strong>MADIC PORTAIL</strong><small data-i18n="form.clientSpace">Espace client</small></div>
+          <div>
+            <strong>MADIC PORTAIL</strong
+            ><small data-i18n="form.clientSpace">Espace client</small>
+          </div>
         </div>
         <div class="madic-side-caption">MON ESPACE</div>
         <div class="madic-nav-controls">
@@ -511,7 +514,11 @@
                     <div class="errorMessage"></div>
                   </div>
                   <div class="marg-bot">
-                    <label data-i18n="form.calculatedAge" for="madic_age_calcule">Âge :</label>
+                    <label
+                      data-i18n="form.calculatedAge"
+                      for="madic_age_calcule"
+                      >Âge :</label
+                    >
                     <input
                       aria-live="polite"
                       class="champs-large"
@@ -1628,16 +1635,16 @@
                     <div class="errorMessage"></div>
                   </div>
                   <div class="marg-bot">
-                    <label for="rue"
-                       data-i18n="form.streetName">Nom de la rue :
-                      <span class="req">*</span></label
+                    <label for="rue" data-i18n="form.streetName"
+                      >Nom de la rue : <span class="req">*</span></label
                     >
                     <input
                       autocomplete="address-line1"
                       class="champs-large"
                       id="rue"
                       name="rue"
-                      data-i18n-placeholder="form.streetNamePlaceholder" placeholder="Nom de la rue"
+                      data-i18n-placeholder="form.streetNamePlaceholder"
+                      placeholder="Nom de la rue"
                       required=""
                       type="text"
                     />
@@ -2641,7 +2648,11 @@
                     </select>
                   </div>
                   <div class="marg-bot" id="madic-profile-ircc-context" hidden>
-                    <p><strong data-i18n="form.profileIrcc">Projet indiqué dans votre profil</strong></p>
+                    <p>
+                      <strong data-i18n="form.profileIrcc"
+                        >Projet indiqué dans votre profil</strong
+                      >
+                    </p>
                     <p id="madic-profile-ircc-category"></p>
                     <p id="madic-profile-ircc-type"></p>
                   </div>
@@ -2853,230 +2864,724 @@
                     </select>
                   </div>
                   <div id="madic-intake-quebec" hidden>
-                    <h3 data-i18n="qc.heading">Questions complémentaires – Québec</h3>
-                    <p data-i18n="qc.hint">Indiquez l’expérience en mois équivalents temps plein. Pour le français, utilisez l’échelle québécoise (0 à 12) d’après un test ou un document reconnu. Laissez les réponses inconnues vides.</p>
+                    <h3 data-i18n="qc.heading">
+                      Questions complémentaires – Québec
+                    </h3>
+                    <p data-i18n="qc.hint">
+                      Indiquez l’expérience en mois équivalents temps plein.
+                      Pour le français, utilisez l’échelle québécoise (0 à 12)
+                      d’après un test ou un document reconnu. Laissez les
+                      réponses inconnues vides.
+                    </p>
                     <div class="marg-bot">
-                      <label data-i18n="qc.residence" for="qc_residence">Où vivez-vous actuellement ?</label>
-                      <select class="champs-large" id="qc_residence" name="qc_residence">
-                        <option data-i18n="qc.blank" value="">Sélectionner…</option>
-                        <option data-i18n="qc.residence.qc" value="qc">Au Québec</option>
-                        <option data-i18n="qc.residence.canada" value="canada">Ailleurs au Canada</option>
-                        <option data-i18n="qc.residence.abroad" value="abroad">À l’extérieur du Canada</option>
+                      <label data-i18n="qc.residence" for="qc_residence"
+                        >Où vivez-vous actuellement ?</label
+                      >
+                      <select
+                        class="champs-large"
+                        id="qc_residence"
+                        name="qc_residence"
+                      >
+                        <option data-i18n="qc.blank" value="">
+                          Sélectionner…
+                        </option>
+                        <option data-i18n="qc.residence.qc" value="qc">
+                          Au Québec
+                        </option>
+                        <option data-i18n="qc.residence.canada" value="canada">
+                          Ailleurs au Canada
+                        </option>
+                        <option data-i18n="qc.residence.abroad" value="abroad">
+                          À l’extérieur du Canada
+                        </option>
                       </select>
                     </div>
                     <div class="marg-bot" data-qc-show="residence:qc" hidden>
-                      <label data-i18n="qc.status" for="qc_status">Si vous vivez au Québec, quel est votre statut actuel ?</label>
-                      <select class="champs-large" id="qc_status" name="qc_status">
-                        <option data-i18n="qc.blank" value="">Sélectionner…</option>
-                        <option data-i18n="qc.status.valid" value="valid">Statut légal valide</option>
-                        <option data-i18n="qc.status.none" value="none">Aucun statut légal</option>
+                      <label data-i18n="qc.status" for="qc_status"
+                        >Si vous vivez au Québec, quel est votre statut actuel
+                        ?</label
+                      >
+                      <select
+                        class="champs-large"
+                        id="qc_status"
+                        name="qc_status"
+                      >
+                        <option data-i18n="qc.blank" value="">
+                          Sélectionner…
+                        </option>
+                        <option data-i18n="qc.status.valid" value="valid">
+                          Statut légal valide
+                        </option>
+                        <option data-i18n="qc.status.none" value="none">
+                          Aucun statut légal
+                        </option>
                       </select>
                     </div>
                     <div class="marg-bot">
-                      <label data-i18n="qc.intent" for="qc_intent">Avez-vous l’intention de vivre et de travailler au Québec de façon permanente ?</label>
-                      <select class="champs-large" id="qc_intent" name="qc_intent">
-                        <option data-i18n="qc.blank" value="">Sélectionner…</option>
-                        <option data-i18n="qc.intent.yes" value="yes">Oui</option>
+                      <label data-i18n="qc.intent" for="qc_intent"
+                        >Avez-vous l’intention de vivre et de travailler au
+                        Québec de façon permanente ?</label
+                      >
+                      <select
+                        class="champs-large"
+                        id="qc_intent"
+                        name="qc_intent"
+                      >
+                        <option data-i18n="qc.blank" value="">
+                          Sélectionner…
+                        </option>
+                        <option data-i18n="qc.intent.yes" value="yes">
+                          Oui
+                        </option>
                         <option data-i18n="qc.intent.no" value="no">Non</option>
                       </select>
                     </div>
                     <div class="marg-bot">
-                      <label data-i18n="qc.noc" for="qc_noc">Code CNP de la profession principale, si connu (5 chiffres)</label>
-                      <input class="champs-large" id="qc_noc" name="qc_noc" type="text" inputmode="numeric" maxlength="5" pattern="[0-9]{5}" />
+                      <label data-i18n="qc.noc" for="qc_noc"
+                        >Code CNP de la profession principale, si connu (5
+                        chiffres)</label
+                      >
+                      <input
+                        class="champs-large"
+                        id="qc_noc"
+                        name="qc_noc"
+                        type="text"
+                        inputmode="numeric"
+                        maxlength="5"
+                        pattern="[0-9]{5}"
+                      />
                     </div>
                     <div class="marg-bot">
-                      <label data-i18n="qc.regulated" for="qc_regulated">La profession que vous comptez exercer est-elle réglementée au Québec ?</label>
-                      <select class="champs-large" id="qc_regulated" name="qc_regulated">
-                        <option data-i18n="qc.blank" value="">Sélectionner…</option>
-                        <option data-i18n="qc.regulated.yes" value="yes">Oui</option>
-                        <option data-i18n="qc.regulated.no" value="no">Non</option>
-                        <option data-i18n="qc.regulated.unknown" value="unknown">Je ne sais pas</option>
+                      <label data-i18n="qc.regulated" for="qc_regulated"
+                        >La profession que vous comptez exercer est-elle
+                        réglementée au Québec ?</label
+                      >
+                      <select
+                        class="champs-large"
+                        id="qc_regulated"
+                        name="qc_regulated"
+                      >
+                        <option data-i18n="qc.blank" value="">
+                          Sélectionner…
+                        </option>
+                        <option data-i18n="qc.regulated.yes" value="yes">
+                          Oui
+                        </option>
+                        <option data-i18n="qc.regulated.no" value="no">
+                          Non
+                        </option>
+                        <option
+                          data-i18n="qc.regulated.unknown"
+                          value="unknown"
+                        >
+                          Je ne sais pas
+                        </option>
                       </select>
                     </div>
                     <div class="marg-bot" data-qc-show="regulated:yes" hidden>
-                      <label data-i18n="qc.recognition" for="qc_recognition">Reconnaissance de la profession au Québec</label>
-                      <select class="champs-large" id="qc_recognition" name="qc_recognition">
-                        <option data-i18n="qc.blank" value="">Sélectionner…</option>
-                        <option data-i18n="qc.recognition.authorized" value="authorized">Autorisation d’exercice</option>
-                        <option data-i18n="qc.recognition.equivalence" value="equivalence">Reconnaissance partielle ou complète délivrée dans les cinq dernières années</option>
-                        <option data-i18n="qc.recognition.pending" value="pending">Démarche en cours ou aucun document</option>
+                      <label data-i18n="qc.recognition" for="qc_recognition"
+                        >Reconnaissance de la profession au Québec</label
+                      >
+                      <select
+                        class="champs-large"
+                        id="qc_recognition"
+                        name="qc_recognition"
+                      >
+                        <option data-i18n="qc.blank" value="">
+                          Sélectionner…
+                        </option>
+                        <option
+                          data-i18n="qc.recognition.authorized"
+                          value="authorized"
+                        >
+                          Autorisation d’exercice
+                        </option>
+                        <option
+                          data-i18n="qc.recognition.equivalence"
+                          value="equivalence"
+                        >
+                          Reconnaissance partielle ou complète délivrée dans les
+                          cinq dernières années
+                        </option>
+                        <option
+                          data-i18n="qc.recognition.pending"
+                          value="pending"
+                        >
+                          Démarche en cours ou aucun document
+                        </option>
                       </select>
                     </div>
                     <div class="marg-bot">
-                      <label data-i18n="qc.exception" for="qc_exception">Avez-vous une preuve d’accomplissement exceptionnel reconnue ou un avis d’un partenaire du MIFI ?</label>
-                      <select class="champs-large" id="qc_exception" name="qc_exception">
-                        <option data-i18n="qc.blank" value="">Sélectionner…</option>
-                        <option data-i18n="qc.exception.yes" value="yes">Oui</option>
-                        <option data-i18n="qc.exception.no" value="no">Non</option>
-                        <option data-i18n="qc.exception.unknown" value="unknown">Je ne sais pas</option>
+                      <label data-i18n="qc.exception" for="qc_exception"
+                        >Avez-vous une preuve d’accomplissement exceptionnel
+                        reconnue ou un avis d’un partenaire du MIFI ?</label
+                      >
+                      <select
+                        class="champs-large"
+                        id="qc_exception"
+                        name="qc_exception"
+                      >
+                        <option data-i18n="qc.blank" value="">
+                          Sélectionner…
+                        </option>
+                        <option data-i18n="qc.exception.yes" value="yes">
+                          Oui
+                        </option>
+                        <option data-i18n="qc.exception.no" value="no">
+                          Non
+                        </option>
+                        <option
+                          data-i18n="qc.exception.unknown"
+                          value="unknown"
+                        >
+                          Je ne sais pas
+                        </option>
                       </select>
                     </div>
                     <div class="marg-bot">
-                      <label data-i18n="qc.work" for="qc_work">Mois de travail rémunéré dans la profession principale au cours des 5 dernières années</label>
-                      <input class="champs-large" id="qc_work" name="qc_work" type="number" min="0" max="60" step="1" />
+                      <label data-i18n="qc.work" for="qc_work"
+                        >Mois de travail rémunéré dans la profession principale
+                        au cours des 5 dernières années</label
+                      >
+                      <input
+                        class="champs-large"
+                        id="qc_work"
+                        name="qc_work"
+                        type="number"
+                        min="0"
+                        max="60"
+                        step="1"
+                      />
                     </div>
                     <div class="marg-bot">
-                      <label data-i18n="qc.qcwork" for="qc_qcwork">Dont mois dans cette profession au Québec</label>
-                      <input class="champs-large" id="qc_qcwork" name="qc_qcwork" type="number" min="0" max="60" step="1" />
+                      <label data-i18n="qc.qcwork" for="qc_qcwork"
+                        >Dont mois dans cette profession au Québec</label
+                      >
+                      <input
+                        class="champs-large"
+                        id="qc_qcwork"
+                        name="qc_qcwork"
+                        type="number"
+                        min="0"
+                        max="60"
+                        step="1"
+                      />
                     </div>
                     <div class="marg-bot">
-                      <label data-i18n="qc.workTotal" for="qc_workTotal">Mois de travail au total au cours des 5 dernières années, toutes professions confondues</label>
-                      <input class="champs-large" id="qc_workTotal" name="qc_workTotal" type="number" min="0" max="60" step="1" />
+                      <label data-i18n="qc.workTotal" for="qc_workTotal"
+                        >Mois de travail au total au cours des 5 dernières
+                        années, toutes professions confondues</label
+                      >
+                      <input
+                        class="champs-large"
+                        id="qc_workTotal"
+                        name="qc_workTotal"
+                        type="number"
+                        min="0"
+                        max="60"
+                        step="1"
+                      />
                     </div>
                     <div class="marg-bot">
-                      <label data-i18n="qc.workQcTotal" for="qc_workQcTotal">Dont mois de travail au Québec, toutes professions confondues</label>
-                      <input class="champs-large" id="qc_workQcTotal" name="qc_workQcTotal" type="number" min="0" max="60" step="1" />
+                      <label data-i18n="qc.workQcTotal" for="qc_workQcTotal"
+                        >Dont mois de travail au Québec, toutes professions
+                        confondues</label
+                      >
+                      <input
+                        class="champs-large"
+                        id="qc_workQcTotal"
+                        name="qc_workQcTotal"
+                        type="number"
+                        min="0"
+                        max="60"
+                        step="1"
+                      />
                     </div>
                     <div class="marg-bot">
-                      <label data-i18n="qc.validatedOffer" for="qc_validatedOffer">Offre d’emploi dans cette profession validée par le MIFI</label>
-                      <select class="champs-large" id="qc_validatedOffer" name="qc_validatedOffer">
-                        <option data-i18n="qc.blank" value="">Sélectionner…</option>
-                        <option data-i18n="qc.validatedOffer.none" value="none">Aucune offre validée</option>
-                        <option data-i18n="qc.validatedOffer.cmm" value="cmm">Dans la Communauté métropolitaine de Montréal</option>
-                        <option data-i18n="qc.validatedOffer.outside" value="outside">Au Québec, hors de la Communauté métropolitaine de Montréal</option>
-                        <option data-i18n="qc.validatedOffer.unknown" value="unknown">Validation ou lieu à confirmer</option>
+                      <label
+                        data-i18n="qc.validatedOffer"
+                        for="qc_validatedOffer"
+                        >Offre d’emploi dans cette profession validée par le
+                        MIFI</label
+                      >
+                      <select
+                        class="champs-large"
+                        id="qc_validatedOffer"
+                        name="qc_validatedOffer"
+                      >
+                        <option data-i18n="qc.blank" value="">
+                          Sélectionner…
+                        </option>
+                        <option data-i18n="qc.validatedOffer.none" value="none">
+                          Aucune offre validée
+                        </option>
+                        <option data-i18n="qc.validatedOffer.cmm" value="cmm">
+                          Dans la Communauté métropolitaine de Montréal
+                        </option>
+                        <option
+                          data-i18n="qc.validatedOffer.outside"
+                          value="outside"
+                        >
+                          Au Québec, hors de la Communauté métropolitaine de
+                          Montréal
+                        </option>
+                        <option
+                          data-i18n="qc.validatedOffer.unknown"
+                          value="unknown"
+                        >
+                          Validation ou lieu à confirmer
+                        </option>
                       </select>
                     </div>
                     <div class="marg-bot">
-                      <label data-i18n="qc.degree" for="qc_degree">Type du plus haut diplôme, si précisé pour le Québec</label>
-                      <select class="champs-large" id="qc_degree" name="qc_degree">
-                        <option data-i18n="qc.blank" value="">Sélectionner…</option>
-                        <option data-i18n="qc.degree.secondary" value="secondary">Secondaire général</option>
-                        <option data-i18n="qc.degree.vocational" value="vocational">Formation professionnelle de niveau secondaire comparable à un DEP ou à une ASP</option>
-                        <option data-i18n="qc.degree.college" value="college">Formation collégiale comparable à une AEC ou à un DEC</option>
-                        <option data-i18n="qc.degree.bachelor" value="bachelor">Baccalauréat universitaire ou équivalent</option>
-                        <option data-i18n="qc.degree.master" value="master">Maîtrise ou équivalent</option>
-                        <option data-i18n="qc.degree.doctorate" value="doctorate">Doctorat</option>
-                        <option data-i18n="qc.degree.none" value="none">Aucun diplôme</option>
-                        <option data-i18n="qc.degree.other" value="other">Autre diplôme ou type à confirmer</option>
+                      <label data-i18n="qc.degree" for="qc_degree"
+                        >Type du plus haut diplôme, si précisé pour le
+                        Québec</label
+                      >
+                      <select
+                        class="champs-large"
+                        id="qc_degree"
+                        name="qc_degree"
+                      >
+                        <option data-i18n="qc.blank" value="">
+                          Sélectionner…
+                        </option>
+                        <option
+                          data-i18n="qc.degree.secondary"
+                          value="secondary"
+                        >
+                          Secondaire général
+                        </option>
+                        <option
+                          data-i18n="qc.degree.vocational"
+                          value="vocational"
+                        >
+                          Formation professionnelle de niveau secondaire
+                          comparable à un DEP ou à une ASP
+                        </option>
+                        <option data-i18n="qc.degree.college" value="college">
+                          Formation collégiale comparable à une AEC ou à un DEC
+                        </option>
+                        <option data-i18n="qc.degree.bachelor" value="bachelor">
+                          Baccalauréat universitaire ou équivalent
+                        </option>
+                        <option data-i18n="qc.degree.master" value="master">
+                          Maîtrise ou équivalent
+                        </option>
+                        <option
+                          data-i18n="qc.degree.doctorate"
+                          value="doctorate"
+                        >
+                          Doctorat
+                        </option>
+                        <option data-i18n="qc.degree.none" value="none">
+                          Aucun diplôme
+                        </option>
+                        <option data-i18n="qc.degree.other" value="other">
+                          Autre diplôme ou type à confirmer
+                        </option>
                       </select>
                     </div>
                     <div class="marg-bot">
-                      <label data-i18n="qc.degreeplace" for="qc_degreeplace">Où avez-vous obtenu ce diplôme ?</label>
-                      <select class="champs-large" id="qc_degreeplace" name="qc_degreeplace">
-                        <option data-i18n="qc.blank" value="">Sélectionner…</option>
-                        <option data-i18n="qc.degreeplace.qc" value="qc">Au Québec</option>
-                        <option data-i18n="qc.degreeplace.elsewhere" value="elsewhere">Hors Québec</option>
+                      <label data-i18n="qc.degreeplace" for="qc_degreeplace"
+                        >Où avez-vous obtenu ce diplôme ?</label
+                      >
+                      <select
+                        class="champs-large"
+                        id="qc_degreeplace"
+                        name="qc_degreeplace"
+                      >
+                        <option data-i18n="qc.blank" value="">
+                          Sélectionner…
+                        </option>
+                        <option data-i18n="qc.degreeplace.qc" value="qc">
+                          Au Québec
+                        </option>
+                        <option
+                          data-i18n="qc.degreeplace.elsewhere"
+                          value="elsewhere"
+                        >
+                          Hors Québec
+                        </option>
                       </select>
                     </div>
                     <div class="marg-bot">
-                      <label data-i18n="qc.fulltime" for="qc_fulltime">S’agissait-il d’un programme d’au moins un an à temps plein ?</label>
-                      <select class="champs-large" id="qc_fulltime" name="qc_fulltime">
-                        <option data-i18n="qc.blank" value="">Sélectionner…</option>
-                        <option data-i18n="qc.fulltime.yes" value="yes">Oui</option>
-                        <option data-i18n="qc.fulltime.no" value="no">Non</option>
+                      <label data-i18n="qc.fulltime" for="qc_fulltime"
+                        >S’agissait-il d’un programme d’au moins un an à temps
+                        plein ?</label
+                      >
+                      <select
+                        class="champs-large"
+                        id="qc_fulltime"
+                        name="qc_fulltime"
+                      >
+                        <option data-i18n="qc.blank" value="">
+                          Sélectionner…
+                        </option>
+                        <option data-i18n="qc.fulltime.yes" value="yes">
+                          Oui
+                        </option>
+                        <option data-i18n="qc.fulltime.no" value="no">
+                          Non
+                        </option>
                       </select>
                     </div>
                     <div class="marg-bot">
-                      <label data-i18n="qc.hours" for="qc_hours">Durée du programme professionnel ou collégial en heures, si connue</label>
-                      <input class="champs-large" id="qc_hours" name="qc_hours" type="number" min="0" max="50000" step="1" />
+                      <label data-i18n="qc.hours" for="qc_hours"
+                        >Durée du programme professionnel ou collégial en
+                        heures, si connue</label
+                      >
+                      <input
+                        class="champs-large"
+                        id="qc_hours"
+                        name="qc_hours"
+                        type="number"
+                        min="0"
+                        max="50000"
+                        step="1"
+                      />
                     </div>
                     <div class="marg-bot">
-                      <label data-i18n="qc.credits" for="qc_credits">Nombre de crédits universitaires, si connu</label>
-                      <input class="champs-large" id="qc_credits" name="qc_credits" type="number" min="0" max="500" step="1" />
+                      <label data-i18n="qc.credits" for="qc_credits"
+                        >Nombre de crédits universitaires, si connu</label
+                      >
+                      <input
+                        class="champs-large"
+                        id="qc_credits"
+                        name="qc_credits"
+                        type="number"
+                        min="0"
+                        max="500"
+                        step="1"
+                      />
                     </div>
                     <div class="marg-bot">
-                      <label data-i18n="qc.graduation" for="qc_graduation">Date d’obtention du diplôme</label>
-                      <input class="champs-large" id="qc_graduation" name="qc_graduation" type="date" />
+                      <label data-i18n="qc.graduation" for="qc_graduation"
+                        >Date d’obtention du diplôme</label
+                      >
+                      <input
+                        class="champs-large"
+                        id="qc_graduation"
+                        name="qc_graduation"
+                        type="date"
+                      />
                     </div>
                     <div class="marg-bot">
-                      <label data-i18n="qc.oralListen" for="qc_oralListen">Français – compréhension orale</label>
-                      <input class="champs-large" id="qc_oralListen" name="qc_oralListen" type="number" min="0" max="12" step="1" />
+                      <label data-i18n="qc.oralListen" for="qc_oralListen"
+                        >Français – compréhension orale</label
+                      >
+                      <input
+                        class="champs-large"
+                        id="qc_oralListen"
+                        name="qc_oralListen"
+                        type="number"
+                        min="0"
+                        max="12"
+                        step="1"
+                      />
                     </div>
                     <div class="marg-bot">
-                      <label data-i18n="qc.oralSpeak" for="qc_oralSpeak">Français – expression orale</label>
-                      <input class="champs-large" id="qc_oralSpeak" name="qc_oralSpeak" type="number" min="0" max="12" step="1" />
+                      <label data-i18n="qc.oralSpeak" for="qc_oralSpeak"
+                        >Français – expression orale</label
+                      >
+                      <input
+                        class="champs-large"
+                        id="qc_oralSpeak"
+                        name="qc_oralSpeak"
+                        type="number"
+                        min="0"
+                        max="12"
+                        step="1"
+                      />
                     </div>
                     <div class="marg-bot">
-                      <label data-i18n="qc.writtenRead" for="qc_writtenRead">Français – compréhension écrite</label>
-                      <input class="champs-large" id="qc_writtenRead" name="qc_writtenRead" type="number" min="0" max="12" step="1" />
+                      <label data-i18n="qc.writtenRead" for="qc_writtenRead"
+                        >Français – compréhension écrite</label
+                      >
+                      <input
+                        class="champs-large"
+                        id="qc_writtenRead"
+                        name="qc_writtenRead"
+                        type="number"
+                        min="0"
+                        max="12"
+                        step="1"
+                      />
                     </div>
                     <div class="marg-bot">
-                      <label data-i18n="qc.writtenWrite" for="qc_writtenWrite">Français – expression écrite</label>
-                      <input class="champs-large" id="qc_writtenWrite" name="qc_writtenWrite" type="number" min="0" max="12" step="1" />
+                      <label data-i18n="qc.writtenWrite" for="qc_writtenWrite"
+                        >Français – expression écrite</label
+                      >
+                      <input
+                        class="champs-large"
+                        id="qc_writtenWrite"
+                        name="qc_writtenWrite"
+                        type="number"
+                        min="0"
+                        max="12"
+                        step="1"
+                      />
                     </div>
                     <div class="marg-bot">
-                      <label data-i18n="qc.spouse" for="qc_spouse">Votre conjoint ou conjointe vous accompagne-t-il ou vous accompagne-t-elle ?</label>
-                      <select class="champs-large" id="qc_spouse" name="qc_spouse">
-                        <option data-i18n="qc.blank" value="">Sélectionner…</option>
-                        <option data-i18n="qc.spouse.yes" value="yes">Oui</option>
+                      <label data-i18n="qc.spouse" for="qc_spouse"
+                        >Votre conjoint ou conjointe vous accompagne-t-il ou
+                        vous accompagne-t-elle ?</label
+                      >
+                      <select
+                        class="champs-large"
+                        id="qc_spouse"
+                        name="qc_spouse"
+                      >
+                        <option data-i18n="qc.blank" value="">
+                          Sélectionner…
+                        </option>
+                        <option data-i18n="qc.spouse.yes" value="yes">
+                          Oui
+                        </option>
                         <option data-i18n="qc.spouse.no" value="no">Non</option>
                       </select>
                     </div>
                     <div class="marg-bot" data-qc-show="spouse:yes" hidden>
-                      <label data-i18n="qc.spouseListen" for="qc_spouseListen">Français de la personne conjointe – compréhension orale</label>
-                      <input class="champs-large" id="qc_spouseListen" name="qc_spouseListen" type="number" min="0" max="12" step="1" />
+                      <label data-i18n="qc.spouseListen" for="qc_spouseListen"
+                        >Français de la personne conjointe – compréhension
+                        orale</label
+                      >
+                      <input
+                        class="champs-large"
+                        id="qc_spouseListen"
+                        name="qc_spouseListen"
+                        type="number"
+                        min="0"
+                        max="12"
+                        step="1"
+                      />
                     </div>
                     <div class="marg-bot" data-qc-show="spouse:yes" hidden>
-                      <label data-i18n="qc.spouseSpeak" for="qc_spouseSpeak">Français de la personne conjointe – expression orale</label>
-                      <input class="champs-large" id="qc_spouseSpeak" name="qc_spouseSpeak" type="number" min="0" max="12" step="1" />
+                      <label data-i18n="qc.spouseSpeak" for="qc_spouseSpeak"
+                        >Français de la personne conjointe – expression
+                        orale</label
+                      >
+                      <input
+                        class="champs-large"
+                        id="qc_spouseSpeak"
+                        name="qc_spouseSpeak"
+                        type="number"
+                        min="0"
+                        max="12"
+                        step="1"
+                      />
                     </div>
                     <div class="marg-bot" data-qc-show="spouse:yes" hidden>
-                      <label data-i18n="qc.spouseRead" for="qc_spouseRead">Français de la personne conjointe – compréhension écrite</label>
-                      <input class="champs-large" id="qc_spouseRead" name="qc_spouseRead" type="number" min="0" max="12" step="1" />
+                      <label data-i18n="qc.spouseRead" for="qc_spouseRead"
+                        >Français de la personne conjointe – compréhension
+                        écrite</label
+                      >
+                      <input
+                        class="champs-large"
+                        id="qc_spouseRead"
+                        name="qc_spouseRead"
+                        type="number"
+                        min="0"
+                        max="12"
+                        step="1"
+                      />
                     </div>
                     <div class="marg-bot" data-qc-show="spouse:yes" hidden>
-                      <label data-i18n="qc.spouseWrite" for="qc_spouseWrite">Français de la personne conjointe – expression écrite</label>
-                      <input class="champs-large" id="qc_spouseWrite" name="qc_spouseWrite" type="number" min="0" max="12" step="1" />
+                      <label data-i18n="qc.spouseWrite" for="qc_spouseWrite"
+                        >Français de la personne conjointe – expression
+                        écrite</label
+                      >
+                      <input
+                        class="champs-large"
+                        id="qc_spouseWrite"
+                        name="qc_spouseWrite"
+                        type="number"
+                        min="0"
+                        max="12"
+                        step="1"
+                      />
                     </div>
                     <div class="marg-bot" data-qc-show="spouse:yes" hidden>
-                      <label data-i18n="qc.spouseAge" for="qc_spouseAge">Âge de la personne conjointe</label>
-                      <input class="champs-large" id="qc_spouseAge" name="qc_spouseAge" type="number" min="0" max="110" step="1" />
+                      <label data-i18n="qc.spouseAge" for="qc_spouseAge"
+                        >Âge de la personne conjointe</label
+                      >
+                      <input
+                        class="champs-large"
+                        id="qc_spouseAge"
+                        name="qc_spouseAge"
+                        type="number"
+                        min="0"
+                        max="110"
+                        step="1"
+                      />
                     </div>
                     <div class="marg-bot" data-qc-show="spouse:yes" hidden>
-                      <label data-i18n="qc.spouseQcWork" for="qc_spouseQcWork">Mois de travail de la personne conjointe au Québec au cours des 5 dernières années</label>
-                      <input class="champs-large" id="qc_spouseQcWork" name="qc_spouseQcWork" type="number" min="0" max="60" step="1" />
+                      <label data-i18n="qc.spouseQcWork" for="qc_spouseQcWork"
+                        >Mois de travail de la personne conjointe au Québec au
+                        cours des 5 dernières années</label
+                      >
+                      <input
+                        class="champs-large"
+                        id="qc_spouseQcWork"
+                        name="qc_spouseQcWork"
+                        type="number"
+                        min="0"
+                        max="60"
+                        step="1"
+                      />
                     </div>
                     <div class="marg-bot">
-                      <label data-i18n="qc.finance" for="qc_finance">Pouvez-vous subvenir aux besoins de votre famille pendant les trois premiers mois, selon le barème applicable ?</label>
-                      <select class="champs-large" id="qc_finance" name="qc_finance">
-                        <option data-i18n="qc.blank" value="">Sélectionner…</option>
-                        <option data-i18n="qc.finance.yes" value="yes">Oui</option>
-                        <option data-i18n="qc.finance.no" value="no">Non</option>
-                        <option data-i18n="qc.finance.unknown" value="unknown">Je ne sais pas</option>
+                      <label data-i18n="qc.finance" for="qc_finance"
+                        >Pouvez-vous subvenir aux besoins de votre famille
+                        pendant les trois premiers mois, selon le barème
+                        applicable ?</label
+                      >
+                      <select
+                        class="champs-large"
+                        id="qc_finance"
+                        name="qc_finance"
+                      >
+                        <option data-i18n="qc.blank" value="">
+                          Sélectionner…
+                        </option>
+                        <option data-i18n="qc.finance.yes" value="yes">
+                          Oui
+                        </option>
+                        <option data-i18n="qc.finance.no" value="no">
+                          Non
+                        </option>
+                        <option data-i18n="qc.finance.unknown" value="unknown">
+                          Je ne sais pas
+                        </option>
                       </select>
                     </div>
                     <div class="marg-bot">
-                      <label data-i18n="qc.scholarship" for="qc_scholarship">Avez-vous une obligation de retour liée à une bourse qui reste à remplir ?</label>
-                      <select class="champs-large" id="qc_scholarship" name="qc_scholarship">
-                        <option data-i18n="qc.blank" value="">Sélectionner…</option>
-                        <option data-i18n="qc.scholarship.none" value="none">Non ou obligation déjà respectée</option>
-                        <option data-i18n="qc.scholarship.unmet" value="unmet">Oui</option>
+                      <label data-i18n="qc.scholarship" for="qc_scholarship"
+                        >Avez-vous une obligation de retour liée à une bourse
+                        qui reste à remplir ?</label
+                      >
+                      <select
+                        class="champs-large"
+                        id="qc_scholarship"
+                        name="qc_scholarship"
+                      >
+                        <option data-i18n="qc.blank" value="">
+                          Sélectionner…
+                        </option>
+                        <option data-i18n="qc.scholarship.none" value="none">
+                          Non ou obligation déjà respectée
+                        </option>
+                        <option data-i18n="qc.scholarship.unmet" value="unmet">
+                          Oui
+                        </option>
                       </select>
                     </div>
                     <div class="marg-bot">
-                      <label data-i18n="qc.excluded" for="qc_excluded">L’emploi envisagé est-il dans un secteur exclu ou dans une entreprise que vous contrôlez ?</label>
-                      <select class="champs-large" id="qc_excluded" name="qc_excluded">
-                        <option data-i18n="qc.blank" value="">Sélectionner…</option>
-                        <option data-i18n="qc.excluded.yes" value="yes">Oui</option>
-                        <option data-i18n="qc.excluded.no" value="no">Non</option>
-                        <option data-i18n="qc.excluded.unknown" value="unknown">Je ne sais pas</option>
+                      <label data-i18n="qc.excluded" for="qc_excluded"
+                        >L’emploi envisagé est-il dans un secteur exclu ou dans
+                        une entreprise que vous contrôlez ?</label
+                      >
+                      <select
+                        class="champs-large"
+                        id="qc_excluded"
+                        name="qc_excluded"
+                      >
+                        <option data-i18n="qc.blank" value="">
+                          Sélectionner…
+                        </option>
+                        <option data-i18n="qc.excluded.yes" value="yes">
+                          Oui
+                        </option>
+                        <option data-i18n="qc.excluded.no" value="no">
+                          Non
+                        </option>
+                        <option data-i18n="qc.excluded.unknown" value="unknown">
+                          Je ne sais pas
+                        </option>
                       </select>
                     </div>
                     <div class="marg-bot" data-qc-show="residence:qc" hidden>
-                      <label data-i18n="qc.outsideCmm" for="qc_outsideCmm">Résidez-vous actuellement au Québec, mais en dehors de la Communauté métropolitaine de Montréal ?</label>
-                      <select class="champs-large" id="qc_outsideCmm" name="qc_outsideCmm">
-                        <option data-i18n="qc.blank" value="">Sélectionner…</option>
-                        <option data-i18n="qc.outsideCmm.yes" value="yes">Oui</option>
-                        <option data-i18n="qc.outsideCmm.no" value="no">Non</option>
+                      <label data-i18n="qc.outsideCmm" for="qc_outsideCmm"
+                        >Résidez-vous actuellement au Québec, mais en dehors de
+                        la Communauté métropolitaine de Montréal ?</label
+                      >
+                      <select
+                        class="champs-large"
+                        id="qc_outsideCmm"
+                        name="qc_outsideCmm"
+                      >
+                        <option data-i18n="qc.blank" value="">
+                          Sélectionner…
+                        </option>
+                        <option data-i18n="qc.outsideCmm.yes" value="yes">
+                          Oui
+                        </option>
+                        <option data-i18n="qc.outsideCmm.no" value="no">
+                          Non
+                        </option>
                       </select>
                     </div>
                     <div class="marg-bot" data-qc-show="outsideCmm:yes" hidden>
-                      <label data-i18n="qc.outsideResidenceMonths" for="qc_outsideResidenceMonths">Depuis combien de mois résidez-vous hors de cette région métropolitaine ?</label>
-                      <input class="champs-large" id="qc_outsideResidenceMonths" name="qc_outsideResidenceMonths" type="number" min="0" max="600" step="1" />
+                      <label
+                        data-i18n="qc.outsideResidenceMonths"
+                        for="qc_outsideResidenceMonths"
+                        >Depuis combien de mois résidez-vous hors de cette
+                        région métropolitaine ?</label
+                      >
+                      <input
+                        class="champs-large"
+                        id="qc_outsideResidenceMonths"
+                        name="qc_outsideResidenceMonths"
+                        type="number"
+                        min="0"
+                        max="600"
+                        step="1"
+                      />
                     </div>
                     <div class="marg-bot">
-                      <label data-i18n="qc.regionalFamily" for="qc_regionalFamily">Avez-vous un proche parent dans la région du Québec où vous souhaitez vous établir, hors de la région métropolitaine de Montréal ?</label>
-                      <select class="champs-large" id="qc_regionalFamily" name="qc_regionalFamily">
-                        <option data-i18n="qc.blank" value="">Sélectionner…</option>
-                        <option data-i18n="qc.regionalFamily.yes" value="yes">Oui</option>
-                        <option data-i18n="qc.regionalFamily.no" value="no">Non</option>
-                        <option data-i18n="qc.regionalFamily.unknown" value="unknown">Je ne sais pas</option>
+                      <label
+                        data-i18n="qc.regionalFamily"
+                        for="qc_regionalFamily"
+                        >Avez-vous un proche parent dans la région du Québec où
+                        vous souhaitez vous établir, hors de la région
+                        métropolitaine de Montréal ?</label
+                      >
+                      <select
+                        class="champs-large"
+                        id="qc_regionalFamily"
+                        name="qc_regionalFamily"
+                      >
+                        <option data-i18n="qc.blank" value="">
+                          Sélectionner…
+                        </option>
+                        <option data-i18n="qc.regionalFamily.yes" value="yes">
+                          Oui
+                        </option>
+                        <option data-i18n="qc.regionalFamily.no" value="no">
+                          Non
+                        </option>
+                        <option
+                          data-i18n="qc.regionalFamily.unknown"
+                          value="unknown"
+                        >
+                          Je ne sais pas
+                        </option>
                       </select>
                     </div>
                     <div class="marg-bot">
-                      <label data-i18n="qc.arrimaScore" for="qc_arrimaScore">Pointage Arrima complet, uniquement s’il est déjà connu</label>
-                      <input class="champs-large" id="qc_arrimaScore" name="qc_arrimaScore" type="number" min="0" max="1400" step="1" />
+                      <label data-i18n="qc.arrimaScore" for="qc_arrimaScore"
+                        >Pointage Arrima complet, uniquement s’il est déjà
+                        connu</label
+                      >
+                      <input
+                        class="champs-large"
+                        id="qc_arrimaScore"
+                        name="qc_arrimaScore"
+                        type="number"
+                        min="0"
+                        max="1400"
+                        step="1"
+                      />
                     </div>
                   </div>
                 </fieldset>
@@ -3211,17 +3716,22 @@
                     </div>
                   </fieldset>
                   <div class="marg-bot madic-signature-place">
-                    <label for="lieu_signature" data-i18n="form.signaturePlace">Lieu de signature du contrat (ville) :</label
+                    <label for="lieu_signature" data-i18n="form.signaturePlace"
+                      >Lieu de signature du contrat (ville) :</label
                     >
                     <input
                       autocomplete="address-level2"
                       class="champs-large"
                       id="lieu_signature"
                       name="lieu_signature"
-                      data-i18n-placeholder="form.signaturePlacePlaceholder" placeholder="Ville où le contrat sera signé"
+                      data-i18n-placeholder="form.signaturePlacePlaceholder"
+                      placeholder="Ville où le contrat sera signé"
                       type="text"
                     />
-                    <p class="madic-signature-help" data-i18n="form.signatureHelp">
+                    <p
+                      class="madic-signature-help"
+                      data-i18n="form.signatureHelp"
+                    >
                       Cette information servira à préremplir le lieu de
                       signature de vos contrats. Vous pourrez la confirmer avant
                       la signature.
@@ -3363,7 +3873,7 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
     <script src="assets/config.js"></script>
-    <script src="assets/formulaire.js?v=9bd86014f9f8"></script>
+    <script src="assets/formulaire.js?v=1171b939dd23"></script>
     <script src="assets/madic-footer.js"></script>
   </body>
 </html>

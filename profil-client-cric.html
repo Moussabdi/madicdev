@@ -530,7 +530,9 @@
             <div aria-hidden="true" class="madic-card-icon">▤</div>
             <h2>Mon formulaire d’immigration</h2>
             <p class="muted">
-              Votre formulaire reprend les renseignements communs de votre profil. Vérifiez-les et complétez les réponses propres à votre projet.
+              Votre formulaire reprend les renseignements communs de votre
+              profil. Vérifiez-les et complétez les réponses propres à votre
+              projet.
             </p>
             <a href="formulaire.html">Remplir ou reprendre mon formulaire →</a>
           </section>
@@ -580,11 +582,22 @@
                     <label class="madic-photo-label" for="madicProfilePhotoFile"
                       >Choisir une photo</label
                     >
-                    <span class="madic-localized-file-picker"><input
-                      accept="image/jpeg,image/png,image/webp"
-                      id="madicProfilePhotoFile"
-                      type="file"
-                    /><label class="madic-file-picker-button" for="madicProfilePhotoFile" data-madic-file-button="madicProfilePhotoFile">Choisir un fichier</label><span class="madic-file-picker-name" data-madic-file-name="madicProfilePhotoFile">Aucun fichier choisi</span></span>
+                    <span class="madic-localized-file-picker"
+                      ><input
+                        accept="image/jpeg,image/png,image/webp"
+                        id="madicProfilePhotoFile"
+                        type="file"
+                      /><label
+                        class="madic-file-picker-button"
+                        for="madicProfilePhotoFile"
+                        data-madic-file-button="madicProfilePhotoFile"
+                        >Choisir un fichier</label
+                      ><span
+                        class="madic-file-picker-name"
+                        data-madic-file-name="madicProfilePhotoFile"
+                        >Aucun fichier choisi</span
+                      ></span
+                    >
                     <div class="madic-photo-buttons">
                       <button
                         class="secondary"
@@ -1264,7 +1277,9 @@
                 </div>
                 <div class="actions">
                   <button type="submit">Enregistrer</button>
-                  <a class="secondary" href="formulaire.html">Ouvrir mon formulaire d’immigration →</a>
+                  <a class="secondary" href="formulaire.html"
+                    >Ouvrir mon formulaire d’immigration →</a
+                  >
                 </div>
               </form>
             </div>
@@ -1342,13 +1357,24 @@
                 <option value="">Aucun dossier actif</option>
               </select>
               <label for="file">Document</label
-              ><span class="madic-localized-file-picker"><input
-                accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png"
-                id="file"
-                name="file"
-                required=""
-                type="file"
-              /><label class="madic-file-picker-button" for="file" data-madic-file-button="file">Choisir un fichier</label><span class="madic-file-picker-name" data-madic-file-name="file">Aucun fichier choisi</span></span>
+              ><span class="madic-localized-file-picker"
+                ><input
+                  accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png"
+                  id="file"
+                  name="file"
+                  required=""
+                  type="file"
+                /><label
+                  class="madic-file-picker-button"
+                  for="file"
+                  data-madic-file-button="file"
+                  >Choisir un fichier</label
+                ><span
+                  class="madic-file-picker-name"
+                  data-madic-file-name="file"
+                  >Aucun fichier choisi</span
+                ></span
+              >
               <div class="actions">
                 <button disabled="" id="uploadButton" type="submit">
                   Transmettre
@@ -1473,6 +1499,6 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
     <script src="assets/config.js"></script>
     <script src="assets/madic-footer.js"></script>
-    <script src="assets/profil-client-cric.js?v=0c2f15a3a5c1"></script>
+    <script src="assets/profil-client-cric.js?v=19b62b0c3853"></script>
   </body>
 </html>
