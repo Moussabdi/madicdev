@@ -118,10 +118,13 @@
       contactMessage = [fr, en];
       renderContactStatus();
     };
-    new MutationObserver(renderContactStatus).observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ["lang"],
-    });
+    new MutationObserver(renderContactStatus).observe(
+      document.documentElement,
+      {
+        attributes: true,
+        attributeFilter: ["lang"],
+      },
+    );
     const invoke = async (body) => {
       const { data, error } = await db.functions.invoke(
         "madic-verify-cric-license",
@@ -149,7 +152,10 @@
       contactStep.hidden = false;
       contactForm.hidden = saved.contactsSaved === true;
       if (saved.contactsSaved) {
-        setContactStatus("Vos coordonnées professionnelles sont enregistrées.", "Your professional contact details have been saved.");
+        setContactStatus(
+          "Vos coordonnées professionnelles sont enregistrées. Merci pour votre patience pendant que nous validons les renseignements fournis.",
+          "Your professional contact details have been saved. Thank you for your patience while we verify your information.",
+        );
       } else {
         setContactStatus("", "");
       }
@@ -196,7 +202,12 @@
           data.registry?.registry_license !== license
         )
           throw Error("La vérification officielle n’a pas été confirmée.");
-        const request = { name, license, token: data.token, contactsSaved: false };
+        const request = {
+          name,
+          license,
+          token: data.token,
+          contactsSaved: false,
+        };
         localStorage.setItem(key, JSON.stringify(request));
         contactForm.reset();
         checkButton.hidden = false;
@@ -260,7 +271,13 @@
     contactForm.addEventListener("submit", async (event) => {
       event.preventDefault();
       const request = getSaved();
-      if (!request?.token || request.contactsSaved || contactStep.hidden || contactFields.disabled) return;
+      if (
+        !request?.token ||
+        request.contactsSaved ||
+        contactStep.hidden ||
+        contactFields.disabled
+      )
+        return;
       const email = document.getElementById("cricContactEmail").value.trim();
       const phone = contactPhone.value.trim();
       const address = contactAddress.value.trim();
@@ -277,12 +294,15 @@
       verifyButton.disabled = true;
       setContactStatus("Enregistrement en cours…", "Saving…");
       try {
-        const { data, error } = await db.rpc("madic_save_cric_prevalidation_contact", {
-          p_token: request.token,
-          p_email: email,
-          p_phone: phone,
-          p_address: address,
-        });
+        const { data, error } = await db.rpc(
+          "madic_save_cric_prevalidation_contact",
+          {
+            p_token: request.token,
+            p_email: email,
+            p_phone: phone,
+            p_address: address,
+          },
+        );
         if (getSaved()?.token !== request.token) return;
         if (error || data !== true) throw new Error("Contact save failed");
         request.contactsSaved = true;
@@ -486,16 +506,34 @@
       fr: "Vérifier le statut de ma demande",
       en: "Check my request status",
     },
-    "signup.cric.contact.title": { fr: "Information sur votre demande CRIC", en: "Information about your RCIC request" },
+    "signup.cric.contact.title": {
+      fr: "Information sur votre demande CRIC",
+      en: "Information about your RCIC request",
+    },
     "signup.cric.contact.verified": {
       fr: "Permis vérifié dans le registre officiel CCIC. La demande est enregistrée pour examen administratif MADIC. Aucun compte n’a été créé.",
       en: "Your licence was verified in the official CICC register. Your request was recorded for MADIC’s administrative review. No account was created.",
     },
-    "signup.cric.contact.legend": { fr: "Coordonnées professionnelles", en: "Professional contact details" },
-    "signup.cric.contact.email": { fr: "Courriel professionnel", en: "Professional email" },
-    "signup.cric.contact.phone": { fr: "Numéro de téléphone", en: "Phone number" },
-    "signup.cric.contact.address": { fr: "Adresse professionnelle", en: "Business address" },
-    "signup.cric.contact.save": { fr: "Enregistrer mes coordonnées", en: "Save my contact details" },
+    "signup.cric.contact.legend": {
+      fr: "Coordonnées professionnelles",
+      en: "Professional contact details",
+    },
+    "signup.cric.contact.email": {
+      fr: "Courriel professionnel",
+      en: "Professional email",
+    },
+    "signup.cric.contact.phone": {
+      fr: "Numéro de téléphone",
+      en: "Phone number",
+    },
+    "signup.cric.contact.address": {
+      fr: "Adresse professionnelle",
+      en: "Business address",
+    },
+    "signup.cric.contact.save": {
+      fr: "Enregistrer mes coordonnées",
+      en: "Save my contact details",
+    },
     "common.brand.portal": { fr: "PORTAIL", en: "PORTAL" },
     "client.login.madic_portail_acc_s_client_sur_invitation": {
       fr: "© MADIC PORTAIL · Accès client sur invitation",
@@ -687,19 +725,26 @@
   const switchAccount = byId("cricOnboardingSwitch");
   const form = byId("cricOnboardingDocument");
   const status = byId("cricOnboardingStatus");
-  let busy = false, userId, message;
+  let busy = false,
+    userId,
+    message;
   const say = (fr, en) => {
     message = [fr, en];
-    status.textContent = message[document.documentElement.lang.startsWith("en") ? 1 : 0];
+    status.textContent =
+      message[document.documentElement.lang.startsWith("en") ? 1 : 0];
   };
   const localize = () => {
     const lang = document.documentElement.lang.startsWith("en") ? "en" : "fr";
-    panel.querySelectorAll("[data-fr][data-en]").forEach(element => { element.textContent = element.dataset[lang]; });
+    panel.querySelectorAll("[data-fr][data-en]").forEach((element) => {
+      element.textContent = element.dataset[lang];
+    });
     if (message) say(...message);
   };
   localize();
-  new MutationObserver(localize)
-    .observe(document.documentElement, { attributes:true, attributeFilter:["lang"] });
+  new MutationObserver(localize).observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ["lang"],
+  });
   const checked = (result) => {
     if (result.error) throw result.error;
     return result.data;
@@ -708,14 +753,21 @@
     if (busy) return;
     busy = true;
     const controls = [...panel.querySelectorAll("button")];
-    controls.forEach(button => { button.disabled = true; });
-    try { await task(); }
-    catch {
-      say("Impossible de poursuivre. Vérifiez que vous êtes connecté avec le courriel invité et que votre lien est valide.",
-        "Unable to continue. Check that you are signed in with the invited email and that the link is valid.");
+    controls.forEach((button) => {
+      button.disabled = true;
+    });
+    try {
+      await task();
+    } catch {
+      say(
+        "Impossible de poursuivre. Vérifiez que vous êtes connecté avec le courriel invité et que votre lien est valide.",
+        "Unable to continue. Check that you are signed in with the invited email and that the link is valid.",
+      );
     } finally {
       busy = false;
-      controls.forEach(button => { button.disabled = false; });
+      controls.forEach((button) => {
+        button.disabled = false;
+      });
     }
   }
   async function fillSession() {
@@ -723,10 +775,15 @@
     auth.hidden = !!session;
     resume.hidden = switchAccount.hidden = !session;
     if (session && document.visibilityState === "visible") {
-      say("Cliquez sur Continuer pour ouvrir votre dossier d’inscription.", "Select Continue to open your registration.");
+      say(
+        "Cliquez sur Continuer pour ouvrir votre dossier d’inscription.",
+        "Select Continue to open your registration.",
+      );
     } else if (!session && requested && !token) {
-      say("Si votre demande n’est pas encore associée, ouvrez le lien d’invitation MADIC reçu par courriel.",
-        "If your application is not linked yet, open the MADIC invitation link from your email.");
+      say(
+        "Si votre demande n’est pas encore associée, ouvrez le lien d’invitation MADIC reçu par courriel.",
+        "If your application is not linked yet, open the MADIC invitation link from your email.",
+      );
     }
   }
   async function proceed() {
@@ -734,29 +791,59 @@
     const { user } = checked(await db.auth.getUser());
     userId = user.id;
     if (token) {
-      checked(await db.rpc("madic_claim_cric_onboarding",{p_token:token}));
+      checked(await db.rpc("madic_claim_cric_onboarding", { p_token: token }));
       localStorage.removeItem(tokenKey);
       token = null;
-      history.replaceState(null,"",location.pathname+"?continuer=1");
+      history.replaceState(null, "", location.pathname + "?continuer=1");
     }
     const step = checked(await db.rpc("madic_my_cric_identity"));
     resume.hidden = true;
     form.hidden = step !== "required";
-    if (step === "required") say("Déposez une pièce d’identité pour poursuivre.", "Submit photo identification to continue.");
-    else if (step === "submitted") say("Pièce reçue. Votre demande est en attente d’examen.", "ID received. Your application is awaiting review.");
-    else if (step === "approved") say("Votre demande est approuvée. Ouvrez votre espace CRIC.", "Your application is approved. Open your RCIC portal.");
-    else if (step === "rejected") say("Votre demande a été refusée. Communiquez avec MADIC.", "Your application was declined. Contact MADIC.");
-    else if (step === "verified") say("Identité vérifiée. Consultez votre espace CRIC pour la décision.", "Identity verified. Check your RCIC portal for the decision.");
-    else if (step === "refused") say("La pièce n’a pas été acceptée. Communiquez avec MADIC.", "Your ID was not accepted. Contact MADIC.");
-    else say("Aucun dossier d’invitation associé. Ouvrez le lien envoyé par MADIC.", "No invitation is linked to this account. Open the link from MADIC.");
+    if (step === "required")
+      say(
+        "Déposez une pièce d’identité pour poursuivre.",
+        "Submit photo identification to continue.",
+      );
+    else if (step === "submitted")
+      say(
+        "Pièce reçue. Votre demande est en attente d’examen.",
+        "ID received. Your application is awaiting review.",
+      );
+    else if (step === "approved")
+      say(
+        "Votre demande est approuvée. Ouvrez votre espace CRIC.",
+        "Your application is approved. Open your RCIC portal.",
+      );
+    else if (step === "rejected")
+      say(
+        "Votre demande a été refusée. Communiquez avec MADIC.",
+        "Your application was declined. Contact MADIC.",
+      );
+    else if (step === "verified")
+      say(
+        "Identité vérifiée. Consultez votre espace CRIC pour la décision.",
+        "Identity verified. Check your RCIC portal for the decision.",
+      );
+    else if (step === "refused")
+      say(
+        "La pièce n’a pas été acceptée. Communiquez avec MADIC.",
+        "Your ID was not accepted. Contact MADIC.",
+      );
+    else
+      say(
+        "Aucun dossier d’invitation associé. Ouvrez le lien envoyé par MADIC.",
+        "No invitation is linked to this account. Open the link from MADIC.",
+      );
   }
   resume.addEventListener("click", () => run(proceed));
-  switchAccount.addEventListener("click", () => run(async () => {
-    await db.auth.signOut({scope:"local"});
-    form.hidden = true;
-    auth.reset();
-    await fillSession();
-  }));
+  switchAccount.addEventListener("click", () =>
+    run(async () => {
+      await db.auth.signOut({ scope: "local" });
+      form.hidden = true;
+      auth.reset();
+      await fillSession();
+    }),
+  );
   auth.addEventListener("submit", (event) => {
     event.preventDefault();
     const signup = event.submitter?.value === "signup";
@@ -764,30 +851,53 @@
       const email = byId("onboardEmail").value.trim();
       const password = byId("onboardPassword").value;
       if (signup && !token) {
-        say("Ouvrez le lien d’invitation avant de créer un compte.", "Open the invitation link before creating an account.");
+        say(
+          "Ouvrez le lien d’invitation avant de créer un compte.",
+          "Open the invitation link before creating an account.",
+        );
         return;
       }
       let result;
       if (signup) {
         if (password.length < 8) {
-          say("Utilisez un mot de passe d’au moins huit caractères.", "Use a password of at least eight characters.");
+          say(
+            "Utilisez un mot de passe d’au moins huit caractères.",
+            "Use a password of at least eight characters.",
+          );
           return;
         }
-        const allowed = checked(await db.rpc("madic_check_cric_onboarding",{p_token:token,p_email:email}));
+        const allowed = checked(
+          await db.rpc("madic_check_cric_onboarding", {
+            p_token: token,
+            p_email: email,
+          }),
+        );
         if (allowed !== true) {
-          say("Ce courriel ne correspond pas à une invitation valide.", "This email does not match a valid invitation.");
+          say(
+            "Ce courriel ne correspond pas à une invitation valide.",
+            "This email does not match a valid invitation.",
+          );
           return;
         }
-        const emailRedirectTo = new URL("/inscription-cric.html?continuer=1",location.origin).href;
-        result = await db.auth.signUp({email,password,options:{emailRedirectTo}});
+        const emailRedirectTo = new URL(
+          "/inscription-cric.html?continuer=1",
+          location.origin,
+        ).href;
+        result = await db.auth.signUp({
+          email,
+          password,
+          options: { emailRedirectTo },
+        });
       } else {
-        result = await db.auth.signInWithPassword({email,password});
+        result = await db.auth.signInWithPassword({ email, password });
       }
       const data = checked(result);
       auth.reset();
       if (!data.session) {
-        say("Confirmez votre courriel, puis revenez sur cette page ou rouvrez votre invitation.",
-          "Confirm your email, then return to this page or reopen your invitation.");
+        say(
+          "Confirmez votre courriel, puis revenez sur cette page ou rouvrez votre invitation.",
+          "Confirm your email, then return to this page or reopen your invitation.",
+        );
         return;
       }
       await fillSession();
@@ -798,31 +908,57 @@
     event.preventDefault();
     run(async () => {
       const file = byId("onboardFile").files[0];
-      if (!file || !["image/jpeg","image/png","image/webp"].includes(file.type) || file.size < 1 || file.size > 8388608) {
-        say("Choisissez une image JPG, PNG ou WebP de 8 Mo ou moins.", "Choose a JPG, PNG or WebP image up to 8 MB.");
+      if (
+        !file ||
+        !["image/jpeg", "image/png", "image/webp"].includes(file.type) ||
+        file.size < 1 ||
+        file.size > 8388608
+      ) {
+        say(
+          "Choisissez une image JPG, PNG ou WebP de 8 Mo ou moins.",
+          "Choose a JPG, PNG or WebP image up to 8 MB.",
+        );
         return;
       }
       const bucket = db.storage.from("madic-cric-identity");
       const path = userId + "/photo";
       const existing = checked(await db.rpc("madic_my_cric_identity"));
-      if (existing !== "required") { await proceed(); return; }
+      if (existing !== "required") {
+        await proceed();
+        return;
+      }
       const selectedType = byId("onboardType").value;
-      const upload = await bucket.upload(path,file,{contentType:file.type,upsert:false});
+      const upload = await bucket.upload(path, file, {
+        contentType: file.type,
+        upsert: false,
+      });
       if (upload.error) {
         // Une autre session peut avoir déposé le fichier. Reprendre un dépôt
         // interrompu seulement si le candidat confirme quel fichier sera examiné.
-        if (!["409","Duplicate"].includes(String(upload.error.statusCode || upload.error.code || ""))
-            && !/already exists/i.test(upload.error.message || "")) throw upload.error;
+        if (
+          !["409", "Duplicate"].includes(
+            String(upload.error.statusCode || upload.error.code || ""),
+          ) &&
+          !/already exists/i.test(upload.error.message || "")
+        )
+          throw upload.error;
         const english = document.documentElement.lang.startsWith("en");
-        const confirmed = window.confirm(english
-          ? "An image was already uploaded. Submit that image for review?"
-          : "Une image est déjà déposée. Transmettre cette image pour examen ?");
+        const confirmed = window.confirm(
+          english
+            ? "An image was already uploaded. Submit that image for review?"
+            : "Une image est déjà déposée. Transmettre cette image pour examen ?",
+        );
         if (!confirmed) return;
       }
-      checked(await db.rpc("madic_submit_cric_identity",{p_type:selectedType}));
+      checked(
+        await db.rpc("madic_submit_cric_identity", { p_type: selectedType }),
+      );
       form.reset();
       form.hidden = true;
-      say("Pièce reçue. Votre demande est en attente d’examen.", "ID received. Your application is awaiting review.");
+      say(
+        "Pièce reçue. Votre demande est en attente d’examen.",
+        "ID received. Your application is awaiting review.",
+      );
     });
   });
   run(fillSession);

@@ -21,6 +21,12 @@ type Job = {
   attempts: number;
 };
 
+type ReceiptJob = {
+  id: string;
+  attempts: number;
+  recipient_email: string | null;
+};
+
 type JobStatus = "sent" | "skipped" | "pending" | "failed";
 
 const names: Record<string, string> = {
@@ -33,7 +39,7 @@ const names: Record<string, string> = {
 
 // Finalisation contrôlée des notifications
 async function finish(
-  job: Job,
+  job: Job | ReceiptJob,
   status: JobStatus,
   reason?: string,
 ): Promise<void> {
@@ -55,11 +61,16 @@ async function finish(
     ).toISOString();
   }
 
+  const queue =
+    "recipient_email" in job
+      ? "madic_cric_receipt_email_queue"
+      : "madic_service_email_queue";
   const { data, error } = await db
-    .from("madic_service_email_queue")
+    .from(queue)
     .update(fields)
     .eq("id", job.id)
     .eq("status", "processing")
+    .eq("attempts", job.attempts)
     .select("id");
 
   if (error) {
@@ -91,11 +102,54 @@ async function finish(
   });
 }
 
+async function sendReceipt(job: ReceiptJob, email: string): Promise<void> {
+  const response = await fetch("https://api.resend.com/emails", {
+    method: "POST",
+    signal: AbortSignal.timeout(15000),
+    headers: {
+      Authorization: `Bearer ${env("RESEND_API_KEY")}`,
+      "Content-Type": "application/json",
+      "Idempotency-Key": job.id,
+    },
+    body: JSON.stringify({
+      from: env("MADIC_EMAIL_FROM"),
+      to: [email],
+      subject: "MADIC | Demande CRIC reçue / RCIC application received",
+      text: [
+        "Bonjour,",
+        "Nous avons bien reçu votre demande d’accès au portail MADIC. Votre permis a été vérifié dans le registre officiel du CCIC.",
+        "Notre équipe examinera les renseignements fournis afin de valider votre identité. Si votre demande est approuvée, vous recevrez un second courriel vous invitant à poursuivre votre inscription au portail MADIC.",
+        "Merci pour votre patience pendant que nous validons les renseignements fournis.",
+        "L’équipe MADIC",
+        "Hello,",
+        "We have received your MADIC Portal access application. Your licence was verified in the official CICC register.",
+        "Our team will review the information you provided to verify your identity. If your application is approved, you will receive a separate email inviting you to continue your MADIC Portal registration.",
+        "Thank you for your patience while we verify your information.",
+        "The MADIC Team",
+      ].join("\n\n"),
+    }),
+  });
+  if (!response.ok) {
+    throw new Error(`Receipt email provider HTTP ${response.status}`);
+  }
+}
+
 // Traitement d'une notification
-async function send(job: Job): Promise<void> {
+async function send(job: Job | ReceiptJob): Promise<void> {
   let providerAccepted = false;
 
   try {
+    if ("recipient_email" in job) {
+      if (!job.recipient_email) {
+        await finish(job, "skipped", "Courriel professionnel indisponible");
+        return;
+      }
+      await sendReceipt(job, job.recipient_email);
+      providerAccepted = true;
+      await finish(job, "sent");
+      return;
+    }
+
     const { data: space, error: se } = await db
       .from("madic_cric_spaces")
       .select("id,owner_user_id,name,access_status")
@@ -237,36 +291,39 @@ Deno.serve(async (req: Request): Promise<Response> => {
   }
 
   try {
-    const { data, error } = await db.rpc("madic_service_claim_emails", {
-      p_limit: 25,
-    });
-
-    if (error) {
-      throw new Error(`Queue claim: ${error.message}`);
-    }
-
-    const jobs = (data || []) as Job[];
-
+    let processed = 0;
     let completed = 0;
     let errors = 0;
 
-    for (const job of jobs) {
-      try {
-        await send(job);
-        completed++;
-      } catch (error) {
+    for (const claim of [
+      "madic_service_claim_emails",
+      "madic_claim_cric_receipt_emails",
+    ]) {
+      const { data, error } = await db.rpc(claim, { p_limit: 25 });
+      if (error) {
         errors++;
-
-        console.error("MADIC_SERVICE_JOB_FAILED", {
-          jobId: job.id,
-          message: error instanceof Error ? error.message : "Erreur inconnue",
-        });
+        console.error("MADIC_QUEUE_CLAIM_ERROR", { claim, code: error.code });
+        continue;
+      }
+      const jobs = (data || []) as (Job | ReceiptJob)[];
+      processed += jobs.length;
+      for (const job of jobs) {
+        try {
+          await send(job);
+          completed++;
+        } catch (error) {
+          errors++;
+          console.error("MADIC_SERVICE_JOB_FAILED", {
+            jobId: job.id,
+            message: error instanceof Error ? error.message : "Erreur inconnue",
+          });
+        }
       }
     }
 
     return Response.json(
       {
-        processed: jobs.length,
+        processed,
         completed,
         errors,
       },
