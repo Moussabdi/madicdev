@@ -1,3 +1,4 @@
+import { madicRecipientLanguage } from "../shared/madic-language.ts";
 import { madicEmailHtml } from "../shared/madic-email-template.ts";
 import { madicRecipientGreeting } from "../shared/madic-recipient.ts";
 // MADIC 6.2: Supabase Edge Function, invocation uniquement par planificateur autorise.
@@ -127,8 +128,10 @@ async function send(job: Job) {
       reminder_24h: "Rappel de rendez-vous dans 24 heures",
       reminder_1h: "Rappel de rendez-vous dans 1 heure",
     };
-    const greeting = madicRecipientGreeting(user.user);
-    const title = titles[job.kind];
+    const language = madicRecipientLanguage(user.user);
+    const greeting = madicRecipientGreeting(user.user, language);
+    const englishTitles: Record<string,string> = {requested:"New appointment request",confirmed:"Appointment confirmed",declined:"Appointment request declined",cancelled:"Appointment cancelled",reminder_24h:"Appointment reminder in 24 hours",reminder_1h:"Appointment reminder in 1 hour"};
+    const title = (language === "en" ? englishTitles : titles)[job.kind];
     if (!title) {
       await finish(job.id, "skipped", "Unknown kind");
       return;
@@ -140,6 +143,7 @@ async function send(job: Job) {
       phone: "Telephone",
       in_person: "En personne",
     };
+    const localizedMode = language === "en" ? {video:"Video conference",phone:"Phone",in_person:"In person"} : mode;
     const place =
       (job.kind === "confirmed" || job.kind.startsWith("reminder_")) &&
       isClient &&
@@ -153,13 +157,13 @@ async function send(job: Job) {
     const lines = [
       `${greeting},`,
       title,
-      `Cabinet : ${String(sp.name || "Cabinet")}`,
-      `Date : ${dateText} (heure de Montreal)`,
-      `Mode : ${mode[String(s.mode)] || String(s.mode)}`,
+      `${language === "en" ? "Office" : "Cabinet"} : ${String(sp.name || "Cabinet")}`,
+      `Date : ${dateText} (${language === "en" ? "Montreal time" : "heure de Montréal"})`,
+      `Mode : ${localizedMode[String(s.mode) as keyof typeof localizedMode] || String(s.mode)}`,
     ];
-    if (place) lines.push(`Lieu ou lien : ${place}`);
+    if (place) lines.push(`${language === "en" ? "Location or link" : "Lieu ou lien"} : ${place}`);
     lines.push(
-      "Connectez-vous a votre espace MADIC PORTAIL pour consulter les informations a jour.",
+      language === "en" ? "Sign in to your MADIC PORTAL to view the latest information." : "Connectez-vous à MADIC PORTAIL pour consulter les informations à jour.",
     );
     const body = lines.join("\n");
     const sender = env("MADIC_EMAIL_FROM");
@@ -167,11 +171,11 @@ async function send(job: Job) {
           greeting,
           title,
           cabinet: String(sp.name || "Cabinet"),
-          paragraphs: ["Veuillez consulter les informations de votre rendez-vous dans votre espace sécurisé."],
+          paragraphs: [language === "en" ? "Please review your appointment details in your secure portal." : "Veuillez consulter les informations de votre rendez-vous dans votre espace sécurisé."],
           details: [
-            { label: "Date", value: `${dateText} (heure de Montréal)` },
-            { label: "Mode", value: mode[String(s.mode)] || String(s.mode) },
-            ...(place ? [{ label: "Lieu ou lien", value: place }] : []),
+            { label: "Date", value: `${dateText} (${language === "en" ? "Montreal time" : "heure de Montréal"})` },
+            { label: "Mode", value: localizedMode[String(s.mode) as keyof typeof localizedMode] || String(s.mode) },
+            ...(place ? [{ label: language === "en" ? "Location or link" : "Lieu ou lien", value: place }] : []),
           ],
         });
     const response = await fetch("https://api.resend.com/emails", {

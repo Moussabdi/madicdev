@@ -1,3 +1,4 @@
+import { madicRecipientLanguage } from "../shared/madic-language.ts";
 import { madicRecipientGreeting } from "../shared/madic-recipient.ts";
 import { madicEmailHtml } from "../shared/madic-email-template.ts";
 import { createClient } from "npm:@supabase/supabase-js@2";
@@ -147,20 +148,59 @@ async function processJob(job: Job): Promise<void> {
       await finish(job, "skipped", "Adresse courriel absente");
       return;
     }
-    const greeting = madicRecipientGreeting(account.user);
+    const language = madicRecipientLanguage(account.user);
+    const greeting = madicRecipientGreeting(account.user, language);
     // Numero de dossier: privilegier sa reference lisible si disponible.
     let dossierNumber = String(c.dossier_id || "");
     if (c.dossier_id) {
-      const { data: dossier } = await db.from("madic_dossiers")
-        .select("*").eq("id", c.dossier_id).maybeSingle();
+      const { data: dossier } = await db
+        .from("madic_dossiers")
+        .select("*")
+        .eq("id", c.dossier_id)
+        .maybeSingle();
       if (dossier) {
         const d = dossier as Record<string, unknown>;
-        dossierNumber = String(d.numero_dossier || d.reference || d.numero || d.dossier_number || dossierNumber);
+        dossierNumber = String(
+          d.numero_dossier ||
+            d.reference ||
+            d.numero ||
+            d.dossier_number ||
+            dossierNumber,
+        );
       }
     }
-    const dossierLabel = dossierNumber ? `Dossier ${dossierNumber}` : `Contrat ${c.id}`;
+    const dossierLabel = dossierNumber
+      ? `${language === "en" ? "File" : "Dossier"} ${dossierNumber}`
+      : `${language === "en" ? "Contract" : "Contrat"} ${c.id}`;
     const desc = descriptions[job.event_type];
-    const message = isClient ? desc.client : desc.cric;
+    const english: Record<
+      EventType,
+      { title: string; client: string; cric: string }
+    > = {
+      client_to_sign: {
+        title: "Contract available for signature",
+        client:
+          "Your contract is available in your secure portal. Please review and sign it.",
+        cric: "The contract has been published and sent to the client for signature.",
+      },
+      client_signed: {
+        title: "Client signature recorded",
+        client: "Your contract signature has been recorded.",
+        cric: "The client signed the contract. Please check your professional portal.",
+      },
+      cric_signed: {
+        title: "RCIC signature recorded",
+        client: "The RCIC has signed your professional contract.",
+        cric: "Your contract signature has been recorded.",
+      },
+      contract_finalized: {
+        title: "Professional contract finalized",
+        client: "Your professional contract has been signed by both parties.",
+        cric: "The professional contract has been signed by both parties.",
+      },
+    };
+    const localized = language === "en" ? english[job.event_type] : desc;
+    const message = isClient ? localized.client : localized.cric;
     const cabinet = String(s.name || "MADIC Portail");
     const url =
       job.event_type === "client_to_sign" && isClient
@@ -171,15 +211,26 @@ async function processJob(job: Job): Promise<void> {
     const payload = {
       from: env("MADIC_EMAIL_FROM"),
       to: [account.user.email],
-      subject: `MADIC | ${desc.title} | ${dossierLabel}`,
-      text: `${greeting},\n\n${dossierLabel}\n\n${desc.title}\n\n${message}\n\nConsultez votre espace MADIC : ${url}`,
+      subject: `MADIC | ${localized.title} | ${dossierLabel}`,
+      text: `${greeting},\n\n${dossierLabel}\n\n${localized.title}\n\n${message}\n\n${language === "en" ? "Access your MADIC portal" : "Consultez votre espace MADIC"} : ${url}`,
       html: madicEmailHtml({
-        title: desc.title,
+        title: localized.title,
         greeting,
-        details: [{ label: "Dossier", value: dossierNumber || c.id }],
+        details: [
+          {
+            label: language === "en" ? "File" : "Dossier",
+            value: dossierNumber || c.id,
+          },
+        ],
         cabinet,
         paragraphs: [message],
-        action: { label: "Accéder à mon espace MADIC", url },
+        action: {
+          label:
+            language === "en"
+              ? "Access my MADIC portal"
+              : "Accéder à mon espace MADIC",
+          url,
+        },
       }),
     };
     attempted = true;

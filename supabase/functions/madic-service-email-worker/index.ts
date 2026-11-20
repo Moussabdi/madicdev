@@ -1,3 +1,4 @@
+import { madicRecipientLanguage } from "../shared/madic-language.ts";
 import { madicEmailHtml } from "../shared/madic-email-template.ts";
 import { madicRecipientGreeting } from "../shared/madic-recipient.ts";
 import { createClient } from "npm:@supabase/supabase-js@2";
@@ -103,6 +104,20 @@ async function finish(
 }
 
 async function sendReceipt(job: ReceiptJob, email: string): Promise<void> {
+  const title = "Demande CRIC reçue / RCIC application received";
+  const greeting = "Bonjour";
+  const paragraphs = [
+    "Nous avons bien reçu votre demande d’accès au portail MADIC. Votre permis a été vérifié dans le registre officiel du CCIC.",
+    "Notre équipe examinera les renseignements fournis afin de valider votre identité. Si votre demande est approuvée, vous recevrez un second courriel vous invitant à poursuivre votre inscription au portail MADIC.",
+    "Merci pour votre patience pendant que nous validons les renseignements fournis.",
+    "L’équipe MADIC",
+    "Hello,",
+    "We have received your MADIC Portal access application. Your licence was verified in the official CICC register.",
+    "Our team will review the information you provided to verify your identity. If your application is approved, you will receive a separate email inviting you to continue your MADIC Portal registration.",
+    "Thank you for your patience while we verify your information.",
+    "The MADIC Team",
+  ];
+
   const response = await fetch("https://api.resend.com/emails", {
     method: "POST",
     signal: AbortSignal.timeout(15000),
@@ -114,19 +129,14 @@ async function sendReceipt(job: ReceiptJob, email: string): Promise<void> {
     body: JSON.stringify({
       from: env("MADIC_EMAIL_FROM"),
       to: [email],
-      subject: "MADIC | Demande CRIC reçue / RCIC application received",
-      text: [
-        "Bonjour,",
-        "Nous avons bien reçu votre demande d’accès au portail MADIC. Votre permis a été vérifié dans le registre officiel du CCIC.",
-        "Notre équipe examinera les renseignements fournis afin de valider votre identité. Si votre demande est approuvée, vous recevrez un second courriel vous invitant à poursuivre votre inscription au portail MADIC.",
-        "Merci pour votre patience pendant que nous validons les renseignements fournis.",
-        "L’équipe MADIC",
-        "Hello,",
-        "We have received your MADIC Portal access application. Your licence was verified in the official CICC register.",
-        "Our team will review the information you provided to verify your identity. If your application is approved, you will receive a separate email inviting you to continue your MADIC Portal registration.",
-        "Thank you for your patience while we verify your information.",
-        "The MADIC Team",
-      ].join("\n\n"),
+      subject: `MADIC | ${title}`,
+      text: [`${greeting},`, ...paragraphs].join("\n\n"),
+      html: madicEmailHtml({
+        title,
+        greeting,
+        cabinet: "Administration MADIC",
+        paragraphs,
+      }),
     }),
   });
   if (!response.ok) {
@@ -202,8 +212,19 @@ async function send(job: Job | ReceiptJob): Promise<void> {
       return;
     }
 
-    const greeting = madicRecipientGreeting(account.user);
-    const title = names[job.event_type];
+    const language = madicRecipientLanguage(account.user);
+    const greeting = madicRecipientGreeting(account.user, language);
+    const englishNames: Record<string, string> = {
+      created: "New service request",
+      status_received: "Request received",
+      status_reviewing: "Request under review",
+      status_responded: "Response sent",
+      status_closed: "Request closed",
+    };
+    const title =
+      language === "en"
+        ? englishNames[job.event_type] || names[job.event_type]
+        : names[job.event_type];
 
     if (!title) {
       await finish(job, "skipped", "Événement inconnu");
@@ -213,9 +234,14 @@ async function send(job: Job | ReceiptJob): Promise<void> {
     const isClient = job.recipient_user_id === job.client_id;
     const cabinet = String(space.name || "MADIC Portail");
 
-    const message = isClient
-      ? "Une mise à jour concernant votre demande de service est disponible dans votre espace sécurisé."
-      : "Une activité concernant une demande de service de votre cabinet est disponible dans votre espace professionnel.";
+    const message =
+      language === "en"
+        ? isClient
+          ? "An update about your service request is available in your secure portal."
+          : "An activity concerning an office service request is available in your professional portal."
+        : isClient
+          ? "Une mise à jour concernant votre demande de service est disponible dans votre espace sécurisé."
+          : "Une activité concernant une demande de service de votre cabinet est disponible dans votre espace professionnel.";
 
     const emailHtml = madicEmailHtml({
       greeting,
@@ -237,7 +263,9 @@ async function send(job: Job | ReceiptJob): Promise<void> {
         subject: `MADIC | ${title}`,
         text:
           `${greeting},\n\n${title}\n\n${message}\n\n` +
-          "Connectez-vous à MADIC Portail pour consulter les informations à jour.",
+          (language === "en"
+            ? "Sign in to MADIC PORTAL to view the latest information."
+            : "Connectez-vous à MADIC Portail pour consulter les informations à jour."),
         html: emailHtml,
       }),
     });

@@ -46,7 +46,8 @@ function invitationEmail(input: {
 function invitationAction(url: string, label: string): string {
   return `<p style="text-align:center;margin:28px 0"><a href="${esc(url)}" style="display:inline-block;background:#174b78;color:#fff;padding:13px 24px;text-decoration:none;border-radius:6px;font-weight:bold">${esc(label)}</a></p>`;
 }
-const isUuid = (value: unknown): value is string => typeof value === "string" &&
+const isUuid = (value: unknown): value is string =>
+  typeof value === "string" &&
   /^[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}$/i.test(value);
 Deno.serve(async (req: Request): Promise<Response> => {
   const origin = req.headers.get("Origin") || "";
@@ -92,22 +93,49 @@ Deno.serve(async (req: Request): Promise<Response> => {
     }
     if (payload.action === "guest_download") {
       const { grant_id: grantId, bucket, path } = payload;
-      if (!isUuid(grantId) || !["madic-documents", "madic-message-attachments", "madic-profile-avatars"].includes(String(bucket)) ||
-          typeof path !== "string" || !path || path.length > 1024 ||
-          !path.split("/").every(segment => segment && segment !== "." && segment !== ".." && !/[\\%]/.test(segment))) {
+      if (
+        !isUuid(grantId) ||
+        ![
+          "madic-documents",
+          "madic-message-attachments",
+          "madic-profile-avatars",
+        ].includes(String(bucket)) ||
+        typeof path !== "string" ||
+        !path ||
+        path.length > 1024 ||
+        !path
+          .split("/")
+          .every(
+            (segment) =>
+              segment &&
+              segment !== "." &&
+              segment !== ".." &&
+              !/[\\%]/.test(segment),
+          )
+      ) {
         return reply({ error: "Fichier invalide." }, 400);
       }
       const { data: permitted, error } = await userDb.rpc("madic_guest_file", {
-        p_grant: grantId, p_bucket: bucket, p_path: path,
+        p_grant: grantId,
+        p_bucket: bucket,
+        p_path: path,
       });
-      if (error || permitted !== true) return reply({ error: "Fichier inaccessible." }, 403);
+      if (error || permitted !== true)
+        return reply({ error: "Fichier inaccessible." }, 403);
       const serviceKey = env("SUPABASE_SERVICE_ROLE_KEY");
       const objectPath = path.split("/").map(encodeURIComponent).join("/");
-      const file = await fetch(`${env("SUPABASE_URL")}/storage/v1/object/authenticated/${bucket}/${objectPath}`, {
-        headers: { apikey: serviceKey, Authorization: `Bearer ${serviceKey}` },
-        redirect: "error",
-      });
-      if (!file.ok || !file.body) return reply({ error: "Fichier indisponible." }, 404);
+      const file = await fetch(
+        `${env("SUPABASE_URL")}/storage/v1/object/authenticated/${bucket}/${objectPath}`,
+        {
+          headers: {
+            apikey: serviceKey,
+            Authorization: `Bearer ${serviceKey}`,
+          },
+          redirect: "error",
+        },
+      );
+      if (!file.ok || !file.body)
+        return reply({ error: "Fichier indisponible." }, 404);
       return new Response(file.body, {
         headers: {
           ...headers,
@@ -144,16 +172,30 @@ Deno.serve(async (req: Request): Promise<Response> => {
     if (spaceError || !space || space.access_status !== "active")
       return reply({ error: "Espace CRIC inactif ou inaccessible." }, 403);
     if (payload.action === "guest_invite") {
-      if (!isUuid(payload.client_id)) return reply({ error: "Client invalide." }, 400);
+      if (!isUuid(payload.client_id))
+        return reply({ error: "Client invalide." }, 400);
       const resendKey = env("RESEND_API_KEY");
       const sender = env("MADIC_EMAIL_FROM");
-      const { data: guestToken, error } = await userDb.rpc("madic_guest_create", {
-        p_space: spaceId, p_client: payload.client_id, p_email: email,
-      });
-      if (error || typeof guestToken !== "string" || !/^[a-f0-9]{64}$/.test(guestToken)) {
-        return reply({ error: "Impossible de créer l’invitation." }, error?.code === "23505" ? 409 : 400);
+      const { data: guestToken, error } = await userDb.rpc(
+        "madic_guest_create",
+        {
+          p_space: spaceId,
+          p_client: payload.client_id,
+          p_email: email,
+        },
+      );
+      if (
+        error ||
+        typeof guestToken !== "string" ||
+        !/^[a-f0-9]{64}$/.test(guestToken)
+      ) {
+        return reply(
+          { error: "Impossible de créer l’invitation." },
+          error?.code === "23505" ? 409 : 400,
+        );
       }
-      const portalOrigin = publicPortalOrigins.get(origin) ?? "https://madic.ca";
+      const portalOrigin =
+        publicPortalOrigins.get(origin) ?? "https://madic.ca";
       const url = new URL("/invitation-client-cric.html", portalOrigin);
       url.searchParams.set("invite", guestToken);
       const title = "Accès invité / Guest access";
@@ -176,20 +218,37 @@ Deno.serve(async (req: Request): Promise<Response> => {
         // Le gabarit affiche le nom MADIC si le logo du cabinet est inaccessible.
       }
       const invitationFr = `${cabinet} vous invite à consulter un dossier MADIC en lecture seule.`;
-      const instructionsFr = "Utilisez votre propre compte associé à l’adresse qui reçoit ce courriel. Cette invitation est valable pendant 7 jours.";
-      const privacyFr = "Ce lien est personnel et confidentiel. Si vous n’attendiez pas cette invitation, vous pouvez ignorer ce message.";
+      const instructionsFr =
+        "Utilisez votre propre compte associé à l’adresse qui reçoit ce courriel. Cette invitation est valable pendant 7 jours.";
+      const privacyFr =
+        "Ce lien est personnel et confidentiel. Si vous n’attendiez pas cette invitation, vous pouvez ignorer ce message.";
       const invitationEn = `${cabinet} has invited you to view a MADIC client file in read-only mode.`;
-      const instructionsEn = "Use your own account associated with the email address that received this message. This invitation is valid for 7 days.";
-      const privacyEn = "This link is personal and confidential. If you were not expecting this invitation, you can ignore this message.";
+      const instructionsEn =
+        "Use your own account associated with the email address that received this message. This invitation is valid for 7 days.";
+      const privacyEn =
+        "This link is personal and confidential. If you were not expecting this invitation, you can ignore this message.";
       const action = "Accepter l’invitation / Accept invitation";
-      const footer = "Invitation envoyée via MADIC PORTAIL / Invitation sent via MADIC PORTAL";
+      const footer =
+        "Invitation envoyée via MADIC PORTAIL / Invitation sent via MADIC PORTAL";
       const text = [
-        "Bonjour,", invitationFr, instructionsFr, privacyFr,
-        "Hello,", invitationEn, instructionsEn, privacyEn,
-        action, url.href, cabinet, footer,
+        "Bonjour,",
+        invitationFr,
+        instructionsFr,
+        privacyFr,
+        "Hello,",
+        invitationEn,
+        instructionsEn,
+        privacyEn,
+        action,
+        url.href,
+        cabinet,
+        footer,
       ].join("\n\n");
       const html = invitationEmail({
-        title, cabinet, logoUrl, footer,
+        title,
+        cabinet,
+        logoUrl,
+        footer,
         content: `<div lang="fr"><p>Bonjour,</p><p>${esc(invitationFr)}</p><p>${esc(instructionsFr)}</p><p>${esc(privacyFr)}</p></div>
           <div lang="en" style="border-top:1px solid #e4e9f1;margin-top:22px;padding-top:8px"><p>Hello,</p><p>${esc(invitationEn)}</p><p>${esc(instructionsEn)}</p><p>${esc(privacyEn)}</p></div>
           ${invitationAction(url.href, action)}
@@ -199,8 +258,17 @@ Deno.serve(async (req: Request): Promise<Response> => {
       try {
         const response = await fetch("https://api.resend.com/emails", {
           method: "POST",
-          headers: { Authorization: `Bearer ${resendKey}`, "Content-Type": "application/json" },
-          body: JSON.stringify({ from: sender, to: [email], subject: `MADIC | ${title}`, text, html }),
+          headers: {
+            Authorization: `Bearer ${resendKey}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            from: sender,
+            to: [email],
+            subject: `MADIC | ${title}`,
+            text,
+            html,
+          }),
         });
         sent = response.ok;
       } catch {

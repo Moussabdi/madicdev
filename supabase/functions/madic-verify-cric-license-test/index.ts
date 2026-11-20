@@ -194,14 +194,12 @@ Deno.serve(async (req) => {
           422,
         );
       const token = crypto.randomUUID() + crypto.randomUUID();
-      const { error } = await admin
-        .from("madic_cric_prevalidations")
-        .insert({
-          full_name: name,
-          license_number: license,
-          lookup_token_hash: await hash(token),
-          status: "pending",
-        });
+      const { error } = await admin.from("madic_cric_prevalidations").insert({
+        full_name: name,
+        license_number: license,
+        lookup_token_hash: await hash(token),
+        status: "pending",
+      });
       if (error) throw error;
       return reply({
         verified: true,
