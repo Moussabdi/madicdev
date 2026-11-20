@@ -67,3 +67,30 @@ ALTER TABLE public.madic_cric_prevalidation_decisions ENABLE ROW LEVEL SECURITY;
 REVOKE ALL ON public.madic_cric_prevalidation_decisions FROM PUBLIC, anon, authenticated;
 REVOKE ALL ON FUNCTION public.madic_admin_review_cric_prevalidation(uuid,boolean,text) FROM PUBLIC, anon;
 GRANT EXECUTE ON FUNCTION public.madic_admin_review_cric_prevalidation(uuid,boolean,text) TO authenticated;
+
+-- Courriel professionnel enregistre : lecture reservee au super administrateur.
+-- La fonction d'invitation ne doit jamais accepter un destinataire arbitraire.
+CREATE OR REPLACE FUNCTION public.madic_admin_cric_invitation_email(p_prevalidation uuid)
+RETURNS text
+LANGUAGE plpgsql STABLE SECURITY DEFINER SET search_path = '' AS $$
+DECLARE
+  v_email text;
+BEGIN
+  IF auth.uid() IS NULL OR NOT public.madic_is_super_admin() THEN
+    RAISE EXCEPTION 'Acces reserve au super administrateur' USING ERRCODE = '42501';
+  END IF;
+  SELECT lower(btrim(p.professional_email)) INTO v_email
+  FROM public.madic_cric_prevalidations p
+  WHERE p.id = p_prevalidation
+    AND p.registry_verified IS TRUE
+    AND p.status IN ('pending', 'approved')
+    AND p.expires_at > now();
+  IF v_email IS NULL OR length(v_email) > 254
+     OR v_email !~ '^[^[:space:]@]+@[^[:space:]@]+\.[^[:space:]@]+$' THEN
+    RAISE EXCEPTION 'Courriel professionnel enregistre indisponible' USING ERRCODE = '22023';
+  END IF;
+  RETURN v_email;
+END;
+$$;
+REVOKE ALL ON FUNCTION public.madic_admin_cric_invitation_email(uuid) FROM PUBLIC, anon;
+GRANT EXECUTE ON FUNCTION public.madic_admin_cric_invitation_email(uuid) TO authenticated;

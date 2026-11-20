@@ -715,10 +715,10 @@
           }
           if (invitation?.delivered_at) statusLabel(actions,"Envoi accepté par le service de courriel. ","Accepted by the email service. ");
           adminAction(actions,invitation ? "Renvoyer l’invitation" : "Inviter le CRIC",invitation ? "Resend invitation" : "Invite RCIC",async () => {
-            const email = prompt(language === "en" ? "Verified professional email address:" : "Adresse de courriel professionnelle vérifiée :", invitation?.email || "");
-            if (email === null) return;
-            if (!confirm(language === "en" ? "Send a personal invitation to " + email.trim() + "?" : "Envoyer une invitation personnelle à " + email.trim() + " ?")) return;
-            const { data, error } = await db.functions.invoke("madic-invite-cric",{body:{prevalidation_id:item.id,email:email.trim()}});
+            const { data: registeredEmail, error: recipientError } = await db.rpc("madic_admin_cric_invitation_email", {p_prevalidation:item.id});
+            if (recipientError || !registeredEmail) throw new Error(language === "en" ? "Registered professional email unavailable." : "Adresse professionnelle enregistrée indisponible.");
+            if (!confirm(language === "en" ? "Send a personal invitation to " + registeredEmail + "?" : "Envoyer une invitation personnelle à " + registeredEmail + " ?")) return;
+            const { data, error } = await db.functions.invoke("madic-invite-cric",{body:{prevalidation_id:item.id}});
             if (error || !data?.accepted) {
               const code = error?.context?.status;
               throw new Error(language === "en" ? "Invitation could not be sent" + (code ? " (" + code + ")." : ".") : "Envoi de l’invitation impossible" + (code ? " (" + code + ")." : "."));
