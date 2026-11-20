@@ -84,6 +84,7 @@ Deno.serve(async (request) => {
         error.code === "42501" ? 403 : 409,
       );
     const link = new URL("/inscription-cric.html", origin);
+    link.searchParams.set("lang", language);
     link.hash = new URLSearchParams({ invitation: token }).toString();
     const subject = en
       ? "MADIC | Continue your RCIC registration"

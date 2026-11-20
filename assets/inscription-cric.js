@@ -607,18 +607,34 @@
   };
   const supported = new Set(["fr", "en"]);
   let language = "fr";
-  try {
-    const stored = localStorage.getItem("madic_ui_language");
-    if (supported.has(stored)) language = stored;
-  } catch {}
+  // An explicit invitation URL language takes priority over browser preferences.
+  const urlLanguage = new URLSearchParams(location.search).get("lang");
+  if (supported.has(urlLanguage)) {
+    language = urlLanguage;
+  } else {
+    try {
+      const stored = localStorage.getItem("madic_ui_language");
+      if (supported.has(stored)) language = stored;
+    } catch {}
+  }
   function apply(lang) {
     language = supported.has(lang) ? lang : "fr";
     document.documentElement.lang = language === "fr" ? "fr-CA" : "en-CA";
-    const pageTitle = document.querySelector("title[data-i18n]");
+    const pageTitle = document.querySelector(
+      "title[data-i18n], title[data-fr][data-en]",
+    );
     if (pageTitle) {
       const t = dict[pageTitle.dataset.i18n];
       if (t) document.title = t[language];
+      else if (pageTitle.dataset[language])
+        document.title = pageTitle.dataset[language];
     }
+    // Keep the shared footer in sync when the visitor changes FR/EN.
+    document
+      .querySelectorAll(".madic-footer [data-fr][data-en]")
+      .forEach((el) => {
+        el.textContent = el.dataset[language];
+      });
     document.querySelectorAll("[data-i18n]").forEach((el) => {
       const t = dict[el.getAttribute("data-i18n")];
       if (t && t[language] !== undefined) el.textContent = t[language];
@@ -794,7 +810,14 @@
       checked(await db.rpc("madic_claim_cric_onboarding", { p_token: token }));
       localStorage.removeItem(tokenKey);
       token = null;
-      history.replaceState(null, "", location.pathname + "?continuer=1");
+      const next = new URL(location.href);
+      next.searchParams.set("continuer", "1");
+      next.searchParams.set(
+        "lang",
+        document.documentElement.lang.startsWith("en") ? "en" : "fr",
+      );
+      next.hash = "";
+      history.replaceState(null, "", next.pathname + next.search);
     }
     const step = checked(await db.rpc("madic_my_cric_identity"));
     resume.hidden = true;
@@ -879,10 +902,13 @@
           );
           return;
         }
-        const emailRedirectTo = new URL(
-          "/inscription-cric.html?continuer=1",
-          location.origin,
-        ).href;
+        const redirect = new URL("/inscription-cric.html", location.origin);
+        redirect.searchParams.set("continuer", "1");
+        redirect.searchParams.set(
+          "lang",
+          document.documentElement.lang.startsWith("en") ? "en" : "fr",
+        );
+        const emailRedirectTo = redirect.href;
         result = await db.auth.signUp({
           email,
           password,
