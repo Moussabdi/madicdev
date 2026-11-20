@@ -42,20 +42,31 @@ Deno.serve(async (request) => {
   try {
     const body = await request.json();
     const id = String(body.prevalidation_id || "");
-    const email = String(body.email || "")
-      .trim()
-      .toLowerCase();
-    if (
-      !/^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i.test(id) ||
-      email.length > 254 ||
-      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
-    ) {
-      return reply({ error: "Invalid email or reference" }, 400);
+    const language: "fr" | "en" = body.language === "en" ? "en" : "fr";
+    const en = language === "en";
+    if (!/^[0-9a-f]{8}-(?:[0-9a-f]{4}-){3}[0-9a-f]{12}$/i.test(id)) {
+      return reply({ error: "Invalid reference" }, 400);
     }
     const scoped = createClient(url, anonKey, {
       global: { headers: { Authorization: bearer } },
       auth: { persistSession: false },
     });
+    const recipient = await scoped.rpc("madic_admin_cric_invitation_email", {
+      p_prevalidation: id,
+    });
+    if (recipient.error || typeof recipient.data !== "string") {
+      return reply(
+        {
+          error: "Verified professional email unavailable",
+          code: recipient.error?.code,
+        },
+        409,
+      );
+    }
+    const email = recipient.data.trim().toLowerCase();
+    if (email.length > 254 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      return reply({ error: "Invalid registered email" }, 409);
+    }
     const token = hex(crypto.getRandomValues(new Uint8Array(32)));
     const digest = hex(
       new Uint8Array(
@@ -74,12 +85,20 @@ Deno.serve(async (request) => {
       );
     const link = new URL("/inscription-cric.html", origin);
     link.hash = new URLSearchParams({ invitation: token }).toString();
-    const subject = "MADIC | Poursuivre votre inscription CRIC";
-    const paragraphs = [
-      "MADIC vous invite à poursuivre votre inscription comme consultant réglementé en immigration canadienne.",
-      "Utilisez cette adresse courriel pour vous connecter ou créer votre compte, puis transmettez une pièce d’identité avec photo pour examen.",
-      "Ce lien est personnel. Vous pourrez consulter votre dossier d’inscription après avoir transmis votre pièce.",
-    ];
+    const subject = en
+      ? "MADIC | Continue your RCIC registration"
+      : "MADIC | Poursuivre votre inscription CRIC";
+    const paragraphs = en
+      ? [
+          "MADIC invites you to continue your registration as a Regulated Canadian Immigration Consultant.",
+          "Use this email address to sign in or create your account, then submit a photo ID for review.",
+          "This link is personal. You will be able to view your registration file after submitting your identification.",
+        ]
+      : [
+          "MADIC vous invite à poursuivre votre inscription comme consultant réglementé en immigration canadienne.",
+          "Utilisez cette adresse courriel pour vous connecter ou créer votre compte, puis transmettez une pièce d’identité avec photo pour examen.",
+          "Ce lien est personnel. Vous pourrez consulter votre dossier d’inscription après avoir transmis votre pièce.",
+        ];
     const result = await fetch("https://api.resend.com/emails", {
       method: "POST",
       headers: {
@@ -94,9 +113,10 @@ Deno.serve(async (request) => {
         text: paragraphs.join("\n\n") + "\n\n" + link.href,
         html: madicEmailHtml({
           title: subject,
-          cabinet: "Administration MADIC",
+          cabinet: en ? "MADIC Administration" : "Administration MADIC",
+          language,
           paragraphs,
-          action: { label: "Poursuivre l’inscription", url: link.href },
+          action: { label: en ? "Continue registration" : "Poursuivre l’inscription", url: link.href },
         }),
       }),
       signal: AbortSignal.timeout(12000),

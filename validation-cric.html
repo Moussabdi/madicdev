@@ -179,6 +179,19 @@
               </button>
             </form>
           </dialog>
+          <dialog id="cricInvitationConfirm" class="madic-cric-invitation-dialog" aria-labelledby="cricInvitationConfirmTitle" aria-describedby="cricInvitationConfirmDescription">
+            <form method="dialog" class="madic-cric-invitation-box">
+              <button type="submit" class="madic-cric-invitation-close" data-cric-invite-close aria-label="Fermer">×</button>
+              <div class="madic-cric-invitation-brand">MADIC</div>
+              <h2 id="cricInvitationConfirmTitle" data-cric-invite-title>Confirmer l’invitation CRIC</h2>
+              <p id="cricInvitationConfirmDescription" data-cric-invite-description>Envoyer une invitation personnelle d’inscription à l’adresse professionnelle suivante ?</p>
+              <p class="madic-cric-invitation-email" data-cric-invite-email></p>
+              <div class="madic-cric-invitation-actions">
+                <button type="submit" class="secondary" data-cric-invite-cancel>Annuler</button>
+                <button type="button" data-cric-invite-send>Envoyer l’invitation</button>
+              </div>
+            </form>
+          </dialog>
           <p aria-live="polite" id="cricMessage" role="status"></p>
           <section class="panel">
             <div class="validation-table-scroll">

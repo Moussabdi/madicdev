@@ -684,6 +684,39 @@
       }
     })();
   }
+  // Confirmation MADIC bilingue pour l'invitation professionnelle.
+  function confirmCricInvitation(email) {
+    const dialog = document.getElementById("cricInvitationConfirm");
+    if (!dialog || typeof dialog.showModal !== "function") {
+      return Promise.resolve(false);
+    }
+    const title = dialog.querySelector("[data-cric-invite-title]");
+    const description = dialog.querySelector("[data-cric-invite-description]");
+    const emailElement = dialog.querySelector("[data-cric-invite-email]");
+    const send = dialog.querySelector("[data-cric-invite-send]");
+    const cancel = dialog.querySelector("[data-cric-invite-cancel]");
+    const en = language === "en";
+    title.textContent = en ? "Confirm RCIC invitation" : "Confirmer l’invitation CRIC";
+    description.textContent = en
+      ? "Send a personal registration invitation to the following professional email address?"
+      : "Envoyer une invitation personnelle d’inscription à l’adresse professionnelle suivante ?";
+    emailElement.textContent = email;
+    send.textContent = en ? "Send invitation" : "Envoyer l’invitation";
+    cancel.textContent = en ? "Cancel" : "Annuler";
+    dialog.querySelector("[data-cric-invite-close]").setAttribute("aria-label", en ? "Close" : "Fermer");
+    return new Promise((resolve) => {
+      let confirmed = false;
+      const onSend = () => { confirmed = true; dialog.close(); };
+      const onClose = () => {
+        send.removeEventListener("click", onSend);
+        dialog.removeEventListener("close", onClose);
+        resolve(confirmed);
+      };
+      send.addEventListener("click", onSend);
+      dialog.addEventListener("close", onClose);
+      dialog.showModal();
+    });
+  }
   function adminAction(cell, fr, en, task, report) {
     const button = document.createElement("button");
     button.type = "button";
@@ -849,19 +882,10 @@
                     ? "Registered professional email unavailable."
                     : "Adresse professionnelle enregistrée indisponible.",
                 );
-              if (
-                !confirm(
-                  language === "en"
-                    ? "Send a personal invitation to " + registeredEmail + "?"
-                    : "Envoyer une invitation personnelle à " +
-                        registeredEmail +
-                        " ?",
-                )
-              )
-                return;
+              if (!(await confirmCricInvitation(registeredEmail))) return;
               const { data, error } = await db.functions.invoke(
                 "madic-invite-cric",
-                { body: { prevalidation_id: item.id } },
+                { body: { prevalidation_id: item.id, language } },
               );
               if (error || !data?.accepted) {
                 const code = error?.context?.status;
