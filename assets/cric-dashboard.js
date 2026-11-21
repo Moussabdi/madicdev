@@ -165,7 +165,8 @@
           canManage = allowed === true;
         }
         if (canManage) {
-          if (application?.status === "approved") void window.madicTrackRadarSession?.(db,"cric");
+          if (application?.status === "approved")
+            void window.madicTrackRadarSession?.(db, "cric");
           if ($("cricEvaluationsCard")) $("cricEvaluationsCard").hidden = false;
           if ($("cricAppointmentsCard"))
             $("cricAppointmentsCard").hidden = false;
@@ -2126,7 +2127,6 @@
   else ready();
 })();
 
-
 /* Garder la page courante visible sans déplacer le contenu verticalement. */
 (() => {
   const narrowMenu = window.matchMedia("(max-width: 850px)");
@@ -2148,7 +2148,9 @@
   };
 
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", revealCurrentPage, { once: true });
+    document.addEventListener("DOMContentLoaded", revealCurrentPage, {
+      once: true,
+    });
   } else {
     revealCurrentPage();
   }
@@ -2164,7 +2166,9 @@
 (() => {
   const phone = window.matchMedia("(max-width: 650px)");
   const alignAccountLinks = () => {
-    const links = document.querySelector(".madic-unified-content > header > nav.toplinks");
+    const links = document.querySelector(
+      ".madic-unified-content > header > nav.toplinks",
+    );
     const bell = links?.querySelector(".madic-top-notification");
     const signout = links?.querySelector(".madic-header-signout");
     if (!bell || !signout) return;

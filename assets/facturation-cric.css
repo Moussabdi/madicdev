@@ -579,10 +579,9 @@ code {
 }
 .madic-service-row {
   display: grid;
-  grid-template-columns: minmax(180px, 2fr) minmax(85px, 0.7fr) minmax(
-      125px,
-      1fr
-    ) minmax(125px, 1fr) auto;
+  grid-template-columns:
+    minmax(180px, 2fr) minmax(85px, 0.7fr) minmax(125px, 1fr)
+    minmax(125px, 1fr) auto;
   gap: 14px;
   align-items: center;
   padding: 14px 16px;
@@ -6084,14 +6083,15 @@ body[data-page="facturation-cric"] #madicInvoiceDatePanel .madic-cal-grid span {
   word-break: normal;
 }
 
-
 /* Navigation professionnelle CRIC sur écran étroit. */
 @media screen and (max-width: 850px) {
   body.madic-unified[data-page="facturation-cric"] .madic-unified-layout {
     grid-template-columns: minmax(0, 1fr) !important;
   }
 
-  body.madic-unified[data-page="facturation-cric"] .madic-unified-layout > .madic-unified-sidebar {
+  body.madic-unified[data-page="facturation-cric"]
+    .madic-unified-layout
+    > .madic-unified-sidebar {
     position: relative !important;
     box-sizing: border-box;
     width: 100% !important;
@@ -6101,7 +6101,10 @@ body[data-page="facturation-cric"] #madicInvoiceDatePanel .madic-cal-grid span {
     gap: 10px !important;
   }
 
-  body.madic-unified[data-page="facturation-cric"] .madic-unified-layout > .madic-unified-sidebar > nav {
+  body.madic-unified[data-page="facturation-cric"]
+    .madic-unified-layout
+    > .madic-unified-sidebar
+    > nav {
     display: flex !important;
     flex-flow: row nowrap !important;
     justify-content: flex-start !important;
@@ -6116,7 +6119,11 @@ body[data-page="facturation-cric"] #madicInvoiceDatePanel .madic-cal-grid span {
     box-sizing: border-box;
   }
 
-  body.madic-unified[data-page="facturation-cric"] .madic-unified-layout > .madic-unified-sidebar > nav > a {
+  body.madic-unified[data-page="facturation-cric"]
+    .madic-unified-layout
+    > .madic-unified-sidebar
+    > nav
+    > a {
     flex: 0 0 auto !important;
     min-height: 36px !important;
     margin: 0 !important;
@@ -6125,14 +6132,21 @@ body[data-page="facturation-cric"] #madicInvoiceDatePanel .madic-cal-grid span {
     transform: none !important;
   }
 
-  body.madic-unified[data-page="facturation-cric"] .madic-unified-sidebar > nav > a.madic-v2-group-start:not([aria-current="page"]) {
+  body.madic-unified[data-page="facturation-cric"]
+    .madic-unified-sidebar
+    > nav
+    > a.madic-v2-group-start:not([aria-current="page"]) {
     border-top-color: transparent !important;
   }
 }
 
 @media screen and (max-width: 650px) {
-  body.madic-unified[data-page="facturation-cric"] .madic-unified-content > header,
-  body.madic-unified[data-page="facturation-cric"] .madic-unified-content > header.madic-cric-standard-header {
+  body.madic-unified[data-page="facturation-cric"]
+    .madic-unified-content
+    > header,
+  body.madic-unified[data-page="facturation-cric"]
+    .madic-unified-content
+    > header.madic-cric-standard-header {
     display: flex !important;
     flex-direction: column !important;
     align-items: flex-start !important;
@@ -6145,13 +6159,22 @@ body[data-page="facturation-cric"] #madicInvoiceDatePanel .madic-cal-grid span {
     gap: 8px !important;
   }
 
-  body.madic-unified[data-page="facturation-cric"] .madic-unified-content > header > .brand {
+  body.madic-unified[data-page="facturation-cric"]
+    .madic-unified-content
+    > header
+    > .brand {
     margin: 0 !important;
     padding: 0 !important;
   }
 
-  body.madic-unified[data-page="facturation-cric"] .madic-unified-content > header > nav.toplinks,
-  body.madic-unified[data-page="facturation-cric"] .madic-unified-content > header.madic-cric-standard-header > nav.toplinks {
+  body.madic-unified[data-page="facturation-cric"]
+    .madic-unified-content
+    > header
+    > nav.toplinks,
+  body.madic-unified[data-page="facturation-cric"]
+    .madic-unified-content
+    > header.madic-cric-standard-header
+    > nav.toplinks {
     display: flex !important;
     justify-content: flex-start !important;
     align-items: center !important;
@@ -6162,7 +6185,11 @@ body[data-page="facturation-cric"] #madicInvoiceDatePanel .madic-cal-grid span {
     gap: 8px !important;
   }
 
-  body.madic-unified[data-page="facturation-cric"] .madic-unified-content > header > nav.toplinks > button.madic-header-signout:is(#logout, #cricLogout) {
+  body.madic-unified[data-page="facturation-cric"]
+    .madic-unified-content
+    > header
+    > nav.toplinks
+    > button.madic-header-signout:is(#logout, #cricLogout) {
     justify-content: flex-start !important;
     margin-inline-start: 0 !important;
     padding-inline-start: 0 !important;

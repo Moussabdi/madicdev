@@ -1911,7 +1911,6 @@ document.getElementById("cricLogout")?.addEventListener("click", async () => {
   else setup();
 })();
 
-
 /* Garder la page courante visible sans déplacer le contenu verticalement. */
 (() => {
   const narrowMenu = window.matchMedia("(max-width: 850px)");
@@ -1933,7 +1932,9 @@ document.getElementById("cricLogout")?.addEventListener("click", async () => {
   };
 
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", revealCurrentPage, { once: true });
+    document.addEventListener("DOMContentLoaded", revealCurrentPage, {
+      once: true,
+    });
   } else {
     revealCurrentPage();
   }

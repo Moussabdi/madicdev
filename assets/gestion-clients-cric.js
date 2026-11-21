@@ -268,9 +268,15 @@
     $("workspace").hidden = false;
     if (new URLSearchParams(location.search).get("acces") === "revoque") {
       const english = document.documentElement.lang.startsWith("en");
-      msg(english ? "Client portal access revoked." : "Accès du client au portail révoqué.");
+      msg(
+        english
+          ? "Client portal access revoked."
+          : "Accès du client au portail révoqué.",
+      );
     } else {
-      msg("Espace chargé. Les données sont soumises aux autorisations Supabase.");
+      msg(
+        "Espace chargé. Les données sont soumises aux autorisations Supabase.",
+      );
     }
     if (page === "clients") {
       $("search")?.addEventListener("input", renderClients);
@@ -1954,7 +1960,6 @@
   updateFilename();
 })();
 
-
 /* Garder la page courante visible sans déplacer le contenu verticalement. */
 (() => {
   const narrowMenu = window.matchMedia("(max-width: 850px)");
@@ -1976,7 +1981,9 @@
   };
 
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", revealCurrentPage, { once: true });
+    document.addEventListener("DOMContentLoaded", revealCurrentPage, {
+      once: true,
+    });
   } else {
     revealCurrentPage();
   }
