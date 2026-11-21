@@ -1,4 +1,3 @@
-/* Source: config(20261111-022549).js */
 window.MADIC_CONFIG = {
   url: "https://ezijsozitnydhjkxzqem.supabase.co",
   anonKey: "sb_publishable_MQjW5_va454CjZ7weau0iQ_AdJ41yvi",
@@ -16,90 +15,6 @@ window.getMadicSupabase = function () {
   return window.madicSupabaseClient;
 };
 
-/* Source: madic-datahubz-unified(20261111-022518).js */
-/* MADIC : navigation CRIC uniforme. Icones Heroicons identiques au tableau de bord. */
-(() => {
-  "use strict";
-  const init = () => {
-    const sidebar = document.querySelector(".madic-unified-sidebar");
-    if (
-      !sidebar ||
-      !sidebar
-        .querySelector(".madic-unified-brand small")
-        ?.textContent.includes("Espace professionnel")
-    )
-      return;
-    const nav = sidebar.querySelector("nav");
-    if (!nav) return;
-    const iconBase =
-      "https://raw.githubusercontent.com/tailwindlabs/heroicons/v2.2.0/optimized/24/outline/";
-    const items = [
-      ["cric-dashboard.html", "Vue d’ensemble", "squares-2x2", ""],
-      ["gestion-clients-cric.html", "Clients", "users", "madic-v2-group-start"],
-      ["gestion-dossiers-cric.html", "Outils CRIC", "folder-open", ""],
-      [
-        "messagerie-cric.html",
-        "Messagerie",
-        "chat-bubble-left-right",
-        "madic-v2-group-start",
-      ],
-      ["rendez-vous-cric.html", "Rendez-vous", "calendar-days", ""],
-      ["demandes-documents-cric.html", "Documents", "document-text", ""],
-      ["echeances-cric.html", "Échéances", "calendar-days", ""],
-      [
-        "facturation-cric.html",
-        "Facturation",
-        "receipt-percent",
-        "madic-v2-group-start",
-      ],
-      ["finances-cric.html", "Finances", "banknotes", ""],
-      [
-        "profil-professionnel-cric.html",
-        "Mon profil professionnel",
-        "identification",
-        "",
-      ],
-    ];
-    const current =
-      (location.pathname.split("/").pop() || "cric-dashboard").replace(
-        /\.html$/,
-        "",
-      ) + ".html";
-    const fragment = document.createDocumentFragment();
-    for (const [href, label, iconName, group] of items) {
-      const link = document.createElement("a");
-      link.href = href;
-      link.dataset.madicPage = href;
-      if (group) link.className = group;
-      if (current === href) link.setAttribute("aria-current", "page");
-      const holder = document.createElement("span");
-      holder.setAttribute("aria-hidden", "true");
-      const img = document.createElement("img");
-      img.className = "madic-heroicon";
-      img.alt = "";
-      img.setAttribute("aria-hidden", "true");
-      img.loading = "eager";
-      img.decoding = "async";
-      img.src = iconBase + iconName + ".svg";
-      holder.appendChild(img);
-      link.append(holder, document.createTextNode(label));
-      fragment.appendChild(link);
-    }
-    nav.replaceChildren(fragment);
-    const brand = sidebar.querySelector(".madic-unified-monogram");
-    if (brand) {
-      const logo = document.createElement("img");
-      logo.src = "img/logo-madic.svg";
-      logo.alt = "Logo MADIC";
-      brand.replaceChildren(logo);
-    }
-  };
-  if (document.readyState === "loading")
-    document.addEventListener("DOMContentLoaded", init, { once: true });
-  else init();
-})();
-
-/* Source: madic-document-requests-cric(2).js */
 (async () => {
   "use strict";
   const $ = (id) => document.getElementById(id),
@@ -1736,37 +1651,55 @@ window.getMadicSupabase = function () {
   else setup();
 })();
 
-/* Garder la page courante visible sans déplacer le contenu verticalement. */
+/* Afficher l’onglet courant sur téléphone sans déplacer le contenu verticalement. */
 (() => {
-  const narrowMenu = window.matchMedia("(max-width: 850px)");
-  const revealCurrentPage = () => {
-    if (!narrowMenu.matches) return;
-    window.requestAnimationFrame(() => {
-      if (!narrowMenu.matches) return;
-      const nav = document.querySelector(".madic-unified-sidebar > nav");
-      const current = nav?.querySelector('a[aria-current="page"]');
-      if (!current || nav.scrollWidth <= nav.clientWidth) return;
+  const init = () => {
+    const nav = document.querySelector(".madic-unified-sidebar > nav");
+    const current = nav?.querySelector('a[aria-current="page"]');
+    if (!current) return;
 
-      const start = nav.getBoundingClientRect().left + nav.clientLeft;
-      const end = start + nav.clientWidth;
-      const item = current.getBoundingClientRect();
-      if (item.left >= start && item.right <= end) return;
+    const mobile = window.matchMedia("(max-width: 850px)");
+    const labels = document.querySelectorAll(
+      ".madic-unified-sidebar .madic-cric-menu-label, header.madic-cric-standard-header .brand small",
+    );
+    let scheduled = false;
+    const reveal = () => {
+      if (!mobile.matches || scheduled) return;
+      scheduled = true;
+      window.requestAnimationFrame(() => {
+        scheduled = false;
+        if (!mobile.matches || nav.scrollWidth <= nav.clientWidth) return;
 
-      nav.scrollLeft += (item.left + item.right - start - end) / 2;
+        const left = nav.getBoundingClientRect().left + nav.clientLeft;
+        const right = left + nav.clientWidth;
+        const item = current.getBoundingClientRect();
+        if (item.left >= left && item.right <= right) return;
+        nav.scrollLeft += (item.left + item.right - left - right) / 2;
+      });
+    };
+
+    const applyLanguage = () => {
+      const lang = document.documentElement.lang.startsWith("en") ? "en" : "fr";
+      for (const label of labels) {
+        const text = label.dataset[lang];
+        if (text && label.textContent !== text) label.textContent = text;
+      }
+      reveal();
+    };
+
+    applyLanguage();
+    window.addEventListener("pageshow", reveal);
+    window.addEventListener("resize", reveal);
+    new MutationObserver(applyLanguage).observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["lang"],
     });
+    document.fonts?.ready.then(reveal);
   };
 
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", revealCurrentPage, {
-      once: true,
-    });
+    document.addEventListener("DOMContentLoaded", init, { once: true });
   } else {
-    revealCurrentPage();
+    init();
   }
-  window.addEventListener("pageshow", revealCurrentPage);
-  window.addEventListener("resize", revealCurrentPage);
-  new MutationObserver(revealCurrentPage).observe(document.documentElement, {
-    attributes: true,
-    attributeFilter: ["lang"],
-  });
 })();
