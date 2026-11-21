@@ -700,7 +700,7 @@ body.madic-unified .madic-unified-content {
   padding: 22px 32px 48px;
   box-sizing: border-box;
 }
-body.madic-unified .madic-unified-content > header {
+body.madic-unified .madic-unified-layout > header {
   border-radius: 13px;
   background: #10283b;
   border: 1px solid #28465a;
@@ -783,7 +783,7 @@ body.madic-unified:not([data-page="facturation-cric"]) .madic-unified-content {
   padding: 20px clamp(15px, 2.5vw, 36px) 48px;
 }
 body.madic-unified:not([data-page="facturation-cric"])
-  .madic-unified-content
+  .madic-unified-layout
   > header {
   background: #fff;
   border: 1px solid #dbe7f2;
@@ -1075,7 +1075,7 @@ body.madic-unified .madic-unified-foot {
   }
 }
 body.madic-unified:not([data-page="facturation-cric"])
-  .madic-unified-content
+  .madic-unified-layout
   > header.madic-cric-standard-header {
   display: flex !important;
   align-items: center !important;
@@ -1641,7 +1641,7 @@ body.madic-unified[data-page="facturation-cric"] .madic-unified-content {
   padding: 20px clamp(14px, 2.3vw, 34px) 45px;
 }
 body.madic-unified[data-page="facturation-cric"]
-  .madic-unified-content
+  .madic-unified-layout
   > header {
   background: #102a41;
   border: 1px solid #31526b;
@@ -1957,7 +1957,7 @@ body.madic-unified[data-page="facturation-cric"] .madic-unified-content {
   background: #f2f6fc;
 }
 body.madic-unified[data-page="facturation-cric"]
-  .madic-unified-content
+  .madic-unified-layout
   > header {
   background: #fff;
   border: 0;
@@ -1973,7 +1973,7 @@ body.madic-unified[data-page="facturation-cric"]
   gap: 16px;
 }
 body.madic-unified[data-page="facturation-cric"]
-  .madic-unified-content
+  .madic-unified-layout
   > header
   .brand {
   color: #122a50 !important;
@@ -1983,7 +1983,7 @@ body.madic-unified[data-page="facturation-cric"]
   font-size: 1.35rem;
 }
 body.madic-unified[data-page="facturation-cric"]
-  .madic-unified-content
+  .madic-unified-layout
   > header
   .brand
   small {
@@ -2263,7 +2263,7 @@ body.madic-unified[data-page="facturation-cric"]
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
   body.madic-unified[data-page="facturation-cric"]
-    .madic-unified-content
+    .madic-unified-layout
     > header {
     padding: 12px 14px;
     flex-wrap: wrap;
@@ -2351,7 +2351,7 @@ body.madic-unified[data-page="facturation-cric"] .madic-v2-stat {
     padding: 0 12px 30px;
   }
   body.madic-unified[data-page="facturation-cric"]
-    .madic-unified-content
+    .madic-unified-layout
     > header {
     margin: 0 -12px 14px;
   }
@@ -2544,7 +2544,7 @@ body.madic-unified[data-page="facturation-cric"] .madic-unified-content {
   padding: 0 clamp(15px, 2.4vw, 38px) 48px;
 }
 body.madic-unified[data-page="facturation-cric"]
-  .madic-unified-content
+  .madic-unified-layout
   > header {
   position: relative;
   background: #fff;
@@ -2833,7 +2833,7 @@ body.madic-unified[data-page="facturation-cric"]
     padding: 0 15px 32px;
   }
   body.madic-unified[data-page="facturation-cric"]
-    .madic-unified-content
+    .madic-unified-layout
     > header {
     margin: 0 -15px 17px;
   }
@@ -2980,7 +2980,7 @@ body.madic-unified[data-page="facturation-cric"]
 }
 @media (max-width: 620px) {
   body.madic-unified[data-page="facturation-cric"]
-    .madic-unified-content
+    .madic-unified-layout
     > header {
     gap: 10px;
   }
@@ -3136,13 +3136,13 @@ footer.madic-footer {
   width: 100%;
   box-sizing: border-box;
 }
-.madic-unified-content > header,
+.madic-unified-layout > header,
 .madic-unified-content > .madic-footer,
 .madic-unified-content > footer {
   box-sizing: border-box;
   width: 100%;
 }
-.madic-unified-content > header {
+.madic-unified-layout > header {
   padding-left: max(20px, calc((100% - 1120px) / 2 + 20px));
   padding-right: max(20px, calc((100% - 1120px) / 2 + 20px));
 }
@@ -3177,7 +3177,7 @@ footer.madic-footer {
   box-sizing: border-box;
 }
 @media (max-width: 768px) {
-  .madic-unified-content > header {
+  .madic-unified-layout > header {
     padding-left: 20px;
     padding-right: 20px;
   }
@@ -3187,7 +3187,7 @@ footer.madic-footer {
   }
 }
 @media (max-width: 480px) {
-  .madic-unified-content > header,
+  .madic-unified-layout > header,
   .madic-unified-content .madic-cric-wrap,
   .madic-unified-content .madic-footer-inner,
   .madic-unified-content .madic-footer-bottom {
@@ -3208,7 +3208,7 @@ body.madic-unified[data-page="facturation-cric"] .madic-unified-content {
   background: #eef3f9;
 }
 body.madic-unified[data-page="facturation-cric"]
-  .madic-unified-content
+  .madic-unified-layout
   > header {
   width: 100%;
   min-height: 78px;
@@ -3266,7 +3266,7 @@ body.madic-unified[data-page="facturation-cric"]
 }
 @media (min-width: 801px) and (max-width: 1080px) {
   body.madic-unified[data-page="facturation-cric"]
-    .madic-unified-content
+    .madic-unified-layout
     > header {
     padding: 12px 18px !important;
   }
@@ -3290,7 +3290,7 @@ body.madic-unified[data-page="facturation-cric"]
 }
 @media (max-width: 800px) {
   body.madic-unified[data-page="facturation-cric"]
-    .madic-unified-content
+    .madic-unified-layout
     > header {
     padding: 18px 22px !important;
   }
@@ -3602,7 +3602,7 @@ body.madic-unified[data-page="facturation-cric"] .madic-unified-content {
   background: #eef3f9;
 }
 body.madic-unified[data-page="facturation-cric"]
-  .madic-unified-content
+  .madic-unified-layout
   > header {
   width: 100%;
   min-height: 78px;
@@ -3660,7 +3660,7 @@ body.madic-unified[data-page="facturation-cric"]
 }
 @media (min-width: 801px) and (max-width: 1080px) {
   body.madic-unified[data-page="facturation-cric"]
-    .madic-unified-content
+    .madic-unified-layout
     > header {
     padding: 12px 18px !important;
   }
@@ -3684,7 +3684,7 @@ body.madic-unified[data-page="facturation-cric"]
 }
 @media (max-width: 800px) {
   body.madic-unified[data-page="facturation-cric"]
-    .madic-unified-content
+    .madic-unified-layout
     > header {
     padding: 18px 22px !important;
   }
@@ -3777,7 +3777,7 @@ body.madic-unified[data-page="facturation-cric"] .madic-unified-content {
   padding: 20px clamp(14px, 2.3vw, 34px) 45px;
 }
 body.madic-unified[data-page="facturation-cric"]
-  .madic-unified-content
+  .madic-unified-layout
   > header {
   background: #102a41;
   border: 1px solid #31526b;
@@ -4093,7 +4093,7 @@ body.madic-unified[data-page="facturation-cric"] .madic-unified-content {
   background: #f2f6fc;
 }
 body.madic-unified[data-page="facturation-cric"]
-  .madic-unified-content
+  .madic-unified-layout
   > header {
   background: #fff;
   border: 0;
@@ -4109,7 +4109,7 @@ body.madic-unified[data-page="facturation-cric"]
   gap: 16px;
 }
 body.madic-unified[data-page="facturation-cric"]
-  .madic-unified-content
+  .madic-unified-layout
   > header
   .brand {
   color: #122a50 !important;
@@ -4119,7 +4119,7 @@ body.madic-unified[data-page="facturation-cric"]
   font-size: 1.35rem;
 }
 body.madic-unified[data-page="facturation-cric"]
-  .madic-unified-content
+  .madic-unified-layout
   > header
   .brand
   small {
@@ -4399,7 +4399,7 @@ body.madic-unified[data-page="facturation-cric"]
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
   body.madic-unified[data-page="facturation-cric"]
-    .madic-unified-content
+    .madic-unified-layout
     > header {
     padding: 12px 14px;
     flex-wrap: wrap;
@@ -4487,7 +4487,7 @@ body.madic-unified[data-page="facturation-cric"] .madic-v2-stat {
     padding: 0 12px 30px;
   }
   body.madic-unified[data-page="facturation-cric"]
-    .madic-unified-content
+    .madic-unified-layout
     > header {
     margin: 0 -12px 14px;
   }
@@ -4680,7 +4680,7 @@ body.madic-unified[data-page="facturation-cric"] .madic-unified-content {
   padding: 0 clamp(15px, 2.4vw, 38px) 48px;
 }
 body.madic-unified[data-page="facturation-cric"]
-  .madic-unified-content
+  .madic-unified-layout
   > header {
   position: relative;
   background: #fff;
@@ -4969,7 +4969,7 @@ body.madic-unified[data-page="facturation-cric"]
     padding: 0 15px 32px;
   }
   body.madic-unified[data-page="facturation-cric"]
-    .madic-unified-content
+    .madic-unified-layout
     > header {
     margin: 0 -15px 17px;
   }
@@ -5116,7 +5116,7 @@ body.madic-unified[data-page="facturation-cric"]
 }
 @media (max-width: 620px) {
   body.madic-unified[data-page="facturation-cric"]
-    .madic-unified-content
+    .madic-unified-layout
     > header {
     gap: 10px;
   }
@@ -5272,13 +5272,13 @@ footer.madic-footer {
   width: 100%;
   box-sizing: border-box;
 }
-.madic-unified-content > header,
+.madic-unified-layout > header,
 .madic-unified-content > .madic-footer,
 .madic-unified-content > footer {
   box-sizing: border-box;
   width: 100%;
 }
-.madic-unified-content > header {
+.madic-unified-layout > header {
   padding-left: max(20px, calc((100% - 1120px) / 2 + 20px));
   padding-right: max(20px, calc((100% - 1120px) / 2 + 20px));
 }
@@ -5313,7 +5313,7 @@ footer.madic-footer {
   box-sizing: border-box;
 }
 @media (max-width: 768px) {
-  .madic-unified-content > header {
+  .madic-unified-layout > header {
     padding-left: 20px;
     padding-right: 20px;
   }
@@ -5323,7 +5323,7 @@ footer.madic-footer {
   }
 }
 @media (max-width: 480px) {
-  .madic-unified-content > header,
+  .madic-unified-layout > header,
   .madic-unified-content .madic-cric-wrap,
   .madic-unified-content .madic-footer-inner,
   .madic-unified-content .madic-footer-bottom {
@@ -5344,7 +5344,7 @@ body.madic-unified[data-page="facturation-cric"] .madic-unified-content {
   background: #eef3f9;
 }
 body.madic-unified[data-page="facturation-cric"]
-  .madic-unified-content
+  .madic-unified-layout
   > header {
   width: 100%;
   min-height: 78px;
@@ -5402,7 +5402,7 @@ body.madic-unified[data-page="facturation-cric"]
 }
 @media (min-width: 801px) and (max-width: 1080px) {
   body.madic-unified[data-page="facturation-cric"]
-    .madic-unified-content
+    .madic-unified-layout
     > header {
     padding: 12px 18px !important;
   }
@@ -5426,7 +5426,7 @@ body.madic-unified[data-page="facturation-cric"]
 }
 @media (max-width: 800px) {
   body.madic-unified[data-page="facturation-cric"]
-    .madic-unified-content
+    .madic-unified-layout
     > header {
     padding: 18px 22px !important;
   }
@@ -5515,7 +5515,7 @@ body.madic-unified[data-page="facturation-cric"]
 }
 
 body.madic-unified[data-page="facturation-cric"]
-  .madic-unified-content
+  .madic-unified-layout
   > header {
   border-radius: 0 !important;
   margin: 0 !important;
@@ -5640,7 +5640,7 @@ body.madic-unified[data-page="facturation-cric"] .madic-unified-content {
   background: #eef3f9;
 }
 body.madic-unified[data-page="facturation-cric"]
-  .madic-unified-content
+  .madic-unified-layout
   > header {
   width: 100% !important;
   max-width: 100% !important;
@@ -5660,7 +5660,7 @@ body.madic-unified[data-page="facturation-cric"]
   box-shadow: none !important;
 }
 body.madic-unified[data-page="facturation-cric"]
-  .madic-unified-content
+  .madic-unified-layout
   > header
   .brand {
   flex-shrink: 0;
@@ -5669,7 +5669,7 @@ body.madic-unified[data-page="facturation-cric"]
   letter-spacing: 0.015em !important;
 }
 body.madic-unified[data-page="facturation-cric"]
-  .madic-unified-content
+  .madic-unified-layout
   > header
   .toplinks {
   display: flex !important;
@@ -5681,7 +5681,7 @@ body.madic-unified[data-page="facturation-cric"]
   min-width: 0;
 }
 body.madic-unified[data-page="facturation-cric"]
-  .madic-unified-content
+  .madic-unified-layout
   > header
   .madic-lang-controls {
   margin: 0 !important;
@@ -5691,7 +5691,7 @@ body.madic-unified[data-page="facturation-cric"]
   flex-wrap: nowrap !important;
 }
 body.madic-unified[data-page="facturation-cric"]
-  .madic-unified-content
+  .madic-unified-layout
   > header
   .madic-top-notification {
   order: 2 !important;
@@ -5735,14 +5735,14 @@ body.madic-unified[data-page="facturation-cric"]
 }
 @media (max-width: 850px) {
   body.madic-unified[data-page="facturation-cric"]
-    .madic-unified-content
+    .madic-unified-layout
     > header {
     padding: 12px 18px !important;
   }
 }
 @media (max-width: 650px) {
   body.madic-unified[data-page="facturation-cric"]
-    .madic-unified-content
+    .madic-unified-layout
     > header {
     height: auto !important;
     min-height: 78px !important;
@@ -5751,7 +5751,7 @@ body.madic-unified[data-page="facturation-cric"]
     padding: 12px 18px !important;
   }
   body.madic-unified[data-page="facturation-cric"]
-    .madic-unified-content
+    .madic-unified-layout
     > header
     .toplinks {
     gap: 8px !important;
@@ -5892,7 +5892,7 @@ footer.madic-footer {
 
 /* Final alignment with CRIC dashboard */
 body.madic-unified[data-page="facturation-cric"]
-  .madic-unified-content
+  .madic-unified-layout
   > header {
   border-radius: 0 !important;
   margin: 0 !important;
@@ -6112,7 +6112,7 @@ html
 html
   body.madic-unified[data-page="facturation-cric"]
   > .madic-unified-layout
-  > .madic-unified-content
+  > .madic-unified-layout
   > header.madic-cric-standard-header {
   display: flex !important;
   align-items: center !important;
@@ -6142,7 +6142,7 @@ html
 html
   body.madic-unified[data-page="facturation-cric"]
   > .madic-unified-layout
-  > .madic-unified-content
+  > .madic-unified-layout
   > header.madic-cric-standard-header
   > .brand {
   display: block !important;
@@ -6161,7 +6161,7 @@ html
 html
   body.madic-unified[data-page="facturation-cric"]
   > .madic-unified-layout
-  > .madic-unified-content
+  > .madic-unified-layout
   > header.madic-cric-standard-header
   > .brand
   > span {
@@ -6171,7 +6171,7 @@ html
 html
   body.madic-unified[data-page="facturation-cric"]
   > .madic-unified-layout
-  > .madic-unified-content
+  > .madic-unified-layout
   > header.madic-cric-standard-header
   > .brand
   > small {
@@ -6183,7 +6183,7 @@ html
 html
   body.madic-unified[data-page="facturation-cric"]
   > .madic-unified-layout
-  > .madic-unified-content
+  > .madic-unified-layout
   > header.madic-cric-standard-header
   > nav.toplinks {
   display: flex !important;
@@ -6199,14 +6199,14 @@ html
 html
   body.madic-unified[data-page="facturation-cric"]
   > .madic-unified-layout
-  > .madic-unified-content
+  > .madic-unified-layout
   > header.madic-cric-standard-header
   > nav.toplinks
   > a:not(.madic-top-notification),
 html
   body.madic-unified[data-page="facturation-cric"]
   > .madic-unified-layout
-  > .madic-unified-content
+  > .madic-unified-layout
   > header.madic-cric-standard-header
   > nav.toplinks
   > button.madic-header-signout[id] {
@@ -6230,7 +6230,7 @@ html
 html
   body.madic-unified[data-page="facturation-cric"]
   > .madic-unified-layout
-  > .madic-unified-content
+  > .madic-unified-layout
   > header.madic-cric-standard-header
   > nav.toplinks
   > :is(a:not(.madic-top-notification), button.madic-header-signout[id]):hover {
@@ -6240,7 +6240,7 @@ html
 html
   body.madic-unified[data-page="facturation-cric"]
   > .madic-unified-layout
-  > .madic-unified-content
+  > .madic-unified-layout
   > header.madic-cric-standard-header
   > nav.toplinks
   > .madic-lang-controls {
@@ -6258,7 +6258,7 @@ html
 html
   body.madic-unified[data-page="facturation-cric"]
   > .madic-unified-layout
-  > .madic-unified-content
+  > .madic-unified-layout
   > header.madic-cric-standard-header
   > nav.toplinks
   > .madic-lang-controls
@@ -6283,7 +6283,7 @@ html
 html
   body.madic-unified[data-page="facturation-cric"]
   > .madic-unified-layout
-  > .madic-unified-content
+  > .madic-unified-layout
   > header.madic-cric-standard-header
   > nav.toplinks
   > .madic-lang-controls
@@ -6295,7 +6295,7 @@ html
 html
   body.madic-unified[data-page="facturation-cric"]
   > .madic-unified-layout
-  > .madic-unified-content
+  > .madic-unified-layout
   > header.madic-cric-standard-header
   > nav.toplinks
   > .madic-top-notification {
@@ -6320,7 +6320,7 @@ html
 html
   body.madic-unified[data-page="facturation-cric"]
   > .madic-unified-layout
-  > .madic-unified-content
+  > .madic-unified-layout
   > header.madic-cric-standard-header
   > nav.toplinks
   > .madic-top-notification
@@ -6332,7 +6332,7 @@ html
 html
   body.madic-unified[data-page="facturation-cric"]
   > .madic-unified-layout
-  > .madic-unified-content
+  > .madic-unified-layout
   > header.madic-cric-standard-header
   > nav.toplinks
   > .madic-top-notification
@@ -6345,7 +6345,7 @@ html
 html
   body.madic-unified[data-page="facturation-cric"]
   > .madic-unified-layout
-  > .madic-unified-content
+  > .madic-unified-layout
   > header.madic-cric-standard-header
   > nav.toplinks
   .madic-top-notification-count:not([hidden]) {
@@ -6369,7 +6369,7 @@ html
 html
   body.madic-unified[data-page="facturation-cric"]
   > .madic-unified-layout
-  > .madic-unified-content
+  > .madic-unified-layout
   > header.madic-cric-standard-header
   > nav.toplinks
   .madic-top-notification-count[hidden] {
@@ -6378,7 +6378,7 @@ html
 html
   body.madic-unified[data-page="facturation-cric"]
   > .madic-unified-layout
-  > .madic-unified-content
+  > .madic-unified-layout
   > header.madic-cric-standard-header
   > nav.toplinks
   :is(a, button):focus-visible {
@@ -6390,7 +6390,7 @@ html
   html
     body.madic-unified[data-page="facturation-cric"]
     > .madic-unified-layout
-    > .madic-unified-content
+    > .madic-unified-layout
     > header.madic-cric-standard-header {
     padding-inline: 18px !important;
   }
@@ -6556,7 +6556,7 @@ html
   html
     body.madic-unified[data-page="facturation-cric"]
     > .madic-unified-layout
-    > .madic-unified-content
+    > .madic-unified-layout
     > header.madic-cric-standard-header {
     flex-direction: column !important;
     align-items: flex-start !important;
@@ -6568,7 +6568,7 @@ html
   html
     body.madic-unified[data-page="facturation-cric"]
     > .madic-unified-layout
-    > .madic-unified-content
+    > .madic-unified-layout
     > header.madic-cric-standard-header
     > nav.toplinks {
     width: 100%;
@@ -6618,5 +6618,238 @@ html
       -apple-system,
       "Segoe UI",
       sans-serif !important;
+  }
+}
+
+/* En-tête avant le menu dans le flux, menu latéral sur ordinateur. */
+@media screen {
+  html
+    body.madic-unified[data-page="facturation-cric"]
+    > .madic-unified-layout {
+    display: grid !important;
+    grid-template-rows: auto minmax(0, 1fr);
+  }
+
+  html
+    body.madic-unified[data-page="facturation-cric"]
+    > .madic-unified-layout
+    > .madic-unified-content {
+    min-height: 0;
+  }
+}
+
+@media screen and (min-width: 851px) {
+  html
+    body.madic-unified[data-page="facturation-cric"]
+    > .madic-unified-layout
+    > header {
+    grid-area: 1 / 2;
+  }
+
+  html
+    body.madic-unified[data-page="facturation-cric"]
+    > .madic-unified-layout
+    > .madic-unified-sidebar {
+    grid-area: 1 / 1 / 3 / 2;
+    align-self: start;
+  }
+
+  html
+    body.madic-unified[data-page="facturation-cric"]
+    > .madic-unified-layout
+    > .madic-unified-content {
+    grid-area: 2 / 2;
+  }
+}
+
+/* Tracés, dimensions et couleur des pictogrammes du portail client. */
+html
+  body.madic-unified[data-page="facturation-cric"]
+  > .madic-unified-layout
+  > .madic-unified-sidebar
+  > nav
+  > a
+  > span:first-child {
+  width: 20px !important;
+  flex: 0 0 20px !important;
+}
+
+html
+  body.madic-unified[data-page="facturation-cric"]
+  > .madic-unified-layout
+  > .madic-unified-sidebar
+  > nav
+  .madic-nav-icon {
+  display: block;
+  width: 20px;
+  height: 20px;
+  color: #77d6d0;
+}
+
+@media screen and (max-width: 850px) {
+  html
+    body.madic-unified[data-page="facturation-cric"]
+    > .madic-unified-layout {
+    grid-template-columns: minmax(0, 1fr) !important;
+    grid-template-rows: auto auto minmax(0, 1fr);
+  }
+
+  html
+    body.madic-unified[data-page="facturation-cric"]
+    > .madic-unified-layout
+    > header.madic-cric-standard-header {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: start !important;
+    height: auto !important;
+    min-height: 0 !important;
+    padding: 12px 16px !important;
+    gap: 8px 10px !important;
+  }
+
+  html
+    body.madic-unified[data-page="facturation-cric"]
+    > .madic-unified-layout
+    > header.madic-cric-standard-header
+    > .brand {
+    min-width: 0;
+    align-self: start;
+    font-size: clamp(16px, 4.8vw, 24px) !important;
+    letter-spacing: 0.045em !important;
+  }
+
+  html
+    body.madic-unified[data-page="facturation-cric"]
+    > .madic-unified-layout
+    > header.madic-cric-standard-header
+    > .brand
+    > small {
+    color: #a5b9d0 !important;
+  }
+
+  html
+    body.madic-unified[data-page="facturation-cric"]
+    > .madic-unified-layout
+    > header.madic-cric-standard-header
+    > nav.toplinks {
+    display: grid !important;
+    grid-template-columns: auto auto;
+    justify-content: end !important;
+    justify-items: end;
+    width: auto !important;
+    gap: 6px clamp(7px, 2vw, 16px) !important;
+    font-size: clamp(12px, 2.65vw, 14px) !important;
+    reading-flow: grid-rows;
+  }
+
+  html
+    body.madic-unified[data-page="facturation-cric"]
+    > .madic-unified-layout
+    > header.madic-cric-standard-header
+    > nav.toplinks
+    > :is(a:not(.madic-top-notification), button.madic-header-signout[id]) {
+    min-height: 30px !important;
+    font-weight: 400 !important;
+    grid-row: 1;
+  }
+
+  html
+    body.madic-unified[data-page="facturation-cric"]
+    > .madic-unified-layout
+    > header.madic-cric-standard-header
+    > nav.toplinks
+    > .madic-top-notification {
+    grid-area: 2 / 1;
+    width: 40px !important;
+    height: 40px !important;
+  }
+
+  html
+    body.madic-unified[data-page="facturation-cric"]
+    > .madic-unified-layout
+    > header.madic-cric-standard-header
+    > nav.toplinks
+    > .madic-lang-controls {
+    grid-area: 2 / 2;
+  }
+
+  html
+    body.madic-unified[data-page="facturation-cric"]
+    > .madic-unified-layout
+    > .madic-unified-sidebar {
+    width: auto !important;
+    max-width: none !important;
+    margin: 12px 16px 0 !important;
+    padding: 13px 12px 30px !important;
+    gap: 0 !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: linear-gradient(180deg, #162b4d, #1b365b) !important;
+  }
+
+  html
+    body.madic-unified[data-page="facturation-cric"]
+    > .madic-unified-layout
+    > .madic-unified-sidebar
+    > .madic-unified-brand {
+    gap: 11px !important;
+    padding: 17px 7px 12px !important;
+    border-bottom-color: #2b4656;
+  }
+
+  html
+    body.madic-unified[data-page="facturation-cric"]
+    > .madic-unified-layout
+    > .madic-unified-sidebar
+    .madic-unified-monogram {
+    width: 39px !important;
+    height: 39px !important;
+    flex-basis: 39px !important;
+  }
+
+  html
+    body.madic-unified[data-page="facturation-cric"]
+    > .madic-unified-layout
+    > .madic-unified-sidebar
+    > nav {
+    margin-top: 10px !important;
+    padding: 12px 0 0 !important;
+    gap: 5px !important;
+    scrollbar-width: thin;
+  }
+
+  html
+    body.madic-unified[data-page="facturation-cric"]
+    > .madic-unified-layout
+    > .madic-unified-sidebar
+    > nav
+    > a {
+    height: auto !important;
+    min-height: 38px !important;
+    padding: 9px 12px !important;
+    gap: 12px !important;
+    border: 0 !important;
+    font:
+      600 0.87rem/1.25 Inter,
+      system-ui,
+      sans-serif !important;
+  }
+
+  html
+    body.madic-unified[data-page="facturation-cric"]
+    > .madic-unified-layout
+    > .madic-unified-sidebar
+    > nav
+    > a[aria-current="page"] {
+    border-inline-start: 3px solid #62cbd5 !important;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  html
+    body.madic-unified[data-page="facturation-cric"]
+    > .madic-unified-layout
+    > header.madic-cric-standard-header {
+    padding-inline: 12px !important;
   }
 }
