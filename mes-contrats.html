@@ -12,33 +12,31 @@
       Mes contrats | MADIC Portail
     </title>
     <link href="assets/madic-footer.css" rel="stylesheet" />
-    <link href="assets/mes-contrats.css" rel="stylesheet" />
+    <link href="assets/mes-contrats.css?v=41e386e6a043" rel="stylesheet" />
   </head>
   <body class="madic-client-secondary" data-page="cric-client-dashboard">
-    <header aria-label="En-tête MADIC PORTAIL" class="madic-contracts-topbar">
-      <a class="madic-contracts-brand" href="connexion-client-cric.html"
-        >MADI<span>C</span> <small>PORTAIL</small></a
+    <header aria-label="En-tête MADIC PORTAIL" class="madic-contracts-topbar madic-client-header">
+      <a class="madic-contracts-brand brand" href="connexion-client-cric.html"
+        >MADI<span>C</span> <small data-client-header-fr="PORTAIL" data-client-header-en="PORTAL">PORTAIL</small></a
       >
-      <nav aria-label="Navigation du portail" class="madic-contracts-actions">
+      <nav aria-label="Navigation du portail" class="madic-contracts-actions toplinks">
         <a
           data-en="Sign out"
           data-fr="Déconnexion"
           href="connexion-client-cric.html"
-          id="madicHeaderSignout"
-          >Déconnexion</a
+          id="madicHeaderSignout" data-client-header-fr="Déconnexion" data-client-header-en="Sign out">Déconnexion</a
         ><a
           data-en="My space"
           data-fr="Mon espace"
-          href="dashboard-client-cric.html#madic-top"
-          >Mon espace</a
+          href="dashboard-client-cric.html#madic-top" data-client-header-fr="Mon espace" data-client-header-en="My space">Mon espace</a
         >
       </nav>
-      <div class="madic-contracts-tools">
+      <div class="madic-contracts-tools madic-hero-tools">
         <a
           aria-label="Notifications de messagerie"
           data-fr-aria-label="Notifications de messagerie"
           data-en-aria-label="Messaging notifications"
-          class="madic-contracts-notifications"
+          class="madic-contracts-notifications madic-hero-notifications"
           href="messagerie-client-cric.html"
           title="Notifications de messagerie"
           data-fr-title="Notifications de messagerie"
@@ -60,7 +58,7 @@
         </a>
         <div
           aria-label="Langue / Language"
-          class="madic-contracts-language"
+          class="madic-contracts-language madic-language-switch"
           role="group"
         >
           <button aria-pressed="true" data-lang="fr" type="button">FR</button
@@ -281,11 +279,11 @@
               data-en-title="Drag to move"
               >⠿</span
             ><a
-              aria-current="page"
-              class="madic-nav-active"
+             
+             
               draggable="false"
               href="mes-contrats.html"
-              ><span data-en="My contracts" data-fr="Mes contrats"
+               class="madic-nav-active" aria-current="page"><span data-en="My contracts" data-fr="Mes contrats"
                 >Mes contrats</span
               ></a
             >
@@ -679,6 +677,6 @@
 
     <script src="assets/config.js?v=ad4abf1871f6"></script>
     <script src="assets/madic-footer.js"></script>
-    <script src="assets/mes-contrats.js?v=87852f00e14c"></script>
+    <script src="assets/mes-contrats.js?v=3e2a7ccade09"></script>
   </body>
 </html>

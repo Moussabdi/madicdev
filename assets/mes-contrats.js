@@ -1590,39 +1590,9 @@
 
   /* Module 4 */
 
-  /* Navigation and logout only; no observers, no changes to page applications. */
+  /* Déconnexion du portail client. */
   (function () {
     "use strict";
-    var nav = document.querySelector(".madic-side-links");
-    var desired = [
-      "nav-0",
-      "nav-news",
-      "nav-7",
-      "nav-1",
-      "nav-contracts",
-      "nav-3",
-      "nav-4",
-      "nav-5",
-      "nav-2",
-      "nav-6",
-    ];
-    if (nav) {
-      var nodes = Array.from(nav.querySelectorAll(":scope > .madic-nav-entry"));
-      var map = new Map(
-        nodes.map(function (node) {
-          return [node.getAttribute("data-nav-key"), node];
-        }),
-      );
-      desired.forEach(function (key) {
-        if (map.has(key)) nav.appendChild(map.get(key));
-      });
-      try {
-        localStorage.setItem(
-          "madic-client-nav-order-v2",
-          JSON.stringify(desired),
-        );
-      } catch (_) {}
-    }
     var signout = document.getElementById("madicHeaderSignout");
     if (signout)
       signout.addEventListener("click", async function (event) {
@@ -1637,3 +1607,102 @@
       });
   })();
 })().catch(console.error);
+
+
+/* Rendre visible l’entrée de la page courante après la mise en place du menu. */
+(function () {
+  const nav = document.querySelector(".madic-side-nav > .madic-side-links");
+  if (!nav) return;
+
+  const defaultOrder = [
+    "nav-0", "nav-news", "nav-7", "nav-1", "nav-contracts",
+    "nav-3", "nav-4", "nav-5", "nav-2", "nav-6",
+  ];
+  let order = defaultOrder;
+  try {
+    const saved = JSON.parse(localStorage.getItem("madic-client-nav-order-v2"));
+    if (Array.isArray(saved)) order = saved;
+  } catch (_) {}
+  const entries = new Map(
+    Array.from(nav.children, (entry) => [entry.dataset.navKey, entry]),
+  );
+  for (const key of new Set([...order, ...defaultOrder])) {
+    const entry = entries.get(key);
+    if (entry) nav.appendChild(entry);
+  }
+
+  const route = (pathname) => pathname.replace(/\/+$/, "").replace(/\.html$/i, "");
+  const currentRoute = route(location.pathname);
+  const mobile = window.matchMedia("(max-width: 800px)");
+  const header = document.querySelector("body > .madic-client-header");
+  let scheduled = false;
+
+  const translateHeader = () => {
+    const english = document.documentElement.lang.startsWith("en");
+    header?.querySelectorAll("[data-client-header-fr]").forEach((element) => {
+      const text = english ? element.dataset.clientHeaderEn : element.dataset.clientHeaderFr;
+      if (element.textContent.trim() !== text) element.textContent = text;
+    });
+    const bell = header?.querySelector(".madic-hero-notifications");
+    if (bell) {
+      const label = english ? "Message notifications" : "Notifications de messagerie";
+      bell.setAttribute("aria-label", label);
+      bell.title = label;
+    }
+  };
+
+  const update = () => {
+    if (scheduled) return;
+    scheduled = true;
+    requestAnimationFrame(() => {
+      scheduled = false;
+      const links = Array.from(nav.querySelectorAll(".madic-nav-entry > a[href]"));
+      const current = links.find((link) => {
+        const target = new URL(link.href);
+        return target.origin === location.origin && route(target.pathname) === currentRoute;
+      });
+      if (!current) return;
+
+      for (const link of links) {
+        const active = link === current;
+        link.classList.toggle("madic-nav-active", active);
+        if (active) link.setAttribute("aria-current", "page");
+        else link.removeAttribute("aria-current");
+      }
+
+      if (!mobile.matches || nav.closest(".madic-editing") ||
+          nav.scrollWidth <= nav.clientWidth) return;
+
+      const start = nav.getBoundingClientRect().left + nav.clientLeft;
+      const end = start + nav.clientWidth;
+      const item = current.getBoundingClientRect();
+      if (item.left < start || item.right > end) {
+        nav.scrollLeft += (item.left + item.right - start - end) / 2;
+      }
+    });
+  };
+
+  new MutationObserver(update).observe(nav, {
+    subtree: true,
+    childList: true,
+    characterData: true,
+    attributes: true,
+    attributeFilter: ["href"],
+  });
+  new MutationObserver(() => {
+    translateHeader();
+    update();
+  }).observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ["lang"],
+  });
+  new MutationObserver(update).observe(nav.closest(".madic-side-nav"), {
+    attributes: true,
+    attributeFilter: ["class"],
+  });
+  window.addEventListener("pageshow", update);
+  window.addEventListener("resize", update);
+  document.fonts?.ready.then(update);
+  translateHeader();
+  update();
+})();

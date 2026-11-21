@@ -11,7 +11,7 @@
     >
       Mes rendez-vous | MADIC Portail
     </title>
-    <link href="assets/mes-rendez-vous-cric.css" rel="stylesheet" />
+    <link href="assets/mes-rendez-vous-cric.css?v=3309a22fdab3" rel="stylesheet" />
     <link href="assets/madic-footer.css" rel="stylesheet" />
   </head>
   <body
@@ -19,17 +19,16 @@
     data-madic-view="appointments"
     data-page="cric-client-dashboard"
   >
-    <header>
+    <header class="madic-client-header">
       <a class="brand" href="connexion-client-cric.html"
-        >MADI<span>C</span> <small>PORTAIL</small></a
+        >MADI<span>C</span> <small data-client-header-fr="PORTAIL" data-client-header-en="PORTAL">PORTAIL</small></a
       >
       <nav class="toplinks">
         <a
           data-madic-signout="true"
           href="connexion-client-cric.html"
-          id="madicHeaderSignout"
-          >Déconnexion</a
-        ><a href="dashboard-client-cric.html">Mon espace</a>
+          id="madicHeaderSignout" data-client-header-fr="Déconnexion" data-client-header-en="Sign out">Déconnexion</a
+        ><a href="dashboard-client-cric.html" data-client-header-fr="Mon espace" data-client-header-en="My space">Mon espace</a>
       </nav>
       <div aria-label="Outils du compte" class="madic-hero-tools">
         <a
@@ -261,11 +260,11 @@
               title="Glisser pour déplacer"
               >⠿</span
             ><a
-              aria-current="page"
-              class="madic-nav-active"
+             
+             
               draggable="false"
               href="mes-rendez-vous-cric.html"
-              ><svg
+               class="madic-nav-active" aria-current="page"><svg
                 aria-hidden="true"
                 class="madic-nav-icon"
                 fill="none"
@@ -539,7 +538,7 @@
         >
       </div>
     </footer>
-    <script src="assets/mes-rendez-vous-cric.js?v=75d6aba62e32"></script>
+    <script src="assets/mes-rendez-vous-cric.js?v=1d39fa4c3e5f"></script>
     <script src="assets/madic-footer.js"></script>
   </body>
 </html>
