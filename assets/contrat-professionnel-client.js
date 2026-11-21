@@ -1,4 +1,3 @@
-/* MADIC - Renseignements issus du formulaire preliminaire, sans stockage local. */
 window.MADIC_CONTRAT_PREFILL = (() => {
   const pick = (obj, keys) => {
     for (const key of keys) {
@@ -140,13 +139,178 @@ window.MADIC_CONTRAT_PREFILL = (() => {
 })();
 
 /* MADIC - Professional client page: all page logic and dependencies. */
-(function(){'use strict';
-const dictionary={fr:{first:'Prénom',last:'Nom',email:'Courriel',phone:'Téléphone',birth:'Date de naissance',address:'Adresse',city:'Ville',project:'Projet d’immigration',empty:'À compléter',loading:'Chargement de votre formulaire préliminaire…',missing:'Aucun formulaire préliminaire trouvé : données du profil affichées.',loaded:'Renseignements récupérés depuis votre formulaire préliminaire.',unavailable:'Formulaire préliminaire indisponible : données du profil affichées.',error:'Impossible de charger vos renseignements : ',config:'Configuration Supabase indisponible',login:'Veuillez vous connecter à votre espace client'},en:{first:'First name',last:'Last name',email:'Email',phone:'Phone',birth:'Date of birth',address:'Address',city:'City',project:'Immigration project',empty:'To be completed',loading:'Loading your preliminary intake form…',missing:'No preliminary intake form found: profile information shown.',loaded:'Information retrieved from your preliminary intake form.',unavailable:'Preliminary intake form unavailable: profile information shown.',error:'Unable to load your information: ',config:'Supabase configuration unavailable',login:'Please sign in to your client workspace'}};
-let lang='fr',loadedResult=null,loadError=null;const $=id=>document.getElementById(id);const status=$('madic-client-prefill-status');
-function tr(k){return dictionary[lang][k]||k}
-function language(value){lang=value==='en'?'en':'fr';document.documentElement.lang=lang==='fr'?'fr-CA':'en-CA';try{localStorage.setItem('madic-language',lang)}catch(_){}document.querySelectorAll('[data-fr][data-en]').forEach(el=>{el.textContent=el.dataset[lang]});document.querySelectorAll('[data-aria-label-fr][data-aria-label-en]').forEach(el=>el.setAttribute('aria-label',el.dataset['ariaLabel'+(lang==='en'?'En':'Fr')]));document.querySelectorAll('[data-title-fr][data-title-en]').forEach(el=>el.title=el.dataset['title'+(lang==='en'?'En':'Fr')]);document.querySelectorAll('[data-lang]').forEach(el=>el.setAttribute('aria-pressed',String(el.dataset.lang===lang)));render();}
-function render(){const box=$('madic-client-prefill');if(!box)return;box.replaceChildren();if(loadError){status.textContent=tr('error')+loadError;return;}if(!loadedResult){status.textContent=tr('loading');return;}status.textContent=tr(loadedResult.error?'unavailable':loadedResult.intake?'loaded':'missing');const labels={prenom:'first',nom:'last',courriel:'email',telephone:'phone',naissance:'birth',adresse:'address',lieu:'city',objet:'project'};for(const [key,label] of Object.entries(labels)){const p=document.createElement('p'),b=document.createElement('strong');b.textContent=tr(label)+' : ';p.append(b,document.createTextNode(loadedResult.values?.[key]||tr('empty')));box.append(p)}}
-function loadScript(url){return new Promise((resolve,reject)=>{const s=document.createElement('script');s.src=url;s.onload=resolve;s.onerror=()=>reject(Error('Unable to load '+url));document.head.append(s)})}
-async function start(){try{if(!window.supabase)await loadScript('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js');const db=window.getMadicSupabase?.();if(!db)throw Error(tr('config'));const {data:{user},error:authError}=await db.auth.getUser();if(authError||!user)throw Error(tr('login'));const {data:profile,error:profileError}=await db.from('profiles').select('*').eq('id',user.id).maybeSingle();if(profileError)throw profileError;loadedResult=await window.MADIC_CONTRAT_PREFILL.load(db,user.id,profile||{email:user.email});}catch(e){loadError=e?.message||String(e)}render()}
-for(const btn of document.querySelectorAll('[data-lang]'))btn.addEventListener('click',()=>language(btn.dataset.lang));$('madicHeaderSignout')?.addEventListener('click',async e=>{e.preventDefault();try{await window.getMadicSupabase?.()?.auth.signOut()}finally{location.href='connexion-client-cric.html'}});try{lang=localStorage.getItem('madic-language')==='en'?'en':'fr'}catch(_){}language(lang);start();
+(function () {
+  "use strict";
+  const dictionary = {
+    fr: {
+      first: "Prénom",
+      last: "Nom",
+      email: "Courriel",
+      phone: "Téléphone",
+      birth: "Date de naissance",
+      address: "Adresse",
+      city: "Ville",
+      project: "Projet d’immigration",
+      empty: "À compléter",
+      loading: "Chargement de votre formulaire préliminaire…",
+      missing:
+        "Aucun formulaire préliminaire trouvé : données du profil affichées.",
+      loaded: "Renseignements récupérés depuis votre formulaire préliminaire.",
+      unavailable:
+        "Formulaire préliminaire indisponible : données du profil affichées.",
+      error: "Impossible de charger vos renseignements : ",
+      config: "Configuration Supabase indisponible",
+      login: "Veuillez vous connecter à votre espace client",
+    },
+    en: {
+      first: "First name",
+      last: "Last name",
+      email: "Email",
+      phone: "Phone",
+      birth: "Date of birth",
+      address: "Address",
+      city: "City",
+      project: "Immigration project",
+      empty: "To be completed",
+      loading: "Loading your preliminary intake form…",
+      missing: "No preliminary intake form found: profile information shown.",
+      loaded: "Information retrieved from your preliminary intake form.",
+      unavailable:
+        "Preliminary intake form unavailable: profile information shown.",
+      error: "Unable to load your information: ",
+      config: "Supabase configuration unavailable",
+      login: "Please sign in to your client workspace",
+    },
+  };
+  let lang = "fr",
+    loadedResult = null,
+    loadError = null;
+  const $ = (id) => document.getElementById(id);
+  const status = $("madic-client-prefill-status");
+  function tr(k) {
+    return dictionary[lang][k] || k;
+  }
+  function language(value) {
+    lang = value === "en" ? "en" : "fr";
+    document.documentElement.lang = lang === "fr" ? "fr-CA" : "en-CA";
+    try {
+      localStorage.setItem("madic-language", lang);
+    } catch (_) {}
+    document.querySelectorAll("[data-fr][data-en]").forEach((el) => {
+      el.textContent = el.dataset[lang];
+    });
+    document
+      .querySelectorAll("[data-aria-label-fr][data-aria-label-en]")
+      .forEach((el) =>
+        el.setAttribute(
+          "aria-label",
+          el.dataset["ariaLabel" + (lang === "en" ? "En" : "Fr")],
+        ),
+      );
+    document
+      .querySelectorAll("[data-title-fr][data-title-en]")
+      .forEach(
+        (el) =>
+          (el.title = el.dataset["title" + (lang === "en" ? "En" : "Fr")]),
+      );
+    document
+      .querySelectorAll("[data-lang]")
+      .forEach((el) =>
+        el.setAttribute("aria-pressed", String(el.dataset.lang === lang)),
+      );
+    render();
+  }
+  function render() {
+    const box = $("madic-client-prefill");
+    if (!box) return;
+    box.replaceChildren();
+    if (loadError) {
+      status.textContent = tr("error") + loadError;
+      return;
+    }
+    if (!loadedResult) {
+      status.textContent = tr("loading");
+      return;
+    }
+    status.textContent = tr(
+      loadedResult.error
+        ? "unavailable"
+        : loadedResult.intake
+          ? "loaded"
+          : "missing",
+    );
+    const labels = {
+      prenom: "first",
+      nom: "last",
+      courriel: "email",
+      telephone: "phone",
+      naissance: "birth",
+      adresse: "address",
+      lieu: "city",
+      objet: "project",
+    };
+    for (const [key, label] of Object.entries(labels)) {
+      const p = document.createElement("p"),
+        b = document.createElement("strong");
+      b.textContent = tr(label) + " : ";
+      p.append(
+        b,
+        document.createTextNode(loadedResult.values?.[key] || tr("empty")),
+      );
+      box.append(p);
+    }
+  }
+  function loadScript(url) {
+    return new Promise((resolve, reject) => {
+      const s = document.createElement("script");
+      s.src = url;
+      s.onload = resolve;
+      s.onerror = () => reject(Error("Unable to load " + url));
+      document.head.append(s);
+    });
+  }
+  async function start() {
+    try {
+      if (!window.supabase)
+        await loadScript(
+          "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js",
+        );
+      const db = window.getMadicSupabase?.();
+      if (!db) throw Error(tr("config"));
+      const {
+        data: { user },
+        error: authError,
+      } = await db.auth.getUser();
+      if (authError || !user) throw Error(tr("login"));
+      const { data: profile, error: profileError } = await db
+        .from("profiles")
+        .select("*")
+        .eq("id", user.id)
+        .maybeSingle();
+      if (profileError) throw profileError;
+      loadedResult = await window.MADIC_CONTRAT_PREFILL.load(
+        db,
+        user.id,
+        profile || { email: user.email },
+      );
+    } catch (e) {
+      loadError = e?.message || String(e);
+    }
+    render();
+  }
+  for (const btn of document.querySelectorAll("[data-lang]"))
+    btn.addEventListener("click", () => language(btn.dataset.lang));
+  $("madicHeaderSignout")?.addEventListener("click", async (e) => {
+    e.preventDefault();
+    try {
+      await window.getMadicSupabase?.()?.auth.signOut();
+    } finally {
+      location.href = "connexion-client-cric.html";
+    }
+  });
+  try {
+    lang = localStorage.getItem("madic-language") === "en" ? "en" : "fr";
+  } catch (_) {}
+  language(lang);
+  start();
 })();

@@ -1,4 +1,3 @@
-/* MADIC Tarifs - bilingual page, independent from the shared footer script. */
 let tarifsLanguage = "fr";
 try {
   tarifsLanguage =

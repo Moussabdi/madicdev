@@ -1,4 +1,3 @@
-/* MADIC CRIC: les politiques RLS Supabase constituent la protection des données. */
 (async () => {
   "use strict";
   const $ = (id) => document.getElementById(id),

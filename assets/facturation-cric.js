@@ -15,8 +15,6 @@ window.getMadicSupabase = function () {
   return window.madicSupabaseClient;
 };
 
-/* Consolidated source: madic-footer(20261112-222115).js */
-/* Footer commun MADIC : traduction des libellés sur les pages sans gestionnaire FR/EN. */
 (function () {
   "use strict";
   function apply(lang) {

@@ -1,19 +1,29 @@
-/* Mode invité des pages client. Les lectures passent par un accès Supabase révocable. */
 (() => {
   "use strict";
   const params = new URLSearchParams(location.search);
   if (params.get("guest") !== "1" && !params.has("access")) return;
 
-  const page = location.pathname.split("/").pop().replace(/\.html$/, "");
+  const page = location.pathname
+    .split("/")
+    .pop()
+    .replace(/\.html$/, "");
   const pages = new Set([
-    "dashboard-client-cric", "actualites-client-cric", "profil-client-cric",
-    "mes-dossiers-client-cric", "documents-client-cric", "factures-client-cric",
-    "mes-rendez-vous-cric", "messagerie-client-cric", "mes-contrats", "formulaire",
+    "dashboard-client-cric",
+    "actualites-client-cric",
+    "profil-client-cric",
+    "mes-dossiers-client-cric",
+    "documents-client-cric",
+    "factures-client-cric",
+    "mes-rendez-vous-cric",
+    "messagerie-client-cric",
+    "mes-contrats",
+    "formulaire",
   ]);
-  const id = name => document.getElementById(name);
-  const lang = () => document.documentElement.lang.startsWith("en") ? "en" : "fr";
-  const tr = (fr, en) => lang() === "en" ? en : fr;
-  const locale = () => lang() === "en" ? "en-CA" : "fr-CA";
+  const id = (name) => document.getElementById(name);
+  const lang = () =>
+    document.documentElement.lang.startsWith("en") ? "en" : "fr";
+  const tr = (fr, en) => (lang() === "en" ? en : fr);
+  const locale = () => (lang() === "en" ? "en-CA" : "fr-CA");
   const i18n = new Map();
   function label(node, fr, en) {
     if (!node) return;
@@ -26,17 +36,28 @@
     if (className) node.className = className;
     return node;
   }
-  const accessUrl = new URL("invitation-client-cric.html?guest=1", location.href);
-  let db, access, banner, notice, content, checking = false;
+  const accessUrl = new URL(
+    "invitation-client-cric.html?guest=1",
+    location.href,
+  );
+  let db,
+    access,
+    banner,
+    notice,
+    content,
+    checking = false;
   let portalHeader;
   const urls = new Set();
   function showError() {
-    label(notice, "Impossible de charger cette information. Actualisez la page ou vérifiez que l’accès est encore actif.",
-      "Unable to load this information. Refresh the page or check that the access is still active.");
+    label(
+      notice,
+      "Impossible de charger cette information. Actualisez la page ou vérifiez que l’accès est encore actif.",
+      "Unable to load this information. Refresh the page or check that the access is still active.",
+    );
   }
   function failAccess(fr, en) {
     // Supprimer les pièces et les données déjà rendues dès que la révocation est détectée.
-    urls.forEach(url => URL.revokeObjectURL(url));
+    urls.forEach((url) => URL.revokeObjectURL(url));
     urls.clear();
     access = null;
     if (content) {
@@ -58,8 +79,13 @@
     label(button, fr, en);
     button.addEventListener("click", async () => {
       button.disabled = true;
-      try { await run(); } catch { showError(); }
-      finally { button.disabled = false; }
+      try {
+        await run();
+      } catch {
+        showError();
+      } finally {
+        button.disabled = false;
+      }
     });
     return button;
   }
@@ -67,7 +93,8 @@
     if (!window.supabase) {
       await new Promise((resolve, reject) => {
         const script = document.createElement("script");
-        script.src = "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js";
+        script.src =
+          "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js";
         script.onload = resolve;
         script.onerror = reject;
         document.head.append(script);
@@ -84,16 +111,28 @@
     const { data: grants, error } = await db.rpc("madic_guest_list");
     if (error) throw error;
     const wanted = params.get("access");
-    access = wanted ? grants?.find(item => item.grant_id === wanted) : grants?.[0];
+    access = wanted
+      ? grants?.find((item) => item.grant_id === wanted)
+      : grants?.[0];
     if (!access) {
-      failAccess("Cet accès invité est indisponible ou a été révoqué.",
-        "This guest access is unavailable or has been revoked.");
+      failAccess(
+        "Cet accès invité est indisponible ou a été révoqué.",
+        "This guest access is unavailable or has been revoked.",
+      );
       return false;
     }
     if (!wanted) history.replaceState(null, "", scoped(location.href));
     for (const anchor of document.querySelectorAll("a[href]")) {
       const url = new URL(anchor.href, location.href);
-      if (url.origin === location.origin && pages.has(url.pathname.split("/").pop().replace(/\.html$/, ""))) {
+      if (
+        url.origin === location.origin &&
+        pages.has(
+          url.pathname
+            .split("/")
+            .pop()
+            .replace(/\.html$/, ""),
+        )
+      ) {
         anchor.href = scoped(url).href;
       }
     }
@@ -101,9 +140,16 @@
     if (grants.length > 1) {
       const select = element("select");
       const caption = element("label", null, "madic-guest-banner__picker");
-      select.append(...grants.map(item => new Option(item.client_name + " · " + item.cabinet, item.grant_id)));
+      select.append(
+        ...grants.map(
+          (item) =>
+            new Option(item.client_name + " · " + item.cabinet, item.grant_id),
+        ),
+      );
       select.value = access.grant_id;
-      select.addEventListener("change", () => location.assign(scoped(location.href, select.value)));
+      select.addEventListener("change", () =>
+        location.assign(scoped(location.href, select.value)),
+      );
       const captionText = element("span");
       label(captionText, "Dossier partagé", "Shared file");
       caption.append(captionText, select);
@@ -114,20 +160,30 @@
 
   // La promesse attend la construction du bandeau et l’exécution des modules d’interface existants.
   let resolveStart;
-  const started = new Promise(resolve => { resolveStart = resolve; });
+  const started = new Promise((resolve) => {
+    resolveStart = resolve;
+  });
   async function read(section, offset = 0) {
-    if (!await started || !access) throw Error("Guest access unavailable");
+    if (!(await started) || !access) throw Error("Guest access unavailable");
     const grant = access.grant_id;
-    const { data, error } = await db.rpc("madic_guest_read",
-      { p_grant: grant, p_section: section, p_offset: offset });
-    if (error || access?.grant_id !== grant) throw error || Error("Guest access unavailable");
+    const { data, error } = await db.rpc("madic_guest_read", {
+      p_grant: grant,
+      p_section: section,
+      p_offset: offset,
+    });
+    if (error || access?.grant_id !== grant)
+      throw error || Error("Guest access unavailable");
     return data;
   }
   window.MADIC_GUEST_PORTAL = { read, showError };
-  document.addEventListener("submit", event => {
-    event.preventDefault();
-    event.stopImmediatePropagation();
-  }, true);
+  document.addEventListener(
+    "submit",
+    (event) => {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+    },
+    true,
+  );
 
   function clearText(name) {
     const node = id(name);
@@ -137,18 +193,36 @@
     }
   }
   const statuses = {
-    actif: ["Actif", "Active"], en_attente: ["En attente", "Pending"], ferme: ["Fermé", "Closed"],
-    confirme: ["Confirmé", "Confirmed"], confirmed: ["Confirmé", "Confirmed"],
-    pending: ["En attente", "Pending"], requested: ["Demandé", "Requested"],
-    cancelled: ["Annulé", "Cancelled"], canceled: ["Annulé", "Cancelled"],
-    completed: ["Terminé", "Completed"], refused: ["Refusé", "Declined"], declined: ["Refusé", "Declined"],
-    accepte: ["Accepté", "Accepted"], refuse: ["Refusé", "Declined"], recu: ["Reçu", "Received"],
-    publie: ["Publié", "Published"], signe: ["Signé", "Signed"], client_signe: ["Signé par le client", "Signed by client"],
+    actif: ["Actif", "Active"],
+    en_attente: ["En attente", "Pending"],
+    ferme: ["Fermé", "Closed"],
+    confirme: ["Confirmé", "Confirmed"],
+    confirmed: ["Confirmé", "Confirmed"],
+    pending: ["En attente", "Pending"],
+    requested: ["Demandé", "Requested"],
+    cancelled: ["Annulé", "Cancelled"],
+    canceled: ["Annulé", "Cancelled"],
+    completed: ["Terminé", "Completed"],
+    refused: ["Refusé", "Declined"],
+    declined: ["Refusé", "Declined"],
+    accepte: ["Accepté", "Accepted"],
+    refuse: ["Refusé", "Declined"],
+    recu: ["Reçu", "Received"],
+    publie: ["Publié", "Published"],
+    signe: ["Signé", "Signed"],
+    client_signe: ["Signé par le client", "Signed by client"],
     deux_signatures: ["Signé par les deux parties", "Signed by both parties"],
-    received: ["Reçue", "Received"], reviewing: ["En analyse", "Under review"], responded: ["Réponse envoyée", "Responded"],
-    closed: ["Fermée", "Closed"], requested_doc: ["Demandé", "Requested"], uploaded: ["Transmis", "Uploaded"],
-    video: ["Vidéo", "Video"], phone: ["Téléphone", "Phone"], in_person: ["En personne", "In person"],
-    consultation: ["Consultation", "Consultation"], proposition: ["Proposition", "Proposal"],
+    received: ["Reçue", "Received"],
+    reviewing: ["En analyse", "Under review"],
+    responded: ["Réponse envoyée", "Responded"],
+    closed: ["Fermée", "Closed"],
+    requested_doc: ["Demandé", "Requested"],
+    uploaded: ["Transmis", "Uploaded"],
+    video: ["Vidéo", "Video"],
+    phone: ["Téléphone", "Phone"],
+    in_person: ["En personne", "In person"],
+    consultation: ["Consultation", "Consultation"],
+    proposition: ["Proposition", "Proposal"],
   };
   function status(value) {
     const span = element("span", value || "-");
@@ -159,11 +233,16 @@
     if (!value) return "-";
     if (/^\d{4}-\d{2}-\d{2}$/.test(value)) return value;
     const parsed = new Date(value);
-    return Number.isNaN(+parsed) ? "-" : parsed.toLocaleString(locale(), {timeZone: "America/Toronto"});
+    return Number.isNaN(+parsed)
+      ? "-"
+      : parsed.toLocaleString(locale(), { timeZone: "America/Toronto" });
   }
   function money(value, currency) {
     const code = /^[A-Z]{3}$/.test(currency || "") ? currency : "CAD";
-    return new Intl.NumberFormat(locale(), {style: "currency", currency: code}).format((Number(value) || 0) / 100);
+    return new Intl.NumberFormat(locale(), {
+      style: "currency",
+      currency: code,
+    }).format((Number(value) || 0) / 100);
   }
   function cell(row, value) {
     const td = row.insertCell();
@@ -180,9 +259,16 @@
         td.colSpan = columns.length;
         label(td, "Aucun élément à afficher.", "Nothing to display.");
       }
-      rows.slice(0, 25).forEach(record => {
+      rows.slice(0, 25).forEach((record) => {
         const line = tbody.insertRow();
-        columns.forEach(property => cell(line, typeof property === "function" ? property(record) : record[property]));
+        columns.forEach((property) =>
+          cell(
+            line,
+            typeof property === "function"
+              ? property(record)
+              : record[property],
+          ),
+        );
       });
       if (rows.length > 25) {
         offset += 25;
@@ -198,22 +284,36 @@
   async function fileBlob(row) {
     const grant = access?.grant_id;
     if (!grant) throw Error("Guest access unavailable");
-    const { data, error } = await db.functions.invoke("madic-send-client-invitation", {
-      body: { action: "guest_download", grant_id: grant, bucket: row.bucket, path: row.file },
-    });
-    if (error || !(data instanceof Blob) || access?.grant_id !== grant) throw error || Error("File unavailable");
+    const { data, error } = await db.functions.invoke(
+      "madic-send-client-invitation",
+      {
+        body: {
+          action: "guest_download",
+          grant_id: grant,
+          bucket: row.bucket,
+          path: row.file,
+        },
+      },
+    );
+    if (error || !(data instanceof Blob) || access?.grant_id !== grant)
+      throw error || Error("File unavailable");
     return data;
   }
   function download(row) {
-    return row.file ? action("Télécharger", "Download", async () => {
-      const url = URL.createObjectURL(await fileBlob(row));
-      urls.add(url);
-      const link = element("a");
-      link.href = url;
-      link.download = row.original_name || row.filename || "MADIC.pdf";
-      link.click();
-      setTimeout(() => { URL.revokeObjectURL(url); urls.delete(url); }, 5000);
-    }) : "-";
+    return row.file
+      ? action("Télécharger", "Download", async () => {
+          const url = URL.createObjectURL(await fileBlob(row));
+          urls.add(url);
+          const link = element("a");
+          link.href = url;
+          link.download = row.original_name || row.filename || "MADIC.pdf";
+          link.click();
+          setTimeout(() => {
+            URL.revokeObjectURL(url);
+            urls.delete(url);
+          }, 5000);
+        })
+      : "-";
   }
   function show(idName) {
     const node = id(idName);
@@ -225,12 +325,17 @@
     if (node) node.hidden = true;
   }
   async function showAvatar(profile) {
-    const images = [id("madicClientAvatarImage"), id("madicProfileAvatarImage")].filter(Boolean);
+    const images = [
+      id("madicClientAvatarImage"),
+      id("madicProfileAvatarImage"),
+    ].filter(Boolean);
     if (!images.length || !profile.file) return;
     try {
       const url = URL.createObjectURL(await fileBlob(profile));
       urls.add(url);
-      images.forEach(image => { image.src = url; });
+      images.forEach((image) => {
+        image.src = url;
+      });
     } catch {
       // L’avatar neutre du portail reste affiché.
     }
@@ -240,11 +345,14 @@
     hide("toggleProfile");
     hide("profileHint");
     const form = id("profile");
-    const mapped = {first: "first_name", last: "last_name"};
+    const mapped = { first: "first_name", last: "last_name" };
     for (const field of form.querySelectorAll("input, select, textarea")) {
       const value = profile[mapped[field.id] || field.name || field.id];
       if (field.type !== "file" && value != null) {
-        if (field.tagName === "SELECT" && ![...field.options].some(opt => opt.value === String(value))) {
+        if (
+          field.tagName === "SELECT" &&
+          ![...field.options].some((opt) => opt.value === String(value))
+        ) {
           field.add(new Option(String(value), String(value)));
         }
         field.value = value;
@@ -254,7 +362,11 @@
         field.closest("[hidden]")?.removeAttribute("hidden");
       }
     }
-    form.querySelectorAll('button, .madic-profile-photo-actions').forEach(node => { node.hidden = true; });
+    form
+      .querySelectorAll("button, .madic-profile-photo-actions")
+      .forEach((node) => {
+        node.hidden = true;
+      });
   }
   function invoiceDetail(invoice) {
     const details = element("details");
@@ -264,8 +376,20 @@
     if (invoice.description) details.append(element("p", invoice.description));
     if (Array.isArray(invoice.items)) {
       const list = element("ul");
-      invoice.items.forEach(item => list.append(element("li", [item.description, item.quantity,
-        money(item.unit_price_cents, invoice.currency)].filter(value => value != null).join(" · "))));
+      invoice.items.forEach((item) =>
+        list.append(
+          element(
+            "li",
+            [
+              item.description,
+              item.quantity,
+              money(item.unit_price_cents, invoice.currency),
+            ]
+              .filter((value) => value != null)
+              .join(" · "),
+          ),
+        ),
+      );
       details.append(list);
     }
     if (invoice.notes) details.append(element("p", invoice.notes));
@@ -276,13 +400,24 @@
     const upload = id("upload-heading");
     if (upload) {
       upload.hidden = true;
-      if (upload.nextElementSibling?.tagName === "P") upload.nextElementSibling.hidden = true;
+      if (upload.nextElementSibling?.tagName === "P")
+        upload.nextElementSibling.hidden = true;
     }
     clearText("docreqClientNotice");
     await Promise.all([
-      table(id("docreqClientRows"), "requests", ["title", "instructions", r => date(r.due_on), r => status(r.status)]),
-      table(id("documents"), "documents", ["original_name", r => date(r.created_at),
-        r => status(r.review_status || r.status), "review_reason", download]),
+      table(id("docreqClientRows"), "requests", [
+        "title",
+        "instructions",
+        (r) => date(r.due_on),
+        (r) => status(r.status),
+      ]),
+      table(id("documents"), "documents", [
+        "original_name",
+        (r) => date(r.created_at),
+        (r) => status(r.review_status || r.status),
+        "review_reason",
+        download,
+      ]),
     ]);
   }
   async function appointments() {
@@ -292,32 +427,45 @@
     clearText("rdvNotice");
     show("rdvApp");
     await table(id("bookingRows"), "appointments", [
-      r => date(r.starts_at), r => status(r.mode), r => status(r.status),
-      r => r.location_info || "-", () => "-",
+      (r) => date(r.starts_at),
+      (r) => status(r.mode),
+      (r) => status(r.status),
+      (r) => r.location_info || "-",
+      () => "-",
     ]);
   }
   async function overview() {
     const [service, appointments, messages] = await Promise.all([
-      read("service"), read("appointments"), read("messages"),
+      read("service"),
+      read("appointments"),
+      read("messages"),
     ]);
     if (service) {
       show("madicJourneyPanel");
       id("madicJourneyStage").replaceChildren(status(service.status));
-      id("madicJourneyStatus").replaceChildren(status(service.service_type),
-        document.createTextNode(" · " + date(service.updated_at)));
+      id("madicJourneyStatus").replaceChildren(
+        status(service.service_type),
+        document.createTextNode(" · " + date(service.updated_at)),
+      );
     }
     show("madicImmigrationFormCard");
     show("madicClientMessagingCard");
     const summary = id("madicClientMessagesSummary");
-    if (messages.length) summary.textContent = messages[0].subject + " · " + date(messages[0].created_at);
+    if (messages.length)
+      summary.textContent =
+        messages[0].subject + " · " + date(messages[0].created_at);
     else label(summary, "Aucun message.", "No messages.");
     const rdv = id("madic-appointments")?.querySelector("p");
-    if (appointments.length) rdv?.replaceChildren(
-      document.createTextNode(date(appointments[0].starts_at) + " · "), status(appointments[0].status));
+    if (appointments.length)
+      rdv?.replaceChildren(
+        document.createTextNode(date(appointments[0].starts_at) + " · "),
+        status(appointments[0].status),
+      );
     else label(rdv, "Aucun rendez-vous.", "No appointments.");
   }
   async function messages() {
-    const list = id("clientMsgConversations"), historyNode = id("clientMsgMessages");
+    const list = id("clientMsgConversations"),
+      historyNode = id("clientMsgMessages");
     id("clientMsgCabinet").append(new Option(access.cabinet));
     id("clientMsgCabinet").disabled = true;
     hide("clientMsgSendForm");
@@ -325,41 +473,66 @@
     clearText("clientMsgStatus");
     hide("madicConsultantPresence");
     show("clientMsgApp");
-    let selected, version = 0;
+    let selected,
+      version = 0;
     async function open(conversation, button) {
       selected = conversation.conversation_id;
       const activeVersion = ++version;
-      list.querySelectorAll("button[aria-current]").forEach(node =>
-        node.setAttribute("aria-current", String(node === button)));
+      list
+        .querySelectorAll("button[aria-current]")
+        .forEach((node) =>
+          node.setAttribute("aria-current", String(node === button)),
+        );
       id("clientMsgTitle").textContent = conversation.subject;
       clearText("clientMsgSubject");
       historyNode.replaceChildren();
-      let messageOffset = 0, attachmentOffset = 0;
-      const timeline = element("div"), attachments = element("div");
+      let messageOffset = 0,
+        attachmentOffset = 0;
+      const timeline = element("div"),
+        attachments = element("div");
       historyNode.append(timeline, attachments);
       async function pageMessages(more) {
         const records = await read("messages:" + selected, messageOffset);
         if (activeVersion !== version) return;
         more?.remove();
         const entries = records.slice(0, 25);
-        const bubbles = entries.reverse().map(item => {
-          const bubble = element("div", item.body,
-            "madic-client-msg-bubble" + (item.sender === "client" ? " madic-client-msg-own" : ""));
+        const bubbles = entries.reverse().map((item) => {
+          const bubble = element(
+            "div",
+            item.body,
+            "madic-client-msg-bubble" +
+              (item.sender === "client" ? " madic-client-msg-own" : ""),
+          );
           const time = element("time");
           time.dateTime = item.created_at;
-          label(time, (item.sender === "client" ? "Client" : "Cabinet") + " · " + date(item.created_at),
-            (item.sender === "client" ? "Client" : "Firm") + " · " + date(item.created_at));
+          label(
+            time,
+            (item.sender === "client" ? "Client" : "Cabinet") +
+              " · " +
+              date(item.created_at),
+            (item.sender === "client" ? "Client" : "Firm") +
+              " · " +
+              date(item.created_at),
+          );
           bubble.append(time);
           return bubble;
         });
         timeline.prepend(...bubbles);
         if (records.length > 25) {
           messageOffset += 25;
-          const previous = action("Afficher les messages précédents", "Show earlier messages", () => pageMessages(previous));
+          const previous = action(
+            "Afficher les messages précédents",
+            "Show earlier messages",
+            () => pageMessages(previous),
+          );
           timeline.prepend(previous);
         } else if (!timeline.children.length) {
           const empty = element("p");
-          label(empty, "Aucun message dans cette conversation.", "No messages in this conversation.");
+          label(
+            empty,
+            "Aucun message dans cette conversation.",
+            "No messages in this conversation.",
+          );
           timeline.append(empty);
         }
       }
@@ -374,13 +547,18 @@
         }
         if (records.length > 25) {
           attachmentOffset += 25;
-          const moreFiles = action("Afficher les autres pièces jointes", "Show more attachments", () => pageAttachments(moreFiles));
+          const moreFiles = action(
+            "Afficher les autres pièces jointes",
+            "Show more attachments",
+            () => pageAttachments(moreFiles),
+          );
           attachments.append(moreFiles);
         }
       }
       await Promise.all([pageMessages(), pageAttachments()]);
     }
-    let offset = 0, request = 0;
+    let offset = 0,
+      request = 0;
     async function loadList(reset = false) {
       const pending = ++request;
       if (reset) offset = 0;
@@ -393,7 +571,9 @@
       } else list.querySelector("[data-guest-more]")?.remove();
       for (const item of records.slice(0, 25)) {
         const li = element("li");
-        const button = action(item.subject, item.subject, () => open(item, button));
+        const button = action(item.subject, item.subject, () =>
+          open(item, button),
+        );
         button.setAttribute("aria-current", "false");
         li.append(button);
         list.append(li);
@@ -415,7 +595,9 @@
         if (first) first.click();
       }
     }
-    id("clientMsgRefresh").addEventListener("click", () => loadList(true).catch(showError));
+    id("clientMsgRefresh").addEventListener("click", () =>
+      loadList(true).catch(showError),
+    );
     await loadList(true);
   }
   async function contracts() {
@@ -423,17 +605,29 @@
     clearText("contract-message");
     const list = element("table");
     const head = list.createTHead().insertRow();
-    [["Contrat", "Contract"], ["Statut", "Status"], ["Date", "Date"], ["Consulter", "View"], ["Copie", "Copy"]]
-      .forEach(names => { const th = element("th"); label(th, ...names); head.append(th); });
-    const primary = list.createTBody(), legacy = list.createTBody();
+    [
+      ["Contrat", "Contract"],
+      ["Statut", "Status"],
+      ["Date", "Date"],
+      ["Consulter", "View"],
+      ["Copie", "Copy"],
+    ].forEach((names) => {
+      const th = element("th");
+      label(th, ...names);
+      head.append(th);
+    });
+    const primary = list.createTBody(),
+      legacy = list.createTBody();
     const preview = element("div");
     root.replaceChildren(list, preview);
     let revision = 0;
     function openContract(item, isLegacy) {
       return action("Voir le contrat", "View contract", async () => {
         const current = ++revision;
-        const { data, error } = await db.rpc(isLegacy ? "madic_guest_legacy_contract" : "madic_guest_contract",
-          { p_grant: access?.grant_id, p_contract: item.contract_id });
+        const { data, error } = await db.rpc(
+          isLegacy ? "madic_guest_legacy_contract" : "madic_guest_contract",
+          { p_grant: access?.grant_id, p_contract: item.contract_id },
+        );
         if (!access || current !== revision) return;
         if (error || !data) throw error || Error("Contract unavailable");
         if (isLegacy) {
@@ -448,19 +642,37 @@
         frame.height = "650";
         const template = element("template");
         template.innerHTML = data;
-        template.content.querySelectorAll("script,iframe,object,embed,form,button,input,textarea,select,link,meta,base,svg,math")
-          .forEach(node => node.remove());
-        template.content.querySelectorAll("a,area").forEach(node => node.removeAttribute("href"));
-        frame.srcdoc = '<!doctype html><meta charset="utf-8">' +
-          '<meta http-equiv="Content-Security-Policy" content="default-src \'none\'; img-src data:; style-src \'unsafe-inline\'; form-action \'none\'; base-uri \'none\'">' +
+        template.content
+          .querySelectorAll(
+            "script,iframe,object,embed,form,button,input,textarea,select,link,meta,base,svg,math",
+          )
+          .forEach((node) => node.remove());
+        template.content
+          .querySelectorAll("a,area")
+          .forEach((node) => node.removeAttribute("href"));
+        frame.srcdoc =
+          '<!doctype html><meta charset="utf-8">' +
+          "<meta http-equiv=\"Content-Security-Policy\" content=\"default-src 'none'; img-src data:; style-src 'unsafe-inline'; form-action 'none'; base-uri 'none'\">" +
           template.innerHTML;
         preview.replaceChildren(frame);
-        frame.scrollIntoView({block: "nearest"});
+        frame.scrollIntoView({ block: "nearest" });
       });
     }
     await Promise.all([
-      table(primary, "contracts", ["reference", r => status(r.status), r => date(r.created_at), r => openContract(r, false), download]),
-      table(legacy, "legacy_contracts", ["title", r => status(r.status), r => date(r.published_at), r => openContract(r, true), () => "-"]),
+      table(primary, "contracts", [
+        "reference",
+        (r) => status(r.status),
+        (r) => date(r.created_at),
+        (r) => openContract(r, false),
+        download,
+      ]),
+      table(legacy, "legacy_contracts", [
+        "title",
+        (r) => status(r.status),
+        (r) => date(r.published_at),
+        (r) => openContract(r, true),
+        () => "-",
+      ]),
     ]);
   }
 
@@ -470,13 +682,17 @@
     try {
       const { data, error } = await db.rpc("madic_guest_list");
       if (error) throw error;
-      if (!data?.some(item => item.grant_id === access?.grant_id)) {
-        failAccess("Cet accès invité est indisponible ou a été révoqué.",
-          "This guest access is unavailable or has been revoked.");
+      if (!data?.some((item) => item.grant_id === access?.grant_id)) {
+        failAccess(
+          "Cet accès invité est indisponible ou a été révoqué.",
+          "This guest access is unavailable or has been revoked.",
+        );
       }
     } catch {
-      failAccess("Impossible de vérifier cet accès. Actualisez la page.",
-        "Unable to verify this access. Refresh the page.");
+      failAccess(
+        "Impossible de vérifier cet accès. Actualisez la page.",
+        "Unable to verify this access. Refresh the page.",
+      );
     } finally {
       checking = false;
     }
@@ -529,12 +745,18 @@
     }
 
     // Les commandes de déconnexion suivent le parcours invité.
-    for (const control of document.querySelectorAll('#logout,#madicHeaderSignout,[data-madic-signout="true"]')) {
-      control.addEventListener("click", event => {
-        event.preventDefault();
-        event.stopImmediatePropagation();
-        void signOutGuest();
-      }, true);
+    for (const control of document.querySelectorAll(
+      '#logout,#madicHeaderSignout,[data-madic-signout="true"]',
+    )) {
+      control.addEventListener(
+        "click",
+        (event) => {
+          event.preventDefault();
+          event.stopImmediatePropagation();
+          void signOutGuest();
+        },
+        true,
+      );
     }
     let renderedLanguage = lang();
     const observer = new MutationObserver(() => {
@@ -550,7 +772,7 @@
         if (node.textContent !== translated) node.textContent = translated;
       }
     });
-    observer.observe(document.documentElement, {attributeFilter: ["lang"]});
+    observer.observe(document.documentElement, { attributeFilter: ["lang"] });
     try {
       const allowed = await initialize();
       resolveStart(allowed);
@@ -564,14 +786,28 @@
       hide("madicClientMessagesUnread");
       const formCard = id("madicImmigrationFormCard");
       if (formCard) {
-        label(formCard.querySelector("p"), "Consultez les réponses enregistrées au questionnaire.",
-          "View the saved questionnaire responses.");
-        label(formCard.querySelector("a"), "Consulter le formulaire →", "View the form →");
+        label(
+          formCard.querySelector("p"),
+          "Consultez les réponses enregistrées au questionnaire.",
+          "View the saved questionnaire responses.",
+        );
+        label(
+          formCard.querySelector("a"),
+          "Consulter le formulaire →",
+          "View the form →",
+        );
       }
       if (page === "formulaire") {
-        label(document.querySelector(".form-hero__content h1"), "Formulaire d’immigration", "Immigration form");
-        label(document.querySelector(".form-hero__content p"), "Consultez les réponses enregistrées par le client.",
-          "View the answers saved by the client.");
+        label(
+          document.querySelector(".form-hero__content h1"),
+          "Formulaire d’immigration",
+          "Immigration form",
+        );
+        label(
+          document.querySelector(".form-hero__content p"),
+          "Consultez les réponses enregistrées par le client.",
+          "View the answers saved by the client.",
+        );
       }
       const welcome = id("welcome");
       if (welcome) welcome.textContent = access.client_name;
@@ -586,14 +822,24 @@
         "mes-dossiers-client-cric": async () => {
           hide("toggleDossiers");
           show("dossiersContent");
-          await table(id("dossiers"), "dossiers", ["reference", "category", row => status(row.status)]);
+          await table(id("dossiers"), "dossiers", [
+            "reference",
+            "category",
+            (row) => status(row.status),
+          ]);
         },
         "documents-client-cric": documents,
         "factures-client-cric": async () => {
           show("clientInvoicesPanel");
           clearText("clientInvoicesNotice");
-          await table(id("clientInvoicesRows"), "invoices", ["invoice_number", r => date(r.issued_on),
-            r => date(r.due_on), r => money(r.total_cents, r.currency), r => money(r.balance_cents, r.currency), invoiceDetail]);
+          await table(id("clientInvoicesRows"), "invoices", [
+            "invoice_number",
+            (r) => date(r.issued_on),
+            (r) => date(r.due_on),
+            (r) => money(r.total_cents, r.currency),
+            (r) => money(r.balance_cents, r.currency),
+            invoiceDetail,
+          ]);
         },
         "mes-rendez-vous-cric": appointments,
         "messagerie-client-cric": messages,
@@ -607,582 +853,517 @@
     } catch {
       resolveStart(false);
       if (access) showError();
-      else failAccess("Impossible de vérifier l’accès invité. Actualisez la page.",
-        "Unable to verify guest access. Refresh the page.");
+      else
+        failAccess(
+          "Impossible de vérifier l’accès invité. Actualisez la page.",
+          "Unable to verify guest access. Refresh the page.",
+        );
     }
   }
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", start, {once: true});
+    document.addEventListener("DOMContentLoaded", start, { once: true });
   } else {
     void start();
   }
 })();
 
-;
 /* MADIC Actualites client CRIC - regroupement des scripts fournis. */
 
 /* inline 1 */
 {
-
-      for (const [buttonId, contentId, hintId, openText] of [
-        ["toggleProfile", "profileContent", "profileHint", "Modifier"],
-        ["toggleDossiers", "dossiersContent", "dossiersHint", "Consulter"],
-      ]) {
-        const button = document.getElementById(buttonId),
-          content = document.getElementById(contentId),
-          hint = document.getElementById(hintId);
-        button.addEventListener("click", () => {
-          const opening = content.hidden;
-          content.hidden = !opening;
-          hint.hidden = opening;
-          button.setAttribute("aria-expanded", String(opening));
-          button.textContent = opening ? "Fermer" : openText;
-        });
-      }
-    
+  for (const [buttonId, contentId, hintId, openText] of [
+    ["toggleProfile", "profileContent", "profileHint", "Modifier"],
+    ["toggleDossiers", "dossiersContent", "dossiersHint", "Consulter"],
+  ]) {
+    const button = document.getElementById(buttonId),
+      content = document.getElementById(contentId),
+      hint = document.getElementById(hintId);
+    button.addEventListener("click", () => {
+      const opening = content.hidden;
+      content.hidden = !opening;
+      hint.hidden = opening;
+      button.setAttribute("aria-expanded", String(opening));
+      button.textContent = opening ? "Fermer" : openText;
+    });
+  }
 }
 
 /* inline 2 */
 {
+  /* Personnalisation locale du menu, sans effet sur les données du portail. */
+  (function () {
+    const sidebar = document.querySelector(".madic-side-nav");
+    const nav = sidebar && sidebar.querySelector(".madic-side-links");
+    const toggle = document.getElementById("madicCustomizeNav");
+    const reset = document.getElementById("madicResetNav");
+    const help = document.getElementById("madicNavHelp");
+    if (!sidebar || !nav || !toggle || !reset || !help) return;
 
-      /* Personnalisation locale du menu, sans effet sur les données du portail. */
-      (function () {
-        const sidebar = document.querySelector(".madic-side-nav");
-        const nav = sidebar && sidebar.querySelector(".madic-side-links");
-        const toggle = document.getElementById("madicCustomizeNav");
-        const reset = document.getElementById("madicResetNav");
-        const help = document.getElementById("madicNavHelp");
-        if (!sidebar || !nav || !toggle || !reset || !help) return;
+    const storageKey = "madic-client-nav-order-v2";
+    const items = () => Array.from(nav.querySelectorAll(".madic-nav-entry"));
+    const initialOrder = items().map((el) => el.dataset.navKey);
+    const labels = {
+      edit: { fr: "Personnaliser le menu", en: "Customize menu" },
+      done: { fr: "Terminer", en: "Done" },
+    };
+    let editing = false;
+    let dragged = null;
+    const currentLanguage = () =>
+      document.documentElement.lang.toLowerCase().startsWith("en")
+        ? "en"
+        : "fr";
+    const updateLabel = () => {
+      const lang = currentLanguage();
+      toggle.textContent = labels[editing ? "done" : "edit"][lang];
+    };
+    const save = () => {
+      try {
+        localStorage.setItem(
+          storageKey,
+          JSON.stringify(items().map((el) => el.dataset.navKey)),
+        );
+      } catch (_) {
+        /* Stockage local facultatif. */
+      }
+    };
+    const applyOrder = (keys) => {
+      const byKey = new Map(items().map((el) => [el.dataset.navKey, el]));
+      keys.forEach((key) => {
+        if (byKey.has(key)) nav.appendChild(byKey.get(key));
+      });
+      items().forEach((el) => nav.appendChild(el));
+    };
+    try {
+      const saved = JSON.parse(localStorage.getItem(storageKey) || "null");
+      if (Array.isArray(saved)) applyOrder(saved);
+    } catch (_) {
+      /* Revenir à l'ordre HTML si préférence invalide. */
+    }
 
-        const storageKey = "madic-client-nav-order-v2";
-        const items = () =>
-          Array.from(nav.querySelectorAll(".madic-nav-entry"));
-        const initialOrder = items().map((el) => el.dataset.navKey);
-        const labels = {
-          edit: { fr: "Personnaliser le menu", en: "Customize menu" },
-          done: { fr: "Terminer", en: "Done" },
-        };
-        let editing = false;
-        let dragged = null;
-        const currentLanguage = () =>
-          document.documentElement.lang.toLowerCase().startsWith("en")
-            ? "en"
-            : "fr";
-        const updateLabel = () => {
-          const lang = currentLanguage();
-          toggle.textContent = labels[editing ? "done" : "edit"][lang];
-        };
-        const save = () => {
-          try {
-            localStorage.setItem(
-              storageKey,
-              JSON.stringify(items().map((el) => el.dataset.navKey)),
-            );
-          } catch (_) {
-            /* Stockage local facultatif. */
-          }
-        };
-        const applyOrder = (keys) => {
-          const byKey = new Map(items().map((el) => [el.dataset.navKey, el]));
-          keys.forEach((key) => {
-            if (byKey.has(key)) nav.appendChild(byKey.get(key));
-          });
-          items().forEach((el) => nav.appendChild(el));
-        };
-        try {
-          const saved = JSON.parse(localStorage.getItem(storageKey) || "null");
-          if (Array.isArray(saved)) applyOrder(saved);
-        } catch (_) {
-          /* Revenir à l'ordre HTML si préférence invalide. */
-        }
+    const setEditing = (value) => {
+      editing = Boolean(value);
+      sidebar.classList.toggle("madic-editing", editing);
+      toggle.setAttribute("aria-pressed", String(editing));
+      toggle.setAttribute("aria-expanded", String(editing));
+      reset.hidden = !editing;
+      help.hidden = !editing;
+      nav.querySelectorAll(".madic-drag-handle").forEach((handle) => {
+        handle.draggable = editing;
+      });
+      updateLabel();
+    };
+    toggle.setAttribute("aria-controls", "madicNavHelp madicResetNav");
+    toggle.addEventListener("click", () => setEditing(!editing));
+    reset.addEventListener("click", () => {
+      applyOrder(initialOrder);
+      save();
+    });
 
-        const setEditing = (value) => {
-          editing = Boolean(value);
-          sidebar.classList.toggle("madic-editing", editing);
-          toggle.setAttribute("aria-pressed", String(editing));
-          toggle.setAttribute("aria-expanded", String(editing));
-          reset.hidden = !editing;
-          help.hidden = !editing;
-          nav.querySelectorAll(".madic-drag-handle").forEach((handle) => {
-            handle.draggable = editing;
-          });
-          updateLabel();
-        };
-        toggle.setAttribute("aria-controls", "madicNavHelp madicResetNav");
-        toggle.addEventListener("click", () => setEditing(!editing));
-        reset.addEventListener("click", () => {
-          applyOrder(initialOrder);
-          save();
-        });
-
-        nav.addEventListener("click", (event) => {
-          const button = event.target.closest("button[data-move]");
-          if (!button || !editing) return;
-          const item = button.closest(".madic-nav-entry");
-          if (!item) return;
-          if (button.dataset.move === "up" && item.previousElementSibling) {
-            nav.insertBefore(item, item.previousElementSibling);
-          } else if (
-            button.dataset.move === "down" &&
-            item.nextElementSibling
-          ) {
-            nav.insertBefore(item.nextElementSibling, item);
-          }
-          save();
-          button.focus();
-        });
-        nav.addEventListener("dragstart", (event) => {
-          const handle = event.target.closest(".madic-drag-handle");
-          if (!editing || !handle) {
-            event.preventDefault();
-            return;
-          }
-          dragged = handle.closest(".madic-nav-entry");
-          if (!dragged || !event.dataTransfer) return;
-          dragged.classList.add("madic-dragging");
-          event.dataTransfer.effectAllowed = "move";
-          event.dataTransfer.setData("text/plain", dragged.dataset.navKey);
-        });
-        nav.addEventListener("dragover", (event) => {
-          const target = event.target.closest(".madic-nav-entry");
-          if (!editing || !dragged || !target || target === dragged) return;
-          event.preventDefault();
-          if (event.dataTransfer) event.dataTransfer.dropEffect = "move";
-          items().forEach((el) =>
-            el.classList.toggle("madic-drag-over", el === target),
-          );
-        });
-        nav.addEventListener("drop", (event) => {
-          const target = event.target.closest(".madic-nav-entry");
-          if (!editing || !dragged || !target || target === dragged) return;
-          event.preventDefault();
-          const rect = target.getBoundingClientRect();
-          const after = window.matchMedia("(max-width: 800px)").matches
-            ? event.clientX > rect.left + rect.width / 2
-            : event.clientY > rect.top + rect.height / 2;
-          nav.insertBefore(dragged, after ? target.nextSibling : target);
-          save();
-        });
-        nav.addEventListener("dragend", () => {
-          items().forEach((el) =>
-            el.classList.remove("madic-drag-over", "madic-dragging"),
-          );
-          dragged = null;
-        });
-        setEditing(false);
-      })();
-    
+    nav.addEventListener("click", (event) => {
+      const button = event.target.closest("button[data-move]");
+      if (!button || !editing) return;
+      const item = button.closest(".madic-nav-entry");
+      if (!item) return;
+      if (button.dataset.move === "up" && item.previousElementSibling) {
+        nav.insertBefore(item, item.previousElementSibling);
+      } else if (button.dataset.move === "down" && item.nextElementSibling) {
+        nav.insertBefore(item.nextElementSibling, item);
+      }
+      save();
+      button.focus();
+    });
+    nav.addEventListener("dragstart", (event) => {
+      const handle = event.target.closest(".madic-drag-handle");
+      if (!editing || !handle) {
+        event.preventDefault();
+        return;
+      }
+      dragged = handle.closest(".madic-nav-entry");
+      if (!dragged || !event.dataTransfer) return;
+      dragged.classList.add("madic-dragging");
+      event.dataTransfer.effectAllowed = "move";
+      event.dataTransfer.setData("text/plain", dragged.dataset.navKey);
+    });
+    nav.addEventListener("dragover", (event) => {
+      const target = event.target.closest(".madic-nav-entry");
+      if (!editing || !dragged || !target || target === dragged) return;
+      event.preventDefault();
+      if (event.dataTransfer) event.dataTransfer.dropEffect = "move";
+      items().forEach((el) =>
+        el.classList.toggle("madic-drag-over", el === target),
+      );
+    });
+    nav.addEventListener("drop", (event) => {
+      const target = event.target.closest(".madic-nav-entry");
+      if (!editing || !dragged || !target || target === dragged) return;
+      event.preventDefault();
+      const rect = target.getBoundingClientRect();
+      const after = window.matchMedia("(max-width: 800px)").matches
+        ? event.clientX > rect.left + rect.width / 2
+        : event.clientY > rect.top + rect.height / 2;
+      nav.insertBefore(dragged, after ? target.nextSibling : target);
+      save();
+    });
+    nav.addEventListener("dragend", () => {
+      items().forEach((el) =>
+        el.classList.remove("madic-drag-over", "madic-dragging"),
+      );
+      dragged = null;
+    });
+    setEditing(false);
+  })();
 }
 
 /* inline 3 */
 {
-
-      /* Navigation du tableau de bord client : cible, panneau et etat actif. */
-      (function () {
-        "use strict";
-        const nav = document.querySelector(".madic-side-links");
-        if (!nav) return;
-        const links = Array.from(nav.querySelectorAll('a[href^="#"]'));
-        const targets = new Map(
-          links.map((link) => [link.getAttribute("href"), link]),
-        );
-        const panels = {
-          "#profile-heading": [
-            "profileContent",
-            "profileHint",
-            "toggleProfile",
-          ],
-          "#dossiers-heading": [
-            "dossiersContent",
-            "dossiersHint",
-            "toggleDossiers",
-          ],
-        };
-        function activate(link) {
-          links.forEach((item) => {
-            const active = item === link;
-            item.classList.toggle("madic-nav-active", active);
-            if (active) item.setAttribute("aria-current", "location");
-            else item.removeAttribute("aria-current");
-          });
-        }
-        function reveal(hash) {
-          const ids = panels[hash];
-          if (!ids) return;
-          const content = document.getElementById(ids[0]);
-          const hint = document.getElementById(ids[1]);
-          const button = document.getElementById(ids[2]);
-          if (!content || !button || !content.hidden) return;
-          // Utiliser le gestionnaire existant, qui gere aussi aria-expanded.
-          button.click();
-          if (hint && !content.hidden) hint.hidden = true;
-        }
-        function navigate(hash, updateHistory) {
-          const link = targets.get(hash);
-          if (!link) return;
-          const target = document.getElementById(hash.slice(1));
-          if (!target) return;
-          // Les cartes facultatives restent sous le controle des scripts metier.
-          if (target.hidden || target.closest("[hidden]")) return;
-          reveal(hash);
-          activate(link);
-          if (updateHistory && location.hash !== hash)
-            history.pushState(null, "", hash);
-          // Les ancres sur un titre doivent positionner la carte complete.
-          const destination = target.closest("section.panel") || target;
-          requestAnimationFrame(() => {
-            const top =
-              destination.getBoundingClientRect().top + window.scrollY - 16;
-            window.scrollTo({ top: Math.max(0, top), behavior: "auto" });
-          });
-        }
-        nav.addEventListener("click", (event) => {
-          const link = event.target.closest('a[href^="#"]');
-          if (!link || !nav.contains(link)) return;
-          event.preventDefault();
-          navigate(link.getAttribute("href"), true);
-        });
-        window.addEventListener("hashchange", () =>
-          navigate(location.hash, false),
-        );
-        window.addEventListener("popstate", () =>
-          navigate(location.hash, false),
-        );
-        // Laisser les scripts du portail terminer leur initialisation.
-        window.addEventListener("load", () => {
-          if (targets.has(location.hash)) navigate(location.hash, false);
-          else activate(targets.get("#madic-top"));
-        });
-      })();
-    
+  /* Navigation du tableau de bord client : cible, panneau et etat actif. */
+  (function () {
+    "use strict";
+    const nav = document.querySelector(".madic-side-links");
+    if (!nav) return;
+    const links = Array.from(nav.querySelectorAll('a[href^="#"]'));
+    const targets = new Map(
+      links.map((link) => [link.getAttribute("href"), link]),
+    );
+    const panels = {
+      "#profile-heading": ["profileContent", "profileHint", "toggleProfile"],
+      "#dossiers-heading": [
+        "dossiersContent",
+        "dossiersHint",
+        "toggleDossiers",
+      ],
+    };
+    function activate(link) {
+      links.forEach((item) => {
+        const active = item === link;
+        item.classList.toggle("madic-nav-active", active);
+        if (active) item.setAttribute("aria-current", "location");
+        else item.removeAttribute("aria-current");
+      });
+    }
+    function reveal(hash) {
+      const ids = panels[hash];
+      if (!ids) return;
+      const content = document.getElementById(ids[0]);
+      const hint = document.getElementById(ids[1]);
+      const button = document.getElementById(ids[2]);
+      if (!content || !button || !content.hidden) return;
+      // Utiliser le gestionnaire existant, qui gere aussi aria-expanded.
+      button.click();
+      if (hint && !content.hidden) hint.hidden = true;
+    }
+    function navigate(hash, updateHistory) {
+      const link = targets.get(hash);
+      if (!link) return;
+      const target = document.getElementById(hash.slice(1));
+      if (!target) return;
+      // Les cartes facultatives restent sous le controle des scripts metier.
+      if (target.hidden || target.closest("[hidden]")) return;
+      reveal(hash);
+      activate(link);
+      if (updateHistory && location.hash !== hash)
+        history.pushState(null, "", hash);
+      // Les ancres sur un titre doivent positionner la carte complete.
+      const destination = target.closest("section.panel") || target;
+      requestAnimationFrame(() => {
+        const top =
+          destination.getBoundingClientRect().top + window.scrollY - 16;
+        window.scrollTo({ top: Math.max(0, top), behavior: "auto" });
+      });
+    }
+    nav.addEventListener("click", (event) => {
+      const link = event.target.closest('a[href^="#"]');
+      if (!link || !nav.contains(link)) return;
+      event.preventDefault();
+      navigate(link.getAttribute("href"), true);
+    });
+    window.addEventListener("hashchange", () => navigate(location.hash, false));
+    window.addEventListener("popstate", () => navigate(location.hash, false));
+    // Laisser les scripts du portail terminer leur initialisation.
+    window.addEventListener("load", () => {
+      if (targets.has(location.hash)) navigate(location.hash, false);
+      else activate(targets.get("#madic-top"));
+    });
+  })();
 }
 
 /* inline 4 */
 {
-
-      /* Suit le sélecteur FR/EN existant sans modifier le module i18n. */
-      (function () {
-        const root = document.getElementById("madicPublications");
-        if (!root) return;
-        const update = () => {
-          const lang = (document.documentElement.lang || "fr")
-            .toLowerCase()
-            .startsWith("en")
-            ? "en"
-            : "fr";
-          document
-            .querySelectorAll(
-              "[data-madic-publication-fr][data-madic-publication-en]",
-            )
-            .forEach((node) => {
-              const desired = node.getAttribute(
-                "data-madic-publication-" + lang,
-              );
-              if (node.textContent !== desired) node.textContent = desired;
-            });
-        };
-        new MutationObserver(update).observe(document.documentElement, {
-          attributes: true,
-          attributeFilter: ["lang"],
+  /* Suit le sélecteur FR/EN existant sans modifier le module i18n. */
+  (function () {
+    const root = document.getElementById("madicPublications");
+    if (!root) return;
+    const update = () => {
+      const lang = (document.documentElement.lang || "fr")
+        .toLowerCase()
+        .startsWith("en")
+        ? "en"
+        : "fr";
+      document
+        .querySelectorAll(
+          "[data-madic-publication-fr][data-madic-publication-en]",
+        )
+        .forEach((node) => {
+          const desired = node.getAttribute("data-madic-publication-" + lang);
+          if (node.textContent !== desired) node.textContent = desired;
         });
-        document.addEventListener("click", (event) => {
-          if (event.target.closest(".madic-language-switch"))
-            queueMicrotask(update);
-        });
-        update();
-      })();
-    
+    };
+    new MutationObserver(update).observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["lang"],
+    });
+    document.addEventListener("click", (event) => {
+      if (event.target.closest(".madic-language-switch"))
+        queueMicrotask(update);
+    });
+    update();
+  })();
 }
 
 /* external assets/cric-client-dashboard.js */
 {
-/* MADIC - tableau de bord client CRIC. RLS Supabase obligatoire. */
-(async () => {
-  "use strict";
-  if (window.MADIC_GUEST_PORTAL) return;
-  const $ = (id) => document.getElementById(id);
-  const status = (message, bad = false) => {
-    const n = $("message");
-    if (n) {
-      n.textContent = message;
-      n.className = bad ? "notice danger" : "notice ok";
-    }
-  };
-  if (
-    !window.MADIC_CONFIG?.url ||
-    !window.MADIC_CONFIG?.anonKey ||
-    !window.supabase ||
-    typeof window.getMadicSupabase !== "function"
-  )
-    return status("Configuration Supabase manquante.", true);
-  const db = window.getMadicSupabase();
-  const date = (value) =>
-    value ? new Date(value).toLocaleDateString("fr-CA") : "-";
-  const td = (row, value) => {
-    const cell = row.insertCell();
-    cell.textContent = value ?? "-";
-    return cell;
-  };
-  let user,
-    spaces = [],
-    dossiers = [];
-  $("logout").addEventListener("click", async () => {
-    await db.auth.signOut();
-    location.replace("connexion-client-cric.html");
-  });
-  const fields = [
-    "first_name",
-    "last_name",
-    "phone",
-    "gender",
-    "date_of_birth",
-    "address_number",
-    "address_street",
-    "address_apartment",
-    "address_city",
-    "address_region",
-    "address_postal_code",
-    "country",
-  ];
-  try {
-    const { data: auth, error: authError } = await db.auth.getUser();
-    if (authError || !auth?.user) {
+  /* MADIC - tableau de bord client CRIC. RLS Supabase obligatoire. */
+  (async () => {
+    "use strict";
+    if (window.MADIC_GUEST_PORTAL) return;
+    const $ = (id) => document.getElementById(id);
+    const status = (message, bad = false) => {
+      const n = $("message");
+      if (n) {
+        n.textContent = message;
+        n.className = bad ? "notice danger" : "notice ok";
+      }
+    };
+    if (
+      !window.MADIC_CONFIG?.url ||
+      !window.MADIC_CONFIG?.anonKey ||
+      !window.supabase ||
+      typeof window.getMadicSupabase !== "function"
+    )
+      return status("Configuration Supabase manquante.", true);
+    const db = window.getMadicSupabase();
+    const date = (value) =>
+      value ? new Date(value).toLocaleDateString("fr-CA") : "-";
+    const td = (row, value) => {
+      const cell = row.insertCell();
+      cell.textContent = value ?? "-";
+      return cell;
+    };
+    let user,
+      spaces = [],
+      dossiers = [];
+    $("logout").addEventListener("click", async () => {
+      await db.auth.signOut();
       location.replace("connexion-client-cric.html");
-      return;
-    }
-    user = auth.user;
-    const { data: linked, error: linkError } = await db.rpc(
-      "madic_my_cric_client_spaces",
-    );
-    if (linkError) throw linkError;
-    spaces = linked || [];
-    if (spaces.length && $("madicImmigrationFormCard"))
-      $("madicImmigrationFormCard").hidden = false;
-    if (!spaces.length) {
-      status(
-        "Aucun cabinet CRIC associé à votre compte. Contactez votre consultant.",
-        true,
-      );
-      return;
-    }
-    const { data: profile, error: profileError } = await db
-      .from("profiles")
-      .select("*")
-      .eq("id", user.id)
-      .single();
-    if (profileError) throw profileError;
-    // Avatars locaux selon le genre declare dans le profil. Aucune donnee envoyee a Gravatar.
-    const updateClientAvatar = (gender) => {
-      const avatar = $("madicClientAvatarImage");
-      const profileAvatar = $("madicProfileAvatarImage");
-      const normalized = String(gender || "")
-        .trim()
-        .toLocaleLowerCase("fr");
-      const type =
-        normalized === "homme"
-          ? "homme"
-          : normalized === "femme"
-            ? "femme"
-            : "neutre";
-      const fallback = "img/madic-avatar-" + type + ".svg";
-      for (const image of [avatar, profileAvatar]) {
-        if (!image) continue;
-        image.src = fallback;
-        image.alt = type === "neutre" ? "Avatar neutre" : "Avatar " + type;
-      }
-    };
-    // Photos privées : bucket dédié, chemin unique par utilisateur, URL signée temporaire.
-    const avatarBucket = "madic-profile-avatars";
-    let photoPath = String(user.user_metadata?.madic_avatar_path || "");
-    let photoPreviewUrl = null;
-    const photoNotice = (message, bad = false) => {
-      const el = $("madicProfilePhotoStatus");
-      if (el) { el.textContent = message; el.style.color = bad ? "#ffb4b4" : "#b3f2e4"; }
-    };
-    const setBothAvatars = (src, alt) => {
-      for (const id of ["madicClientAvatarImage", "madicProfileAvatarImage"]) {
-        const image = $(id);
-        if (image) { image.src = src; image.alt = alt; }
-      }
-    };
-    const refreshPhoto = async () => {
-      updateClientAvatar(profile.gender);
-      if (!photoPath) return;
-      const { data, error } = await db.storage.from(avatarBucket).createSignedUrl(photoPath, 3600);
-      if (error || !data?.signedUrl) { photoNotice("Photo non accessible : " + (error?.message || "lien indisponible"), true); return; }
-      setBothAvatars(data.signedUrl, "Photo personnelle du client");
-    };
-    updateClientAvatar(profile.gender);
-    await refreshPhoto();
-    $("madicProfilePhotoFile")?.addEventListener("change", (event) => {
-      if (photoPreviewUrl) URL.revokeObjectURL(photoPreviewUrl);
-      const file = event.target.files?.[0];
-      if (!file) { refreshPhoto(); return; }
-      if (!["image/jpeg", "image/png", "image/webp"].includes(file.type) || file.size > 2 * 1024 * 1024 || !file.size) {
-        event.target.value = "";
-        photoNotice("Choisissez une image JPG, PNG ou WebP de 2 Mo maximum.", true);
+    });
+    const fields = [
+      "first_name",
+      "last_name",
+      "phone",
+      "gender",
+      "date_of_birth",
+      "address_number",
+      "address_street",
+      "address_apartment",
+      "address_city",
+      "address_region",
+      "address_postal_code",
+      "country",
+    ];
+    try {
+      const { data: auth, error: authError } = await db.auth.getUser();
+      if (authError || !auth?.user) {
+        location.replace("connexion-client-cric.html");
         return;
       }
-      photoPreviewUrl = URL.createObjectURL(file);
-      setBothAvatars(photoPreviewUrl, "Aperçu de la nouvelle photo");
-      photoNotice("Aperçu uniquement : cliquez sur Enregistrer la photo pour la conserver.");
-    });
-    $("madicUploadProfilePhoto")?.addEventListener("click", async () => {
-      const file = $("madicProfilePhotoFile")?.files?.[0];
-      if (!file) return photoNotice("Sélectionnez d'abord une photo.", true);
-      if (!["image/jpeg", "image/png", "image/webp"].includes(file.type) || file.size > 2 * 1024 * 1024 || !file.size)
-        return photoNotice("Format ou taille non autorisé.", true);
-      const button = $("madicUploadProfilePhoto"); button.disabled = true;
-      try {
-        const extension = {"image/jpeg":"jpg","image/png":"png","image/webp":"webp"}[file.type];
-        const nextPath = `${user.id}/${crypto.randomUUID()}.${extension}`;
-        const { error: uploadError } = await db.storage.from(avatarBucket).upload(nextPath, file, { contentType:file.type, upsert:false });
-        if (uploadError) throw uploadError;
-        const { error: metadataError } = await db.auth.updateUser({ data: { madic_avatar_path: nextPath } });
-        if (metadataError) { await db.storage.from(avatarBucket).remove([nextPath]); throw metadataError; }
-        const previousPath = photoPath;
-        photoPath = nextPath;
-        if (previousPath && previousPath !== nextPath && previousPath.startsWith(user.id + "/"))
-          await db.storage.from(avatarBucket).remove([previousPath]);
-        $("madicProfilePhotoFile").value = "";
-        await refreshPhoto();
-        if (photoPreviewUrl) { URL.revokeObjectURL(photoPreviewUrl); photoPreviewUrl = null; }
-        photoNotice("Photo enregistrée.");
-      } catch (error) { photoNotice("Enregistrement impossible : " + error.message, true); }
-      finally { button.disabled = false; }
-    });
-    $("madicRemoveProfilePhoto")?.addEventListener("click", async () => {
-      const button = $("madicRemoveProfilePhoto"); button.disabled = true;
-      try {
-        const previousPath = photoPath;
-        const { error } = await db.auth.updateUser({ data: { madic_avatar_path: null } });
-        if (error) throw error;
-        photoPath = "";
-        if (previousPath && previousPath.startsWith(user.id + "/")) await db.storage.from(avatarBucket).remove([previousPath]);
-        $("madicProfilePhotoFile").value = "";
-        if (photoPreviewUrl) { URL.revokeObjectURL(photoPreviewUrl); photoPreviewUrl = null; }
+      user = auth.user;
+      const { data: linked, error: linkError } = await db.rpc(
+        "madic_my_cric_client_spaces",
+      );
+      if (linkError) throw linkError;
+      spaces = linked || [];
+      if (spaces.length && $("madicImmigrationFormCard"))
+        $("madicImmigrationFormCard").hidden = false;
+      if (!spaces.length) {
+        status(
+          "Aucun cabinet CRIC associé à votre compte. Contactez votre consultant.",
+          true,
+        );
+        return;
+      }
+      const { data: profile, error: profileError } = await db
+        .from("profiles")
+        .select("*")
+        .eq("id", user.id)
+        .single();
+      if (profileError) throw profileError;
+      // Avatars locaux selon le genre declare dans le profil. Aucune donnee envoyee a Gravatar.
+      const updateClientAvatar = (gender) => {
+        const avatar = $("madicClientAvatarImage");
+        const profileAvatar = $("madicProfileAvatarImage");
+        const normalized = String(gender || "")
+          .trim()
+          .toLocaleLowerCase("fr");
+        const type =
+          normalized === "homme"
+            ? "homme"
+            : normalized === "femme"
+              ? "femme"
+              : "neutre";
+        const fallback = "img/madic-avatar-" + type + ".svg";
+        for (const image of [avatar, profileAvatar]) {
+          if (!image) continue;
+          image.src = fallback;
+          image.alt = type === "neutre" ? "Avatar neutre" : "Avatar " + type;
+        }
+      };
+      // Photos privées : bucket dédié, chemin unique par utilisateur, URL signée temporaire.
+      const avatarBucket = "madic-profile-avatars";
+      let photoPath = String(user.user_metadata?.madic_avatar_path || "");
+      let photoPreviewUrl = null;
+      const photoNotice = (message, bad = false) => {
+        const el = $("madicProfilePhotoStatus");
+        if (el) {
+          el.textContent = message;
+          el.style.color = bad ? "#ffb4b4" : "#b3f2e4";
+        }
+      };
+      const setBothAvatars = (src, alt) => {
+        for (const id of [
+          "madicClientAvatarImage",
+          "madicProfileAvatarImage",
+        ]) {
+          const image = $(id);
+          if (image) {
+            image.src = src;
+            image.alt = alt;
+          }
+        }
+      };
+      const refreshPhoto = async () => {
         updateClientAvatar(profile.gender);
-        photoNotice("Photo supprimée. Avatar par défaut rétabli.");
-      } catch (error) { photoNotice("Suppression impossible : " + error.message, true); }
-      finally { button.disabled = false; }
-    });
-    $("gender")?.addEventListener("change", () => { if (!photoPath && !$("madicProfilePhotoFile")?.files?.length) updateClientAvatar($("gender").value); });
-    $("welcome").textContent =
-      "Bienvenue, " +
-      (profile.first_name || user.email?.split("@")[0] || "client");
-    for (const [id, key] of [
-      ["first", "first_name"],
-      ["last", "last_name"],
-      ["phone", "phone"],
-      ["gender", "gender"],
-      ["date_of_birth", "date_of_birth"],
-      ["address_number", "address_number"],
-      ["address_street", "address_street"],
-      ["address_apartment", "address_apartment"],
-      ["address_city", "address_city"],
-      ["address_region", "address_region"],
-      ["address_postal_code", "address_postal_code"],
-      ["country", "country"],
-    ]) {
-      if ($(id)) $(id).value = profile[key] ?? "";
-    }
-    // Préserver les pays déjà enregistrés, même si leur libellé diffère de la liste IRCC.
-    const countrySelect = $("country");
-    if (countrySelect && profile.country && !Array.from(countrySelect.options).some(option => option.value === profile.country)) {
-      const previousCountry = document.createElement("option");
-      previousCountry.value = profile.country;
-      previousCountry.textContent = profile.country;
-      countrySelect.append(previousCountry);
-      countrySelect.value = profile.country;
-    }
-    // Parcours conditionnel IRCC. Aucune dépendance ou colonne SQL ajoutée.
-    const irccCategory = $("ircc_application_category");
-    const irccType = $("ircc_application_type");
-    const irccTypeContainer = $("ircc_application_type_container");
-    const countryContainer = $("ircc_country_container");
-    const countryLabel = countryContainer.querySelector("label");
-    const questionContainer = $("ircc_question_container");
-    const questionLabel = $("ircc_question_label");
-    const question = $("ircc_question_answer");
-    const followupContainer = $("ircc_followup_container");
-    const followupLabel = $("ircc_followup_label");
-    const followup = $("ircc_followup_answer");
-    const automaticNote = $("ircc_automatic_note");
-    const irccSaved = user.user_metadata?.madic_ircc_questions || {};
-    const yesNo = ["Oui", "Non"];
-    const makeSelect = (element, values, selected) => {
-      element.replaceChildren(new Option("Sélectionnez dans la liste...", ""));
-      values.forEach(value => element.add(new Option(value, value)));
-      element.value = values.includes(selected) ? selected : "";
-    };
-    const applyQuestion = (container, label, select, prompt, values, selected) => {
-      container.hidden = !prompt;
-      select.disabled = !prompt;
-      select.required = Boolean(prompt);
-      if (prompt) { label.textContent = prompt + " (obligatoire)"; makeSelect(select, values, selected); }
-      else { select.required = false; select.value = ""; }
-    };
-    const syncIrccType = () => {
-      const category = irccCategory.value;
-      const previousValue = irccType.value;
-      const groups = Array.from(irccType.querySelectorAll("optgroup"));
-      groups.forEach(group => {
-        const active = group.label === category;
-        group.hidden = !active;
-        Array.from(group.querySelectorAll("option")).forEach(option => { option.disabled = !active; });
+        if (!photoPath) return;
+        const { data, error } = await db.storage
+          .from(avatarBucket)
+          .createSignedUrl(photoPath, 3600);
+        if (error || !data?.signedUrl) {
+          photoNotice(
+            "Photo non accessible : " + (error?.message || "lien indisponible"),
+            true,
+          );
+          return;
+        }
+        setBothAvatars(data.signedUrl, "Photo personnelle du client");
+      };
+      updateClientAvatar(profile.gender);
+      await refreshPhoto();
+      $("madicProfilePhotoFile")?.addEventListener("change", (event) => {
+        if (photoPreviewUrl) URL.revokeObjectURL(photoPreviewUrl);
+        const file = event.target.files?.[0];
+        if (!file) {
+          refreshPhoto();
+          return;
+        }
+        if (
+          !["image/jpeg", "image/png", "image/webp"].includes(file.type) ||
+          file.size > 2 * 1024 * 1024 ||
+          !file.size
+        ) {
+          event.target.value = "";
+          photoNotice(
+            "Choisissez une image JPG, PNG ou WebP de 2 Mo maximum.",
+            true,
+          );
+          return;
+        }
+        photoPreviewUrl = URL.createObjectURL(file);
+        setBothAvatars(photoPreviewUrl, "Aperçu de la nouvelle photo");
+        photoNotice(
+          "Aperçu uniquement : cliquez sur Enregistrer la photo pour la conserver.",
+        );
       });
-      const showType = groups.some(group => group.label === category);
-      irccTypeContainer.hidden = !showType;
-      irccType.required = showType;
-      irccType.disabled = !showType;
-      if (!showType || !Array.from(irccType.options).some(option => !option.disabled && option.value === previousValue)) irccType.value = "";
-    };
-    const rules = {
-      "Programme des candidats des provinces": ["Présentez-vous votre demande dans le cadre d’Entrée express ?", yesNo, "Avez-vous déjà présenté votre demande ?", yesNo],
-      "Époux, conjoint de fait ou partenaire conjugal": ["Où réside la personne parrainée ?", ["Au Canada", "À l’extérieur du Canada"], "La personne parrainée compte-t-elle s’établir au Québec ?", yesNo],
-      "Enfant à charge": ["Où réside l’enfant parrainé ?", ["Au Canada", "À l’extérieur du Canada"], "L’enfant compte-t-il s’établir au Québec ?", yesNo],
-      "Parents ou grands-parents": ["Les personnes parrainées comptent-elles s’établir au Québec ?", yesNo],
-      "Autre membre de la famille": ["La personne parrainée compte-t-elle s’établir au Québec ?", yesNo],
-      "Demande pour considérations d’ordre humanitaire": ["Comptez-vous vous établir au Québec ?", yesNo, "Avez-vous déjà présenté votre demande ?", yesNo],
-      "Attribution de la citoyenneté canadienne": ["Avez-vous déjà présenté votre demande ?", yesNo],
-      "Certificat de citoyenneté": ["Avez-vous déjà présenté votre demande ?", yesNo],
-      "Première carte de résident permanent": ["Avez-vous déjà présenté votre demande ?", yesNo],
-      "Renouvellement de la carte de résident permanent": ["Avez-vous déjà présenté votre demande ?", yesNo],
-      "Remplacement de la carte de résident permanent": ["Avez-vous déjà présenté votre demande ?", yesNo]
-    };
-    const countryTypes = new Set(["Visa de visiteur (de l’étranger)", "Super visa (parents et grands-parents)", "Permis d’études (de l’étranger)", "Permis de travail (de l’étranger)"]);
-    const automatic = {
-      "Prolongation d’un permis d’études au Canada": ["Avez-vous déjà présenté votre demande ?", "Non"],
-      "Prolongation du permis de travail du Canada": ["Avez-vous déjà présenté votre demande ?", "Non"],
-      "Expérience internationale Canada": ["Pour quelle saison avez-vous présenté votre demande ?", "Cette saison"]
-    };
-    let restoreQuestions = true;
-    const syncIrccQuestions = () => {
-      const type = irccType.value;
-      const rule = rules[type];
-      const stored = restoreQuestions && irccSaved.type === type ? irccSaved : {};
-      const showCountry = countryTypes.has(type);
-      countryContainer.hidden = !showCountry;
-      countrySelect.disabled = !showCountry;
-      countrySelect.required = showCountry;
-      countryLabel.textContent = type === "Super visa (parents et grands-parents)"
-        ? "Dans quel pays résident les parents ou grands-parents ? (obligatoire)"
-        : "À partir de quel endroit faites-vous votre demande ? (obligatoire)";
-      applyQuestion(questionContainer, questionLabel, question, rule?.[0], rule?.[1] || [], stored.answer || question.value);
-      applyQuestion(followupContainer, followupLabel, followup, rule?.[2], rule?.[3] || [], stored.followup || followup.value);
-      automaticNote.hidden = !automatic[type];
-      automaticNote.textContent = automatic[type] ? automatic[type][0] + " Réponse automatique : " + automatic[type][1] + "." : "";
-    };
-    irccCategory.value = profile.ircc_application_category || "";
-    irccType.value = profile.ircc_application_type || "";
-    irccCategory.addEventListener("change", () => { irccType.value = ""; restoreQuestions = false; syncIrccType(); syncIrccQuestions(); });
-    irccType.addEventListener("change", () => { restoreQuestions = false; question.value = ""; followup.value = ""; syncIrccQuestions(); });
-    syncIrccType();
-    syncIrccQuestions();
-    $("email").value = profile.email || user.email || "";
-    $("profile").addEventListener("submit", async (event) => {
-      event.preventDefault();
-      const payload = {};
+      $("madicUploadProfilePhoto")?.addEventListener("click", async () => {
+        const file = $("madicProfilePhotoFile")?.files?.[0];
+        if (!file) return photoNotice("Sélectionnez d'abord une photo.", true);
+        if (
+          !["image/jpeg", "image/png", "image/webp"].includes(file.type) ||
+          file.size > 2 * 1024 * 1024 ||
+          !file.size
+        )
+          return photoNotice("Format ou taille non autorisé.", true);
+        const button = $("madicUploadProfilePhoto");
+        button.disabled = true;
+        try {
+          const extension = {
+            "image/jpeg": "jpg",
+            "image/png": "png",
+            "image/webp": "webp",
+          }[file.type];
+          const nextPath = `${user.id}/${crypto.randomUUID()}.${extension}`;
+          const { error: uploadError } = await db.storage
+            .from(avatarBucket)
+            .upload(nextPath, file, { contentType: file.type, upsert: false });
+          if (uploadError) throw uploadError;
+          const { error: metadataError } = await db.auth.updateUser({
+            data: { madic_avatar_path: nextPath },
+          });
+          if (metadataError) {
+            await db.storage.from(avatarBucket).remove([nextPath]);
+            throw metadataError;
+          }
+          const previousPath = photoPath;
+          photoPath = nextPath;
+          if (
+            previousPath &&
+            previousPath !== nextPath &&
+            previousPath.startsWith(user.id + "/")
+          )
+            await db.storage.from(avatarBucket).remove([previousPath]);
+          $("madicProfilePhotoFile").value = "";
+          await refreshPhoto();
+          if (photoPreviewUrl) {
+            URL.revokeObjectURL(photoPreviewUrl);
+            photoPreviewUrl = null;
+          }
+          photoNotice("Photo enregistrée.");
+        } catch (error) {
+          photoNotice("Enregistrement impossible : " + error.message, true);
+        } finally {
+          button.disabled = false;
+        }
+      });
+      $("madicRemoveProfilePhoto")?.addEventListener("click", async () => {
+        const button = $("madicRemoveProfilePhoto");
+        button.disabled = true;
+        try {
+          const previousPath = photoPath;
+          const { error } = await db.auth.updateUser({
+            data: { madic_avatar_path: null },
+          });
+          if (error) throw error;
+          photoPath = "";
+          if (previousPath && previousPath.startsWith(user.id + "/"))
+            await db.storage.from(avatarBucket).remove([previousPath]);
+          $("madicProfilePhotoFile").value = "";
+          if (photoPreviewUrl) {
+            URL.revokeObjectURL(photoPreviewUrl);
+            photoPreviewUrl = null;
+          }
+          updateClientAvatar(profile.gender);
+          photoNotice("Photo supprimée. Avatar par défaut rétabli.");
+        } catch (error) {
+          photoNotice("Suppression impossible : " + error.message, true);
+        } finally {
+          button.disabled = false;
+        }
+      });
+      $("gender")?.addEventListener("change", () => {
+        if (!photoPath && !$("madicProfilePhotoFile")?.files?.length)
+          updateClientAvatar($("gender").value);
+      });
+      $("welcome").textContent =
+        "Bienvenue, " +
+        (profile.first_name || user.email?.split("@")[0] || "client");
       for (const [id, key] of [
         ["first", "first_name"],
         ["last", "last_name"],
@@ -1195,724 +1376,544 @@
         ["address_city", "address_city"],
         ["address_region", "address_region"],
         ["address_postal_code", "address_postal_code"],
+        ["country", "country"],
       ]) {
-        if (Object.prototype.hasOwnProperty.call(profile, key))
-          payload[key] = ($(id)?.value || "").trim() || null;
+        if ($(id)) $(id).value = profile[key] ?? "";
       }
-      // Ajout isolé : mêmes règles de sauvegarde que les autres champs du profil.
-      if (Object.prototype.hasOwnProperty.call(profile, "ircc_application_category")) {
-        payload.ircc_application_category = irccCategory.value || null;
-        payload.ircc_application_type = irccType.disabled ? null : (irccType.value || null);
-      } else {
-        return status("Colonnes IRCC absentes de profiles : appliquez d'abord la migration SQL fournie.", true);
-      }
-      // Le pays est lié au parcours IRCC : ne pas effacer une valeur masquée.
-      if (countrySelect.required && Object.prototype.hasOwnProperty.call(profile, "country"))
-        payload.country = countrySelect.value || null;
-      if (!payload.first_name || !payload.last_name)
-        return status("Prénom et nom obligatoires.", true);
+      // Préserver les pays déjà enregistrés, même si leur libellé diffère de la liste IRCC.
+      const countrySelect = $("country");
       if (
-        payload.country &&
-        !Array.from($("country").options).some(option => option.value === payload.country)
-      )
-        return status("Sélectionnez un pays valide dans la liste.", true);
-      const { error } = await db
-        .from("profiles")
-        .update(payload)
-        .eq("id", user.id);
-      if (error)
-        return status("Profil non enregistré : " + error.message, true);
-      // Les réponses complémentaires sont stockées dans les métadonnées du compte,
-      // sans nouvelle colonne ni modification des politiques RLS existantes.
-      const selectedType = irccType.value;
-      const auto = automatic[selectedType];
-      const answers = {
-        type: selectedType,
-        answer: question.disabled ? null : (question.value || null),
-        followup: followup.disabled ? null : (followup.value || null),
-        automatic_question: auto?.[0] || null,
-        automatic_answer: auto?.[1] || null
+        countrySelect &&
+        profile.country &&
+        !Array.from(countrySelect.options).some(
+          (option) => option.value === profile.country,
+        )
+      ) {
+        const previousCountry = document.createElement("option");
+        previousCountry.value = profile.country;
+        previousCountry.textContent = profile.country;
+        countrySelect.append(previousCountry);
+        countrySelect.value = profile.country;
+      }
+      // Parcours conditionnel IRCC. Aucune dépendance ou colonne SQL ajoutée.
+      const irccCategory = $("ircc_application_category");
+      const irccType = $("ircc_application_type");
+      const irccTypeContainer = $("ircc_application_type_container");
+      const countryContainer = $("ircc_country_container");
+      const countryLabel = countryContainer.querySelector("label");
+      const questionContainer = $("ircc_question_container");
+      const questionLabel = $("ircc_question_label");
+      const question = $("ircc_question_answer");
+      const followupContainer = $("ircc_followup_container");
+      const followupLabel = $("ircc_followup_label");
+      const followup = $("ircc_followup_answer");
+      const automaticNote = $("ircc_automatic_note");
+      const irccSaved = user.user_metadata?.madic_ircc_questions || {};
+      const yesNo = ["Oui", "Non"];
+      const makeSelect = (element, values, selected) => {
+        element.replaceChildren(
+          new Option("Sélectionnez dans la liste...", ""),
+        );
+        values.forEach((value) => element.add(new Option(value, value)));
+        element.value = values.includes(selected) ? selected : "";
       };
-      const { error: answersError } = await db.auth.updateUser({
-        data: { madic_ircc_questions: answers }
-      });
-      if (answersError) return status("Profil enregistré, mais réponses IRCC non enregistrées : " + answersError.message, true);
-      Object.assign(profile, payload);
-      if (!photoPath) updateClientAvatar(profile.gender);
-      $("welcome").textContent = "Bienvenue, " + profile.first_name;
-      status("Profil enregistré.");
-    });
-    const cabinet = $("cabinet");
-    for (const space of spaces) {
-      const option = document.createElement("option");
-      option.value = space.space_id;
-      option.textContent = space.space_name;
-      cabinet.append(option);
-    }
-    if (spaces.length > 1) $("cricCabinetPanel").hidden = false;
-    cabinet.addEventListener("change", () =>
-      load().catch((err) =>
-        status("Chargement impossible : " + err.message, true),
-      ),
-    );
-    $("upload").addEventListener("submit", upload);
-    $("documents").addEventListener("click", async (event) => {
-      const btn = event.target.closest("button[data-doc-id]");
-      if (!btn) return;
-      const docId = btn.dataset.docId;
-      const doc = (window._madicCricDocuments || []).find(
-        (d) => d.id === docId,
-      );
-      if (!doc) return status("Document introuvable.", true);
-      const { data, error } = await db.storage
-        .from("madic-documents")
-        .createSignedUrl(doc.storage_path, 60);
-      if (error || !data?.signedUrl)
-        return status(
-          "Téléchargement impossible : " +
-            (error?.message || "Lien indisponible"),
-          true,
+      const applyQuestion = (
+        container,
+        label,
+        select,
+        prompt,
+        values,
+        selected,
+      ) => {
+        container.hidden = !prompt;
+        select.disabled = !prompt;
+        select.required = Boolean(prompt);
+        if (prompt) {
+          label.textContent = prompt + " (obligatoire)";
+          makeSelect(select, values, selected);
+        } else {
+          select.required = false;
+          select.value = "";
+        }
+      };
+      const syncIrccType = () => {
+        const category = irccCategory.value;
+        const previousValue = irccType.value;
+        const groups = Array.from(irccType.querySelectorAll("optgroup"));
+        groups.forEach((group) => {
+          const active = group.label === category;
+          group.hidden = !active;
+          Array.from(group.querySelectorAll("option")).forEach((option) => {
+            option.disabled = !active;
+          });
+        });
+        const showType = groups.some((group) => group.label === category);
+        irccTypeContainer.hidden = !showType;
+        irccType.required = showType;
+        irccType.disabled = !showType;
+        if (
+          !showType ||
+          !Array.from(irccType.options).some(
+            (option) => !option.disabled && option.value === previousValue,
+          )
+        )
+          irccType.value = "";
+      };
+      const rules = {
+        "Programme des candidats des provinces": [
+          "Présentez-vous votre demande dans le cadre d’Entrée express ?",
+          yesNo,
+          "Avez-vous déjà présenté votre demande ?",
+          yesNo,
+        ],
+        "Époux, conjoint de fait ou partenaire conjugal": [
+          "Où réside la personne parrainée ?",
+          ["Au Canada", "À l’extérieur du Canada"],
+          "La personne parrainée compte-t-elle s’établir au Québec ?",
+          yesNo,
+        ],
+        "Enfant à charge": [
+          "Où réside l’enfant parrainé ?",
+          ["Au Canada", "À l’extérieur du Canada"],
+          "L’enfant compte-t-il s’établir au Québec ?",
+          yesNo,
+        ],
+        "Parents ou grands-parents": [
+          "Les personnes parrainées comptent-elles s’établir au Québec ?",
+          yesNo,
+        ],
+        "Autre membre de la famille": [
+          "La personne parrainée compte-t-elle s’établir au Québec ?",
+          yesNo,
+        ],
+        "Demande pour considérations d’ordre humanitaire": [
+          "Comptez-vous vous établir au Québec ?",
+          yesNo,
+          "Avez-vous déjà présenté votre demande ?",
+          yesNo,
+        ],
+        "Attribution de la citoyenneté canadienne": [
+          "Avez-vous déjà présenté votre demande ?",
+          yesNo,
+        ],
+        "Certificat de citoyenneté": [
+          "Avez-vous déjà présenté votre demande ?",
+          yesNo,
+        ],
+        "Première carte de résident permanent": [
+          "Avez-vous déjà présenté votre demande ?",
+          yesNo,
+        ],
+        "Renouvellement de la carte de résident permanent": [
+          "Avez-vous déjà présenté votre demande ?",
+          yesNo,
+        ],
+        "Remplacement de la carte de résident permanent": [
+          "Avez-vous déjà présenté votre demande ?",
+          yesNo,
+        ],
+      };
+      const countryTypes = new Set([
+        "Visa de visiteur (de l’étranger)",
+        "Super visa (parents et grands-parents)",
+        "Permis d’études (de l’étranger)",
+        "Permis de travail (de l’étranger)",
+      ]);
+      const automatic = {
+        "Prolongation d’un permis d’études au Canada": [
+          "Avez-vous déjà présenté votre demande ?",
+          "Non",
+        ],
+        "Prolongation du permis de travail du Canada": [
+          "Avez-vous déjà présenté votre demande ?",
+          "Non",
+        ],
+        "Expérience internationale Canada": [
+          "Pour quelle saison avez-vous présenté votre demande ?",
+          "Cette saison",
+        ],
+      };
+      let restoreQuestions = true;
+      const syncIrccQuestions = () => {
+        const type = irccType.value;
+        const rule = rules[type];
+        const stored =
+          restoreQuestions && irccSaved.type === type ? irccSaved : {};
+        const showCountry = countryTypes.has(type);
+        countryContainer.hidden = !showCountry;
+        countrySelect.disabled = !showCountry;
+        countrySelect.required = showCountry;
+        countryLabel.textContent =
+          type === "Super visa (parents et grands-parents)"
+            ? "Dans quel pays résident les parents ou grands-parents ? (obligatoire)"
+            : "À partir de quel endroit faites-vous votre demande ? (obligatoire)";
+        applyQuestion(
+          questionContainer,
+          questionLabel,
+          question,
+          rule?.[0],
+          rule?.[1] || [],
+          stored.answer || question.value,
         );
-      const a = document.createElement("a");
-      a.href = data.signedUrl;
-      a.target = "_blank";
-      a.rel = "noopener noreferrer";
-      a.click();
-    });
-    await load();
-  } catch (error) {
-    status(
-      "Impossible de charger votre espace CRIC : " +
-        (error.message || String(error)),
-      true,
-    );
-  }
+        applyQuestion(
+          followupContainer,
+          followupLabel,
+          followup,
+          rule?.[2],
+          rule?.[3] || [],
+          stored.followup || followup.value,
+        );
+        automaticNote.hidden = !automatic[type];
+        automaticNote.textContent = automatic[type]
+          ? automatic[type][0] +
+            " Réponse automatique : " +
+            automatic[type][1] +
+            "."
+          : "";
+      };
+      irccCategory.value = profile.ircc_application_category || "";
+      irccType.value = profile.ircc_application_type || "";
+      irccCategory.addEventListener("change", () => {
+        irccType.value = "";
+        restoreQuestions = false;
+        syncIrccType();
+        syncIrccQuestions();
+      });
+      irccType.addEventListener("change", () => {
+        restoreQuestions = false;
+        question.value = "";
+        followup.value = "";
+        syncIrccQuestions();
+      });
+      syncIrccType();
+      syncIrccQuestions();
+      $("email").value = profile.email || user.email || "";
+      $("profile").addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const payload = {};
+        for (const [id, key] of [
+          ["first", "first_name"],
+          ["last", "last_name"],
+          ["phone", "phone"],
+          ["gender", "gender"],
+          ["date_of_birth", "date_of_birth"],
+          ["address_number", "address_number"],
+          ["address_street", "address_street"],
+          ["address_apartment", "address_apartment"],
+          ["address_city", "address_city"],
+          ["address_region", "address_region"],
+          ["address_postal_code", "address_postal_code"],
+        ]) {
+          if (Object.prototype.hasOwnProperty.call(profile, key))
+            payload[key] = ($(id)?.value || "").trim() || null;
+        }
+        // Ajout isolé : mêmes règles de sauvegarde que les autres champs du profil.
+        if (
+          Object.prototype.hasOwnProperty.call(
+            profile,
+            "ircc_application_category",
+          )
+        ) {
+          payload.ircc_application_category = irccCategory.value || null;
+          payload.ircc_application_type = irccType.disabled
+            ? null
+            : irccType.value || null;
+        } else {
+          return status(
+            "Colonnes IRCC absentes de profiles : appliquez d'abord la migration SQL fournie.",
+            true,
+          );
+        }
+        // Le pays est lié au parcours IRCC : ne pas effacer une valeur masquée.
+        if (
+          countrySelect.required &&
+          Object.prototype.hasOwnProperty.call(profile, "country")
+        )
+          payload.country = countrySelect.value || null;
+        if (!payload.first_name || !payload.last_name)
+          return status("Prénom et nom obligatoires.", true);
+        if (
+          payload.country &&
+          !Array.from($("country").options).some(
+            (option) => option.value === payload.country,
+          )
+        )
+          return status("Sélectionnez un pays valide dans la liste.", true);
+        const { error } = await db
+          .from("profiles")
+          .update(payload)
+          .eq("id", user.id);
+        if (error)
+          return status("Profil non enregistré : " + error.message, true);
+        // Les réponses complémentaires sont stockées dans les métadonnées du compte,
+        // sans nouvelle colonne ni modification des politiques RLS existantes.
+        const selectedType = irccType.value;
+        const auto = automatic[selectedType];
+        const answers = {
+          type: selectedType,
+          answer: question.disabled ? null : question.value || null,
+          followup: followup.disabled ? null : followup.value || null,
+          automatic_question: auto?.[0] || null,
+          automatic_answer: auto?.[1] || null,
+        };
+        const { error: answersError } = await db.auth.updateUser({
+          data: { madic_ircc_questions: answers },
+        });
+        if (answersError)
+          return status(
+            "Profil enregistré, mais réponses IRCC non enregistrées : " +
+              answersError.message,
+            true,
+          );
+        Object.assign(profile, payload);
+        if (!photoPath) updateClientAvatar(profile.gender);
+        $("welcome").textContent = "Bienvenue, " + profile.first_name;
+        status("Profil enregistré.");
+      });
+      const cabinet = $("cabinet");
+      for (const space of spaces) {
+        const option = document.createElement("option");
+        option.value = space.space_id;
+        option.textContent = space.space_name;
+        cabinet.append(option);
+      }
+      if (spaces.length > 1) $("cricCabinetPanel").hidden = false;
+      cabinet.addEventListener("change", () =>
+        load().catch((err) =>
+          status("Chargement impossible : " + err.message, true),
+        ),
+      );
+      $("upload").addEventListener("submit", upload);
+      $("documents").addEventListener("click", async (event) => {
+        const btn = event.target.closest("button[data-doc-id]");
+        if (!btn) return;
+        const docId = btn.dataset.docId;
+        const doc = (window._madicCricDocuments || []).find(
+          (d) => d.id === docId,
+        );
+        if (!doc) return status("Document introuvable.", true);
+        const { data, error } = await db.storage
+          .from("madic-documents")
+          .createSignedUrl(doc.storage_path, 60);
+        if (error || !data?.signedUrl)
+          return status(
+            "Téléchargement impossible : " +
+              (error?.message || "Lien indisponible"),
+            true,
+          );
+        const a = document.createElement("a");
+        a.href = data.signedUrl;
+        a.target = "_blank";
+        a.rel = "noopener noreferrer";
+        a.click();
+      });
+      await load();
+    } catch (error) {
+      status(
+        "Impossible de charger votre espace CRIC : " +
+          (error.message || String(error)),
+        true,
+      );
+    }
 
-  async function load() {
-    const spaceId = $("cabinet").value;
-    if (!spaces.some((s) => s.space_id === spaceId))
-      throw Error("Cabinet non autorisé.");
-    const { data: ds, error: de } = await db
-      .from("dossiers")
-      .select("id,reference,category,status,created_at")
-      .eq("client_id", user.id)
-      .eq("space_id", spaceId)
-      .order("created_at", { ascending: false });
-    if (de) throw de;
-    dossiers = ds || [];
-    const body = $("dossiers");
-    body.replaceChildren();
-    for (const d of dossiers) {
-      const r = body.insertRow();
-      td(r, d.reference);
-      td(r, d.category);
-      td(r, d.status);
-    }
-    if (!dossiers.length) {
-      const r = body.insertRow();
-      const c = r.insertCell();
-      c.colSpan = 3;
-      c.textContent = "Aucun dossier attribué par ce consultant.";
-    }
-    const active = dossiers.filter((d) => d.status === "actif");
-    const select = $("dossier");
-    select.replaceChildren();
-    const empty = document.createElement("option");
-    empty.value = "";
-    empty.textContent = "Aucun dossier actif";
-    select.append(empty);
-    for (const d of active) {
-      const opt = document.createElement("option");
-      opt.value = d.id;
-      opt.textContent = d.reference + " - " + d.category;
-      select.append(opt);
-    }
-    $("uploadButton").disabled = !active.length;
-    await loadDocuments();
-    status(
-      "Espace client associé au cabinet : " +
-        spaces.find((s) => s.space_id === spaceId).space_name,
-    );
-  }
-  async function loadDocuments() {
-    const body = $("documents");
-    body.replaceChildren();
-    const ids = dossiers.map((d) => d.id);
-    window._madicCricDocuments = [];
-    if (!ids.length) {
-      const r = body.insertRow();
-      const c = r.insertCell();
-      c.colSpan = 5;
-      c.textContent = "Aucun document transmis.";
-      return;
-    }
-    const { data, error } = await db
-      .from("documents")
-      .select("*")
-      .eq("client_id", user.id)
-      .in("dossier_id", ids)
-      .order("created_at", { ascending: false });
-    if (error) throw error;
-    window._madicCricDocuments = data || [];
-    for (const d of data || []) {
-      const r = body.insertRow();
-      td(r, d.original_name);
-      td(r, date(d.created_at));
-      td(
-        r,
-        d.review_status === "accepte"
-          ? "Accepté"
-          : d.review_status === "refuse"
-            ? "Refusé"
-            : d.review_status === "en_attente"
-              ? "En attente"
-              : d.status || "En attente",
-      );
-      td(r, d.review_reason || "-");
-      const cell = r.insertCell();
-      const b = document.createElement("button");
-      b.type = "button";
-      b.className = "secondary";
-      b.textContent = "Télécharger";
-      b.dataset.docId = d.id;
-      cell.append(b);
-    }
-    if (!data?.length) {
-      const r = body.insertRow();
-      const c = r.insertCell();
-      c.colSpan = 5;
-      c.textContent = "Aucun document transmis.";
-    }
-  }
-  async function upload(event) {
-    event.preventDefault();
-    const dossierId = $("dossier").value;
-    if (!dossiers.some((d) => d.id === dossierId && d.status === "actif"))
-      return status("Sélectionnez un dossier actif de ce consultant.", true);
-    const file = $("file").files[0];
-    if (!file) return status("Sélectionnez un document.", true);
-    const types = ["application/pdf", "image/jpeg", "image/png"];
-    if (
-      !types.includes(file.type) ||
-      file.size === 0 ||
-      file.size > 10 * 1024 * 1024
-    )
-      return status("PDF, JPG ou PNG uniquement, 10 Mo maximum.", true);
-    const path = `${user.id}/${dossierId}/${crypto.randomUUID()}`;
-    $("uploadButton").disabled = true;
-    try {
-      const { error: uploadError } = await db.storage
-        .from("madic-documents")
-        .upload(path, file, { contentType: file.type, upsert: false });
-      if (uploadError) throw uploadError;
-      const { error: insertError } = await db.from("documents").insert({
-        dossier_id: dossierId,
-        client_id: user.id,
-        original_name: file.name.slice(0, 240),
-        storage_path: path,
-        mime_type: file.type,
-        size_bytes: file.size,
-      });
-      if (insertError)
-        throw Error(
-          "Fichier transféré, mais enregistrement incomplet. Contactez le consultant. Référence : " +
-            path +
-            " - " +
-            insertError.message,
-        );
-      $("upload").reset();
-      status("Document transmis.");
+    async function load() {
+      const spaceId = $("cabinet").value;
+      if (!spaces.some((s) => s.space_id === spaceId))
+        throw Error("Cabinet non autorisé.");
+      const { data: ds, error: de } = await db
+        .from("dossiers")
+        .select("id,reference,category,status,created_at")
+        .eq("client_id", user.id)
+        .eq("space_id", spaceId)
+        .order("created_at", { ascending: false });
+      if (de) throw de;
+      dossiers = ds || [];
+      const body = $("dossiers");
+      body.replaceChildren();
+      for (const d of dossiers) {
+        const r = body.insertRow();
+        td(r, d.reference);
+        td(r, d.category);
+        td(r, d.status);
+      }
+      if (!dossiers.length) {
+        const r = body.insertRow();
+        const c = r.insertCell();
+        c.colSpan = 3;
+        c.textContent = "Aucun dossier attribué par ce consultant.";
+      }
+      const active = dossiers.filter((d) => d.status === "actif");
+      const select = $("dossier");
+      select.replaceChildren();
+      const empty = document.createElement("option");
+      empty.value = "";
+      empty.textContent = "Aucun dossier actif";
+      select.append(empty);
+      for (const d of active) {
+        const opt = document.createElement("option");
+        opt.value = d.id;
+        opt.textContent = d.reference + " - " + d.category;
+        select.append(opt);
+      }
+      $("uploadButton").disabled = !active.length;
       await loadDocuments();
-    } catch (err) {
-      status("Transmission impossible : " + err.message, true);
-    } finally {
-      $("uploadButton").disabled = !dossiers.some((d) => d.status === "actif");
+      status(
+        "Espace client associé au cabinet : " +
+          spaces.find((s) => s.space_id === spaceId).space_name,
+      );
     }
-  }
-})();
-
+    async function loadDocuments() {
+      const body = $("documents");
+      body.replaceChildren();
+      const ids = dossiers.map((d) => d.id);
+      window._madicCricDocuments = [];
+      if (!ids.length) {
+        const r = body.insertRow();
+        const c = r.insertCell();
+        c.colSpan = 5;
+        c.textContent = "Aucun document transmis.";
+        return;
+      }
+      const { data, error } = await db
+        .from("documents")
+        .select("*")
+        .eq("client_id", user.id)
+        .in("dossier_id", ids)
+        .order("created_at", { ascending: false });
+      if (error) throw error;
+      window._madicCricDocuments = data || [];
+      for (const d of data || []) {
+        const r = body.insertRow();
+        td(r, d.original_name);
+        td(r, date(d.created_at));
+        td(
+          r,
+          d.review_status === "accepte"
+            ? "Accepté"
+            : d.review_status === "refuse"
+              ? "Refusé"
+              : d.review_status === "en_attente"
+                ? "En attente"
+                : d.status || "En attente",
+        );
+        td(r, d.review_reason || "-");
+        const cell = r.insertCell();
+        const b = document.createElement("button");
+        b.type = "button";
+        b.className = "secondary";
+        b.textContent = "Télécharger";
+        b.dataset.docId = d.id;
+        cell.append(b);
+      }
+      if (!data?.length) {
+        const r = body.insertRow();
+        const c = r.insertCell();
+        c.colSpan = 5;
+        c.textContent = "Aucun document transmis.";
+      }
+    }
+    async function upload(event) {
+      event.preventDefault();
+      const dossierId = $("dossier").value;
+      if (!dossiers.some((d) => d.id === dossierId && d.status === "actif"))
+        return status("Sélectionnez un dossier actif de ce consultant.", true);
+      const file = $("file").files[0];
+      if (!file) return status("Sélectionnez un document.", true);
+      const types = ["application/pdf", "image/jpeg", "image/png"];
+      if (
+        !types.includes(file.type) ||
+        file.size === 0 ||
+        file.size > 10 * 1024 * 1024
+      )
+        return status("PDF, JPG ou PNG uniquement, 10 Mo maximum.", true);
+      const path = `${user.id}/${dossierId}/${crypto.randomUUID()}`;
+      $("uploadButton").disabled = true;
+      try {
+        const { error: uploadError } = await db.storage
+          .from("madic-documents")
+          .upload(path, file, { contentType: file.type, upsert: false });
+        if (uploadError) throw uploadError;
+        const { error: insertError } = await db.from("documents").insert({
+          dossier_id: dossierId,
+          client_id: user.id,
+          original_name: file.name.slice(0, 240),
+          storage_path: path,
+          mime_type: file.type,
+          size_bytes: file.size,
+        });
+        if (insertError)
+          throw Error(
+            "Fichier transféré, mais enregistrement incomplet. Contactez le consultant. Référence : " +
+              path +
+              " - " +
+              insertError.message,
+          );
+        $("upload").reset();
+        status("Document transmis.");
+        await loadDocuments();
+      } catch (err) {
+        status("Transmission impossible : " + err.message, true);
+      } finally {
+        $("uploadButton").disabled = !dossiers.some(
+          (d) => d.status === "actif",
+        );
+      }
+    }
+  })();
 }
 
 /* external assets/madic-messagerie-client-badge.js */
 {
-/* MADIC - compteur de messages non lus du client CRIC.
+  /* MADIC - compteur de messages non lus du client CRIC.
    Lecture uniquement : les RLS Supabase restent la source des autorisations. */
-(async () => {
-  "use strict";
-  if (window.MADIC_GUEST_PORTAL) return;
-  const badge = document.getElementById("madicClientMessagesUnread");
-  const summary = document.getElementById("madicClientMessagesSummary");
-  const card = document.getElementById("madicClientMessagingCard");
-  const cabinet = document.getElementById("cabinet");
-  if (!badge || !summary || !card || !cabinet) return;
-  if (typeof window.getMadicSupabase !== "function") return;
-  const db = window.getMadicSupabase();
-  const { data: auth, error: authError } = await db.auth.getUser();
-  if (authError || !auth?.user) return;
-  const uid = auth.user.id;
-  const { data: linked, error: linkedError } = await db.rpc(
-    "madic_my_cric_client_spaces",
-  );
-  if (linkedError || !linked?.length) return;
-  const authorized = new Set(linked.map((s) => s.space_id));
-  card.hidden = false;
-  let sequence = 0;
-  async function refresh() {
-    const current = ++sequence;
-    const spaceId = cabinet.value || linked[0].space_id;
-    if (!authorized.has(spaceId)) {
-      badge.hidden = true;
-      summary.textContent = "Sélectionnez un cabinet autorisé.";
-      return;
-    }
-    try {
-      const { data: conversations, error: conversationError } = await db
-        .from("madic_cric_conversations")
-        .select("id")
-        .eq("space_id", spaceId)
-        .eq("client_id", uid);
-      if (conversationError) throw conversationError;
-      const ids = (conversations || []).map((c) => c.id);
-      if (!ids.length) {
-        if (current !== sequence) return;
-        badge.hidden = true;
-        summary.textContent = "Aucun message non lu.";
-        return;
-      }
-      const [messagesResponse, readsResponse] = await Promise.all([
-        db
-          .from("madic_cric_messages")
-          .select("id,conversation_id,sender_id,created_at")
-          .in("conversation_id", ids)
-          .neq("sender_id", uid)
-          .order("created_at", { ascending: false })
-          .limit(1000),
-        db
-          .from("madic_cric_message_reads")
-          .select("conversation_id,last_read_at")
-          .eq("user_id", uid)
-          .in("conversation_id", ids),
-      ]);
-      if (messagesResponse.error) throw messagesResponse.error;
-      if (readsResponse.error) throw readsResponse.error;
-      const lastRead = new Map(
-        (readsResponse.data || []).map((r) => [
-          r.conversation_id,
-          r.last_read_at,
-        ]),
-      );
-      const unread = (messagesResponse.data || []).filter((m) => {
-        const readAt = lastRead.get(m.conversation_id);
-        return (
-          !readAt ||
-          new Date(m.created_at).getTime() > new Date(readAt).getTime()
-        );
-      }).length;
-      if (current !== sequence) return;
-      badge.textContent = String(unread);
-      badge.hidden = unread === 0;
-      summary.textContent = unread
-        ? `${unread} message${unread > 1 ? "s" : ""} non lu${unread > 1 ? "s" : ""}.`
-        : "Aucun message non lu.";
-      if ((messagesResponse.data || []).length === 1000)
-        summary.textContent +=
-          " (Vérification limitée aux 1 000 messages récents.)";
-    } catch (error) {
-      if (current !== sequence) return;
-      badge.hidden = true;
-      summary.textContent =
-        "Compteur indisponible : " + (error.message || String(error));
-    }
-  }
-  cabinet.addEventListener("change", refresh);
-  document.addEventListener("visibilitychange", () => {
-    if (!document.hidden) refresh();
-  });
-  window.addEventListener("focus", refresh);
-  await refresh();
-})();
-
-}
-
-/* external assets/madic-client-invoices.js */
-{
-/* MADIC 3.2 - Lecture des factures émises du client via RPC dédiée. */
-(async () => {
-  "use strict";
-  if (window.MADIC_GUEST_PORTAL) return;
-  const $ = (id) => document.getElementById(id);
-  const notice = (text) => {
-    if ($("clientInvoicesNotice")) $("clientInvoicesNotice").textContent = text;
-  };
-  if (!window.getMadicSupabase || !$("cabinet") || !$("clientInvoicesPanel"))
-    return;
-  const db = window.getMadicSupabase();
-  const money = (cents) =>
-    (Number(cents || 0) / 100).toLocaleString("fr-CA", {
-      style: "currency",
-      currency: "CAD",
-    });
-  const total = (i) =>
-    Math.round(Number(i.amount_cents) * (1 + Number(i.tax_rate)));
-  const date = (value) => value || "-";
-  let invoices = [];
-  const add = (tag, text, parent) => {
-    const e = document.createElement(tag);
-    e.textContent = text ?? "";
-    parent.append(e);
-    return e;
-  };
-  function pdf(i) {
-    const w = window.open("", "_blank");
-    if (!w)
-      return notice(
-        "Autorisez les fenêtres contextuelles pour afficher la facture.",
-      );
-    const doc = w.document;
-    doc.open();
-    doc.write(
-      '<!doctype html><html lang="fr-CA"><head><meta charset="utf-8"><title>Facture</title><style>body{font:15px Arial,sans-serif;max-width:800px;margin:40px auto;color:#182331}table{width:100%;border-collapse:collapse}th,td{padding:9px;border-bottom:1px solid #ddd;text-align:left}.right{text-align:right}img{max-width:200px;max-height:90px;object-fit:contain}button{margin:24px 0;padding:10px}@media print{button{display:none}}</style></head><body><main id="invoice"></main><button onclick="window.print()">Imprimer / Enregistrer en PDF</button></body></html>',
-    );
-    doc.close();
-    const root = doc.getElementById("invoice");
-    if (
-      /^data:image\/(png|jpeg);base64,[A-Za-z0-9+/=]+$/.test(
-        i.logo_data_url || "",
-      )
-    ) {
-      const img = doc.createElement("img");
-      img.src = i.logo_data_url;
-      img.alt = "Logo du cabinet";
-      root.append(img);
-    }
-    add("h1", "Facture " + i.invoice_number, root);
-    add("h2", i.cabinet_name, root);
-    if (i.cabinet_address) add("p", i.cabinet_address, root);
-    if (i.cabinet_tax_numbers)
-      add("p", "Numéros de taxes : " + i.cabinet_tax_numbers, root);
-    add(
-      "p",
-      "Émise le " + date(i.issued_on) + " · Échéance : " + date(i.due_on),
-      root,
-    );
-    const table = add("table", "", root);
-    const head = add("tr", "", table);
-    for (const h of ["Description", "Qté", "Prix unitaire", "Montant"])
-      add("th", h, head);
-    const items =
-      Array.isArray(i.items) && i.items.length
-        ? i.items
-        : [
-            {
-              description: i.description,
-              quantity: 1,
-              unit_price_cents: i.amount_cents,
-            },
-          ];
-    for (const item of items) {
-      const tr = add("tr", "", table);
-      for (const value of [
-        item.description,
-        String(item.quantity),
-        money(item.unit_price_cents),
-        money(Number(item.quantity) * Number(item.unit_price_cents)),
-      ])
-        add("td", value, tr);
-    }
-    for (const [label, value] of [
-      ["Sous-total", money(i.amount_cents)],
-      ["Taxes", money(total(i) - i.amount_cents)],
-      ["Total", money(total(i))],
-      ["Paiements reçus", money(i.paid_cents)],
-      ["Solde", money(total(i) - i.paid_cents)],
-    ]) {
-      const tr = add("tr", "", table);
-      add("td", label, tr).colSpan = 3;
-      add("td", value, tr).className = "right";
-    }
-    if (i.notes) add("p", "Notes : " + i.notes, root);
-    w.focus();
-  }
-  async function payInvoice(invoice, button) {
-    if (!invoice.id) {
-      notice(
-        "Identifiant de facture manquant. Vérifiez la fonction madic_my_issued_invoices.",
-      );
-      return;
-    }
-    button.disabled = true;
-    button.textContent = "Préparation…";
-    notice("Préparation du paiement sécurisé Stripe…");
-    try {
-      const { data, error } = await db.functions.invoke(
-        "madic-stripe-create-checkout",
-        {
-          body: { invoice_id: invoice.id },
-        },
-      );
-      if (error) {
-        let detail = error.message || "Erreur Stripe";
-        try {
-          const payload = await error.context?.json();
-          if (payload?.error) detail = payload.error;
-        } catch (_) {
-          /* La réponse peut ne pas être JSON. */
-        }
-        throw new Error(detail);
-      }
-      if (
-        typeof data?.url !== "string" ||
-        !/^https:\/\/checkout\.stripe\.com\//.test(data.url)
-      ) {
-        throw new Error("Lien de paiement Stripe invalide.");
-      }
-      window.location.assign(data.url);
-    } catch (err) {
-      notice("Paiement indisponible : " + (err.message || String(err)));
-      button.disabled = false;
-      button.textContent = "Payer en ligne";
-    }
-  }
-  async function load() {
-    const spaceId = $("cabinet").value;
-    const body = $("clientInvoicesRows");
-    body.replaceChildren();
-    if (!spaceId) return;
-    notice("Chargement des factures…");
-    const { data, error } = await db.rpc("madic_my_issued_invoices", {
-      p_space_id: spaceId,
-    });
-    if (error) {
-      notice("Factures indisponibles : " + error.message);
-      return;
-    }
-    invoices = Array.isArray(data) ? data : [];
-    $("clientInvoicesPanel").hidden = false;
-    for (const i of invoices) {
-      const r = body.insertRow();
-      for (const v of [
-        i.invoice_number,
-        date(i.issued_on),
-        date(i.due_on),
-        money(total(i)),
-        money(total(i) - Number(i.paid_cents || 0)),
-      ])
-        add("td", v, r);
-      const td = r.insertCell();
-      const b = document.createElement("button");
-      b.type = "button";
-      b.textContent = "Voir / PDF";
-      b.addEventListener("click", () => pdf(i));
-      td.append(b);
-      const balance = total(i) - Number(i.paid_cents || 0);
-      if (balance > 0) {
-        const pay = document.createElement("button");
-        pay.type = "button";
-        pay.textContent = "Payer en ligne";
-        pay.style.marginLeft = "0.5rem";
-        pay.addEventListener("click", () => payInvoice(i, pay));
-        td.append(pay);
-      }
-    }
-    if (!invoices.length) {
-      const r = body.insertRow();
-      add("td", "Aucune facture émise pour ce cabinet.", r).colSpan = 6;
-    }
-    notice(
-      invoices.length + " facture(s) émise(s) pour le cabinet sélectionné.",
-    );
-  }
-  const { data: auth, error } = await db.auth.getUser();
-  if (error || !auth?.user) return;
-  $("cabinet").addEventListener("change", () =>
-    load().catch((e) => notice(e.message)),
-  );
-  const observer = new MutationObserver(() => {
-    if ($("cabinet").value) load().catch((e) => notice(e.message));
-  });
-  observer.observe($("cabinet"), { childList: true });
-  if ($("cabinet").value) await load().catch((e) => notice(e.message));
-})();
-
-}
-
-/* external assets/madic-document-requests-client.js */
-{
-(async () => {
-  "use strict";
-  if (window.MADIC_GUEST_PORTAL) return;
-  const $ = (id) => document.getElementById(id),
-    notice = (s) => ($("docreqClientNotice").textContent = s);
-  if (!window.getMadicSupabase) return notice("Configuration manquante.");
-  const db = window.getMadicSupabase();
-  async function load() {
-    const {
-      data: { user },
-      error: ue,
-    } = await db.auth.getUser();
-    if (ue || !user) return notice("Connexion requise.");
-    const { data: spaces, error: se } = await db.rpc(
+  (async () => {
+    "use strict";
+    if (window.MADIC_GUEST_PORTAL) return;
+    const badge = document.getElementById("madicClientMessagesUnread");
+    const summary = document.getElementById("madicClientMessagesSummary");
+    const card = document.getElementById("madicClientMessagingCard");
+    const cabinet = document.getElementById("cabinet");
+    if (!badge || !summary || !card || !cabinet) return;
+    if (typeof window.getMadicSupabase !== "function") return;
+    const db = window.getMadicSupabase();
+    const { data: auth, error: authError } = await db.auth.getUser();
+    if (authError || !auth?.user) return;
+    const uid = auth.user.id;
+    const { data: linked, error: linkedError } = await db.rpc(
       "madic_my_cric_client_spaces",
     );
-    if (se) return notice(se.message);
-    const cabinet = $("cabinet");
-    const selected = spaces?.some((s) => s.space_id === cabinet?.value)
-      ? cabinet.value
-      : spaces?.[0]?.space_id;
-    if (!selected) return notice("Aucun cabinet associé.");
-    if (!(spaces || []).some((s) => s.space_id === selected))
-      return notice("Cabinet non autorisé.");
-    const { data, error } = await db
-      .from("madic_cric_document_requests")
-      .select("title,instructions,due_on,status,created_at,dossier_id")
-      .eq("client_id", user.id)
-      .eq("space_id", selected)
-      .neq("status", "cancelled")
-      .order("created_at", { ascending: false });
-    if (error) return notice("Lecture impossible : " + error.message);
-    const body = $("docreqClientRows");
-    body.replaceChildren();
-    for (const d of data || []) {
-      const r = body.insertRow();
-      for (const v of [
-        d.title,
-        d.instructions || "-",
-        d.due_on || "-",
-        d.status === "completed" ? "Terminé" : "Demandé",
-      ])
-        r.insertCell().textContent = v;
-    }
-    if (!data?.length) {
-      const r = body.insertRow();
-      r.insertCell().colSpan = 4;
-      r.cells[0].textContent = "Aucun document demandé.";
-    }
-    notice(
-      (data || []).length +
-        " demande(s). Transmettez les pièces demandées dans le formulaire ci-dessous.",
-    );
-  }
-  $("docreqClientPanel").hidden = false;
-  const cabinet = $("cabinet");
-  if (cabinet)
-    cabinet.addEventListener("change", () =>
-      load().catch((e) => notice(e.message)),
-    );
-  await load();
-})();
-
-}
-
-/* external assets/madic-notifications.js */
-{
-/* MADIC 7.8 - Notifications de messagerie dans les tableaux de bord.
-   Aucune cle privilegiee; requetes soumises aux politiques RLS Supabase. */
-(async () => {
-  "use strict";
-  if (window.MADIC_GUEST_PORTAL) return;
-  const page = location.pathname.split("/").pop().toLowerCase();
-  const client = page === "dashboard-client-cric.html";
-  const cric = page === "cric-dashboard.html";
-  if ((!client && !cric) || typeof window.getMadicSupabase !== "function")
-    return;
-  const db = window.getMadicSupabase();
-  const { data: auth, error: authError } = await db.auth.getUser();
-  if (authError || !auth?.user) return;
-  const uid = auth.user.id;
-  const destination = client
-    ? "messagerie-client-cric.html"
-    : "messagerie-cric.html";
-  let previousUnread = null;
-  let busy = false;
-  let stopped = false;
-  let dismissedAtCount = null;
-
-  const toast = document.createElement("aside");
-  toast.setAttribute("role", "status");
-  toast.setAttribute("aria-live", "polite");
-  toast.setAttribute("aria-atomic", "true");
-  toast.hidden = true;
-  toast.style.cssText =
-    "position:fixed;right:16px;bottom:16px;z-index:9999;width:min(360px,calc(100vw - 32px));box-sizing:border-box;background:#123047;color:white;padding:16px;border-radius:12px;box-shadow:0 8px 24px #0005;font:14px/1.5 system-ui,sans-serif";
-  const heading = document.createElement("strong");
-  heading.textContent = "Nouveau message MADIC";
-  const count = document.createElement("p");
-  count.style.cssText = "margin:8px 0 12px";
-  const actions = document.createElement("div");
-  actions.style.cssText =
-    "display:flex;gap:12px;align-items:center;justify-content:space-between";
-  const open = document.createElement("a");
-  open.href = destination;
-  open.textContent = "Consulter la messagerie";
-  open.style.cssText = "color:#fff;text-decoration:underline;font-weight:600";
-  const dismiss = document.createElement("button");
-  dismiss.type = "button";
-  dismiss.textContent = "Fermer";
-  dismiss.setAttribute("aria-label", "Fermer la notification de messagerie");
-  dismiss.style.cssText =
-    "background:transparent;border:1px solid #ffffffa0;border-radius:6px;padding:6px 10px;color:white;cursor:pointer";
-  dismiss.addEventListener("click", () => {
-    dismissedAtCount = previousUnread;
-    toast.hidden = true;
-  });
-  actions.append(open, dismiss);
-  toast.append(heading, count, actions);
-  document.body.append(toast);
-
-  async function conversationIds() {
-    if (client) {
-      const { data: linked, error } = await db.rpc(
-        "madic_my_cric_client_spaces",
-      );
-      if (error) throw error;
-      const spaceIds = [
-        ...new Set((linked || []).map((x) => x.space_id).filter(Boolean)),
-      ];
-      if (!spaceIds.length) return [];
-      const result = await db
-        .from("madic_cric_conversations")
-        .select("id")
-        .eq("client_id", uid)
-        .in("space_id", spaceIds)
-        .limit(200);
-      if (result.error) throw result.error;
-      return (result.data || []).map((x) => x.id);
-    }
-    const spaces = await db
-      .from("madic_cric_spaces")
-      .select("id")
-      .eq("owner_user_id", uid)
-      .eq("access_status", "active")
-      .limit(1);
-    if (spaces.error) throw spaces.error;
-    if (!spaces.data?.length) return [];
-    const spaceId = spaces.data[0].id;
-    const allowed = await db.rpc("madic_can_manage_cric_space", {
-      p_space_id: spaceId,
-    });
-    if (allowed.error) throw allowed.error;
-    if (allowed.data !== true) return [];
-    const result = await db
-      .from("madic_cric_conversations")
-      .select("id")
-      .eq("space_id", spaceId)
-      .limit(200);
-    if (result.error) throw result.error;
-    return (result.data || []).map((x) => x.id);
-  }
-
-  async function refresh() {
-    if (busy || stopped || document.hidden) return;
-    busy = true;
-    try {
-      const ids = await conversationIds();
-      let unread = 0;
-      if (ids.length) {
-        const [messages, reads] = await Promise.all([
+    if (linkedError || !linked?.length) return;
+    const authorized = new Set(linked.map((s) => s.space_id));
+    card.hidden = false;
+    let sequence = 0;
+    async function refresh() {
+      const current = ++sequence;
+      const spaceId = cabinet.value || linked[0].space_id;
+      if (!authorized.has(spaceId)) {
+        badge.hidden = true;
+        summary.textContent = "Sélectionnez un cabinet autorisé.";
+        return;
+      }
+      try {
+        const { data: conversations, error: conversationError } = await db
+          .from("madic_cric_conversations")
+          .select("id")
+          .eq("space_id", spaceId)
+          .eq("client_id", uid);
+        if (conversationError) throw conversationError;
+        const ids = (conversations || []).map((c) => c.id);
+        if (!ids.length) {
+          if (current !== sequence) return;
+          badge.hidden = true;
+          summary.textContent = "Aucun message non lu.";
+          return;
+        }
+        const [messagesResponse, readsResponse] = await Promise.all([
           db
             .from("madic_cric_messages")
-            .select("conversation_id,sender_id,created_at")
+            .select("id,conversation_id,sender_id,created_at")
             .in("conversation_id", ids)
+            .neq("sender_id", uid)
             .order("created_at", { ascending: false })
             .limit(1000),
           db
@@ -1921,1086 +1922,1649 @@
             .eq("user_id", uid)
             .in("conversation_id", ids),
         ]);
-        if (messages.error) throw messages.error;
-        if (reads.error) throw reads.error;
+        if (messagesResponse.error) throw messagesResponse.error;
+        if (readsResponse.error) throw readsResponse.error;
         const lastRead = new Map(
-          (reads.data || []).map((r) => [r.conversation_id, r.last_read_at]),
+          (readsResponse.data || []).map((r) => [
+            r.conversation_id,
+            r.last_read_at,
+          ]),
         );
-        unread = (messages.data || []).filter(
-          (m) =>
-            m.sender_id !== uid &&
-            (!lastRead.has(m.conversation_id) ||
-              new Date(m.created_at) >
-                new Date(lastRead.get(m.conversation_id))),
-        ).length;
+        const unread = (messagesResponse.data || []).filter((m) => {
+          const readAt = lastRead.get(m.conversation_id);
+          return (
+            !readAt ||
+            new Date(m.created_at).getTime() > new Date(readAt).getTime()
+          );
+        }).length;
+        if (current !== sequence) return;
+        badge.textContent = String(unread);
+        badge.hidden = unread === 0;
+        summary.textContent = unread
+          ? `${unread} message${unread > 1 ? "s" : ""} non lu${unread > 1 ? "s" : ""}.`
+          : "Aucun message non lu.";
+        if ((messagesResponse.data || []).length === 1000)
+          summary.textContent +=
+            " (Vérification limitée aux 1 000 messages récents.)";
+      } catch (error) {
+        if (current !== sequence) return;
+        badge.hidden = true;
+        summary.textContent =
+          "Compteur indisponible : " + (error.message || String(error));
       }
+    }
+    cabinet.addEventListener("change", refresh);
+    document.addEventListener("visibilitychange", () => {
+      if (!document.hidden) refresh();
+    });
+    window.addEventListener("focus", refresh);
+    await refresh();
+  })();
+}
+
+/* external assets/madic-client-invoices.js */
+{
+  /* MADIC 3.2 - Lecture des factures émises du client via RPC dédiée. */
+  (async () => {
+    "use strict";
+    if (window.MADIC_GUEST_PORTAL) return;
+    const $ = (id) => document.getElementById(id);
+    const notice = (text) => {
+      if ($("clientInvoicesNotice"))
+        $("clientInvoicesNotice").textContent = text;
+    };
+    if (!window.getMadicSupabase || !$("cabinet") || !$("clientInvoicesPanel"))
+      return;
+    const db = window.getMadicSupabase();
+    const money = (cents) =>
+      (Number(cents || 0) / 100).toLocaleString("fr-CA", {
+        style: "currency",
+        currency: "CAD",
+      });
+    const total = (i) =>
+      Math.round(Number(i.amount_cents) * (1 + Number(i.tax_rate)));
+    const date = (value) => value || "-";
+    let invoices = [];
+    const add = (tag, text, parent) => {
+      const e = document.createElement(tag);
+      e.textContent = text ?? "";
+      parent.append(e);
+      return e;
+    };
+    function pdf(i) {
+      const w = window.open("", "_blank");
+      if (!w)
+        return notice(
+          "Autorisez les fenêtres contextuelles pour afficher la facture.",
+        );
+      const doc = w.document;
+      doc.open();
+      doc.write(
+        '<!doctype html><html lang="fr-CA"><head><meta charset="utf-8"><title>Facture</title><style>body{font:15px Arial,sans-serif;max-width:800px;margin:40px auto;color:#182331}table{width:100%;border-collapse:collapse}th,td{padding:9px;border-bottom:1px solid #ddd;text-align:left}.right{text-align:right}img{max-width:200px;max-height:90px;object-fit:contain}button{margin:24px 0;padding:10px}@media print{button{display:none}}</style></head><body><main id="invoice"></main><button onclick="window.print()">Imprimer / Enregistrer en PDF</button></body></html>',
+      );
+      doc.close();
+      const root = doc.getElementById("invoice");
       if (
-        previousUnread !== null &&
-        unread > previousUnread &&
-        unread !== dismissedAtCount
+        /^data:image\/(png|jpeg);base64,[A-Za-z0-9+/=]+$/.test(
+          i.logo_data_url || "",
+        )
       ) {
-        count.textContent = `${unread} message${unread > 1 ? "s" : ""} non lu${unread > 1 ? "s" : ""}.`;
-        toast.hidden = false;
-        dismissedAtCount = null;
+        const img = doc.createElement("img");
+        img.src = i.logo_data_url;
+        img.alt = "Logo du cabinet";
+        root.append(img);
       }
-      if (unread === 0) {
-        toast.hidden = true;
-        dismissedAtCount = null;
+      add("h1", "Facture " + i.invoice_number, root);
+      add("h2", i.cabinet_name, root);
+      if (i.cabinet_address) add("p", i.cabinet_address, root);
+      if (i.cabinet_tax_numbers)
+        add("p", "Numéros de taxes : " + i.cabinet_tax_numbers, root);
+      add(
+        "p",
+        "Émise le " + date(i.issued_on) + " · Échéance : " + date(i.due_on),
+        root,
+      );
+      const table = add("table", "", root);
+      const head = add("tr", "", table);
+      for (const h of ["Description", "Qté", "Prix unitaire", "Montant"])
+        add("th", h, head);
+      const items =
+        Array.isArray(i.items) && i.items.length
+          ? i.items
+          : [
+              {
+                description: i.description,
+                quantity: 1,
+                unit_price_cents: i.amount_cents,
+              },
+            ];
+      for (const item of items) {
+        const tr = add("tr", "", table);
+        for (const value of [
+          item.description,
+          String(item.quantity),
+          money(item.unit_price_cents),
+          money(Number(item.quantity) * Number(item.unit_price_cents)),
+        ])
+          add("td", value, tr);
       }
-      if (unread < previousUnread && !toast.hidden) {
-        count.textContent = `${unread} message${unread > 1 ? "s" : ""} non lu${unread > 1 ? "s" : ""}.`;
+      for (const [label, value] of [
+        ["Sous-total", money(i.amount_cents)],
+        ["Taxes", money(total(i) - i.amount_cents)],
+        ["Total", money(total(i))],
+        ["Paiements reçus", money(i.paid_cents)],
+        ["Solde", money(total(i) - i.paid_cents)],
+      ]) {
+        const tr = add("tr", "", table);
+        add("td", label, tr).colSpan = 3;
+        add("td", value, tr).className = "right";
       }
-      if (client) {
-        const badge = document.getElementById("madicHeroUnread");
-        if (badge) {
-          badge.hidden = unread === 0;
-          badge.textContent = unread > 99 ? "99+" : String(unread);
+      if (i.notes) add("p", "Notes : " + i.notes, root);
+      w.focus();
+    }
+    async function payInvoice(invoice, button) {
+      if (!invoice.id) {
+        notice(
+          "Identifiant de facture manquant. Vérifiez la fonction madic_my_issued_invoices.",
+        );
+        return;
+      }
+      button.disabled = true;
+      button.textContent = "Préparation…";
+      notice("Préparation du paiement sécurisé Stripe…");
+      try {
+        const { data, error } = await db.functions.invoke(
+          "madic-stripe-create-checkout",
+          {
+            body: { invoice_id: invoice.id },
+          },
+        );
+        if (error) {
+          let detail = error.message || "Erreur Stripe";
+          try {
+            const payload = await error.context?.json();
+            if (payload?.error) detail = payload.error;
+          } catch (_) {
+            /* La réponse peut ne pas être JSON. */
+          }
+          throw new Error(detail);
+        }
+        if (
+          typeof data?.url !== "string" ||
+          !/^https:\/\/checkout\.stripe\.com\//.test(data.url)
+        ) {
+          throw new Error("Lien de paiement Stripe invalide.");
+        }
+        window.location.assign(data.url);
+      } catch (err) {
+        notice("Paiement indisponible : " + (err.message || String(err)));
+        button.disabled = false;
+        button.textContent = "Payer en ligne";
+      }
+    }
+    async function load() {
+      const spaceId = $("cabinet").value;
+      const body = $("clientInvoicesRows");
+      body.replaceChildren();
+      if (!spaceId) return;
+      notice("Chargement des factures…");
+      const { data, error } = await db.rpc("madic_my_issued_invoices", {
+        p_space_id: spaceId,
+      });
+      if (error) {
+        notice("Factures indisponibles : " + error.message);
+        return;
+      }
+      invoices = Array.isArray(data) ? data : [];
+      $("clientInvoicesPanel").hidden = false;
+      for (const i of invoices) {
+        const r = body.insertRow();
+        for (const v of [
+          i.invoice_number,
+          date(i.issued_on),
+          date(i.due_on),
+          money(total(i)),
+          money(total(i) - Number(i.paid_cents || 0)),
+        ])
+          add("td", v, r);
+        const td = r.insertCell();
+        const b = document.createElement("button");
+        b.type = "button";
+        b.textContent = "Voir / PDF";
+        b.addEventListener("click", () => pdf(i));
+        td.append(b);
+        const balance = total(i) - Number(i.paid_cents || 0);
+        if (balance > 0) {
+          const pay = document.createElement("button");
+          pay.type = "button";
+          pay.textContent = "Payer en ligne";
+          pay.style.marginLeft = "0.5rem";
+          pay.addEventListener("click", () => payInvoice(i, pay));
+          td.append(pay);
         }
       }
-      previousUnread = unread;
-    } catch (error) {
-      console.warn(
-        "MADIC notifications : verification indisponible :",
-        error?.message || String(error),
+      if (!invoices.length) {
+        const r = body.insertRow();
+        add("td", "Aucune facture émise pour ce cabinet.", r).colSpan = 6;
+      }
+      notice(
+        invoices.length + " facture(s) émise(s) pour le cabinet sélectionné.",
       );
-    } finally {
-      busy = false;
     }
-  }
-  await refresh();
-  const timer = window.setInterval(() => {
-    void refresh();
-  }, 15000);
-  document.addEventListener("visibilitychange", () => {
-    if (!document.hidden) void refresh();
-  });
-  window.addEventListener("pageshow", () => {
-    void refresh();
-  });
-  window.addEventListener(
-    "pagehide",
-    () => {
-      stopped = true;
-      window.clearInterval(timer);
-    },
-    { once: true },
-  );
-})();
+    const { data: auth, error } = await db.auth.getUser();
+    if (error || !auth?.user) return;
+    $("cabinet").addEventListener("change", () =>
+      load().catch((e) => notice(e.message)),
+    );
+    const observer = new MutationObserver(() => {
+      if ($("cabinet").value) load().catch((e) => notice(e.message));
+    });
+    observer.observe($("cabinet"), { childList: true });
+    if ($("cabinet").value) await load().catch((e) => notice(e.message));
+  })();
+}
 
+/* external assets/madic-document-requests-client.js */
+{
+  (async () => {
+    "use strict";
+    if (window.MADIC_GUEST_PORTAL) return;
+    const $ = (id) => document.getElementById(id),
+      notice = (s) => ($("docreqClientNotice").textContent = s);
+    if (!window.getMadicSupabase) return notice("Configuration manquante.");
+    const db = window.getMadicSupabase();
+    async function load() {
+      const {
+        data: { user },
+        error: ue,
+      } = await db.auth.getUser();
+      if (ue || !user) return notice("Connexion requise.");
+      const { data: spaces, error: se } = await db.rpc(
+        "madic_my_cric_client_spaces",
+      );
+      if (se) return notice(se.message);
+      const cabinet = $("cabinet");
+      const selected = spaces?.some((s) => s.space_id === cabinet?.value)
+        ? cabinet.value
+        : spaces?.[0]?.space_id;
+      if (!selected) return notice("Aucun cabinet associé.");
+      if (!(spaces || []).some((s) => s.space_id === selected))
+        return notice("Cabinet non autorisé.");
+      const { data, error } = await db
+        .from("madic_cric_document_requests")
+        .select("title,instructions,due_on,status,created_at,dossier_id")
+        .eq("client_id", user.id)
+        .eq("space_id", selected)
+        .neq("status", "cancelled")
+        .order("created_at", { ascending: false });
+      if (error) return notice("Lecture impossible : " + error.message);
+      const body = $("docreqClientRows");
+      body.replaceChildren();
+      for (const d of data || []) {
+        const r = body.insertRow();
+        for (const v of [
+          d.title,
+          d.instructions || "-",
+          d.due_on || "-",
+          d.status === "completed" ? "Terminé" : "Demandé",
+        ])
+          r.insertCell().textContent = v;
+      }
+      if (!data?.length) {
+        const r = body.insertRow();
+        r.insertCell().colSpan = 4;
+        r.cells[0].textContent = "Aucun document demandé.";
+      }
+      notice(
+        (data || []).length +
+          " demande(s). Transmettez les pièces demandées dans le formulaire ci-dessous.",
+      );
+    }
+    $("docreqClientPanel").hidden = false;
+    const cabinet = $("cabinet");
+    if (cabinet)
+      cabinet.addEventListener("change", () =>
+        load().catch((e) => notice(e.message)),
+      );
+    await load();
+  })();
+}
+
+/* external assets/madic-notifications.js */
+{
+  /* MADIC 7.8 - Notifications de messagerie dans les tableaux de bord.
+   Aucune cle privilegiee; requetes soumises aux politiques RLS Supabase. */
+  (async () => {
+    "use strict";
+    if (window.MADIC_GUEST_PORTAL) return;
+    const page = location.pathname.split("/").pop().toLowerCase();
+    const client = page === "dashboard-client-cric.html";
+    const cric = page === "cric-dashboard.html";
+    if ((!client && !cric) || typeof window.getMadicSupabase !== "function")
+      return;
+    const db = window.getMadicSupabase();
+    const { data: auth, error: authError } = await db.auth.getUser();
+    if (authError || !auth?.user) return;
+    const uid = auth.user.id;
+    const destination = client
+      ? "messagerie-client-cric.html"
+      : "messagerie-cric.html";
+    let previousUnread = null;
+    let busy = false;
+    let stopped = false;
+    let dismissedAtCount = null;
+
+    const toast = document.createElement("aside");
+    toast.setAttribute("role", "status");
+    toast.setAttribute("aria-live", "polite");
+    toast.setAttribute("aria-atomic", "true");
+    toast.hidden = true;
+    toast.style.cssText =
+      "position:fixed;right:16px;bottom:16px;z-index:9999;width:min(360px,calc(100vw - 32px));box-sizing:border-box;background:#123047;color:white;padding:16px;border-radius:12px;box-shadow:0 8px 24px #0005;font:14px/1.5 system-ui,sans-serif";
+    const heading = document.createElement("strong");
+    heading.textContent = "Nouveau message MADIC";
+    const count = document.createElement("p");
+    count.style.cssText = "margin:8px 0 12px";
+    const actions = document.createElement("div");
+    actions.style.cssText =
+      "display:flex;gap:12px;align-items:center;justify-content:space-between";
+    const open = document.createElement("a");
+    open.href = destination;
+    open.textContent = "Consulter la messagerie";
+    open.style.cssText = "color:#fff;text-decoration:underline;font-weight:600";
+    const dismiss = document.createElement("button");
+    dismiss.type = "button";
+    dismiss.textContent = "Fermer";
+    dismiss.setAttribute("aria-label", "Fermer la notification de messagerie");
+    dismiss.style.cssText =
+      "background:transparent;border:1px solid #ffffffa0;border-radius:6px;padding:6px 10px;color:white;cursor:pointer";
+    dismiss.addEventListener("click", () => {
+      dismissedAtCount = previousUnread;
+      toast.hidden = true;
+    });
+    actions.append(open, dismiss);
+    toast.append(heading, count, actions);
+    document.body.append(toast);
+
+    async function conversationIds() {
+      if (client) {
+        const { data: linked, error } = await db.rpc(
+          "madic_my_cric_client_spaces",
+        );
+        if (error) throw error;
+        const spaceIds = [
+          ...new Set((linked || []).map((x) => x.space_id).filter(Boolean)),
+        ];
+        if (!spaceIds.length) return [];
+        const result = await db
+          .from("madic_cric_conversations")
+          .select("id")
+          .eq("client_id", uid)
+          .in("space_id", spaceIds)
+          .limit(200);
+        if (result.error) throw result.error;
+        return (result.data || []).map((x) => x.id);
+      }
+      const spaces = await db
+        .from("madic_cric_spaces")
+        .select("id")
+        .eq("owner_user_id", uid)
+        .eq("access_status", "active")
+        .limit(1);
+      if (spaces.error) throw spaces.error;
+      if (!spaces.data?.length) return [];
+      const spaceId = spaces.data[0].id;
+      const allowed = await db.rpc("madic_can_manage_cric_space", {
+        p_space_id: spaceId,
+      });
+      if (allowed.error) throw allowed.error;
+      if (allowed.data !== true) return [];
+      const result = await db
+        .from("madic_cric_conversations")
+        .select("id")
+        .eq("space_id", spaceId)
+        .limit(200);
+      if (result.error) throw result.error;
+      return (result.data || []).map((x) => x.id);
+    }
+
+    async function refresh() {
+      if (busy || stopped || document.hidden) return;
+      busy = true;
+      try {
+        const ids = await conversationIds();
+        let unread = 0;
+        if (ids.length) {
+          const [messages, reads] = await Promise.all([
+            db
+              .from("madic_cric_messages")
+              .select("conversation_id,sender_id,created_at")
+              .in("conversation_id", ids)
+              .order("created_at", { ascending: false })
+              .limit(1000),
+            db
+              .from("madic_cric_message_reads")
+              .select("conversation_id,last_read_at")
+              .eq("user_id", uid)
+              .in("conversation_id", ids),
+          ]);
+          if (messages.error) throw messages.error;
+          if (reads.error) throw reads.error;
+          const lastRead = new Map(
+            (reads.data || []).map((r) => [r.conversation_id, r.last_read_at]),
+          );
+          unread = (messages.data || []).filter(
+            (m) =>
+              m.sender_id !== uid &&
+              (!lastRead.has(m.conversation_id) ||
+                new Date(m.created_at) >
+                  new Date(lastRead.get(m.conversation_id))),
+          ).length;
+        }
+        if (
+          previousUnread !== null &&
+          unread > previousUnread &&
+          unread !== dismissedAtCount
+        ) {
+          count.textContent = `${unread} message${unread > 1 ? "s" : ""} non lu${unread > 1 ? "s" : ""}.`;
+          toast.hidden = false;
+          dismissedAtCount = null;
+        }
+        if (unread === 0) {
+          toast.hidden = true;
+          dismissedAtCount = null;
+        }
+        if (unread < previousUnread && !toast.hidden) {
+          count.textContent = `${unread} message${unread > 1 ? "s" : ""} non lu${unread > 1 ? "s" : ""}.`;
+        }
+        if (client) {
+          const badge = document.getElementById("madicHeroUnread");
+          if (badge) {
+            badge.hidden = unread === 0;
+            badge.textContent = unread > 99 ? "99+" : String(unread);
+          }
+        }
+        previousUnread = unread;
+      } catch (error) {
+        console.warn(
+          "MADIC notifications : verification indisponible :",
+          error?.message || String(error),
+        );
+      } finally {
+        busy = false;
+      }
+    }
+    await refresh();
+    const timer = window.setInterval(() => {
+      void refresh();
+    }, 15000);
+    document.addEventListener("visibilitychange", () => {
+      if (!document.hidden) void refresh();
+    });
+    window.addEventListener("pageshow", () => {
+      void refresh();
+    });
+    window.addEventListener(
+      "pagehide",
+      () => {
+        stopped = true;
+        window.clearInterval(timer);
+      },
+      { once: true },
+    );
+  })();
 }
 
 /* external assets/madic-service-journey.js */
 {
-/* MADIC - suivi de demandes isole par cabinet. Module independant des scripts historiques. */
-(async () => {
-  "use strict";
-  if (window.MADIC_GUEST_PORTAL) return;
-  const $ = (id) => document.getElementById(id);
-  if (
-    !window.MADIC_CONFIG?.url ||
-    !window.supabase ||
-    typeof window.getMadicSupabase !== "function"
-  )
-    return;
-  const db = window.getMadicSupabase();
-  const { data: { user } = {}, error: authError } = await db.auth.getUser();
-  if (authError || !user) return;
-  const labels = {
-    received: "Reçue",
-    reviewing: "En analyse",
-    responded: "Réponse transmise",
-    closed: "Clôturée",
-  };
-  const services = {
-    consultation: "Consultation initiale",
-    proposition: "Proposition personnalisée",
-  };
-  const niceDate = (value) =>
-    value
-      ? new Date(value).toLocaleString("fr-CA", {
-          dateStyle: "medium",
-          timeStyle: "short",
-        })
-      : "";
-  const cricPanel = $("madicServiceRequestsPanel");
-  if (cricPanel) {
-    const notice = $("madicServiceNotice"),
-      list = $("madicServiceList"),
-      badge = $("madicServicePendingBadge"),
-      refresh = $("madicServiceRefresh");
-    let busy = false,
-      spaceId = null;
-    const createToggle = $("madicServiceCreateToggle"),
-      createForm = $("madicServiceCreateForm");
-    const clientSelect = $("madicServiceClient"),
-      intakeState = $("madicServiceIntakeState");
-    const createSubmit = $("madicServiceCreateSubmit");
-    let eligibleClients = [];
-    // Filtrage local de la liste compacte, sans modifier les donnees Supabase.
-    const requestFilter = $("madicServiceFilter");
-    const requestSearch = $("madicServiceSearch");
-    function applyRequestFilters() {
-      const status = requestFilter?.value || "all";
-      const query = (requestSearch?.value || "").trim().toLocaleLowerCase("fr-CA");
-      for (const article of list.querySelectorAll(".madic-service-item")) {
-        const matchesName = !query || (article.dataset.clientName || "").includes(query);
-        const matchesStatus = status === "all" ||
-          (status === "received" && article.dataset.requestStatus === "received") ||
-          (status === "signed" && article.dataset.contractSigned === "true");
-        article.hidden = !(matchesName && matchesStatus);
-        // Les styles de cartes ne doivent pas annuler l'attribut hidden.
-        article.style.display = article.hidden ? "none" : "";
-      }
-    }
-    function updateSignedCount() {
-      const count = Array.from(list.querySelectorAll(".madic-service-item"))
-        .filter((article) => article.dataset.contractSigned === "true").length;
-      const counter = $("madicServiceOtherCount");
-      if (counter) counter.textContent = String(count);
-    }
-    requestFilter?.addEventListener("change", applyRequestFilters);
-    requestSearch?.addEventListener("input", applyRequestFilters);
-    function validateClient() {
-      const selected = eligibleClients.find(
-        (c) => c.client_id === clientSelect?.value,
-      );
-      const submitted = selected?.intake_status === "submitted";
-      const available = submitted && !selected?.has_request;
-      if (intakeState)
-        intakeState.textContent = !selected
-          ? "Sélectionnez un client."
-          : !submitted
-            ? "Formulaire non soumis : création impossible."
-            : selected.has_request
-              ? "Une demande existe déjà : création bloquée."
-              : "Formulaire soumis : demande autorisée.";
-      if (createSubmit) createSubmit.disabled = !available;
-    }
-    async function loadEligible() {
-      if (!clientSelect || !spaceId) return;
-      const { data, error } = await db.rpc("madic_service_eligible_clients", {
-        p_space_id: spaceId,
-      });
-      if (error) throw error;
-      eligibleClients = data || [];
-      clientSelect.replaceChildren();
-      const blank = document.createElement("option");
-      blank.value = "";
-      blank.textContent = "Choisir un client";
-      clientSelect.append(blank);
-      for (const c of eligibleClients) {
-        const option = document.createElement("option");
-        option.value = c.client_id;
-        option.textContent =
-          (c.client_name || "Client") +
-          (c.intake_status === "submitted"
-            ? " · formulaire soumis"
-            : " · formulaire incomplet") +
-          (c.has_request ? " · demande existante" : "");
-        clientSelect.append(option);
-      }
-      validateClient();
-    }
-    clientSelect?.addEventListener("change", validateClient);
-    createToggle?.addEventListener("click", async () => {
-      const opening = createForm.hidden;
-      createForm.hidden = !opening;
-      createToggle.setAttribute("aria-expanded", String(opening));
-      if (opening) {
-        try {
-          await loadEligible();
-        } catch (e) {
-          intakeState.textContent = "Chargement impossible : " + e.message;
+  /* MADIC - suivi de demandes isole par cabinet. Module independant des scripts historiques. */
+  (async () => {
+    "use strict";
+    if (window.MADIC_GUEST_PORTAL) return;
+    const $ = (id) => document.getElementById(id);
+    if (
+      !window.MADIC_CONFIG?.url ||
+      !window.supabase ||
+      typeof window.getMadicSupabase !== "function"
+    )
+      return;
+    const db = window.getMadicSupabase();
+    const { data: { user } = {}, error: authError } = await db.auth.getUser();
+    if (authError || !user) return;
+    const labels = {
+      received: "Reçue",
+      reviewing: "En analyse",
+      responded: "Réponse transmise",
+      closed: "Clôturée",
+    };
+    const services = {
+      consultation: "Consultation initiale",
+      proposition: "Proposition personnalisée",
+    };
+    const niceDate = (value) =>
+      value
+        ? new Date(value).toLocaleString("fr-CA", {
+            dateStyle: "medium",
+            timeStyle: "short",
+          })
+        : "";
+    const cricPanel = $("madicServiceRequestsPanel");
+    if (cricPanel) {
+      const notice = $("madicServiceNotice"),
+        list = $("madicServiceList"),
+        badge = $("madicServicePendingBadge"),
+        refresh = $("madicServiceRefresh");
+      let busy = false,
+        spaceId = null;
+      const createToggle = $("madicServiceCreateToggle"),
+        createForm = $("madicServiceCreateForm");
+      const clientSelect = $("madicServiceClient"),
+        intakeState = $("madicServiceIntakeState");
+      const createSubmit = $("madicServiceCreateSubmit");
+      let eligibleClients = [];
+      // Filtrage local de la liste compacte, sans modifier les donnees Supabase.
+      const requestFilter = $("madicServiceFilter");
+      const requestSearch = $("madicServiceSearch");
+      function applyRequestFilters() {
+        const status = requestFilter?.value || "all";
+        const query = (requestSearch?.value || "")
+          .trim()
+          .toLocaleLowerCase("fr-CA");
+        for (const article of list.querySelectorAll(".madic-service-item")) {
+          const matchesName =
+            !query || (article.dataset.clientName || "").includes(query);
+          const matchesStatus =
+            status === "all" ||
+            (status === "received" &&
+              article.dataset.requestStatus === "received") ||
+            (status === "signed" && article.dataset.contractSigned === "true");
+          article.hidden = !(matchesName && matchesStatus);
+          // Les styles de cartes ne doivent pas annuler l'attribut hidden.
+          article.style.display = article.hidden ? "none" : "";
         }
       }
-    });
-    createForm?.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      validateClient();
-      if (createSubmit.disabled) return;
-      createSubmit.disabled = true;
-      try {
-        const { error } = await db.rpc("madic_service_create_by_cric", {
+      function updateSignedCount() {
+        const count = Array.from(
+          list.querySelectorAll(".madic-service-item"),
+        ).filter((article) => article.dataset.contractSigned === "true").length;
+        const counter = $("madicServiceOtherCount");
+        if (counter) counter.textContent = String(count);
+      }
+      requestFilter?.addEventListener("change", applyRequestFilters);
+      requestSearch?.addEventListener("input", applyRequestFilters);
+      function validateClient() {
+        const selected = eligibleClients.find(
+          (c) => c.client_id === clientSelect?.value,
+        );
+        const submitted = selected?.intake_status === "submitted";
+        const available = submitted && !selected?.has_request;
+        if (intakeState)
+          intakeState.textContent = !selected
+            ? "Sélectionnez un client."
+            : !submitted
+              ? "Formulaire non soumis : création impossible."
+              : selected.has_request
+                ? "Une demande existe déjà : création bloquée."
+                : "Formulaire soumis : demande autorisée.";
+        if (createSubmit) createSubmit.disabled = !available;
+      }
+      async function loadEligible() {
+        if (!clientSelect || !spaceId) return;
+        const { data, error } = await db.rpc("madic_service_eligible_clients", {
           p_space_id: spaceId,
-          p_client_id: clientSelect.value,
-          p_service_type: $("madicServiceType").value,
-          p_payment_method: $("madicServicePayment").value,
-          p_payment_note: $("madicServicePaymentNote").value || null,
         });
         if (error) throw error;
-        notice.textContent =
-          "Demande créée. Le parcours client sera actualisé automatiquement.";
-        createForm.reset();
-        await loadEligible();
-        await load();
-      } catch (err) {
-        intakeState.textContent = "Création impossible : " + err.message;
+        eligibleClients = data || [];
+        clientSelect.replaceChildren();
+        const blank = document.createElement("option");
+        blank.value = "";
+        blank.textContent = "Choisir un client";
+        clientSelect.append(blank);
+        for (const c of eligibleClients) {
+          const option = document.createElement("option");
+          option.value = c.client_id;
+          option.textContent =
+            (c.client_name || "Client") +
+            (c.intake_status === "submitted"
+              ? " · formulaire soumis"
+              : " · formulaire incomplet") +
+            (c.has_request ? " · demande existante" : "");
+          clientSelect.append(option);
+        }
         validateClient();
       }
-    });
-    const pill = (label, kind = "neutral") => {
-      const el = document.createElement("span");
-      el.className = "madic-service-state madic-service-state-" + kind;
-      el.textContent = label;
-      return el;
-    };
-    const stateLine = (label, value, kind = "neutral") => {
-      const line = document.createElement("div");
-      line.className = "madic-service-state-line";
-      const title = document.createElement("span");
-      title.textContent = label;
-      const badge = pill(value, kind);
-      line.append(title, badge);
-      return { line, badge };
-    };
-    async function appointmentOverview() {
-      const now = new Date().toISOString();
-      const [slotsResult, appointmentsResult] = await Promise.all([
-        db
-          .from("madic_cric_appointment_slots")
-          .select("id,starts_at,is_open")
-          .eq("space_id", spaceId)
-          .gte("starts_at", now),
-        db
-          .from("madic_cric_appointments")
-          .select("client_id,slot_id,status")
-          .eq("space_id", spaceId),
-      ]);
-      if (slotsResult.error) throw slotsResult.error;
-      if (appointmentsResult.error) throw appointmentsResult.error;
-      const appointments = appointmentsResult.data || [];
-      const occupied = new Set(
-        appointments
-          .filter((a) => ["requested", "confirmed"].includes(a.status))
-          .map((a) => a.slot_id),
-      );
-      const available = (slotsResult.data || []).filter(
-        (s) => s.is_open && !occupied.has(s.id),
-      ).length;
-      const perClient = new Map();
-      for (const a of appointments) {
-        if (!perClient.has(a.client_id)) perClient.set(a.client_id, []);
-        perClient.get(a.client_id).push(a.status);
-      }
-      return { available, perClient };
-    }
-
-    async function load() {
-      if (busy || !spaceId || document.hidden) return;
-      busy = true;
-      refresh.disabled = true;
-      try {
-        const { data, error } = await db.rpc(
-          "madic_service_requests_for_cric",
-          { p_space_id: spaceId },
-        );
-        if (error) throw error;
-        list.replaceChildren();
-        const requests = data || [];
-        let appointmentData = null,
-          appointmentError = null;
-        if (
-          requests.some((r) =>
-            ["consultation", "proposition"].includes(r.service_type),
-          )
-        ) {
+      clientSelect?.addEventListener("change", validateClient);
+      createToggle?.addEventListener("click", async () => {
+        const opening = createForm.hidden;
+        createForm.hidden = !opening;
+        createToggle.setAttribute("aria-expanded", String(opening));
+        if (opening) {
           try {
-            appointmentData = await appointmentOverview();
+            await loadEligible();
           } catch (e) {
-            appointmentError = e;
+            intakeState.textContent = "Chargement impossible : " + e.message;
           }
         }
-        const pending = requests.filter(
-          (r) => r.request_status === "received",
-        ).length;
-        $("madicServiceTotalCount") && ($("madicServiceTotalCount").textContent = String(requests.length));
-        $("madicServiceReceivedCount") && ($("madicServiceReceivedCount").textContent = String(pending));
-        // Ce compteur porte desormais sur les contrats effectivement signes.
-        $("madicServiceOtherCount") && ($("madicServiceOtherCount").textContent = "0");
-        badge.textContent = String(pending);
-        badge.hidden = !pending;
-        notice.textContent = requests.length
-          ? `${requests.length} demande(s), dont ${pending} à traiter.`
-          : "Aucune demande de service pour le moment.";
-        for (const item of requests) {
-          const article = document.createElement("article");
-          article.className = "madic-service-item";
-          article.dataset.clientName = (item.client_name || "Client").toLocaleLowerCase("fr-CA");
-          article.dataset.requestStatus = item.request_status || "received";
-          article.dataset.contractSigned = "false";
-          const header = document.createElement("div");
-          header.className = "madic-service-head";
-          const title = document.createElement("strong");
-          title.textContent = item.client_name || "Client";
-          const tag = document.createElement("span");
-          tag.className = "madic-service-badge";
-          tag.textContent = labels[item.request_status] || "Reçue";
-          header.append(title, tag);
-          const detail = document.createElement("p");
-          detail.textContent = `${services[item.service_type] || item.service_type} · ${niceDate(item.request_updated_at)}`;
-          const expanded = document.createElement("details");
-          expanded.className = "madic-service-expanded";
-          const summary = document.createElement("summary");
-          summary.className = "madic-service-row";
-          const summaryMain = document.createElement("span");
-          summaryMain.className = "madic-service-row-client";
-          const summaryName = document.createElement("strong");
-          summaryName.textContent = item.client_name || "Client";
-          const summaryType = document.createElement("small");
-          summaryType.textContent = `${services[item.service_type] || item.service_type} · ${niceDate(item.request_updated_at)}`;
-          summaryMain.append(summaryName, summaryType);
-          const summaryStatus = pill(labels[item.request_status] || "Reçue", "info");
-          const summaryContract = pill("Vérification…");
-          const summaryAppointment = pill("Vérification…");
-          const summaryContractGroup = document.createElement("span");
-          summaryContractGroup.className = "madic-service-row-indicator";
-          summaryContractGroup.append(document.createTextNode("Contrat"), summaryContract);
-          const summaryAppointmentGroup = document.createElement("span");
-          summaryAppointmentGroup.className = "madic-service-row-indicator";
-          summaryAppointmentGroup.append(document.createTextNode("Rendez-vous"), summaryAppointment);
-          const summaryChevron = document.createElement("span");
-          summaryChevron.className = "madic-service-chevron";
-          summaryChevron.textContent = "Détails";
-          summary.append(summaryMain, summaryStatus, summaryContractGroup, summaryAppointmentGroup, summaryChevron);
-          const expandedBody = document.createElement("div");
-          expandedBody.className = "madic-service-expanded-body";
-          expanded.append(summary, expandedBody);
-          function mirrorState(source, target, isContract = false) {
-            const sync = () => {
-              target.textContent = source.textContent;
-              target.className = source.className;
-              if (isContract) {
-                // "À contresigner" est signe par le client, mais pas finalise.
-                article.dataset.contractSigned = /^(Signé|Contresigné)$/.test(source.textContent.trim()) ? "true" : "false";
-                updateSignedCount();
-                applyRequestFilters();
-              }
-            };
-            new MutationObserver(sync).observe(source, {childList:true, characterData:true, subtree:true, attributes:true, attributeFilter:["class"]});
-            sync();
-          }
-          const actions = document.createElement("div");
-          actions.className = "madic-service-actions";
-          const select = document.createElement("select");
-          select.setAttribute(
-            "aria-label",
-            "Statut de la demande de " + (item.client_name || "client"),
-          );
-          for (const [value, label] of Object.entries(labels)) {
-            const option = document.createElement("option");
-            option.value = value;
-            option.textContent = label;
-            select.append(option);
-          }
-          select.value = item.request_status || "received";
-          // Le contrat et les disponibilites restent geres par leurs modules existants.
-          const workflow = document.createElement("div");
-          workflow.className = "madic-service-workflow";
-          if (["consultation", "proposition"].includes(item.service_type)) {
-            const contract = document.createElement("div");
-            contract.className = "madic-service-workflow-block";
-            const heading = document.createElement("strong");
-            heading.textContent =
-              item.service_type === "proposition"
-                ? "Contrat professionnel et signature"
-                : "Contrat initial et signature";
-            const contractState = stateLine("Contrat", "Vérification…");
-            const signatureState = stateLine(
-              "Signature du client",
-              "Vérification…",
-            );
-            const open = document.createElement("a");
-            open.href =
-              (item.service_type === "proposition"
-                ? "contrat-professionnel-cric.html"
-                : "contrat-initial-cric.html") +
-              "?client=" +
-              encodeURIComponent(item.client_id);
-            open.textContent = "Préparer / consulter le contrat →";
-            contract.append(
-              heading,
-              contractState.line,
-              signatureState.line,
-              open,
-            );
-            workflow.append(contract);
-            if (item.service_type === "proposition") {
-              contractState.badge.textContent = "Brouillon uniquement";
-              signatureState.badge.textContent = "Non disponible";
-              const note = document.createElement("p");
-              note.className = "madic-service-workflow-note";
-              note.textContent =
-                "La publication et la signature électronique du contrat professionnel ne sont pas encore activées. Aucun contrat initial ne sera utilisé pour ce mandat.";
-              contract.append(note);
-            } else {
-              // Le parcours Client -> CRIC utilise client_signe / deux_signatures.
-              // Lire uniquement les contrats de ce client dans cet espace CRIC.
-              (async () => {
-                const { data: clientContracts, error: clientError } = await db
-                  .from("madic_initial_contracts")
-                  .select("id,status")
-                  .eq("space_id", spaceId)
-                  .eq("client_id", item.client_id)
-                  .eq("signature_flow", "client_to_cric")
-                  .in("status", ["client_signe", "deux_signatures"])
-                  .order("created_at", { ascending: false })
-                  .limit(1);
-                if (clientError) console.warn("Contrat Client vers CRIC :", clientError.message);
-                const signed = !clientError && clientContracts?.[0];
-                if (signed) {
-                  // Un contrat transmis par le client se consulte et se contresigne
-                  // dans le parcours Client -> CRIC, sans ouvrir le formulaire de creation.
-                  open.href = "contrats-client-vers-cric.html";
-                  open.textContent = signed.status === "deux_signatures"
-                    ? "Consulter le contrat contresigné →"
-                    : "Consulter et contresigner le contrat →";
-                  contractState.badge.textContent = signed.status === "deux_signatures"
-                    ? "Contresigné" : "À contresigner";
-                  contractState.badge.className =
-                    "madic-service-state madic-service-state-success";
-                  signatureState.badge.textContent = "Signée";
-                  signatureState.badge.className =
-                    "madic-service-state madic-service-state-success";
-                  return;
-                }
-                // Conserver la logique historique des contrats CRIC -> Client.
-                const { data, error } = await db.rpc("madic_service_contract_state", {
-                  p_space_id: spaceId,
-                  p_client_id: item.client_id,
-                });
-                if (error) throw error;
-                const row = Array.isArray(data) ? data[0] : data;
-                const state = row?.contract_status;
-                if (state === "signe") {
-                  contractState.badge.textContent = "Signé";
-                  contractState.badge.className =
-                    "madic-service-state madic-service-state-success";
-                  signatureState.badge.textContent = "Signée";
-                  signatureState.badge.className =
-                    "madic-service-state madic-service-state-success";
-                } else if (state === "publie") {
-                  contractState.badge.textContent = "Publié";
-                  contractState.badge.className =
-                    "madic-service-state madic-service-state-info";
-                  signatureState.badge.textContent = "En attente";
-                  signatureState.badge.className =
-                    "madic-service-state madic-service-state-pending";
-                } else if (state === "client_signe" || state === "deux_signatures") {
-                  contractState.badge.textContent = state === "deux_signatures"
-                    ? "Contresigné" : "À contresigner";
-                  contractState.badge.className =
-                    "madic-service-state madic-service-state-success";
-                  signatureState.badge.textContent = "Signée";
-                  signatureState.badge.className =
-                    "madic-service-state madic-service-state-success";
-                } else if (clientError) {
-                  contractState.badge.textContent = "À vérifier";
-                  signatureState.badge.textContent = "À vérifier";
-                } else {
-                  contractState.badge.textContent = "Non publié";
-                  signatureState.badge.textContent = "Non disponible";
-                }
-              })().catch((error) => {
-                console.warn("État du contrat :", error.message);
-                contractState.badge.textContent = "Indisponible";
-                signatureState.badge.textContent = "Indisponible";
-              });
-            }
-            const appointment = document.createElement("div");
-            appointment.className = "madic-service-workflow-block";
-            const apHead = document.createElement("strong");
-            apHead.textContent = "Rendez-vous";
-            const apState = stateLine("État du client", "Aucune demande");
-            const slotState = stateLine(
-              "Créneaux du cabinet",
-              "Aucun disponible",
-            );
-            if (appointmentError) {
-              apState.badge.textContent = "Indisponible";
-              slotState.badge.textContent = "Indisponible";
-            } else if (appointmentData) {
-              const states =
-                appointmentData.perClient.get(item.client_id) || [];
-              if (states.includes("confirmed")) {
-                apState.badge.textContent = "Confirmé";
-                apState.badge.className =
-                  "madic-service-state madic-service-state-success";
-              } else if (states.includes("requested")) {
-                apState.badge.textContent = "Demande reçue";
-                apState.badge.className =
-                  "madic-service-state madic-service-state-pending";
-              } else if (states.includes("declined"))
-                apState.badge.textContent = "Dernière demande refusée";
-              else if (states.includes("cancelled"))
-                apState.badge.textContent = "Demande annulée";
-              if (appointmentData.available) {
-                slotState.badge.textContent =
-                  appointmentData.available + " disponible(s)";
-                slotState.badge.className =
-                  "madic-service-state madic-service-state-info";
-              }
-            }
-            const apNote = document.createElement("p");
-            apNote.className = "madic-service-workflow-note";
-            apNote.textContent =
-              "Les créneaux publiés sont accessibles aux clients du cabinet; ils ne constituent pas une proposition individuelle ni une réservation confirmée.";
-            const apLink = document.createElement("a");
-            apLink.href = "rendez-vous-cric.html";
-            apLink.textContent = "Gérer les disponibilités →";
-            appointment.append(
-              apHead,
-              apState.line,
-              slotState.line,
-              apNote,
-              apLink,
-            );
-            workflow.append(appointment);
-            // Reporter les statuts des blocs detailles dans la ligne compacte.
-            mirrorState(contractState.badge, summaryContract, true);
-            mirrorState(apState.badge, summaryAppointment);
-          }
-          const save = document.createElement("button");
-          save.type = "button";
-          save.className = "secondary";
-          save.textContent = "Enregistrer le statut";
-          save.addEventListener("click", async () => {
-            save.disabled = true;
-            select.disabled = true;
-            try {
-              const { error } = await db.rpc("madic_service_set_status", {
-                p_space_id: spaceId,
-                p_client_id: item.client_id,
-                p_status: select.value,
-              });
-              if (error) throw error;
-              await loadAfterSave();
-            } catch (err) {
-              notice.textContent = "Modification impossible : " + err.message;
-            } finally {
-              save.disabled = false;
-              select.disabled = false;
-            }
+      });
+      createForm?.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        validateClient();
+        if (createSubmit.disabled) return;
+        createSubmit.disabled = true;
+        try {
+          const { error } = await db.rpc("madic_service_create_by_cric", {
+            p_space_id: spaceId,
+            p_client_id: clientSelect.value,
+            p_service_type: $("madicServiceType").value,
+            p_payment_method: $("madicServicePayment").value,
+            p_payment_note: $("madicServicePaymentNote").value || null,
           });
-          actions.append(select, save);
-          expandedBody.append(actions, workflow);
-          article.append(expanded);
-          list.append(article);
-          applyRequestFilters();
+          if (error) throw error;
+          notice.textContent =
+            "Demande créée. Le parcours client sera actualisé automatiquement.";
+          createForm.reset();
+          await loadEligible();
+          await load();
+        } catch (err) {
+          intakeState.textContent = "Création impossible : " + err.message;
+          validateClient();
         }
-      } catch (err) {
-        notice.textContent = "Demandes indisponibles : " + err.message;
-      } finally {
-        busy = false;
-        refresh.disabled = false;
+      });
+      const pill = (label, kind = "neutral") => {
+        const el = document.createElement("span");
+        el.className = "madic-service-state madic-service-state-" + kind;
+        el.textContent = label;
+        return el;
+      };
+      const stateLine = (label, value, kind = "neutral") => {
+        const line = document.createElement("div");
+        line.className = "madic-service-state-line";
+        const title = document.createElement("span");
+        title.textContent = label;
+        const badge = pill(value, kind);
+        line.append(title, badge);
+        return { line, badge };
+      };
+      async function appointmentOverview() {
+        const now = new Date().toISOString();
+        const [slotsResult, appointmentsResult] = await Promise.all([
+          db
+            .from("madic_cric_appointment_slots")
+            .select("id,starts_at,is_open")
+            .eq("space_id", spaceId)
+            .gte("starts_at", now),
+          db
+            .from("madic_cric_appointments")
+            .select("client_id,slot_id,status")
+            .eq("space_id", spaceId),
+        ]);
+        if (slotsResult.error) throw slotsResult.error;
+        if (appointmentsResult.error) throw appointmentsResult.error;
+        const appointments = appointmentsResult.data || [];
+        const occupied = new Set(
+          appointments
+            .filter((a) => ["requested", "confirmed"].includes(a.status))
+            .map((a) => a.slot_id),
+        );
+        const available = (slotsResult.data || []).filter(
+          (s) => s.is_open && !occupied.has(s.id),
+        ).length;
+        const perClient = new Map();
+        for (const a of appointments) {
+          if (!perClient.has(a.client_id)) perClient.set(a.client_id, []);
+          perClient.get(a.client_id).push(a.status);
+        }
+        return { available, perClient };
       }
-    }
-    async function loadAfterSave() {
-      busy = false;
-      await load();
-    }
-    refresh.addEventListener("click", () => void load());
-    // L'authentification et la permission CRIC restent controlees par la RPC SQL.
-    try {
-      const { data: spaces, error } = await db
-        .from("madic_cric_spaces")
-        .select("id,access_status")
-        .eq("owner_user_id", user.id)
-        .eq("access_status", "active")
-        .limit(1);
-      if (error) throw error;
-      if (spaces?.length) {
-        spaceId = spaces[0].id;
-        cricPanel.hidden = false;
-        await load();
-      }
-    } catch (err) {
-      console.warn("MADIC services:", err.message);
-    }
-    window.setInterval(() => {
-      if (!document.hidden) void load();
-    }, 15000);
-    window.addEventListener("focus", () => void load());
-  }
-  const journey = $("madicJourneyPanel");
-  if (journey) {
-    const notice = $("madicJourneyStatus"),
-      steps = $("madicJourneySteps"),
-      stage = $("madicJourneyStage"),
-      link = $("madicJourneyLink");
-    const phases = ["Formulaire", "Demande", "Analyse", "Réponse"];
-    async function update() {
-      const cabinet = $("cabinet");
-      const spaceId = cabinet?.value;
-      if (!spaceId) return;
-      journey.hidden = false;
-      try {
-        const { data: intake, error: intakeError } = await db
-          .from("madic_client_intake")
-          .select("status")
-          .eq("user_id", user.id)
-          .maybeSingle();
-        if (intakeError) throw intakeError;
-        const { data, error } = await db.rpc("madic_service_my_progress", {
-          p_space_id: spaceId,
-        });
-        if (error) throw error;
-        const request = data?.[0];
-        let active = 0;
-        if (intake?.status === "submitted") active = 1;
-        if (request)
-          active =
-            request.request_status === "received"
-              ? 2
-              : request.request_status === "reviewing"
-                ? 3
-                : 4;
-        stage.textContent = `Étape ${active} sur 4`;
-        steps.replaceChildren();
-        phases.forEach((label, i) => {
-          const el = document.createElement("div");
-          el.className =
-            "madic-journey-step" + (i < active ? " is-complete" : "");
-          const bar = document.createElement("span");
-          bar.className = "madic-journey-bar";
-          const text = document.createElement("small");
-          text.textContent = label;
-          el.append(bar, text);
-          steps.append(el);
-        });
-        notice.textContent = request
-          ? `${services[request.service_type] || "Demande de service"} - ${labels[request.request_status] || "Reçue"}.`
-          : intake?.status === "submitted"
-            ? "Votre formulaire est soumis. Vous pouvez choisir votre prochaine étape."
-            : "Complétez votre formulaire pour commencer votre parcours.";
-        link.hidden = !!request || intake?.status !== "submitted";
-        const workflow = $("madicJourneyWorkflow");
-        if (workflow) {
-          workflow.replaceChildren();
+
+      async function load() {
+        if (busy || !spaceId || document.hidden) return;
+        busy = true;
+        refresh.disabled = true;
+        try {
+          const { data, error } = await db.rpc(
+            "madic_service_requests_for_cric",
+            { p_space_id: spaceId },
+          );
+          if (error) throw error;
+          list.replaceChildren();
+          const requests = data || [];
+          let appointmentData = null,
+            appointmentError = null;
           if (
-            ["consultation", "proposition"].includes(request?.service_type) &&
-            ["reviewing", "responded", "closed"].includes(
-              request.request_status,
+            requests.some((r) =>
+              ["consultation", "proposition"].includes(r.service_type),
             )
           ) {
-            const contract = document.createElement("p");
-            if (request.service_type === "proposition") {
-              contract.textContent =
-                "Contrat professionnel : en attente de transmission par votre consultant. La signature électronique n’est pas encore disponible.";
-            } else {
-              const { data: contracts, error: contractError } = await db
-                .from("madic_initial_contracts")
-                .select("id,status")
-                .eq("client_id", user.id)
-                .in("status", ["publie", "signe"])
-                .order("created_at", { ascending: false })
-                .limit(1);
-              if (contractError) {
-                contract.textContent =
-                  "Contrat : état momentanément indisponible.";
-              } else if (contracts?.length) {
-                const c = contracts[0];
-                contract.textContent =
-                  c.status === "signe"
-                    ? "Contrat initial signé. "
-                    : "Votre contrat initial est disponible pour signature. ";
-                const a = document.createElement("a");
-                a.href =
-                  "contrat-initial-client.html?id=" + encodeURIComponent(c.id);
-                a.textContent = "Consulter mon contrat →";
-                contract.append(a);
-              } else {
-                contract.textContent =
-                  "Contrat initial : en attente de transmission par votre consultant.";
-              }
+            try {
+              appointmentData = await appointmentOverview();
+            } catch (e) {
+              appointmentError = e;
             }
-            workflow.append(contract);
-            const ap = document.createElement("p");
-            ap.textContent =
-              "Vous pouvez consulter les créneaux publiés par votre consultant et demander un rendez-vous. ";
-            const a = document.createElement("a");
-            a.href = "mes-rendez-vous-cric.html";
-            a.textContent = "Voir les disponibilités →";
-            ap.append(a);
-            workflow.append(ap);
           }
+          const pending = requests.filter(
+            (r) => r.request_status === "received",
+          ).length;
+          $("madicServiceTotalCount") &&
+            ($("madicServiceTotalCount").textContent = String(requests.length));
+          $("madicServiceReceivedCount") &&
+            ($("madicServiceReceivedCount").textContent = String(pending));
+          // Ce compteur porte desormais sur les contrats effectivement signes.
+          $("madicServiceOtherCount") &&
+            ($("madicServiceOtherCount").textContent = "0");
+          badge.textContent = String(pending);
+          badge.hidden = !pending;
+          notice.textContent = requests.length
+            ? `${requests.length} demande(s), dont ${pending} à traiter.`
+            : "Aucune demande de service pour le moment.";
+          for (const item of requests) {
+            const article = document.createElement("article");
+            article.className = "madic-service-item";
+            article.dataset.clientName = (
+              item.client_name || "Client"
+            ).toLocaleLowerCase("fr-CA");
+            article.dataset.requestStatus = item.request_status || "received";
+            article.dataset.contractSigned = "false";
+            const header = document.createElement("div");
+            header.className = "madic-service-head";
+            const title = document.createElement("strong");
+            title.textContent = item.client_name || "Client";
+            const tag = document.createElement("span");
+            tag.className = "madic-service-badge";
+            tag.textContent = labels[item.request_status] || "Reçue";
+            header.append(title, tag);
+            const detail = document.createElement("p");
+            detail.textContent = `${services[item.service_type] || item.service_type} · ${niceDate(item.request_updated_at)}`;
+            const expanded = document.createElement("details");
+            expanded.className = "madic-service-expanded";
+            const summary = document.createElement("summary");
+            summary.className = "madic-service-row";
+            const summaryMain = document.createElement("span");
+            summaryMain.className = "madic-service-row-client";
+            const summaryName = document.createElement("strong");
+            summaryName.textContent = item.client_name || "Client";
+            const summaryType = document.createElement("small");
+            summaryType.textContent = `${services[item.service_type] || item.service_type} · ${niceDate(item.request_updated_at)}`;
+            summaryMain.append(summaryName, summaryType);
+            const summaryStatus = pill(
+              labels[item.request_status] || "Reçue",
+              "info",
+            );
+            const summaryContract = pill("Vérification…");
+            const summaryAppointment = pill("Vérification…");
+            const summaryContractGroup = document.createElement("span");
+            summaryContractGroup.className = "madic-service-row-indicator";
+            summaryContractGroup.append(
+              document.createTextNode("Contrat"),
+              summaryContract,
+            );
+            const summaryAppointmentGroup = document.createElement("span");
+            summaryAppointmentGroup.className = "madic-service-row-indicator";
+            summaryAppointmentGroup.append(
+              document.createTextNode("Rendez-vous"),
+              summaryAppointment,
+            );
+            const summaryChevron = document.createElement("span");
+            summaryChevron.className = "madic-service-chevron";
+            summaryChevron.textContent = "Détails";
+            summary.append(
+              summaryMain,
+              summaryStatus,
+              summaryContractGroup,
+              summaryAppointmentGroup,
+              summaryChevron,
+            );
+            const expandedBody = document.createElement("div");
+            expandedBody.className = "madic-service-expanded-body";
+            expanded.append(summary, expandedBody);
+            function mirrorState(source, target, isContract = false) {
+              const sync = () => {
+                target.textContent = source.textContent;
+                target.className = source.className;
+                if (isContract) {
+                  // "À contresigner" est signe par le client, mais pas finalise.
+                  article.dataset.contractSigned = /^(Signé|Contresigné)$/.test(
+                    source.textContent.trim(),
+                  )
+                    ? "true"
+                    : "false";
+                  updateSignedCount();
+                  applyRequestFilters();
+                }
+              };
+              new MutationObserver(sync).observe(source, {
+                childList: true,
+                characterData: true,
+                subtree: true,
+                attributes: true,
+                attributeFilter: ["class"],
+              });
+              sync();
+            }
+            const actions = document.createElement("div");
+            actions.className = "madic-service-actions";
+            const select = document.createElement("select");
+            select.setAttribute(
+              "aria-label",
+              "Statut de la demande de " + (item.client_name || "client"),
+            );
+            for (const [value, label] of Object.entries(labels)) {
+              const option = document.createElement("option");
+              option.value = value;
+              option.textContent = label;
+              select.append(option);
+            }
+            select.value = item.request_status || "received";
+            // Le contrat et les disponibilites restent geres par leurs modules existants.
+            const workflow = document.createElement("div");
+            workflow.className = "madic-service-workflow";
+            if (["consultation", "proposition"].includes(item.service_type)) {
+              const contract = document.createElement("div");
+              contract.className = "madic-service-workflow-block";
+              const heading = document.createElement("strong");
+              heading.textContent =
+                item.service_type === "proposition"
+                  ? "Contrat professionnel et signature"
+                  : "Contrat initial et signature";
+              const contractState = stateLine("Contrat", "Vérification…");
+              const signatureState = stateLine(
+                "Signature du client",
+                "Vérification…",
+              );
+              const open = document.createElement("a");
+              open.href =
+                (item.service_type === "proposition"
+                  ? "contrat-professionnel-cric.html"
+                  : "contrat-initial-cric.html") +
+                "?client=" +
+                encodeURIComponent(item.client_id);
+              open.textContent = "Préparer / consulter le contrat →";
+              contract.append(
+                heading,
+                contractState.line,
+                signatureState.line,
+                open,
+              );
+              workflow.append(contract);
+              if (item.service_type === "proposition") {
+                contractState.badge.textContent = "Brouillon uniquement";
+                signatureState.badge.textContent = "Non disponible";
+                const note = document.createElement("p");
+                note.className = "madic-service-workflow-note";
+                note.textContent =
+                  "La publication et la signature électronique du contrat professionnel ne sont pas encore activées. Aucun contrat initial ne sera utilisé pour ce mandat.";
+                contract.append(note);
+              } else {
+                // Le parcours Client -> CRIC utilise client_signe / deux_signatures.
+                // Lire uniquement les contrats de ce client dans cet espace CRIC.
+                (async () => {
+                  const { data: clientContracts, error: clientError } = await db
+                    .from("madic_initial_contracts")
+                    .select("id,status")
+                    .eq("space_id", spaceId)
+                    .eq("client_id", item.client_id)
+                    .eq("signature_flow", "client_to_cric")
+                    .in("status", ["client_signe", "deux_signatures"])
+                    .order("created_at", { ascending: false })
+                    .limit(1);
+                  if (clientError)
+                    console.warn(
+                      "Contrat Client vers CRIC :",
+                      clientError.message,
+                    );
+                  const signed = !clientError && clientContracts?.[0];
+                  if (signed) {
+                    // Un contrat transmis par le client se consulte et se contresigne
+                    // dans le parcours Client -> CRIC, sans ouvrir le formulaire de creation.
+                    open.href = "contrats-client-vers-cric.html";
+                    open.textContent =
+                      signed.status === "deux_signatures"
+                        ? "Consulter le contrat contresigné →"
+                        : "Consulter et contresigner le contrat →";
+                    contractState.badge.textContent =
+                      signed.status === "deux_signatures"
+                        ? "Contresigné"
+                        : "À contresigner";
+                    contractState.badge.className =
+                      "madic-service-state madic-service-state-success";
+                    signatureState.badge.textContent = "Signée";
+                    signatureState.badge.className =
+                      "madic-service-state madic-service-state-success";
+                    return;
+                  }
+                  // Conserver la logique historique des contrats CRIC -> Client.
+                  const { data, error } = await db.rpc(
+                    "madic_service_contract_state",
+                    {
+                      p_space_id: spaceId,
+                      p_client_id: item.client_id,
+                    },
+                  );
+                  if (error) throw error;
+                  const row = Array.isArray(data) ? data[0] : data;
+                  const state = row?.contract_status;
+                  if (state === "signe") {
+                    contractState.badge.textContent = "Signé";
+                    contractState.badge.className =
+                      "madic-service-state madic-service-state-success";
+                    signatureState.badge.textContent = "Signée";
+                    signatureState.badge.className =
+                      "madic-service-state madic-service-state-success";
+                  } else if (state === "publie") {
+                    contractState.badge.textContent = "Publié";
+                    contractState.badge.className =
+                      "madic-service-state madic-service-state-info";
+                    signatureState.badge.textContent = "En attente";
+                    signatureState.badge.className =
+                      "madic-service-state madic-service-state-pending";
+                  } else if (
+                    state === "client_signe" ||
+                    state === "deux_signatures"
+                  ) {
+                    contractState.badge.textContent =
+                      state === "deux_signatures"
+                        ? "Contresigné"
+                        : "À contresigner";
+                    contractState.badge.className =
+                      "madic-service-state madic-service-state-success";
+                    signatureState.badge.textContent = "Signée";
+                    signatureState.badge.className =
+                      "madic-service-state madic-service-state-success";
+                  } else if (clientError) {
+                    contractState.badge.textContent = "À vérifier";
+                    signatureState.badge.textContent = "À vérifier";
+                  } else {
+                    contractState.badge.textContent = "Non publié";
+                    signatureState.badge.textContent = "Non disponible";
+                  }
+                })().catch((error) => {
+                  console.warn("État du contrat :", error.message);
+                  contractState.badge.textContent = "Indisponible";
+                  signatureState.badge.textContent = "Indisponible";
+                });
+              }
+              const appointment = document.createElement("div");
+              appointment.className = "madic-service-workflow-block";
+              const apHead = document.createElement("strong");
+              apHead.textContent = "Rendez-vous";
+              const apState = stateLine("État du client", "Aucune demande");
+              const slotState = stateLine(
+                "Créneaux du cabinet",
+                "Aucun disponible",
+              );
+              if (appointmentError) {
+                apState.badge.textContent = "Indisponible";
+                slotState.badge.textContent = "Indisponible";
+              } else if (appointmentData) {
+                const states =
+                  appointmentData.perClient.get(item.client_id) || [];
+                if (states.includes("confirmed")) {
+                  apState.badge.textContent = "Confirmé";
+                  apState.badge.className =
+                    "madic-service-state madic-service-state-success";
+                } else if (states.includes("requested")) {
+                  apState.badge.textContent = "Demande reçue";
+                  apState.badge.className =
+                    "madic-service-state madic-service-state-pending";
+                } else if (states.includes("declined"))
+                  apState.badge.textContent = "Dernière demande refusée";
+                else if (states.includes("cancelled"))
+                  apState.badge.textContent = "Demande annulée";
+                if (appointmentData.available) {
+                  slotState.badge.textContent =
+                    appointmentData.available + " disponible(s)";
+                  slotState.badge.className =
+                    "madic-service-state madic-service-state-info";
+                }
+              }
+              const apNote = document.createElement("p");
+              apNote.className = "madic-service-workflow-note";
+              apNote.textContent =
+                "Les créneaux publiés sont accessibles aux clients du cabinet; ils ne constituent pas une proposition individuelle ni une réservation confirmée.";
+              const apLink = document.createElement("a");
+              apLink.href = "rendez-vous-cric.html";
+              apLink.textContent = "Gérer les disponibilités →";
+              appointment.append(
+                apHead,
+                apState.line,
+                slotState.line,
+                apNote,
+                apLink,
+              );
+              workflow.append(appointment);
+              // Reporter les statuts des blocs detailles dans la ligne compacte.
+              mirrorState(contractState.badge, summaryContract, true);
+              mirrorState(apState.badge, summaryAppointment);
+            }
+            const save = document.createElement("button");
+            save.type = "button";
+            save.className = "secondary";
+            save.textContent = "Enregistrer le statut";
+            save.addEventListener("click", async () => {
+              save.disabled = true;
+              select.disabled = true;
+              try {
+                const { error } = await db.rpc("madic_service_set_status", {
+                  p_space_id: spaceId,
+                  p_client_id: item.client_id,
+                  p_status: select.value,
+                });
+                if (error) throw error;
+                await loadAfterSave();
+              } catch (err) {
+                notice.textContent = "Modification impossible : " + err.message;
+              } finally {
+                save.disabled = false;
+                select.disabled = false;
+              }
+            });
+            actions.append(select, save);
+            expandedBody.append(actions, workflow);
+            article.append(expanded);
+            list.append(article);
+            applyRequestFilters();
+          }
+        } catch (err) {
+          notice.textContent = "Demandes indisponibles : " + err.message;
+        } finally {
+          busy = false;
+          refresh.disabled = false;
+        }
+      }
+      async function loadAfterSave() {
+        busy = false;
+        await load();
+      }
+      refresh.addEventListener("click", () => void load());
+      // L'authentification et la permission CRIC restent controlees par la RPC SQL.
+      try {
+        const { data: spaces, error } = await db
+          .from("madic_cric_spaces")
+          .select("id,access_status")
+          .eq("owner_user_id", user.id)
+          .eq("access_status", "active")
+          .limit(1);
+        if (error) throw error;
+        if (spaces?.length) {
+          spaceId = spaces[0].id;
+          cricPanel.hidden = false;
+          await load();
         }
       } catch (err) {
-        notice.textContent =
-          "Suivi momentanément indisponible : " + err.message;
+        console.warn("MADIC services:", err.message);
       }
+      window.setInterval(() => {
+        if (!document.hidden) void load();
+      }, 15000);
+      window.addEventListener("focus", () => void load());
     }
-    $("cabinet")?.addEventListener("change", () => void update());
-    // Le script historique peuple la liste des cabinets apres authentification.
-    const wait = setInterval(() => {
-      if ($("cabinet")?.value) {
-        clearInterval(wait);
-        void update();
+    const journey = $("madicJourneyPanel");
+    if (journey) {
+      const notice = $("madicJourneyStatus"),
+        steps = $("madicJourneySteps"),
+        stage = $("madicJourneyStage"),
+        link = $("madicJourneyLink");
+      const phases = ["Formulaire", "Demande", "Analyse", "Réponse"];
+      async function update() {
+        const cabinet = $("cabinet");
+        const spaceId = cabinet?.value;
+        if (!spaceId) return;
+        journey.hidden = false;
+        try {
+          const { data: intake, error: intakeError } = await db
+            .from("madic_client_intake")
+            .select("status")
+            .eq("user_id", user.id)
+            .maybeSingle();
+          if (intakeError) throw intakeError;
+          const { data, error } = await db.rpc("madic_service_my_progress", {
+            p_space_id: spaceId,
+          });
+          if (error) throw error;
+          const request = data?.[0];
+          let active = 0;
+          if (intake?.status === "submitted") active = 1;
+          if (request)
+            active =
+              request.request_status === "received"
+                ? 2
+                : request.request_status === "reviewing"
+                  ? 3
+                  : 4;
+          stage.textContent = `Étape ${active} sur 4`;
+          steps.replaceChildren();
+          phases.forEach((label, i) => {
+            const el = document.createElement("div");
+            el.className =
+              "madic-journey-step" + (i < active ? " is-complete" : "");
+            const bar = document.createElement("span");
+            bar.className = "madic-journey-bar";
+            const text = document.createElement("small");
+            text.textContent = label;
+            el.append(bar, text);
+            steps.append(el);
+          });
+          notice.textContent = request
+            ? `${services[request.service_type] || "Demande de service"} - ${labels[request.request_status] || "Reçue"}.`
+            : intake?.status === "submitted"
+              ? "Votre formulaire est soumis. Vous pouvez choisir votre prochaine étape."
+              : "Complétez votre formulaire pour commencer votre parcours.";
+          link.hidden = !!request || intake?.status !== "submitted";
+          const workflow = $("madicJourneyWorkflow");
+          if (workflow) {
+            workflow.replaceChildren();
+            if (
+              ["consultation", "proposition"].includes(request?.service_type) &&
+              ["reviewing", "responded", "closed"].includes(
+                request.request_status,
+              )
+            ) {
+              const contract = document.createElement("p");
+              if (request.service_type === "proposition") {
+                contract.textContent =
+                  "Contrat professionnel : en attente de transmission par votre consultant. La signature électronique n’est pas encore disponible.";
+              } else {
+                const { data: contracts, error: contractError } = await db
+                  .from("madic_initial_contracts")
+                  .select("id,status")
+                  .eq("client_id", user.id)
+                  .in("status", ["publie", "signe"])
+                  .order("created_at", { ascending: false })
+                  .limit(1);
+                if (contractError) {
+                  contract.textContent =
+                    "Contrat : état momentanément indisponible.";
+                } else if (contracts?.length) {
+                  const c = contracts[0];
+                  contract.textContent =
+                    c.status === "signe"
+                      ? "Contrat initial signé. "
+                      : "Votre contrat initial est disponible pour signature. ";
+                  const a = document.createElement("a");
+                  a.href =
+                    "contrat-initial-client.html?id=" +
+                    encodeURIComponent(c.id);
+                  a.textContent = "Consulter mon contrat →";
+                  contract.append(a);
+                } else {
+                  contract.textContent =
+                    "Contrat initial : en attente de transmission par votre consultant.";
+                }
+              }
+              workflow.append(contract);
+              const ap = document.createElement("p");
+              ap.textContent =
+                "Vous pouvez consulter les créneaux publiés par votre consultant et demander un rendez-vous. ";
+              const a = document.createElement("a");
+              a.href = "mes-rendez-vous-cric.html";
+              a.textContent = "Voir les disponibilités →";
+              ap.append(a);
+              workflow.append(ap);
+            }
+          }
+        } catch (err) {
+          notice.textContent =
+            "Suivi momentanément indisponible : " + err.message;
+        }
       }
-    }, 300);
-    setTimeout(() => clearInterval(wait), 12000);
-    window.setInterval(() => {
-      if (!document.hidden) void update();
-    }, 30000);
-    window.addEventListener("focus", () => void update());
-  }
-})();
-
+      $("cabinet")?.addEventListener("change", () => void update());
+      // Le script historique peuple la liste des cabinets apres authentification.
+      const wait = setInterval(() => {
+        if ($("cabinet")?.value) {
+          clearInterval(wait);
+          void update();
+        }
+      }, 300);
+      setTimeout(() => clearInterval(wait), 12000);
+      window.setInterval(() => {
+        if (!document.hidden) void update();
+      }, 30000);
+      window.addEventListener("focus", () => void update());
+    }
+  })();
 }
 
 /* external assets/madic-i18n-dashboard.js */
 {
-/* MADIC Phase 3 - interface translation only; no Supabase or business data changes. */
-(function () {
-  "use strict";
-  const translations = {
-    Connexion: "Sign in",
-    "Mon espace": "My space",
-    "Mon espace MADIC": "My MADIC space",
-    "Votre parcours au Canada": "Your journey in Canada",
-    "MON ESPACE": "MY SPACE",
-    "Personnaliser le menu": "Customize menu",
-    Réinitialiser: "Reset",
-    "Glissez les éléments ou utilisez les flèches pour choisir votre ordre.":
-      "Drag items or use the arrows to choose their order.",
-    "Vue d’ensemble": "Overview",
-    "Mon profil": "My profile",
-    Formulaire: "Form",
-    Messagerie: "Messaging",
-    "Rendez-vous": "Appointments",
-    "Mes dossiers": "My cases",
-    Documents: "Documents",
-    Factures: "Invoices",
-    Monter: "Move up",
-    Descendre: "Move down",
-    "Espace client sécurisé": "Secure client space",
-    "Votre projet, à votre rythme.": "Your project, at your pace.",
-    Déconnexion: "Sign out",
-    "MADIC · VOTRE PARCOURS AU CANADA": "MADIC · YOUR JOURNEY IN CANADA",
-    "Chargement...": "Loading...",
-    "Chargement…": "Loading…",
-    "Chaque projet a son histoire. Retrouvez ici les informations, les échanges et les étapes de votre parcours avec MADIC.":
-      "Every journey has its own story. Find information, messages and the stages of your journey with MADIC here.",
-    "Mon formulaire d’immigration": "My immigration form",
-    "Mes contrats": "My contracts",
-    "Mon parcours d'immigration": "My immigration journey",
-    "Progression de ma demande": "Application progress",
-    "Consulter ma demande de service →": "View my service request →",
-    "Cabinet de votre consultant": "Your consultant’s firm",
-    "Messagerie sécurisée": "Secure messaging",
-    "Consulter mes messages →": "View my messages →",
-    "Chargement des messages…": "Loading messages…",
-    "Remplissez votre questionnaire et reprenez vos réponses enregistrées dans votre espace sécurisé.":
-      "Complete your questionnaire or resume your saved answers in your secure space.",
-    "Remplir ou reprendre mon formulaire →": "Complete or resume my form →",
-    "Mes rendez-vous et consultations": "My appointments and consultations",
-    "Réservez un créneau auprès de votre consultant et consultez vos rendez-vous.":
-      "Book a time with your consultant and view your appointments.",
-    "Consulter mes rendez-vous →": "View my appointments →",
-    Modifier: "Edit",
-    "Consultez et modifiez vos renseignements personnels.":
-      "View and edit your personal information.",
-    "Photo de profil": "Profile photo",
-    "Choisir une photo": "Choose a photo",
-    "Enregistrer la photo": "Save photo",
-    "Supprimer ma photo": "Remove my photo",
-    "JPG, PNG ou WebP, maximum 2 Mo. Votre photo est privée.":
-      "JPG, PNG or WebP, maximum 2 MB. Your photo is private.",
-    "Prénom *": "First name *",
-    "Nom *": "Last name *",
-    "Courriel (non modifiable ici)": "Email (cannot be changed here)",
-    Téléphone: "Phone",
-    Genre: "Gender",
-    Sélectionner: "Select",
-    Homme: "Male",
-    Femme: "Female",
-    "Date de naissance": "Date of birth",
-    Numéro: "Number",
-    Rue: "Street",
-    "Appartement (facultatif)": "Apartment (optional)",
-    Ville: "City",
-    "Province ou district": "Province or district",
-    "Code postal": "Postal code",
-    "Pays de résidence (recherchez dans la liste)":
-      "Country of residence (search the list)",
-    "Rechercher un pays...": "Search for a country...",
-    Enregistrer: "Save",
-    Consulter: "View",
-    "Consultez vos dossiers et leur état d'avancement.":
-      "View your cases and their progress.",
-    Référence: "Reference",
-    Catégorie: "Category",
-    Statut: "Status",
-    "Seul votre consultant CRIC peut créer ou activer un dossier.":
-      "Only your RCIC consultant can create or activate a case.",
-    "Mes documents et demandes": "My documents and requests",
-    "Retrouvez les pièces demandées par votre consultant, transmettez vos fichiers et suivez leur évaluation.":
-      "Find the documents requested by your consultant, upload files and track their review.",
-    "1. Documents à fournir": "1. Documents to provide",
-    Document: "Document",
-    Instructions: "Instructions",
-    "Date limite": "Deadline",
-    "2. Transmettre un document": "2. Upload a document",
-    "PDF, JPG, PNG - 10 Mo maximum. N'envoyez aucun document réel avant la mise en production officielle du portail.":
-      "PDF, JPG, PNG – maximum 10 MB. Do not send real documents before the portal officially goes live.",
-    "Dossier actif": "Active case",
-    "Aucun dossier actif": "No active case",
-    Transmettre: "Upload",
-    "3. Historique et évaluations de mes documents":
-      "3. My document history and reviews",
-    Fichier: "File",
-    "Date de création": "Creation date",
-    "Motif / commentaire": "Reason / comment",
-    Action: "Action",
-    "Aucun document transmis.": "No documents uploaded.",
-    "Mes factures": "My invoices",
-    "Factures émises par le cabinet CRIC sélectionné. Les brouillons ne sont pas affichés.":
-      "Invoices issued by the selected RCIC firm. Drafts are not displayed.",
-    Date: "Date",
-    Échéance: "Due date",
-    Total: "Total",
-    Solde: "Balance",
-    Fermer: "Close",
-    Terminer: "Done",
-    "MAD Immigration Canadienne · Portail client sécurisé":
-      "MAD Immigration Canadienne · Secure client portal",
-    PORTAIL: "PORTAL",
-    "Logo MADIC Portail": "MADIC Portal logo",
-    "Navigation de mon espace client": "My client-space navigation",
-    "Menu personnalisable": "Customizable menu",
-    "Avatar du client": "Client avatar",
-    "Avatar neutre": "Default avatar",
-    "Notifications de messagerie": "Message notifications",
-    "Aller au contenu principal": "Skip to main content",
-    "Actualités et événements MADIC": "MADIC news and events",
-    "Glisser pour déplacer": "Drag to move",
-  };
-  const reverse = Object.fromEntries(
-    Object.entries(translations).map(([fr, en]) => [en, fr]),
-  );
-  const key = "madic_ui_language";
-  let language = "fr";
-  let updating = false;
-  function setText(node, dict) {
-    const raw = node.nodeValue;
-    const trimmed = raw.trim();
-    if (!trimmed || !Object.prototype.hasOwnProperty.call(dict, trimmed))
-      return;
-    const translated = dict[trimmed];
-    if (translated === trimmed) return;
-    const next = raw.replace(trimmed, translated);
-    if (next !== raw) node.nodeValue = next;
-  }
-  function apply(root) {
-    if (updating) return;
-    updating = true;
-    try {
-      const dict = language === "en" ? translations : reverse;
-      const walk = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
-        acceptNode(node) {
-          return node.parentElement?.closest(
-            "script,style,textarea,option[data-user-value]",
-          )
-            ? NodeFilter.FILTER_REJECT
-            : NodeFilter.FILTER_ACCEPT;
-        },
-      });
-      if (root.nodeType === Node.TEXT_NODE) setText(root, dict);
-      while (walk.nextNode()) setText(walk.currentNode, dict);
-      const elements =
-        root.nodeType === Node.ELEMENT_NODE
-          ? [
-              root,
-              ...root.querySelectorAll(
-                "[aria-label],[title],[placeholder],[alt]",
-              ),
-            ]
-          : [];
-      for (const el of elements)
-        for (const attr of ["aria-label", "title", "placeholder", "alt"]) {
-          const v = el.getAttribute(attr);
-          if (
-            v &&
-            Object.prototype.hasOwnProperty.call(dict, v) &&
-            dict[v] !== v
-          )
-            el.setAttribute(attr, dict[v]);
-        }
-      const pageLanguage = language === "en" ? "en-CA" : "fr-CA";
-      if (document.documentElement.lang !== pageLanguage) document.documentElement.lang = pageLanguage;
-      document.title =
-        language === "en"
-          ? "My RCIC client space | MADIC"
-          : "Mon espace client CRIC | MADIC";
-    } finally {
-      updating = false;
+  /* MADIC Phase 3 - interface translation only; no Supabase or business data changes. */
+  (function () {
+    "use strict";
+    const translations = {
+      Connexion: "Sign in",
+      "Mon espace": "My space",
+      "Mon espace MADIC": "My MADIC space",
+      "Votre parcours au Canada": "Your journey in Canada",
+      "MON ESPACE": "MY SPACE",
+      "Personnaliser le menu": "Customize menu",
+      Réinitialiser: "Reset",
+      "Glissez les éléments ou utilisez les flèches pour choisir votre ordre.":
+        "Drag items or use the arrows to choose their order.",
+      "Vue d’ensemble": "Overview",
+      "Mon profil": "My profile",
+      Formulaire: "Form",
+      Messagerie: "Messaging",
+      "Rendez-vous": "Appointments",
+      "Mes dossiers": "My cases",
+      Documents: "Documents",
+      Factures: "Invoices",
+      Monter: "Move up",
+      Descendre: "Move down",
+      "Espace client sécurisé": "Secure client space",
+      "Votre projet, à votre rythme.": "Your project, at your pace.",
+      Déconnexion: "Sign out",
+      "MADIC · VOTRE PARCOURS AU CANADA": "MADIC · YOUR JOURNEY IN CANADA",
+      "Chargement...": "Loading...",
+      "Chargement…": "Loading…",
+      "Chaque projet a son histoire. Retrouvez ici les informations, les échanges et les étapes de votre parcours avec MADIC.":
+        "Every journey has its own story. Find information, messages and the stages of your journey with MADIC here.",
+      "Mon formulaire d’immigration": "My immigration form",
+      "Mes contrats": "My contracts",
+      "Mon parcours d'immigration": "My immigration journey",
+      "Progression de ma demande": "Application progress",
+      "Consulter ma demande de service →": "View my service request →",
+      "Cabinet de votre consultant": "Your consultant’s firm",
+      "Messagerie sécurisée": "Secure messaging",
+      "Consulter mes messages →": "View my messages →",
+      "Chargement des messages…": "Loading messages…",
+      "Remplissez votre questionnaire et reprenez vos réponses enregistrées dans votre espace sécurisé.":
+        "Complete your questionnaire or resume your saved answers in your secure space.",
+      "Remplir ou reprendre mon formulaire →": "Complete or resume my form →",
+      "Mes rendez-vous et consultations": "My appointments and consultations",
+      "Réservez un créneau auprès de votre consultant et consultez vos rendez-vous.":
+        "Book a time with your consultant and view your appointments.",
+      "Consulter mes rendez-vous →": "View my appointments →",
+      Modifier: "Edit",
+      "Consultez et modifiez vos renseignements personnels.":
+        "View and edit your personal information.",
+      "Photo de profil": "Profile photo",
+      "Choisir une photo": "Choose a photo",
+      "Enregistrer la photo": "Save photo",
+      "Supprimer ma photo": "Remove my photo",
+      "JPG, PNG ou WebP, maximum 2 Mo. Votre photo est privée.":
+        "JPG, PNG or WebP, maximum 2 MB. Your photo is private.",
+      "Prénom *": "First name *",
+      "Nom *": "Last name *",
+      "Courriel (non modifiable ici)": "Email (cannot be changed here)",
+      Téléphone: "Phone",
+      Genre: "Gender",
+      Sélectionner: "Select",
+      Homme: "Male",
+      Femme: "Female",
+      "Date de naissance": "Date of birth",
+      Numéro: "Number",
+      Rue: "Street",
+      "Appartement (facultatif)": "Apartment (optional)",
+      Ville: "City",
+      "Province ou district": "Province or district",
+      "Code postal": "Postal code",
+      "Pays de résidence (recherchez dans la liste)":
+        "Country of residence (search the list)",
+      "Rechercher un pays...": "Search for a country...",
+      Enregistrer: "Save",
+      Consulter: "View",
+      "Consultez vos dossiers et leur état d'avancement.":
+        "View your cases and their progress.",
+      Référence: "Reference",
+      Catégorie: "Category",
+      Statut: "Status",
+      "Seul votre consultant CRIC peut créer ou activer un dossier.":
+        "Only your RCIC consultant can create or activate a case.",
+      "Mes documents et demandes": "My documents and requests",
+      "Retrouvez les pièces demandées par votre consultant, transmettez vos fichiers et suivez leur évaluation.":
+        "Find the documents requested by your consultant, upload files and track their review.",
+      "1. Documents à fournir": "1. Documents to provide",
+      Document: "Document",
+      Instructions: "Instructions",
+      "Date limite": "Deadline",
+      "2. Transmettre un document": "2. Upload a document",
+      "PDF, JPG, PNG - 10 Mo maximum. N'envoyez aucun document réel avant la mise en production officielle du portail.":
+        "PDF, JPG, PNG – maximum 10 MB. Do not send real documents before the portal officially goes live.",
+      "Dossier actif": "Active case",
+      "Aucun dossier actif": "No active case",
+      Transmettre: "Upload",
+      "3. Historique et évaluations de mes documents":
+        "3. My document history and reviews",
+      Fichier: "File",
+      "Date de création": "Creation date",
+      "Motif / commentaire": "Reason / comment",
+      Action: "Action",
+      "Aucun document transmis.": "No documents uploaded.",
+      "Mes factures": "My invoices",
+      "Factures émises par le cabinet CRIC sélectionné. Les brouillons ne sont pas affichés.":
+        "Invoices issued by the selected RCIC firm. Drafts are not displayed.",
+      Date: "Date",
+      Échéance: "Due date",
+      Total: "Total",
+      Solde: "Balance",
+      Fermer: "Close",
+      Terminer: "Done",
+      "MAD Immigration Canadienne · Portail client sécurisé":
+        "MAD Immigration Canadienne · Secure client portal",
+      PORTAIL: "PORTAL",
+      "Logo MADIC Portail": "MADIC Portal logo",
+      "Navigation de mon espace client": "My client-space navigation",
+      "Menu personnalisable": "Customizable menu",
+      "Avatar du client": "Client avatar",
+      "Avatar neutre": "Default avatar",
+      "Notifications de messagerie": "Message notifications",
+      "Aller au contenu principal": "Skip to main content",
+      "Actualités et événements MADIC": "MADIC news and events",
+      "Glisser pour déplacer": "Drag to move",
+    };
+    const reverse = Object.fromEntries(
+      Object.entries(translations).map(([fr, en]) => [en, fr]),
+    );
+    const key = "madic_ui_language";
+    let language = "fr";
+    let updating = false;
+    function setText(node, dict) {
+      const raw = node.nodeValue;
+      const trimmed = raw.trim();
+      if (!trimmed || !Object.prototype.hasOwnProperty.call(dict, trimmed))
+        return;
+      const translated = dict[trimmed];
+      if (translated === trimmed) return;
+      const next = raw.replace(trimmed, translated);
+      if (next !== raw) node.nodeValue = next;
     }
-  }
-  function choose(lang) {
-    language = lang === "en" ? "en" : "fr";
-    try {
-      localStorage.setItem(key, language);
-    } catch (e) {}
-    apply(document.body);
-    refreshButtons();
-  }
-  let fr, en;
-  function refreshButtons() {
-    if (fr && en) {
-      fr.setAttribute("aria-pressed", String(language === "fr"));
-      en.setAttribute("aria-pressed", String(language === "en"));
-    }
-  }
-  function start() {
-    try {
-      language = localStorage.getItem(key) === "en" ? "en" : "fr";
-    } catch (e) {}
-    const switcher = document.createElement("div");
-    switcher.className = "madic-language-switch";
-    switcher.setAttribute("aria-label", "Language / Langue");
-    fr = document.createElement("button");
-    en = document.createElement("button");
-    for (const [btn, lang, label] of [
-      [fr, "fr", "FR"],
-      [en, "en", "EN"],
-    ]) {
-      btn.type = "button";
-      btn.textContent = label;
-      btn.addEventListener("click", () => choose(lang));
-      switcher.appendChild(btn);
-    }
-    const header =
-      document.getElementById("madicHeroLanguage") ||
-      document.querySelector("header .toplinks") ||
-      document.querySelector("header");
-    if (header) header.appendChild(switcher);
-    apply(document.body);
-    refreshButtons();
-    const observer = new MutationObserver((records) => {
+    function apply(root) {
       if (updating) return;
-      for (const record of records) {
-        if (record.type === "characterData") apply(record.target);
-        else
-          for (const node of record.addedNodes)
-            if (
-              node.nodeType === Node.ELEMENT_NODE ||
-              node.nodeType === Node.TEXT_NODE
+      updating = true;
+      try {
+        const dict = language === "en" ? translations : reverse;
+        const walk = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+          acceptNode(node) {
+            return node.parentElement?.closest(
+              "script,style,textarea,option[data-user-value]",
             )
-              apply(node);
+              ? NodeFilter.FILTER_REJECT
+              : NodeFilter.FILTER_ACCEPT;
+          },
+        });
+        if (root.nodeType === Node.TEXT_NODE) setText(root, dict);
+        while (walk.nextNode()) setText(walk.currentNode, dict);
+        const elements =
+          root.nodeType === Node.ELEMENT_NODE
+            ? [
+                root,
+                ...root.querySelectorAll(
+                  "[aria-label],[title],[placeholder],[alt]",
+                ),
+              ]
+            : [];
+        for (const el of elements)
+          for (const attr of ["aria-label", "title", "placeholder", "alt"]) {
+            const v = el.getAttribute(attr);
+            if (
+              v &&
+              Object.prototype.hasOwnProperty.call(dict, v) &&
+              dict[v] !== v
+            )
+              el.setAttribute(attr, dict[v]);
+          }
+        const pageLanguage = language === "en" ? "en-CA" : "fr-CA";
+        if (document.documentElement.lang !== pageLanguage)
+          document.documentElement.lang = pageLanguage;
+        document.title =
+          language === "en"
+            ? "My RCIC client space | MADIC"
+            : "Mon espace client CRIC | MADIC";
+      } finally {
+        updating = false;
       }
-    });
-    observer.observe(document.body, {
-      subtree: true,
-      childList: true,
-      characterData: true,
-    });
-    window.addEventListener("storage", (event) => {
-      if (event.key === key) choose(event.newValue);
-    });
-  }
-  if (document.readyState === "loading")
-    document.addEventListener("DOMContentLoaded", start, { once: true });
-  else start();
-})();
-
+    }
+    function choose(lang) {
+      language = lang === "en" ? "en" : "fr";
+      try {
+        localStorage.setItem(key, language);
+      } catch (e) {}
+      apply(document.body);
+      refreshButtons();
+    }
+    let fr, en;
+    function refreshButtons() {
+      if (fr && en) {
+        fr.setAttribute("aria-pressed", String(language === "fr"));
+        en.setAttribute("aria-pressed", String(language === "en"));
+      }
+    }
+    function start() {
+      try {
+        language = localStorage.getItem(key) === "en" ? "en" : "fr";
+      } catch (e) {}
+      const switcher = document.createElement("div");
+      switcher.className = "madic-language-switch";
+      switcher.setAttribute("aria-label", "Language / Langue");
+      fr = document.createElement("button");
+      en = document.createElement("button");
+      for (const [btn, lang, label] of [
+        [fr, "fr", "FR"],
+        [en, "en", "EN"],
+      ]) {
+        btn.type = "button";
+        btn.textContent = label;
+        btn.addEventListener("click", () => choose(lang));
+        switcher.appendChild(btn);
+      }
+      const header =
+        document.getElementById("madicHeroLanguage") ||
+        document.querySelector("header .toplinks") ||
+        document.querySelector("header");
+      if (header) header.appendChild(switcher);
+      apply(document.body);
+      refreshButtons();
+      const observer = new MutationObserver((records) => {
+        if (updating) return;
+        for (const record of records) {
+          if (record.type === "characterData") apply(record.target);
+          else
+            for (const node of record.addedNodes)
+              if (
+                node.nodeType === Node.ELEMENT_NODE ||
+                node.nodeType === Node.TEXT_NODE
+              )
+                apply(node);
+        }
+      });
+      observer.observe(document.body, {
+        subtree: true,
+        childList: true,
+        characterData: true,
+      });
+      window.addEventListener("storage", (event) => {
+        if (event.key === key) choose(event.newValue);
+      });
+    }
+    if (document.readyState === "loading")
+      document.addEventListener("DOMContentLoaded", start, { once: true });
+    else start();
+  })();
 }
 
 /* external assets/madic-ircc-news.js */
 {
-/* MADIC - Actualites officielles IRCC. Aucun acces aux donnees du portail. */
-(() => {
-  'use strict';
-  const target = document.getElementById('madicActualitesItems');
-  if (!target) return;
-  const sources = {
-    fr: 'https://api.io.canada.ca/io-server/gc/news/fr/v2?dept=departmentofcitizenshipandimmigration&sort=publishedDate&orderBy=desc&pick=20&format=atom',
-    en: 'https://api.io.canada.ca/io-server/gc/news/en/v2?dept=departmentofcitizenshipandimmigration&sort=publishedDate&orderBy=desc&pick=20&format=atom'
-  };
-  const fallback = {
-    fr: 'https://www.canada.ca/fr/nouvelles/rechercher/recherche-avancee.html?sort=descending&allq=&dprtmnt=Immigration%2C+R%C3%A9fugi%C3%A9s+et+Citoyennet%C3%A9+Canada&declaredtype=communiqu%C3%A9s+de+presse&startdate=&enddate=',
-    en: 'https://www.canada.ca/en/news/advanced-news-search/news-results.html?sort=descending&allq=&dprtmnt=Immigration%2C+Refugees+and+Citizenship+Canada'
-  };
-  const words = {
-    fr: {loading:'Chargement des actualités officielles…', unavailable:'Le service d’actualités est temporairement inaccessible.', link:'Consulter les communiqués officiels', read:'Lire la suite', source:'Immigration, Réfugiés et Citoyenneté Canada'},
-    en: {loading:'Loading official news…', unavailable:'The news service is temporarily unavailable.', link:'View official news releases', read:'Read more', source:'Immigration, Refugees and Citizenship Canada'}
-  };
-  let lastLang = '', requestId = 0;
-  const lang = () => document.documentElement.lang.toLowerCase().startsWith('en') ? 'en' : 'fr';
-  const clean = value => (value || '').replace(/<[^>]*>/g,' ').replace(/\s+/g,' ').trim();
-  const child = (element, name) => Array.from(element.children).find(n => n.localName === name);
-  const val = (element, name) => child(element,name)?.textContent?.trim() || '';
-  function parse(xml) {
-    const doc = new DOMParser().parseFromString(xml,'application/xml');
-    if (doc.querySelector('parsererror')) throw new Error('Invalid XML');
-    const entries = Array.from(doc.getElementsByTagName('*')).filter(n => n.localName === 'entry' || n.localName === 'item');
-    return entries.map(e => {
-      const links = Array.from(e.children).filter(n => n.localName === 'link');
-      const href = links.find(n => n.getAttribute('rel') === 'alternate')?.getAttribute('href') || links.find(n => n.getAttribute('href'))?.getAttribute('href') || links[0]?.textContent?.trim() || '';
-      const rawDate = val(e,'published') || val(e,'pubDate') || val(e,'updated');
-      const timestamp = Date.parse(rawDate);
-      return { title:val(e,'title'), summary:clean(val(e,'summary') || val(e,'description') || val(e,'content')).slice(0,310), href, date:Number.isFinite(timestamp)?timestamp:0 };
-    }).filter(item => item.title && item.date && /^https:\/\//i.test(item.href)).sort((a,b) => b.date-a.date).slice(0,3);
-  }
-  function showFallback(language) {
-    const p=document.createElement('p');p.className='madic-publication-empty';p.textContent=words[language].unavailable;
-    const a=document.createElement('a');a.href=fallback[language];a.target='_blank';a.rel='noopener noreferrer';a.textContent=words[language].link;
-    target.replaceChildren(p,a);
-  }
-  function render(items,language) {
-    if (!items.length) return showFallback(language);
-    const fragment=document.createDocumentFragment();
-    for (const item of items) {
-      const article=document.createElement('article');article.className='madic-ircc-article';
-      const date=document.createElement('time');date.dateTime=new Date(item.date).toISOString();date.textContent=new Intl.DateTimeFormat(language==='fr'?'fr-CA':'en-CA',{year:'numeric',month:'long',day:'numeric'}).format(item.date);
-      const title=document.createElement('h3');const a=document.createElement('a');a.href=item.href;a.target='_blank';a.rel='noopener noreferrer';a.textContent=item.title;title.append(a);
-      const source=document.createElement('small');source.textContent=words[language].source;
-      article.append(date,title,source);
-      if(item.summary){const p=document.createElement('p');p.textContent=item.summary;article.append(p);}
-      const read=document.createElement('a');read.href=item.href;read.target='_blank';read.rel='noopener noreferrer';read.textContent=words[language].read+' ↗';article.append(read);
-      fragment.append(article);
+  /* MADIC - Actualites officielles IRCC. Aucun acces aux donnees du portail. */
+  (() => {
+    "use strict";
+    const target = document.getElementById("madicActualitesItems");
+    if (!target) return;
+    const sources = {
+      fr: "https://api.io.canada.ca/io-server/gc/news/fr/v2?dept=departmentofcitizenshipandimmigration&sort=publishedDate&orderBy=desc&pick=20&format=atom",
+      en: "https://api.io.canada.ca/io-server/gc/news/en/v2?dept=departmentofcitizenshipandimmigration&sort=publishedDate&orderBy=desc&pick=20&format=atom",
+    };
+    const fallback = {
+      fr: "https://www.canada.ca/fr/nouvelles/rechercher/recherche-avancee.html?sort=descending&allq=&dprtmnt=Immigration%2C+R%C3%A9fugi%C3%A9s+et+Citoyennet%C3%A9+Canada&declaredtype=communiqu%C3%A9s+de+presse&startdate=&enddate=",
+      en: "https://www.canada.ca/en/news/advanced-news-search/news-results.html?sort=descending&allq=&dprtmnt=Immigration%2C+Refugees+and+Citizenship+Canada",
+    };
+    const words = {
+      fr: {
+        loading: "Chargement des actualités officielles…",
+        unavailable: "Le service d’actualités est temporairement inaccessible.",
+        link: "Consulter les communiqués officiels",
+        read: "Lire la suite",
+        source: "Immigration, Réfugiés et Citoyenneté Canada",
+      },
+      en: {
+        loading: "Loading official news…",
+        unavailable: "The news service is temporarily unavailable.",
+        link: "View official news releases",
+        read: "Read more",
+        source: "Immigration, Refugees and Citizenship Canada",
+      },
+    };
+    let lastLang = "",
+      requestId = 0;
+    const lang = () =>
+      document.documentElement.lang.toLowerCase().startsWith("en")
+        ? "en"
+        : "fr";
+    const clean = (value) =>
+      (value || "")
+        .replace(/<[^>]*>/g, " ")
+        .replace(/\s+/g, " ")
+        .trim();
+    const child = (element, name) =>
+      Array.from(element.children).find((n) => n.localName === name);
+    const val = (element, name) =>
+      child(element, name)?.textContent?.trim() || "";
+    function parse(xml) {
+      const doc = new DOMParser().parseFromString(xml, "application/xml");
+      if (doc.querySelector("parsererror")) throw new Error("Invalid XML");
+      const entries = Array.from(doc.getElementsByTagName("*")).filter(
+        (n) => n.localName === "entry" || n.localName === "item",
+      );
+      return entries
+        .map((e) => {
+          const links = Array.from(e.children).filter(
+            (n) => n.localName === "link",
+          );
+          const href =
+            links
+              .find((n) => n.getAttribute("rel") === "alternate")
+              ?.getAttribute("href") ||
+            links.find((n) => n.getAttribute("href"))?.getAttribute("href") ||
+            links[0]?.textContent?.trim() ||
+            "";
+          const rawDate =
+            val(e, "published") || val(e, "pubDate") || val(e, "updated");
+          const timestamp = Date.parse(rawDate);
+          return {
+            title: val(e, "title"),
+            summary: clean(
+              val(e, "summary") || val(e, "description") || val(e, "content"),
+            ).slice(0, 310),
+            href,
+            date: Number.isFinite(timestamp) ? timestamp : 0,
+          };
+        })
+        .filter(
+          (item) => item.title && item.date && /^https:\/\//i.test(item.href),
+        )
+        .sort((a, b) => b.date - a.date)
+        .slice(0, 3);
     }
-    target.replaceChildren(fragment);
-  }
-  async function load(force=false) {
-    const language=lang();if (!force && lastLang===language) return;
-    lastLang=language;const id=++requestId;target.textContent=words[language].loading;
-    const controller=new AbortController();const timeout=setTimeout(()=>controller.abort(),12000);
-    try {
-      const response=await fetch(sources[language],{signal:controller.signal,headers:{Accept:'application/atom+xml,application/xml,text/xml'}});
-      if(!response.ok)throw new Error('HTTP '+response.status);
-      const entries=parse(await response.text());if(id!==requestId)return;
-      render(entries,language);
-    } catch(error) {if(id===requestId){console.warn('MADIC IRCC feed unavailable:',error);showFallback(language);}}
-    finally {clearTimeout(timeout);}
-  }
-  new MutationObserver(()=>load()).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
-  load();
-  setInterval(()=>load(true),15*60*1000);
-})();
-
+    function showFallback(language) {
+      const p = document.createElement("p");
+      p.className = "madic-publication-empty";
+      p.textContent = words[language].unavailable;
+      const a = document.createElement("a");
+      a.href = fallback[language];
+      a.target = "_blank";
+      a.rel = "noopener noreferrer";
+      a.textContent = words[language].link;
+      target.replaceChildren(p, a);
+    }
+    function render(items, language) {
+      if (!items.length) return showFallback(language);
+      const fragment = document.createDocumentFragment();
+      for (const item of items) {
+        const article = document.createElement("article");
+        article.className = "madic-ircc-article";
+        const date = document.createElement("time");
+        date.dateTime = new Date(item.date).toISOString();
+        date.textContent = new Intl.DateTimeFormat(
+          language === "fr" ? "fr-CA" : "en-CA",
+          { year: "numeric", month: "long", day: "numeric" },
+        ).format(item.date);
+        const title = document.createElement("h3");
+        const a = document.createElement("a");
+        a.href = item.href;
+        a.target = "_blank";
+        a.rel = "noopener noreferrer";
+        a.textContent = item.title;
+        title.append(a);
+        const source = document.createElement("small");
+        source.textContent = words[language].source;
+        article.append(date, title, source);
+        if (item.summary) {
+          const p = document.createElement("p");
+          p.textContent = item.summary;
+          article.append(p);
+        }
+        const read = document.createElement("a");
+        read.href = item.href;
+        read.target = "_blank";
+        read.rel = "noopener noreferrer";
+        read.textContent = words[language].read + " ↗";
+        article.append(read);
+        fragment.append(article);
+      }
+      target.replaceChildren(fragment);
+    }
+    async function load(force = false) {
+      const language = lang();
+      if (!force && lastLang === language) return;
+      lastLang = language;
+      const id = ++requestId;
+      target.textContent = words[language].loading;
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 12000);
+      try {
+        const response = await fetch(sources[language], {
+          signal: controller.signal,
+          headers: { Accept: "application/atom+xml,application/xml,text/xml" },
+        });
+        if (!response.ok) throw new Error("HTTP " + response.status);
+        const entries = parse(await response.text());
+        if (id !== requestId) return;
+        render(entries, language);
+      } catch (error) {
+        if (id === requestId) {
+          console.warn("MADIC IRCC feed unavailable:", error);
+          showFallback(language);
+        }
+      } finally {
+        clearTimeout(timeout);
+      }
+    }
+    new MutationObserver(() => load()).observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["lang"],
+    });
+    load();
+    setInterval(() => load(true), 15 * 60 * 1000);
+  })();
 }
 
 /* inline 13 */
 {
-
-      /* Déconnexion du portail client. */
-      (function () {
-        "use strict";
-        var signout = document.getElementById("madicHeaderSignout");
-        if (signout)
-          signout.addEventListener("click", async function (event) {
-            event.preventDefault();
-            if (typeof window.getMadicSupabase !== "function") return;
-            try {
-              await window.getMadicSupabase().auth.signOut();
-              window.location.replace("connexion-client-cric.html");
-            } catch (error) {
-              console.error("MADIC sign out:", error);
-            }
-          });
-      })();
-    
+  /* Déconnexion du portail client. */
+  (function () {
+    "use strict";
+    var signout = document.getElementById("madicHeaderSignout");
+    if (signout)
+      signout.addEventListener("click", async function (event) {
+        event.preventDefault();
+        if (typeof window.getMadicSupabase !== "function") return;
+        try {
+          await window.getMadicSupabase().auth.signOut();
+          window.location.replace("connexion-client-cric.html");
+        } catch (error) {
+          console.error("MADIC sign out:", error);
+        }
+      });
+  })();
 }
-
 
 /* Rendre visible l’entrée de la page courante après la mise en place du menu. */
 (function () {
@@ -3008,8 +3572,16 @@
   if (!nav) return;
 
   const defaultOrder = [
-    "nav-0", "nav-news", "nav-7", "nav-1", "nav-contracts",
-    "nav-3", "nav-4", "nav-5", "nav-2", "nav-6",
+    "nav-0",
+    "nav-news",
+    "nav-7",
+    "nav-1",
+    "nav-contracts",
+    "nav-3",
+    "nav-4",
+    "nav-5",
+    "nav-2",
+    "nav-6",
   ];
   let order = defaultOrder;
   try {
@@ -3024,7 +3596,8 @@
     if (entry) nav.appendChild(entry);
   }
 
-  const route = (pathname) => pathname.replace(/\/+$/, "").replace(/\.html$/i, "");
+  const route = (pathname) =>
+    pathname.replace(/\/+$/, "").replace(/\.html$/i, "");
   const currentRoute = route(location.pathname);
   const mobile = window.matchMedia("(max-width: 800px)");
   const header = document.querySelector("body > .madic-client-header");
@@ -3033,12 +3606,16 @@
   const translateHeader = () => {
     const english = document.documentElement.lang.startsWith("en");
     header?.querySelectorAll("[data-client-header-fr]").forEach((element) => {
-      const text = english ? element.dataset.clientHeaderEn : element.dataset.clientHeaderFr;
+      const text = english
+        ? element.dataset.clientHeaderEn
+        : element.dataset.clientHeaderFr;
       if (element.textContent.trim() !== text) element.textContent = text;
     });
     const bell = header?.querySelector(".madic-hero-notifications");
     if (bell) {
-      const label = english ? "Message notifications" : "Notifications de messagerie";
+      const label = english
+        ? "Message notifications"
+        : "Notifications de messagerie";
       bell.setAttribute("aria-label", label);
       bell.title = label;
     }
@@ -3049,10 +3626,15 @@
     scheduled = true;
     requestAnimationFrame(() => {
       scheduled = false;
-      const links = Array.from(nav.querySelectorAll(".madic-nav-entry > a[href]"));
+      const links = Array.from(
+        nav.querySelectorAll(".madic-nav-entry > a[href]"),
+      );
       const current = links.find((link) => {
         const target = new URL(link.href);
-        return target.origin === location.origin && route(target.pathname) === currentRoute;
+        return (
+          target.origin === location.origin &&
+          route(target.pathname) === currentRoute
+        );
       });
       if (!current) return;
 
@@ -3063,8 +3645,12 @@
         else link.removeAttribute("aria-current");
       }
 
-      if (!mobile.matches || nav.closest(".madic-editing") ||
-          nav.scrollWidth <= nav.clientWidth) return;
+      if (
+        !mobile.matches ||
+        nav.closest(".madic-editing") ||
+        nav.scrollWidth <= nav.clientWidth
+      )
+        return;
 
       const start = nav.getBoundingClientRect().left + nav.clientLeft;
       const end = start + nav.clientWidth;

@@ -289,7 +289,6 @@ window.getMadicSupabase = function () {
   }
 })();
 
-
 window.madicTrackRadarSession = async function (db, actor) {
   try {
     const { data } = await db.auth.getSession();

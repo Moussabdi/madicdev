@@ -1,4 +1,3 @@
-/* Source : cric-registration(2).js */
 (() => {
   "use strict";
   const cfg = window.MADIC_CONFIG;

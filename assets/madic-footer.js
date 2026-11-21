@@ -1,4 +1,3 @@
-/* Footer commun MADIC : traduction des libellés sur les pages sans gestionnaire FR/EN. */
 (function () {
   "use strict";
   function apply(lang) {

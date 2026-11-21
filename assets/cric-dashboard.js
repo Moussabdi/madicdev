@@ -1,7 +1,5 @@
-/* MADIC CRIC dashboard - scripts consolidated, preserving original execution order. */
 (function () {
   function start() {
-    /* Original module: cric-dashboard(20261110-054655).js */
     /* MADIC : interface CRIC. Les contrôles d'accès réels sont les politiques RLS et RPC Supabase. */
     (async () => {
       "use strict";
@@ -1475,8 +1473,7 @@
 
     /* Original module: madic-datahubz-unified(20261110-054729).js */
 
-
-/* Original module: madic-i18n-cric-dashboard(6).js */
+    /* Original module: madic-i18n-cric-dashboard(6).js */
     (function () {
       "use strict";
       const dictionary = {

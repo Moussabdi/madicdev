@@ -1,4 +1,3 @@
-/* Mode invité des pages client. Les lectures passent par un accès Supabase révocable. */
 (() => {
   "use strict";
   const params = new URLSearchParams(location.search);

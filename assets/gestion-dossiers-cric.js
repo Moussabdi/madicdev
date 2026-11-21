@@ -1,5 +1,3 @@
-/* Source: madic-outils-cric(2).js */
-/* MADIC : interfaces de preparation professionnelle. Aucune ecriture en base. */
 (async () => {
   "use strict";
   const $ = (id) => document.getElementById(id);

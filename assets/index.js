@@ -1,4 +1,3 @@
-/* Page-specific bilingual interface; footer source remains shared and unchanged. */
 (function () {
   "use strict";
   function setLanguage(language) {

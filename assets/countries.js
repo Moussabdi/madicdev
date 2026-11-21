@@ -1,4 +1,3 @@
-// Liste ISO 3166-1, libelles francais. A charger avant assets/app.js.
 (() => {
   const countries = [
     "Afghanistan",

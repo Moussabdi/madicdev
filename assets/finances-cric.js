@@ -1,4 +1,3 @@
-/* MADIC Finances : lecture des registres et creation controlee des comptes. */
 (() => {
   "use strict";
   const $ = (id) => document.getElementById(id);
@@ -520,7 +519,6 @@
     }
   })();
 })();
-
 
 /* MADIC bilingual RCIC workspace. UI-only: no Supabase calls, no mutation of business data. */
 (() => {

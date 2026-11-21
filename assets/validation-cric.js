@@ -1,4 +1,3 @@
-/* MADIC validation CRIC : scripts de page consolides; aucun script inline. */
 (function () {
   "use strict";
   const words = {
@@ -696,17 +695,24 @@
     const send = dialog.querySelector("[data-cric-invite-send]");
     const cancel = dialog.querySelector("[data-cric-invite-cancel]");
     const en = language === "en";
-    title.textContent = en ? "Confirm RCIC invitation" : "Confirmer l’invitation CRIC";
+    title.textContent = en
+      ? "Confirm RCIC invitation"
+      : "Confirmer l’invitation CRIC";
     description.textContent = en
       ? "Send a personal registration invitation to the following professional email address?"
       : "Envoyer une invitation personnelle d’inscription à l’adresse professionnelle suivante ?";
     emailElement.textContent = email;
     send.textContent = en ? "Send invitation" : "Envoyer l’invitation";
     cancel.textContent = en ? "Cancel" : "Annuler";
-    dialog.querySelector("[data-cric-invite-close]").setAttribute("aria-label", en ? "Close" : "Fermer");
+    dialog
+      .querySelector("[data-cric-invite-close]")
+      .setAttribute("aria-label", en ? "Close" : "Fermer");
     return new Promise((resolve) => {
       let confirmed = false;
-      const onSend = () => { confirmed = true; dialog.close(); };
+      const onSend = () => {
+        confirmed = true;
+        dialog.close();
+      };
       const onClose = () => {
         send.removeEventListener("click", onSend);
         dialog.removeEventListener("close", onClose);

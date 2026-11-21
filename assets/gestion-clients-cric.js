@@ -1,5 +1,3 @@
-/* ===== gestion-clients-cric(3).js ===== */
-/* MADIC CRIC: les politiques RLS Supabase constituent la protection des données. */
 (async () => {
   "use strict";
   const $ = (id) => document.getElementById(id),

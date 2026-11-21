@@ -1,4 +1,3 @@
-/* MADIC - Contrat initial client : logique autonome de la page. */
 const MADIC_TRANSLATIONS = {
   "Identifiant de contrat invalide.": "Invalid agreement ID.",
   "Autorisez les fenetres surgissantes pour ouvrir le PDF.":

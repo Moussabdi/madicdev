@@ -1,4 +1,3 @@
-/* MADIC - Connexion client CRIC : authentification et interface FR/EN. */
 (() => {
   "use strict";
   const $ = (id) => document.getElementById(id);

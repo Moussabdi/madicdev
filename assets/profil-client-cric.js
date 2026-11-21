@@ -1,4 +1,3 @@
-/* Mode invité des pages client. Les lectures passent par un accès Supabase révocable. */
 (() => {
   "use strict";
   const params = new URLSearchParams(location.search);
@@ -3610,15 +3609,22 @@ for (const [buttonId, contentId, hintId, openText] of [
   else init();
 })();
 
-
 /* Rendre visible l’entrée de la page courante après la mise en place du menu. */
 (function () {
   const nav = document.querySelector(".madic-side-nav > .madic-side-links");
   if (!nav) return;
 
   const defaultOrder = [
-    "nav-0", "nav-news", "nav-7", "nav-1", "nav-contracts",
-    "nav-3", "nav-4", "nav-5", "nav-2", "nav-6",
+    "nav-0",
+    "nav-news",
+    "nav-7",
+    "nav-1",
+    "nav-contracts",
+    "nav-3",
+    "nav-4",
+    "nav-5",
+    "nav-2",
+    "nav-6",
   ];
   let order = defaultOrder;
   try {
@@ -3633,7 +3639,8 @@ for (const [buttonId, contentId, hintId, openText] of [
     if (entry) nav.appendChild(entry);
   }
 
-  const route = (pathname) => pathname.replace(/\/+$/, "").replace(/\.html$/i, "");
+  const route = (pathname) =>
+    pathname.replace(/\/+$/, "").replace(/\.html$/i, "");
   const currentRoute = route(location.pathname);
   const mobile = window.matchMedia("(max-width: 800px)");
   const header = document.querySelector("body > .madic-client-header");
@@ -3642,12 +3649,16 @@ for (const [buttonId, contentId, hintId, openText] of [
   const translateHeader = () => {
     const english = document.documentElement.lang.startsWith("en");
     header?.querySelectorAll("[data-client-header-fr]").forEach((element) => {
-      const text = english ? element.dataset.clientHeaderEn : element.dataset.clientHeaderFr;
+      const text = english
+        ? element.dataset.clientHeaderEn
+        : element.dataset.clientHeaderFr;
       if (element.textContent.trim() !== text) element.textContent = text;
     });
     const bell = header?.querySelector(".madic-hero-notifications");
     if (bell) {
-      const label = english ? "Message notifications" : "Notifications de messagerie";
+      const label = english
+        ? "Message notifications"
+        : "Notifications de messagerie";
       bell.setAttribute("aria-label", label);
       bell.title = label;
     }
@@ -3658,10 +3669,15 @@ for (const [buttonId, contentId, hintId, openText] of [
     scheduled = true;
     requestAnimationFrame(() => {
       scheduled = false;
-      const links = Array.from(nav.querySelectorAll(".madic-nav-entry > a[href]"));
+      const links = Array.from(
+        nav.querySelectorAll(".madic-nav-entry > a[href]"),
+      );
       const current = links.find((link) => {
         const target = new URL(link.href);
-        return target.origin === location.origin && route(target.pathname) === currentRoute;
+        return (
+          target.origin === location.origin &&
+          route(target.pathname) === currentRoute
+        );
       });
       if (!current) return;
 
@@ -3672,8 +3688,12 @@ for (const [buttonId, contentId, hintId, openText] of [
         else link.removeAttribute("aria-current");
       }
 
-      if (!mobile.matches || nav.closest(".madic-editing") ||
-          nav.scrollWidth <= nav.clientWidth) return;
+      if (
+        !mobile.matches ||
+        nav.closest(".madic-editing") ||
+        nav.scrollWidth <= nav.clientWidth
+      )
+        return;
 
       const start = nav.getBoundingClientRect().left + nav.clientLeft;
       const end = start + nav.clientWidth;

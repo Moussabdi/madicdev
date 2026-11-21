@@ -1,4 +1,3 @@
-/* SOURCE: style.css */
 :root {
   font-family:
     Inter,
@@ -2312,19 +2311,38 @@ body.madic-unified[data-page="rendez-vous-cric"]
 }
 
 /* Navigation et en-tête communs de l’espace professionnel CRIC. */
-html body.madic-unified[data-page="rendez-vous-cric"] > .madic-unified-layout > .madic-unified-sidebar > nav {
+html
+  body.madic-unified[data-page="rendez-vous-cric"]
+  > .madic-unified-layout
+  > .madic-unified-sidebar
+  > nav {
   align-items: stretch;
-  font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-family:
+    Inter,
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    sans-serif;
 }
 
-html body.madic-unified[data-page="rendez-vous-cric"] > .madic-unified-layout > .madic-unified-sidebar > nav > a > .madic-cric-menu-label {
+html
+  body.madic-unified[data-page="rendez-vous-cric"]
+  > .madic-unified-layout
+  > .madic-unified-sidebar
+  > nav
+  > a
+  > .madic-cric-menu-label {
   display: block !important;
   flex: 0 1 auto !important;
   width: auto !important;
   text-align: start !important;
 }
 
-html body.madic-unified[data-page="rendez-vous-cric"] > .madic-unified-layout > .madic-unified-content > header.madic-cric-standard-header {
+html
+  body.madic-unified[data-page="rendez-vous-cric"]
+  > .madic-unified-layout
+  > .madic-unified-content
+  > header.madic-cric-standard-header {
   display: flex !important;
   align-items: center !important;
   justify-content: space-between !important;
@@ -2342,10 +2360,20 @@ html body.madic-unified[data-page="rendez-vous-cric"] > .madic-unified-layout > 
   border-radius: 0 !important;
   background: #fff !important;
   box-shadow: none !important;
-  font: 14px/1.3 Inter, system-ui, -apple-system, "Segoe UI", sans-serif !important;
+  font:
+    14px/1.3 Inter,
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    sans-serif !important;
 }
 
-html body.madic-unified[data-page="rendez-vous-cric"] > .madic-unified-layout > .madic-unified-content > header.madic-cric-standard-header > .brand {
+html
+  body.madic-unified[data-page="rendez-vous-cric"]
+  > .madic-unified-layout
+  > .madic-unified-content
+  > header.madic-cric-standard-header
+  > .brand {
   display: block !important;
   flex: 0 0 auto;
   margin: 0 !important;
@@ -2354,20 +2382,39 @@ html body.madic-unified[data-page="rendez-vous-cric"] > .madic-unified-layout > 
   font: inherit !important;
   font-size: 22px !important;
   font-weight: 850 !important;
-  letter-spacing: .015em !important;
+  letter-spacing: 0.015em !important;
   text-decoration: none;
   white-space: nowrap;
 }
 
-html body.madic-unified[data-page="rendez-vous-cric"] > .madic-unified-layout > .madic-unified-content > header.madic-cric-standard-header > .brand > span { color: #48d5ec !important; }
+html
+  body.madic-unified[data-page="rendez-vous-cric"]
+  > .madic-unified-layout
+  > .madic-unified-content
+  > header.madic-cric-standard-header
+  > .brand
+  > span {
+  color: #48d5ec !important;
+}
 
-html body.madic-unified[data-page="rendez-vous-cric"] > .madic-unified-layout > .madic-unified-content > header.madic-cric-standard-header > .brand > small {
+html
+  body.madic-unified[data-page="rendez-vous-cric"]
+  > .madic-unified-layout
+  > .madic-unified-content
+  > header.madic-cric-standard-header
+  > .brand
+  > small {
   color: #155d87 !important;
-  font-size: .80em !important;
+  font-size: 0.8em !important;
   letter-spacing: inherit !important;
 }
 
-html body.madic-unified[data-page="rendez-vous-cric"] > .madic-unified-layout > .madic-unified-content > header.madic-cric-standard-header > nav.toplinks {
+html
+  body.madic-unified[data-page="rendez-vous-cric"]
+  > .madic-unified-layout
+  > .madic-unified-content
+  > header.madic-cric-standard-header
+  > nav.toplinks {
   display: flex !important;
   align-items: center !important;
   justify-content: flex-end !important;
@@ -2378,8 +2425,20 @@ html body.madic-unified[data-page="rendez-vous-cric"] > .madic-unified-layout > 
   font: inherit !important;
 }
 
-html body.madic-unified[data-page="rendez-vous-cric"] > .madic-unified-layout > .madic-unified-content > header.madic-cric-standard-header > nav.toplinks > a:not(.madic-top-notification),
-html body.madic-unified[data-page="rendez-vous-cric"] > .madic-unified-layout > .madic-unified-content > header.madic-cric-standard-header > nav.toplinks > button.madic-header-signout[id] {
+html
+  body.madic-unified[data-page="rendez-vous-cric"]
+  > .madic-unified-layout
+  > .madic-unified-content
+  > header.madic-cric-standard-header
+  > nav.toplinks
+  > a:not(.madic-top-notification),
+html
+  body.madic-unified[data-page="rendez-vous-cric"]
+  > .madic-unified-layout
+  > .madic-unified-content
+  > header.madic-cric-standard-header
+  > nav.toplinks
+  > button.madic-header-signout[id] {
   display: inline-flex !important;
   align-items: center !important;
   justify-content: flex-start !important;
@@ -2397,11 +2456,23 @@ html body.madic-unified[data-page="rendez-vous-cric"] > .madic-unified-layout > 
   text-decoration: none !important;
 }
 
-html body.madic-unified[data-page="rendez-vous-cric"] > .madic-unified-layout > .madic-unified-content > header.madic-cric-standard-header > nav.toplinks > :is(a:not(.madic-top-notification), button.madic-header-signout[id]):hover {
+html
+  body.madic-unified[data-page="rendez-vous-cric"]
+  > .madic-unified-layout
+  > .madic-unified-content
+  > header.madic-cric-standard-header
+  > nav.toplinks
+  > :is(a:not(.madic-top-notification), button.madic-header-signout[id]):hover {
   text-decoration: underline !important;
 }
 
-html body.madic-unified[data-page="rendez-vous-cric"] > .madic-unified-layout > .madic-unified-content > header.madic-cric-standard-header > nav.toplinks > .madic-lang-controls {
+html
+  body.madic-unified[data-page="rendez-vous-cric"]
+  > .madic-unified-layout
+  > .madic-unified-content
+  > header.madic-cric-standard-header
+  > nav.toplinks
+  > .madic-lang-controls {
   display: inline-flex !important;
   align-items: center !important;
   gap: 5px !important;
@@ -2413,7 +2484,14 @@ html body.madic-unified[data-page="rendez-vous-cric"] > .madic-unified-layout > 
   box-shadow: none !important;
 }
 
-html body.madic-unified[data-page="rendez-vous-cric"] > .madic-unified-layout > .madic-unified-content > header.madic-cric-standard-header > nav.toplinks > .madic-lang-controls > button[data-lang] {
+html
+  body.madic-unified[data-page="rendez-vous-cric"]
+  > .madic-unified-layout
+  > .madic-unified-content
+  > header.madic-cric-standard-header
+  > nav.toplinks
+  > .madic-lang-controls
+  > button[data-lang] {
   box-sizing: border-box;
   height: 36px !important;
   min-height: 36px !important;
@@ -2431,12 +2509,25 @@ html body.madic-unified[data-page="rendez-vous-cric"] > .madic-unified-layout > 
   cursor: pointer;
 }
 
-html body.madic-unified[data-page="rendez-vous-cric"] > .madic-unified-layout > .madic-unified-content > header.madic-cric-standard-header > nav.toplinks > .madic-lang-controls > button[data-lang][aria-pressed="true"] {
+html
+  body.madic-unified[data-page="rendez-vous-cric"]
+  > .madic-unified-layout
+  > .madic-unified-content
+  > header.madic-cric-standard-header
+  > nav.toplinks
+  > .madic-lang-controls
+  > button[data-lang][aria-pressed="true"] {
   background: #1683a1 !important;
   color: #fff !important;
 }
 
-html body.madic-unified[data-page="rendez-vous-cric"] > .madic-unified-layout > .madic-unified-content > header.madic-cric-standard-header > nav.toplinks > .madic-top-notification {
+html
+  body.madic-unified[data-page="rendez-vous-cric"]
+  > .madic-unified-layout
+  > .madic-unified-content
+  > header.madic-cric-standard-header
+  > nav.toplinks
+  > .madic-top-notification {
   position: relative !important;
   display: inline-grid !important;
   place-items: center;
@@ -2455,18 +2546,38 @@ html body.madic-unified[data-page="rendez-vous-cric"] > .madic-unified-layout > 
   order: 0 !important;
 }
 
-html body.madic-unified[data-page="rendez-vous-cric"] > .madic-unified-layout > .madic-unified-content > header.madic-cric-standard-header > nav.toplinks > .madic-top-notification > span:first-child {
+html
+  body.madic-unified[data-page="rendez-vous-cric"]
+  > .madic-unified-layout
+  > .madic-unified-content
+  > header.madic-cric-standard-header
+  > nav.toplinks
+  > .madic-top-notification
+  > span:first-child {
   display: grid;
   place-items: center;
 }
 
-html body.madic-unified[data-page="rendez-vous-cric"] > .madic-unified-layout > .madic-unified-content > header.madic-cric-standard-header > nav.toplinks > .madic-top-notification svg {
+html
+  body.madic-unified[data-page="rendez-vous-cric"]
+  > .madic-unified-layout
+  > .madic-unified-content
+  > header.madic-cric-standard-header
+  > nav.toplinks
+  > .madic-top-notification
+  svg {
   display: block;
   width: 20px !important;
   height: 20px !important;
 }
 
-html body.madic-unified[data-page="rendez-vous-cric"] > .madic-unified-layout > .madic-unified-content > header.madic-cric-standard-header > nav.toplinks .madic-top-notification-count:not([hidden]) {
+html
+  body.madic-unified[data-page="rendez-vous-cric"]
+  > .madic-unified-layout
+  > .madic-unified-content
+  > header.madic-cric-standard-header
+  > nav.toplinks
+  .madic-top-notification-count:not([hidden]) {
   position: absolute;
   right: -6px;
   top: -6px;
@@ -2478,25 +2589,53 @@ html body.madic-unified[data-page="rendez-vous-cric"] > .madic-unified-layout > 
   border-radius: 12px;
   background: #b52e47;
   color: #fff;
-  font: 800 10px/1 Inter, system-ui, sans-serif;
+  font:
+    800 10px/1 Inter,
+    system-ui,
+    sans-serif;
 }
 
-html body.madic-unified[data-page="rendez-vous-cric"] > .madic-unified-layout > .madic-unified-content > header.madic-cric-standard-header > nav.toplinks .madic-top-notification-count[hidden] { display: none !important; }
-html body.madic-unified[data-page="rendez-vous-cric"] > .madic-unified-layout > .madic-unified-content > header.madic-cric-standard-header > nav.toplinks :is(a, button):focus-visible {
+html
+  body.madic-unified[data-page="rendez-vous-cric"]
+  > .madic-unified-layout
+  > .madic-unified-content
+  > header.madic-cric-standard-header
+  > nav.toplinks
+  .madic-top-notification-count[hidden] {
+  display: none !important;
+}
+html
+  body.madic-unified[data-page="rendez-vous-cric"]
+  > .madic-unified-layout
+  > .madic-unified-content
+  > header.madic-cric-standard-header
+  > nav.toplinks
+  :is(a, button):focus-visible {
   outline: 2px solid #178cb4;
   outline-offset: 2px;
 }
 
 @media screen and (max-width: 1080px) {
-  html body.madic-unified[data-page="rendez-vous-cric"] > .madic-unified-layout > .madic-unified-content > header.madic-cric-standard-header { padding-inline: 18px !important; }
+  html
+    body.madic-unified[data-page="rendez-vous-cric"]
+    > .madic-unified-layout
+    > .madic-unified-content
+    > header.madic-cric-standard-header {
+    padding-inline: 18px !important;
+  }
 }
 
 @media screen and (max-width: 850px) {
-  html body.madic-unified[data-page="rendez-vous-cric"] > .madic-unified-layout {
+  html
+    body.madic-unified[data-page="rendez-vous-cric"]
+    > .madic-unified-layout {
     grid-template-columns: minmax(0, 1fr) !important;
   }
 
-  html body.madic-unified[data-page="rendez-vous-cric"] > .madic-unified-layout > .madic-unified-sidebar {
+  html
+    body.madic-unified[data-page="rendez-vous-cric"]
+    > .madic-unified-layout
+    > .madic-unified-sidebar {
     position: relative !important;
     inset: auto !important;
     display: flex !important;
@@ -2511,14 +2650,22 @@ html body.madic-unified[data-page="rendez-vous-cric"] > .madic-unified-layout > 
     border-right: 0 !important;
   }
 
-  html body.madic-unified[data-page="rendez-vous-cric"] > .madic-unified-layout > .madic-unified-sidebar > .madic-unified-brand {
+  html
+    body.madic-unified[data-page="rendez-vous-cric"]
+    > .madic-unified-layout
+    > .madic-unified-sidebar
+    > .madic-unified-brand {
     display: flex !important;
     align-items: center !important;
     gap: 10px !important;
     padding: 4px 6px 14px !important;
   }
 
-  html body.madic-unified[data-page="rendez-vous-cric"] > .madic-unified-layout > .madic-unified-sidebar .madic-unified-monogram {
+  html
+    body.madic-unified[data-page="rendez-vous-cric"]
+    > .madic-unified-layout
+    > .madic-unified-sidebar
+    .madic-unified-monogram {
     display: grid !important;
     place-items: center;
     width: 53px !important;
@@ -2526,18 +2673,31 @@ html body.madic-unified[data-page="rendez-vous-cric"] > .madic-unified-layout > 
     flex: 0 0 53px !important;
   }
 
-  html body.madic-unified[data-page="rendez-vous-cric"] > .madic-unified-layout > .madic-unified-sidebar .madic-unified-monogram img {
+  html
+    body.madic-unified[data-page="rendez-vous-cric"]
+    > .madic-unified-layout
+    > .madic-unified-sidebar
+    .madic-unified-monogram
+    img {
     display: block;
     width: 100% !important;
     height: 100% !important;
     object-fit: contain;
   }
 
-  html body.madic-unified[data-page="rendez-vous-cric"] > .madic-unified-layout > .madic-unified-sidebar > :is(.madic-unified-caption, .madic-unified-foot) {
+  html
+    body.madic-unified[data-page="rendez-vous-cric"]
+    > .madic-unified-layout
+    > .madic-unified-sidebar
+    > :is(.madic-unified-caption, .madic-unified-foot) {
     display: none !important;
   }
 
-  html body.madic-unified[data-page="rendez-vous-cric"] > .madic-unified-layout > .madic-unified-sidebar > nav {
+  html
+    body.madic-unified[data-page="rendez-vous-cric"]
+    > .madic-unified-layout
+    > .madic-unified-sidebar
+    > nav {
     display: flex !important;
     flex-flow: row nowrap !important;
     align-items: center !important;
@@ -2554,7 +2714,12 @@ html body.madic-unified[data-page="rendez-vous-cric"] > .madic-unified-layout > 
     scroll-behavior: auto;
   }
 
-  html body.madic-unified[data-page="rendez-vous-cric"] > .madic-unified-layout > .madic-unified-sidebar > nav > a {
+  html
+    body.madic-unified[data-page="rendez-vous-cric"]
+    > .madic-unified-layout
+    > .madic-unified-sidebar
+    > nav
+    > a {
     display: flex !important;
     align-items: center !important;
     justify-content: flex-start !important;
@@ -2567,27 +2732,48 @@ html body.madic-unified[data-page="rendez-vous-cric"] > .madic-unified-layout > 
     gap: 9px !important;
     border: 1px solid transparent !important;
     border-radius: 10px !important;
-    font: 700 13px/1.2 Inter, system-ui, -apple-system, "Segoe UI", sans-serif !important;
+    font:
+      700 13px/1.2 Inter,
+      system-ui,
+      -apple-system,
+      "Segoe UI",
+      sans-serif !important;
     white-space: nowrap !important;
     text-decoration: none !important;
     transform: none !important;
   }
 
-  html body.madic-unified[data-page="rendez-vous-cric"] > .madic-unified-layout > .madic-unified-sidebar > nav > a[aria-current="page"] {
+  html
+    body.madic-unified[data-page="rendez-vous-cric"]
+    > .madic-unified-layout
+    > .madic-unified-sidebar
+    > nav
+    > a[aria-current="page"] {
     border-color: #62cbd5 !important;
     background: #1a6482 !important;
     color: #fff !important;
     box-shadow: inset 3px 0 #81e7e5;
   }
 
-  html body.madic-unified[data-page="rendez-vous-cric"] > .madic-unified-layout > .madic-unified-sidebar > nav > a > span:first-child {
+  html
+    body.madic-unified[data-page="rendez-vous-cric"]
+    > .madic-unified-layout
+    > .madic-unified-sidebar
+    > nav
+    > a
+    > span:first-child {
     display: grid !important;
     place-items: center;
     width: 22px !important;
     flex: 0 0 22px !important;
   }
 
-  html body.madic-unified[data-page="rendez-vous-cric"] > .madic-unified-layout > .madic-unified-sidebar > nav .madic-heroicon {
+  html
+    body.madic-unified[data-page="rendez-vous-cric"]
+    > .madic-unified-layout
+    > .madic-unified-sidebar
+    > nav
+    .madic-heroicon {
     display: block;
     width: 20px !important;
     height: 20px !important;
@@ -2596,7 +2782,11 @@ html body.madic-unified[data-page="rendez-vous-cric"] > .madic-unified-layout > 
 }
 
 @media screen and (max-width: 650px) {
-  html body.madic-unified[data-page="rendez-vous-cric"] > .madic-unified-layout > .madic-unified-content > header.madic-cric-standard-header {
+  html
+    body.madic-unified[data-page="rendez-vous-cric"]
+    > .madic-unified-layout
+    > .madic-unified-content
+    > header.madic-cric-standard-header {
     flex-direction: column !important;
     align-items: flex-start !important;
     justify-content: center !important;
@@ -2604,34 +2794,58 @@ html body.madic-unified[data-page="rendez-vous-cric"] > .madic-unified-layout > 
     gap: 8px !important;
   }
 
-  html body.madic-unified[data-page="rendez-vous-cric"] > .madic-unified-layout > .madic-unified-content > header.madic-cric-standard-header > nav.toplinks {
+  html
+    body.madic-unified[data-page="rendez-vous-cric"]
+    > .madic-unified-layout
+    > .madic-unified-content
+    > header.madic-cric-standard-header
+    > nav.toplinks {
     width: 100%;
     justify-content: flex-start !important;
   }
 }
 
 @media screen and (min-width: 851px) {
-  html body.madic-unified[data-page="rendez-vous-cric"] > .madic-unified-layout {
+  html
+    body.madic-unified[data-page="rendez-vous-cric"]
+    > .madic-unified-layout {
     grid-template-columns: 244px minmax(0, 1fr) !important;
   }
 
-  html body.madic-unified[data-page="rendez-vous-cric"] > .madic-unified-layout > .madic-unified-sidebar {
+  html
+    body.madic-unified[data-page="rendez-vous-cric"]
+    > .madic-unified-layout
+    > .madic-unified-sidebar {
     box-sizing: border-box;
     width: 244px !important;
     min-width: 244px !important;
     padding: 22px 14px !important;
   }
 
-  html body.madic-unified[data-page="rendez-vous-cric"] > .madic-unified-layout > .madic-unified-sidebar > nav {
+  html
+    body.madic-unified[data-page="rendez-vous-cric"]
+    > .madic-unified-layout
+    > .madic-unified-sidebar
+    > nav {
     display: flex !important;
     flex-flow: column nowrap !important;
     gap: 5px !important;
   }
 
-  html body.madic-unified[data-page="rendez-vous-cric"] > .madic-unified-layout > .madic-unified-sidebar > nav > a {
+  html
+    body.madic-unified[data-page="rendez-vous-cric"]
+    > .madic-unified-layout
+    > .madic-unified-sidebar
+    > nav
+    > a {
     align-items: center !important;
     min-height: 43px !important;
     padding: 10px 12px !important;
-    font: 700 13px/1.25 Inter, system-ui, -apple-system, "Segoe UI", sans-serif !important;
+    font:
+      700 13px/1.25 Inter,
+      system-ui,
+      -apple-system,
+      "Segoe UI",
+      sans-serif !important;
   }
 }

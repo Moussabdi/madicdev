@@ -1,4 +1,3 @@
-/* MADIC - Contrats administration : navigation et bilinguisme autonomes. */
 (() => {
   "use strict";
   const translations = {

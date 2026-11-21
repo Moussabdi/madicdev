@@ -1,4 +1,3 @@
-/* SOURCE: quebec(2).js */
 "use strict";
 const $ = (id) => document.getElementById(id),
   v = (id) => $(id).value,

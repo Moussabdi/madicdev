@@ -1,4 +1,3 @@
-/* SOURCE assets/config.js */
 window.MADIC_CONFIG = {
   url: "https://ezijsozitnydhjkxzqem.supabase.co",
   anonKey: "sb_publishable_MQjW5_va454CjZ7weau0iQ_AdJ41yvi",
@@ -16,8 +15,6 @@ window.getMadicSupabase = function () {
   return window.madicSupabaseClient;
 };
 
-/* SOURCE assets/madic-footer.js */
-/* Footer commun MADIC : traduction des libellés sur les pages sans gestionnaire FR/EN. */
 (function () {
   "use strict";
   function apply(lang) {
@@ -419,7 +416,6 @@ window.getMadicSupabase = function () {
 })();
 
 /* SOURCE assets/madic-datahubz-unified.js */
-
 
 /* SOURCE assets/madic-i18n-cric.js */
 /* MADIC bilingual RCIC workspace. UI-only: no Supabase calls, no mutation of business data. */

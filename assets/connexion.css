@@ -436,7 +436,7 @@ footer.madic-footer {
   display: block;
   max-width: 100%;
   height: auto;
-  margin-block: 1rem .5rem;
+  margin-block: 1rem 0.5rem;
 }
 
 .madic-mfa-dialog code {
@@ -448,11 +448,11 @@ footer.madic-footer {
   display: block;
   width: 100%;
   box-sizing: border-box;
-  margin-top: .4rem;
+  margin-top: 0.4rem;
 }
 
 .madic-mfa-actions {
   display: flex;
   flex-wrap: wrap;
-  gap: .75rem;
+  gap: 0.75rem;
 }

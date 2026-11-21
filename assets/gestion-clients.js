@@ -1,4 +1,3 @@
-/* MADIC : navigation CRIC uniforme. Icones Heroicons identiques au tableau de bord. */
 (() => {
   "use strict";
   const init = () => {

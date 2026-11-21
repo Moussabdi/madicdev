@@ -1,5 +1,3 @@
-/* Source: cric-dashboard(20261109-013822).js */
-/* MADIC : interface CRIC. Les contrôles d'accès réels sont les politiques RLS et RPC Supabase. */
 (async () => {
   "use strict";
   const $ = (id) => document.getElementById(id);
@@ -65,7 +63,9 @@
           review.href = "validation-cric.html#cricApplications";
           review.dataset.fr = "Vérifier l’identité et décider";
           review.dataset.en = "Verify identity and decide";
-          review.textContent = document.documentElement.lang.startsWith("en") ? review.dataset.en : review.dataset.fr;
+          review.textContent = document.documentElement.lang.startsWith("en")
+            ? review.dataset.en
+            : review.dataset.fr;
           action.append(review);
         }
       }
@@ -487,14 +487,16 @@
             ? "Compte autorisé"
             : `Compte : ${account.status}`,
       );
-      if (account) cell(row,"Voir le tableau des comptes ci-dessus");
+      if (account) cell(row, "Voir le tableau des comptes ci-dessus");
       else {
-        const target = cell(row,"");
+        const target = cell(row, "");
         const link = document.createElement("a");
         link.href = "validation-cric.html#cricPrevalidations";
         link.dataset.fr = "Inviter depuis Vérifications CRIC";
         link.dataset.en = "Invite from RCIC verifications";
-        link.textContent = document.documentElement.lang.startsWith("en") ? link.dataset.en : link.dataset.fr;
+        link.textContent = document.documentElement.lang.startsWith("en")
+          ? link.dataset.en
+          : link.dataset.fr;
         target.append(link);
       }
     }

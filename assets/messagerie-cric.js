@@ -1,5 +1,3 @@
-/* SOURCE: madic-presence(2).js */
-/* MADIC Presence v2 : canal partagé par cabinet, diagnostic explicite. */
 (() => {
   "use strict";
   let clientChannel = null;
