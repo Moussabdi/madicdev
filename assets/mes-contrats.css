@@ -4031,8 +4031,6 @@ body.madic-client-secondary > footer.madic-footer {
   width: calc(100% - var(--madic-client-sidebar-width, 270px));
   max-width: none;
   padding: 40px 34px 23px !important;
-  background: #070f22 !important;
-  color: #dce8f5 !important;
   border-top: 1px solid #1b2c49 !important;
   text-align: left;
 }
@@ -4591,4 +4589,37 @@ body[data-page="cric-client-dashboard"]
   color: #fff !important;
   border-color: #62cbd5 !important;
   box-shadow: inset 3px 0 #81e7e5;
+}
+
+/* Palette claire du pied de page client. */
+body[data-page="cric-client-dashboard"] > footer.madic-footer {
+  background: #eef3f9 !important;
+  color: #294663;
+}
+body[data-page="cric-client-dashboard"]
+  > footer.madic-footer
+  .madic-footer-name {
+  color: #173657;
+}
+body[data-page="cric-client-dashboard"]
+  > footer.madic-footer
+  :is(
+    .madic-footer-subtitle,
+    .madic-footer-desc,
+    .madic-footer-bottom,
+    .madic-footer-unavailable
+  ) {
+  color: #49647f;
+}
+body[data-page="cric-client-dashboard"]
+  > footer.madic-footer
+  .madic-footer-right
+  a {
+  color: #294f76;
+}
+body[data-page="cric-client-dashboard"]
+  > footer.madic-footer
+  .madic-footer-right
+  a:hover {
+  color: #135c80;
 }

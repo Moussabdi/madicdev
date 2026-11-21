@@ -2564,7 +2564,7 @@ body[data-page="cric-client-dashboard"]
   body[data-page="cric-client-dashboard"] .madic-side-nav {
     position: static;
     min-height: 0;
-    border-radius: 16px;
+    border-radius: 0;
     margin: 12px 0 18px;
   }
   body[data-page="cric-client-dashboard"] .madic-app-content {

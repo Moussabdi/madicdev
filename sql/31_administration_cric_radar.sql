@@ -378,7 +378,7 @@ begin
       (select count(*) from activity e where e.space_id=s.id and e.actor_type='cric') as cric_logins,
       (select count(*) from activity e where e.space_id=s.id and e.actor_type='client') as client_logins,
       coalesce((select jsonb_agg(jsonb_build_object('id',c.client_id,
-        'name',coalesce(nullif(btrim(concat_ws(' ',p.first_name,p.last_name)),''),p.email,'—'),
+        'name',coalesce(nullif(btrim(concat_ws(' ',p.first_name,p.last_name)),''),p.email,'-'),
         'logins',(select count(*) from activity e where e.space_id=c.space_id and e.user_id=c.client_id and e.actor_type='client'))
         order by p.last_name,p.first_name,c.client_id)
         from public.madic_cric_clients c left join public.profiles p on p.id=c.client_id where c.space_id=s.id),'[]'::jsonb) as clients
