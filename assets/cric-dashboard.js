@@ -2125,3 +2125,52 @@
     document.addEventListener("DOMContentLoaded", ready, { once: true });
   else ready();
 })();
+
+
+/* Garder la page courante visible sans déplacer le contenu verticalement. */
+(() => {
+  const narrowMenu = window.matchMedia("(max-width: 850px)");
+  const revealCurrentPage = () => {
+    if (!narrowMenu.matches) return;
+    window.requestAnimationFrame(() => {
+      if (!narrowMenu.matches) return;
+      const nav = document.querySelector(".madic-unified-sidebar > nav");
+      const current = nav?.querySelector('a[aria-current="page"]');
+      if (!current || nav.scrollWidth <= nav.clientWidth) return;
+
+      const start = nav.getBoundingClientRect().left + nav.clientLeft;
+      const end = start + nav.clientWidth;
+      const item = current.getBoundingClientRect();
+      if (item.left >= start && item.right <= end) return;
+
+      nav.scrollLeft += (item.left + item.right - start - end) / 2;
+    });
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", revealCurrentPage, { once: true });
+  } else {
+    revealCurrentPage();
+  }
+  window.addEventListener("pageshow", revealCurrentPage);
+  window.addEventListener("resize", revealCurrentPage);
+  new MutationObserver(revealCurrentPage).observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ["lang"],
+  });
+})();
+
+/* Placer la cloche après les commandes de compte sur téléphone. */
+(() => {
+  const phone = window.matchMedia("(max-width: 650px)");
+  const alignAccountLinks = () => {
+    const links = document.querySelector(".madic-unified-content > header > nav.toplinks");
+    const bell = links?.querySelector(".madic-top-notification");
+    const signout = links?.querySelector(".madic-header-signout");
+    if (!bell || !signout) return;
+    if (phone.matches) links.append(bell);
+    else links.insertBefore(bell, signout);
+  };
+  alignAccountLinks();
+  phone.addEventListener("change", alignAccountLinks);
+})();

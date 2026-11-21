@@ -31,6 +31,9 @@ nav {
   justify-content: space-between;
 }
 .logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
   font-size: 20px;
   font-weight: 850;
   letter-spacing: 0.06em;
@@ -254,14 +257,8 @@ main {
   border-bottom: 0;
 }
 .brand-mark {
-  display: inline-grid;
-  place-items: center;
-  width: 32px;
-  height: 32px;
-  margin-right: 8px;
-  border-radius: 9px;
-  background: #173b48;
-  color: #67d8c5;
+  flex: none;
+  object-fit: contain;
 }
 .plan .btn:hover,
 .plan .btn:focus-visible {

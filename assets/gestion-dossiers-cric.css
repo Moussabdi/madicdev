@@ -2743,3 +2743,89 @@ body.madic-unified[data-page="gestion-dossiers-cric"]
 .madic-prov-panel [hidden] {
   display: none !important;
 }
+
+
+/* Navigation professionnelle CRIC sur écran étroit. */
+@media screen and (max-width: 850px) {
+  body.madic-unified[data-page="gestion-dossiers-cric"] .madic-unified-layout {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  body.madic-unified[data-page="gestion-dossiers-cric"] .madic-unified-layout > .madic-unified-sidebar {
+    position: relative !important;
+    box-sizing: border-box;
+    width: 100% !important;
+    min-width: 0 !important;
+    height: auto !important;
+    padding: 13px !important;
+    gap: 10px !important;
+  }
+
+  body.madic-unified[data-page="gestion-dossiers-cric"] .madic-unified-layout > .madic-unified-sidebar > nav {
+    display: flex !important;
+    flex-flow: row nowrap !important;
+    justify-content: flex-start !important;
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    gap: 7px !important;
+    overflow-x: auto !important;
+    overflow-y: hidden;
+    scroll-behavior: auto;
+    padding: 2px 2px 5px !important;
+    box-sizing: border-box;
+  }
+
+  body.madic-unified[data-page="gestion-dossiers-cric"] .madic-unified-layout > .madic-unified-sidebar > nav > a {
+    flex: 0 0 auto !important;
+    min-height: 36px !important;
+    margin: 0 !important;
+    padding: 8px 10px !important;
+    white-space: nowrap !important;
+    transform: none !important;
+  }
+
+  body.madic-unified[data-page="gestion-dossiers-cric"] .madic-unified-sidebar > nav > a.madic-v2-group-start:not([aria-current="page"]) {
+    border-top-color: transparent !important;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  body.madic-unified[data-page="gestion-dossiers-cric"] .madic-unified-content > header,
+  body.madic-unified[data-page="gestion-dossiers-cric"] .madic-unified-content > header.madic-cric-standard-header {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    justify-content: center !important;
+    box-sizing: border-box;
+    width: 100% !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 14px 16px !important;
+    gap: 8px !important;
+  }
+
+  body.madic-unified[data-page="gestion-dossiers-cric"] .madic-unified-content > header > .brand {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  body.madic-unified[data-page="gestion-dossiers-cric"] .madic-unified-content > header > nav.toplinks,
+  body.madic-unified[data-page="gestion-dossiers-cric"] .madic-unified-content > header.madic-cric-standard-header > nav.toplinks {
+    display: flex !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+    flex-wrap: wrap !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    gap: 8px !important;
+  }
+
+  body.madic-unified[data-page="gestion-dossiers-cric"] .madic-unified-content > header > nav.toplinks > button.madic-header-signout:is(#logout, #cricLogout) {
+    justify-content: flex-start !important;
+    margin-inline-start: 0 !important;
+    padding-inline-start: 0 !important;
+    text-align: start !important;
+  }
+}
