@@ -3713,7 +3713,7 @@ body.madic-client-secondary
   border-color: #49a8c9 !important;
 }
 body.madic-client-secondary .madic-side-nav {
-  background: linear-gradient(180deg, #10233f, #153c5d) !important;
+  background: linear-gradient(180deg, #162b4d, #1b365b) !important;
 }
 body.madic-client-secondary .madic-side-brand strong {
   font-size: 15px !important;
@@ -4062,27 +4062,6 @@ body.madic-client-secondary > footer.madic-footer > .madic-footer-bottom {
   body.madic-client-secondary > footer.madic-footer {
     display: none !important;
   }
-}
-
-/* Harmonisation du fond du pied de page avec le tableau de bord client. */
-body.madic-client-secondary > footer.madic-footer {
-  background: #edf3fa !important;
-  color: #294663 !important;
-  border-top: 1px solid #c8d7e6 !important;
-}
-body.madic-client-secondary > footer.madic-footer .madic-footer-name {
-  color: #173657 !important;
-}
-body.madic-client-secondary > footer.madic-footer .madic-footer-subtitle,
-body.madic-client-secondary > footer.madic-footer .madic-footer-desc,
-body.madic-client-secondary > footer.madic-footer .madic-footer-bottom {
-  color: #536f8d !important;
-}
-body.madic-client-secondary > footer.madic-footer .madic-footer-right a {
-  color: #294f76 !important;
-}
-body.madic-client-secondary > footer.madic-footer .madic-footer-bottom {
-  border-top-color: #b9c9d9 !important;
 }
 
 /* Le bandeau invité possède ses propres couleurs dans le tableau de bord. */

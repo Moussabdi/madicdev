@@ -1702,7 +1702,6 @@ body[data-page="cric-client-dashboard"] header {
   border-bottom: 1px solid #2a4059;
 }
 body[data-page="cric-client-dashboard"] .madic-side-nav {
-  background: #10243c !important;
   border-color: #304760 !important;
 }
 body[data-page="cric-client-dashboard"] .madic-welcome-shell {
