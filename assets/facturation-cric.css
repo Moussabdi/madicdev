@@ -6112,7 +6112,6 @@ html
 html
   body.madic-unified[data-page="facturation-cric"]
   > .madic-unified-layout
-  > .madic-unified-layout
   > header.madic-cric-standard-header {
   display: flex !important;
   align-items: center !important;
@@ -6142,7 +6141,6 @@ html
 html
   body.madic-unified[data-page="facturation-cric"]
   > .madic-unified-layout
-  > .madic-unified-layout
   > header.madic-cric-standard-header
   > .brand {
   display: block !important;
@@ -6161,7 +6159,6 @@ html
 html
   body.madic-unified[data-page="facturation-cric"]
   > .madic-unified-layout
-  > .madic-unified-layout
   > header.madic-cric-standard-header
   > .brand
   > span {
@@ -6170,7 +6167,6 @@ html
 
 html
   body.madic-unified[data-page="facturation-cric"]
-  > .madic-unified-layout
   > .madic-unified-layout
   > header.madic-cric-standard-header
   > .brand
@@ -6182,7 +6178,6 @@ html
 
 html
   body.madic-unified[data-page="facturation-cric"]
-  > .madic-unified-layout
   > .madic-unified-layout
   > header.madic-cric-standard-header
   > nav.toplinks {
@@ -6199,13 +6194,11 @@ html
 html
   body.madic-unified[data-page="facturation-cric"]
   > .madic-unified-layout
-  > .madic-unified-layout
   > header.madic-cric-standard-header
   > nav.toplinks
   > a:not(.madic-top-notification),
 html
   body.madic-unified[data-page="facturation-cric"]
-  > .madic-unified-layout
   > .madic-unified-layout
   > header.madic-cric-standard-header
   > nav.toplinks
@@ -6230,7 +6223,6 @@ html
 html
   body.madic-unified[data-page="facturation-cric"]
   > .madic-unified-layout
-  > .madic-unified-layout
   > header.madic-cric-standard-header
   > nav.toplinks
   > :is(a:not(.madic-top-notification), button.madic-header-signout[id]):hover {
@@ -6239,7 +6231,6 @@ html
 
 html
   body.madic-unified[data-page="facturation-cric"]
-  > .madic-unified-layout
   > .madic-unified-layout
   > header.madic-cric-standard-header
   > nav.toplinks
@@ -6257,7 +6248,6 @@ html
 
 html
   body.madic-unified[data-page="facturation-cric"]
-  > .madic-unified-layout
   > .madic-unified-layout
   > header.madic-cric-standard-header
   > nav.toplinks
@@ -6283,7 +6273,6 @@ html
 html
   body.madic-unified[data-page="facturation-cric"]
   > .madic-unified-layout
-  > .madic-unified-layout
   > header.madic-cric-standard-header
   > nav.toplinks
   > .madic-lang-controls
@@ -6294,7 +6283,6 @@ html
 
 html
   body.madic-unified[data-page="facturation-cric"]
-  > .madic-unified-layout
   > .madic-unified-layout
   > header.madic-cric-standard-header
   > nav.toplinks
@@ -6320,7 +6308,6 @@ html
 html
   body.madic-unified[data-page="facturation-cric"]
   > .madic-unified-layout
-  > .madic-unified-layout
   > header.madic-cric-standard-header
   > nav.toplinks
   > .madic-top-notification
@@ -6331,7 +6318,6 @@ html
 
 html
   body.madic-unified[data-page="facturation-cric"]
-  > .madic-unified-layout
   > .madic-unified-layout
   > header.madic-cric-standard-header
   > nav.toplinks
@@ -6344,7 +6330,6 @@ html
 
 html
   body.madic-unified[data-page="facturation-cric"]
-  > .madic-unified-layout
   > .madic-unified-layout
   > header.madic-cric-standard-header
   > nav.toplinks
@@ -6369,7 +6354,6 @@ html
 html
   body.madic-unified[data-page="facturation-cric"]
   > .madic-unified-layout
-  > .madic-unified-layout
   > header.madic-cric-standard-header
   > nav.toplinks
   .madic-top-notification-count[hidden] {
@@ -6377,7 +6361,6 @@ html
 }
 html
   body.madic-unified[data-page="facturation-cric"]
-  > .madic-unified-layout
   > .madic-unified-layout
   > header.madic-cric-standard-header
   > nav.toplinks
@@ -6389,7 +6372,6 @@ html
 @media screen and (max-width: 1080px) {
   html
     body.madic-unified[data-page="facturation-cric"]
-    > .madic-unified-layout
     > .madic-unified-layout
     > header.madic-cric-standard-header {
     padding-inline: 18px !important;
@@ -6556,7 +6538,6 @@ html
   html
     body.madic-unified[data-page="facturation-cric"]
     > .madic-unified-layout
-    > .madic-unified-layout
     > header.madic-cric-standard-header {
     flex-direction: column !important;
     align-items: flex-start !important;
@@ -6567,7 +6548,6 @@ html
 
   html
     body.madic-unified[data-page="facturation-cric"]
-    > .madic-unified-layout
     > .madic-unified-layout
     > header.madic-cric-standard-header
     > nav.toplinks {

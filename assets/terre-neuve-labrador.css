@@ -1,175 +1,1826 @@
-
 /* MADIC PORTAIL- habillage autonome des outils provinciaux.
    Référence visuelle : tableau de bord CRIC, sans importer cric-dashboard.css. */
-:root{font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;color:#17324b;background:#f4f7fb}
-*,*::before,*::after{box-sizing:border-box}
-body.madic-unified{margin:0;min-height:100vh;background:#f4f7fb;color:#17324b}
-body.madic-unified .madic-unified-layout{display:grid;grid-template-columns:258px minmax(0,1fr);min-height:100vh}
-body.madic-unified .madic-unified-sidebar{position:sticky;top:0;height:100vh;display:flex;flex-direction:column;gap:16px;padding:25px 14px;background:#10283b;color:#e8f3fb;overflow-y:auto}
-body.madic-unified .madic-unified-brand{display:flex;align-items:center;gap:11px;padding:7px 9px 17px;border-bottom:1px solid #355166}
-body.madic-unified .madic-unified-monogram{width:42px;height:42px;display:grid;place-items:center;border-radius:12px;background:#fff;padding:5px;flex-shrink:0}
-body.madic-unified .madic-unified-monogram img{width:100%;height:100%;object-fit:contain}
-body.madic-unified .madic-unified-brand strong{display:block;font-size:14px;letter-spacing:.04em;color:#fff}
-body.madic-unified .madic-unified-brand small{display:block;font-size:11px;color:#b6cbd9;margin-top:3px}
-body.madic-unified .madic-unified-caption{font-size:11px;letter-spacing:.14em;color:#9eb8c9;padding:0 12px;font-weight:700}
-body.madic-unified .madic-unified-sidebar nav{display:grid;gap:4px}
-body.madic-unified .madic-unified-sidebar nav a{display:flex;align-items:center;gap:11px;padding:11px 12px;border-radius:10px;text-decoration:none;color:#dceaf3;font-size:13px;font-weight:600;line-height:1.3}
-body.madic-unified .madic-unified-sidebar nav a:hover,body.madic-unified .madic-unified-sidebar nav a[aria-current=page]{background:#25475c;color:#fff}
-body.madic-unified .madic-unified-sidebar nav a.madic-v2-group-start{margin-top:8px}
-body.madic-unified .madic-unified-sidebar nav a span{display:inline-flex;width:19px;height:19px;align-items:center;justify-content:center;flex-shrink:0}
-body.madic-unified .madic-unified-sidebar nav .madic-heroicon{width:19px;height:19px;filter:brightness(0) invert(1);opacity:.86}
-body.madic-unified .madic-unified-foot{margin-top:auto;padding:15px 12px;border-top:1px solid #355166;color:#9eb8c9;font-size:11px}
-body.madic-unified .madic-unified-content{min-width:0;display:flex;flex-direction:column;min-height:100vh}
-body.madic-unified .madic-unified-content>header{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:76px;padding:16px clamp(20px,3vw,48px);background:#fff;border-bottom:1px solid #e1e9f0;flex-wrap:wrap}
-body.madic-unified .madic-unified-content>header .brand{font-size:22px;font-weight:850;color:#15374e;letter-spacing:.04em;text-decoration:none}
-body.madic-unified .madic-unified-content>header .brand span{color:#087f8b}
-body.madic-unified .madic-unified-content>header .brand small{font-size:10px;letter-spacing:.1em;margin-left:6px}
-body.madic-unified .toplinks{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
-body.madic-unified .toplinks>a{color:#15546a;text-decoration:none;font-weight:650;font-size:13px}
-body.madic-unified .madic-header-signout{background:transparent;border:0;color:#15546a;cursor:pointer;font-weight:650;font-size:13px;padding:7px}
-body.madic-unified .madic-lang-controls{display:flex;gap:4px;padding:3px;border:1px solid #d8e5ed;border-radius:9px;background:#f4f8fa}
-body.madic-unified .madic-lang-controls button{padding:6px 10px;border:0;border-radius:6px;background:transparent;color:#31576b;font-weight:750;cursor:pointer}
-body.madic-unified .madic-lang-controls button[aria-pressed=true]{background:#15546a;color:#fff}
-body.madic-unified .madic-unified-content>main{width:min(100% - 48px,1200px);max-width:1200px;margin:30px auto 50px;padding:0}
-body.madic-unified .madic-unified-content>footer{margin-top:auto}
-body.madic-unified .madic-skip-link{position:absolute;top:-100px;left:12px;z-index:100;background:#fff;padding:10px 14px}
-body.madic-unified .madic-skip-link:focus{top:12px}
-body.madic-unified .madic-unified-content a:focus-visible,body.madic-unified button:focus-visible{outline:3px solid #15a9ba;outline-offset:3px}
-@media(max-width:950px){body.madic-unified .madic-unified-layout{grid-template-columns:1fr}body.madic-unified .madic-unified-sidebar{position:static;height:auto;gap:10px;padding:14px}body.madic-unified .madic-unified-sidebar nav{display:flex;flex-wrap:wrap}body.madic-unified .madic-unified-sidebar nav a{padding:9px}body.madic-unified .madic-unified-foot{display:none}}
-@media(max-width:600px){body.madic-unified .madic-unified-content>main{width:calc(100% - 28px);margin:20px auto 36px}body.madic-unified .madic-unified-content>header{padding:12px 15px}body.madic-unified .madic-unified-sidebar nav a{font-size:12px}body.madic-unified .madic-provincial-main section{padding:17px}}
+:root {
+  font-family:
+    Inter,
+    system-ui,
+    -apple-system,
+    Segoe UI,
+    sans-serif;
+  color: #17324b;
+  background: #f4f7fb;
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+body.madic-unified {
+  margin: 0;
+  min-height: 100vh;
+  background: #f4f7fb;
+  color: #17324b;
+}
+body.madic-unified .madic-unified-layout {
+  display: grid;
+  grid-template-columns: 258px minmax(0, 1fr);
+  min-height: 100vh;
+}
+body.madic-unified .madic-unified-sidebar {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 25px 14px;
+  background: #10283b;
+  color: #e8f3fb;
+  overflow-y: auto;
+}
+body.madic-unified .madic-unified-brand {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 7px 9px 17px;
+  border-bottom: 1px solid #355166;
+}
+body.madic-unified .madic-unified-monogram {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: #fff;
+  padding: 5px;
+  flex-shrink: 0;
+}
+body.madic-unified .madic-unified-monogram img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+body.madic-unified .madic-unified-brand strong {
+  display: block;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  color: #fff;
+}
+body.madic-unified .madic-unified-brand small {
+  display: block;
+  font-size: 11px;
+  color: #b6cbd9;
+  margin-top: 3px;
+}
+body.madic-unified .madic-unified-caption {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: #9eb8c9;
+  padding: 0 12px;
+  font-weight: 700;
+}
+body.madic-unified .madic-unified-sidebar nav {
+  display: grid;
+  gap: 4px;
+}
+body.madic-unified .madic-unified-sidebar nav a {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 11px 12px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: #dceaf3;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+body.madic-unified .madic-unified-sidebar nav a:hover,
+body.madic-unified .madic-unified-sidebar nav a[aria-current="page"] {
+  background: #25475c;
+  color: #fff;
+}
+body.madic-unified .madic-unified-sidebar nav a.madic-v2-group-start {
+  margin-top: 8px;
+}
+body.madic-unified .madic-unified-sidebar nav a span {
+  display: inline-flex;
+  width: 19px;
+  height: 19px;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+body.madic-unified .madic-unified-sidebar nav .madic-heroicon {
+  width: 19px;
+  height: 19px;
+  filter: brightness(0) invert(1);
+  opacity: 0.86;
+}
+body.madic-unified .madic-unified-foot {
+  margin-top: auto;
+  padding: 15px 12px;
+  border-top: 1px solid #355166;
+  color: #9eb8c9;
+  font-size: 11px;
+}
+body.madic-unified .madic-unified-content {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+body.madic-unified .madic-unified-content > header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 76px;
+  padding: 16px clamp(20px, 3vw, 48px);
+  background: #fff;
+  border-bottom: 1px solid #e1e9f0;
+  flex-wrap: wrap;
+}
+body.madic-unified .madic-unified-content > header .brand {
+  font-size: 22px;
+  font-weight: 850;
+  color: #15374e;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+}
+body.madic-unified .madic-unified-content > header .brand span {
+  color: #087f8b;
+}
+body.madic-unified .madic-unified-content > header .brand small {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  margin-left: 6px;
+}
+body.madic-unified .toplinks {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+body.madic-unified .toplinks > a {
+  color: #15546a;
+  text-decoration: none;
+  font-weight: 650;
+  font-size: 13px;
+}
+body.madic-unified .madic-header-signout {
+  background: transparent;
+  border: 0;
+  color: #15546a;
+  cursor: pointer;
+  font-weight: 650;
+  font-size: 13px;
+  padding: 7px;
+}
+body.madic-unified .madic-lang-controls {
+  display: flex;
+  gap: 4px;
+  padding: 3px;
+  border: 1px solid #d8e5ed;
+  border-radius: 9px;
+  background: #f4f8fa;
+}
+body.madic-unified .madic-lang-controls button {
+  padding: 6px 10px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: #31576b;
+  font-weight: 750;
+  cursor: pointer;
+}
+body.madic-unified .madic-lang-controls button[aria-pressed="true"] {
+  background: #15546a;
+  color: #fff;
+}
+body.madic-unified .madic-unified-content > main {
+  width: min(100% - 48px, 1200px);
+  max-width: 1200px;
+  margin: 30px auto 50px;
+  padding: 0;
+}
+body.madic-unified .madic-unified-content > footer {
+  margin-top: auto;
+}
+body.madic-unified .madic-skip-link {
+  position: absolute;
+  top: -100px;
+  left: 12px;
+  z-index: 100;
+  background: #fff;
+  padding: 10px 14px;
+}
+body.madic-unified .madic-skip-link:focus {
+  top: 12px;
+}
+body.madic-unified .madic-unified-content a:focus-visible,
+body.madic-unified button:focus-visible {
+  outline: 3px solid #15a9ba;
+  outline-offset: 3px;
+}
+@media (max-width: 950px) {
+  body.madic-unified .madic-unified-layout {
+    grid-template-columns: 1fr;
+  }
+  body.madic-unified .madic-unified-sidebar {
+    position: static;
+    height: auto;
+    gap: 10px;
+    padding: 14px;
+  }
+  body.madic-unified .madic-unified-sidebar nav {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  body.madic-unified .madic-unified-sidebar nav a {
+    padding: 9px;
+  }
+  body.madic-unified .madic-unified-foot {
+    display: none;
+  }
+}
+@media (max-width: 600px) {
+  body.madic-unified .madic-unified-content > main {
+    width: calc(100% - 28px);
+    margin: 20px auto 36px;
+  }
+  body.madic-unified .madic-unified-content > header {
+    padding: 12px 15px;
+  }
+  body.madic-unified .madic-unified-sidebar nav a {
+    font-size: 12px;
+  }
+  body.madic-unified .madic-provincial-main section {
+    padding: 17px;
+  }
+}
 
 /* MADIC provincial tool: portal dashboard design */
-.madic-provincial-main{max-width:1300px!important;margin:0 auto!important;padding:12px 0 48px!important;color:inherit}
-.madic-provincial-main h1{font-size:clamp(1.65rem,3vw,2.4rem);margin:20px 0 12px}
-.madic-provincial-main>p{margin:0 0 22px;color:#587187}
-.madic-provincial-main section{background:#fff;border:1px solid #dce6ef;border-radius:16px;padding:26px;margin:20px 0;box-shadow:0 6px 22px rgba(10,37,64,.05)}
-.madic-provincial-main section h2{margin-top:0;color:#163954}
-.madic-provincial-main section a,.madic-provincial-main .back{color:#087f8b;font-weight:700}
-.madic-provincial-toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 18px;border-radius:12px;background:#10283b;color:#e9f7ff}
-.madic-provincial-toolbar button{border:1px solid #5c8c9d;background:#183d51;color:#fff;border-radius:8px;padding:7px 12px;cursor:pointer;margin-left:5px}
-.madic-provincial-main .back{display:inline-block;margin-bottom:16px}
-.madic-provincial-main>small{display:block;margin-top:20px;color:#5c7184}
-@media(max-width:650px){.madic-provincial-main section{padding:17px}.madic-provincial-toolbar{flex-wrap:wrap}}
+.madic-provincial-main {
+  max-width: 1300px !important;
+  margin: 0 auto !important;
+  padding: 12px 0 48px !important;
+  color: inherit;
+}
+.madic-provincial-main h1 {
+  font-size: clamp(1.65rem, 3vw, 2.4rem);
+  margin: 20px 0 12px;
+}
+.madic-provincial-main > p {
+  margin: 0 0 22px;
+  color: #587187;
+}
+.madic-provincial-main section {
+  background: #fff;
+  border: 1px solid #dce6ef;
+  border-radius: 16px;
+  padding: 26px;
+  margin: 20px 0;
+  box-shadow: 0 6px 22px rgba(10, 37, 64, 0.05);
+}
+.madic-provincial-main section h2 {
+  margin-top: 0;
+  color: #163954;
+}
+.madic-provincial-main section a,
+.madic-provincial-main .back {
+  color: #087f8b;
+  font-weight: 700;
+}
+.madic-provincial-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  border-radius: 12px;
+  background: #10283b;
+  color: #e9f7ff;
+}
+.madic-provincial-toolbar button {
+  border: 1px solid #5c8c9d;
+  background: #183d51;
+  color: #fff;
+  border-radius: 8px;
+  padding: 7px 12px;
+  cursor: pointer;
+  margin-left: 5px;
+}
+.madic-provincial-main .back {
+  display: inline-block;
+  margin-bottom: 16px;
+}
+.madic-provincial-main > small {
+  display: block;
+  margin-top: 20px;
+  color: #5c7184;
+}
+@media (max-width: 650px) {
+  .madic-provincial-main section {
+    padding: 17px;
+  }
+  .madic-provincial-toolbar {
+    flex-wrap: wrap;
+  }
+}
 
 /* En-tete et footer: styles de la version Alberta validee. */
 
 /* MADIC PORTAIL- habillage autonome des outils provinciaux.
    Référence visuelle : tableau de bord CRIC, sans importer cric-dashboard.css. */
-:root{font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;color:#17324b;background:#f4f7fb}
-*,*::before,*::after{box-sizing:border-box}
-body.madic-unified{margin:0;min-height:100vh;background:#f4f7fb;color:#17324b}
-body.madic-unified .madic-unified-layout{display:grid;grid-template-columns:258px minmax(0,1fr);min-height:100vh}
-body.madic-unified .madic-unified-sidebar{position:sticky;top:0;height:100vh;display:flex;flex-direction:column;gap:16px;padding:25px 14px;background:#10283b;color:#e8f3fb;overflow-y:auto}
-body.madic-unified .madic-unified-brand{display:flex;align-items:center;gap:11px;padding:7px 9px 17px;border-bottom:1px solid #355166}
-body.madic-unified .madic-unified-monogram{width:42px;height:42px;display:grid;place-items:center;border-radius:12px;background:#fff;padding:5px;flex-shrink:0}
-body.madic-unified .madic-unified-monogram img{width:100%;height:100%;object-fit:contain}
-body.madic-unified .madic-unified-brand strong{display:block;font-size:14px;letter-spacing:.04em;color:#fff}
-body.madic-unified .madic-unified-brand small{display:block;font-size:11px;color:#b6cbd9;margin-top:3px}
-body.madic-unified .madic-unified-caption{font-size:11px;letter-spacing:.14em;color:#9eb8c9;padding:0 12px;font-weight:700}
-body.madic-unified .madic-unified-sidebar nav{display:grid;gap:4px}
-body.madic-unified .madic-unified-sidebar nav a{display:flex;align-items:center;gap:11px;padding:11px 12px;border-radius:10px;text-decoration:none;color:#dceaf3;font-size:13px;font-weight:600;line-height:1.3}
-body.madic-unified .madic-unified-sidebar nav a:hover,body.madic-unified .madic-unified-sidebar nav a[aria-current=page]{background:#25475c;color:#fff}
-body.madic-unified .madic-unified-sidebar nav a.madic-v2-group-start{margin-top:8px}
-body.madic-unified .madic-unified-sidebar nav a span{display:inline-flex;width:19px;height:19px;align-items:center;justify-content:center;flex-shrink:0}
-body.madic-unified .madic-unified-sidebar nav .madic-heroicon{width:19px;height:19px;filter:brightness(0) invert(1);opacity:.86}
-body.madic-unified .madic-unified-foot{margin-top:auto;padding:15px 12px;border-top:1px solid #355166;color:#9eb8c9;font-size:11px}
-body.madic-unified .madic-unified-content{min-width:0;display:flex;flex-direction:column;min-height:100vh}
-body.madic-unified .madic-unified-content>header{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:76px;padding:16px clamp(20px,3vw,48px);background:#fff;border-bottom:1px solid #e1e9f0;flex-wrap:wrap}
-body.madic-unified .madic-unified-content>header .brand{font-size:22px;font-weight:850;color:#15374e;letter-spacing:.04em;text-decoration:none}
-body.madic-unified .madic-unified-content>header .brand span{color:#087f8b}
-body.madic-unified .madic-unified-content>header .brand small{font-size:10px;letter-spacing:.1em;margin-left:6px}
-body.madic-unified .toplinks{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
-body.madic-unified .toplinks>a{color:#15546a;text-decoration:none;font-weight:650;font-size:13px}
-body.madic-unified .madic-header-signout{background:transparent;border:0;color:#15546a;cursor:pointer;font-weight:650;font-size:13px;padding:7px}
-body.madic-unified .madic-lang-controls{display:flex;gap:4px;padding:3px;border:1px solid #d8e5ed;border-radius:9px;background:#f4f8fa}
-body.madic-unified .madic-lang-controls button{padding:6px 10px;border:0;border-radius:6px;background:transparent;color:#31576b;font-weight:750;cursor:pointer}
-body.madic-unified .madic-lang-controls button[aria-pressed=true]{background:#15546a;color:#fff}
-body.madic-unified .madic-unified-content>main{width:min(100% - 48px,1200px);max-width:1200px;margin:30px auto 50px;padding:0}
-body.madic-unified .madic-unified-content>footer{margin-top:auto}
-body.madic-unified .madic-skip-link{position:absolute;top:-100px;left:12px;z-index:100;background:#fff;padding:10px 14px}
-body.madic-unified .madic-skip-link:focus{top:12px}
-body.madic-unified .madic-unified-content a:focus-visible,body.madic-unified button:focus-visible{outline:3px solid #15a9ba;outline-offset:3px}
-@media(max-width:950px){body.madic-unified .madic-unified-layout{grid-template-columns:1fr}body.madic-unified .madic-unified-sidebar{position:static;height:auto;gap:10px;padding:14px}body.madic-unified .madic-unified-sidebar nav{display:flex;flex-wrap:wrap}body.madic-unified .madic-unified-sidebar nav a{padding:9px}body.madic-unified .madic-unified-foot{display:none}}
-@media(max-width:600px){body.madic-unified .madic-unified-content>main{width:calc(100% - 28px);margin:20px auto 36px}body.madic-unified .madic-unified-content>header{padding:12px 15px}body.madic-unified .madic-unified-sidebar nav a{font-size:12px}body.madic-unified .madic-provincial-main section{padding:17px}}
+:root {
+  font-family:
+    Inter,
+    system-ui,
+    -apple-system,
+    Segoe UI,
+    sans-serif;
+  color: #17324b;
+  background: #f4f7fb;
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+body.madic-unified {
+  margin: 0;
+  min-height: 100vh;
+  background: #f4f7fb;
+  color: #17324b;
+}
+body.madic-unified .madic-unified-layout {
+  display: grid;
+  grid-template-columns: 258px minmax(0, 1fr);
+  min-height: 100vh;
+}
+body.madic-unified .madic-unified-sidebar {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 25px 14px;
+  background: #10283b;
+  color: #e8f3fb;
+  overflow-y: auto;
+}
+body.madic-unified .madic-unified-brand {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 7px 9px 17px;
+  border-bottom: 1px solid #355166;
+}
+body.madic-unified .madic-unified-monogram {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: #fff;
+  padding: 5px;
+  flex-shrink: 0;
+}
+body.madic-unified .madic-unified-monogram img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+body.madic-unified .madic-unified-brand strong {
+  display: block;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  color: #fff;
+}
+body.madic-unified .madic-unified-brand small {
+  display: block;
+  font-size: 11px;
+  color: #b6cbd9;
+  margin-top: 3px;
+}
+body.madic-unified .madic-unified-caption {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: #9eb8c9;
+  padding: 0 12px;
+  font-weight: 700;
+}
+body.madic-unified .madic-unified-sidebar nav {
+  display: grid;
+  gap: 4px;
+}
+body.madic-unified .madic-unified-sidebar nav a {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 11px 12px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: #dceaf3;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+body.madic-unified .madic-unified-sidebar nav a:hover,
+body.madic-unified .madic-unified-sidebar nav a[aria-current="page"] {
+  background: #25475c;
+  color: #fff;
+}
+body.madic-unified .madic-unified-sidebar nav a.madic-v2-group-start {
+  margin-top: 8px;
+}
+body.madic-unified .madic-unified-sidebar nav a span {
+  display: inline-flex;
+  width: 19px;
+  height: 19px;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+body.madic-unified .madic-unified-sidebar nav .madic-heroicon {
+  width: 19px;
+  height: 19px;
+  filter: brightness(0) invert(1);
+  opacity: 0.86;
+}
+body.madic-unified .madic-unified-foot {
+  margin-top: auto;
+  padding: 15px 12px;
+  border-top: 1px solid #355166;
+  color: #9eb8c9;
+  font-size: 11px;
+}
+body.madic-unified .madic-unified-content {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+body.madic-unified .madic-unified-content > header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 76px;
+  padding: 16px clamp(20px, 3vw, 48px);
+  background: #fff;
+  border-bottom: 1px solid #e1e9f0;
+  flex-wrap: wrap;
+}
+body.madic-unified .madic-unified-content > header .brand {
+  font-size: 22px;
+  font-weight: 850;
+  color: #15374e;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+}
+body.madic-unified .madic-unified-content > header .brand span {
+  color: #087f8b;
+}
+body.madic-unified .madic-unified-content > header .brand small {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  margin-left: 6px;
+}
+body.madic-unified .toplinks {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+body.madic-unified .toplinks > a {
+  color: #15546a;
+  text-decoration: none;
+  font-weight: 650;
+  font-size: 13px;
+}
+body.madic-unified .madic-header-signout {
+  background: transparent;
+  border: 0;
+  color: #15546a;
+  cursor: pointer;
+  font-weight: 650;
+  font-size: 13px;
+  padding: 7px;
+}
+body.madic-unified .madic-lang-controls {
+  display: flex;
+  gap: 4px;
+  padding: 3px;
+  border: 1px solid #d8e5ed;
+  border-radius: 9px;
+  background: #f4f8fa;
+}
+body.madic-unified .madic-lang-controls button {
+  padding: 6px 10px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: #31576b;
+  font-weight: 750;
+  cursor: pointer;
+}
+body.madic-unified .madic-lang-controls button[aria-pressed="true"] {
+  background: #15546a;
+  color: #fff;
+}
+body.madic-unified .madic-unified-content > main {
+  width: min(100% - 48px, 1200px);
+  max-width: 1200px;
+  margin: 30px auto 50px;
+  padding: 0;
+}
+body.madic-unified .madic-unified-content > footer {
+  margin-top: auto;
+}
+body.madic-unified .madic-skip-link {
+  position: absolute;
+  top: -100px;
+  left: 12px;
+  z-index: 100;
+  background: #fff;
+  padding: 10px 14px;
+}
+body.madic-unified .madic-skip-link:focus {
+  top: 12px;
+}
+body.madic-unified .madic-unified-content a:focus-visible,
+body.madic-unified button:focus-visible {
+  outline: 3px solid #15a9ba;
+  outline-offset: 3px;
+}
+@media (max-width: 950px) {
+  body.madic-unified .madic-unified-layout {
+    grid-template-columns: 1fr;
+  }
+  body.madic-unified .madic-unified-sidebar {
+    position: static;
+    height: auto;
+    gap: 10px;
+    padding: 14px;
+  }
+  body.madic-unified .madic-unified-sidebar nav {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  body.madic-unified .madic-unified-sidebar nav a {
+    padding: 9px;
+  }
+  body.madic-unified .madic-unified-foot {
+    display: none;
+  }
+}
+@media (max-width: 600px) {
+  body.madic-unified .madic-unified-content > main {
+    width: calc(100% - 28px);
+    margin: 20px auto 36px;
+  }
+  body.madic-unified .madic-unified-content > header {
+    padding: 12px 15px;
+  }
+  body.madic-unified .madic-unified-sidebar nav a {
+    font-size: 12px;
+  }
+  body.madic-unified .madic-provincial-main section {
+    padding: 17px;
+  }
+}
 
 /* MADIC provincial tool: portal dashboard design */
-.madic-provincial-main{max-width:1300px!important;margin:0 auto!important;padding:12px 0 48px!important;color:inherit}
-.madic-provincial-main h1{font-size:clamp(1.65rem,3vw,2.4rem);margin:20px 0 12px}
-.madic-provincial-main>p{margin:0 0 22px;color:#587187}
-.madic-provincial-main section{background:#fff;border:1px solid #dce6ef;border-radius:16px;padding:26px;margin:20px 0;box-shadow:0 6px 22px rgba(10,37,64,.05)}
-.madic-provincial-main section h2{margin-top:0;color:#163954}
-.madic-provincial-main section a,.madic-provincial-main .back{color:#087f8b;font-weight:700}
-.madic-provincial-toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 18px;border-radius:12px;background:#10283b;color:#e9f7ff}
-.madic-provincial-toolbar button{border:1px solid #5c8c9d;background:#183d51;color:#fff;border-radius:8px;padding:7px 12px;cursor:pointer;margin-left:5px}
-.madic-provincial-main .back{display:inline-block;margin-bottom:16px}
-.madic-provincial-main>small{display:block;margin-top:20px;color:#5c7184}
-@media(max-width:650px){.madic-provincial-main section{padding:17px}.madic-provincial-toolbar{flex-wrap:wrap}}
-
+.madic-provincial-main {
+  max-width: 1300px !important;
+  margin: 0 auto !important;
+  padding: 12px 0 48px !important;
+  color: inherit;
+}
+.madic-provincial-main h1 {
+  font-size: clamp(1.65rem, 3vw, 2.4rem);
+  margin: 20px 0 12px;
+}
+.madic-provincial-main > p {
+  margin: 0 0 22px;
+  color: #587187;
+}
+.madic-provincial-main section {
+  background: #fff;
+  border: 1px solid #dce6ef;
+  border-radius: 16px;
+  padding: 26px;
+  margin: 20px 0;
+  box-shadow: 0 6px 22px rgba(10, 37, 64, 0.05);
+}
+.madic-provincial-main section h2 {
+  margin-top: 0;
+  color: #163954;
+}
+.madic-provincial-main section a,
+.madic-provincial-main .back {
+  color: #087f8b;
+  font-weight: 700;
+}
+.madic-provincial-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  border-radius: 12px;
+  background: #10283b;
+  color: #e9f7ff;
+}
+.madic-provincial-toolbar button {
+  border: 1px solid #5c8c9d;
+  background: #183d51;
+  color: #fff;
+  border-radius: 8px;
+  padding: 7px 12px;
+  cursor: pointer;
+  margin-left: 5px;
+}
+.madic-provincial-main .back {
+  display: inline-block;
+  margin-bottom: 16px;
+}
+.madic-provincial-main > small {
+  display: block;
+  margin-top: 20px;
+  color: #5c7184;
+}
+@media (max-width: 650px) {
+  .madic-provincial-main section {
+    padding: 17px;
+  }
+  .madic-provincial-toolbar {
+    flex-wrap: wrap;
+  }
+}
 
 /* Alberta : reproduction autonome de l'en-tete du tableau de bord CRIC. */
-body.madic-unified .madic-unified-layout{grid-template-columns:244px minmax(0,1fr)}
-body.madic-unified .madic-unified-sidebar{background:linear-gradient(175deg,#092342,#0b3152 60%,#08213d);padding:22px 14px;gap:19px}
-body.madic-unified .madic-unified-brand{gap:10px;padding:7px 7px 18px;border-bottom:1px solid #ffffff25}
-body.madic-unified .madic-unified-monogram{width:53px;height:53px;flex:0 0 53px;background:transparent;border-radius:0;padding:0}
-body.madic-unified .madic-unified-caption{font-size:10px;color:#a7c9db;letter-spacing:.18em;margin:5px 12px -12px;padding:0}
-body.madic-unified .madic-unified-sidebar nav{display:flex;flex-direction:column;gap:5px}
-body.madic-unified .madic-unified-sidebar nav a{gap:12px;min-height:43px;padding:10px 12px;border:1px solid transparent;font-size:.83rem;border-radius:10px;color:#c8dce9}
-body.madic-unified .madic-unified-sidebar nav a[aria-current="page"]{background:#1a6482;border:1px solid #62cbd5;box-shadow:inset 3px 0 #81e7e5;color:#fff}
-body.madic-unified .madic-unified-foot{border:1px solid #35638b;border-radius:12px;background:#143657;color:#dceefe}
+body.madic-unified .madic-unified-layout {
+  grid-template-columns: 244px minmax(0, 1fr);
+}
+body.madic-unified .madic-unified-sidebar {
+  background: linear-gradient(175deg, #092342, #0b3152 60%, #08213d);
+  padding: 22px 14px;
+  gap: 19px;
+}
+body.madic-unified .madic-unified-brand {
+  gap: 10px;
+  padding: 7px 7px 18px;
+  border-bottom: 1px solid #ffffff25;
+}
+body.madic-unified .madic-unified-monogram {
+  width: 53px;
+  height: 53px;
+  flex: 0 0 53px;
+  background: transparent;
+  border-radius: 0;
+  padding: 0;
+}
+body.madic-unified .madic-unified-caption {
+  font-size: 10px;
+  color: #a7c9db;
+  letter-spacing: 0.18em;
+  margin: 5px 12px -12px;
+  padding: 0;
+}
+body.madic-unified .madic-unified-sidebar nav {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+body.madic-unified .madic-unified-sidebar nav a {
+  gap: 12px;
+  min-height: 43px;
+  padding: 10px 12px;
+  border: 1px solid transparent;
+  font-size: 0.83rem;
+  border-radius: 10px;
+  color: #c8dce9;
+}
+body.madic-unified .madic-unified-sidebar nav a[aria-current="page"] {
+  background: #1a6482;
+  border: 1px solid #62cbd5;
+  box-shadow: inset 3px 0 #81e7e5;
+  color: #fff;
+}
+body.madic-unified .madic-unified-foot {
+  border: 1px solid #35638b;
+  border-radius: 12px;
+  background: #143657;
+  color: #dceefe;
+}
 
-body.madic-unified .madic-unified-content>main.madic-cric-reference-main{width:calc(100% - 80px);max-width:1450px;margin:28px auto 52px;padding:0!important}
-body.madic-unified .madic-unified-content>footer.madic-footer{background:#eef3fa;color:#143453}
-@media(max-width:1050px){@media(max-width:950px){body.madic-unified .madic-unified-layout{grid-template-columns:1fr}body.madic-unified .madic-unified-sidebar{position:relative;height:auto}body.madic-unified .madic-unified-sidebar nav{flex-direction:row;overflow-x:auto}body.madic-unified .madic-unified-content>main.madic-cric-reference-main{width:calc(100% - 36px)}}
-@media(max-width:600px){
-
-/* Alberta header: same structure and geometry as current cric-dashboard.html.
+body.madic-unified .madic-unified-content > main.madic-cric-reference-main {
+  width: calc(100% - 80px);
+  max-width: 1450px;
+  margin: 28px auto 52px;
+  padding: 0 !important;
+}
+body.madic-unified .madic-unified-content > footer.madic-footer {
+  background: #eef3fa;
+  color: #143453;
+}
+@media (max-width: 1050px) {
+  @media (max-width: 950px) {
+    body.madic-unified .madic-unified-layout {
+      grid-template-columns: 1fr;
+    }
+    body.madic-unified .madic-unified-sidebar {
+      position: relative;
+      height: auto;
+    }
+    body.madic-unified .madic-unified-sidebar nav {
+      flex-direction: row;
+      overflow-x: auto;
+    }
+    body.madic-unified .madic-unified-content > main.madic-cric-reference-main {
+      width: calc(100% - 36px);
+    }
+  }
+  @media (max-width: 600px) {
+    /* Alberta header: same structure and geometry as current cric-dashboard.html.
    Autonomous styles: no cric-dashboard.css import or special header class. */
-body.madic-unified[data-page="terre-neuve-labrador"] .madic-unified-content {
-  padding:0 clamp(15px,2.4vw,38px) 48px;
-}
-body.madic-unified[data-page="terre-neuve-labrador"] .madic-unified-content > header {
-  position:relative; width:auto; min-height:72px; height:auto;
-  margin:0 calc(-1 * clamp(15px,2.4vw,38px)) 22px;
-  padding:15px clamp(18px,2.5vw,35px);
-  display:flex; align-items:center; justify-content:space-between; gap:16px;
-  background:#fff; border:0; border-bottom:1px solid #dce6f1;
-  border-radius:0; box-shadow:0 3px 16px #12304c0a; flex-wrap:nowrap;
-}
-body.madic-unified[data-page="terre-neuve-labrador"] .madic-unified-content > header .brand {
-  display:inline-block; font-size:1.35rem; line-height:1.2; font-weight:800;
-  letter-spacing:.015em; color:#122a50; text-decoration:none; white-space:nowrap;
-}
-body.madic-unified[data-page="terre-neuve-labrador"] .madic-unified-content > header .brand span {color:#50bfdf}
-body.madic-unified[data-page="terre-neuve-labrador"] .madic-unified-content > header .brand small {
-  font-size:.8em; letter-spacing:inherit; margin-left:0; color:#155d87; font-weight:800;
-}
-body.madic-unified[data-page="terre-neuve-labrador"] .madic-unified-content > header .toplinks {
-  display:flex; align-items:center; gap:14px; flex-wrap:nowrap;
-}
-body.madic-unified[data-page="terre-neuve-labrador"] .madic-unified-content > header .toplinks > a:not(.madic-top-notification),
-body.madic-unified[data-page="terre-neuve-labrador"] .madic-unified-content > header .madic-header-signout {
-  color:#183759; font-weight:700; font-size:inherit; text-decoration:none; white-space:nowrap;
-}
-body.madic-unified[data-page="terre-neuve-labrador"] .madic-unified-content > header .madic-header-signout {
-  background:transparent; border:0; padding:11px 16px; border-radius:11px; cursor:pointer;
-}
-body.madic-unified[data-page="terre-neuve-labrador"] .madic-unified-content > header .madic-lang-controls {
-  display:flex; gap:7px; align-items:center; order:1; padding:0; background:transparent; border:0;
-}
-body.madic-unified[data-page="terre-neuve-labrador"] .madic-unified-content > header .madic-lang-controls button {
-  min-width:49px; min-height:43px; border:1px solid #54b7d9; border-radius:10px;
-  background:#eef8fc; color:#122a50; font-weight:700; cursor:pointer;
-}
-body.madic-unified[data-page="terre-neuve-labrador"] .madic-unified-content > header .madic-lang-controls button[aria-pressed="true"] {
-  background:#389ec0; color:#fff;
-}
-body.madic-unified[data-page="terre-neuve-labrador"] .madic-unified-content > header .madic-top-notification {
-  order:2; width:45px; height:45px; border:1px solid #dce6f1; border-radius:50%;
-  display:grid; place-items:center;
-}
-body.madic-unified[data-page="terre-neuve-labrador"] .madic-unified-content > header .madic-top-notification img {width:22px;height:22px;filter:none;opacity:1}
-@media(max-width:720px) {
-  body.madic-unified[data-page="terre-neuve-labrador"] .madic-unified-content > header {padding:12px 14px;flex-wrap:wrap}
-  body.madic-unified[data-page="terre-neuve-labrador"] .madic-unified-content > header .toplinks {flex-wrap:wrap;gap:8px}
+    body.madic-unified[data-page="terre-neuve-labrador"]
+      .madic-unified-content {
+      padding: 0 clamp(15px, 2.4vw, 38px) 48px;
+    }
+    body.madic-unified[data-page="terre-neuve-labrador"]
+      .madic-unified-content
+      > header {
+      position: relative;
+      width: auto;
+      min-height: 72px;
+      height: auto;
+      margin: 0 calc(-1 * clamp(15px, 2.4vw, 38px)) 22px;
+      padding: 15px clamp(18px, 2.5vw, 35px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      background: #fff;
+      border: 0;
+      border-bottom: 1px solid #dce6f1;
+      border-radius: 0;
+      box-shadow: 0 3px 16px #12304c0a;
+      flex-wrap: nowrap;
+    }
+    body.madic-unified[data-page="terre-neuve-labrador"]
+      .madic-unified-content
+      > header
+      .brand {
+      display: inline-block;
+      font-size: 1.35rem;
+      line-height: 1.2;
+      font-weight: 800;
+      letter-spacing: 0.015em;
+      color: #122a50;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    body.madic-unified[data-page="terre-neuve-labrador"]
+      .madic-unified-content
+      > header
+      .brand
+      span {
+      color: #50bfdf;
+    }
+    body.madic-unified[data-page="terre-neuve-labrador"]
+      .madic-unified-content
+      > header
+      .brand
+      small {
+      font-size: 0.8em;
+      letter-spacing: inherit;
+      margin-left: 0;
+      color: #155d87;
+      font-weight: 800;
+    }
+    body.madic-unified[data-page="terre-neuve-labrador"]
+      .madic-unified-content
+      > header
+      .toplinks {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: nowrap;
+    }
+    body.madic-unified[data-page="terre-neuve-labrador"]
+      .madic-unified-content
+      > header
+      .toplinks
+      > a:not(.madic-top-notification),
+    body.madic-unified[data-page="terre-neuve-labrador"]
+      .madic-unified-content
+      > header
+      .madic-header-signout {
+      color: #183759;
+      font-weight: 700;
+      font-size: inherit;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    body.madic-unified[data-page="terre-neuve-labrador"]
+      .madic-unified-content
+      > header
+      .madic-header-signout {
+      background: transparent;
+      border: 0;
+      padding: 11px 16px;
+      border-radius: 11px;
+      cursor: pointer;
+    }
+    body.madic-unified[data-page="terre-neuve-labrador"]
+      .madic-unified-content
+      > header
+      .madic-lang-controls {
+      display: flex;
+      gap: 7px;
+      align-items: center;
+      order: 1;
+      padding: 0;
+      background: transparent;
+      border: 0;
+    }
+    body.madic-unified[data-page="terre-neuve-labrador"]
+      .madic-unified-content
+      > header
+      .madic-lang-controls
+      button {
+      min-width: 49px;
+      min-height: 43px;
+      border: 1px solid #54b7d9;
+      border-radius: 10px;
+      background: #eef8fc;
+      color: #122a50;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    body.madic-unified[data-page="terre-neuve-labrador"]
+      .madic-unified-content
+      > header
+      .madic-lang-controls
+      button[aria-pressed="true"] {
+      background: #389ec0;
+      color: #fff;
+    }
+    body.madic-unified[data-page="terre-neuve-labrador"]
+      .madic-unified-content
+      > header
+      .madic-top-notification {
+      order: 2;
+      width: 45px;
+      height: 45px;
+      border: 1px solid #dce6f1;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+    }
+    body.madic-unified[data-page="terre-neuve-labrador"]
+      .madic-unified-content
+      > header
+      .madic-top-notification
+      img {
+      width: 22px;
+      height: 22px;
+      filter: none;
+      opacity: 1;
+    }
+    @media (max-width: 720px) {
+      body.madic-unified[data-page="terre-neuve-labrador"]
+        .madic-unified-content
+        > header {
+        padding: 12px 14px;
+        flex-wrap: wrap;
+      }
+      body.madic-unified[data-page="terre-neuve-labrador"]
+        .madic-unified-content
+        > header
+        .toplinks {
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+    }
+  }
 }
 
+/* Conteneurs des outils provinciaux alignés sur le tableau de bord CRIC. */
+@media screen {
+  html
+    body.madic-unified[data-page="terre-neuve-labrador"]
+    > .madic-unified-layout {
+    min-height: 100vh;
+    gap: 0;
+  }
+
+  html
+    body.madic-unified[data-page="terre-neuve-labrador"]
+    > .madic-unified-layout
+    > .madic-unified-content {
+    min-width: 0;
+    max-width: none;
+    width: 100%;
+    padding: 0 !important;
+    background: #eef3f9 !important;
+  }
+
+  html
+    body.madic-unified[data-page="terre-neuve-labrador"]
+    > .madic-unified-layout
+    > .madic-unified-sidebar {
+    display: flex !important;
+    flex-direction: column;
+    position: sticky;
+    top: 0;
+    box-sizing: border-box;
+    height: 100vh;
+    margin: 0;
+    gap: 19px;
+    overflow-y: auto;
+    background: linear-gradient(175deg, #092342, #0b3152 60%, #08213d);
+    border-right: 1px solid #244867;
+  }
+
+  html
+    body.madic-unified[data-page="terre-neuve-labrador"]
+    > .madic-unified-layout
+    > .madic-unified-sidebar
+    > .madic-unified-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 7px 7px 18px;
+    border-bottom: 1px solid #ffffff25;
+  }
+
+  html
+    body.madic-unified[data-page="terre-neuve-labrador"]
+    .madic-unified-brand
+    .madic-unified-monogram {
+    display: grid;
+    place-items: center;
+    width: 53px;
+    height: 53px;
+    flex: 0 0 53px;
+    padding: 0 !important;
+    border: 0 !important;
+    background: transparent !important;
+  }
+
+  html
+    body.madic-unified[data-page="terre-neuve-labrador"]
+    .madic-unified-brand
+    .madic-unified-monogram
+    img {
+    display: block;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain;
+  }
+
+  html
+    body.madic-unified[data-page="terre-neuve-labrador"]
+    .madic-unified-brand
+    strong {
+    display: block;
+    color: #f2fbff;
+    font-size: 14px;
+    letter-spacing: 0.02em;
+  }
+
+  html
+    body.madic-unified[data-page="terre-neuve-labrador"]
+    .madic-unified-brand
+    small {
+    display: block;
+    margin-top: 5px;
+    color: #d5e9f6;
+    font-size: 11px;
+  }
+
+  html
+    body.madic-unified[data-page="terre-neuve-labrador"]
+    > .madic-unified-layout
+    > .madic-unified-sidebar
+    > nav
+    > a {
+    display: flex;
+    align-items: center;
+    color: #c8dce9 !important;
+    gap: 12px;
+    border-radius: 10px;
+    text-decoration: none !important;
+  }
+
+  html
+    body.madic-unified[data-page="terre-neuve-labrador"]
+    > .madic-unified-layout
+    > .madic-unified-sidebar
+    > nav
+    > a:is(:hover, :focus-visible) {
+    background: #194e70;
+    color: #fff !important;
+  }
+
+  html
+    body.madic-unified[data-page="terre-neuve-labrador"]
+    > .madic-unified-layout
+    > .madic-unified-sidebar
+    > nav
+    > a[aria-current="page"] {
+    background: #1a6482 !important;
+    color: #fff !important;
+    box-shadow: inset 3px 0 #81e7e5;
+  }
+}
+
+body.madic-unified[data-page="terre-neuve-labrador"] .madic-provincial-head {
+  display: block;
+  box-sizing: border-box;
+  padding: clamp(18px, 2.3vw, 30px);
+  margin: 0 0 18px;
+  border: 1px solid #b4cde0;
+  border-radius: 20px;
+  background:
+    linear-gradient(90deg, #0c2b4f 0%, #174a75dd 47%, #0c2b4f18 100%),
+    url("../img/MADIC_Header_4096x2304.png") center 52% / cover no-repeat !important;
+  background-position: center 48%;
+  box-shadow: 0 12px 28px #173b641b;
+  color: #fff;
+}
+
+body.madic-unified[data-page="terre-neuve-labrador"]
+  .madic-provincial-head
+  :is(h1, p, .intro, .eyebrow, .brand, .brand span) {
+  color: #fff !important;
+}
+
+body.madic-unified[data-page="terre-neuve-labrador"] .madic-provincial-head h1 {
+  margin: 4px 0 7px;
+}
+
+body.madic-unified[data-page="terre-neuve-labrador"]
+  .madic-provincial-head
+  p:last-child {
+  margin-bottom: 0;
+}
+
+/* Navigation et en-tête communs de l’espace professionnel CRIC. */
+html
+  body.madic-unified[data-page="terre-neuve-labrador"]
+  > .madic-unified-layout
+  > .madic-unified-sidebar
+  > nav {
+  align-items: stretch;
+  font-family:
+    Inter,
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    sans-serif;
+}
+
+html
+  body.madic-unified[data-page="terre-neuve-labrador"]
+  > .madic-unified-layout
+  > .madic-unified-sidebar
+  > nav
+  > a
+  > .madic-cric-menu-label {
+  display: block !important;
+  flex: 0 1 auto !important;
+  width: auto !important;
+  text-align: start !important;
+}
+
+html
+  body.madic-unified[data-page="terre-neuve-labrador"]
+  > .madic-unified-layout
+  > header.madic-cric-standard-header {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  flex-wrap: nowrap !important;
+  box-sizing: border-box !important;
+  width: 100% !important;
+  max-width: none !important;
+  height: auto !important;
+  min-height: 78px !important;
+  margin: 0 !important;
+  padding: 12px 34px !important;
+  gap: 14px !important;
+  border: 0 !important;
+  border-bottom: 1px solid #dbe6f0 !important;
+  border-radius: 0 !important;
+  background: #fff !important;
+  box-shadow: none !important;
+  font:
+    14px/1.3 Inter,
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    sans-serif !important;
+}
+
+html
+  body.madic-unified[data-page="terre-neuve-labrador"]
+  > .madic-unified-layout
+  > header.madic-cric-standard-header
+  > .brand {
+  display: block !important;
+  flex: 0 0 auto;
+  margin: 0 !important;
+  padding: 0 !important;
+  color: #122a50 !important;
+  font: inherit !important;
+  font-size: 22px !important;
+  font-weight: 850 !important;
+  letter-spacing: 0.015em !important;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+html
+  body.madic-unified[data-page="terre-neuve-labrador"]
+  > .madic-unified-layout
+  > header.madic-cric-standard-header
+  > .brand
+  > span {
+  color: #48d5ec !important;
+}
+
+html
+  body.madic-unified[data-page="terre-neuve-labrador"]
+  > .madic-unified-layout
+  > header.madic-cric-standard-header
+  > .brand
+  > small {
+  color: #155d87 !important;
+  font-size: 0.8em !important;
+  letter-spacing: inherit !important;
+}
+
+html
+  body.madic-unified[data-page="terre-neuve-labrador"]
+  > .madic-unified-layout
+  > header.madic-cric-standard-header
+  > nav.toplinks {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  flex-wrap: wrap !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  gap: 8px !important;
+  font: inherit !important;
+}
+
+html
+  body.madic-unified[data-page="terre-neuve-labrador"]
+  > .madic-unified-layout
+  > header.madic-cric-standard-header
+  > nav.toplinks
+  > a:not(.madic-top-notification),
+html
+  body.madic-unified[data-page="terre-neuve-labrador"]
+  > .madic-unified-layout
+  > header.madic-cric-standard-header
+  > nav.toplinks
+  > button.madic-header-signout[id] {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  min-height: 36px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  color: #123553 !important;
+  font: inherit !important;
+  font-weight: 700 !important;
+  white-space: nowrap;
+  text-decoration: none !important;
+}
+
+html
+  body.madic-unified[data-page="terre-neuve-labrador"]
+  > .madic-unified-layout
+  > header.madic-cric-standard-header
+  > nav.toplinks
+  > :is(a:not(.madic-top-notification), button.madic-header-signout[id]):hover {
+  text-decoration: underline !important;
+}
+
+html
+  body.madic-unified[data-page="terre-neuve-labrador"]
+  > .madic-unified-layout
+  > header.madic-cric-standard-header
+  > nav.toplinks
+  > .madic-lang-controls {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 5px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: none !important;
+  box-shadow: none !important;
+}
+
+html
+  body.madic-unified[data-page="terre-neuve-labrador"]
+  > .madic-unified-layout
+  > header.madic-cric-standard-header
+  > nav.toplinks
+  > .madic-lang-controls
+  > button[data-lang] {
+  box-sizing: border-box;
+  height: 36px !important;
+  min-height: 36px !important;
+  min-width: 40px !important;
+  padding: 0 10px !important;
+  margin: 0 !important;
+  border: 1px solid #55b9dc !important;
+  border-radius: 9px !important;
+  background: #eef8fc !important;
+  color: #123553 !important;
+  font: inherit !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  box-shadow: none !important;
+  cursor: pointer;
+}
+
+html
+  body.madic-unified[data-page="terre-neuve-labrador"]
+  > .madic-unified-layout
+  > header.madic-cric-standard-header
+  > nav.toplinks
+  > .madic-lang-controls
+  > button[data-lang][aria-pressed="true"] {
+  background: #1683a1 !important;
+  color: #fff !important;
+}
+
+html
+  body.madic-unified[data-page="terre-neuve-labrador"]
+  > .madic-unified-layout
+  > header.madic-cric-standard-header
+  > nav.toplinks
+  > .madic-top-notification {
+  position: relative !important;
+  display: inline-grid !important;
+  place-items: center;
+  flex: 0 0 36px !important;
+  box-sizing: border-box;
+  width: 36px !important;
+  min-width: 36px !important;
+  height: 36px !important;
+  min-height: 36px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 1px solid #dbe6f0 !important;
+  border-radius: 50% !important;
+  background: #fff !important;
+  color: #123553 !important;
+  order: 0 !important;
+}
+
+html
+  body.madic-unified[data-page="terre-neuve-labrador"]
+  > .madic-unified-layout
+  > header.madic-cric-standard-header
+  > nav.toplinks
+  > .madic-top-notification
+  > span:first-child {
+  display: grid;
+  place-items: center;
+}
+
+html
+  body.madic-unified[data-page="terre-neuve-labrador"]
+  > .madic-unified-layout
+  > header.madic-cric-standard-header
+  > nav.toplinks
+  > .madic-top-notification
+  svg {
+  display: block;
+  width: 20px !important;
+  height: 20px !important;
+}
+
+html
+  body.madic-unified[data-page="terre-neuve-labrador"]
+  > .madic-unified-layout
+  > header.madic-cric-standard-header
+  > nav.toplinks
+  .madic-top-notification-count:not([hidden]) {
+  position: absolute;
+  right: -6px;
+  top: -6px;
+  display: grid;
+  place-items: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 4px;
+  border-radius: 12px;
+  background: #b52e47;
+  color: #fff;
+  font:
+    800 10px/1 Inter,
+    system-ui,
+    sans-serif;
+}
+
+html
+  body.madic-unified[data-page="terre-neuve-labrador"]
+  > .madic-unified-layout
+  > header.madic-cric-standard-header
+  > nav.toplinks
+  .madic-top-notification-count[hidden] {
+  display: none !important;
+}
+html
+  body.madic-unified[data-page="terre-neuve-labrador"]
+  > .madic-unified-layout
+  > header.madic-cric-standard-header
+  > nav.toplinks
+  :is(a, button):focus-visible {
+  outline: 2px solid #178cb4;
+  outline-offset: 2px;
+}
+
+@media screen and (max-width: 1080px) {
+  html
+    body.madic-unified[data-page="terre-neuve-labrador"]
+    > .madic-unified-layout
+    > header.madic-cric-standard-header {
+    padding-inline: 18px !important;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  html
+    body.madic-unified[data-page="terre-neuve-labrador"]
+    > .madic-unified-layout {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  html
+    body.madic-unified[data-page="terre-neuve-labrador"]
+    > .madic-unified-layout
+    > .madic-unified-sidebar {
+    position: relative !important;
+    inset: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    box-sizing: border-box;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    height: auto !important;
+    padding: 13px !important;
+    gap: 10px !important;
+    border-right: 0 !important;
+  }
+
+  html
+    body.madic-unified[data-page="terre-neuve-labrador"]
+    > .madic-unified-layout
+    > .madic-unified-sidebar
+    > .madic-unified-brand {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    padding: 4px 6px 14px !important;
+  }
+
+  html
+    body.madic-unified[data-page="terre-neuve-labrador"]
+    > .madic-unified-layout
+    > .madic-unified-sidebar
+    .madic-unified-monogram {
+    display: grid !important;
+    place-items: center;
+    width: 53px !important;
+    height: 53px !important;
+    flex: 0 0 53px !important;
+  }
+
+  html
+    body.madic-unified[data-page="terre-neuve-labrador"]
+    > .madic-unified-layout
+    > .madic-unified-sidebar
+    .madic-unified-monogram
+    img {
+    display: block;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain;
+  }
+
+  html
+    body.madic-unified[data-page="terre-neuve-labrador"]
+    > .madic-unified-layout
+    > .madic-unified-sidebar
+    > :is(.madic-unified-caption, .madic-unified-foot) {
+    display: none !important;
+  }
+
+  html
+    body.madic-unified[data-page="terre-neuve-labrador"]
+    > .madic-unified-layout
+    > .madic-unified-sidebar
+    > nav {
+    display: flex !important;
+    flex-flow: row nowrap !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box;
+    margin: 0 !important;
+    padding: 2px 2px 5px !important;
+    gap: 7px !important;
+    overflow-x: auto !important;
+    overflow-y: hidden;
+    scroll-behavior: auto;
+  }
+
+  html
+    body.madic-unified[data-page="terre-neuve-labrador"]
+    > .madic-unified-layout
+    > .madic-unified-sidebar
+    > nav
+    > a {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    flex: 0 0 auto !important;
+    box-sizing: border-box;
+    height: 40px !important;
+    min-height: 40px !important;
+    margin: 0 !important;
+    padding: 0 12px !important;
+    gap: 9px !important;
+    border: 1px solid transparent !important;
+    border-radius: 10px !important;
+    font:
+      700 13px/1.2 Inter,
+      system-ui,
+      -apple-system,
+      "Segoe UI",
+      sans-serif !important;
+    white-space: nowrap !important;
+    text-decoration: none !important;
+    transform: none !important;
+  }
+
+  html
+    body.madic-unified[data-page="terre-neuve-labrador"]
+    > .madic-unified-layout
+    > .madic-unified-sidebar
+    > nav
+    > a[aria-current="page"] {
+    border-color: #62cbd5 !important;
+    background: #1a6482 !important;
+    color: #fff !important;
+    box-shadow: inset 3px 0 #81e7e5;
+  }
+
+  html
+    body.madic-unified[data-page="terre-neuve-labrador"]
+    > .madic-unified-layout
+    > .madic-unified-sidebar
+    > nav
+    > a
+    > span:first-child {
+    display: grid !important;
+    place-items: center;
+    width: 22px !important;
+    flex: 0 0 22px !important;
+  }
+
+  html
+    body.madic-unified[data-page="terre-neuve-labrador"]
+    > .madic-unified-layout
+    > .madic-unified-sidebar
+    > nav
+    .madic-heroicon {
+    display: block;
+    width: 20px !important;
+    height: 20px !important;
+    object-fit: contain;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  html
+    body.madic-unified[data-page="terre-neuve-labrador"]
+    > .madic-unified-layout
+    > header.madic-cric-standard-header {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    justify-content: center !important;
+    padding: 14px 16px !important;
+    gap: 8px !important;
+  }
+
+  html
+    body.madic-unified[data-page="terre-neuve-labrador"]
+    > .madic-unified-layout
+    > header.madic-cric-standard-header
+    > nav.toplinks {
+    width: 100%;
+    justify-content: flex-start !important;
+  }
+}
+
+@media screen and (min-width: 851px) {
+  html
+    body.madic-unified[data-page="terre-neuve-labrador"]
+    > .madic-unified-layout {
+    grid-template-columns: 244px minmax(0, 1fr) !important;
+  }
+
+  html
+    body.madic-unified[data-page="terre-neuve-labrador"]
+    > .madic-unified-layout
+    > .madic-unified-sidebar {
+    box-sizing: border-box;
+    width: 244px !important;
+    min-width: 244px !important;
+    padding: 22px 14px !important;
+  }
+
+  html
+    body.madic-unified[data-page="terre-neuve-labrador"]
+    > .madic-unified-layout
+    > .madic-unified-sidebar
+    > nav {
+    display: flex !important;
+    flex-flow: column nowrap !important;
+    gap: 5px !important;
+  }
+
+  html
+    body.madic-unified[data-page="terre-neuve-labrador"]
+    > .madic-unified-layout
+    > .madic-unified-sidebar
+    > nav
+    > a {
+    align-items: center !important;
+    min-height: 43px !important;
+    padding: 10px 12px !important;
+    font:
+      700 13px/1.25 Inter,
+      system-ui,
+      -apple-system,
+      "Segoe UI",
+      sans-serif !important;
+  }
+}
+
+/* En-tête avant le menu dans le flux, menu latéral sur ordinateur. */
+@media screen {
+  html
+    body.madic-unified[data-page="terre-neuve-labrador"]
+    > .madic-unified-layout {
+    display: grid !important;
+    grid-template-rows: auto minmax(0, 1fr);
+  }
+
+  html
+    body.madic-unified[data-page="terre-neuve-labrador"]
+    > .madic-unified-layout
+    > .madic-unified-content {
+    min-height: 0;
+  }
+}
+
+@media screen and (min-width: 851px) {
+  html
+    body.madic-unified[data-page="terre-neuve-labrador"]
+    > .madic-unified-layout
+    > header {
+    grid-area: 1 / 2;
+  }
+
+  html
+    body.madic-unified[data-page="terre-neuve-labrador"]
+    > .madic-unified-layout
+    > .madic-unified-sidebar {
+    grid-area: 1 / 1 / 3 / 2;
+    align-self: start;
+  }
+
+  html
+    body.madic-unified[data-page="terre-neuve-labrador"]
+    > .madic-unified-layout
+    > .madic-unified-content {
+    grid-area: 2 / 2;
+  }
+}
+
+/* Tracés, dimensions et couleur des pictogrammes du portail client. */
+html
+  body.madic-unified[data-page="terre-neuve-labrador"]
+  > .madic-unified-layout
+  > .madic-unified-sidebar
+  > nav
+  > a
+  > span:first-child {
+  width: 20px !important;
+  flex: 0 0 20px !important;
+}
+
+html
+  body.madic-unified[data-page="terre-neuve-labrador"]
+  > .madic-unified-layout
+  > .madic-unified-sidebar
+  > nav
+  .madic-nav-icon {
+  display: block;
+  width: 20px;
+  height: 20px;
+  color: #77d6d0;
+}
+
+@media screen and (max-width: 850px) {
+  html
+    body.madic-unified[data-page="terre-neuve-labrador"]
+    > .madic-unified-layout {
+    grid-template-columns: minmax(0, 1fr) !important;
+    grid-template-rows: auto auto minmax(0, 1fr);
+  }
+
+  html
+    body.madic-unified[data-page="terre-neuve-labrador"]
+    > .madic-unified-layout
+    > header.madic-cric-standard-header {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: start !important;
+    height: auto !important;
+    min-height: 0 !important;
+    padding: 12px 16px !important;
+    gap: 8px 10px !important;
+  }
+
+  html
+    body.madic-unified[data-page="terre-neuve-labrador"]
+    > .madic-unified-layout
+    > header.madic-cric-standard-header
+    > .brand {
+    min-width: 0;
+    align-self: start;
+    font-size: clamp(16px, 4.8vw, 24px) !important;
+    letter-spacing: 0.045em !important;
+  }
+
+  html
+    body.madic-unified[data-page="terre-neuve-labrador"]
+    > .madic-unified-layout
+    > header.madic-cric-standard-header
+    > .brand
+    > small {
+    color: #a5b9d0 !important;
+  }
+
+  html
+    body.madic-unified[data-page="terre-neuve-labrador"]
+    > .madic-unified-layout
+    > header.madic-cric-standard-header
+    > nav.toplinks {
+    display: grid !important;
+    grid-template-columns: auto auto;
+    justify-content: end !important;
+    justify-items: end;
+    width: auto !important;
+    gap: 6px clamp(7px, 2vw, 16px) !important;
+    font-size: clamp(12px, 2.65vw, 14px) !important;
+    reading-flow: grid-rows;
+  }
+
+  html
+    body.madic-unified[data-page="terre-neuve-labrador"]
+    > .madic-unified-layout
+    > header.madic-cric-standard-header
+    > nav.toplinks
+    > :is(a:not(.madic-top-notification), button.madic-header-signout[id]) {
+    min-height: 30px !important;
+    font-weight: 400 !important;
+    grid-row: 1;
+  }
+
+  html
+    body.madic-unified[data-page="terre-neuve-labrador"]
+    > .madic-unified-layout
+    > header.madic-cric-standard-header
+    > nav.toplinks
+    > .madic-top-notification {
+    grid-area: 2 / 1;
+    width: 40px !important;
+    height: 40px !important;
+  }
+
+  html
+    body.madic-unified[data-page="terre-neuve-labrador"]
+    > .madic-unified-layout
+    > header.madic-cric-standard-header
+    > nav.toplinks
+    > .madic-lang-controls {
+    grid-area: 2 / 2;
+  }
+
+  html
+    body.madic-unified[data-page="terre-neuve-labrador"]
+    > .madic-unified-layout
+    > .madic-unified-sidebar {
+    width: auto !important;
+    max-width: none !important;
+    margin: 12px 16px 0 !important;
+    padding: 13px 12px 30px !important;
+    gap: 0 !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: linear-gradient(180deg, #162b4d, #1b365b) !important;
+  }
+
+  html
+    body.madic-unified[data-page="terre-neuve-labrador"]
+    > .madic-unified-layout
+    > .madic-unified-sidebar
+    > .madic-unified-brand {
+    gap: 11px !important;
+    padding: 17px 7px 12px !important;
+    border-bottom-color: #2b4656;
+  }
+
+  html
+    body.madic-unified[data-page="terre-neuve-labrador"]
+    > .madic-unified-layout
+    > .madic-unified-sidebar
+    .madic-unified-monogram {
+    width: 39px !important;
+    height: 39px !important;
+    flex-basis: 39px !important;
+  }
+
+  html
+    body.madic-unified[data-page="terre-neuve-labrador"]
+    > .madic-unified-layout
+    > .madic-unified-sidebar
+    > nav {
+    margin-top: 10px !important;
+    padding: 12px 0 0 !important;
+    gap: 5px !important;
+    scrollbar-width: thin;
+  }
+
+  html
+    body.madic-unified[data-page="terre-neuve-labrador"]
+    > .madic-unified-layout
+    > .madic-unified-sidebar
+    > nav
+    > a {
+    height: auto !important;
+    min-height: 38px !important;
+    padding: 9px 12px !important;
+    gap: 12px !important;
+    border: 0 !important;
+    font:
+      600 0.87rem/1.25 Inter,
+      system-ui,
+      sans-serif !important;
+  }
+
+  html
+    body.madic-unified[data-page="terre-neuve-labrador"]
+    > .madic-unified-layout
+    > .madic-unified-sidebar
+    > nav
+    > a[aria-current="page"] {
+    border-inline-start: 3px solid #62cbd5 !important;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  html
+    body.madic-unified[data-page="terre-neuve-labrador"]
+    > .madic-unified-layout
+    > header.madic-cric-standard-header {
+    padding-inline: 12px !important;
+  }
+}

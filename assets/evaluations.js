@@ -49,6 +49,7 @@ const translations = {
     "footer.directory": "Répertoire de l’immigration",
     "footer.help": "Centre d’aide",
     "footer.privacy": "Confidentialité et conditions",
+    "footer.terms": "Conditions d’utilisation",
     "footer.copyright": "Tous les droits réservés.",
     "footer.account": "Compte",
     "footer.createAccount": "Créer un compte",
@@ -65,6 +66,7 @@ const translations = {
     "footer.directory": "Répertoire Immigration",
     "footer.help": "Centre d'aide",
     "footer.privacy": "Confidentialité et conditions",
+    "footer.terms": "Conditions d’utilisation",
 
     /*blogue.html*/
 
@@ -769,6 +771,7 @@ const translations = {
     "footer.directory": "Immigration Directory",
     "footer.help": "Help Centre",
     "footer.privacy": "Privacy and Terms",
+    "footer.terms": "Terms of use",
     "footer.copyright": "All rights reserved.",
 
     /*blogue.html*/

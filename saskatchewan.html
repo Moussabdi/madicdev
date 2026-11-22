@@ -22,187 +22,362 @@
       >Aller au contenu principal</a
     >
     <div class="madic-unified-layout">
+      <header class="madic-cric-standard-header">
+        <a class="brand" href="connexion.html"
+          >MADI<span>C</span>
+          <small data-fr="PORTAIL" data-en="PORTAL">PORTAIL</small></a
+        >
+        <nav aria-label="Navigation du compte" class="toplinks">
+          <a
+            aria-label="Notifications"
+            class="madic-top-notification"
+            href="cric-dashboard.html#cricNotificationsPanel"
+            title="Notifications"
+          >
+            <span aria-hidden="true"
+              ><svg
+                viewBox="0 0 24 24"
+                width="24"
+                height="24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"
+                ></path>
+                <path d="M10 21h4"></path></svg></span
+            ><span class="madic-top-notification-count" hidden></span>
+          </a>
+          <button
+            class="madic-header-signout"
+            data-en="Sign out"
+            data-fr="Déconnexion"
+            data-madic-en="Sign out"
+            data-madic-fr="Déconnexion"
+            id="logout"
+            type="button"
+          >
+            Déconnexion
+          </button>
+          <a href="cric-dashboard.html" data-fr="Mon espace" data-en="My space"
+            >Mon espace</a
+          >
+          <div
+            aria-label="Langue / Language"
+            class="madic-lang-controls"
+            role="group"
+          >
+            <button
+              aria-label="Français"
+              data-lang="fr"
+              type="button"
+              aria-pressed="true"
+            >
+              FR</button
+            ><button
+              aria-label="English"
+              data-lang="en"
+              type="button"
+              aria-pressed="false"
+            >
+              EN
+            </button>
+          </div>
+        </nav>
+      </header>
       <aside aria-label="Navigation du portail" class="madic-unified-sidebar">
         <div class="madic-unified-brand">
           <span class="madic-unified-monogram"
             ><img alt="Logo MADIC" src="img/logo-madic.svg" /></span
           ><span
             ><strong>MADIC PORTAIL</strong
-            ><small>Espace professionnel</small></span
+            ><small
+              data-fr="Espace professionnel"
+              data-en="Professional workspace"
+              >Espace professionnel</small
+            ></span
           >
         </div>
         <div class="madic-unified-caption">NAVIGATION</div>
         <nav>
-          <a data-madic-page="cric-dashboard.html" href="cric-dashboard.html"
-            ><span aria-hidden="true"
-              ><img
-                alt=""
+          <a href="cric-dashboard.html" data-madic-page="cric-dashboard.html">
+            <span aria-hidden="true"
+              ><svg
                 aria-hidden="true"
-                class="madic-heroicon"
-                decoding="async"
-                loading="eager"
-                src="https://raw.githubusercontent.com/tailwindlabs/heroicons/v2.2.0/optimized/24/outline/squares-2x2.svg" /></span
-            >Vue d’ensemble</a
-          ><a
-            class="madic-v2-group-start"
-            data-madic-page="gestion-clients-cric.html"
+                class="madic-nav-icon"
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.8"
+                viewBox="0 0 24 24"
+              >
+                <path d="M4 6h16M4 12h16M4 18h16"></path>
+              </svg>
+            </span>
+            <span
+              class="madic-cric-menu-label"
+              data-fr="Vue d’ensemble"
+              data-en="Overview"
+              data-madic-fr="Vue d’ensemble"
+              data-madic-en="Overview"
+              >Vue d’ensemble</span
+            >
+          </a>
+          <a
             href="gestion-clients-cric.html"
-            ><span aria-hidden="true"
-              ><img
-                alt=""
+            data-madic-page="gestion-clients-cric.html"
+            class="madic-v2-group-start"
+          >
+            <span aria-hidden="true"
+              ><svg
                 aria-hidden="true"
-                class="madic-heroicon"
-                decoding="async"
-                loading="eager"
-                src="https://raw.githubusercontent.com/tailwindlabs/heroicons/v2.2.0/optimized/24/outline/users.svg" /></span
-            >Clients</a
-          ><a
-            data-madic-page="gestion-dossiers-cric.html"
+                class="madic-nav-icon"
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.8"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M15 12a4 4 0 1 0-6 0M3 21v-2a6 6 0 0 1 12 0v2M16 4a4 4 0 0 1 0 8m2 3a5 5 0 0 1 3 4v2"
+                ></path>
+              </svg>
+            </span>
+            <span
+              class="madic-cric-menu-label"
+              data-fr="Clients"
+              data-en="Clients"
+              data-madic-fr="Clients"
+              data-madic-en="Clients"
+              >Clients</span
+            >
+          </a>
+          <a
             href="gestion-dossiers-cric.html"
-            ><span aria-hidden="true"
-              ><img
-                alt=""
+            data-madic-page="gestion-dossiers-cric.html"
+            aria-current="page"
+          >
+            <span aria-hidden="true"
+              ><svg
                 aria-hidden="true"
-                class="madic-heroicon"
-                decoding="async"
-                loading="eager"
-                src="https://raw.githubusercontent.com/tailwindlabs/heroicons/v2.2.0/optimized/24/outline/folder-open.svg" /></span
-            >Outils CRIC</a
-          ><a
-            class="madic-v2-group-start"
-            data-madic-page="messagerie-cric.html"
+                class="madic-nav-icon"
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.8"
+                viewBox="0 0 24 24"
+              >
+                <path d="M3 7h7l2 2h9v11H3zM3 7V5h6l2 2h8v2"></path>
+              </svg>
+            </span>
+            <span
+              class="madic-cric-menu-label"
+              data-fr="Outils CRIC"
+              data-en="RCIC tools"
+              data-madic-fr="Outils CRIC"
+              data-madic-en="RCIC tools"
+              >Outils CRIC</span
+            >
+          </a>
+          <a
             href="messagerie-cric.html"
-            ><span aria-hidden="true"
-              ><img
-                alt=""
-                aria-hidden="true"
-                class="madic-heroicon"
-                decoding="async"
-                loading="eager"
-                src="https://raw.githubusercontent.com/tailwindlabs/heroicons/v2.2.0/optimized/24/outline/chat-bubble-left-right.svg" /></span
-            >Messagerie</a
-          >
-          <a
-            data-madic-page="rendez-vous-cric.html"
-            href="rendez-vous-cric.html"
-            ><span aria-hidden="true"
-              ><img
-                alt=""
-                aria-hidden="true"
-                class="madic-heroicon"
-                decoding="async"
-                loading="eager"
-                src="https://raw.githubusercontent.com/tailwindlabs/heroicons/v2.2.0/optimized/24/outline/calendar-days.svg" /></span
-            >Rendez-vous</a
-          >
-          <a
-            data-madic-page="demandes-documents-cric.html"
-            href="demandes-documents-cric.html"
-            ><span aria-hidden="true"
-              ><img
-                alt=""
-                aria-hidden="true"
-                class="madic-heroicon"
-                decoding="async"
-                loading="eager"
-                src="https://raw.githubusercontent.com/tailwindlabs/heroicons/v2.2.0/optimized/24/outline/document-text.svg" /></span
-            >Documents</a
-          ><a data-madic-page="echeances-cric.html" href="echeances-cric.html"
-            ><span aria-hidden="true"
-              ><img
-                alt=""
-                aria-hidden="true"
-                class="madic-heroicon"
-                decoding="async"
-                loading="eager"
-                src="https://raw.githubusercontent.com/tailwindlabs/heroicons/v2.2.0/optimized/24/outline/calendar-days.svg" /></span
-            >Échéances</a
-          ><a
+            data-madic-page="messagerie-cric.html"
             class="madic-v2-group-start"
-            data-madic-page="facturation-cric.html"
-            href="facturation-cric.html"
-            ><span aria-hidden="true"
-              ><img
-                alt=""
-                aria-hidden="true"
-                class="madic-heroicon"
-                decoding="async"
-                loading="eager"
-                src="https://raw.githubusercontent.com/tailwindlabs/heroicons/v2.2.0/optimized/24/outline/receipt-percent.svg" /></span
-            >Facturation</a
-          ><a data-madic-page="finances-cric.html" href="finances-cric.html"
-            ><span aria-hidden="true"
-              ><img
-                alt=""
-                aria-hidden="true"
-                class="madic-heroicon"
-                decoding="async"
-                loading="eager"
-                src="https://raw.githubusercontent.com/tailwindlabs/heroicons/v2.2.0/optimized/24/outline/banknotes.svg" /></span
-            >Finances</a
           >
+            <span aria-hidden="true"
+              ><svg
+                aria-hidden="true"
+                class="madic-nav-icon"
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.8"
+                viewBox="0 0 24 24"
+              >
+                <path d="M8 10h8m-8 4h5M4 5h16v14H4z"></path>
+              </svg>
+            </span>
+            <span
+              class="madic-cric-menu-label"
+              data-fr="Messagerie"
+              data-en="Messages"
+              data-madic-fr="Messagerie"
+              data-madic-en="Messages"
+              >Messagerie</span
+            >
+          </a>
           <a
-            data-madic-page="profil-professionnel-cric.html"
-            href="profil-professionnel-cric.html"
-            ><span aria-hidden="true"
-              ><img
-                alt=""
-                aria-hidden="true"
-                class="madic-heroicon"
-                decoding="async"
-                loading="eager"
-                src="https://raw.githubusercontent.com/tailwindlabs/heroicons/v2.2.0/optimized/24/outline/identification.svg" /></span
-            >Mon profil professionnel</a
+            href="rendez-vous-cric.html"
+            data-madic-page="rendez-vous-cric.html"
           >
+            <span aria-hidden="true"
+              ><svg
+                aria-hidden="true"
+                class="madic-nav-icon"
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.8"
+                viewBox="0 0 24 24"
+              >
+                <path d="M8 7V4m8 3V4M4 10h16M5 6h14v14H5z"></path>
+              </svg>
+            </span>
+            <span
+              class="madic-cric-menu-label"
+              data-fr="Rendez-vous"
+              data-en="Appointments"
+              data-madic-fr="Rendez-vous"
+              data-madic-en="Appointments"
+              >Rendez-vous</span
+            >
+          </a>
+          <a
+            href="demandes-documents-cric.html"
+            data-madic-page="demandes-documents-cric.html"
+          >
+            <span aria-hidden="true"
+              ><svg
+                aria-hidden="true"
+                class="madic-nav-icon"
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.8"
+                viewBox="0 0 24 24"
+              >
+                <path d="M12 3v12m-4-4 4 4 4-4M5 18h14v3H5z"></path>
+              </svg>
+            </span>
+            <span
+              class="madic-cric-menu-label"
+              data-fr="Documents"
+              data-en="Documents"
+              data-madic-fr="Documents"
+              data-madic-en="Documents"
+              >Documents</span
+            >
+          </a>
+          <a href="echeances-cric.html" data-madic-page="echeances-cric.html">
+            <span aria-hidden="true"
+              ><svg
+                aria-hidden="true"
+                class="madic-nav-icon"
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.8"
+                viewBox="0 0 24 24"
+              >
+                <path d="M8 7V4m8 3V4M4 10h16M5 6h14v14H5zM12 13v2l2 1"></path>
+              </svg>
+            </span>
+            <span
+              class="madic-cric-menu-label"
+              data-fr="Échéances"
+              data-en="Deadlines"
+              data-madic-fr="Échéances"
+              data-madic-en="Deadlines"
+              >Échéances</span
+            >
+          </a>
+          <a
+            href="facturation-cric.html"
+            data-madic-page="facturation-cric.html"
+            class="madic-v2-group-start"
+          >
+            <span aria-hidden="true"
+              ><svg
+                aria-hidden="true"
+                class="madic-nav-icon"
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.8"
+                viewBox="0 0 24 24"
+              >
+                <path d="M7 3h10l4 4v14H3V3h4zm2 8h6m-6 4h6"></path>
+              </svg>
+            </span>
+            <span
+              class="madic-cric-menu-label"
+              data-fr="Facturation"
+              data-en="Invoicing"
+              data-madic-fr="Facturation"
+              data-madic-en="Invoicing"
+              >Facturation</span
+            >
+          </a>
+          <a href="finances-cric.html" data-madic-page="finances-cric.html">
+            <span aria-hidden="true"
+              ><svg
+                aria-hidden="true"
+                class="madic-nav-icon"
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.8"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M3 6h18v12H3zM7 18v2h11M6 12h1m10 0h1m-3 0a3 2 0 1 0-6 0 3 2 0 0 0 6 0Z"
+                ></path>
+              </svg>
+            </span>
+            <span
+              class="madic-cric-menu-label"
+              data-fr="Finances"
+              data-en="Finances"
+              data-madic-fr="Finances"
+              data-madic-en="Finances"
+              >Finances</span
+            >
+          </a>
+          <a
+            href="profil-professionnel-cric.html"
+            data-madic-page="profil-professionnel-cric.html"
+          >
+            <span aria-hidden="true"
+              ><svg
+                aria-hidden="true"
+                class="madic-nav-icon"
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.8"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM4 21v-2a8 8 0 0 1 16 0v2"
+                ></path>
+              </svg>
+            </span>
+            <span
+              class="madic-cric-menu-label"
+              data-fr="Mon profil professionnel"
+              data-en="My professional profile"
+              data-madic-fr="Mon profil professionnel"
+              data-madic-en="My professional profile"
+              >Mon profil professionnel</span
+            >
+          </a>
         </nav>
         <div class="madic-unified-foot">Espace sécurisé MADIC</div>
       </aside>
       <div class="madic-unified-content">
-        <header>
-          <a class="brand" href="connexion.html"
-            >MADI<span>C</span> <small>PORTAIL</small></a
-          >
-          <nav aria-label="Navigation du compte" class="toplinks">
-            <a
-              aria-label="Notifications"
-              class="madic-top-notification"
-              href="cric-dashboard.html#cricNotificationsPanel"
-              title="Notifications"
-              ><span aria-hidden="true"
-                ><img
-                  alt=""
-                  aria-hidden="true"
-                  class="madic-heroicon"
-                  decoding="async"
-                  loading="eager"
-                  src="https://raw.githubusercontent.com/tailwindlabs/heroicons/v2.2.0/optimized/24/outline/bell.svg" /></span
-              ><span class="madic-top-notification-count" hidden=""></span
-            ></a>
-            <button
-              class="madic-header-signout"
-              data-en="Sign out"
-              data-fr="Déconnexion"
-              data-madic-en="Sign out"
-              data-madic-fr="Déconnexion"
-              id="logout"
-              type="button"
-            >
-              Déconnexion
-            </button>
-            <a href="cric-dashboard.html">Mon espace</a>
-            <div
-              aria-label="Langue / Language"
-              class="madic-lang-controls"
-              role="group"
-            >
-              <button aria-label="Français" data-lang="fr" type="button">
-                FR</button
-              ><button aria-label="English" data-lang="en" type="button">
-                EN
-              </button>
-            </div>
-          </nav>
-        </header>
         <p
           class="madic-signout-error"
           id="madicSignoutError"
@@ -216,7 +391,7 @@
           id="main-content"
           tabindex="-1"
         >
-          <header class="hero">
+          <header class="hero madic-provincial-head">
             <div class="brand">
               MAD IMMIGRATION CANADIENNE <span>• MADIC</span>
             </div>
@@ -642,12 +817,11 @@
                 href="politique-confidentialite.html"
                 >Confidentialité</a
               >
-              <span
-                class="madic-footer-unavailable"
+              <a
+                href="conditions-utilisation.html"
                 data-en="Terms of use"
                 data-fr="Conditions d'utilisation"
-                title="Page à venir / Page coming soon"
-                >Conditions d'utilisation</span
+                >Conditions d'utilisation</a
               >
               <span
                 class="madic-footer-unavailable"
@@ -667,7 +841,7 @@
         </footer>
       </div>
     </div>
-    <script src="assets/config.js?v=ad4abf1871f6"></script>
-    <script src="assets/saskatchewan.js?v=396b0633322f"></script>
+    <script src="assets/config.js"></script>
+    <script src="assets/saskatchewan.js"></script>
   </body>
 </html>
