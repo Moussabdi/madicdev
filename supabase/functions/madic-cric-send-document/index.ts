@@ -1,6 +1,14 @@
-import { createClient } from "npm:@supabase/supabase-js@2";
+import { createClient, type SupabaseClient, type User } from "npm:@supabase/supabase-js@2";
 
-const allowedOrigins = new Set(["https://madic.ca", "https://www.madic.ca"]);
+import { madicEmailHtml } from "../shared/madic-email-template.ts";
+import { madicRecipientLanguage } from "../shared/madic-language.ts";
+import { madicRecipientGreeting } from "../shared/madic-recipient.ts";
+
+const allowedOrigins = new Set([
+  "https://madic.ca",
+  "https://www.madic.ca",
+  "https://madicdev.netlify.app",
+]);
 const corsHeaders = (request: Request): Record<string, string> => {
   const origin = request.headers.get("Origin") || "";
   return {
@@ -23,11 +31,137 @@ const json = (request: Request, body: Record<string, unknown>, status = 200) =>
     },
   });
 
+type RecipientRole = "client" | "guest" | "cric";
+type NotificationStatus = "accepted" | "not_applicable" | "unconfirmed";
+
+const notificationCopy = {
+  client: {
+    fr: ["Nouveau document dans votre espace client", "Votre cabinet a déposé un document dans votre espace client sécurisé.", "Ouvrir mes documents"],
+    en: ["New document in your client workspace", "Your practice added a document to your secure client workspace.", "Open my documents"],
+    path: "/documents-client-cric.html",
+  },
+  guest: {
+    fr: ["Nouveau document disponible dans le portail", "Un document a été déposé pour un dossier auquel vous avez accès en tant que personne de confiance.", "Ouvrir mes accès invités"],
+    en: ["New document available in the portal", "A document was added to a case you can access as a trusted person.", "Open my guest accesses"],
+    path: "/invitation-client-cric.html?guest=1",
+  },
+  cric: {
+    fr: ["Dépôt de document confirmé", "Le document que vous avez transmis est disponible dans l’espace client correspondant.", "Ouvrir la gestion documentaire"],
+    en: ["Document upload confirmed", "The document you sent is available in the corresponding client workspace.", "Open document management"],
+    path: "/demandes-documents-cric.html",
+  },
+} as const;
+
+async function notifyDocumentRecipients(
+  adminDb: SupabaseClient,
+  sender: User,
+  clientId: string,
+  spaceId: string,
+  documentKey: string,
+  origin: string,
+) {
+  const apiKey = Deno.env.get("RESEND_API_KEY");
+  const from = Deno.env.get("MADIC_EMAIL_FROM");
+  const { data: space, error: spaceError } = await adminDb
+    .from("madic_cric_spaces")
+    .select("name")
+    .eq("id", spaceId)
+    .maybeSingle();
+  if (spaceError) console.warn("MADIC document notification: cabinet lookup failed");
+  const cabinet = space?.name || "MADIC";
+
+  async function findUser(id: string): Promise<User> {
+    const { data, error } = await adminDb.auth.admin.getUserById(id);
+    if (error || !data?.user) throw Error("Recipient lookup failed");
+    return data.user;
+  }
+
+  async function send(role: RecipientRole, user: User): Promise<void> {
+    if (!apiKey || !from || !user.email || !user.email_confirmed_at)
+      throw Error("Email configuration or confirmed recipient missing");
+    const copy = notificationCopy[role];
+    const language = madicRecipientLanguage(user);
+    const [title, message, label] = copy[language];
+    const action = { label, url: new URL(copy.path, origin).href };
+    const input = JSON.stringify({
+      from,
+      to: [user.email],
+      subject: `MADIC – ${title}`,
+      html: madicEmailHtml({
+        title, language, cabinet,
+        greeting: madicRecipientGreeting(user, language),
+        paragraphs: [message],
+        action,
+      }),
+      text: `${title}\n\n${message}\n\n${label}: ${action.url}`,
+    });
+    const options = {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        "Content-Type": "application/json",
+        "Idempotency-Key": `madic-document-${documentKey}-${role}`,
+      },
+      body: input,
+    };
+    for (let attempt = 0; attempt < 2; attempt++) {
+      const response = await fetch("https://api.resend.com/emails", {
+        ...options, signal: AbortSignal.timeout(4500),
+      }).catch(() => null);
+      if (response?.ok) {
+        const receipt = await response.json().catch(() => null);
+        if (typeof receipt?.id === "string" && receipt.id) return;
+      }
+      if (response && !response.ok && response.status !== 429 && response.status < 500)
+        break;
+      if (attempt === 0) await new Promise((resolve) => setTimeout(resolve, 350));
+    }
+    throw Error("Email acceptance not confirmed");
+  }
+
+  async function notifyGuest() {
+    const { data: guest, error } = await adminDb
+      .from("madic_client_guest_access")
+      .select("email,user_id")
+      .eq("space_id", spaceId)
+      .eq("client_id", clientId)
+      .is("revoked_at", null)
+      .not("accepted_at", "is", null)
+      .maybeSingle();
+    if (error) throw Error("Guest authorization lookup failed");
+    if (!guest?.user_id) return false;
+    const user = await findUser(guest.user_id);
+    if (!user.email_confirmed_at ||
+      user.email?.trim().toLowerCase() !== guest.email.trim().toLowerCase()) return false;
+    await send("guest", user);
+    return true;
+  }
+
+  const results = await Promise.allSettled([
+    findUser(clientId).then((user) => send("client", user)),
+    notifyGuest(),
+    send("cric", sender),
+  ]);
+  const status = (result: PromiseSettledResult<unknown>, role: RecipientRole): NotificationStatus => {
+    if (result.status === "rejected") {
+      console.warn("MADIC document notification unconfirmed", { role, documentKey });
+      return "unconfirmed";
+    }
+    return result.value === false ? "not_applicable" : "accepted";
+  };
+  return {
+    client: status(results[0], "client"),
+    guest: status(results[1], "guest"),
+    cric: status(results[2], "cric"),
+  };
+}
+
 Deno.serve(async (request) => {
   if (request.method === "OPTIONS") {
     return new Response(null, { status: 204, headers: corsHeaders(request) });
   }
-  if (!allowedOrigins.has(request.headers.get("Origin") || ""))
+  const origin = request.headers.get("Origin") || "";
+  if (!allowedOrigins.has(origin))
     return json(request, { error: "Origine non autorisée." }, 403);
   if (request.method !== "POST")
     return json(request, { error: "Méthode non autorisée." }, 405);
@@ -122,7 +256,8 @@ Deno.serve(async (request) => {
         403,
       );
     // Do not trust browser-supplied paths; create one server-side.
-    const path = `${clientId}/${dossierId}/cric-${crypto.randomUUID()}`;
+    const documentKey = crypto.randomUUID();
+    const path = `${clientId}/${dossierId}/cric-${documentKey}`;
     const { error: uploadError } = await adminDb.storage
       .from("madic-documents")
       .upload(path, file, { contentType: file.type, upsert: false });
@@ -153,7 +288,14 @@ Deno.serve(async (request) => {
         400,
       );
     }
-    return json(request, { ok: true });
+    // Email failures must not turn a committed upload into a failed submission.
+    const notifications = await notifyDocumentRecipients(
+      adminDb, identity.user, clientId, dossier.space_id, documentKey, origin,
+    ).catch(() => {
+      console.warn("MADIC document notification lookup failed", { documentKey });
+      return { client: "unconfirmed", guest: "unconfirmed", cric: "unconfirmed" };
+    });
+    return json(request, { ok: true, notifications });
   } catch (error) {
     return json(
       request,

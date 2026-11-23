@@ -361,6 +361,8 @@ window.getMadicSupabase = function () {
       const label = $("docsendTitle").value.trim();
       const result = $("docsendNotice");
       const button = $("docsendButton");
+      if (button.disabled) return;
+      delete result.dataset.emailWarning;
       if (
         !clients.some((c) => c.id === clientId) ||
         !dossiers.some((d) => d.id === dossierId && d.client_id === clientId)
@@ -407,9 +409,17 @@ window.getMadicSupabase = function () {
         if (!data?.ok)
           throw Error(data?.error || "Transmission non confirmée.");
         $("docsendForm").reset();
-        result.textContent =
-          "Document transmis. Il est maintenant disponible dans l’espace client.";
-        await loadReceived();
+        const notifications = data.notifications;
+        const emailConfirmed =
+          notifications?.client === "accepted" &&
+          notifications?.cric === "accepted" &&
+          ["accepted", "not_applicable"].includes(notifications?.guest);
+        result.dataset.emailWarning = String(!emailConfirmed);
+        result.textContent = emailConfirmed
+          ? "Document transmis. Les avis applicables par courriel ont été acceptés pour envoi."
+          : "Document transmis. L’envoi de tous les avis par courriel n’a pas pu être confirmé.";
+        // A refresh error does not undo the saved document or the notifications.
+        loadReceived().catch((error) => notice(error.message));
       } catch (error) {
         result.textContent = "Transmission impossible : " + error.message;
       } finally {
@@ -1234,8 +1244,10 @@ window.getMadicSupabase = function () {
       "Choose a PDF, JPG or PNG file, maximum 10 MB.",
     "Transmission en cours…": "Sending…",
     "Transmission non confirmée.": "Transmission not confirmed.",
-    "Document transmis. Il est maintenant disponible dans l’espace client.":
-      "Document sent. It is now available in the client workspace.",
+    "Document transmis. Les avis applicables par courriel ont été acceptés pour envoi.":
+      "Document sent. Applicable email notifications were accepted for delivery.",
+    "Document transmis. L’envoi de tous les avis par courriel n’a pas pu être confirmé.":
+      "Document sent. Delivery could not be confirmed for all email notifications.",
     "Transmission impossible": "Unable to send",
     "Client, dossier et document obligatoires.":
       "Client, case and document are required.",

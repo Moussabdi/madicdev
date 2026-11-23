@@ -3547,3 +3547,8 @@ html
     padding-inline: 12px !important;
   }
 }
+
+#docsendNotice[data-email-warning="true"] {
+  color: #78480a;
+  font-weight: 600;
+}
