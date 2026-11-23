@@ -387,6 +387,10 @@ window.getMadicSupabase = function () {
         payload.append("client_id", clientId);
         payload.append("dossier_id", dossierId);
         payload.append("title", fileName);
+        payload.append(
+          "notification_language",
+          document.documentElement.lang.startsWith("en") ? "en" : "fr",
+        );
         payload.append("file", file);
         const { data, error } = await db.functions.invoke(
           "madic-cric-send-document",
@@ -690,6 +694,8 @@ window.getMadicSupabase = function () {
     "Date limite (facultatif)": "Due date (optional)",
     "Envoyer la demande": "Send request",
     "+ Envoyer un document au client": "+ Send a document to the client",
+    "Un avis par courriel est envoyé au client, à sa personne de confiance si son accès est actif, et au CRIC qui transmet le document.":
+      "An email notification is sent to the client, their trusted person if their access is active, and the RCIC who sends the document.",
     "Fichier à transmettre (PDF, JPG ou PNG, 10 Mo maximum)":
       "File to send (PDF, JPG or PNG, 10 MB maximum)",
     "Nom du document (facultatif)": "Document name (optional)",

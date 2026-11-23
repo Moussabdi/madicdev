@@ -1,4 +1,8 @@
-import { createClient, type SupabaseClient, type User } from "npm:@supabase/supabase-js@2";
+import {
+  createClient,
+  type SupabaseClient,
+  type User,
+} from "npm:@supabase/supabase-js@2";
 
 import { madicEmailHtml } from "../shared/madic-email-template.ts";
 import { madicRecipientLanguage } from "../shared/madic-language.ts";
@@ -36,18 +40,42 @@ type NotificationStatus = "accepted" | "not_applicable" | "unconfirmed";
 
 const notificationCopy = {
   client: {
-    fr: ["Nouveau document dans votre espace client", "Votre cabinet a déposé un document dans votre espace client sécurisé.", "Ouvrir mes documents"],
-    en: ["New document in your client workspace", "Your practice added a document to your secure client workspace.", "Open my documents"],
+    fr: [
+      "Nouveau document dans votre espace client",
+      "Votre cabinet a déposé un document dans votre espace client sécurisé.",
+      "Ouvrir mes documents",
+    ],
+    en: [
+      "New document in your client workspace",
+      "Your practice added a document to your secure client workspace.",
+      "Open my documents",
+    ],
     path: "/documents-client-cric.html",
   },
   guest: {
-    fr: ["Nouveau document disponible dans le portail", "Un document a été déposé pour un dossier auquel vous avez accès en tant que personne de confiance.", "Ouvrir mes accès invités"],
-    en: ["New document available in the portal", "A document was added to a case you can access as a trusted person.", "Open my guest accesses"],
+    fr: [
+      "Nouveau document disponible dans le portail",
+      "Un document a été déposé pour un dossier auquel vous avez accès en tant que personne de confiance.",
+      "Ouvrir mes accès invités",
+    ],
+    en: [
+      "New document available in the portal",
+      "A document was added to a case you can access as a trusted person.",
+      "Open my guest accesses",
+    ],
     path: "/invitation-client-cric.html?guest=1",
   },
   cric: {
-    fr: ["Dépôt de document confirmé", "Le document que vous avez transmis est disponible dans l’espace client correspondant.", "Ouvrir la gestion documentaire"],
-    en: ["Document upload confirmed", "The document you sent is available in the corresponding client workspace.", "Open document management"],
+    fr: [
+      "Dépôt de document confirmé",
+      "Le document que vous avez transmis est disponible dans l’espace client correspondant.",
+      "Ouvrir la gestion documentaire",
+    ],
+    en: [
+      "Document upload confirmed",
+      "The document you sent is available in the corresponding client workspace.",
+      "Open document management",
+    ],
     path: "/demandes-documents-cric.html",
   },
 } as const;
@@ -59,6 +87,7 @@ async function notifyDocumentRecipients(
   spaceId: string,
   documentKey: string,
   origin: string,
+  notificationLanguage: "fr" | "en" | undefined,
 ) {
   const apiKey = Deno.env.get("RESEND_API_KEY");
   const from = Deno.env.get("MADIC_EMAIL_FROM");
@@ -67,7 +96,8 @@ async function notifyDocumentRecipients(
     .select("name")
     .eq("id", spaceId)
     .maybeSingle();
-  if (spaceError) console.warn("MADIC document notification: cabinet lookup failed");
+  if (spaceError)
+    console.warn("MADIC document notification: cabinet lookup failed");
   const cabinet = space?.name || "MADIC";
 
   async function findUser(id: string): Promise<User> {
@@ -80,15 +110,17 @@ async function notifyDocumentRecipients(
     if (!apiKey || !from || !user.email || !user.email_confirmed_at)
       throw Error("Email configuration or confirmed recipient missing");
     const copy = notificationCopy[role];
-    const language = madicRecipientLanguage(user);
+    const language = notificationLanguage ?? madicRecipientLanguage(user);
     const [title, message, label] = copy[language];
     const action = { label, url: new URL(copy.path, origin).href };
     const input = JSON.stringify({
       from,
       to: [user.email],
-      subject: `MADIC – ${title}`,
+      subject: `MADIC - ${title}`,
       html: madicEmailHtml({
-        title, language, cabinet,
+        title,
+        language,
+        cabinet,
         greeting: madicRecipientGreeting(user, language),
         paragraphs: [message],
         action,
@@ -106,15 +138,22 @@ async function notifyDocumentRecipients(
     };
     for (let attempt = 0; attempt < 2; attempt++) {
       const response = await fetch("https://api.resend.com/emails", {
-        ...options, signal: AbortSignal.timeout(4500),
+        ...options,
+        signal: AbortSignal.timeout(4500),
       }).catch(() => null);
       if (response?.ok) {
         const receipt = await response.json().catch(() => null);
         if (typeof receipt?.id === "string" && receipt.id) return;
       }
-      if (response && !response.ok && response.status !== 429 && response.status < 500)
+      if (
+        response &&
+        !response.ok &&
+        response.status !== 429 &&
+        response.status < 500
+      )
         break;
-      if (attempt === 0) await new Promise((resolve) => setTimeout(resolve, 350));
+      if (attempt === 0)
+        await new Promise((resolve) => setTimeout(resolve, 350));
     }
     throw Error("Email acceptance not confirmed");
   }
@@ -131,8 +170,11 @@ async function notifyDocumentRecipients(
     if (error) throw Error("Guest authorization lookup failed");
     if (!guest?.user_id) return false;
     const user = await findUser(guest.user_id);
-    if (!user.email_confirmed_at ||
-      user.email?.trim().toLowerCase() !== guest.email.trim().toLowerCase()) return false;
+    if (
+      !user.email_confirmed_at ||
+      user.email?.trim().toLowerCase() !== guest.email.trim().toLowerCase()
+    )
+      return false;
     await send("guest", user);
     return true;
   }
@@ -142,9 +184,15 @@ async function notifyDocumentRecipients(
     notifyGuest(),
     send("cric", sender),
   ]);
-  const status = (result: PromiseSettledResult<unknown>, role: RecipientRole): NotificationStatus => {
+  const status = (
+    result: PromiseSettledResult<unknown>,
+    role: RecipientRole,
+  ): NotificationStatus => {
     if (result.status === "rejected") {
-      console.warn("MADIC document notification unconfirmed", { role, documentKey });
+      console.warn("MADIC document notification unconfirmed", {
+        role,
+        documentKey,
+      });
       return "unconfirmed";
     }
     return result.value === false ? "not_applicable" : "accepted";
@@ -191,6 +239,11 @@ Deno.serve(async (request) => {
     const dossierId = form.get("dossier_id");
     const title = form.get("title");
     const file = form.get("file");
+    const requestedLanguage = form.get("notification_language");
+    const notificationLanguage =
+      requestedLanguage === "fr" || requestedLanguage === "en"
+        ? requestedLanguage
+        : undefined;
     const uuid =
       /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
     if (
@@ -290,10 +343,22 @@ Deno.serve(async (request) => {
     }
     // Email failures must not turn a committed upload into a failed submission.
     const notifications = await notifyDocumentRecipients(
-      adminDb, identity.user, clientId, dossier.space_id, documentKey, origin,
+      adminDb,
+      identity.user,
+      clientId,
+      dossier.space_id,
+      documentKey,
+      origin,
+      notificationLanguage,
     ).catch(() => {
-      console.warn("MADIC document notification lookup failed", { documentKey });
-      return { client: "unconfirmed", guest: "unconfirmed", cric: "unconfirmed" };
+      console.warn("MADIC document notification lookup failed", {
+        documentKey,
+      });
+      return {
+        client: "unconfirmed",
+        guest: "unconfirmed",
+        cric: "unconfirmed",
+      };
     });
     return json(request, { ok: true, notifications });
   } catch (error) {

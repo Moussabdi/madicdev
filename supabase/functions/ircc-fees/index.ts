@@ -1,4 +1,3 @@
-// MADIC - IRCC official fee schedule reader. Never invent a tariff.
 const SOURCE = "https://ircc.canada.ca/francais/information/frais/bareme.asp";
 const HEADERS = {
   "Access-Control-Allow-Origin": "*",
@@ -33,7 +32,7 @@ function plain(html: string): string {
             "&ccedil;": "ç",
             "&rsquo;": "’",
             "&lsquo;": "‘",
-            "&ndash;": "–",
+            "&ndash;": "-",
             "&mdash;": "-",
           }) as Record<string, string>
         )[m.toLowerCase()] || " ",
