@@ -1219,3 +1219,32 @@ html
     padding-inline: 12px !important;
   }
 }
+
+@media (max-width: 850px) {
+  body.madic-unified[data-page="yukon"] .madic-unified-content > footer.madic-footer {
+    background: #eef3f9 !important;
+    border-top-color: #a9bacd !important;
+    color: #526b83 !important;
+  }
+
+  body.madic-unified[data-page="yukon"] footer.madic-footer .madic-footer-name {
+    color: #143453 !important;
+  }
+
+  body.madic-unified[data-page="yukon"] footer.madic-footer :is(
+    .madic-footer-subtitle,
+    .madic-footer-desc,
+    .madic-footer-bottom,
+    .madic-footer-unavailable
+  ) {
+    color: #526b83 !important;
+  }
+
+  body.madic-unified[data-page="yukon"] footer.madic-footer .madic-footer-right a {
+    color: #35729d !important;
+  }
+
+  body.madic-unified[data-page="yukon"] footer.madic-footer .madic-footer-bottom {
+    border-top-color: #a9bacd !important;
+  }
+}

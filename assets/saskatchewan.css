@@ -2337,3 +2337,10 @@ html
     padding-inline: 12px !important;
   }
 }
+
+body[data-page="saskatchewan"] #main-content > .madic-provincial-back {
+  display: inline-block;
+  margin-bottom: 16px;
+  color: #087f8b;
+  font-weight: 700;
+}
