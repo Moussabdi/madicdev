@@ -443,7 +443,7 @@ window.getMadicSupabase = function () {
         for (const x of daily) {
           const p = document.createElement("p");
           const associated = reservations.filter((a) => a.slot_id === x.id);
-          p.textContent = `${date(x.starts_at)} – ${date(x.ends_at)} · ${mode[x.mode] || x.mode} · ${!x.is_open ? tr("Fermé", "Closed") : associated.length ? associated.map((a) => status[a.status]).join(", ") : tr("Disponible", "Available")}`;
+          p.textContent = `${date(x.starts_at)} - ${date(x.ends_at)} · ${mode[x.mode] || x.mode} · ${!x.is_open ? tr("Fermé", "Closed") : associated.length ? associated.map((a) => status[a.status]).join(", ") : tr("Disponible", "Available")}`;
           detail.append(p);
         }
         if (key >= today)
@@ -579,9 +579,9 @@ window.getMadicSupabase = function () {
       td(
         r,
         a.starts_at && a.ends_at
-          ? `${date(a.starts_at)} – ${date(a.ends_at)}`
+          ? `${date(a.starts_at)} - ${date(a.ends_at)}`
           : s
-            ? `${date(s.starts_at)} – ${date(s.ends_at)}`
+            ? `${date(s.starts_at)} - ${date(s.ends_at)}`
             : tr("Créneau passé", "Past time slot"),
       );
       td(r, s ? mode[s.mode] : "-");
@@ -1453,13 +1453,13 @@ window.getMadicSupabase = function () {
     ". Remplissez l’onglet « Clients » avec les courriels des personnes à inviter, puis importez le fichier ci-dessous. Seuls les courriels servent à envoyer les invitations.":
       ". Fill in the “Clients” sheet with the email addresses of people to invite, then import the file below. Only email addresses are used to send invitations.",
     "IMM 5476-Recours aux services d’un représentant":
-      "IMM 5476 – Use of a Representative",
+      "IMM 5476 - Use of a Representative",
     "IMM 0008-Demande générique pour le Canada":
-      "IMM 0008 – Generic Application Form for Canada",
+      "IMM 0008 - Generic Application Form for Canada",
     "IMM 5406-Renseignements additionnels sur la famille":
-      "IMM 5406 – Additional Family Information",
+      "IMM 5406 - Additional Family Information",
     "IMM 5669-Antécédents / Déclaration":
-      "IMM 5669 – Schedule A: Background / Declaration",
+      "IMM 5669 - Schedule A: Background / Declaration",
     "Gestion financière CRIC | MADIC": "RCIC financial management | MADIC",
     "Échéances de mon cabinet | MADIC": "My practice deadlines | MADIC",
     "Les modifications de votre profil professionnel ont été enregistrées avec succès.":

@@ -1033,7 +1033,7 @@
         month: "short",
         timeZone: "UTC",
       }).format(d);
-    $("rdvWeekLabel").textContent = `${label(monday)} – ${label(last)}`;
+    $("rdvWeekLabel").textContent = `${label(monday)} - ${label(last)}`;
     $("rdvPrevWeek").disabled = weekOffset <= 0;
     refreshTranslation();
     const dateKey = (iso) => {
@@ -1236,9 +1236,9 @@
       td(
         r,
         a.starts_at && a.ends_at
-          ? `${date(a.starts_at)} – ${date(a.ends_at)}`
+          ? `${date(a.starts_at)} - ${date(a.ends_at)}`
           : s
-            ? `${date(s.starts_at)} – ${date(s.ends_at)}`
+            ? `${date(s.starts_at)} - ${date(s.ends_at)}`
             : "-",
       );
       td(r, s ? L(mode[s.mode], modeEn[s.mode]) : "-");

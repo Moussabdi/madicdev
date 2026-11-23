@@ -526,7 +526,7 @@ function arrimaFactors() {
     ],
     ["Âge", agePoints, knownFamily ? [120, 100][column] : null],
     [
-      "Français – quatre compétences",
+      "Français - quatre compétences",
       frenchTotal,
       knownFamily ? [200, 160][column] : null,
     ],
@@ -676,14 +676,14 @@ function assessmentReport() {
       ? "<p>Les trois exercices ci-dessous visaient des CNP ciblés et des personnes qui séjournaient au Québec. Le tableau compare les points seulement. Il faut vérifier chaque critère de l’exercice.</p>"
       : "<p>Comparer exclusivement les exercices du volet applicable et leurs critères. La page du MIFI donne le détail des exercices par volet.</p>";
   const examples = [
-    ["19 et 20 mars 2026 – exercice 2", 588],
-    ["30 avril 2026 – exercice 2", 571],
-    ["4 juin 2026 – exercice 3", 666],
+    ["19 et 20 mars 2026 - exercice 2", 588],
+    ["30 avril 2026 - exercice 2", 571],
+    ["4 juin 2026 - exercice 3", 666],
   ];
   const invitationTable =
     stream === 1
       ? `<div class="report-table"><table>
-    <thead><tr><th scope="col">Exercice historique – volet 1</th><th scope="col">Seuil publié</th><th scope="col">Écart au seuil</th></tr></thead>
+    <thead><tr><th scope="col">Exercice historique - volet 1</th><th scope="col">Seuil publié</th><th scope="col">Écart au seuil</th></tr></thead>
     <tbody>${examples
       .map(([date, threshold]) => {
         const difference = arrimaScore - threshold;
@@ -963,7 +963,7 @@ const englishLabels = new Map(
     "Dans la CMM": "Within the Montréal Metropolitan Community",
     "Hors CMM": "Outside the Montréal Metropolitan Community",
     "Conjoint accompagnant - détails PSTQ":
-      "Accompanying spouse or partner – PSTQ details",
+      "Accompanying spouse or partner - PSTQ details",
     "Les quatre compétences de français sont évaluées séparément selon l’Échelle québécoise (0 à 12).":
       "The four French language skills are assessed separately on the Quebec scale (0 to 12).",
     "Âge du conjoint": "Age of spouse or partner",
@@ -1020,24 +1020,24 @@ const englishLabels = new Map(
     "Diplôme professionnel/postsecondaire admissible et durée minimale":
       "Eligible vocational or postsecondary qualification and minimum program duration",
     "PSTQ - Volet 1 : Haute qualification et compétences spécialisées":
-      "PSTQ – Stream 1: Highly qualified and specialized skills",
+      "PSTQ - Stream 1: Highly qualified and specialized skills",
     "24 mois d’expérience, dont au moins 12 mois au Québec":
       "24 months of experience, including at least 12 months in Quebec",
     "Diplôme minimal et durée requise":
       "Minimum qualification and required program duration",
     "PSTQ - Volet 2 : Compétences intermédiaires et manuelles":
-      "PSTQ – Stream 2: Intermediate and manual skills",
+      "PSTQ - Stream 2: Intermediate and manual skills",
     "Autorisation d’exercice ou reconnaissance d’équivalence recevable":
       "Acceptable authorization to practise or recognition of equivalence",
     "inscription de l’emploi précis dans la liste MIFI des professions réglementées.":
       "Confirm that the specific job is on MIFI’s list of regulated occupations.",
     "PSTQ - Volet 3 : Professions réglementées":
-      "PSTQ – Stream 3: Regulated professions",
-    "PSTQ - Volet à confirmer": "PSTQ – Stream to be confirmed",
+      "PSTQ - Stream 3: Regulated professions",
+    "PSTQ - Volet à confirmer": "PSTQ - Stream to be confirmed",
     "statut réglementé de l’emploi précis; les professions partiellement réglementées nécessitent une vérification particulière.":
       "Check whether the specific job is regulated. Partially regulated occupations require an individual review.",
     "PSTQ - Volet 4 : Talents d’exception":
-      "PSTQ – Stream 4: Exceptional talent",
+      "PSTQ - Stream 4: Exceptional talent",
     "Au moins trois ans d’exercice de la profession principale sur cinq ans":
       "At least three years of practice in the primary occupation over five years",
     "Accomplissement reconnu ou avis d’un partenaire du Ministère":
@@ -1056,16 +1056,16 @@ const englishLabels = new Map(
       "Full-time studies and at least half of the program completed in Quebec",
     "Présence légale au Québec au dépôt":
       "Lawfully present in Quebec at the time of application",
-    "PEQ - Diplômés du Québec": "PEQ – Quebec graduates",
+    "PEQ - Diplômés du Québec": "PEQ - Quebec graduates",
     "Profession FEER 0, 1, 2 ou 3": "TEER 0, 1, 2 or 3 occupation",
     "Au moins deux ans de travail admissible au Québec acquis au 19 novembre 2025":
       "At least two years of eligible work in Quebec by November 19, 2025",
     "conditions spécifiques complètes du volet Travailleurs étrangers temporaires, statut, emploi et français à la date du dépôt.":
       "Confirm the full requirements of the Temporary Foreign Workers stream, including status, employment and French proficiency at the time of application.",
     "PEQ - Travailleurs étrangers temporaires":
-      "PEQ – Temporary foreign workers",
+      "PEQ - Temporary foreign workers",
     "Programmes pilotes - fermés aux nouvelles demandes":
-      "Pilot programs – Closed to new applications",
+      "Pilot programs - Closed to new applications",
     "Les trois programmes pilotes (Transformation alimentaire, Préposés aux bénéficiaires, IA / TI / effets visuels) ont pris fin le 1er janvier 2026.":
       "The three pilot programs (Food Processing, Orderlies, and AI / IT / Visual Effects) ended on January 1, 2026.",
     "Aucun dossier antérieur déclaré.": "No previous application declared.",
@@ -1120,7 +1120,7 @@ const englishLabels = new Map(
     "Le pointage Arrima complet doit être établi séparément. Consultez le barème du MIFI pour les facteurs qui ne sont pas chiffrés dans ce rapport.":
       "This tool does not use or verify the complete official scoring grid and conversion tables, so it does not assign a PSTQ score. An expression of interest and a score do not guarantee an invitation.",
     "PSTQ - Analyse complémentaire du profil":
-      "PSTQ – Additional profile assessment",
+      "PSTQ - Additional profile assessment",
     "Complétez les critères complémentaires pour affiner votre profil.":
       "Complete the additional criteria to refine your profile.",
     "Incohérences ou renseignements manquants :":
@@ -1186,12 +1186,12 @@ const englishLabels = new Map(
       "The three exercises below targeted specific NOC codes and people staying in Quebec. The table compares points only. Each exercise criterion must be checked.",
     "Comparer exclusivement les exercices du volet applicable et leurs critères. La page du MIFI donne le détail des exercices par volet.":
       "Compare only the exercises and criteria for the applicable stream. The MIFI page provides details by stream.",
-    "Exercice historique – volet 1": "Past invitation exercise – Stream 1",
+    "Exercice historique - volet 1": "Past invitation exercise - Stream 1",
     "Seuil publié": "Published threshold",
     "Écart au seuil": "Difference from threshold",
-    "19 et 20 mars 2026 – exercice 2": "March 19 and 20, 2026 – exercise 2",
-    "30 avril 2026 – exercice 2": "April 30, 2026 – exercise 2",
-    "4 juin 2026 – exercice 3": "June 4, 2026 – exercise 3",
+    "19 et 20 mars 2026 - exercice 2": "March 19 and 20, 2026 - exercise 2",
+    "30 avril 2026 - exercice 2": "April 30, 2026 - exercise 2",
+    "4 juin 2026 - exercice 3": "June 4, 2026 - exercise 3",
     "Analyse du projet d’immigration au Québec":
       "Quebec immigration assessment",
     "Brouillon d’analyse généré à partir des renseignements déclarés, à valider par le CRIC.":
@@ -1208,7 +1208,7 @@ const englishLabels = new Map(
       "Also consider Stream 4 if evidence of exceptional achievement or a partner’s opinion is acceptable.",
     "Le PSTQ comprend quatre volets. Le ministère détermine le volet applicable selon la profession principale et les renseignements déclarés.":
       "The PSTQ has four streams. The ministry determines the applicable stream based on the primary occupation and the information provided.",
-    "Français – quatre compétences": "French – four skills",
+    "Français - quatre compétences": "French - four skills",
     "Expérience de travail totale": "Total work experience",
     "Diagnostic de main-d’œuvre et expérience principale":
       "Labour market assessment and experience in the primary occupation",
@@ -1258,20 +1258,20 @@ const englishLabels = new Map(
       "Technical postsecondary education of at least 900 hours in Quebec or one to two years full-time outside Quebec",
     "Postsecondaire technique de 3 ans à temps plein":
       "Technical postsecondary education, three years full-time",
-    "Universitaire de 1er cycle – 1 an à temps plein":
-      "Undergraduate degree – one year full-time",
-    "Universitaire de 1er cycle – 2 ans à temps plein":
-      "Undergraduate degree – two years full-time",
-    "Universitaire de 1er cycle – 3 ou 4 ans à temps plein":
-      "Undergraduate degree – three or four years full-time",
-    "Universitaire de 1er cycle – 5 ans ou plus à temps plein":
-      "Undergraduate degree – five years or more full-time",
-    "Universitaire de 2e cycle – 1 an à temps plein":
-      "Graduate degree – one year full-time",
-    "Universitaire de 2e cycle – 2 ans ou plus à temps plein":
-      "Graduate degree – two years or more full-time",
-    "Spécialisation médicale universitaire – 2 ans ou plus à temps plein":
-      "University medical specialty – two years or more full-time",
+    "Universitaire de 1er cycle - 1 an à temps plein":
+      "Undergraduate degree - one year full-time",
+    "Universitaire de 1er cycle - 2 ans à temps plein":
+      "Undergraduate degree - two years full-time",
+    "Universitaire de 1er cycle - 3 ou 4 ans à temps plein":
+      "Undergraduate degree - three or four years full-time",
+    "Universitaire de 1er cycle - 5 ans ou plus à temps plein":
+      "Undergraduate degree - five years or more full-time",
+    "Universitaire de 2e cycle - 1 an à temps plein":
+      "Graduate degree - one year full-time",
+    "Universitaire de 2e cycle - 2 ans ou plus à temps plein":
+      "Graduate degree - two years or more full-time",
+    "Spécialisation médicale universitaire - 2 ans ou plus à temps plein":
+      "University medical specialty - two years or more full-time",
     "Universitaire de 3e cycle": "Doctoral degree",
     "Niveau de scolarité selon la catégorie du barème Arrima, si confirmé":
       "Education category under the Arrima grid, if confirmed",

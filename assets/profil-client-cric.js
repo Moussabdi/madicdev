@@ -3220,7 +3220,7 @@ for (const [buttonId, contentId, hintId, openText] of [
     "Date limite": "Deadline",
     "2. Transmettre un document": "2. Upload a document",
     "PDF, JPG, PNG - 10 Mo maximum. N'envoyez aucun document réel avant la mise en production officielle du portail.":
-      "PDF, JPG, PNG – maximum 10 MB. Do not send real documents before the portal officially goes live.",
+      "PDF, JPG, PNG - maximum 10 MB. Do not send real documents before the portal officially goes live.",
     "Dossier actif": "Active case",
     "Aucun dossier actif": "No active case",
     Transmettre: "Upload",

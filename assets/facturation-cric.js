@@ -1398,13 +1398,13 @@ document.getElementById("cricLogout")?.addEventListener("click", async () => {
     ". Remplissez l’onglet « Clients » avec les courriels des personnes à inviter, puis importez le fichier ci-dessous. Seuls les courriels servent à envoyer les invitations.":
       ". Fill in the “Clients” sheet with the email addresses of people to invite, then import the file below. Only email addresses are used to send invitations.",
     "IMM 5476-Recours aux services d’un représentant":
-      "IMM 5476 – Use of a Representative",
+      "IMM 5476 - Use of a Representative",
     "IMM 0008-Demande générique pour le Canada":
-      "IMM 0008 – Generic Application Form for Canada",
+      "IMM 0008 - Generic Application Form for Canada",
     "IMM 5406-Renseignements additionnels sur la famille":
-      "IMM 5406 – Additional Family Information",
+      "IMM 5406 - Additional Family Information",
     "IMM 5669-Antécédents / Déclaration":
-      "IMM 5669 – Schedule A: Background / Declaration",
+      "IMM 5669 - Schedule A: Background / Declaration",
     "Gestion financière CRIC | MADIC": "RCIC financial management | MADIC",
     "Échéances de mon cabinet | MADIC": "My practice deadlines | MADIC",
     "Les modifications de votre profil professionnel ont été enregistrées avec succès.":

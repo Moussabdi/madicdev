@@ -5842,7 +5842,7 @@ section.history-section h2,
 }
 
 .package-excluded .package-feature-list li::before {
-  content: "–";
+  content: "-";
 
   color: #777;
 }

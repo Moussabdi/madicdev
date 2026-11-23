@@ -1260,9 +1260,9 @@ window.MADIC_CONTRAT_PREFILL = (() => {
     avance: "Avance convenue",
     conseils: "Résumé des conseils préliminaires",
     registreQuebec: "Permis du registre québécois",
-    phase1: "Honoraires – phase 1",
-    phase2: "Honoraires – phase 2",
-    phase3: "Honoraires – phase 3",
+    phase1: "Honoraires - phase 1",
+    phase2: "Honoraires - phase 2",
+    phase3: "Honoraires - phase 3",
     fraisBio: "Frais biométriques",
     fraisPermis: "Frais permis d’études",
   };

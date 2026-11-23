@@ -369,17 +369,17 @@ const englishLabels = new Map(
     "Plus haut diplôme reconnu / équivalence canadienne":
       "Highest recognized qualification / Canadian equivalency",
     "Maîtrise ou doctorat - 23 points":
-      "Master’s degree or doctorate – 23 points",
+      "Master’s degree or doctorate - 23 points",
     "Baccalauréat ou programme ≥ 3 ans - 20 points":
-      "Bachelor’s degree or program of 3 years or more – 20 points",
+      "Bachelor’s degree or program of 3 years or more - 20 points",
     "Certificat de métier équivalent compagnon - 20 points":
-      "Journeyperson-equivalent trade certificate – 20 points",
+      "Journeyperson-equivalent trade certificate - 20 points",
     "Diplôme postsecondaire de 2 ans - 15 points":
-      "Two-year postsecondary diploma – 15 points",
+      "Two-year postsecondary diploma - 15 points",
     "Certificat postsecondaire ≥ 2 semestres et < 2 ans - 12 points":
-      "Postsecondary certificate of at least 2 semesters and less than 2 years – 12 points",
+      "Postsecondary certificate of at least 2 semesters and less than 2 years - 12 points",
     "Secondaire ou sans diplôme reconnu - 0 point":
-      "Secondary school or no recognized qualification – 0 points",
+      "Secondary school or no recognized qualification - 0 points",
     "Diplôme d'un établissement de la Saskatchewan":
       "Qualification from a Saskatchewan institution",
     "Études liées à l'emploi envisagé":
@@ -407,16 +407,16 @@ const englishLabels = new Map(
       "Enter the lowest level across all four skills on an approved language test. Use a valid test result rather than a self-assessment.",
     "Tableaux officiels de conversion IRCC":
       "IRCC’s official language equivalency charts",
-    "Première langue - test": "First language – test",
+    "Première langue - test": "First language - test",
     "Aucun test valide": "No valid test",
     "Plus faible CLB/NCLC des 4 compétences - première langue":
-      "Lowest CLB/NCLC level across four skills – first language",
+      "Lowest CLB/NCLC level across four skills - first language",
     "Aucun / moins de 4": "None / below 4",
     "10 ou plus": "10 or higher",
-    "Deuxième langue - test": "Second language – test",
+    "Deuxième langue - test": "Second language - test",
     "Sans objet": "Not applicable",
     "Plus faible CLB/NCLC - deuxième langue":
-      "Lowest CLB/NCLC level – second language",
+      "Lowest CLB/NCLC level - second language",
     "Sans objet / moins de 4": "Not applicable / below 4",
     "5. Liens avec la Saskatchewan et autres critères":
       "5. Ties to Saskatchewan and other criteria",
@@ -437,7 +437,7 @@ const englishLabels = new Map(
     "Quotas et périodes de réception 2026": "2026 quotas and intake periods",
     "CNP 2021": "2021 NOC",
     "© MAD Immigration Canadienne - outil d'orientation indépendant. Aucune information n'est envoyée à un serveur par ce formulaire.":
-      "© MAD Immigration Canadienne – independent guidance tool. This form does not send any information to a server.",
+      "© MAD Immigration Canadienne - independent guidance tool. This form does not send any information to a server.",
     "Demande d’asile en cours au Canada : exclusion indiquée par le SINP.":
       "Pending refugee claim in Canada: exclusion identified by the SINP.",
     "Demande d’asile refusée : sortie du Canada et justificatifs requis pour tous les membres accompagnants.":
@@ -483,8 +483,8 @@ const englishLabels = new Map(
     "Facteur II :": "Factor II:",
     "Facteur II": "Factor II",
     "Résultat de votre évaluation": "Your assessment results",
-    "Score indicatif - avec offre": "Estimated score – with a job offer",
-    "Score indicatif - sans offre": "Estimated score – without a job offer",
+    "Score indicatif - avec offre": "Estimated score - with a job offer",
+    "Score indicatif - sans offre": "Estimated score - without a job offer",
     "Seuil de 60 points atteint": "60-point threshold met",
     "Seuil de 60 points non atteint": "60-point threshold not met",
     "Vérifications importantes": "Important checks",

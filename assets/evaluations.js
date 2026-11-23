@@ -656,7 +656,7 @@ const translations = {
 
     "booking.serviceTitle": "Choisissez votre consultation",
 
-    "booking.consultation60": "Consultation – 60 minutes",
+    "booking.consultation60": "Consultation - 60 minutes",
 
     "booking.consultation60Description":
       "Consultation personnalisée pour analyser votre situation et répondre à vos questions en immigration canadienne.",
@@ -1354,7 +1354,7 @@ const translations = {
 
     "booking.serviceTitle": "Choose Your Consultation",
 
-    "booking.consultation60": "Consultation – 60 Minutes",
+    "booking.consultation60": "Consultation - 60 Minutes",
 
     "booking.consultation60Description":
       "A personalized consultation to review your situation and answer your Canadian immigration questions.",
@@ -2492,44 +2492,44 @@ document.addEventListener("DOMContentLoaded", function () {
   const TEST_BANDS = {
     ielts: {
       speaking: [
-        ["7.5 – 9.0", 10],
+        ["7.5 - 9.0", 10],
         ["7.0", 9],
         ["6.5", 8],
         ["6.0", 7],
         ["5.5", 6],
         ["5.0", 5],
-        ["4.0 – 4.5", 4],
-        ["0 – 3.5", 0],
+        ["4.0 - 4.5", 4],
+        ["0 - 3.5", 0],
       ],
       listening: [
-        ["8.5 – 9.0", 10],
+        ["8.5 - 9.0", 10],
         ["8.0", 9],
         ["7.5", 8],
-        ["6.0 – 7.0", 7],
+        ["6.0 - 7.0", 7],
         ["5.5", 6],
         ["5.0", 5],
         ["4.5", 4],
-        ["0 – 4.0", 0],
+        ["0 - 4.0", 0],
       ],
       reading: [
-        ["8.0 – 9.0", 10],
-        ["7.0 – 7.5", 9],
+        ["8.0 - 9.0", 10],
+        ["7.0 - 7.5", 9],
         ["6.5", 8],
         ["6.0", 7],
-        ["5.0 – 5.5", 6],
-        ["4.0 – 4.5", 5],
+        ["5.0 - 5.5", 6],
+        ["4.0 - 4.5", 5],
         ["3.5", 4],
-        ["0 – 3.0", 0],
+        ["0 - 3.0", 0],
       ],
       writing: [
-        ["7.5 – 9.0", 10],
+        ["7.5 - 9.0", 10],
         ["7.0", 9],
         ["6.5", 8],
         ["6.0", 7],
         ["5.5", 6],
         ["5.0", 5],
-        ["4.0 – 4.5", 4],
-        ["0 – 3.5", 0],
+        ["4.0 - 4.5", 4],
+        ["0 - 3.5", 0],
       ],
     },
     tef: {

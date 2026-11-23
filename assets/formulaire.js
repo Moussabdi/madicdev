@@ -918,8 +918,8 @@ const profileIrccEnglish = Object.freeze({
   "Demande d’asile présentée au Canada": "Refugee claim made in Canada",
   "Réinstallation des réfugiés depuis l’étranger":
     "Refugee resettlement from abroad",
-  "Personne protégée – résidence permanente":
-    "Protected person – permanent residence",
+  "Personne protégée - résidence permanente":
+    "Protected person - permanent residence",
   "Autre demande concernant les réfugiés": "Other refugee application",
   "Demande pour considérations d’ordre humanitaire":
     "Humanitarian and compassionate application",
@@ -1520,13 +1520,13 @@ const profileIrccEnglish = Object.freeze({
   let opener = null;
   const translations = {
     fr: {
-      title: "Information importante – Choix du type de résidence",
+      title: "Information importante - Choix du type de résidence",
       text: "Vous devez choisir un seul type de résidence par dossier : résidence temporaire ou résidence permanente. Si vous souhaitez entreprendre des démarches pour les deux types de résidence, vous devez ouvrir un dossier distinct pour chaque demande auprès de votre consultant en immigration.",
       close: "Fermer",
       label: "Information sur le choix de résidence",
     },
     en: {
-      title: "Important information – Choosing a residence type",
+      title: "Important information - Choosing a residence type",
       text: "You must select only one type of residence per file: temporary residence or permanent residence. If you wish to apply for both types of residence, you must open a separate file for each application with your immigration consultant.",
       close: "Close",
       label: "Information about residence types",
@@ -2083,7 +2083,7 @@ const profileIrccEnglish = Object.freeze({
       "This information will be used to prefill the signing location in your contracts. You can confirm it before signing.",
     "form.submit": "Submit",
     "form.profileIrcc": "Plans recorded in your profile",
-    "qc.heading": "Additional questions – Quebec",
+    "qc.heading": "Additional questions - Quebec",
     "qc.hint":
       "Enter work experience in full-time equivalent months. For French, use the Quebec scale (0 to 12) based on an accepted test or document. Leave unknown answers blank.",
     "qc.residence": "Where do you currently live?",
@@ -2145,17 +2145,17 @@ const profileIrccEnglish = Object.freeze({
       "Length of the vocational or college program in hours, if known",
     "qc.credits": "Number of university credits, if known",
     "qc.graduation": "Date the qualification was awarded",
-    "qc.oralListen": "French – listening",
-    "qc.oralSpeak": "French – speaking",
-    "qc.writtenRead": "French – reading",
-    "qc.writtenWrite": "French – writing",
+    "qc.oralListen": "French - listening",
+    "qc.oralSpeak": "French - speaking",
+    "qc.writtenRead": "French - reading",
+    "qc.writtenWrite": "French - writing",
     "qc.spouse": "Will your spouse or partner accompany you?",
     "qc.spouse.yes": "Yes",
     "qc.spouse.no": "No",
-    "qc.spouseListen": "Spouse or partner’s French – listening",
-    "qc.spouseSpeak": "Spouse or partner’s French – speaking",
-    "qc.spouseRead": "Spouse or partner’s French – reading",
-    "qc.spouseWrite": "Spouse or partner’s French – writing",
+    "qc.spouseListen": "Spouse or partner’s French - listening",
+    "qc.spouseSpeak": "Spouse or partner’s French - speaking",
+    "qc.spouseRead": "Spouse or partner’s French - reading",
+    "qc.spouseWrite": "Spouse or partner’s French - writing",
     "qc.spouseAge": "Age of spouse or partner",
     "qc.spouseQcWork":
       "Spouse or partner’s months of work in Quebec over the past 5 years",
@@ -2257,15 +2257,22 @@ const profileIrccEnglish = Object.freeze({
   applyFormLanguage();
 })();
 
-
 /* Rendre visible l’entrée de la page courante après la mise en place du menu. */
 (function () {
   const nav = document.querySelector(".madic-side-nav > .madic-side-links");
   if (!nav) return;
 
   const defaultOrder = [
-    "nav-0", "nav-news", "nav-7", "nav-1", "nav-contracts",
-    "nav-3", "nav-4", "nav-5", "nav-2", "nav-6",
+    "nav-0",
+    "nav-news",
+    "nav-7",
+    "nav-1",
+    "nav-contracts",
+    "nav-3",
+    "nav-4",
+    "nav-5",
+    "nav-2",
+    "nav-6",
   ];
   let order = defaultOrder;
   try {
@@ -2280,7 +2287,8 @@ const profileIrccEnglish = Object.freeze({
     if (entry) nav.appendChild(entry);
   }
 
-  const route = (pathname) => pathname.replace(/\/+$/, "").replace(/\.html$/i, "");
+  const route = (pathname) =>
+    pathname.replace(/\/+$/, "").replace(/\.html$/i, "");
   const currentRoute = route(location.pathname);
   const mobile = window.matchMedia("(max-width: 800px)");
   const header = document.querySelector("body > .madic-client-header");
@@ -2289,12 +2297,16 @@ const profileIrccEnglish = Object.freeze({
   const translateHeader = () => {
     const english = document.documentElement.lang.startsWith("en");
     header?.querySelectorAll("[data-client-header-fr]").forEach((element) => {
-      const text = english ? element.dataset.clientHeaderEn : element.dataset.clientHeaderFr;
+      const text = english
+        ? element.dataset.clientHeaderEn
+        : element.dataset.clientHeaderFr;
       if (element.textContent.trim() !== text) element.textContent = text;
     });
     const bell = header?.querySelector(".madic-hero-notifications");
     if (bell) {
-      const label = english ? "Message notifications" : "Notifications de messagerie";
+      const label = english
+        ? "Message notifications"
+        : "Notifications de messagerie";
       bell.setAttribute("aria-label", label);
       bell.title = label;
     }
@@ -2305,10 +2317,15 @@ const profileIrccEnglish = Object.freeze({
     scheduled = true;
     requestAnimationFrame(() => {
       scheduled = false;
-      const links = Array.from(nav.querySelectorAll(".madic-nav-entry > a[href]"));
+      const links = Array.from(
+        nav.querySelectorAll(".madic-nav-entry > a[href]"),
+      );
       const current = links.find((link) => {
         const target = new URL(link.href);
-        return target.origin === location.origin && route(target.pathname) === currentRoute;
+        return (
+          target.origin === location.origin &&
+          route(target.pathname) === currentRoute
+        );
       });
       if (!current) return;
 
@@ -2319,8 +2336,12 @@ const profileIrccEnglish = Object.freeze({
         else link.removeAttribute("aria-current");
       }
 
-      if (!mobile.matches || nav.closest(".madic-editing") ||
-          nav.scrollWidth <= nav.clientWidth) return;
+      if (
+        !mobile.matches ||
+        nav.closest(".madic-editing") ||
+        nav.scrollWidth <= nav.clientWidth
+      )
+        return;
 
       const start = nav.getBoundingClientRect().left + nav.clientLeft;
       const end = start + nav.clientWidth;
