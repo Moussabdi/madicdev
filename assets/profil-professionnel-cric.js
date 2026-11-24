@@ -1523,3 +1523,17 @@ window.getMadicSupabase = function () {
     init();
   }
 })();
+
+
+/* MADIC : navigation de l'en-tête, sans intervention dans les traitements métier. */
+(function(){
+ "use strict";
+ function init(){
+  const form=document.getElementById('madicHeaderSearchForm');
+  if(form&&!form.dataset.madicBound){form.dataset.madicBound='1';form.addEventListener('submit',function(e){e.preventDefault();const q=document.getElementById('madicHeaderSearch')?.value.trim();if(q)location.href='cric-dashboard.html?search='+encodeURIComponent(q);});}
+  const profile=document.getElementById('madicHeaderProfileName');
+  if(profile&&window.getMadicSupabase){window.getMadicSupabase().auth.getUser().then(({data})=>{const user=data?.user;if(user){profile.textContent=user.user_metadata?.full_name||user.email||'Mon espace';}}).catch(()=>{});}
+
+ }
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
+})();
