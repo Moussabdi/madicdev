@@ -1,32 +1,101 @@
-(async () => {
-  "use strict";
-  const $ = (id) => document.getElementById(id);
-  const cfg = window.MADIC_CONFIG;
-  const fail = (message) => {
-    if ($("cricMessage")) $("cricMessage").textContent = message;
-  };
-  if (!cfg?.url || !cfg?.anonKey || !window.supabase)
-    return fail("Configuration Supabase manquante.");
-  const db = window.getMadicSupabase();
-  try {
-    const { data: auth, error: authError } = await db.auth.getUser();
-    if (authError || !auth?.user) {
-      location.replace("connexion.html");
-      return;
+const getGestionCricAdmin = (() => {
+  let access;
+
+  async function verify() {
+    const config = window.MADIC_CONFIG;
+    if (
+      !config?.url ||
+      !config?.anonKey ||
+      typeof window.supabase?.createClient !== "function" ||
+      typeof window.getMadicSupabase !== "function"
+    ) {
+      throw new Error("Configuration Supabase manquante.", {
+        cause: "configuration",
+      });
     }
-    const uid = auth.user.id;
+
+    const db = window.getMadicSupabase();
+    const { data: auth, error: authError } = await db.auth.getUser();
+    if (
+      authError?.name === "AuthSessionMissingError" ||
+      authError?.status === 401
+    )
+      return null;
+    if (authError) throw authError;
+    if (!auth?.user) return null;
+
     const { data: isOwner, error: ownerError } = await db.rpc(
       "madic_is_super_admin",
     );
     if (ownerError) throw ownerError;
+    return { db, isOwner };
+  }
+
+  return () => {
+    if (!access) {
+      let timer;
+      const deadline = new Promise((_, reject) => {
+        timer = setTimeout(() => {
+          reject(
+            new Error(
+              "La vérification des droits a expiré. Rechargez la page pour réessayer.",
+              { cause: "timeout" },
+            ),
+          );
+        }, 15000);
+      });
+      access = Promise.race([verify(), deadline]).finally(() =>
+        clearTimeout(timer),
+      );
+    }
+    return access;
+  };
+})();
+
+(async () => {
+  "use strict";
+  const $ = (id) => document.getElementById(id);
+  const main = $("cricAdminMain");
+  const message = $("cricMessage");
+  const fail = (text) => {
+    if (!message) return;
+    message.textContent = text;
+    message.hidden = false;
+  };
+  try {
+    let db, isOwner, uid;
+    if (main) {
+      fail("Vérification des droits du super administrateur…");
+      const access = await getGestionCricAdmin();
+      if (!access) {
+        location.replace("connexion.html");
+        return;
+      }
+      ({ db, isOwner } = access);
+    } else {
+      const cfg = window.MADIC_CONFIG;
+      if (!cfg?.url || !cfg?.anonKey || !window.supabase)
+        return fail("Configuration Supabase manquante.");
+      db = window.getMadicSupabase();
+      const { data: auth, error: authError } = await db.auth.getUser();
+      if (authError || !auth?.user) {
+        location.replace("connexion.html");
+        return;
+      }
+      uid = auth.user.id;
+      const { data, error: ownerError } = await db.rpc("madic_is_super_admin");
+      if (ownerError) throw ownerError;
+      isOwner = data;
+    }
     $("cricLogout")?.addEventListener("click", async () => {
       await db.auth.signOut();
       location.href = "connexion.html";
     });
-    if ($("cricAdminMain")) {
-      if (!isOwner) return fail("Accès réservé au super administrateur MADIC.");
-      $("cricAdminMain").hidden = false;
-      $("cricMessage").hidden = true;
+    if (main) {
+      if (isOwner !== true)
+        return fail("Accès réservé au super administrateur MADIC.");
+      main.hidden = false;
+      message.hidden = true;
       const labels = {
         pending: "En attente",
         approved: "Autorisé",
@@ -69,7 +138,14 @@
           action.append(review);
         }
       }
-      await load();
+      try {
+        await load();
+      } catch (error) {
+        fail(
+          "Impossible de charger les comptes CRIC. Rechargez la page pour réessayer.",
+        );
+        console.error("Gestion CRIC – comptes", error);
+      }
       return;
     }
     if (!$("cricMain")) return;
@@ -417,9 +493,17 @@
     $("cricMain").hidden = false;
     $("cricMessage").hidden = true;
   } catch (error) {
-    fail(
-      "Impossible de vérifier vos droits : " + (error.message || String(error)),
-    );
+    const detail = error?.message || String(error);
+    if (main) {
+      console.error("Gestion CRIC – vérification des droits", error);
+      fail(
+        error?.cause === "configuration" || error?.cause === "timeout"
+          ? detail
+          : "Impossible de vérifier vos droits. Rechargez la page pour réessayer.",
+      );
+    } else {
+      fail("Impossible de vérifier vos droits : " + detail);
+    }
   }
 })();
 
@@ -439,16 +523,9 @@
     return td;
   };
   try {
-    const db = window.getMadicSupabase?.();
-    if (!db) throw new Error("Configuration Supabase indisponible.");
-    const { data: auth, error: authError } = await db.auth.getUser();
-    if (authError || !auth?.user)
-      throw new Error("Connexion administrateur requise.");
-    const { data: isOwner, error: roleError } = await db.rpc(
-      "madic_is_super_admin",
-    );
-    if (roleError || isOwner !== true)
-      throw new Error("Accès réservé au super administrateur.");
+    const access = await getGestionCricAdmin();
+    if (access?.isOwner !== true) return;
+    const { db } = access;
     const [pre, apps] = await Promise.all([
       db.rpc("madic_admin_list_cric_prevalidations"),
       db
@@ -515,7 +592,7 @@
   const rows = document.getElementById("cricSpaceRows");
   const notice = document.getElementById("cricSpaceNotice");
   if (!rows || !notice) return;
-  const db = window.getMadicSupabase();
+  let db;
   const label = (v) =>
     ({
       free: "Gratuit",
@@ -655,17 +732,16 @@
         "Statuts administratifs des abonnements chargés. Aucun paiement n’est confirmé depuis cette page.";
   }
   try {
-    const { data: auth, error: authError } = await db.auth.getUser();
-    if (authError || !auth?.user) throw Error("Session non authentifiée.");
-    const { data: isAdmin, error: adminError } = await db.rpc(
-      "madic_is_super_admin",
-    );
-    if (adminError) throw adminError;
-    if (isAdmin !== true) throw Error("Accès réservé au super administrateur.");
+    const access = await getGestionCricAdmin();
+    if (access?.isOwner !== true) return;
+    ({ db } = access);
     await load();
     notice.textContent = "Gestion des cabinets disponible.";
   } catch (e) {
-    notice.textContent = "Chargement impossible : " + (e.message || String(e));
+    const message = "Chargement impossible : " + (e.message || String(e));
+    notice.textContent = message;
+    const paymentNotice = document.getElementById("cricPaymentNotice");
+    if (paymentNotice) paymentNotice.textContent = message;
   }
 })();
 
@@ -880,6 +956,12 @@
   const phrases = new Map(
     Object.entries({
       "Configuration Supabase manquante.": "Supabase configuration is missing.",
+      "Impossible de vérifier vos droits. Rechargez la page pour réessayer.":
+        "Unable to verify your permissions. Reload the page to try again.",
+      "La vérification des droits a expiré. Rechargez la page pour réessayer.":
+        "The permissions check timed out. Reload the page to try again.",
+      "Impossible de charger les comptes CRIC. Rechargez la page pour réessayer.":
+        "Unable to load RCIC accounts. Reload the page to try again.",
       "Accès réservé au super administrateur MADIC.":
         "Access restricted to the MADIC super administrator.",
       "Aucun CRIC inscrit.": "No RCIC registered.",
