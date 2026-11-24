@@ -107,7 +107,13 @@
             ><small>Espace professionnel</small></span
           >
         </div>
-        <div class="madic-unified-caption">NAVIGATION</div>
+        <div
+          class="madic-unified-caption"
+          data-madic-fr="NAVIGATION"
+          data-madic-en="NAVIGATION"
+        >
+          NAVIGATION
+        </div>
         <nav>
           <a
             href="cric-dashboard.html"
@@ -395,12 +401,33 @@
             <div class="madic-cric-identity">
               <span aria-hidden="true" class="madic-cric-avatar">CRIC</span>
               <div class="madic-cric-identity-copy">
-                <p class="madic-cric-kicker">ESPACE PROFESSIONNEL CRIC</p>
+                <p
+                  class="madic-cric-kicker"
+                  data-madic-fr="Espace CRIC"
+                  data-madic-en="RCIC workspace"
+                >
+                  Espace CRIC
+                </p>
                 <h1 id="cricWelcome">Bienvenue</h1>
                 <p class="muted" id="cricLicense">Numéro CRIC : -</p>
                 <p class="muted" id="cricSpace"></p>
               </div>
             </div>
+          </div>
+          <div class="madic-dashboard-intro">
+            <p
+              data-madic-fr="Voici la vue d’ensemble de votre pratique."
+              data-madic-en="Here is an overview of your practice."
+            >
+              Voici la vue d’ensemble de votre pratique.
+            </p>
+            <a
+              href="echeances-cric.html"
+              class="madic-dashboard-period"
+              data-madic-fr="Consulter les échéances →"
+              data-madic-en="View deadlines →"
+              >Consulter les échéances →</a
+            >
           </div>
           <section
             aria-label="Synthèse professionnelle"
@@ -462,6 +489,44 @@
             id="cricAccess"
             role="status"
           ></p>
+          <section
+            class="madic-dashboard-actions"
+            aria-label="Actions prioritaires"
+          >
+            <h2
+              data-madic-fr="Actions prioritaires"
+              data-madic-en="Priority actions"
+            >
+              Actions prioritaires
+            </h2>
+            <div class="madic-dashboard-action-links">
+              <a
+                class="madic-dashboard-action-primary"
+                href="gestion-dossiers-cric.html"
+                data-madic-fr="＋ Nouveau dossier"
+                data-madic-en="＋ New case"
+                >＋ Nouveau dossier</a
+              >
+              <a
+                href="gestion-clients-cric.html"
+                data-madic-fr="Inviter un client"
+                data-madic-en="Invite a client"
+                >Inviter un client</a
+              >
+              <a
+                href="demandes-documents-cric.html"
+                data-madic-fr="Demander un document"
+                data-madic-en="Request a document"
+                >Demander un document</a
+              >
+              <a
+                href="facturation-cric.html"
+                data-madic-fr="Créer une facture"
+                data-madic-en="Create an invoice"
+                >Créer une facture</a
+              >
+            </div>
+          </section>
           <section
             aria-labelledby="madicQuickTitle"
             class="madic-quick-section"
@@ -667,167 +732,190 @@
               ></a>
             </div>
           </section>
-          <section
-            aria-labelledby="madicServiceRequestsHeading"
-            class="panel madic-service-panel"
-            hidden=""
-            id="madicServiceRequestsPanel"
+          <h2
+            class="madic-dashboard-section-heading"
+            data-madic-fr="Activité de votre cabinet"
+            data-madic-en="Your practice activity"
           >
-            <div class="madic-service-head">
-              <h2 id="madicServiceRequestsHeading">
-                Demandes de services
-                <span
-                  class="madic-service-badge"
-                  hidden=""
-                  id="madicServicePendingBadge"
-                  >0</span
-                >
-              </h2>
-              <button class="secondary" id="madicServiceRefresh" type="button">
-                Actualiser
-              </button>
-            </div>
-            <div class="madic-service-create">
-              <button
-                aria-expanded="false"
-                class="secondary"
-                id="madicServiceCreateToggle"
-                type="button"
-              >
-                + Nouvelle demande de service
-              </button>
-              <form hidden="" id="madicServiceCreateForm">
-                <label for="madicServiceClient">Client existant</label
-                ><select id="madicServiceClient" required=""></select>
-                <p
-                  aria-live="polite"
-                  id="madicServiceIntakeState"
-                  role="status"
-                ></p>
-                <label for="madicServiceType">Type de service</label
-                ><select id="madicServiceType" required="">
-                  <option value="consultation">Consultation initiale</option>
-                  <option value="proposition">Proposition personnalisée</option>
-                </select>
-                <label for="madicServicePayment">Mode de paiement déclaré</label
-                ><select id="madicServicePayment" required="">
-                  <option value="interac">Virement Interac</option>
-                  <option value="portail">MADIC Portail</option>
-                  <option value="especes">Espèces</option>
-                </select>
-                <label for="madicServicePaymentNote"
-                  >Référence ou note (facultatif)</label
-                ><input
-                  id="madicServicePaymentNote"
-                  maxlength="500"
-                  placeholder="Référence ou date du paiement"
-                />
-                <p class="muted">
-                  Le mode choisi est déclaré par le CRIC. Il ne confirme pas
-                  automatiquement la réception des fonds.
-                </p>
-                <button id="madicServiceCreateSubmit" type="submit">
-                  Créer la demande
-                </button>
-              </form>
-            </div>
-            <div
-              aria-label="Synthèse des demandes"
-              class="madic-service-overview"
+            Activité de votre cabinet
+          </h2>
+          <div class="madic-dashboard-activity-grid">
+            <section
+              aria-labelledby="madicServiceRequestsHeading"
+              class="panel madic-service-panel"
+              hidden=""
+              id="madicServiceRequestsPanel"
             >
-              <div>
-                <small>Total des demandes</small
-                ><strong id="madicServiceTotalCount">-</strong>
-              </div>
-              <div>
-                <small>Demandes reçues</small
-                ><strong id="madicServiceReceivedCount">-</strong>
-              </div>
-              <div>
-                <small>Autres statuts</small
-                ><strong id="madicServiceOtherCount">-</strong>
-              </div>
-            </div>
-            <div class="madic-service-toolbar">
-              <label for="madicServiceFilter">Afficher</label
-              ><select id="madicServiceFilter">
-                <option value="all">Toutes les demandes</option>
-                <option value="received">Demandes reçues</option>
-                <option value="signed">Contrats signés</option></select
-              ><label for="madicServiceSearch">Rechercher</label
-              ><input
-                autocomplete="off"
-                id="madicServiceSearch"
-                placeholder="Nom du client"
-                type="search"
-              />
-            </div>
-            <p aria-live="polite" id="madicServiceNotice" role="status">
-              Chargement des demandes…
-            </p>
-            <div class="madic-service-list" id="madicServiceList"></div>
-          </section>
-          <section
-            aria-labelledby="cricNotificationsHeading"
-            class="panel madic-cric-notifications"
-            hidden=""
-            id="cricNotificationsPanel"
-          >
-            <div class="madic-cric-notifications-head">
-              <h2 id="cricNotificationsHeading">
-                Notifications des clients
-                <span
-                  class="madic-cric-count"
-                  hidden=""
-                  id="cricNotificationsCount"
-                  >0</span
+              <div class="madic-service-head">
+                <h2 id="madicServiceRequestsHeading">
+                  Demandes de services
+                  <span
+                    class="madic-service-badge"
+                    hidden=""
+                    id="madicServicePendingBadge"
+                    >0</span
+                  >
+                </h2>
+                <button
+                  class="secondary"
+                  id="madicServiceRefresh"
+                  type="button"
                 >
-              </h2>
-              <button
-                class="secondary"
-                id="cricNotificationsRefresh"
-                type="button"
+                  Actualiser
+                </button>
+              </div>
+              <div class="madic-service-create">
+                <button
+                  aria-expanded="false"
+                  class="secondary"
+                  id="madicServiceCreateToggle"
+                  type="button"
+                >
+                  + Nouvelle demande de service
+                </button>
+                <form hidden="" id="madicServiceCreateForm">
+                  <label for="madicServiceClient">Client existant</label
+                  ><select id="madicServiceClient" required=""></select>
+                  <p
+                    aria-live="polite"
+                    id="madicServiceIntakeState"
+                    role="status"
+                  ></p>
+                  <label for="madicServiceType">Type de service</label
+                  ><select id="madicServiceType" required="">
+                    <option value="consultation">Consultation initiale</option>
+                    <option value="proposition">
+                      Proposition personnalisée
+                    </option>
+                  </select>
+                  <label for="madicServicePayment"
+                    >Mode de paiement déclaré</label
+                  ><select id="madicServicePayment" required="">
+                    <option value="interac">Virement Interac</option>
+                    <option value="portail">MADIC Portail</option>
+                    <option value="especes">Espèces</option>
+                  </select>
+                  <label for="madicServicePaymentNote"
+                    >Référence ou note (facultatif)</label
+                  ><input
+                    id="madicServicePaymentNote"
+                    maxlength="500"
+                    placeholder="Référence ou date du paiement"
+                  />
+                  <p class="muted">
+                    Le mode choisi est déclaré par le CRIC. Il ne confirme pas
+                    automatiquement la réception des fonds.
+                  </p>
+                  <button id="madicServiceCreateSubmit" type="submit">
+                    Créer la demande
+                  </button>
+                </form>
+              </div>
+              <div
+                aria-label="Synthèse des demandes"
+                class="madic-service-overview"
               >
-                Actualiser
-              </button>
-            </div>
-            <p aria-live="polite" id="cricNotificationsSummary">
-              Chargement des notifications…
-            </p>
-            <details class="madic-cric-notifications-details">
-              <summary>
-                Afficher / masquer l’historique des notifications
-              </summary>
-              <ul
-                class="madic-cric-notifications-list"
-                id="cricNotificationsList"
-              ></ul>
-            </details>
-          </section>
-          <section
-            aria-labelledby="cricReminderHeading"
-            class="panel"
-            hidden=""
-            id="cricReminderPanel"
+                <div>
+                  <small>Total des demandes</small
+                  ><strong id="madicServiceTotalCount">-</strong>
+                </div>
+                <div>
+                  <small>Demandes reçues</small
+                  ><strong id="madicServiceReceivedCount">-</strong>
+                </div>
+                <div>
+                  <small>Autres statuts</small
+                  ><strong id="madicServiceOtherCount">-</strong>
+                </div>
+              </div>
+              <div class="madic-service-toolbar">
+                <label for="madicServiceFilter">Afficher</label
+                ><select id="madicServiceFilter">
+                  <option value="all">Toutes les demandes</option>
+                  <option value="received">Demandes reçues</option>
+                  <option value="signed">Contrats signés</option></select
+                ><label for="madicServiceSearch">Rechercher</label
+                ><input
+                  autocomplete="off"
+                  id="madicServiceSearch"
+                  placeholder="Nom du client"
+                  type="search"
+                />
+              </div>
+              <p aria-live="polite" id="madicServiceNotice" role="status">
+                Chargement des demandes…
+              </p>
+              <div class="madic-service-list" id="madicServiceList"></div>
+            </section>
+            <section
+              aria-labelledby="cricNotificationsHeading"
+              class="panel madic-cric-notifications"
+              hidden=""
+              id="cricNotificationsPanel"
+            >
+              <div class="madic-cric-notifications-head">
+                <h2 id="cricNotificationsHeading">
+                  Notifications des clients
+                  <span
+                    class="madic-cric-count"
+                    hidden=""
+                    id="cricNotificationsCount"
+                    >0</span
+                  >
+                </h2>
+                <button
+                  class="secondary"
+                  id="cricNotificationsRefresh"
+                  type="button"
+                >
+                  Actualiser
+                </button>
+              </div>
+              <p aria-live="polite" id="cricNotificationsSummary">
+                Chargement des notifications…
+              </p>
+              <details class="madic-cric-notifications-details">
+                <summary>
+                  Afficher / masquer l’historique des notifications
+                </summary>
+                <ul
+                  class="madic-cric-notifications-list"
+                  id="cricNotificationsList"
+                ></ul>
+              </details>
+            </section>
+            <section
+              aria-labelledby="cricReminderHeading"
+              class="panel"
+              hidden=""
+              id="cricReminderPanel"
+            >
+              <div class="madic-reminder-head">
+                <h2 id="cricReminderHeading">
+                  <img
+                    alt=""
+                    aria-hidden="true"
+                    class="madic-heroicon"
+                    decoding="async"
+                    loading="eager"
+                    src="https://raw.githubusercontent.com/tailwindlabs/heroicons/v2.2.0/optimized/24/outline/bell-alert.svg"
+                  />Mes rappels prioritaires
+                </h2>
+                <a href="echeances-cric.html">Voir toutes les échéances →</a>
+              </div>
+              <p aria-live="polite" id="cricReminderSummary">
+                Chargement des rappels…
+              </p>
+              <ul id="cricReminderList"></ul>
+            </section>
+          </div>
+          <h2
+            class="madic-dashboard-section-heading"
+            data-madic-fr="Vos outils professionnels"
+            data-madic-en="Your professional tools"
           >
-            <div class="madic-reminder-head">
-              <h2 id="cricReminderHeading">
-                <img
-                  alt=""
-                  aria-hidden="true"
-                  class="madic-heroicon"
-                  decoding="async"
-                  loading="eager"
-                  src="https://raw.githubusercontent.com/tailwindlabs/heroicons/v2.2.0/optimized/24/outline/bell-alert.svg"
-                />Mes rappels prioritaires
-              </h2>
-              <a href="echeances-cric.html">Voir toutes les échéances →</a>
-            </div>
-            <p aria-live="polite" id="cricReminderSummary">
-              Chargement des rappels…
-            </p>
-            <ul id="cricReminderList"></ul>
-          </section>
+            Vos outils professionnels
+          </h2>
           <div class="madic-cric-grid">
             <section class="panel madic-cric-card">
               <h2 id="madicQuickProfile">Mon profil professionnel</h2>
