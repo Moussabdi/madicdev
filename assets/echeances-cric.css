@@ -4101,3 +4101,26 @@ html
     padding-inline: 12px !important;
   }
 }
+
+
+/* MADIC - Modernisation visuelle 2026-11-24. Presentation uniquement. */
+:root { --madic-modern-navy:#0d2343; --madic-modern-blue:#1457bd; --madic-modern-cyan:#15b7ca; --madic-modern-bg:#eef4fb; --madic-modern-border:#dbe6f4; }
+body { font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif; }
+button, input, select, textarea { font: inherit; }
+button, [role="button"] { transition: background-color .18s ease, border-color .18s ease, box-shadow .18s ease, transform .18s ease; }
+button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 3px solid #23bfd3; outline-offset: 2px; }
+input:not([type="checkbox"]):not([type="radio"]), select, textarea { border-radius: 10px; }
+@media (prefers-reduced-motion:reduce) { button, [role="button"] { transition:none !important; } }
+
+@media (min-width: 901px) {
+body.madic-unified .madic-unified-sidebar { background:linear-gradient(180deg,#0b1d37 0%,#142f53 100%) !important; box-shadow: 3px 0 20px rgba(10,29,55,.08) !important; }
+body.madic-unified .madic-unified-content { background:#eef4fb !important; }
+body.madic-unified .madic-unified-content > header { background:#fff !important; border-bottom:1px solid #dce7f4 !important; box-shadow:0 2px 12px rgba(20,50,95,.035) !important; }
+}
+body.madic-unified .madic-unified-sidebar nav a, body.madic-unified .madic-unified-sidebar nav button { border-radius:10px !important; transition:background .18s ease !important; }
+body.madic-unified .madic-unified-sidebar nav a:hover { background:rgba(74,176,218,.19) !important; }
+body.madic-unified .madic-unified-content main .panel, body.madic-unified .madic-unified-content .panel { border:1px solid #dbe6f4 !important; border-radius:16px !important; box-shadow:0 9px 26px rgba(21,54,98,.055) !important; }
+body.madic-unified .madic-unified-content table { border-collapse:separate; border-spacing:0; }
+body.madic-unified .madic-unified-content th { background:#eaf2fa; }
+body.madic-unified .madic-unified-content td, body.madic-unified .madic-unified-content th { border-bottom:1px solid #e3ebf5; }
+body.madic-unified .madic-unified-content button:not(:disabled):hover { filter:brightness(.96); }
