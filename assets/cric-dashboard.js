@@ -142,12 +142,8 @@
         $("cricWelcome").textContent = "Bienvenue, " + fullName;
         const headerName = document.getElementById("madicHeaderProfileName");
         if (headerName) headerName.textContent = fullName;
-        const headerLicense = document.getElementById(
-          "madicHeaderProfileLicense",
-        );
-        if (headerLicense)
-          headerLicense.textContent =
-            "CRIC " + (application?.license_number || "");
+        const headerLicense = document.getElementById("madicHeaderProfileLicense");
+        if (headerLicense) headerLicense.textContent = "CRIC " + (application?.license_number || "");
         $("cricLicense").textContent =
           "Numéro CRIC : " +
           (application?.license_number ||
@@ -1899,12 +1895,7 @@
           if (!el.dataset[key]) el.dataset[key] = el.getAttribute(name);
           const source = el.dataset[key];
           const explicit = el.getAttribute("data-madic-" + lang + "-" + name);
-          const result =
-            explicit !== null
-              ? explicit
-              : lang === "en"
-                ? dictionary[source] || source
-                : source;
+          const result = explicit !== null ? explicit : (lang === "en" ? dictionary[source] || source : source);
           if (el.getAttribute(name) !== result) el.setAttribute(name, result);
         }
       }
@@ -1914,18 +1905,12 @@
         const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
         let node;
         while ((node = walker.nextNode())) translateText(node);
-        root
-          .querySelectorAll(
-            "[data-fr][data-en], [data-madic-fr][data-madic-en]",
-          )
-          .forEach((el) => {
-            if (el.matches("input,textarea")) return;
-            const translated =
-              el.getAttribute("data-madic-" + lang) ??
-              el.getAttribute("data-" + lang);
-            if (translated !== null && el.textContent !== translated)
-              el.textContent = translated;
-          });
+        root.querySelectorAll("[data-fr][data-en], [data-madic-fr][data-madic-en]").forEach((el) => {
+          if (el.matches("input,textarea")) return;
+          const translated = el.getAttribute("data-madic-" + lang) ?? el.getAttribute("data-" + lang);
+          if (translated !== null && el.textContent !== translated)
+            el.textContent = translated;
+        });
         root
           .querySelectorAll(".madic-cric-notification time[datetime]")
           .forEach((el) => {
@@ -1972,11 +1957,7 @@
         });
       }
       try {
-        lang =
-          (localStorage.getItem(storageKey) ||
-            localStorage.getItem("madic-lang")) === "en"
-            ? "en"
-            : "fr";
+        lang = (localStorage.getItem(storageKey) || localStorage.getItem("madic-lang")) === "en" ? "en" : "fr";
       } catch (_) {}
       document.querySelectorAll(".madic-lang-controls button").forEach((btn) =>
         btn.addEventListener("click", () => {
@@ -2119,27 +2100,4 @@
 })();
 
 /* Header search uses the existing service-request search, without a new backend. */
-(function () {
-  const form = document.getElementById("madicHeaderSearchForm");
-  const field = document.getElementById("madicHeaderSearch");
-  if (!form || !field) return;
-  form.addEventListener("submit", function (event) {
-    event.preventDefault();
-    const target = document.getElementById("madicServiceSearch");
-    const panel = document.getElementById("madicServiceRequestsPanel");
-    if (target && panel && !panel.hidden) {
-      target.value = field.value;
-      target.dispatchEvent(new Event("input", { bubbles: true }));
-      panel.scrollIntoView({ behavior: "smooth", block: "start" });
-      target.focus();
-    } else {
-      field.setCustomValidity(
-        document.documentElement.lang.startsWith("en")
-          ? "Service request search is not available."
-          : "La recherche des demandes de services est indisponible.",
-      );
-      field.reportValidity();
-      setTimeout(() => field.setCustomValidity(""), 1500);
-    }
-  });
-})();
+(function(){const form=document.getElementById('madicHeaderSearchForm');const field=document.getElementById('madicHeaderSearch');if(!form||!field)return;form.addEventListener('submit',function(event){event.preventDefault();const target=document.getElementById('madicServiceSearch');const panel=document.getElementById('madicServiceRequestsPanel');if(target&&panel&&!panel.hidden){target.value=field.value;target.dispatchEvent(new Event('input',{bubbles:true}));panel.scrollIntoView({behavior:'smooth',block:'start'});target.focus();}else{field.setCustomValidity(document.documentElement.lang.startsWith('en')?'Service request search is not available.':'La recherche des demandes de services est indisponible.');field.reportValidity();setTimeout(()=>field.setCustomValidity(''),1500);}});})();
