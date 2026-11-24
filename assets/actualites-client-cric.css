@@ -3402,22 +3402,124 @@ body[data-page="cric-client-dashboard"]
   }
 }
 
-
-/* MADIC - Modernisation visuelle 2026-11-24. Presentation uniquement. */
-:root { --madic-modern-navy:#0d2343; --madic-modern-blue:#1457bd; --madic-modern-cyan:#15b7ca; --madic-modern-bg:#eef4fb; --madic-modern-border:#dbe6f4; }
-body { font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif; }
-button, input, select, textarea { font: inherit; }
-button, [role="button"] { transition: background-color .18s ease, border-color .18s ease, box-shadow .18s ease, transform .18s ease; }
-button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 3px solid #23bfd3; outline-offset: 2px; }
-input:not([type="checkbox"]):not([type="radio"]), select, textarea { border-radius: 10px; }
-@media (prefers-reduced-motion:reduce) { button, [role="button"] { transition:none !important; } }
-
-@media (min-width: 901px) {
-body .madic-side-nav { background:linear-gradient(180deg,#0b1d37 0%,#142f53 100%) !important; box-shadow:3px 0 20px rgba(10,29,55,.08) !important; }
-body .madic-app-content { background:#eef4fb !important; }
-body .madic-client-header { background:#fff !important; border-bottom:1px solid #dce7f4 !important; }
+/* ================================================================
+   MADIC PORTAIL - Professional SaaS Dashboard / Maquettes 2026
+   Harmonisation visuelle uniquement : aucune logique JS modifiee.
+   ================================================================ */
+:root {
+  --madic-ui-navy: #091e39;
+  --madic-ui-navy2: #112e50;
+  --madic-ui-teal: #00b4bc;
+  --madic-ui-blue: #1456df;
+  --madic-ui-surface: #fff;
+  --madic-ui-canvas: #edf4fc;
+  --madic-ui-text: #142e50;
+  --madic-ui-muted: #58708d;
+  --madic-ui-border: #dce8f5;
+  --madic-ui-shadow: 0 8px 25px rgba(20, 55, 105, 0.07);
 }
-body .madic-side-links a { border-radius:10px !important; }
-body .madic-side-links a:hover { background:rgba(74,176,218,.19) !important; }
-body .madic-app-content .panel, body .madic-app-content .card { border:1px solid #dbe6f4 !important; border-radius:16px !important; box-shadow:0 9px 26px rgba(21,54,98,.055) !important; }
-body .madic-app-content th { background:#eaf2fa; }
+html {
+  scroll-behavior: smooth;
+}
+body {
+  background: var(--madic-ui-canvas) !important;
+  color: var(--madic-ui-text);
+  font-family:
+    Inter,
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    sans-serif !important;
+}
+:where(button, input, select, textarea, a):focus-visible {
+  outline: 3px solid #31bfd1 !important;
+  outline-offset: 2px;
+}
+:where(button, a, input, select, textarea) {
+  transition:
+    background-color 0.16s ease,
+    border-color 0.16s ease,
+    box-shadow 0.16s ease,
+    transform 0.16s ease;
+}
+:where(button):not(:disabled):active {
+  transform: translateY(1px);
+}
+:where(input, select, textarea) {
+  border-radius: 9px !important;
+}
+:where(input, select, textarea):focus {
+  border-color: #34a9d1 !important;
+  box-shadow: 0 0 0 3px rgba(52, 169, 209, 0.12);
+}
+:where(table) {
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+}
+:where(th) {
+  background: #eaf3fc;
+  color: #173656;
+  font-weight: 750;
+}
+:where(th, td) {
+  border-bottom: 1px solid #e0eaf5;
+}
+:where(tbody tr):hover {
+  background: rgba(225, 242, 255, 0.45);
+}
+:where(.panel, .card, .stat-card, .metric-card, .kpi-card) {
+  border: 1px solid var(--madic-ui-border) !important;
+  border-radius: 16px !important;
+  box-shadow: var(--madic-ui-shadow) !important;
+}
+:where(.panel, .card, .stat-card, .metric-card, .kpi-card) :where(h2, h3) {
+  color: #142e50;
+}
+:where(.muted, .subtle, .description) {
+  color: var(--madic-ui-muted);
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Client workspace: existing navigation and controls preserved */
+body > header.madic-client-header {
+  background: #fff !important;
+  border-bottom: 1px solid #dce8f5 !important;
+  box-shadow: 0 2px 9px rgba(25, 54, 94, 0.04) !important;
+}
+body .madic-app-layout {
+  background: #edf4fc !important;
+}
+body .madic-side-nav {
+  background: linear-gradient(180deg, #091c34, #103452) !important;
+  border-color: #25445d !important;
+  color: #fff !important;
+}
+body .madic-side-nav :where(.madic-side-brand, .madic-side-caption) {
+  color: #fff !important;
+}
+body .madic-side-nav :where(a, .madic-nav-entry) {
+  border-radius: 9px !important;
+}
+body .madic-side-nav :where(a, .madic-nav-entry):hover {
+  background: #1c4765 !important;
+}
+body .madic-side-nav :where(.madic-nav-active, [aria-current="page"], .active) {
+  background: #078a94 !important;
+  border-left: 3px solid #6ae6e0 !important;
+  color: #fff !important;
+}
+body .madic-app-layout :where(.panel, .card) {
+  background: #fff !important;
+}
+body .madic-app-layout :where(h1, h2, h3) {
+  color: #142e50;
+}
