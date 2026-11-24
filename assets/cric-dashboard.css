@@ -5042,3 +5042,96 @@ html body.madic-unified[data-page="cric-dashboard"] .madic-nav-submenu > a {
     flex: 0 1 auto !important; margin: 0 !important; padding: 0 !important;
   }
 }
+
+
+/* MADIC CRIC - menu compact : alignement et espacement unifies. */
+html body.madic-unified[data-page="cric-dashboard"] .madic-cric-new-nav {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+  justify-content: flex-start !important;
+  gap: 0 !important;
+  row-gap: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  height: auto !important;
+}
+html body.madic-unified[data-page="cric-dashboard"] .madic-cric-new-nav > a,
+html body.madic-unified[data-page="cric-dashboard"] .madic-cric-new-nav > .madic-nav-tools > summary {
+  display: flex !important;
+  flex: 0 0 auto !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: 6px !important;
+  column-gap: 6px !important;
+  height: 40px !important;
+  min-height: 40px !important;
+  max-height: 40px !important;
+  padding: 0 9px !important;
+  margin: 0 !important;
+  line-height: 1.15 !important;
+  border-left-width: 1px !important;
+  transform: none !important;
+}
+html body.madic-unified[data-page="cric-dashboard"] .madic-cric-new-nav > .madic-nav-tools {
+  margin: 0 !important;
+  padding: 0 !important;
+  flex: 0 0 auto !important;
+  height: auto !important;
+}
+html body.madic-unified[data-page="cric-dashboard"] .madic-cric-new-nav > a > .madic-nav-icon,
+html body.madic-unified[data-page="cric-dashboard"] .madic-cric-new-nav > .madic-nav-tools > summary > .madic-nav-icon:first-child {
+  display: block !important;
+  width: 19px !important;
+  height: 19px !important;
+  min-width: 19px !important;
+  max-width: 19px !important;
+  flex: 0 0 19px !important;
+  align-self: center !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+html body.madic-unified[data-page="cric-dashboard"] .madic-cric-new-nav > .madic-nav-tools > summary > .madic-nav-icon:last-child {
+  flex: 0 0 15px !important;
+  width: 15px !important;
+  height: 15px !important;
+  min-width: 15px !important;
+  margin-left: auto !important;
+}
+html body.madic-unified[data-page="cric-dashboard"] .madic-cric-new-nav > a > span,
+html body.madic-unified[data-page="cric-dashboard"] .madic-cric-new-nav > .madic-nav-tools > summary > span {
+  display: block !important;
+  flex: 1 1 auto !important;
+  width: auto !important;
+  height: auto !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: 1.15 !important;
+}
+html body.madic-unified[data-page="cric-dashboard"] .madic-cric-new-nav > a[aria-current="page"] {
+  border: 1px solid #62cbd5 !important;
+  box-shadow: inset 3px 0 #81e7e5 !important;
+}
+@media (max-width: 850px) {
+  html body.madic-unified[data-page="cric-dashboard"] .madic-cric-new-nav > a,
+  html body.madic-unified[data-page="cric-dashboard"] .madic-cric-new-nav > .madic-nav-tools > summary {
+    flex: 0 0 auto !important;
+    width: auto !important;
+    min-width: max-content !important;
+    max-width: none !important;
+    padding: 0 9px !important;
+  }
+  html body.madic-unified[data-page="cric-dashboard"] .madic-cric-new-nav > a[aria-current="page"] {
+    border-left: 1px solid #62cbd5 !important;
+    box-shadow: inset 3px 0 #81e7e5 !important;
+  }
+}
+@media (max-width: 850px) {
+  html body.madic-unified[data-page="cric-dashboard"] .madic-cric-new-nav {
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+  }
+}
