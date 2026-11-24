@@ -1550,6 +1550,7 @@ document.getElementById("cricLogout")?.addEventListener("click", async () => {
           original.slice(start + trimmed.length);
   }
   function translateText(node) {
+    if (node?.parentElement?.closest(".madic-cric-standard-header,.madic-unified-sidebar")) return;
     if (!node?.parentElement || ignored(node)) return;
     const current = node.nodeValue;
     if (!normalized(current)) return;
@@ -1560,6 +1561,7 @@ document.getElementById("cricLogout")?.addEventListener("click", async () => {
     rendered.set(node, next);
   }
   function translateElement(el) {
+    if (el?.closest(".madic-cric-standard-header,.madic-unified-sidebar") && !el.matches(".madic-lang-controls button[data-lang]")) return;
     if (!el || el.nodeType !== 1) return;
     if (el.matches(".madic-lang-controls button[data-lang]")) {
       el.disabled = false;
@@ -1599,6 +1601,17 @@ document.getElementById("cricLogout")?.addEventListener("click", async () => {
   function render() {
     if (observer) observer.disconnect();
     document.documentElement.lang = lang === "en" ? "en-CA" : "fr-CA";
+    document.querySelectorAll('.madic-cric-standard-header, .madic-unified-sidebar').forEach(shell => {
+      shell.querySelectorAll('[data-madic-fr][data-madic-en]').forEach(el => {
+        const value = el.getAttribute('data-madic-' + lang);
+        if (el.textContent.trim() !== value) el.textContent = value;
+      });
+      shell.querySelectorAll('[data-madic-fr-placeholder]').forEach(el => {
+        const value = el.getAttribute('data-madic-' + lang + '-placeholder');
+        if (el.placeholder !== value) el.placeholder = value;
+      });
+    });
+
     const root = document.body;
     if (!root) return;
     const walker = document.createTreeWalker(
@@ -1888,7 +1901,7 @@ document.getElementById("cricLogout")?.addEventListener("click", async () => {
   const form=document.getElementById('madicHeaderSearchForm');
   if(form&&!form.dataset.madicBound){form.dataset.madicBound='1';form.addEventListener('submit',function(e){e.preventDefault();const q=document.getElementById('madicHeaderSearch')?.value.trim();if(q)location.href='cric-dashboard.html?search='+encodeURIComponent(q);});}
   const profile=document.getElementById('madicHeaderProfileName');
-  if(profile&&window.getMadicSupabase){window.getMadicSupabase().auth.getUser().then(({data})=>{const user=data?.user;if(user){profile.textContent=user.user_metadata?.full_name||user.email||'Mon espace';}}).catch(()=>{});}
+  if(profile&&window.getMadicSupabase){window.getMadicSupabase().auth.getUser().then(({data})=>{const user=data?.user;if(user){window.getMadicSupabase().from('madic_cric_applications').select('full_name,license_number').eq('user_id',user.id).maybeSingle().then(({data:a})=>{profile.textContent=a?.full_name||user.user_metadata?.full_name||user.email;const l=document.getElementById('madicHeaderProfileLicense');if(l)l.textContent='CRIC '+(a?.license_number||'');});}}).catch(()=>{});}
 
  }
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
