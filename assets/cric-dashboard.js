@@ -142,12 +142,8 @@
         $("cricWelcome").textContent = "Bienvenue, " + fullName;
         const headerName = document.getElementById("madicHeaderProfileName");
         if (headerName) headerName.textContent = fullName;
-        const headerLicense = document.getElementById(
-          "madicHeaderProfileLicense",
-        );
-        if (headerLicense)
-          headerLicense.textContent =
-            "CRIC " + (application?.license_number || "");
+        const headerLicense = document.getElementById("madicHeaderProfileLicense");
+        if (headerLicense) headerLicense.textContent = "CRIC " + (application?.license_number || "");
         $("cricLicense").textContent =
           "Numéro CRIC : " +
           (application?.license_number ||
@@ -1470,12 +1466,12 @@
       try {
         lang =
           new URLSearchParams(location.search).get("lang") ||
-          localStorage.getItem("madic-lang") ||
+          localStorage.getItem("madic_ui_language") ||
           "fr";
       } catch (e) {}
       apply(lang);
       window.addEventListener("storage", function (e) {
-        if (e.key === "madic-lang") apply(e.newValue);
+        if (e.key === "madic_ui_language") apply(e.newValue);
       });
     })();
 
@@ -1908,9 +1904,9 @@
         const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
         let node;
         while ((node = walker.nextNode())) translateText(node);
-        root.querySelectorAll("[data-fr][data-en]").forEach((el) => {
+        root.querySelectorAll("[data-fr][data-en], [data-madic-fr][data-madic-en]").forEach((el) => {
           if (el.matches("input,textarea")) return;
-          const translated = el.getAttribute("data-" + lang);
+          const translated = el.getAttribute("data-madic-" + lang) ?? el.getAttribute("data-" + lang);
           if (translated !== null && el.textContent !== translated)
             el.textContent = translated;
         });
@@ -1942,6 +1938,7 @@
           .querySelectorAll(".madic-lang-controls button")
           .forEach((btn) => {
             btn.setAttribute("aria-pressed", String(btn.dataset.lang === lang));
+            btn.classList.toggle("is-active", btn.dataset.lang === lang);
           });
         if (observer)
           observer.observe(root, {
@@ -1959,13 +1956,14 @@
         });
       }
       try {
-        lang = localStorage.getItem(storageKey) === "en" ? "en" : "fr";
+        lang = (localStorage.getItem(storageKey) || localStorage.getItem("madic-lang")) === "en" ? "en" : "fr";
       } catch (_) {}
       document.querySelectorAll(".madic-lang-controls button").forEach((btn) =>
         btn.addEventListener("click", () => {
           lang = btn.dataset.lang;
           try {
             localStorage.setItem(storageKey, lang);
+            localStorage.setItem("madic-lang", lang);
           } catch (_) {}
           render();
         }),
@@ -2101,27 +2099,41 @@
 })();
 
 /* Header search uses the existing service-request search, without a new backend. */
-(function () {
-  const form = document.getElementById("madicHeaderSearchForm");
-  const field = document.getElementById("madicHeaderSearch");
-  if (!form || !field) return;
-  form.addEventListener("submit", function (event) {
-    event.preventDefault();
-    const target = document.getElementById("madicServiceSearch");
-    const panel = document.getElementById("madicServiceRequestsPanel");
-    if (target && panel && !panel.hidden) {
-      target.value = field.value;
-      target.dispatchEvent(new Event("input", { bubbles: true }));
-      panel.scrollIntoView({ behavior: "smooth", block: "start" });
-      target.focus();
-    } else {
-      field.setCustomValidity(
-        document.documentElement.lang.startsWith("en")
-          ? "Service request search is not available."
-          : "La recherche des demandes de services est indisponible.",
-      );
-      field.reportValidity();
-      setTimeout(() => field.setCustomValidity(""), 1500);
-    }
-  });
+(function(){const form=document.getElementById('madicHeaderSearchForm');const field=document.getElementById('madicHeaderSearch');if(!form||!field)return;form.addEventListener('submit',function(event){event.preventDefault();const target=document.getElementById('madicServiceSearch');const panel=document.getElementById('madicServiceRequestsPanel');if(target&&panel&&!panel.hidden){target.value=field.value;target.dispatchEvent(new Event('input',{bubbles:true}));panel.scrollIntoView({behavior:'smooth',block:'start'});target.focus();}else{field.setCustomValidity(document.documentElement.lang.startsWith('en')?'Service request search is not available.':'La recherche des demandes de services est indisponible.');field.reportValidity();setTimeout(()=>field.setCustomValidity(''),1500);}});})();
+
+/* Responsive CRIC navigation - existing navigation links and auth remain unchanged. */
+(() => {
+  function init() {
+    const aside = document.querySelector('body[data-page="cric-dashboard"] .madic-unified-sidebar');
+    const nav = aside?.querySelector('.madic-cric-new-nav');
+    if (!aside || !nav || aside.querySelector('.madic-mobile-nav-toggle')) return;
+    const toggle = document.createElement('button');
+    toggle.type = 'button';
+    toggle.className = 'madic-mobile-nav-toggle';
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.setAttribute('aria-controls', 'madicCricMainNavigation');
+    nav.id = 'madicCricMainNavigation';
+    const update = () => {
+      const en = document.documentElement.lang.startsWith('en');
+      toggle.textContent = (en ? 'Menu' : 'Menu') + (aside.classList.contains('madic-mobile-nav-open') ? ' −' : ' +');
+      toggle.setAttribute('aria-label', en ? 'Toggle navigation menu' : 'Afficher ou masquer le menu');
+    };
+    aside.querySelector('.madic-unified-brand')?.after(toggle);
+    toggle.addEventListener('click', () => {
+      const opened = aside.classList.toggle('madic-mobile-nav-open');
+      toggle.setAttribute('aria-expanded', String(opened));
+      update();
+    });
+    nav.addEventListener('click', e => {
+      if (e.target.closest('a') && window.matchMedia('(max-width: 900px)').matches) {
+        aside.classList.remove('madic-mobile-nav-open');
+        toggle.setAttribute('aria-expanded', 'false');
+        update();
+      }
+    });
+    new MutationObserver(update).observe(document.documentElement, {attributes:true,attributeFilter:['lang']});
+    update();
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init, {once:true});
+  else init();
 })();
