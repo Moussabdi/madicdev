@@ -1184,7 +1184,7 @@ window.getMadicSupabase = function () {
   const key = "madic_ui_language";
   let lang = "fr";
   try {
-    lang = localStorage.getItem(key) === "en" ? "en" : "fr";
+    lang = (localStorage.getItem(key) || localStorage.getItem("madic-lang")) === "en" ? "en" : "fr";
   } catch (_) {}
   const normalized = (value) =>
     String(value ?? "")
@@ -1343,6 +1343,8 @@ window.getMadicSupabase = function () {
       });
     });
 
+    const license = document.getElementById("madicHeaderProfileLicense");
+    if (license) { const next = license.textContent.replace(/^R?C(?:R)?IC\b/, lang === "en" ? "RCIC" : "CRIC"); if (license.textContent !== next) license.textContent = next; }
     const root = document.body;
     if (!root) return;
     const walker = document.createTreeWalker(
@@ -1379,6 +1381,7 @@ window.getMadicSupabase = function () {
     lang = next;
     try {
       localStorage.setItem(key, lang);
+      localStorage.setItem("madic-lang", lang);
     } catch (_) {}
     render();
     document.dispatchEvent(
@@ -1545,7 +1548,7 @@ window.getMadicSupabase = function () {
   const form=document.getElementById('madicHeaderSearchForm');
   if(form&&!form.dataset.madicBound){form.dataset.madicBound='1';form.addEventListener('submit',function(e){e.preventDefault();const q=document.getElementById('madicHeaderSearch')?.value.trim();if(q)location.href='cric-dashboard.html?search='+encodeURIComponent(q);});}
   const profile=document.getElementById('madicHeaderProfileName');
-  if(profile&&window.getMadicSupabase){window.getMadicSupabase().auth.getUser().then(({data})=>{const user=data?.user;if(user){window.getMadicSupabase().from('madic_cric_applications').select('full_name,license_number').eq('user_id',user.id).maybeSingle().then(({data:a})=>{profile.textContent=a?.full_name||user.user_metadata?.full_name||user.email;const l=document.getElementById('madicHeaderProfileLicense');if(l)l.textContent='CRIC '+(a?.license_number||'');});}}).catch(()=>{});}
+  if(profile&&window.getMadicSupabase){window.getMadicSupabase().auth.getUser().then(({data})=>{const user=data?.user;if(user){window.getMadicSupabase().from('madic_cric_applications').select('full_name,license_number').eq('user_id',user.id).maybeSingle().then(({data:a})=>{profile.textContent=a?.full_name||user.user_metadata?.full_name||user.email;const l=document.getElementById('madicHeaderProfileLicense');if(l)l.textContent=(document.documentElement.lang.startsWith('en')?'RCIC ':'CRIC ')+(a?.license_number||'');});}}).catch(()=>{});}
 
  }
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();

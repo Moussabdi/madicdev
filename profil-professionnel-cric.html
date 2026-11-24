@@ -20,7 +20,7 @@
         <div class="madic-header-title">
           <a class="brand" href="cric-dashboard.html"
             >MADIC
-            <span data-madic-en="PORTAL" data-madic-fr="PORTAIL">PORTAIL </span>
+            <span data-madic-fr="PORTAIL" data-madic-en="PORTAL">PORTAIL </span>
           </a>
         </div>
         <div class="madic-header-right">
@@ -29,21 +29,21 @@
             id="madicHeaderSearchForm"
             role="search"
           >
-            <svg aria-hidden="true" viewbox="0 0 24 24">
+            <svg aria-hidden="true" viewBox="0 0 24 24">
               <circle cx="11" cy="11" r="7"></circle>
               <path d="m16 16 5 5"></path>
             </svg>
             <input
-              aria-label="Recherche dans les demandes de services"
-              data-madic-en-placeholder="Search clients, cases, documents..."
-              data-madic-fr-placeholder="Rechercher un client, un dossier, un document..."
               id="madicHeaderSearch"
-              placeholder="Rechercher un client, un dossier, un document..."
               type="search"
+              data-madic-fr-placeholder="Rechercher un client, un dossier, un document..."
+              data-madic-en-placeholder="Search clients, cases, documents..."
+              placeholder="Rechercher un client, un dossier, un document..."
+              aria-label="Recherche dans les demandes de services"
             /><button
-              data-madic-en="Search"
-              data-madic-fr="Rechercher"
               type="submit"
+              data-madic-fr="Rechercher"
+              data-madic-en="Search"
             >
               Rechercher
             </button>
@@ -56,19 +56,19 @@
             >
               <button
                 aria-label="Français"
-                aria-pressed="true"
                 data-lang="fr"
                 title="Français"
                 type="button"
+                aria-pressed="true"
               >
                 FR
               </button>
               <button
                 aria-label="English"
-                aria-pressed="false"
                 data-lang="en"
                 title="English"
                 type="button"
+                aria-pressed="false"
               >
                 EN
               </button>
@@ -81,14 +81,14 @@
             >
               <span aria-hidden="true"
                 ><svg
-                  fill="none"
+                  viewBox="0 0 24 24"
+                  width="24"
                   height="24"
+                  fill="none"
                   stroke="currentColor"
+                  stroke-width="1.8"
                   stroke-linecap="round"
                   stroke-linejoin="round"
-                  stroke-width="1.8"
-                  viewbox="0 0 24 24"
-                  width="24"
                 >
                   <path
                     d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"
@@ -96,14 +96,14 @@
                   <path d="M10 21h4"></path>
                 </svg>
               </span>
-              <span class="madic-top-notification-count" hidden=""> </span>
+              <span class="madic-top-notification-count" hidden> </span>
             </a>
           </nav>
           <details class="madic-header-profile">
             <summary>
               <span
-                aria-hidden="true"
                 class="madic-header-profile-avatar"
+                aria-hidden="true"
                 data-madic-fr="CRIC"
                 data-madic-en="RCIC"
                 >CRIC
@@ -116,9 +116,9 @@
             </summary>
             <div class="madic-header-profile-menu">
               <a
-                data-madic-en="My professional profile"
-                data-madic-fr="Mon profil professionnel"
                 href="profil-professionnel-cric.html"
+                data-madic-fr="Mon profil professionnel"
+                data-madic-en="My professional profile"
                 >Mon profil professionnel</a
               ><button
                 class="madic-header-signout"
@@ -377,7 +377,7 @@
               <rect x="2" y="5" width="20" height="15" rx="2" />
               <path d="M2 10h20" />
             </svg>
-            <span data-madic-fr="Facturation" data-madic-en="Billing"
+            <span data-madic-fr="Facturation" data-madic-en="Invoicing"
               >Facturation
             </span> </a
           ><a href="finances-cric.html" data-madic-page="finances-cric.html"
@@ -431,12 +431,10 @@
             >
               <path d="M3 5h18v14H3zM3 6l9 8 9-8" />
             </svg>
-            <span data-madic-fr="Messagerie" data-madic-en="Messages"
-              >Messagerie
+            <span data-madic-fr="Messages" data-madic-en="Messages"
+              >Messages
             </span> </a
-          ><a
-            href="profil-professionnel-cric.html"
-            data-madic-page="profil-professionnel-cric.html"
+          ><a href="parametres-cric.html" data-madic-page="parametres-cric.html"
             ><svg
               class="madic-nav-icon"
               aria-hidden="true"
