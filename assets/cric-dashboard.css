@@ -4901,7 +4901,7 @@ html body.madic-unified[data-page="cric-dashboard"] .madic-unified-brand small {
 html body.madic-unified[data-page="cric-dashboard"] .madic-cric-new-nav {
   display: flex !important;
   flex-direction: column !important;
-  gap: 5px !important;
+  gap: 0 !important;
   width: 100% !important;
   margin: 0 !important;
   padding: 0 !important;
