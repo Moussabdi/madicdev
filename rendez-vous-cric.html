@@ -1,5 +1,4 @@
 <!doctype html>
-
 <html lang="fr-CA">
   <head>
     <meta charset="utf-8" />
@@ -21,7 +20,7 @@
         <div class="madic-header-title">
           <a class="brand" href="cric-dashboard.html"
             >MADIC
-            <span data-madic-en="PORTAL" data-madic-fr="PORTAIL">PORTAIL </span>
+            <span data-madic-fr="PORTAIL" data-madic-en="PORTAL">PORTAIL </span>
           </a>
         </div>
         <div class="madic-header-right">
@@ -30,21 +29,21 @@
             id="madicHeaderSearchForm"
             role="search"
           >
-            <svg aria-hidden="true" viewbox="0 0 24 24">
+            <svg aria-hidden="true" viewBox="0 0 24 24">
               <circle cx="11" cy="11" r="7"></circle>
               <path d="m16 16 5 5"></path>
             </svg>
             <input
-              aria-label="Recherche dans les demandes de services"
-              data-madic-en-placeholder="Search clients, cases, documents..."
-              data-madic-fr-placeholder="Rechercher un client, un dossier, un document..."
               id="madicHeaderSearch"
-              placeholder="Rechercher un client, un dossier, un document..."
               type="search"
+              data-madic-fr-placeholder="Rechercher un client, un dossier, un document..."
+              data-madic-en-placeholder="Search clients, cases, documents..."
+              placeholder="Rechercher un client, un dossier, un document..."
+              aria-label="Recherche dans les demandes de services"
             /><button
-              data-madic-en="Search"
-              data-madic-fr="Rechercher"
               type="submit"
+              data-madic-fr="Rechercher"
+              data-madic-en="Search"
             >
               Rechercher
             </button>
@@ -57,19 +56,19 @@
             >
               <button
                 aria-label="Français"
-                aria-pressed="true"
                 data-lang="fr"
                 title="Français"
                 type="button"
+                aria-pressed="true"
               >
                 FR
               </button>
               <button
                 aria-label="English"
-                aria-pressed="false"
                 data-lang="en"
                 title="English"
                 type="button"
+                aria-pressed="false"
               >
                 EN
               </button>
@@ -82,14 +81,14 @@
             >
               <span aria-hidden="true"
                 ><svg
-                  fill="none"
+                  viewBox="0 0 24 24"
+                  width="24"
                   height="24"
+                  fill="none"
                   stroke="currentColor"
+                  stroke-width="1.8"
                   stroke-linecap="round"
                   stroke-linejoin="round"
-                  stroke-width="1.8"
-                  viewbox="0 0 24 24"
-                  width="24"
                 >
                   <path
                     d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"
@@ -97,12 +96,12 @@
                   <path d="M10 21h4"></path>
                 </svg>
               </span>
-              <span class="madic-top-notification-count" hidden=""> </span>
+              <span class="madic-top-notification-count" hidden> </span>
             </a>
           </nav>
           <details class="madic-header-profile">
             <summary>
-              <span aria-hidden="true" class="madic-header-profile-avatar"
+              <span class="madic-header-profile-avatar" aria-hidden="true"
                 >CRIC
               </span>
               <span class="madic-header-profile-copy"
@@ -113,9 +112,9 @@
             </summary>
             <div class="madic-header-profile-menu">
               <a
-                data-madic-en="My professional profile"
-                data-madic-fr="Mon profil professionnel"
                 href="profil-professionnel-cric.html"
+                data-madic-fr="Mon profil professionnel"
+                data-madic-en="My professional profile"
                 >Mon profil professionnel</a
               ><button
                 class="madic-header-signout"
@@ -151,8 +150,9 @@
             ><img alt="Logo MADIC" src="img/logo-madic.svg" />
           </span>
           <span
-            ><strong>MADIC PORTAIL</strong
-            ><small data-madic-en="RCIC workspace" data-madic-fr="Espace CRIC"
+            ><strong data-madic-fr="MADIC PORTAIL" data-madic-en="MADIC PORTAL"
+              >MADIC PORTAIL</strong
+            ><small data-madic-fr="Espace CRIC" data-madic-en="RCIC workspace"
               >Espace CRIC</small
             >
           </span>
@@ -171,7 +171,6 @@
             >
               <path d="m3 10 9-7 9 7v10H3zM9 20v-7h6v7" />
             </svg>
-
             <span data-madic-fr="Tableau de bord" data-madic-en="Dashboard"
               >Tableau de bord
             </span> </a
@@ -193,7 +192,6 @@
                 d="M3 21v-2a6 6 0 0 1 12 0v2M17 5a3 3 0 0 1 0 6m1 4a5 5 0 0 1 3 5"
               />
             </svg>
-
             <span data-madic-fr="Clients" data-madic-en="Clients"
               >Clients
             </span> </a
@@ -212,7 +210,6 @@
             >
               <path d="M3 7h7l2 2h9v11H3z" />
             </svg>
-
             <span data-madic-fr="Dossiers" data-madic-en="Cases"
               >Dossiers
             </span>
@@ -231,11 +228,9 @@
               >
                 <path d="m12 3 9 5-9 5-9-5 9-5Zm-9 9 9 5 9-5M3 16l9 5 9-5" />
               </svg>
-
               <span data-madic-fr="Outils CRIC" data-madic-en="RCIC tools"
                 >Outils CRIC
               </span>
-
               <svg
                 class="madic-nav-icon"
                 aria-hidden="true"
@@ -263,7 +258,6 @@
                 >
                   <path d="M6 2h9l5 5v15H6zM15 2v5h5" />
                 </svg>
-
                 <span
                   data-madic-fr="Entrée express"
                   data-madic-en="Express Entry"
@@ -282,7 +276,6 @@
                 >
                   <path d="M6 2h9l5 5v15H6zM15 2v5h5" />
                 </svg>
-
                 <span data-madic-fr="Québec" data-madic-en="Quebec"
                   >Québec
                 </span> </a
@@ -299,7 +292,6 @@
                 >
                   <path d="M6 2h9l5 5v15H6zM15 2v5h5" />
                 </svg>
-
                 <span data-madic-fr="Saskatchewan" data-madic-en="Saskatchewan"
                   >Saskatchewan
                 </span> </a
@@ -316,7 +308,6 @@
                 >
                   <path d="M3 7h7l2 2h9v11H3z" />
                 </svg>
-
                 <span
                   data-madic-fr="Tableau Kanban"
                   data-madic-en="Kanban board"
@@ -342,7 +333,6 @@
               <rect x="3" y="5" width="18" height="16" rx="2" />
               <path d="M7 3v4m10-4v4M3 10h18" />
             </svg>
-
             <span data-madic-fr="Rendez-vous" data-madic-en="Appointments"
               >Rendez-vous
             </span> </a
@@ -361,7 +351,6 @@
             >
               <path d="M6 2h9l5 5v15H6zM15 2v5h5" />
             </svg>
-
             <span data-madic-fr="Documents" data-madic-en="Documents"
               >Documents
             </span> </a
@@ -379,7 +368,6 @@
               <circle cx="12" cy="12" r="9" />
               <path d="M12 7v5l3 2" />
             </svg>
-
             <span data-madic-fr="Échéances" data-madic-en="Deadlines"
               >Échéances
             </span> </a
@@ -399,7 +387,6 @@
               <rect x="2" y="5" width="20" height="15" rx="2" />
               <path d="M2 10h20" />
             </svg>
-
             <span data-madic-fr="Facturation" data-madic-en="Billing"
               >Facturation
             </span> </a
@@ -416,7 +403,6 @@
             >
               <path d="M4 20V13m5 7V8m5 12V11m5 9V4" />
             </svg>
-
             <span data-madic-fr="Finances" data-madic-en="Finances"
               >Finances
             </span>
@@ -438,7 +424,6 @@
               <circle cx="12" cy="7" r="4" />
               <path d="M4 22v-2a8 8 0 0 1 16 0v2" />
             </svg>
-
             <span data-madic-fr="Mon profil" data-madic-en="My profile"
               >Mon profil
             </span> </a
@@ -455,13 +440,10 @@
             >
               <path d="M3 5h18v14H3zM3 6l9 8 9-8" />
             </svg>
-
             <span data-madic-fr="Messagerie" data-madic-en="Messages"
               >Messagerie
             </span> </a
-          ><a
-            href="profil-professionnel-cric.html"
-            data-madic-page="profil-professionnel-cric.html"
+          ><a href="parametres-cric.html" data-madic-page="parametres-cric.html"
             ><svg
               class="madic-nav-icon"
               aria-hidden="true"
@@ -477,7 +459,6 @@
                 d="M19.4 15a1.7 1.7 0 0 0 .34 1.88l.06.06-1.86 1.86-.06-.06A1.7 1.7 0 0 0 16 18.4a1.7 1.7 0 0 0-1.4 1.56V21h-2.6v-1.04a1.7 1.7 0 0 0-1.4-1.56 1.7 1.7 0 0 0-1.88.34l-.06.06-1.86-1.86.06-.06A1.7 1.7 0 0 0 7.2 15a1.7 1.7 0 0 0-1.56-1.4H4.6V11h1.04A1.7 1.7 0 0 0 7.2 9.6a1.7 1.7 0 0 0-.34-1.88L6.8 7.66 8.66 5.8l.06.06A1.7 1.7 0 0 0 10.6 6.2 1.7 1.7 0 0 0 12 4.64V3.6h2.6v1.04A1.7 1.7 0 0 0 16 6.2a1.7 1.7 0 0 0 1.88-.34l.06-.06 1.86 1.86-.06.06A1.7 1.7 0 0 0 19.4 9.6a1.7 1.7 0 0 0 1.56 1.4H22v2.6h-1.04A1.7 1.7 0 0 0 19.4 15Z"
               />
             </svg>
-
             <span data-madic-fr="Paramètres" data-madic-en="Settings"
               >Paramètres
             </span>
@@ -631,9 +612,11 @@
               <div aria-hidden="true" class="madic-rdv-month-weekdays">
                 <span>Lun </span>
                 <span>Mar </span>
-                <span>Mer </span><span>Jeu </span>
+                <span>Mer </span>
+                <span>Jeu </span>
                 <span>Ven </span>
-                <span>Sam </span><span>Dim </span>
+                <span>Sam </span>
+                <span>Dim </span>
               </div>
               <div
                 aria-label="Jours du mois"

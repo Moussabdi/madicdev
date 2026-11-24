@@ -1,5 +1,4 @@
 <!doctype html>
-
 <html lang="fr-CA">
   <head>
     <meta charset="utf-8" />
@@ -7,7 +6,8 @@
     <link href="img/favicon.png" rel="icon" />
     <title
       data-en="Document Management for Clients | MADIC Portal"
-      data-fr="Gestion documentaire du client | MADIC Portail">
+      data-fr="Gestion documentaire du client | MADIC Portail"
+    >
       Gestion documentaire du client | MADIC Portail
     </title>
     <link href="assets/demandes-documents-cric.css" rel="stylesheet" />
@@ -17,36 +17,38 @@
   <body
     class="madic-unified"
     data-cric-page="documents"
-    data-page="demandes-documents-cric">
+    data-page="demandes-documents-cric"
+  >
     <div class="madic-unified-layout">
       <header class="madic-cric-standard-header">
         <div class="madic-header-title">
           <a class="brand" href="cric-dashboard.html"
             >MADIC
-            <span data-madic-en="PORTAL" data-madic-fr="PORTAIL">PORTAIL
-</span>
+            <span data-madic-fr="PORTAIL" data-madic-en="PORTAL">PORTAIL </span>
           </a>
         </div>
         <div class="madic-header-right">
           <form
             class="madic-header-search"
             id="madicHeaderSearchForm"
-            role="search">
-            <svg aria-hidden="true" viewbox="0 0 24 24">
+            role="search"
+          >
+            <svg aria-hidden="true" viewBox="0 0 24 24">
               <circle cx="11" cy="11" r="7"></circle>
               <path d="m16 16 5 5"></path>
-</svg>
+            </svg>
             <input
-              aria-label="Recherche dans les demandes de services"
-              data-madic-en-placeholder="Search clients, cases, documents..."
-              data-madic-fr-placeholder="Rechercher un client, un dossier, un document..."
               id="madicHeaderSearch"
-              placeholder="Rechercher un client, un dossier, un document..."
               type="search"
+              data-madic-fr-placeholder="Rechercher un client, un dossier, un document..."
+              data-madic-en-placeholder="Search clients, cases, documents..."
+              placeholder="Rechercher un client, un dossier, un document..."
+              aria-label="Recherche dans les demandes de services"
             /><button
-              data-madic-en="Search"
+              type="submit"
               data-madic-fr="Rechercher"
-              type="submit">
+              data-madic-en="Search"
+            >
               Rechercher
             </button>
           </form>
@@ -54,21 +56,24 @@
             <div
               aria-label="Langue / Language"
               class="madic-lang-controls"
-              role="group">
+              role="group"
+            >
               <button
                 aria-label="Français"
-                aria-pressed="true"
                 data-lang="fr"
                 title="Français"
-                type="button">
+                type="button"
+                aria-pressed="true"
+              >
                 FR
               </button>
               <button
                 aria-label="English"
-                aria-pressed="false"
                 data-lang="en"
                 title="English"
-                type="button">
+                type="button"
+                aria-pressed="false"
+              >
                 EN
               </button>
             </div>
@@ -76,44 +81,44 @@
               aria-label="Notifications"
               class="madic-top-notification"
               href="cric-dashboard.html#cricNotificationsPanel"
-              title="Notifications">
+              title="Notifications"
+            >
               <span aria-hidden="true"
                 ><svg
-                  fill="none"
+                  viewBox="0 0 24 24"
+                  width="24"
                   height="24"
+                  fill="none"
                   stroke="currentColor"
+                  stroke-width="1.8"
                   stroke-linecap="round"
                   stroke-linejoin="round"
-                  stroke-width="1.8"
-                  viewbox="0 0 24 24"
-                  width="24">
+                >
                   <path
                     d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"
                   ></path>
                   <path d="M10 21h4"></path>
-</svg>
-</span>
-              <span class="madic-top-notification-count" hidden="">
-</span>
+                </svg>
+              </span>
+              <span class="madic-top-notification-count" hidden> </span>
             </a>
           </nav>
           <details class="madic-header-profile">
             <summary>
-              <span aria-hidden="true" class="madic-header-profile-avatar"
+              <span class="madic-header-profile-avatar" aria-hidden="true"
                 >CRIC
-</span>
+              </span>
               <span class="madic-header-profile-copy"
                 ><strong id="madicHeaderProfileName">Mon espace</strong
                 ><small id="madicHeaderProfileLicense">CRIC</small>
-</span>
-              <span aria-hidden="true">⌄
-</span>
+              </span>
+              <span aria-hidden="true">⌄ </span>
             </summary>
             <div class="madic-header-profile-menu">
               <a
-                data-madic-en="My professional profile"
-                data-madic-fr="Mon profil professionnel"
                 href="profil-professionnel-cric.html"
+                data-madic-fr="Mon profil professionnel"
+                data-madic-en="My professional profile"
                 >Mon profil professionnel</a
               ><button
                 class="madic-header-signout"
@@ -122,7 +127,8 @@
                 data-madic-en="Sign out"
                 data-madic-fr="Déconnexion"
                 id="cricLogout"
-                type="button">
+                type="button"
+              >
                 Déconnexion
               </button>
             </div>
@@ -137,7 +143,8 @@
           hidden=""
           id="logout"
           style="display: none !important"
-          type="button">
+          type="button"
+        >
           Déconnexion
         </button>
       </header>
@@ -145,18 +152,17 @@
         <div class="madic-unified-brand">
           <span class="madic-unified-monogram"
             ><img alt="Logo MADIC" src="img/logo-madic.svg" />
-</span>
+          </span>
           <span
-            ><strong>MADIC PORTAIL</strong
-            ><small data-madic-en="RCIC workspace" data-madic-fr="Espace CRIC"
-              >Espace CRIC</small>
-</span>
+            ><strong data-madic-fr="MADIC PORTAIL" data-madic-en="MADIC PORTAL"
+              >MADIC PORTAIL</strong
+            ><small data-madic-fr="Espace CRIC" data-madic-en="RCIC workspace"
+              >Espace CRIC</small
+            >
+          </span>
         </div>
         <nav class="madic-cric-new-nav" aria-label="Navigation CRIC">
-          <a
-            href="cric-dashboard.html"
-            data-madic-page="cric-dashboard.html"
-           
+          <a href="cric-dashboard.html" data-madic-page="cric-dashboard.html"
             ><svg
               class="madic-nav-icon"
               aria-hidden="true"
@@ -165,14 +171,13 @@
               stroke="currentColor"
               stroke-width="1.8"
               stroke-linecap="round"
-              stroke-linejoin="round">
+              stroke-linejoin="round"
+            >
               <path d="m3 10 9-7 9 7v10H3zM9 20v-7h6v7" />
-</svg>
-
+            </svg>
             <span data-madic-fr="Tableau de bord" data-madic-en="Dashboard"
               >Tableau de bord
-</span>
- </a
+            </span> </a
           ><a
             href="gestion-clients-cric.html"
             data-madic-page="gestion-clients-cric.html"
@@ -184,17 +189,16 @@
               stroke="currentColor"
               stroke-width="1.8"
               stroke-linecap="round"
-              stroke-linejoin="round">
+              stroke-linejoin="round"
+            >
               <circle cx="9" cy="8" r="3" />
               <path
                 d="M3 21v-2a6 6 0 0 1 12 0v2M17 5a3 3 0 0 1 0 6m1 4a5 5 0 0 1 3 5"
               />
-</svg>
-
+            </svg>
             <span data-madic-fr="Clients" data-madic-en="Clients"
               >Clients
-</span>
- </a
+            </span> </a
           ><a
             href="gestion-dossiers-cric.html"
             data-madic-page="gestion-dossiers-cric.html"
@@ -206,13 +210,13 @@
               stroke="currentColor"
               stroke-width="1.8"
               stroke-linecap="round"
-              stroke-linejoin="round">
+              stroke-linejoin="round"
+            >
               <path d="M3 7h7l2 2h9v11H3z" />
-</svg>
-
+            </svg>
             <span data-madic-fr="Dossiers" data-madic-en="Cases"
               >Dossiers
-</span>
+            </span>
           </a>
           <details class="madic-nav-tools">
             <summary>
@@ -224,14 +228,13 @@
                 stroke="currentColor"
                 stroke-width="1.8"
                 stroke-linecap="round"
-                stroke-linejoin="round">
+                stroke-linejoin="round"
+              >
                 <path d="m12 3 9 5-9 5-9-5 9-5Zm-9 9 9 5 9-5M3 16l9 5 9-5" />
-</svg>
-
+              </svg>
               <span data-madic-fr="Outils CRIC" data-madic-en="RCIC tools"
                 >Outils CRIC
-</span>
-
+              </span>
               <svg
                 class="madic-nav-icon"
                 aria-hidden="true"
@@ -240,9 +243,10 @@
                 stroke="currentColor"
                 stroke-width="1.8"
                 stroke-linecap="round"
-                stroke-linejoin="round">
+                stroke-linejoin="round"
+              >
                 <path d="m9 6 6 6-6 6" />
-</svg>
+              </svg>
             </summary>
             <div class="madic-nav-submenu">
               <a href="evaluations.html" data-madic-page="evaluations.html"
@@ -254,16 +258,15 @@
                   stroke="currentColor"
                   stroke-width="1.8"
                   stroke-linecap="round"
-                  stroke-linejoin="round">
+                  stroke-linejoin="round"
+                >
                   <path d="M6 2h9l5 5v15H6zM15 2v5h5" />
-</svg>
-
+                </svg>
                 <span
                   data-madic-fr="Entrée express"
                   data-madic-en="Express Entry"
                   >Entrée express
-</span>
- </a
+                </span> </a
               ><a href="quebec.html" data-madic-page="quebec.html"
                 ><svg
                   class="madic-nav-icon"
@@ -273,14 +276,13 @@
                   stroke="currentColor"
                   stroke-width="1.8"
                   stroke-linecap="round"
-                  stroke-linejoin="round">
+                  stroke-linejoin="round"
+                >
                   <path d="M6 2h9l5 5v15H6zM15 2v5h5" />
-</svg>
-
+                </svg>
                 <span data-madic-fr="Québec" data-madic-en="Quebec"
                   >Québec
-</span>
- </a
+                </span> </a
               ><a href="saskatchewan.html" data-madic-page="saskatchewan.html"
                 ><svg
                   class="madic-nav-icon"
@@ -290,14 +292,13 @@
                   stroke="currentColor"
                   stroke-width="1.8"
                   stroke-linecap="round"
-                  stroke-linejoin="round">
+                  stroke-linejoin="round"
+                >
                   <path d="M6 2h9l5 5v15H6zM15 2v5h5" />
-</svg>
-
+                </svg>
                 <span data-madic-fr="Saskatchewan" data-madic-en="Saskatchewan"
                   >Saskatchewan
-</span>
- </a
+                </span> </a
               ><a href="kanban-cric.html" data-madic-page="kanban-cric.html"
                 ><svg
                   class="madic-nav-icon"
@@ -307,15 +308,15 @@
                   stroke="currentColor"
                   stroke-width="1.8"
                   stroke-linecap="round"
-                  stroke-linejoin="round">
+                  stroke-linejoin="round"
+                >
                   <path d="M3 7h7l2 2h9v11H3z" />
-</svg>
-
+                </svg>
                 <span
                   data-madic-fr="Tableau Kanban"
                   data-madic-en="Kanban board"
                   >Tableau Kanban
-</span>
+                </span>
               </a>
             </div>
           </details>
@@ -330,19 +331,19 @@
               stroke="currentColor"
               stroke-width="1.8"
               stroke-linecap="round"
-              stroke-linejoin="round">
+              stroke-linejoin="round"
+            >
               <rect x="3" y="5" width="18" height="16" rx="2" />
               <path d="M7 3v4m10-4v4M3 10h18" />
-</svg>
-
+            </svg>
             <span data-madic-fr="Rendez-vous" data-madic-en="Appointments"
               >Rendez-vous
-</span>
- </a
+            </span> </a
           ><a
             href="demandes-documents-cric.html"
             data-madic-page="demandes-documents-cric.html"
-             aria-current="page"><svg
+            aria-current="page"
+            ><svg
               class="madic-nav-icon"
               aria-hidden="true"
               viewBox="0 0 24 24"
@@ -350,14 +351,13 @@
               stroke="currentColor"
               stroke-width="1.8"
               stroke-linecap="round"
-              stroke-linejoin="round">
+              stroke-linejoin="round"
+            >
               <path d="M6 2h9l5 5v15H6zM15 2v5h5" />
-</svg>
-
+            </svg>
             <span data-madic-fr="Documents" data-madic-en="Documents"
               >Documents
-</span>
- </a
+            </span> </a
           ><a href="echeances-cric.html" data-madic-page="echeances-cric.html"
             ><svg
               class="madic-nav-icon"
@@ -367,15 +367,14 @@
               stroke="currentColor"
               stroke-width="1.8"
               stroke-linecap="round"
-              stroke-linejoin="round">
+              stroke-linejoin="round"
+            >
               <circle cx="12" cy="12" r="9" />
               <path d="M12 7v5l3 2" />
-</svg>
-
+            </svg>
             <span data-madic-fr="Échéances" data-madic-en="Deadlines"
               >Échéances
-</span>
- </a
+            </span> </a
           ><a
             href="facturation-cric.html"
             data-madic-page="facturation-cric.html"
@@ -387,15 +386,14 @@
               stroke="currentColor"
               stroke-width="1.8"
               stroke-linecap="round"
-              stroke-linejoin="round">
+              stroke-linejoin="round"
+            >
               <rect x="2" y="5" width="20" height="15" rx="2" />
               <path d="M2 10h20" />
-</svg>
-
+            </svg>
             <span data-madic-fr="Facturation" data-madic-en="Billing"
               >Facturation
-</span>
- </a
+            </span> </a
           ><a href="finances-cric.html" data-madic-page="finances-cric.html"
             ><svg
               class="madic-nav-icon"
@@ -405,13 +403,13 @@
               stroke="currentColor"
               stroke-width="1.8"
               stroke-linecap="round"
-              stroke-linejoin="round">
+              stroke-linejoin="round"
+            >
               <path d="M4 20V13m5 7V8m5 12V11m5 9V4" />
-</svg>
-
+            </svg>
             <span data-madic-fr="Finances" data-madic-en="Finances"
               >Finances
-</span>
+            </span>
           </a>
           <div class="madic-nav-divider"></div>
           <a
@@ -425,15 +423,14 @@
               stroke="currentColor"
               stroke-width="1.8"
               stroke-linecap="round"
-              stroke-linejoin="round">
+              stroke-linejoin="round"
+            >
               <circle cx="12" cy="7" r="4" />
               <path d="M4 22v-2a8 8 0 0 1 16 0v2" />
-</svg>
-
+            </svg>
             <span data-madic-fr="Mon profil" data-madic-en="My profile"
               >Mon profil
-</span>
- </a
+            </span> </a
           ><a href="messagerie-cric.html" data-madic-page="messagerie-cric.html"
             ><svg
               class="madic-nav-icon"
@@ -443,17 +440,14 @@
               stroke="currentColor"
               stroke-width="1.8"
               stroke-linecap="round"
-              stroke-linejoin="round">
+              stroke-linejoin="round"
+            >
               <path d="M3 5h18v14H3zM3 6l9 8 9-8" />
-</svg>
-
+            </svg>
             <span data-madic-fr="Messagerie" data-madic-en="Messages"
               >Messagerie
-</span>
- </a
-          ><a
-            href="profil-professionnel-cric.html"
-            data-madic-page="profil-professionnel-cric.html"
+            </span> </a
+          ><a href="parametres-cric.html" data-madic-page="parametres-cric.html"
             ><svg
               class="madic-nav-icon"
               aria-hidden="true"
@@ -462,22 +456,23 @@
               stroke="currentColor"
               stroke-width="1.8"
               stroke-linecap="round"
-              stroke-linejoin="round">
+              stroke-linejoin="round"
+            >
               <path d="M12 8.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Z" />
               <path
                 d="M19.4 15a1.7 1.7 0 0 0 .34 1.88l.06.06-1.86 1.86-.06-.06A1.7 1.7 0 0 0 16 18.4a1.7 1.7 0 0 0-1.4 1.56V21h-2.6v-1.04a1.7 1.7 0 0 0-1.4-1.56 1.7 1.7 0 0 0-1.88.34l-.06.06-1.86-1.86.06-.06A1.7 1.7 0 0 0 7.2 15a1.7 1.7 0 0 0-1.56-1.4H4.6V11h1.04A1.7 1.7 0 0 0 7.2 9.6a1.7 1.7 0 0 0-.34-1.88L6.8 7.66 8.66 5.8l.06.06A1.7 1.7 0 0 0 10.6 6.2 1.7 1.7 0 0 0 12 4.64V3.6h2.6v1.04A1.7 1.7 0 0 0 16 6.2a1.7 1.7 0 0 0 1.88-.34l.06-.06 1.86 1.86-.06.06A1.7 1.7 0 0 0 19.4 9.6a1.7 1.7 0 0 0 1.56 1.4H22v2.6h-1.04A1.7 1.7 0 0 0 19.4 15Z"
               />
-</svg>
-
+            </svg>
             <span data-madic-fr="Paramètres" data-madic-en="Settings"
               >Paramètres
-</span>
+            </span>
           </a>
         </nav>
         <div
           class="madic-unified-foot"
           data-madic-en="Secure MADIC workspace"
-          data-madic-fr="Espace sécurisé MADIC">
+          data-madic-fr="Espace sécurisé MADIC"
+        >
           Espace sécurisé MADIC
         </div>
       </aside>
@@ -485,7 +480,8 @@
         <main class="cric-shell madic-doc-page">
           <div class="madic-doc-top">
             <a class="madic-doc-back" href="gestion-clients-cric.html"
-              >← Retour à la gestion des clients</a>
+              >← Retour à la gestion des clients</a
+            >
             <h1>Gestion documentaire du client</h1>
             <p class="madic-doc-intro">
               Choisissez un dossier, examinez les pièces reçues et suivez les
@@ -537,7 +533,8 @@
                           aria-haspopup="dialog"
                           class="madic-date-toggle"
                           id="madicDateToggle"
-                          type="button">
+                          type="button"
+                        >
                           Select a date
                         </button>
                         <div
@@ -563,7 +560,8 @@
                   <p
                     class="madic-doc-hint"
                     data-en="An email notification is sent to the client, their trusted person if their access is active, and the RCIC who sends the document."
-                    data-fr="Un avis par courriel est envoyé au client, à sa personne de confiance si son accès est actif, et au CRIC qui transmet le document.">
+                    data-fr="Un avis par courriel est envoyé au client, à sa personne de confiance si son accès est actif, et au CRIC qui transmet le document."
+                  >
                     Un avis par courriel est envoyé au client, à sa personne de
                     confiance si son accès est actif, et au CRIC qui transmet le
                     document.
@@ -580,12 +578,12 @@
                       />
                       <span aria-hidden="true" class="madic-local-file-button"
                         >Choisir un fichier
-</span>
+                      </span>
                       <span aria-hidden="true" class="madic-local-file-name"
                         >Aucun fichier choisi
-</span>
-</span>
-</label>
+                      </span>
+                    </span>
+                  </label>
                   <label for="docsendTitle"
                     >Nom du document (facultatif)
                     <input
@@ -605,7 +603,8 @@
             <section
               aria-labelledby="received-heading"
               class="panel"
-              id="receivedPanel">
+              id="receivedPanel"
+            >
               <p class="madic-doc-step">Étape 2 · Vérification</p>
               <h2 id="received-heading">Documents reçus</h2>
               <p class="madic-doc-hint">
@@ -655,7 +654,8 @@
         <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
         <footer
           aria-label="Pied de page MADIC / MADIC footer"
-          class="madic-footer">
+          class="madic-footer"
+        >
           <div class="madic-footer-inner">
             <div class="madic-footer-brand">
               <div class="madic-footer-brandline">
@@ -671,7 +671,8 @@
                   <div
                     class="madic-footer-subtitle"
                     data-en="MAD Immigration Canadienne"
-                    data-fr="MAD Immigration Canadienne">
+                    data-fr="MAD Immigration Canadienne"
+                  >
                     MAD Immigration Canadienne
                   </div>
                 </div>
@@ -679,7 +680,8 @@
               <p
                 class="madic-footer-desc"
                 data-en="A digital platform for Canadian immigration professionals and their clients."
-                data-fr="Une plateforme numérique pour les professionnels de l'immigration canadienne et leurs clients.">
+                data-fr="Une plateforme numérique pour les professionnels de l'immigration canadienne et leurs clients."
+              >
                 Une plateforme numérique pour les professionnels de
                 l'immigration canadienne et leurs clients.
               </p>
@@ -690,26 +692,28 @@
                 data-en="Privacy policy"
                 data-fr="Confidentialité"
                 href="politique-confidentialite.html"
-                >Confidentialité</a>
+                >Confidentialité</a
+              >
               <a
                 data-en="Terms of use"
                 data-fr="Conditions d'utilisation"
                 href="conditions-utilisation.html"
-                >Conditions d'utilisation</a>
+                >Conditions d'utilisation</a
+              >
               <span
                 class="madic-footer-unavailable"
                 data-en="Contact"
                 data-fr="Contact"
                 title="Page à venir / Page coming soon"
                 >Contact
-</span>
+              </span>
             </nav>
           </div>
           <div class="madic-footer-bottom">
             © 2026 MAD Immigration Canadienne (MADIC) Inc.
             <span data-en="All rights reserved." data-fr="Tous droits réservés."
               >Tous droits réservés.
-</span>
+            </span>
           </div>
         </footer>
       </div>

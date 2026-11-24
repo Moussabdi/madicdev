@@ -1718,6 +1718,12 @@
           original.slice(start + trimmed.length);
   }
   function translateText(node) {
+    if (
+      node.parentElement?.closest(
+        ".madic-cric-standard-header,.madic-unified-sidebar",
+      )
+    )
+      return;
     if (!node?.parentElement || ignored(node)) return;
     const current = node.nodeValue;
     if (!normalized(current)) return;
@@ -1728,6 +1734,21 @@
     rendered.set(node, next);
   }
   function translateElement(el) {
+    if (
+      el?.closest(".madic-cric-standard-header,.madic-unified-sidebar") &&
+      !el.matches(".madic-lang-controls button[data-lang]")
+    ) {
+      const value = el.getAttribute("data-madic-" + lang);
+      if (value !== null && !el.children.length && el.textContent !== value)
+        el.textContent = value;
+      for (const attr of ["placeholder", "title", "aria-label"]) {
+        const text = el.getAttribute("data-madic-" + lang + "-" + attr);
+        if (text !== null && el.getAttribute(attr) !== text)
+          el.setAttribute(attr, text);
+      }
+      return;
+    }
+
     if (!el || el.nodeType !== 1) return;
     if (el.matches(".madic-lang-controls button[data-lang]")) {
       el.disabled = false;
@@ -1931,15 +1952,60 @@
 })();
 
 /* MADIC : interactions de l'entete harmonise, sans changement des traitements métier. */
-(function(){
-  function init(){
-    var logout=document.getElementById('cricLogout');
-    if(logout){logout.addEventListener('click',function(){var original=document.getElementById('logout')||document.getElementById('madicMsgLogout');if(original)original.click();});}
-    var form=document.getElementById('madicHeaderSearchForm');
-    if(form)form.addEventListener('submit',function(e){e.preventDefault();var q=document.getElementById('madicHeaderSearch');var value=q?q.value.trim():'';window.location.href='cric-dashboard.html'+(value?'?search='+encodeURIComponent(value):'');});
-    var name=document.getElementById('madicHeaderProfileName');
-    var license=document.getElementById('madicHeaderProfileLicense');
-    if(name&&window.getMadicSupabase){try{window.getMadicSupabase().auth.getUser().then(function(r){var u=r&&r.data&&r.data.user;if(!u)return;var m=u.user_metadata||{};name.textContent=m.full_name||m.name||u.email||name.textContent;if(license)license.textContent=m.license_number?('CRIC '+m.license_number):'CRIC';}).catch(function(){});}catch(e){}}
+(function () {
+  function init() {
+    var logout = document.getElementById("cricLogout");
+    if (logout) {
+      logout.addEventListener("click", function () {
+        var original =
+          document.getElementById("logout") ||
+          document.getElementById("madicMsgLogout");
+        if (original) original.click();
+      });
+    }
+    var form = document.getElementById("madicHeaderSearchForm");
+    if (form)
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        var q = document.getElementById("madicHeaderSearch");
+        var value = q ? q.value.trim() : "";
+        window.location.href =
+          "cric-dashboard.html" +
+          (value ? "?search=" + encodeURIComponent(value) : "");
+      });
+    var name = document.getElementById("madicHeaderProfileName");
+    var license = document.getElementById("madicHeaderProfileLicense");
+    if (name && window.getMadicSupabase) {
+      try {
+        window
+          .getMadicSupabase()
+          .auth.getUser()
+          .then(async function (r) {
+            var u = r && r.data && r.data.user;
+            if (!u) return;
+            var m = u.user_metadata || {};
+            var db = window.getMadicSupabase();
+            var result = await db
+              .from("madic_cric_applications")
+              .select("full_name,license_number")
+              .eq("user_id", u.id)
+              .maybeSingle();
+            var a = result.data || {};
+            name.textContent =
+              a.full_name ||
+              m.full_name ||
+              m.name ||
+              u.email ||
+              name.textContent;
+            if (license)
+              license.textContent =
+                "CRIC " + (a.license_number || m.license_number || "");
+          })
+          .catch(function () {});
+      } catch (e) {}
+    }
   }
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
+  if (document.readyState === "loading")
+    document.addEventListener("DOMContentLoaded", init);
+  else init();
 })();
