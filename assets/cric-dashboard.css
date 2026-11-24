@@ -4921,9 +4921,9 @@ html body.madic-unified[data-page="cric-dashboard"] .madic-cric-new-nav > .madic
   height: auto !important;
   min-height: 43px !important;
   max-height: none !important;
-  padding: 10px 12px !important;
+  padding: 10px 9px !important;
   margin: 0 !important;
-  gap: 12px !important;
+  gap: 5px !important;
   border-radius: 10px !important;
   font-size: .83rem !important;
   font-weight: 600 !important;
