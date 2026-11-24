@@ -4059,3 +4059,67 @@ body[data-page="cric-client-dashboard"]
     font-size: 12px !important;
   }
 }
+
+/* MADIC 2026 - Harmonisation visuelle uniquement (aucune logique modifiee). */
+:root {
+  --madic-modern-navy: #102a4c;
+  --madic-modern-navy-2: #17385e;
+  --madic-modern-accent: #18a6c9;
+  --madic-modern-surface: #fff;
+  --madic-modern-canvas: #eef4fb;
+  --madic-modern-stroke: #dbe7f3;
+  --madic-modern-ink: #193556;
+}
+body {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+:is(button, input, select, textarea, a):focus-visible {
+  outline: 3px solid #29b5d4 !important;
+  outline-offset: 2px;
+}
+:is(button, input, select, textarea) {
+  font-family: inherit;
+}
+:is(input:not([type="checkbox"]):not([type="radio"]), select, textarea) {
+  border-radius: 10px;
+}
+:is(button, .btn, [role="button"]) {
+  transition:
+    background-color 0.16s ease,
+    border-color 0.16s ease,
+    box-shadow 0.16s ease,
+    transform 0.16s ease;
+}
+@media (prefers-reduced-motion: reduce) {
+  :is(button, .btn, [role="button"]) {
+    transition: none !important;
+  }
+}
+
+body:has(.madic-app-layout) {
+  background: var(--madic-modern-canvas) !important;
+}
+body .madic-side-nav {
+  background: linear-gradient(180deg, #102746 0%, #17395e 100%) !important;
+}
+body .madic-side-nav :is(a, .madic-nav-entry) {
+  border-radius: 10px;
+}
+body .madic-side-nav :is(a, .madic-nav-entry):hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+body .madic-client-header {
+  background: #fff !important;
+  border-bottom: 1px solid var(--madic-modern-stroke) !important;
+}
+body .madic-app-layout :is(.card, .panel, .metric-card) {
+  border-radius: 16px;
+}
+body .madic-app-layout table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+body .madic-app-layout th {
+  background: #eaf3fa;
+}
