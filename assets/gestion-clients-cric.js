@@ -1929,3 +1929,22 @@
     init();
   }
 })();
+
+/* MADIC : interactions de l'entete harmonise, sans changement des traitements métier. */
+(function(){
+  function init(){
+    var logout=document.getElementById('cricLogout');
+    if(logout){logout.addEventListener('click',function(){var original=document.getElementById('logout')||document.getElementById('madicMsgLogout');if(original)original.click();});}
+    var form=document.getElementById('madicHeaderSearchForm');
+    if(form)form.addEventListener('submit',function(e){e.preventDefault();var q=document.getElementById('madicHeaderSearch');var value=q?q.value.trim():'';window.location.href='cric-dashboard.html'+(value?'?search='+encodeURIComponent(value):'');});
+    var name=document.getElementById('madicHeaderProfileName');
+    var license=document.getElementById('madicHeaderProfileLicense');
+    if(name&&window.getMadicSupabase){try{window.getMadicSupabase().auth.getUser().then(function(r){var u=r&&r.data&&r.data.user;if(!u)return;var m=u.user_metadata||{};name.textContent=m.full_name||m.name||u.email||name.textContent;if(license)license.textContent=m.license_number?('CRIC '+m.license_number):'CRIC';}).catch(function(){});}catch(e){}}
+    var sidebar=document.querySelector('.madic-unified-sidebar');
+    if(sidebar&&!sidebar.querySelector('.madic-mobile-menu-toggle')){
+      var toggle=document.createElement('button');toggle.type='button';toggle.className='madic-mobile-menu-toggle';toggle.setAttribute('aria-expanded','false');toggle.setAttribute('aria-label','Afficher ou masquer la navigation');toggle.textContent='Menu';
+      var nav=sidebar.querySelector('.madic-cric-new-nav');if(nav){sidebar.insertBefore(toggle,nav);toggle.addEventListener('click',function(){var open=sidebar.classList.toggle('madic-mobile-nav-open');toggle.setAttribute('aria-expanded',String(open));});}
+    }
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
+})();
