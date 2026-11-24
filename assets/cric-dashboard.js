@@ -142,8 +142,12 @@
         $("cricWelcome").textContent = "Bienvenue, " + fullName;
         const headerName = document.getElementById("madicHeaderProfileName");
         if (headerName) headerName.textContent = fullName;
-        const headerLicense = document.getElementById("madicHeaderProfileLicense");
-        if (headerLicense) headerLicense.textContent = "CRIC " + (application?.license_number || "");
+        const headerLicense = document.getElementById(
+          "madicHeaderProfileLicense",
+        );
+        if (headerLicense)
+          headerLicense.textContent =
+            "CRIC " + (application?.license_number || "");
         $("cricLicense").textContent =
           "Numéro CRIC : " +
           (application?.license_number ||
@@ -532,7 +536,7 @@
           : space.access_status !== "active"
             ? "Votre espace CRIC est suspendu ou inactif."
             : canManage
-              ? "Espace CRIC actif : gestion des clients et dossiers disponible."
+              ? ""
               : "Acces a cet espace non autorise. Contactez MADIC.";
         $("cricMain").hidden = false;
         $("cricMessage").hidden = true;
@@ -2097,4 +2101,27 @@
 })();
 
 /* Header search uses the existing service-request search, without a new backend. */
-(function(){const form=document.getElementById('madicHeaderSearchForm');const field=document.getElementById('madicHeaderSearch');if(!form||!field)return;form.addEventListener('submit',function(event){event.preventDefault();const target=document.getElementById('madicServiceSearch');const panel=document.getElementById('madicServiceRequestsPanel');if(target&&panel&&!panel.hidden){target.value=field.value;target.dispatchEvent(new Event('input',{bubbles:true}));panel.scrollIntoView({behavior:'smooth',block:'start'});target.focus();}else{field.setCustomValidity(document.documentElement.lang.startsWith('en')?'Service request search is not available.':'La recherche des demandes de services est indisponible.');field.reportValidity();setTimeout(()=>field.setCustomValidity(''),1500);}});})();
+(function () {
+  const form = document.getElementById("madicHeaderSearchForm");
+  const field = document.getElementById("madicHeaderSearch");
+  if (!form || !field) return;
+  form.addEventListener("submit", function (event) {
+    event.preventDefault();
+    const target = document.getElementById("madicServiceSearch");
+    const panel = document.getElementById("madicServiceRequestsPanel");
+    if (target && panel && !panel.hidden) {
+      target.value = field.value;
+      target.dispatchEvent(new Event("input", { bubbles: true }));
+      panel.scrollIntoView({ behavior: "smooth", block: "start" });
+      target.focus();
+    } else {
+      field.setCustomValidity(
+        document.documentElement.lang.startsWith("en")
+          ? "Service request search is not available."
+          : "La recherche des demandes de services est indisponible.",
+      );
+      field.reportValidity();
+      setTimeout(() => field.setCustomValidity(""), 1500);
+    }
+  });
+})();
