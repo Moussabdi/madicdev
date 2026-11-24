@@ -1894,7 +1894,8 @@
               .replace(/^./, (c) => c.toUpperCase());
           if (!el.dataset[key]) el.dataset[key] = el.getAttribute(name);
           const source = el.dataset[key];
-          const result = lang === "en" ? dictionary[source] || source : source;
+          const explicit = el.getAttribute("data-madic-" + lang + "-" + name);
+          const result = explicit !== null ? explicit : (lang === "en" ? dictionary[source] || source : source);
           if (el.getAttribute(name) !== result) el.setAttribute(name, result);
         }
       }
