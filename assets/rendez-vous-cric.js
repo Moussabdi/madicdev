@@ -2079,3 +2079,52 @@ window.getMadicSupabase = function () {
     document.addEventListener("DOMContentLoaded", init);
   else init();
 })();
+
+/* Phone navigation only; existing authentication and business logic unchanged. */
+(() => {
+  const init = () => {
+    const drawer = document.getElementById("madicPhoneDrawer");
+    const trigger = document.querySelector(".madic-phone-trigger");
+    const close = drawer?.querySelector(".madic-phone-close");
+    const shade = document.querySelector(".madic-phone-shade");
+    if (!drawer || !trigger || !close || !shade) return;
+    const mobile = matchMedia("(max-width:900px)");
+    const set = (open, restore = false) => {
+      open = open && mobile.matches;
+      document.body.classList.toggle("madic-phone-open", open);
+      trigger.setAttribute("aria-expanded", String(open));
+      shade.hidden = !open;
+      drawer.inert = mobile.matches && !open;
+      if (open) close.focus();
+      else if (restore && mobile.matches) trigger.focus();
+    };
+    trigger.addEventListener("click", () => set(true));
+    close.addEventListener("click", () => set(false, true));
+    shade.addEventListener("click", () => set(false, true));
+    drawer.addEventListener("click", (e) => {
+      if (e.target.closest("a[href]")) set(false);
+    });
+    document.addEventListener("keydown", (e) => {
+      if (
+        e.key === "Escape" &&
+        document.body.classList.contains("madic-phone-open")
+      )
+        set(false, true);
+    });
+    mobile.addEventListener("change", () => set(false));
+    const lang = () => {
+      const en = document.documentElement.lang.startsWith("en");
+      trigger.setAttribute("aria-label", en ? "Open menu" : "Ouvrir le menu");
+      close.setAttribute("aria-label", en ? "Close menu" : "Fermer le menu");
+    };
+    new MutationObserver(lang).observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["lang"],
+    });
+    lang();
+    set(false);
+  };
+  if (document.readyState === "loading")
+    document.addEventListener("DOMContentLoaded", init, { once: true });
+  else init();
+})();
