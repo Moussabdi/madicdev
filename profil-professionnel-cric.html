@@ -18,6 +18,25 @@
     <div class="madic-unified-layout">
       <header class="madic-cric-standard-header">
         <div class="madic-header-title">
+          <button
+            type="button"
+            class="madic-phone-trigger"
+            aria-controls="madicPhoneDrawer"
+            aria-expanded="false"
+            aria-label="Menu"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              width="24"
+              height="24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              aria-hidden="true"
+            >
+              <path d="M3 6h18M3 12h18M3 18h18" />
+            </svg>
+          </button>
           <a class="brand" href="cric-dashboard.html"
             >MADIC
             <span data-madic-fr="PORTAIL" data-madic-en="PORTAL">PORTAIL </span>
@@ -139,7 +158,19 @@
           </details>
         </div>
       </header>
-      <aside aria-label="Navigation du portail" class="madic-unified-sidebar">
+      <div class="madic-phone-shade" hidden></div>
+      <aside
+        aria-label="Navigation du portail"
+        class="madic-unified-sidebar"
+        id="madicPhoneDrawer"
+      >
+        <button
+          type="button"
+          class="madic-phone-close"
+          aria-label="Fermer le menu / Close menu"
+        >
+          ×
+        </button>
         <div class="madic-unified-brand">
           <span class="madic-unified-monogram"
             ><img alt="Logo MADIC" src="img/logo-madic.svg" />

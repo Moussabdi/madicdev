@@ -1874,7 +1874,12 @@
           original.slice(start + trimmed.length);
   }
   function translateText(node) {
-    if (node?.parentElement?.closest(".madic-cric-standard-header,.madic-unified-sidebar")) return;
+    if (
+      node?.parentElement?.closest(
+        ".madic-cric-standard-header,.madic-unified-sidebar",
+      )
+    )
+      return;
     if (!node?.parentElement || ignored(node)) return;
     const current = node.nodeValue;
     if (!normalized(current)) return;
@@ -1885,7 +1890,11 @@
     rendered.set(node, next);
   }
   function translateElement(el) {
-    if (el?.closest(".madic-cric-standard-header,.madic-unified-sidebar") && !el.matches(".madic-lang-controls button[data-lang]")) return;
+    if (
+      el?.closest(".madic-cric-standard-header,.madic-unified-sidebar") &&
+      !el.matches(".madic-lang-controls button[data-lang]")
+    )
+      return;
     if (!el || el.nodeType !== 1) return;
     if (el.matches(".madic-lang-controls button[data-lang]")) {
       el.disabled = false;
@@ -1925,16 +1934,20 @@
   function render() {
     if (observer) observer.disconnect();
     document.documentElement.lang = lang === "en" ? "en-CA" : "fr-CA";
-    document.querySelectorAll('.madic-cric-standard-header, .madic-unified-sidebar').forEach(shell => {
-      shell.querySelectorAll('[data-madic-fr][data-madic-en]').forEach(el => {
-        const value = el.getAttribute('data-madic-' + lang);
-        if (el.textContent.trim() !== value) el.textContent = value;
+    document
+      .querySelectorAll(".madic-cric-standard-header, .madic-unified-sidebar")
+      .forEach((shell) => {
+        shell
+          .querySelectorAll("[data-madic-fr][data-madic-en]")
+          .forEach((el) => {
+            const value = el.getAttribute("data-madic-" + lang);
+            if (el.textContent.trim() !== value) el.textContent = value;
+          });
+        shell.querySelectorAll("[data-madic-fr-placeholder]").forEach((el) => {
+          const value = el.getAttribute("data-madic-" + lang + "-placeholder");
+          if (el.placeholder !== value) el.placeholder = value;
+        });
       });
-      shell.querySelectorAll('[data-madic-fr-placeholder]').forEach(el => {
-        const value = el.getAttribute('data-madic-' + lang + '-placeholder');
-        if (el.placeholder !== value) el.placeholder = value;
-      });
-    });
 
     const root = document.body;
     if (!root) return;
@@ -2151,15 +2164,106 @@
 })();
 
 /* MADIC : interactions de l'entete harmonise, sans changement des traitements métier. */
-(function(){
-  function init(){
-    var logout=document.getElementById('cricLogout');
-    if(logout){logout.addEventListener('click',function(){var original=document.getElementById('logout')||document.getElementById('madicMsgLogout');if(original)original.click();});}
-    var form=document.getElementById('madicHeaderSearchForm');
-    if(form)form.addEventListener('submit',function(e){e.preventDefault();var q=document.getElementById('madicHeaderSearch');var value=q?q.value.trim():'';window.location.href='cric-dashboard.html'+(value?'?search='+encodeURIComponent(value):'');});
-    var name=document.getElementById('madicHeaderProfileName');
-    var license=document.getElementById('madicHeaderProfileLicense');
-    if(name&&window.getMadicSupabase){try{window.getMadicSupabase().auth.getUser().then(function(r){var u=r&&r.data&&r.data.user;if(!u)return;var m=u.user_metadata||{};window.getMadicSupabase().from('madic_cric_applications').select('full_name,license_number').eq('user_id',u.id).maybeSingle().then(({data:a})=>{name.textContent=a?.full_name||m.full_name||m.name||u.email;if(license)license.textContent='CRIC '+(a?.license_number||m.license_number||'');});}).catch(function(){});}catch(e){}}
+(function () {
+  function init() {
+    var logout = document.getElementById("cricLogout");
+    if (logout) {
+      logout.addEventListener("click", function () {
+        var original =
+          document.getElementById("logout") ||
+          document.getElementById("madicMsgLogout");
+        if (original) original.click();
+      });
+    }
+    var form = document.getElementById("madicHeaderSearchForm");
+    if (form)
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        var q = document.getElementById("madicHeaderSearch");
+        var value = q ? q.value.trim() : "";
+        window.location.href =
+          "cric-dashboard.html" +
+          (value ? "?search=" + encodeURIComponent(value) : "");
+      });
+    var name = document.getElementById("madicHeaderProfileName");
+    var license = document.getElementById("madicHeaderProfileLicense");
+    if (name && window.getMadicSupabase) {
+      try {
+        window
+          .getMadicSupabase()
+          .auth.getUser()
+          .then(function (r) {
+            var u = r && r.data && r.data.user;
+            if (!u) return;
+            var m = u.user_metadata || {};
+            window
+              .getMadicSupabase()
+              .from("madic_cric_applications")
+              .select("full_name,license_number")
+              .eq("user_id", u.id)
+              .maybeSingle()
+              .then(({ data: a }) => {
+                name.textContent =
+                  a?.full_name || m.full_name || m.name || u.email;
+                if (license)
+                  license.textContent =
+                    "CRIC " + (a?.license_number || m.license_number || "");
+              });
+          })
+          .catch(function () {});
+      } catch (e) {}
+    }
   }
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
+  if (document.readyState === "loading")
+    document.addEventListener("DOMContentLoaded", init);
+  else init();
+})();
+
+/* Phone navigation only; existing authentication and business logic unchanged. */
+(() => {
+  const init = () => {
+    const drawer = document.getElementById("madicPhoneDrawer");
+    const trigger = document.querySelector(".madic-phone-trigger");
+    const close = drawer?.querySelector(".madic-phone-close");
+    const shade = document.querySelector(".madic-phone-shade");
+    if (!drawer || !trigger || !close || !shade) return;
+    const mobile = matchMedia("(max-width:900px)");
+    const set = (open, restore = false) => {
+      open = open && mobile.matches;
+      document.body.classList.toggle("madic-phone-open", open);
+      trigger.setAttribute("aria-expanded", String(open));
+      shade.hidden = !open;
+      drawer.inert = mobile.matches && !open;
+      if (open) close.focus();
+      else if (restore && mobile.matches) trigger.focus();
+    };
+    trigger.addEventListener("click", () => set(true));
+    close.addEventListener("click", () => set(false, true));
+    shade.addEventListener("click", () => set(false, true));
+    drawer.addEventListener("click", (e) => {
+      if (e.target.closest("a[href]")) set(false);
+    });
+    document.addEventListener("keydown", (e) => {
+      if (
+        e.key === "Escape" &&
+        document.body.classList.contains("madic-phone-open")
+      )
+        set(false, true);
+    });
+    mobile.addEventListener("change", () => set(false));
+    const lang = () => {
+      const en = document.documentElement.lang.startsWith("en");
+      trigger.setAttribute("aria-label", en ? "Open menu" : "Ouvrir le menu");
+      close.setAttribute("aria-label", en ? "Close menu" : "Fermer le menu");
+    };
+    new MutationObserver(lang).observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["lang"],
+    });
+    lang();
+    set(false);
+  };
+  if (document.readyState === "loading")
+    document.addEventListener("DOMContentLoaded", init, { once: true });
+  else init();
 })();
