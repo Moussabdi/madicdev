@@ -19,8 +19,27 @@
       aria-label="En-tête MADIC PORTAIL"
       class="madic-contracts-topbar madic-client-header"
     >
+      <button
+        type="button"
+        class="madic-client-phone-trigger"
+        aria-label="Menu"
+        aria-controls="madicClientDrawer"
+        aria-expanded="false"
+      >
+        <svg
+          viewBox="0 0 24 24"
+          width="24"
+          height="24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path d="M3 6h18M3 12h18M3 18h18" />
+        </svg>
+      </button>
       <a class="madic-contracts-brand brand" href="connexion-client-cric.html"
-        >MADI<span>C</span>
+        >MADI<span>C </span>
+
         <small data-client-header-fr="PORTAIL" data-client-header-en="PORTAL"
           >PORTAIL</small
         ></a
@@ -80,14 +99,51 @@
           ><button aria-pressed="false" data-lang="en" type="button">EN</button>
         </div>
       </div>
+      <button
+        type="button"
+        class="madic-client-phone-account"
+        aria-expanded="false"
+      >
+        <b>CL</b><span class="madic-client-account-label">Mon espace </span>
+
+        ⌄
+      </button>
+      <form class="madic-client-phone-search" role="search">
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <circle cx="10" cy="10" r="7" />
+          <path d="m15 15 6 6" />
+        </svg>
+
+        <input
+          type="search"
+          aria-label="Recherche / Search"
+          placeholder="Rechercher dans votre espace..."
+        /><button type="submit">Rechercher</button>
+      </form>
     </header>
+    <div class="madic-client-phone-shade" hidden></div>
     <main class="madic-app-layout">
       <aside
         aria-label="Navigation de mon espace client"
         data-fr-aria-label="Navigation de mon espace client"
         data-en-aria-label="Client space navigation"
         class="madic-side-nav"
+        id="madicClientDrawer"
       >
+        <button
+          type="button"
+          class="madic-client-phone-close"
+          aria-label="Fermer le menu"
+        >
+          ×
+        </button>
         <div class="madic-side-brand">
           <img
             alt="Logo MADIC Portail"
@@ -146,8 +202,9 @@
               title="Glisser pour déplacer"
               data-fr-title="Glisser pour déplacer"
               data-en-title="Drag to move"
-              >⠿</span
-            ><a class="" draggable="false" href="dashboard-client-cric.html"
+              >⠿
+            </span>
+            <a class="" draggable="false" href="dashboard-client-cric.html"
               ><svg
                 aria-hidden="true"
                 class="madic-nav-icon"
@@ -160,10 +217,11 @@
               >
                 <path d="M4 6h16M4 12h16M4 18h16"></path>
               </svg>
+
               <span data-en="Overview" data-fr="Vue d’ensemble"
-                >Vue d’ensemble</span
-              ></a
-            >
+                >Vue d’ensemble
+              </span>
+            </a>
             <div class="madic-nav-move">
               <button
                 aria-label="Monter"
@@ -192,8 +250,9 @@
               title="Glisser pour déplacer"
               data-fr-title="Glisser pour déplacer"
               data-en-title="Drag to move"
-              >⠿</span
-            >
+              >⠿
+            </span>
+
             <a draggable="false" href="actualites-client-cric.html"
               ><svg
                 aria-hidden="true"
@@ -207,15 +266,16 @@
               >
                 <path d="M4 5h16v14H4zM8 9h8M8 13h8M8 17h5"></path>
               </svg>
+
               <span
                 class="madic-publication-nav-label"
                 data-en="News"
                 data-fr="Actualités"
                 data-madic-publication-en="News"
                 data-madic-publication-fr="Actualités"
-                >Actualités</span
-              ></a
-            >
+                >Actualités
+              </span>
+            </a>
             <div class="madic-nav-move">
               <button
                 aria-label="Monter"
@@ -244,8 +304,9 @@
               title="Glisser pour déplacer"
               data-fr-title="Glisser pour déplacer"
               data-en-title="Drag to move"
-              >⠿</span
-            ><a draggable="false" href="profil-client-cric.html"
+              >⠿
+            </span>
+            <a draggable="false" href="profil-client-cric.html"
               ><svg
                 aria-hidden="true"
                 class="madic-nav-icon"
@@ -260,10 +321,9 @@
                   d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM4 21v-2a8 8 0 0 1 16 0v2"
                 ></path>
               </svg>
-              <span data-en="My profile" data-fr="Mon profil"
-                >Mon profil</span
-              ></a
-            >
+
+              <span data-en="My profile" data-fr="Mon profil">Mon profil </span>
+            </a>
             <div class="madic-nav-move">
               <button
                 aria-label="Monter"
@@ -292,16 +352,17 @@
               title="Glisser pour déplacer"
               data-fr-title="Glisser pour déplacer"
               data-en-title="Drag to move"
-              >⠿</span
-            ><a
+              >⠿
+            </span>
+            <a
               draggable="false"
               href="mes-contrats.html"
               class="madic-nav-active"
               aria-current="page"
               ><span data-en="My contracts" data-fr="Mes contrats"
-                >Mes contrats</span
-              ></a
-            >
+                >Mes contrats
+              </span>
+            </a>
             <div class="madic-nav-move">
               <button
                 aria-label="Monter"
@@ -330,8 +391,9 @@
               title="Glisser pour déplacer"
               data-fr-title="Glisser pour déplacer"
               data-en-title="Drag to move"
-              >⠿</span
-            ><a draggable="false" href="formulaire.html"
+              >⠿
+            </span>
+            <a draggable="false" href="formulaire.html"
               ><svg
                 aria-hidden="true"
                 class="madic-nav-icon"
@@ -344,8 +406,9 @@
               >
                 <path d="M9 12h6m-3-3v6M5 5h14v14H5z"></path>
               </svg>
-              <span data-en="Form" data-fr="Formulaire">Formulaire</span></a
-            >
+
+              <span data-en="Form" data-fr="Formulaire">Formulaire </span>
+            </a>
             <div class="madic-nav-move">
               <button
                 aria-label="Monter"
@@ -374,8 +437,9 @@
               title="Glisser pour déplacer"
               data-fr-title="Glisser pour déplacer"
               data-en-title="Drag to move"
-              >⠿</span
-            ><a draggable="false" href="messagerie-client-cric.html"
+              >⠿
+            </span>
+            <a draggable="false" href="messagerie-client-cric.html"
               ><svg
                 aria-hidden="true"
                 class="madic-nav-icon"
@@ -388,10 +452,9 @@
               >
                 <path d="M8 10h8m-8 4h5M4 5h16v14H4z"></path>
               </svg>
-              <span data-en="Messaging" data-fr="Messagerie"
-                >Messagerie</span
-              ></a
-            >
+
+              <span data-en="Messaging" data-fr="Messagerie">Messagerie </span>
+            </a>
             <div class="madic-nav-move">
               <button
                 aria-label="Monter"
@@ -420,8 +483,9 @@
               title="Glisser pour déplacer"
               data-fr-title="Glisser pour déplacer"
               data-en-title="Drag to move"
-              >⠿</span
-            ><a draggable="false" href="mes-rendez-vous-cric.html"
+              >⠿
+            </span>
+            <a draggable="false" href="mes-rendez-vous-cric.html"
               ><svg
                 aria-hidden="true"
                 class="madic-nav-icon"
@@ -434,9 +498,10 @@
               >
                 <path d="M8 7V4m8 3V4M4 10h16M5 6h14v14H5z"></path>
               </svg>
+
               <span data-en="Appointments" data-fr="Rendez-vous"
-                >Rendez-vous</span
-              >
+                >Rendez-vous
+              </span>
             </a>
             <div class="madic-nav-move">
               <button
@@ -466,8 +531,9 @@
               title="Glisser pour déplacer"
               data-fr-title="Glisser pour déplacer"
               data-en-title="Drag to move"
-              >⠿</span
-            ><a draggable="false" href="mes-dossiers-client-cric.html"
+              >⠿
+            </span>
+            <a draggable="false" href="mes-dossiers-client-cric.html"
               ><svg
                 aria-hidden="true"
                 class="madic-nav-icon"
@@ -480,10 +546,11 @@
               >
                 <path d="M4 7h16M4 12h16M4 17h10"></path>
               </svg>
+
               <span data-en="My cases" data-fr="Mes dossiers"
-                >Mes dossiers</span
-              ></a
-            >
+                >Mes dossiers
+              </span>
+            </a>
             <div class="madic-nav-move">
               <button
                 aria-label="Monter"
@@ -512,8 +579,9 @@
               title="Glisser pour déplacer"
               data-fr-title="Glisser pour déplacer"
               data-en-title="Drag to move"
-              >⠿</span
-            ><a draggable="false" href="documents-client-cric.html"
+              >⠿
+            </span>
+            <a draggable="false" href="documents-client-cric.html"
               ><svg
                 aria-hidden="true"
                 class="madic-nav-icon"
@@ -526,8 +594,9 @@
               >
                 <path d="M12 3v12m-4-4 4 4 4-4M5 18h14v3H5z"></path>
               </svg>
-              <span data-en="Documents" data-fr="Documents">Documents</span></a
-            >
+
+              <span data-en="Documents" data-fr="Documents">Documents </span>
+            </a>
             <div class="madic-nav-move">
               <button
                 aria-label="Monter"
@@ -557,8 +626,9 @@
               title="Glisser pour déplacer"
               data-fr-title="Glisser pour déplacer"
               data-en-title="Drag to move"
-              >⠿</span
-            ><a draggable="false" href="factures-client-cric.html"
+              >⠿
+            </span>
+            <a draggable="false" href="factures-client-cric.html"
               ><svg
                 aria-hidden="true"
                 class="madic-nav-icon"
@@ -571,8 +641,9 @@
               >
                 <path d="M7 3h10l4 4v14H3V3h4zm2 8h6m-6 4h6"></path>
               </svg>
-              <span data-en="Invoices" data-fr="Factures">Factures</span></a
-            >
+
+              <span data-en="Invoices" data-fr="Factures">Factures </span>
+            </a>
             <div class="madic-nav-move">
               <button
                 aria-label="Monter"
@@ -595,10 +666,12 @@
           </div>
         </nav>
         <div class="madic-side-bottom">
-          <span class="madic-side-bottom-dot"></span>
+          <span class="madic-side-bottom-dot"> </span>
+
           <span data-en="Secure client space" data-fr="Espace client sécurisé"
-            >Espace client sécurisé</span
-          ><br /><small
+            >Espace client sécurisé
+          </span>
+          <br /><small
             data-en="Your project, at your pace."
             data-fr="Votre projet, à votre rythme."
             >Votre projet, à votre rythme.</small
@@ -677,15 +750,15 @@
             data-en="Contact"
             data-fr="Contact"
             title="Page à venir / Page coming soon"
-            >Contact</span
-          >
+            >Contact
+          </span>
         </nav>
       </div>
       <div class="madic-footer-bottom">
         © 2026 MAD Immigration Canadienne (MADIC) Inc.
         <span data-en="All rights reserved." data-fr="Tous droits réservés."
-          >Tous droits réservés.</span
-        >
+          >Tous droits réservés.
+        </span>
       </div>
     </footer>
 

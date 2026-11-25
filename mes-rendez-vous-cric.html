@@ -20,8 +20,27 @@
     data-page="cric-client-dashboard"
   >
     <header class="madic-client-header">
+      <button
+        type="button"
+        class="madic-client-phone-trigger"
+        aria-label="Menu"
+        aria-controls="madicClientDrawer"
+        aria-expanded="false"
+      >
+        <svg
+          viewBox="0 0 24 24"
+          width="24"
+          height="24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path d="M3 6h18M3 12h18M3 18h18" />
+        </svg>
+      </button>
       <a class="brand" href="connexion-client-cric.html"
-        >MADI<span>C</span>
+        >MADI<span>C </span>
+
         <small data-client-header-fr="PORTAIL" data-client-header-en="PORTAL"
           >PORTAIL</small
         ></a
@@ -61,18 +80,56 @@
             <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"></path>
             <path d="M10 21h4"></path>
           </svg>
+
           <span class="madic-hero-unread" hidden="" id="madicHeroUnread"
-            >0</span
-          ></a
-        >
+            >0
+          </span>
+        </a>
         <div id="madicHeroLanguage"></div>
       </div>
+      <button
+        type="button"
+        class="madic-client-phone-account"
+        aria-expanded="false"
+      >
+        <b>CL</b><span class="madic-client-account-label">Mon espace </span>
+
+        ⌄
+      </button>
+      <form class="madic-client-phone-search" role="search">
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <circle cx="10" cy="10" r="7" />
+          <path d="m15 15 6 6" />
+        </svg>
+
+        <input
+          type="search"
+          aria-label="Recherche / Search"
+          placeholder="Rechercher dans votre espace..."
+        /><button type="submit">Rechercher</button>
+      </form>
     </header>
+    <div class="madic-client-phone-shade" hidden></div>
     <main class="madic-app-layout">
       <aside
         aria-label="Navigation de mon espace client"
         class="madic-side-nav"
+        id="madicClientDrawer"
       >
+        <button
+          type="button"
+          class="madic-client-phone-close"
+          aria-label="Fermer le menu"
+        >
+          ×
+        </button>
         <div class="madic-side-brand">
           <img
             alt="Logo MADIC Portail"
@@ -99,8 +156,9 @@
               class="madic-drag-handle"
               draggable="true"
               title="Glisser pour déplacer"
-              >⠿</span
-            ><a class="" draggable="false" href="dashboard-client-cric.html"
+              >⠿
+            </span>
+            <a class="" draggable="false" href="dashboard-client-cric.html"
               ><svg
                 aria-hidden="true"
                 class="madic-nav-icon"
@@ -113,6 +171,7 @@
               >
                 <path d="M4 6h16M4 12h16M4 18h16"></path>
               </svg>
+
               Vue d’ensemble</a
             >
             <div class="madic-nav-move">
@@ -128,8 +187,9 @@
               class="madic-drag-handle"
               draggable="true"
               title="Glisser pour déplacer"
-              >⠿</span
-            >
+              >⠿
+            </span>
+
             <a class="" draggable="false" href="actualites-client-cric.html"
               ><svg
                 aria-hidden="true"
@@ -143,13 +203,14 @@
               >
                 <path d="M4 5h16v14H4zM8 9h8M8 13h8M8 17h5"></path>
               </svg>
+
               <span
                 class="madic-publication-nav-label"
                 data-madic-publication-en="News"
                 data-madic-publication-fr="Actualités"
-                >Actualités</span
-              ></a
-            >
+                >Actualités
+              </span>
+            </a>
             <div class="madic-nav-move">
               <button aria-label="Monter" data-move="up" type="button">↑</button
               ><button aria-label="Descendre" data-move="down" type="button">
@@ -163,8 +224,9 @@
               class="madic-drag-handle"
               draggable="true"
               title="Glisser pour déplacer"
-              >⠿</span
-            ><a class="" draggable="false" href="profil-client-cric.html"
+              >⠿
+            </span>
+            <a class="" draggable="false" href="profil-client-cric.html"
               ><svg
                 aria-hidden="true"
                 class="madic-nav-icon"
@@ -179,6 +241,7 @@
                   d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM4 21v-2a8 8 0 0 1 16 0v2"
                 ></path>
               </svg>
+
               Mon profil</a
             >
             <div class="madic-nav-move">
@@ -194,8 +257,9 @@
               class="madic-drag-handle"
               draggable="true"
               title="Glisser pour déplacer"
-              >⠿</span
-            ><a class="" draggable="false" href="mes-contrats.html"
+              >⠿
+            </span>
+            <a class="" draggable="false" href="mes-contrats.html"
               >Mes contrats</a
             >
             <div class="madic-nav-move">
@@ -211,8 +275,9 @@
               class="madic-drag-handle"
               draggable="true"
               title="Glisser pour déplacer"
-              >⠿</span
-            ><a class="" draggable="false" href="formulaire.html"
+              >⠿
+            </span>
+            <a class="" draggable="false" href="formulaire.html"
               ><svg
                 aria-hidden="true"
                 class="madic-nav-icon"
@@ -225,6 +290,7 @@
               >
                 <path d="M9 12h6m-3-3v6M5 5h14v14H5z"></path>
               </svg>
+
               Formulaire</a
             >
             <div class="madic-nav-move">
@@ -240,8 +306,9 @@
               class="madic-drag-handle"
               draggable="true"
               title="Glisser pour déplacer"
-              >⠿</span
-            ><a class="" draggable="false" href="messagerie-client-cric.html"
+              >⠿
+            </span>
+            <a class="" draggable="false" href="messagerie-client-cric.html"
               ><svg
                 aria-hidden="true"
                 class="madic-nav-icon"
@@ -254,6 +321,7 @@
               >
                 <path d="M8 10h8m-8 4h5M4 5h16v14H4z"></path>
               </svg>
+
               Messagerie</a
             >
             <div class="madic-nav-move">
@@ -269,8 +337,9 @@
               class="madic-drag-handle"
               draggable="true"
               title="Glisser pour déplacer"
-              >⠿</span
-            ><a
+              >⠿
+            </span>
+            <a
               draggable="false"
               href="mes-rendez-vous-cric.html"
               class="madic-nav-active"
@@ -287,6 +356,7 @@
               >
                 <path d="M8 7V4m8 3V4M4 10h16M5 6h14v14H5z"></path>
               </svg>
+
               Rendez-vous</a
             >
             <div class="madic-nav-move">
@@ -302,8 +372,9 @@
               class="madic-drag-handle"
               draggable="true"
               title="Glisser pour déplacer"
-              >⠿</span
-            ><a class="" draggable="false" href="mes-dossiers-client-cric.html"
+              >⠿
+            </span>
+            <a class="" draggable="false" href="mes-dossiers-client-cric.html"
               ><svg
                 aria-hidden="true"
                 class="madic-nav-icon"
@@ -316,6 +387,7 @@
               >
                 <path d="M4 7h16M4 12h16M4 17h10"></path>
               </svg>
+
               Mes dossiers</a
             >
             <div class="madic-nav-move">
@@ -331,8 +403,9 @@
               class="madic-drag-handle"
               draggable="true"
               title="Glisser pour déplacer"
-              >⠿</span
-            ><a class="" draggable="false" href="documents-client-cric.html"
+              >⠿
+            </span>
+            <a class="" draggable="false" href="documents-client-cric.html"
               ><svg
                 aria-hidden="true"
                 class="madic-nav-icon"
@@ -345,6 +418,7 @@
               >
                 <path d="M12 3v12m-4-4 4 4 4-4M5 18h14v3H5z"></path>
               </svg>
+
               Documents</a
             >
             <div class="madic-nav-move">
@@ -360,8 +434,9 @@
               class="madic-drag-handle"
               draggable="true"
               title="Glisser pour déplacer"
-              >⠿</span
-            ><a class="" draggable="false" href="factures-client-cric.html"
+              >⠿
+            </span>
+            <a class="" draggable="false" href="factures-client-cric.html"
               ><svg
                 aria-hidden="true"
                 class="madic-nav-icon"
@@ -374,6 +449,7 @@
               >
                 <path d="M7 3h10l4 4v14H3V3h4zm2 8h6m-6 4h6"></path>
               </svg>
+
               Factures</a
             >
             <div class="madic-nav-move">
@@ -385,7 +461,8 @@
           </div>
         </nav>
         <div class="madic-side-bottom">
-          <span class="madic-side-bottom-dot"></span> Espace client sécurisé<br /><small
+          <span class="madic-side-bottom-dot"> </span>
+          Espace client sécurisé<br /><small
             >Votre projet, à votre rythme.</small
           >
         </div>
@@ -395,15 +472,16 @@
           <div class="madic-rdv-hero">
             <div>
               <span class="madic-rdv-eyebrow"
-                >ESPACE CLIENT · CONSULTATIONS</span
-              >
+                >ESPACE CLIENT · CONSULTATIONS
+              </span>
+
               <h1>Mes rendez-vous et consultations</h1>
               <p>
                 Choisissez un créneau, suivez vos demandes et retrouvez les
                 informations de vos consultations.
               </p>
             </div>
-            <span aria-hidden="true" class="madic-rdv-hero-icon">▦</span>
+            <span aria-hidden="true" class="madic-rdv-hero-icon">▦ </span>
           </div>
           <p
             aria-live="polite"
@@ -416,7 +494,8 @@
           <div aria-label="Mes rendez-vous" hidden="" id="rdvApp">
             <section class="panel">
               <h2>
-                <span class="madic-rdv-step">01</span> Cabinet de consultation
+                <span class="madic-rdv-step">01 </span>
+                Cabinet de consultation
               </h2>
               <label
                 >Mon consultant
@@ -425,7 +504,8 @@
             </section>
             <section class="panel">
               <h2>
-                <span class="madic-rdv-step">02</span> Créneaux disponibles
+                <span class="madic-rdv-step">02 </span>
+                Créneaux disponibles
               </h2>
               <p class="madic-rdv-section-desc">
                 Sélectionnez une plage horaire qui vous convient.
@@ -462,7 +542,7 @@
               </div>
             </section>
             <section class="panel">
-              <h2><span class="madic-rdv-step">03</span> Mes réservations</h2>
+              <h2><span class="madic-rdv-step">03 </span> Mes réservations</h2>
               <p class="madic-rdv-section-desc">
                 Retrouvez le statut et les détails de vos rendez-vous.
               </p>
@@ -537,15 +617,15 @@
             data-en="Contact"
             data-fr="Contact"
             title="Page à venir / Page coming soon"
-            >Contact</span
-          >
+            >Contact
+          </span>
         </nav>
       </div>
       <div class="madic-footer-bottom">
         © 2026 MAD Immigration Canadienne (MADIC) Inc.
         <span data-en="All rights reserved." data-fr="Tous droits réservés."
-          >Tous droits réservés.</span
-        >
+          >Tous droits réservés.
+        </span>
       </div>
     </footer>
     <script src="assets/mes-rendez-vous-cric.js"></script>
