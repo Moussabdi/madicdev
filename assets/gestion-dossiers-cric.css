@@ -7783,77 +7783,151 @@ html
 }
 
 /* Alignement cible du selecteur FR/EN sur cric-dashboard. */
-html body.madic-unified[data-page="gestion-dossiers-cric"] .madic-cric-standard-header .madic-header-right nav.toplinks > .madic-lang-controls {
-background-color: rgba(0, 0, 0, 0) !important;
-background-image: none !important;
-border-top-color: rgb(16, 27, 57) !important;
-border-top-width: 0px !important;
-border-top-style: none !important;
-border-radius: 0px !important;
-box-shadow: none !important;
-padding-top: 0px !important;
-padding-right: 0px !important;
-padding-bottom: 0px !important;
-padding-left: 0px !important;
-gap: 5px !important;
-margin-top: 0px !important;
-margin-right: 0px !important;
-margin-bottom: 0px !important;
-margin-left: 18px !important;
-display: flex !important;
-align-items: center !important;
-justify-content: normal !important;
+html
+  body.madic-unified[data-page="gestion-dossiers-cric"]
+  .madic-cric-standard-header
+  .madic-header-right
+  nav.toplinks
+  > .madic-lang-controls {
+  background-color: rgba(0, 0, 0, 0) !important;
+  background-image: none !important;
+  border: 0 !important;
+  outline: none !important;
+  border-radius: 0px !important;
+  box-shadow: none !important;
+  padding-top: 0px !important;
+  padding-right: 0px !important;
+  padding-bottom: 0px !important;
+  padding-left: 0px !important;
+  gap: 5px !important;
+  margin-top: 0px !important;
+  margin-right: 0px !important;
+  margin-bottom: 0px !important;
+  margin-left: 18px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: normal !important;
 }
-html body.madic-unified[data-page="gestion-dossiers-cric"] .madic-cric-standard-header .madic-header-right nav.toplinks > .madic-lang-controls > button[data-lang] {
-background-image: none !important;
-border-top-width: 1px !important;
-border-top-style: solid !important;
-border-radius: 10px !important;
-box-shadow: none !important;
-padding-top: 8px !important;
-padding-right: 11px !important;
-padding-bottom: 8px !important;
-padding-left: 11px !important;
-height: 39px !important;
-min-height: 39px !important;
-min-width: 44px !important;
-font-size: 13px !important;
-font-weight: 700 !important;
-line-height: normal !important;
-margin-top: 0px !important;
-margin-right: 0px !important;
-margin-bottom: 0px !important;
-margin-left: 0px !important;
-display: block !important;
-align-items: normal !important;
-justify-content: normal !important;
-opacity: 1 !important;
+html
+  body.madic-unified[data-page="gestion-dossiers-cric"]
+  .madic-cric-standard-header
+  .madic-header-right
+  nav.toplinks
+  > .madic-lang-controls
+  > button[data-lang] {
+  background-image: none !important;
+  border-top-width: 1px !important;
+  border-top-style: solid !important;
+  border-radius: 10px !important;
+  box-shadow: none !important;
+  padding-top: 8px !important;
+  padding-right: 11px !important;
+  padding-bottom: 8px !important;
+  padding-left: 11px !important;
+  height: 39px !important;
+  min-height: 39px !important;
+  min-width: 44px !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  line-height: normal !important;
+  margin-top: 0px !important;
+  margin-right: 0px !important;
+  margin-bottom: 0px !important;
+  margin-left: 0px !important;
+  display: block !important;
+  align-items: normal !important;
+  justify-content: normal !important;
+  opacity: 1 !important;
 }
-html[lang^="fr"] body.madic-unified[data-page="gestion-dossiers-cric"] .madic-cric-standard-header .madic-header-right nav.toplinks > .madic-lang-controls > button[data-lang="fr"] {
-background-color: rgb(37, 141, 175) !important;
-border-top-color: rgb(37, 141, 175) !important;
-color: rgb(255, 255, 255) !important;
-box-shadow: none !important;
-opacity: 1 !important;
+html[lang^="fr"]
+  body.madic-unified[data-page="gestion-dossiers-cric"]
+  .madic-cric-standard-header
+  .madic-header-right
+  nav.toplinks
+  > .madic-lang-controls
+  > button[data-lang="fr"] {
+  background-color: rgb(37, 141, 175) !important;
+  border-top-color: rgb(37, 141, 175) !important;
+  color: rgb(255, 255, 255) !important;
+  box-shadow: none !important;
+  opacity: 1 !important;
 }
-html[lang^="fr"] body.madic-unified[data-page="gestion-dossiers-cric"] .madic-cric-standard-header .madic-header-right nav.toplinks > .madic-lang-controls > button[data-lang="en"] {
-background-color: rgb(232, 243, 249) !important;
-border-top-color: rgb(185, 212, 228) !important;
-color: rgb(20, 81, 109) !important;
-box-shadow: none !important;
-opacity: 1 !important;
+html[lang^="fr"]
+  body.madic-unified[data-page="gestion-dossiers-cric"]
+  .madic-cric-standard-header
+  .madic-header-right
+  nav.toplinks
+  > .madic-lang-controls
+  > button[data-lang="en"] {
+  background-color: rgb(232, 243, 249) !important;
+  border-top-color: rgb(185, 212, 228) !important;
+  color: rgb(20, 81, 109) !important;
+  box-shadow: none !important;
+  opacity: 1 !important;
 }
-html[lang^="en"] body.madic-unified[data-page="gestion-dossiers-cric"] .madic-cric-standard-header .madic-header-right nav.toplinks > .madic-lang-controls > button[data-lang="fr"] {
-background-color: rgb(232, 243, 249) !important;
-border-top-color: rgb(185, 212, 228) !important;
-color: rgb(20, 81, 109) !important;
-box-shadow: none !important;
-opacity: 1 !important;
+html[lang^="en"]
+  body.madic-unified[data-page="gestion-dossiers-cric"]
+  .madic-cric-standard-header
+  .madic-header-right
+  nav.toplinks
+  > .madic-lang-controls
+  > button[data-lang="fr"] {
+  background-color: rgb(232, 243, 249) !important;
+  border-top-color: rgb(185, 212, 228) !important;
+  color: rgb(20, 81, 109) !important;
+  box-shadow: none !important;
+  opacity: 1 !important;
 }
-html[lang^="en"] body.madic-unified[data-page="gestion-dossiers-cric"] .madic-cric-standard-header .madic-header-right nav.toplinks > .madic-lang-controls > button[data-lang="en"] {
-background-color: rgb(37, 141, 175) !important;
-border-top-color: rgb(37, 141, 175) !important;
-color: rgb(255, 255, 255) !important;
-box-shadow: none !important;
-opacity: 1 !important;
+html[lang^="en"]
+  body.madic-unified[data-page="gestion-dossiers-cric"]
+  .madic-cric-standard-header
+  .madic-header-right
+  nav.toplinks
+  > .madic-lang-controls
+  > button[data-lang="en"] {
+  background-color: rgb(37, 141, 175) !important;
+  border-top-color: rgb(37, 141, 175) !important;
+  color: rgb(255, 255, 255) !important;
+  box-shadow: none !important;
+  opacity: 1 !important;
+}
+
+html[lang^="fr"]
+  body.madic-unified[data-page="gestion-dossiers-cric"]
+  .madic-cric-standard-header
+  .madic-header-right
+  nav.toplinks
+  > .madic-lang-controls
+  > button[data-lang="fr"] {
+  border: 1px solid rgb(37, 141, 175) !important;
+}
+
+html[lang^="fr"]
+  body.madic-unified[data-page="gestion-dossiers-cric"]
+  .madic-cric-standard-header
+  .madic-header-right
+  nav.toplinks
+  > .madic-lang-controls
+  > button[data-lang="en"] {
+  border: 1px solid rgb(185, 212, 228) !important;
+}
+
+html[lang^="en"]
+  body.madic-unified[data-page="gestion-dossiers-cric"]
+  .madic-cric-standard-header
+  .madic-header-right
+  nav.toplinks
+  > .madic-lang-controls
+  > button[data-lang="fr"] {
+  border: 1px solid rgb(185, 212, 228) !important;
+}
+
+html[lang^="en"]
+  body.madic-unified[data-page="gestion-dossiers-cric"]
+  .madic-cric-standard-header
+  .madic-header-right
+  nav.toplinks
+  > .madic-lang-controls
+  > button[data-lang="en"] {
+  border: 1px solid rgb(37, 141, 175) !important;
 }
