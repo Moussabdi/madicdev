@@ -19,15 +19,19 @@
   <body
     class="madic-form-portal"
     data-madic-view="form"
-    data-page="cric-client-dashboard"
-  >
+    data-page="cric-client-dashboard">
     <header class="madic-client-header">
+<button type="button" class="madic-client-phone-trigger" aria-label="Menu" aria-controls="madicClientDrawer" aria-expanded="false"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/>
+</svg>
+
+</button>
       <a class="brand" href="connexion-client-cric.html"
-        >MADI<span>C</span>
+        >MADI<span>C
+</span>
+
         <small data-client-header-fr="PORTAIL" data-client-header-en="PORTAL"
           >PORTAIL</small
-        ></a
-      >
+        ></a>
       <nav class="toplinks">
         <a
           data-madic-signout="true"
@@ -40,8 +44,7 @@
           href="dashboard-client-cric.html"
           data-client-header-fr="Mon espace"
           data-client-header-en="My space"
-          >Mon espace</a
-        >
+          >Mon espace</a>
       </nav>
       <div aria-label="Outils du compte" class="madic-hero-tools">
         <a
@@ -58,23 +61,30 @@
             stroke-linejoin="round"
             stroke-width="1.8"
             viewbox="0 0 24 24"
-            width="22"
-          >
+            width="22">
             <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"></path>
             <path d="M10 21h4"></path>
-          </svg>
+</svg>
+
           <span class="madic-hero-unread" hidden="" id="madicHeroUnread"
             >0</span
-          ></a
-        >
+          ></a>
         <div id="madicHeroLanguage"></div>
       </div>
-    </header>
+    <button type="button" class="madic-client-phone-account" aria-expanded="false"><b>CL</b><span class="madic-client-account-label">Mon espace
+</span>
+
+⌄</button><form class="madic-client-phone-search" role="search"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="10" cy="10" r="7"/><path d="m15 15 6 6"/>
+</svg>
+
+<input type="search" aria-label="Recherche / Search" placeholder="Rechercher dans votre espace..."/><button type="submit">Rechercher</button></form>
+</header><div class="madic-client-phone-shade" hidden></div>
     <main class="madic-app-layout" id="madic8-main">
       <aside
         aria-label="Navigation de mon espace client"
         class="madic-side-nav"
-      >
+       id="madicClientDrawer">
+<button type="button" class="madic-client-phone-close" aria-label="Fermer le menu">×</button>
         <div class="madic-side-brand">
           <img
             alt="Logo MADIC Portail"
@@ -114,12 +124,11 @@
                 stroke-linecap="round"
                 stroke-linejoin="round"
                 stroke-width="1.8"
-                viewbox="0 0 24 24"
-              >
+                viewbox="0 0 24 24">
                 <path d="M4 6h16M4 12h16M4 18h16"></path>
-              </svg>
-              Vue d’ensemble</a
-            >
+</svg>
+
+              Vue d’ensemble</a>
             <div class="madic-nav-move">
               <button aria-label="Monter" data-move="up" type="button">↑</button
               ><button aria-label="Descendre" data-move="down" type="button">
@@ -133,8 +142,7 @@
               class="madic-drag-handle"
               draggable="true"
               title="Glisser pour déplacer"
-              >⠿</span
-            >
+              >⠿</span>
             <a class="" draggable="false" href="actualites-client-cric.html"
               ><svg
                 aria-hidden="true"
@@ -144,17 +152,16 @@
                 stroke-linecap="round"
                 stroke-linejoin="round"
                 stroke-width="1.8"
-                viewbox="0 0 24 24"
-              >
+                viewbox="0 0 24 24">
                 <path d="M4 5h16v14H4zM8 9h8M8 13h8M8 17h5"></path>
-              </svg>
+</svg>
+
               <span
                 class="madic-publication-nav-label"
                 data-madic-publication-en="News"
                 data-madic-publication-fr="Actualités"
                 >Actualités</span
-              ></a
-            >
+              ></a>
             <div class="madic-nav-move">
               <button aria-label="Monter" data-move="up" type="button">↑</button
               ><button aria-label="Descendre" data-move="down" type="button">
@@ -178,14 +185,13 @@
                 stroke-linecap="round"
                 stroke-linejoin="round"
                 stroke-width="1.8"
-                viewbox="0 0 24 24"
-              >
+                viewbox="0 0 24 24">
                 <path
                   d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM4 21v-2a8 8 0 0 1 16 0v2"
                 ></path>
-              </svg>
-              Mon profil</a
-            >
+</svg>
+
+              Mon profil</a>
             <div class="madic-nav-move">
               <button aria-label="Monter" data-move="up" type="button">↑</button
               ><button aria-label="Descendre" data-move="down" type="button">
@@ -201,8 +207,7 @@
               title="Glisser pour déplacer"
               >⠿</span
             ><a class="" draggable="false" href="mes-contrats.html"
-              >Mes contrats</a
-            >
+              >Mes contrats</a>
             <div class="madic-nav-move">
               <button aria-label="Monter" data-move="up" type="button">↑</button
               ><button aria-label="Descendre" data-move="down" type="button">
@@ -230,12 +235,11 @@
                 stroke-linecap="round"
                 stroke-linejoin="round"
                 stroke-width="1.8"
-                viewbox="0 0 24 24"
-              >
+                viewbox="0 0 24 24">
                 <path d="M9 12h6m-3-3v6M5 5h14v14H5z"></path>
-              </svg>
-              Formulaire</a
-            >
+</svg>
+
+              Formulaire</a>
             <div class="madic-nav-move">
               <button aria-label="Monter" data-move="up" type="button">↑</button
               ><button aria-label="Descendre" data-move="down" type="button">
@@ -259,12 +263,11 @@
                 stroke-linecap="round"
                 stroke-linejoin="round"
                 stroke-width="1.8"
-                viewbox="0 0 24 24"
-              >
+                viewbox="0 0 24 24">
                 <path d="M8 10h8m-8 4h5M4 5h16v14H4z"></path>
-              </svg>
-              Messagerie</a
-            >
+</svg>
+
+              Messagerie</a>
             <div class="madic-nav-move">
               <button aria-label="Monter" data-move="up" type="button">↑</button
               ><button aria-label="Descendre" data-move="down" type="button">
@@ -288,12 +291,11 @@
                 stroke-linecap="round"
                 stroke-linejoin="round"
                 stroke-width="1.8"
-                viewbox="0 0 24 24"
-              >
+                viewbox="0 0 24 24">
                 <path d="M8 7V4m8 3V4M4 10h16M5 6h14v14H5z"></path>
-              </svg>
-              Rendez-vous</a
-            >
+</svg>
+
+              Rendez-vous</a>
             <div class="madic-nav-move">
               <button aria-label="Monter" data-move="up" type="button">↑</button
               ><button aria-label="Descendre" data-move="down" type="button">
@@ -317,12 +319,11 @@
                 stroke-linecap="round"
                 stroke-linejoin="round"
                 stroke-width="1.8"
-                viewbox="0 0 24 24"
-              >
+                viewbox="0 0 24 24">
                 <path d="M4 7h16M4 12h16M4 17h10"></path>
-              </svg>
-              Mes dossiers</a
-            >
+</svg>
+
+              Mes dossiers</a>
             <div class="madic-nav-move">
               <button aria-label="Monter" data-move="up" type="button">↑</button
               ><button aria-label="Descendre" data-move="down" type="button">
@@ -346,12 +347,11 @@
                 stroke-linecap="round"
                 stroke-linejoin="round"
                 stroke-width="1.8"
-                viewbox="0 0 24 24"
-              >
+                viewbox="0 0 24 24">
                 <path d="M12 3v12m-4-4 4 4 4-4M5 18h14v3H5z"></path>
-              </svg>
-              Documents</a
-            >
+</svg>
+
+              Documents</a>
             <div class="madic-nav-move">
               <button aria-label="Monter" data-move="up" type="button">↑</button
               ><button aria-label="Descendre" data-move="down" type="button">
@@ -375,12 +375,11 @@
                 stroke-linecap="round"
                 stroke-linejoin="round"
                 stroke-width="1.8"
-                viewbox="0 0 24 24"
-              >
+                viewbox="0 0 24 24">
                 <path d="M7 3h10l4 4v14H3V3h4zm2 8h6m-6 4h6"></path>
-              </svg>
-              Factures</a
-            >
+</svg>
+
+              Factures</a>
             <div class="madic-nav-move">
               <button aria-label="Monter" data-move="up" type="button">↑</button
               ><button aria-label="Descendre" data-move="down" type="button">
@@ -390,9 +389,10 @@
           </div>
         </nav>
         <div class="madic-side-bottom">
-          <span class="madic-side-bottom-dot"></span> Espace client sécurisé<br /><small
-            >Votre projet, à votre rythme.</small
-          >
+          <span class="madic-side-bottom-dot">
+</span>
+ Espace client sécurisé<br /><small
+            >Votre projet, à votre rythme.</small>
         </div>
       </aside>
       <div class="madic-app-content">
@@ -402,28 +402,37 @@
             <div class="form-hero__overlay"></div>
             <div class="container form-hero__content">
               <span class="form-eyebrow">
-                <span class="form-lang-fr">ÉVALUATION PRÉLIMINAIRE</span>
-                <span class="form-lang-en">PRELIMINARY ASSESSMENT</span>
-              </span>
+                <span class="form-lang-fr">ÉVALUATION PRÉLIMINAIRE
+</span>
+
+                <span class="form-lang-en">PRELIMINARY ASSESSMENT
+</span>
+
+</span>
+
               <h1>
                 <span class="form-lang-fr">
                   Parlez-nous de votre projet d’immigration
-                </span>
+</span>
+
                 <span class="form-lang-en">
                   Tell us about your immigration project
-                </span>
+</span>
+
               </h1>
               <p>
                 <span class="form-lang-fr">
                   Remplissez ce formulaire afin de nous permettre d’effectuer
                   une première analyse de votre profil et de mieux comprendre
                   votre projet au Canada.
-                </span>
+</span>
+
                 <span class="form-lang-en">
                   Complete this form so that we can conduct an initial
                   assessment of your profile and better understand your plans in
                   Canada.
-                </span>
+</span>
+
               </p>
             </div>
           </section>
@@ -436,8 +445,12 @@
                 </div>
                 <div class="form-notice__content">
                   <strong>
-                    <span class="form-lang-fr">Déclaration importante</span>
-                    <span class="form-lang-en">Important declaration</span>
+                    <span class="form-lang-fr">Déclaration importante
+</span>
+
+                    <span class="form-lang-en">Important declaration
+</span>
+
                   </strong>
                   <p data-i18n="form.declaration">
                     Je reconnais que toute fausse déclaration de ma part ou
@@ -466,7 +479,9 @@
                 <div aria-label="Navigation du formulaire" class="madic-steps">
                   <div class="madic-steps__top">
                     <strong id="madic-step-label"></strong
-                    ><span id="madic-step-count"></span>
+                    ><span id="madic-step-count">
+</span>
+
                   </div>
                   <div class="madic-steps__track">
                     <div id="madic-progress-fill"></div>
@@ -482,8 +497,9 @@
                   </legend>
                   <div class="marg-bot">
                     <label data-i18n="form.firstName" for="prenom"
-                      >Prenom : <span class="req">*</span></label
-                    >
+                      >Prenom : <span class="req">*
+</span>
+</label>
                     <input
                       class="champs-large"
                       data-i18n-placeholder="form.firstNamePlaceholder"
@@ -497,8 +513,9 @@
                   </div>
                   <div class="marg-bot">
                     <label data-i18n="form.lastName" for="nom"
-                      >Nom : <span class="req">*</span></label
-                    >
+                      >Nom : <span class="req">*
+</span>
+</label>
                     <input
                       class="champs-large"
                       data-i18n-placeholder="form.lastNamePlaceholder"
@@ -512,8 +529,9 @@
                   </div>
                   <div class="marg-bot">
                     <label data-i18n="form.birthDate" for="date_naissance"
-                      >Date de naissance : <span class="req">*</span></label
-                    >
+                      >Date de naissance : <span class="req">*
+</span>
+</label>
                     <input
                       class="champs-large"
                       id="date_naissance"
@@ -527,8 +545,7 @@
                     <label
                       data-i18n="form.calculatedAge"
                       for="madic_age_calcule"
-                      >Âge :</label
-                    >
+                      >Âge :</label>
                     <input
                       aria-live="polite"
                       class="champs-large"
@@ -539,14 +556,14 @@
                   </div>
                   <div class="marg-bot">
                     <label data-i18n="form.gender" for="sex"
-                      >Sexe : <span class="req">*</span></label
-                    >
+                      >Sexe : <span class="req">*
+</span>
+</label>
                     <select
                       class="champs-large"
                       id="sex"
                       name="sex"
-                      required=""
-                    >
+                      required="">
                       <option data-i18n="form.selectGender" value="">
                         Choix de votre sexe!
                       </option>
@@ -560,14 +577,14 @@
                   </div>
                   <div class="marg-bot">
                     <label data-i18n="form.birthCountry" for="Lieu_naissance"
-                      >Lieu de naissance : <span class="req">*</span></label
-                    >
+                      >Lieu de naissance : <span class="req">*
+</span>
+</label>
                     <select
                       class="champs-large"
                       id="Lieu_naissance"
                       name="Lieu_naissance"
-                      required=""
-                    >
+                      required="">
                       <option data-i18n="form.selectBirthCountry" value="">
                         Choix de votre lieu de résidence!
                       </option>
@@ -806,18 +823,17 @@
                     <label
                       data-i18n="form.nationalityCountry"
                       for="pays_nationalite"
-                      >Pays de nationalité : <span class="req">*</span></label
-                    >
+                      >Pays de nationalité : <span class="req">*
+</span>
+</label>
                     <select
                       class="champs-large"
                       id="pays_nationalite"
                       name="pays_nationalite"
-                      required=""
-                    >
+                      required="">
                       <option
                         data-i18n="form.selectNationalityCountry"
-                        value=""
-                      >
+                        value="">
                         Choix de votre pays de nationalité
                       </option>
                       <option value="Afghanistan">Afghanistan</option>
@@ -1055,14 +1071,14 @@
                     <label
                       data-i18n="form.residenceCountry"
                       for="pays_residence"
-                      >Pays de résidence : <span class="req">*</span></label
-                    >
+                      >Pays de résidence : <span class="req">*
+</span>
+</label>
                     <select
                       class="champs-large"
                       id="pays_residence"
                       name="pays_residence"
-                      required=""
-                    >
+                      required="">
                       <option data-i18n="form.selectResidenceCountry" value="">
                         Choix de votre pays de résidence!
                       </option>
@@ -1300,14 +1316,14 @@
                   <div class="marg-bot">
                     <label data-i18n="form.maritalStatus" for="etat_matrimonial"
                       >État matrimonial actuel :
-                      <span class="req">*</span></label
-                    >
+                      <span class="req">*
+</span>
+</label>
                     <select
                       class="champs-large"
                       id="etat_matrimonial"
                       name="etat_matrimonial"
-                      required=""
-                    >
+                      required="">
                       <option data-i18n="form.selectMaritalStatus" value="">
                         Choix de votre statut marital!
                       </option>
@@ -1325,8 +1341,9 @@
                   <div class="marg-bot">
                     <label data-i18n="form.childrenUnder22" for="nbr_enfant"
                       >Combien d'enfant de moins de 22 ans avez-vous ?
-                      <span class="req">*</span></label
-                    >
+                      <span class="req">*
+</span>
+</label>
                     <input
                       class="champs-etroit"
                       id="nbr_enfant"
@@ -1340,14 +1357,14 @@
                   </div>
                   <div class="marg-bot">
                     <label data-i18n="form.child1Age" for="age_enfant_1"
-                      >Âge d'enfant 1 : <span class="req">*</span></label
-                    >
+                      >Âge d'enfant 1 : <span class="req">*
+</span>
+</label>
                     <select
                       class="champs-large"
                       id="age_enfant_1"
                       name="age_enfant_1"
-                      required=""
-                    >
+                      required="">
                       <option data-i18n="form.selectAge" value="">
                         Choix de l'âge!
                       </option>
@@ -1401,14 +1418,14 @@
                   </div>
                   <div class="marg-bot">
                     <label data-i18n="form.child2Age" for="age_enfant_2"
-                      >Âge d'enfant 2 : <span class="req">*</span></label
-                    >
+                      >Âge d'enfant 2 : <span class="req">*
+</span>
+</label>
                     <select
                       class="champs-large"
                       id="age_enfant_2"
                       name="age_enfant_2"
-                      required=""
-                    >
+                      required="">
                       <option data-i18n="form.selectAge" value="">
                         Choix de l'âge!
                       </option>
@@ -1462,14 +1479,14 @@
                   </div>
                   <div class="marg-bot">
                     <label data-i18n="form.child3Age" for="age_enfant_3"
-                      >Âge d'enfant 3 : <span class="req">*</span></label
-                    >
+                      >Âge d'enfant 3 : <span class="req">*
+</span>
+</label>
                     <select
                       class="champs-large"
                       id="age_enfant_3"
                       name="age_enfant_3"
-                      required=""
-                    >
+                      required="">
                       <option data-i18n="form.selectAge" value="">
                         Choix de l'âge!
                       </option>
@@ -1523,14 +1540,14 @@
                   </div>
                   <div class="marg-bot">
                     <label data-i18n="form.child4Age" for="age_enfant_4"
-                      >Âge d'enfant 4 : <span class="req">*</span></label
-                    >
+                      >Âge d'enfant 4 : <span class="req">*
+</span>
+</label>
                     <select
                       class="champs-large"
                       id="age_enfant_4"
                       name="age_enfant_4"
-                      required=""
-                    >
+                      required="">
                       <option data-i18n="form.selectAge" value="">
                         Choix de l'âge!
                       </option>
@@ -1584,8 +1601,7 @@
                   </div>
                   <div class="marg-bot">
                     <label data-i18n="form.phone" for="telephone"
-                      >Votre numéro de téléphone</label
-                    >
+                      >Votre numéro de téléphone</label>
                     <input
                       class="champs-large"
                       id="telephone"
@@ -1597,8 +1613,7 @@
                   </div>
                   <div class="marg-bot">
                     <label data-i18n="form.email" for="courriel"
-                      >Votre courriel</label
-                    >
+                      >Votre courriel</label>
                     <input
                       class="champs-large"
                       id="courriel"
@@ -1616,8 +1631,9 @@
                   <div class="marg-bot">
                     <label data-i18n="form.apartmentNumber" for="no_appart"
                       >No d’appartement/d’unité :
-                      <span class="req">*</span></label
-                    >
+                      <span class="req">*
+</span>
+</label>
                     <input
                       class="champs-large"
                       data-i18n-placeholder="form.apartmentPlaceholder"
@@ -1631,8 +1647,9 @@
                   </div>
                   <div class="marg-bot">
                     <label data-i18n="form.streetNumber" for="no_rue"
-                      >Numéro de rue : <span class="req">*</span></label
-                    >
+                      >Numéro de rue : <span class="req">*
+</span>
+</label>
                     <input
                       class="champs-large"
                       data-i18n-placeholder="form.streetPlaceholder"
@@ -1646,8 +1663,9 @@
                   </div>
                   <div class="marg-bot">
                     <label for="rue" data-i18n="form.streetName"
-                      >Nom de la rue : <span class="req">*</span></label
-                    >
+                      >Nom de la rue : <span class="req">*
+</span>
+</label>
                     <input
                       autocomplete="address-line1"
                       class="champs-large"
@@ -1662,8 +1680,9 @@
                   </div>
                   <div class="marg-bot">
                     <label data-i18n="form.city" for="ville"
-                      >Ville : <span class="req">*</span></label
-                    >
+                      >Ville : <span class="req">*
+</span>
+</label>
                     <input
                       class="champs-large"
                       data-i18n-placeholder="form.cityPlaceholder"
@@ -1677,8 +1696,9 @@
                   </div>
                   <div class="marg-bot">
                     <label data-i18n="form.postalCode" for="code_postale"
-                      >Code postale : <span class="req">*</span></label
-                    >
+                      >Code postale : <span class="req">*
+</span>
+</label>
                     <input
                       class="champs-large"
                       data-i18n-placeholder="form.postalCodePlaceholder"
@@ -1692,8 +1712,9 @@
                   </div>
                   <div class="marg-bot">
                     <label data-i18n="form.province" for="province"
-                      >Province : <span class="req">*</span></label
-                    >
+                      >Province : <span class="req">*
+</span>
+</label>
                     <input
                       class="champs-large"
                       data-i18n-placeholder="form.provincePlaceholder"
@@ -1707,14 +1728,14 @@
                   </div>
                   <div class="marg-bot">
                     <label data-i18n="form.country" for="pays"
-                      >Pays : <span class="req">*</span></label
-                    >
+                      >Pays : <span class="req">*
+</span>
+</label>
                     <select
                       class="champs-large"
                       id="pays"
                       name="pays"
-                      required=""
-                    >
+                      required="">
                       <option data-i18n="form.selectCountry" value="">
                         Choix de votre pays!
                       </option>
@@ -1956,14 +1977,14 @@
                   </legend>
                   <div class="marg-bot">
                     <label data-i18n="form.frenchLevel" for="niveau_francais"
-                      >Niveau de Français : <span class="req">*</span></label
-                    >
+                      >Niveau de Français : <span class="req">*
+</span>
+</label>
                     <select
                       class="champs-large"
                       id="niveau_francais"
                       name="niveau_francais"
-                      required=""
-                    >
+                      required="">
                       <option data-i18n="form.selectLevel" value="">
                         Choix votre niveau!
                       </option>
@@ -1981,14 +2002,14 @@
                   </div>
                   <div class="marg-bot">
                     <label data-i18n="form.englishLevel" for="niveau_anglais"
-                      >Niveau d’anglais : <span class="req">*</span></label
-                    >
+                      >Niveau d’anglais : <span class="req">*
+</span>
+</label>
                     <select
                       class="champs-large"
                       id="niveau_anglais"
                       name="niveau_anglais"
-                      required=""
-                    >
+                      required="">
                       <option data-i18n="form.selectLevel" value="">
                         Choix votre niveau!
                       </option>
@@ -1998,8 +2019,7 @@
                       </option>
                       <option
                         data-i18n="form.intermediate"
-                        value="intermediate"
-                      >
+                        value="intermediate">
                         Intermediate
                       </option>
                       <option data-i18n="form.basic" value="basic">
@@ -2012,14 +2032,14 @@
                       data-i18n="form.frenchTestQuestion"
                       for="question_lang_fr"
                       >Avez-vous fait évaluer votre compétence en français par
-                      organismeapprouvé ? <span class="req">*</span></label
-                    >
+                      organismeapprouvé ? <span class="req">*
+</span>
+</label>
                     <select
                       class="champs-large"
                       id="question_lang_fr"
                       name="question_lang_fr"
-                      required=""
-                    >
+                      required="">
                       <option data-i18n="form.selectLanguageTest" value="">
                         Choix votre test de compétence!
                       </option>
@@ -2051,14 +2071,14 @@
                       data-i18n="form.englishTestQuestion"
                       for="question_lang_en"
                       >Avez-vous fait évaluer votre compétence en anglais par un
-                      organisme approuvé ? <span class="req">*</span></label
-                    >
+                      organisme approuvé ? <span class="req">*
+</span>
+</label>
                     <select
                       class="champs-large"
                       id="question_lang_en"
                       name="question_lang_en"
-                      required=""
-                    >
+                      required="">
                       <option data-i18n="form.selectLanguageTest" value="">
                         Choix votre test de compétence!
                       </option>
@@ -2079,14 +2099,14 @@
                   </h3>
                   <div class="marg-bot">
                     <label data-i18n="form.speaking" for="expression_orale"
-                      >Expression orale : <span class="req">*</span></label
-                    >
+                      >Expression orale : <span class="req">*
+</span>
+</label>
                     <select
                       class="champs-large"
                       id="expression_orale"
                       name="expression_orale"
-                      required=""
-                    >
+                      required="">
                       <option data-i18n="form.selectLanguageTest" value="">
                         Choix votre test de compétence!
                       </option>
@@ -2096,8 +2116,7 @@
                       </option>
                       <option
                         data-i18n="form.intermediate"
-                        value="intermediaire"
-                      >
+                        value="intermediaire">
                         Intermediaire
                       </option>
                       <option data-i18n="form.basic" value="basique">
@@ -2107,14 +2126,14 @@
                   </div>
                   <div class="marg-bot">
                     <label data-i18n="form.listening" for="comprehension_orale"
-                      >Compréhension orale : <span class="req">*</span></label
-                    >
+                      >Compréhension orale : <span class="req">*
+</span>
+</label>
                     <select
                       class="champs-large"
                       id="comprehension_orale"
                       name="comprehension_orale"
-                      required=""
-                    >
+                      required="">
                       <option data-i18n="form.selectLanguageTest" value="">
                         Choix votre test de compétence!
                       </option>
@@ -2124,8 +2143,7 @@
                       </option>
                       <option
                         data-i18n="form.intermediate"
-                        value="intermediaire"
-                      >
+                        value="intermediaire">
                         Intermediaire
                       </option>
                       <option data-i18n="form.basic" value="basique">
@@ -2135,14 +2153,14 @@
                   </div>
                   <div class="marg-bot">
                     <label data-i18n="form.reading" for="comprehension_ecrite"
-                      >Compréhension écrite : <span class="req">*</span></label
-                    >
+                      >Compréhension écrite : <span class="req">*
+</span>
+</label>
                     <select
                       class="champs-large"
                       id="comprehension_ecrite"
                       name="comprehension_ecrite"
-                      required=""
-                    >
+                      required="">
                       <option data-i18n="form.selectLanguageTest" value="">
                         Choix votre test de compétence!
                       </option>
@@ -2152,8 +2170,7 @@
                       </option>
                       <option
                         data-i18n="form.intermediate"
-                        value="intermediaire"
-                      >
+                        value="intermediaire">
                         Intermediaire
                       </option>
                       <option data-i18n="form.basic" value="basique">
@@ -2163,14 +2180,14 @@
                   </div>
                   <div class="marg-bot">
                     <label data-i18n="form.writing" for="expression_ecrite"
-                      >Expression écrite : <span class="req">*</span></label
-                    >
+                      >Expression écrite : <span class="req">*
+</span>
+</label>
                     <select
                       class="champs-large"
                       id="expression_ecrite"
                       name="expression_ecrite"
-                      required=""
-                    >
+                      required="">
                       <option data-i18n="form.selectLanguageTest" value="">
                         Choix votre test de compétence!
                       </option>
@@ -2180,8 +2197,7 @@
                       </option>
                       <option
                         data-i18n="form.intermediate"
-                        value="intermediaire"
-                      >
+                        value="intermediaire">
                         Intermediaire
                       </option>
                       <option data-i18n="form.basic" value="basique">
@@ -2195,14 +2211,14 @@
                   </h3>
                   <div class="marg-bot">
                     <label data-i18n="form.speaking" for="speaking"
-                      >Speaking: <span class="req">*</span></label
-                    >
+                      >Speaking: <span class="req">*
+</span>
+</label>
                     <select
                       class="champs-large"
                       id="speaking"
                       name="speaking"
-                      required=""
-                    >
+                      required="">
                       <option data-i18n="form.selectLanguageTest" value="">
                         Choix votre test de compétence!
                       </option>
@@ -2212,8 +2228,7 @@
                       </option>
                       <option
                         data-i18n="form.intermediate"
-                        value="intermediate"
-                      >
+                        value="intermediate">
                         Intermediate
                       </option>
                       <option data-i18n="form.basic" value="basic">
@@ -2223,14 +2238,14 @@
                   </div>
                   <div class="marg-bot">
                     <label data-i18n="form.listening" for="listening"
-                      >Listening: <span class="req">*</span></label
-                    >
+                      >Listening: <span class="req">*
+</span>
+</label>
                     <select
                       class="champs-large"
                       id="listening"
                       name="listening"
-                      required=""
-                    >
+                      required="">
                       <option data-i18n="form.selectLanguageTest" value="">
                         Choix votre test de compétence!
                       </option>
@@ -2240,8 +2255,7 @@
                       </option>
                       <option
                         data-i18n="form.intermediate"
-                        value="intermediate"
-                      >
+                        value="intermediate">
                         Intermediate
                       </option>
                       <option data-i18n="form.basic" value="basic">
@@ -2251,14 +2265,14 @@
                   </div>
                   <div class="marg-bot">
                     <label data-i18n="form.reading" for="reading"
-                      >Reading: <span class="req">*</span></label
-                    >
+                      >Reading: <span class="req">*
+</span>
+</label>
                     <select
                       class="champs-large"
                       id="reading"
                       name="reading"
-                      required=""
-                    >
+                      required="">
                       <option data-i18n="form.selectLanguageTest" value="">
                         Choix votre test de compétence!
                       </option>
@@ -2268,8 +2282,7 @@
                       </option>
                       <option
                         data-i18n="form.intermediate"
-                        value="intermediate"
-                      >
+                        value="intermediate">
                         Intermediate
                       </option>
                       <option data-i18n="form.basic" value="basic">
@@ -2279,14 +2292,14 @@
                   </div>
                   <div class="marg-bot">
                     <label data-i18n="form.writing" for="writing"
-                      >Writing: <span class="req">*</span></label
-                    >
+                      >Writing: <span class="req">*
+</span>
+</label>
                     <select
                       class="champs-large"
                       id="writing"
                       name="writing"
-                      required=""
-                    >
+                      required="">
                       <option data-i18n="form.selectLanguageTest" value="">
                         Choix votre test de compétence!
                       </option>
@@ -2296,8 +2309,7 @@
                       </option>
                       <option
                         data-i18n="form.intermediate"
-                        value="intermediate"
-                      >
+                        value="intermediate">
                         Intermediate
                       </option>
                       <option data-i18n="form.basic" value="basic">
@@ -2313,14 +2325,14 @@
                       data-i18n="form.highestEducation"
                       for="niveau_scolarite"
                       >Votre niveau de scolarité le plus élevé :
-                      <span class="req">*</span></label
-                    >
+                      <span class="req">*
+</span>
+</label>
                     <select
                       class="champs-large"
                       id="niveau_scolarite"
                       name="niveau_scolarite"
-                      required=""
-                    >
+                      required="">
                       <option data-i18n="form.selectLevel" value="">
                         Choix votre niveau!
                       </option>
@@ -2351,8 +2363,9 @@
                   <div class="marg-bot">
                     <label data-i18n="form.yearsEducation" for="nbr_annee_etude"
                       >Nombre d’année d’étude :
-                      <span class="req">*</span></label
-                    >
+                      <span class="req">*
+</span>
+</label>
                     <input
                       class="champs-large"
                       data-i18n-placeholder="form.yearsEducationPlaceholder"
@@ -2367,8 +2380,9 @@
                   <div class="marg-bot">
                     <label data-i18n="form.fieldOfStudy" for="domaine_etude"
                       >Votre domaine d’étude ou spécialité :
-                      <span class="req">*</span></label
-                    >
+                      <span class="req">*
+</span>
+</label>
                     <input
                       class="champs-large"
                       data-i18n-placeholder="form.fieldOfStudyPlaceholder"
@@ -2385,14 +2399,14 @@
                       data-i18n="form.spouseEducationLevel"
                       for="niveau_scolarite_epoux"
                       >Niveau de scolarité le plus élevé de votre époux(se): :
-                      <span class="req">*</span></label
-                    >
+                      <span class="req">*
+</span>
+</label>
                     <select
                       class="champs-large"
                       id="niveau_scolarite_epoux"
                       name="niveau_scolarite_epoux"
-                      required=""
-                    >
+                      required="">
                       <option data-i18n="form.selectLevel" value="">
                         Choix votre niveau!
                       </option>
@@ -2425,8 +2439,9 @@
                       data-i18n="form.spouseYearsEducation"
                       for="nbr_annee_etude_epoux"
                       >Nombre d’année d’étude de votre époux (se): :
-                      <span class="req">*</span></label
-                    >
+                      <span class="req">*
+</span>
+</label>
                     <input
                       class="champs-large"
                       data-i18n-placeholder="form.spouseYearsEducationPlaceholder"
@@ -2443,8 +2458,9 @@
                       data-i18n="form.spouseFieldOfStudy"
                       for="domaine_etude_epoux"
                       >Le nom de domaine d’étude ou spécialité de votre époux
-                      (se) : <span class="req">*</span></label
-                    >
+                      (se) : <span class="req">*
+</span>
+</label>
                     <input
                       class="champs-large"
                       data-i18n-placeholder="form.spouseFieldOfStudyPlaceholder"
@@ -2463,8 +2479,9 @@
                     <label
                       data-i18n="form.currentEmployment"
                       for="emploi_actuel"
-                      >Votre emploi actuel : <span class="req">*</span></label
-                    >
+                      >Votre emploi actuel : <span class="req">*
+</span>
+</label>
                     <input
                       class="champs-large"
                       data-i18n-placeholder="form.currentEmploymentPlaceholder"
@@ -2479,14 +2496,14 @@
                   <div class="marg-bot">
                     <label data-i18n="form.yearsExperience" for="nbr_annee_exp"
                       >Nombre d’année d’expérience :
-                      <span class="req">*</span></label
-                    >
+                      <span class="req">*
+</span>
+</label>
                     <select
                       class="champs-large"
                       id="nbr_annee_exp"
                       name="nbr_annee_exp"
-                      required=""
-                    >
+                      required="">
                       <option data-i18n="form.selectYearsExperience" value="">
                         Choix de nombre d'année expérience!
                       </option>
@@ -2503,8 +2520,9 @@
                   <div class="marg-bot">
                     <label data-i18n="form.jobTitle" for="titre_emploi"
                       >Le titre de votre emploi :
-                      <span class="req">*</span></label
-                    >
+                      <span class="req">*
+</span>
+</label>
                     <input
                       class="champs-large"
                       data-i18n-placeholder="form.jobTitlePlaceholder"
@@ -2519,8 +2537,9 @@
                   <div class="marg-bot">
                     <label data-i18n="form.jobDuties" for="taches_emploi"
                       >Les tâches de votre emploi actuel :
-                      <span class="req">*</span></label
-                    >
+                      <span class="req">*
+</span>
+</label>
                     <input
                       class="champs-large"
                       data-i18n-placeholder="form.jobDutiesPlaceholder"
@@ -2537,8 +2556,9 @@
                       data-i18n="form.spouseCurrentEmployment"
                       for="emploi_actuel_epoux"
                       >L’emploi actuel de votre époux(se) :
-                      <span class="req">*</span></label
-                    >
+                      <span class="req">*
+</span>
+</label>
                     <input
                       class="champs-large"
                       data-i18n-placeholder="form.spouseCurrentEmploymentPlaceholder"
@@ -2555,18 +2575,17 @@
                       data-i18n="form.spouseYearsExperience"
                       for="nbr_annee_exp_epoux"
                       >Nombre d’année d’expérience de votre époux(se) :
-                      <span class="req">*</span></label
-                    >
+                      <span class="req">*
+</span>
+</label>
                     <select
                       class="champs-large"
                       id="nbr_annee_exp_epoux"
                       name="nbr_annee_exp_epoux"
-                      required=""
-                    >
+                      required="">
                       <option
                         data-i18n="form.selectSpouseYearsExperience"
-                        value=""
-                      >
+                        value="">
                         Choix de nombre d’année d’expérience de votre époux(se)!
                       </option>
                       <option data-i18n="form.none" value="aucun">Aucun</option>
@@ -2584,8 +2603,9 @@
                       data-i18n="form.spouseJobTitle"
                       for="titre_emploi_epoux"
                       >Le titre de l’emploi de votre époux(se) :
-                      <span class="req">*</span></label
-                    >
+                      <span class="req">*
+</span>
+</label>
                     <input
                       class="champs-large"
                       data-i18n-placeholder="form.spouseJobTitlePlaceholder"
@@ -2602,8 +2622,9 @@
                       data-i18n="form.spouseJobDuties"
                       for="taches_emploi_epoux"
                       >Les tâches de l’emploi actuel de votre époux(se) :
-                      <span class="req">*</span></label
-                    >
+                      <span class="req">*
+</span>
+</label>
                     <input
                       class="champs-large"
                       data-i18n-placeholder="form.spouseJobDutiesPlaceholder"
@@ -2623,14 +2644,14 @@
                   <div class="marg-bot">
                     <label data-i18n="form.familyCanada" for="famille_canada"
                       >Possédez-vous de la famille au Canada ?
-                      <span class="req">*</span></label
-                    >
+                      <span class="req">*
+</span>
+</label>
                     <select
                       class="champs-large"
                       id="famille_canada"
                       name="famille_canada"
-                      required=""
-                    >
+                      required="">
                       <option data-i18n="form.selectFamily" value="">
                         Choix de famille au Canada!
                       </option>
@@ -2639,8 +2660,7 @@
                       </option>
                       <option
                         data-i18n="form.siblingCanada"
-                        value="frere_soeur"
-                      >
+                        value="frere_soeur">
                         Oui, j'ai un frère ou une soeur de plus 18 ans
                       </option>
                       <option data-i18n="form.parentCanada" value="pere_mere">
@@ -2651,8 +2671,7 @@
                       </option>
                       <option
                         data-i18n="form.grandchildCanada"
-                        value="petit_fils_fille"
-                      >
+                        value="petit_fils_fille">
                         Oui, j'ai mon petit fils ou ma petite fille au Canada
                       </option>
                     </select>
@@ -2660,8 +2679,7 @@
                   <div class="marg-bot" id="madic-profile-ircc-context" hidden>
                     <p>
                       <strong data-i18n="form.profileIrcc"
-                        >Projet indiqué dans votre profil</strong
-                      >
+                        >Projet indiqué dans votre profil</strong>
                     </p>
                     <p id="madic-profile-ircc-category"></p>
                     <p id="madic-profile-ircc-type"></p>
@@ -2671,14 +2689,14 @@
                       data-i18n="form.destinationProvinceQuestion"
                       for="province_destination"
                       >Quelle province désirez-vous s’installer ?
-                      <span class="req">*</span></label
-                    >
+                      <span class="req">*
+</span>
+</label>
                     <select
                       class="champs-large"
                       id="province_destination"
                       name="province_destination"
-                      required=""
-                    >
+                      required="">
                       <option data-i18n="form.selectProvince" value="">
                         Choix de province au Canada!
                       </option>
@@ -2686,34 +2704,29 @@
                       <option value="ontario">Ontario</option>
                       <option
                         data-i18n="form.britishColumbia"
-                        value="colombie_britanique"
-                      >
+                        value="colombie_britanique">
                         Colombie-Britanique
                       </option>
                       <option value="saskatchewan">Saskatchewan</option>
                       <option value="manitoba">Manitoba</option>
                       <option
                         data-i18n="form.newBrunswick"
-                        value="nouveau_brunswick"
-                      >
+                        value="nouveau_brunswick">
                         Nouveau-Brunswick
                       </option>
                       <option
                         data-i18n="form.novaScotia"
-                        value="nouvelle_ecosse"
-                      >
+                        value="nouvelle_ecosse">
                         Nouvelle-Écosse
                       </option>
                       <option
                         data-i18n="form.pei"
-                        value="ile_du_prince_edouard"
-                      >
+                        value="ile_du_prince_edouard">
                         Île-du-Prince-Édouard
                       </option>
                       <option
                         data-i18n="form.newfoundland"
-                        value="terre_neuve_et_labrador"
-                      >
+                        value="terre_neuve_et_labrador">
                         Terre-Neuve-et-Labrador
                       </option>
                     </select>
@@ -2721,14 +2734,14 @@
                   <div class="marg-bot">
                     <label data-i18n="form.jobOffer" for="offre_emploi"
                       >Avez-vous une offre d’emploi au Canada ?
-                      <span class="req">*</span></label
-                    >
+                      <span class="req">*
+</span>
+</label>
                     <select
                       class="champs-large"
                       id="offre_emploi"
                       name="offre_emploi"
-                      required=""
-                    >
+                      required="">
                       <option data-i18n="form.selectJobOffer" value="">
                         Choix de famille au Canada!
                       </option>
@@ -2745,28 +2758,26 @@
                       data-i18n="form.temporaryResidenceQuestion"
                       for="residence_temporaire"
                       >Je désire m’installez au Canada à titre de résident
-                      temporaire ? <span class="req">*</span>
+                      temporaire ? <span class="req">*
+</span>
+
                       <button
                         aria-controls="madic-residence-help-dialog"
                         aria-haspopup="dialog"
                         aria-label="Information sur le choix de résidence"
                         class="madic-residence-help"
                         title="Information / Help"
-                        type="button"
-                      >
+                        type="button">
                         ?
-                      </button></label
-                    >
+                      </button></label>
                     <select
                       class="champs-large"
                       id="residence_temporaire"
                       name="residence_temporaire"
-                      required=""
-                    >
+                      required="">
                       <option
                         data-i18n="form.selectTemporaryResidence"
-                        value=""
-                      >
+                        value="">
                         Choix de votre résidence temporaire!
                       </option>
                       <option data-i18n="form.none" value="aucun">Aucun</option>
@@ -2775,14 +2786,12 @@
                       </option>
                       <option
                         data-i18n="form.businessVisitor"
-                        value="visiteur_commercial"
-                      >
+                        value="visiteur_commercial">
                         Visiteur commercial
                       </option>
                       <option
                         data-i18n="form.superVisa"
-                        value="visiteur_super_visa"
-                      >
+                        value="visiteur_super_visa">
                         Visiteur - Super Visa
                       </option>
                       <option data-i18n="form.student" value="etudiant">
@@ -2790,8 +2799,7 @@
                       </option>
                       <option
                         data-i18n="form.temporaryWorker"
-                        value="travailleur_temporaire"
-                      >
+                        value="travailleur_temporaire">
                         Travailleur temporaire
                       </option>
                     </select>
@@ -2801,65 +2809,57 @@
                       data-i18n="form.permanentResidenceQuestion"
                       for="residence_permanente"
                       >Je désire m’installer au Canada à titre résident
-                      permanent ? <span class="req">*</span>
+                      permanent ? <span class="req">*
+</span>
+
                       <button
                         aria-controls="madic-residence-help-dialog"
                         aria-haspopup="dialog"
                         aria-label="Information sur le choix de résidence"
                         class="madic-residence-help"
                         title="Information / Help"
-                        type="button"
-                      >
+                        type="button">
                         ?
-                      </button></label
-                    >
+                      </button></label>
                     <select
                       class="champs-large"
                       id="residence_permanente"
                       name="residence_permanente"
-                      required=""
-                    >
+                      required="">
                       <option
                         data-i18n="form.selectPermanentResidence"
-                        value=""
-                      >
+                        value="">
                         Choix de votre résidence permanente!
                       </option>
                       <option data-i18n="form.none" value="aucun">Aucun</option>
                       <option
                         data-i18n="form.economicImmigration"
-                        value="immigration_economique"
-                      >
+                        value="immigration_economique">
                         Immigration Économique
                       </option>
                       <option
                         data-i18n="form.spouseSponsorship"
-                        value="parrainage_epoux"
-                      >
+                        value="parrainage_epoux">
                         Parrainage - Époux(se)
                       </option>
                       <option
                         data-i18n="form.spouseChildrenSponsorship"
-                        value="parrainage_epoux_enfant"
-                      >
+                        value="parrainage_epoux_enfant">
                         Parrainage - Époux(se) avec enfant(s) à charge
                       </option>
                       <option
                         data-i18n="form.parentsSponsorship"
-                        value="parrainage_parent"
-                      >
+                        value="parrainage_parent">
                         Parrainage - Parent(s) - Grand Parent(s)
                       </option>
                       <option
                         data-i18n="form.orphanSiblingSponsorship"
-                        value="parrainage_fr_sr"
-                      >
+                        value="parrainage_fr_sr">
                         Parrainage - Frère/Soeur orphelin moins de 18 ans
                       </option>
                       <option
                         data-i18n="form.adoptedChildSponsorship"
-                        value="parrainage_enfant_adopter"
-                      >
+                        value="parrainage_enfant_adopter">
                         Parrainage - Enfant adopter
                       </option>
                       <option data-i18n="form.groupFive" value="parrainage_gr5">
@@ -2885,13 +2885,11 @@
                     </p>
                     <div class="marg-bot">
                       <label data-i18n="qc.residence" for="qc_residence"
-                        >Où vivez-vous actuellement ?</label
-                      >
+                        >Où vivez-vous actuellement ?</label>
                       <select
                         class="champs-large"
                         id="qc_residence"
-                        name="qc_residence"
-                      >
+                        name="qc_residence">
                         <option data-i18n="qc.blank" value="">
                           Sélectionner…
                         </option>
@@ -2909,13 +2907,11 @@
                     <div class="marg-bot" data-qc-show="residence:qc" hidden>
                       <label data-i18n="qc.status" for="qc_status"
                         >Si vous vivez au Québec, quel est votre statut actuel
-                        ?</label
-                      >
+                        ?</label>
                       <select
                         class="champs-large"
                         id="qc_status"
-                        name="qc_status"
-                      >
+                        name="qc_status">
                         <option data-i18n="qc.blank" value="">
                           Sélectionner…
                         </option>
@@ -2930,13 +2926,11 @@
                     <div class="marg-bot">
                       <label data-i18n="qc.intent" for="qc_intent"
                         >Avez-vous l’intention de vivre et de travailler au
-                        Québec de façon permanente ?</label
-                      >
+                        Québec de façon permanente ?</label>
                       <select
                         class="champs-large"
                         id="qc_intent"
-                        name="qc_intent"
-                      >
+                        name="qc_intent">
                         <option data-i18n="qc.blank" value="">
                           Sélectionner…
                         </option>
@@ -2949,8 +2943,7 @@
                     <div class="marg-bot">
                       <label data-i18n="qc.noc" for="qc_noc"
                         >Code CNP de la profession principale, si connu (5
-                        chiffres)</label
-                      >
+                        chiffres)</label>
                       <input
                         class="champs-large"
                         id="qc_noc"
@@ -2964,13 +2957,11 @@
                     <div class="marg-bot">
                       <label data-i18n="qc.regulated" for="qc_regulated"
                         >La profession que vous comptez exercer est-elle
-                        réglementée au Québec ?</label
-                      >
+                        réglementée au Québec ?</label>
                       <select
                         class="champs-large"
                         id="qc_regulated"
-                        name="qc_regulated"
-                      >
+                        name="qc_regulated">
                         <option data-i18n="qc.blank" value="">
                           Sélectionner…
                         </option>
@@ -2982,41 +2973,35 @@
                         </option>
                         <option
                           data-i18n="qc.regulated.unknown"
-                          value="unknown"
-                        >
+                          value="unknown">
                           Je ne sais pas
                         </option>
                       </select>
                     </div>
                     <div class="marg-bot" data-qc-show="regulated:yes" hidden>
                       <label data-i18n="qc.recognition" for="qc_recognition"
-                        >Reconnaissance de la profession au Québec</label
-                      >
+                        >Reconnaissance de la profession au Québec</label>
                       <select
                         class="champs-large"
                         id="qc_recognition"
-                        name="qc_recognition"
-                      >
+                        name="qc_recognition">
                         <option data-i18n="qc.blank" value="">
                           Sélectionner…
                         </option>
                         <option
                           data-i18n="qc.recognition.authorized"
-                          value="authorized"
-                        >
+                          value="authorized">
                           Autorisation d’exercice
                         </option>
                         <option
                           data-i18n="qc.recognition.equivalence"
-                          value="equivalence"
-                        >
+                          value="equivalence">
                           Reconnaissance partielle ou complète délivrée dans les
                           cinq dernières années
                         </option>
                         <option
                           data-i18n="qc.recognition.pending"
-                          value="pending"
-                        >
+                          value="pending">
                           Démarche en cours ou aucun document
                         </option>
                       </select>
@@ -3024,13 +3009,11 @@
                     <div class="marg-bot">
                       <label data-i18n="qc.exception" for="qc_exception"
                         >Avez-vous une preuve d’accomplissement exceptionnel
-                        reconnue ou un avis d’un partenaire du MIFI ?</label
-                      >
+                        reconnue ou un avis d’un partenaire du MIFI ?</label>
                       <select
                         class="champs-large"
                         id="qc_exception"
-                        name="qc_exception"
-                      >
+                        name="qc_exception">
                         <option data-i18n="qc.blank" value="">
                           Sélectionner…
                         </option>
@@ -3042,8 +3025,7 @@
                         </option>
                         <option
                           data-i18n="qc.exception.unknown"
-                          value="unknown"
-                        >
+                          value="unknown">
                           Je ne sais pas
                         </option>
                       </select>
@@ -3051,8 +3033,7 @@
                     <div class="marg-bot">
                       <label data-i18n="qc.work" for="qc_work"
                         >Mois de travail rémunéré dans la profession principale
-                        au cours des 5 dernières années</label
-                      >
+                        au cours des 5 dernières années</label>
                       <input
                         class="champs-large"
                         id="qc_work"
@@ -3065,8 +3046,7 @@
                     </div>
                     <div class="marg-bot">
                       <label data-i18n="qc.qcwork" for="qc_qcwork"
-                        >Dont mois dans cette profession au Québec</label
-                      >
+                        >Dont mois dans cette profession au Québec</label>
                       <input
                         class="champs-large"
                         id="qc_qcwork"
@@ -3080,8 +3060,7 @@
                     <div class="marg-bot">
                       <label data-i18n="qc.workTotal" for="qc_workTotal"
                         >Mois de travail au total au cours des 5 dernières
-                        années, toutes professions confondues</label
-                      >
+                        années, toutes professions confondues</label>
                       <input
                         class="champs-large"
                         id="qc_workTotal"
@@ -3095,8 +3074,7 @@
                     <div class="marg-bot">
                       <label data-i18n="qc.workQcTotal" for="qc_workQcTotal"
                         >Dont mois de travail au Québec, toutes professions
-                        confondues</label
-                      >
+                        confondues</label>
                       <input
                         class="champs-large"
                         id="qc_workQcTotal"
@@ -3112,13 +3090,11 @@
                         data-i18n="qc.validatedOffer"
                         for="qc_validatedOffer"
                         >Offre d’emploi dans cette profession validée par le
-                        MIFI</label
-                      >
+                        MIFI</label>
                       <select
                         class="champs-large"
                         id="qc_validatedOffer"
-                        name="qc_validatedOffer"
-                      >
+                        name="qc_validatedOffer">
                         <option data-i18n="qc.blank" value="">
                           Sélectionner…
                         </option>
@@ -3130,15 +3106,13 @@
                         </option>
                         <option
                           data-i18n="qc.validatedOffer.outside"
-                          value="outside"
-                        >
+                          value="outside">
                           Au Québec, hors de la Communauté métropolitaine de
                           Montréal
                         </option>
                         <option
                           data-i18n="qc.validatedOffer.unknown"
-                          value="unknown"
-                        >
+                          value="unknown">
                           Validation ou lieu à confirmer
                         </option>
                       </select>
@@ -3146,26 +3120,22 @@
                     <div class="marg-bot">
                       <label data-i18n="qc.degree" for="qc_degree"
                         >Type du plus haut diplôme, si précisé pour le
-                        Québec</label
-                      >
+                        Québec</label>
                       <select
                         class="champs-large"
                         id="qc_degree"
-                        name="qc_degree"
-                      >
+                        name="qc_degree">
                         <option data-i18n="qc.blank" value="">
                           Sélectionner…
                         </option>
                         <option
                           data-i18n="qc.degree.secondary"
-                          value="secondary"
-                        >
+                          value="secondary">
                           Secondaire général
                         </option>
                         <option
                           data-i18n="qc.degree.vocational"
-                          value="vocational"
-                        >
+                          value="vocational">
                           Formation professionnelle de niveau secondaire
                           comparable à un DEP ou à une ASP
                         </option>
@@ -3180,8 +3150,7 @@
                         </option>
                         <option
                           data-i18n="qc.degree.doctorate"
-                          value="doctorate"
-                        >
+                          value="doctorate">
                           Doctorat
                         </option>
                         <option data-i18n="qc.degree.none" value="none">
@@ -3194,13 +3163,11 @@
                     </div>
                     <div class="marg-bot">
                       <label data-i18n="qc.degreeplace" for="qc_degreeplace"
-                        >Où avez-vous obtenu ce diplôme ?</label
-                      >
+                        >Où avez-vous obtenu ce diplôme ?</label>
                       <select
                         class="champs-large"
                         id="qc_degreeplace"
-                        name="qc_degreeplace"
-                      >
+                        name="qc_degreeplace">
                         <option data-i18n="qc.blank" value="">
                           Sélectionner…
                         </option>
@@ -3209,8 +3176,7 @@
                         </option>
                         <option
                           data-i18n="qc.degreeplace.elsewhere"
-                          value="elsewhere"
-                        >
+                          value="elsewhere">
                           Hors Québec
                         </option>
                       </select>
@@ -3218,13 +3184,11 @@
                     <div class="marg-bot">
                       <label data-i18n="qc.fulltime" for="qc_fulltime"
                         >S’agissait-il d’un programme d’au moins un an à temps
-                        plein ?</label
-                      >
+                        plein ?</label>
                       <select
                         class="champs-large"
                         id="qc_fulltime"
-                        name="qc_fulltime"
-                      >
+                        name="qc_fulltime">
                         <option data-i18n="qc.blank" value="">
                           Sélectionner…
                         </option>
@@ -3239,8 +3203,7 @@
                     <div class="marg-bot">
                       <label data-i18n="qc.hours" for="qc_hours"
                         >Durée du programme professionnel ou collégial en
-                        heures, si connue</label
-                      >
+                        heures, si connue</label>
                       <input
                         class="champs-large"
                         id="qc_hours"
@@ -3253,8 +3216,7 @@
                     </div>
                     <div class="marg-bot">
                       <label data-i18n="qc.credits" for="qc_credits"
-                        >Nombre de crédits universitaires, si connu</label
-                      >
+                        >Nombre de crédits universitaires, si connu</label>
                       <input
                         class="champs-large"
                         id="qc_credits"
@@ -3267,8 +3229,7 @@
                     </div>
                     <div class="marg-bot">
                       <label data-i18n="qc.graduation" for="qc_graduation"
-                        >Date d’obtention du diplôme</label
-                      >
+                        >Date d’obtention du diplôme</label>
                       <input
                         class="champs-large"
                         id="qc_graduation"
@@ -3278,8 +3239,7 @@
                     </div>
                     <div class="marg-bot">
                       <label data-i18n="qc.oralListen" for="qc_oralListen"
-                        >Français – compréhension orale</label
-                      >
+                        >Français – compréhension orale</label>
                       <input
                         class="champs-large"
                         id="qc_oralListen"
@@ -3292,8 +3252,7 @@
                     </div>
                     <div class="marg-bot">
                       <label data-i18n="qc.oralSpeak" for="qc_oralSpeak"
-                        >Français – expression orale</label
-                      >
+                        >Français – expression orale</label>
                       <input
                         class="champs-large"
                         id="qc_oralSpeak"
@@ -3306,8 +3265,7 @@
                     </div>
                     <div class="marg-bot">
                       <label data-i18n="qc.writtenRead" for="qc_writtenRead"
-                        >Français – compréhension écrite</label
-                      >
+                        >Français – compréhension écrite</label>
                       <input
                         class="champs-large"
                         id="qc_writtenRead"
@@ -3320,8 +3278,7 @@
                     </div>
                     <div class="marg-bot">
                       <label data-i18n="qc.writtenWrite" for="qc_writtenWrite"
-                        >Français – expression écrite</label
-                      >
+                        >Français – expression écrite</label>
                       <input
                         class="champs-large"
                         id="qc_writtenWrite"
@@ -3335,13 +3292,11 @@
                     <div class="marg-bot">
                       <label data-i18n="qc.spouse" for="qc_spouse"
                         >Votre conjoint ou conjointe vous accompagne-t-il ou
-                        vous accompagne-t-elle ?</label
-                      >
+                        vous accompagne-t-elle ?</label>
                       <select
                         class="champs-large"
                         id="qc_spouse"
-                        name="qc_spouse"
-                      >
+                        name="qc_spouse">
                         <option data-i18n="qc.blank" value="">
                           Sélectionner…
                         </option>
@@ -3354,8 +3309,7 @@
                     <div class="marg-bot" data-qc-show="spouse:yes" hidden>
                       <label data-i18n="qc.spouseListen" for="qc_spouseListen"
                         >Français de la personne conjointe – compréhension
-                        orale</label
-                      >
+                        orale</label>
                       <input
                         class="champs-large"
                         id="qc_spouseListen"
@@ -3369,8 +3323,7 @@
                     <div class="marg-bot" data-qc-show="spouse:yes" hidden>
                       <label data-i18n="qc.spouseSpeak" for="qc_spouseSpeak"
                         >Français de la personne conjointe – expression
-                        orale</label
-                      >
+                        orale</label>
                       <input
                         class="champs-large"
                         id="qc_spouseSpeak"
@@ -3384,8 +3337,7 @@
                     <div class="marg-bot" data-qc-show="spouse:yes" hidden>
                       <label data-i18n="qc.spouseRead" for="qc_spouseRead"
                         >Français de la personne conjointe – compréhension
-                        écrite</label
-                      >
+                        écrite</label>
                       <input
                         class="champs-large"
                         id="qc_spouseRead"
@@ -3399,8 +3351,7 @@
                     <div class="marg-bot" data-qc-show="spouse:yes" hidden>
                       <label data-i18n="qc.spouseWrite" for="qc_spouseWrite"
                         >Français de la personne conjointe – expression
-                        écrite</label
-                      >
+                        écrite</label>
                       <input
                         class="champs-large"
                         id="qc_spouseWrite"
@@ -3413,8 +3364,7 @@
                     </div>
                     <div class="marg-bot" data-qc-show="spouse:yes" hidden>
                       <label data-i18n="qc.spouseAge" for="qc_spouseAge"
-                        >Âge de la personne conjointe</label
-                      >
+                        >Âge de la personne conjointe</label>
                       <input
                         class="champs-large"
                         id="qc_spouseAge"
@@ -3428,8 +3378,7 @@
                     <div class="marg-bot" data-qc-show="spouse:yes" hidden>
                       <label data-i18n="qc.spouseQcWork" for="qc_spouseQcWork"
                         >Mois de travail de la personne conjointe au Québec au
-                        cours des 5 dernières années</label
-                      >
+                        cours des 5 dernières années</label>
                       <input
                         class="champs-large"
                         id="qc_spouseQcWork"
@@ -3444,13 +3393,11 @@
                       <label data-i18n="qc.finance" for="qc_finance"
                         >Pouvez-vous subvenir aux besoins de votre famille
                         pendant les trois premiers mois, selon le barème
-                        applicable ?</label
-                      >
+                        applicable ?</label>
                       <select
                         class="champs-large"
                         id="qc_finance"
-                        name="qc_finance"
-                      >
+                        name="qc_finance">
                         <option data-i18n="qc.blank" value="">
                           Sélectionner…
                         </option>
@@ -3468,13 +3415,11 @@
                     <div class="marg-bot">
                       <label data-i18n="qc.scholarship" for="qc_scholarship"
                         >Avez-vous une obligation de retour liée à une bourse
-                        qui reste à remplir ?</label
-                      >
+                        qui reste à remplir ?</label>
                       <select
                         class="champs-large"
                         id="qc_scholarship"
-                        name="qc_scholarship"
-                      >
+                        name="qc_scholarship">
                         <option data-i18n="qc.blank" value="">
                           Sélectionner…
                         </option>
@@ -3489,13 +3434,11 @@
                     <div class="marg-bot">
                       <label data-i18n="qc.excluded" for="qc_excluded"
                         >L’emploi envisagé est-il dans un secteur exclu ou dans
-                        une entreprise que vous contrôlez ?</label
-                      >
+                        une entreprise que vous contrôlez ?</label>
                       <select
                         class="champs-large"
                         id="qc_excluded"
-                        name="qc_excluded"
-                      >
+                        name="qc_excluded">
                         <option data-i18n="qc.blank" value="">
                           Sélectionner…
                         </option>
@@ -3513,13 +3456,11 @@
                     <div class="marg-bot" data-qc-show="residence:qc" hidden>
                       <label data-i18n="qc.outsideCmm" for="qc_outsideCmm"
                         >Résidez-vous actuellement au Québec, mais en dehors de
-                        la Communauté métropolitaine de Montréal ?</label
-                      >
+                        la Communauté métropolitaine de Montréal ?</label>
                       <select
                         class="champs-large"
                         id="qc_outsideCmm"
-                        name="qc_outsideCmm"
-                      >
+                        name="qc_outsideCmm">
                         <option data-i18n="qc.blank" value="">
                           Sélectionner…
                         </option>
@@ -3536,8 +3477,7 @@
                         data-i18n="qc.outsideResidenceMonths"
                         for="qc_outsideResidenceMonths"
                         >Depuis combien de mois résidez-vous hors de cette
-                        région métropolitaine ?</label
-                      >
+                        région métropolitaine ?</label>
                       <input
                         class="champs-large"
                         id="qc_outsideResidenceMonths"
@@ -3554,13 +3494,11 @@
                         for="qc_regionalFamily"
                         >Avez-vous un proche parent dans la région du Québec où
                         vous souhaitez vous établir, hors de la région
-                        métropolitaine de Montréal ?</label
-                      >
+                        métropolitaine de Montréal ?</label>
                       <select
                         class="champs-large"
                         id="qc_regionalFamily"
-                        name="qc_regionalFamily"
-                      >
+                        name="qc_regionalFamily">
                         <option data-i18n="qc.blank" value="">
                           Sélectionner…
                         </option>
@@ -3572,8 +3510,7 @@
                         </option>
                         <option
                           data-i18n="qc.regionalFamily.unknown"
-                          value="unknown"
-                        >
+                          value="unknown">
                           Je ne sais pas
                         </option>
                       </select>
@@ -3581,8 +3518,7 @@
                     <div class="marg-bot">
                       <label data-i18n="qc.arrimaScore" for="qc_arrimaScore"
                         >Pointage Arrima complet, uniquement s’il est déjà
-                        connu</label
-                      >
+                        connu</label>
                       <input
                         class="champs-large"
                         id="qc_arrimaScore"
@@ -3603,14 +3539,14 @@
                     <label data-i18n="form.previousApplication" for="refus_visa"
                       >Avez-vous déjà déposé un visa, permis d’étude, de permis
                       de travail ou une autorisation de voyage (AVE) au Canada ?
-                      <span class="req">*</span></label
-                    >
+                      <span class="req">*
+</span>
+</label>
                     <select
                       class="champs-large"
                       id="refus_visa"
                       name="refus_visa"
-                      required=""
-                    >
+                      required="">
                       <option data-i18n="form.no" value="non">Non</option>
                       <option data-i18n="form.yes" value="oui">Oui</option>
                     </select>
@@ -3618,14 +3554,14 @@
                   <div class="marg-bot">
                     <label data-i18n="form.travelEuropeUsa" for="voyage_eu_usa"
                       >Avez déjà voyagé en Europe ou aux États-Unis ?
-                      <span class="req">*</span></label
-                    >
+                      <span class="req">*
+</span>
+</label>
                     <select
                       class="champs-large"
                       id="voyage_eu_usa"
                       name="voyage_eu_usa"
-                      required=""
-                    >
+                      required="">
                       <option data-i18n="form.no" value="non">Non</option>
                       <option data-i18n="form.yes" value="oui">Oui</option>
                     </select>
@@ -3633,14 +3569,14 @@
                   <div class="marg-bot">
                     <label data-i18n="form.previousRefusal" for="depot_visa"
                       >Vous a-t-on déjà refusé un visa ou d’une autorisation de
-                      voyage (AVE) au Canada ? <span class="req">*</span></label
-                    >
+                      voyage (AVE) au Canada ? <span class="req">*
+</span>
+</label>
                     <select
                       class="champs-large"
                       id="depot_visa"
                       name="depot_visa"
-                      required=""
-                    >
+                      required="">
                       <option data-i18n="form.no" value="non">Non</option>
                       <option data-i18n="form.yes" value="oui">Oui</option>
                     </select>
@@ -3654,14 +3590,14 @@
                   <div class="marg-bot">
                     <label data-i18n="form.criminalOffence" for="infraction"
                       >Avez-vous déjà été reconnu (e) coupable d’une infraction
-                      pénale/criminelle ? <span class="req">*</span></label
-                    >
+                      pénale/criminelle ? <span class="req">*
+</span>
+</label>
                     <select
                       class="champs-large"
                       id="infraction"
                       name="infraction"
-                      required=""
-                    >
+                      required="">
                       <option data-i18n="form.no" value="non">Non</option>
                       <option data-i18n="form.yes" value="oui">Oui</option>
                     </select>
@@ -3669,14 +3605,14 @@
                   <div class="marg-bot">
                     <label data-i18n="form.healthQuestion" for="sante"
                       >Avez déjà voyagé en Europe ou aux États-Unis ?
-                      <span class="req">*</span></label
-                    >
+                      <span class="req">*
+</span>
+</label>
                     <select
                       class="champs-large"
                       id="sante"
                       name="sante"
-                      required=""
-                    >
+                      required="">
                       <option data-i18n="form.no" value="non">Non</option>
                       <option data-i18n="form.yes" value="oui">Oui</option>
                     </select>
@@ -3684,8 +3620,7 @@
                   <div class="marg-bot">
                     <label data-i18n="form.explanation" for="commentaire"
                       >Explication si vous répondez « oui » aux deux questions
-                      ci-dessus</label
-                    >
+                      ci-dessus</label>
                     <textarea
                       class="champs-large"
                       data-i18n-placeholder="form.explanationPlaceholder"
@@ -3704,8 +3639,7 @@
                       <label
                         class="info_importante"
                         data-i18n="form.consent"
-                        for="info_importante"
-                      >
+                        for="info_importante">
                         Je comprends que MAD Immigration Canadienne (MADIC) inc.
                         recueille mes renseignements personnels en vue d’évaluer
                         mon projet d’immigration, et qu’il utilisera ces
@@ -3714,8 +3648,7 @@
                         prévues par la Loi sur l’immigration et la protection
                         des réfugiés. Je déclare avoir donné des réponses
                         exactes et complètes à toutes les questions du présent
-                        formulaire.</label
-                      >
+                        formulaire.</label>
                       <input
                         id="info_importante"
                         name="info_importante"
@@ -3727,8 +3660,7 @@
                   </fieldset>
                   <div class="marg-bot madic-signature-place">
                     <label for="lieu_signature" data-i18n="form.signaturePlace"
-                      >Lieu de signature du contrat (ville) :</label
-                    >
+                      >Lieu de signature du contrat (ville) :</label>
                     <input
                       autocomplete="address-level2"
                       class="champs-large"
@@ -3740,8 +3672,7 @@
                     />
                     <p
                       class="madic-signature-help"
-                      data-i18n="form.signatureHelp"
-                    >
+                      data-i18n="form.signatureHelp">
                       Cette information servira à préremplir le lieu de
                       signature de vos contrats. Vous pourrez la confirmer avant
                       la signature.
@@ -3778,8 +3709,7 @@
               <div
                 class="madic-footer-subtitle"
                 data-en="MAD Immigration Canadienne"
-                data-fr="MAD Immigration Canadienne"
-              >
+                data-fr="MAD Immigration Canadienne">
                 MAD Immigration Canadienne
               </div>
             </div>
@@ -3787,8 +3717,7 @@
           <p
             class="madic-footer-desc"
             data-en="A digital platform for Canadian immigration professionals and their clients."
-            data-fr="Une plateforme numérique pour les professionnels de l'immigration canadienne et leurs clients."
-          >
+            data-fr="Une plateforme numérique pour les professionnels de l'immigration canadienne et leurs clients.">
             Une plateforme numérique pour les professionnels de l'immigration
             canadienne et leurs clients.
           </p>
@@ -3799,28 +3728,24 @@
             data-en="Privacy policy"
             data-fr="Confidentialité"
             href="politique-confidentialite.html"
-            >Confidentialité</a
-          >
+            >Confidentialité</a>
           <a
             href="conditions-utilisation.html"
             data-en="Terms of use"
             data-fr="Conditions d'utilisation"
-            >Conditions d'utilisation</a
-          >
+            >Conditions d'utilisation</a>
           <span
             class="madic-footer-unavailable"
             data-en="Contact"
             data-fr="Contact"
             title="Page à venir / Page coming soon"
-            >Contact</span
-          >
+            >Contact</span>
         </nav>
       </div>
       <div class="madic-footer-bottom">
         © 2026 MAD Immigration Canadienne (MADIC) Inc.
         <span data-en="All rights reserved." data-fr="Tous droits réservés."
-          >Tous droits réservés.</span
-        >
+          >Tous droits réservés.</span>
       </div>
     </footer>
     <div
@@ -3830,8 +3755,7 @@
       class="madic-submit-modal"
       hidden=""
       id="madic-submit-modal"
-      role="dialog"
-    >
+      role="dialog">
       <div class="madic-submit-dialog" tabindex="-1">
         <div aria-hidden="true" class="madic-submit-icon">✓</div>
         <h2 id="madic-submit-title">Merci, votre formulaire a été envoyé</h2>
@@ -3850,14 +3774,12 @@
             class="madic-submit-return"
             href="prochaine-etape-client.html"
             id="madic-next-step"
-            >Continuer vers la prochaine étape</a
-          >
+            >Continuer vers la prochaine étape</a>
           <a
             class="madic-submit-return"
             href="dashboard-client-cric.html"
             id="madic-close-to-overview"
-            >Fermer et retourner à la vue d’ensemble</a
-          >
+            >Fermer et retourner à la vue d’ensemble</a>
         </div>
       </div>
     </div>
@@ -3868,8 +3790,7 @@
       class="madic-residence-help-dialog"
       hidden=""
       id="madic-residence-help-dialog"
-      role="dialog"
-    >
+      role="dialog">
       <div class="madic-residence-help-panel" tabindex="-1">
         <h2 id="madic-residence-help-title"></h2>
         <p id="madic-residence-help-text"></p>
