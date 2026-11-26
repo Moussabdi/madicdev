@@ -940,7 +940,6 @@
   }
 })();
 
-
 /* Phone navigation only; existing authentication and business logic unchanged. */
 (() => {
   const init = () => {
@@ -990,4 +989,145 @@
   else init();
 })();
 
-(() => { const form=document.getElementById('madicHeaderSearchForm'); const field=document.getElementById('madicHeaderSearch'); const sync=()=>{const en=document.documentElement.lang.startsWith('en');const p=en?'Search your space...':'Rechercher dans votre espace...';if(field.placeholder!==p)field.placeholder=p;}; new MutationObserver(sync).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});sync();form.addEventListener('submit',e=>{e.preventDefault();const q=field.value.trim().toLowerCase();if(!q)return;const a=[...document.querySelectorAll('.madic-cric-new-nav a')].find(a=>a.textContent.toLowerCase().includes(q));if(a)location.href=a.href;else {field.setCustomValidity(document.documentElement.lang.startsWith('en')?'No matching section':'Aucune section correspondante');field.reportValidity();setTimeout(()=>field.setCustomValidity(''),1500);}});})();
+(() => {
+  const form = document.getElementById("madicHeaderSearchForm");
+  const field = document.getElementById("madicHeaderSearch");
+  const sync = () => {
+    const en = document.documentElement.lang.startsWith("en");
+    const p = en ? "Search your space..." : "Rechercher dans votre espace...";
+    if (field.placeholder !== p) field.placeholder = p;
+  };
+  new MutationObserver(sync).observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ["lang"],
+  });
+  sync();
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const q = field.value.trim().toLowerCase();
+    if (!q) return;
+    const a = [...document.querySelectorAll(".madic-cric-new-nav a")].find(
+      (a) => a.textContent.toLowerCase().includes(q),
+    );
+    if (a) location.href = a.href;
+    else {
+      field.setCustomValidity(
+        document.documentElement.lang.startsWith("en")
+          ? "No matching section"
+          : "Aucune section correspondante",
+      );
+      field.reportValidity();
+      setTimeout(() => field.setCustomValidity(""), 1500);
+    }
+  });
+})();
+
+/* MADIC display preferences - UI only */
+(() => {
+  const init = () => {
+    const root = document.documentElement,
+      body = document.body,
+      tools = document.querySelector(".madic-display-tools");
+    if (!tools) return;
+    const collapse = tools.querySelector(".madic-collapse"),
+      trigger = tools.querySelector(".madic-theme-trigger"),
+      menu = tools.querySelector("#madicThemeOptions"),
+      choices = [...menu.querySelectorAll("button")],
+      media = matchMedia("(prefers-color-scheme: dark)");
+    const read = (k, d) => {
+      try {
+        return localStorage.getItem(k) || d;
+      } catch {
+        return d;
+      }
+    };
+    const save = (k, v) => {
+      try {
+        localStorage.setItem(k, v);
+      } catch {}
+    };
+    let compact = read("madic-admin-sidebar", "expanded") === "collapsed",
+      theme = read("madic-admin-theme", "light");
+    if (!["system", "light", "dark"].includes(theme)) theme = "light";
+    const render = () => {
+      const en = root.lang.startsWith("en");
+      body.classList.toggle("madic-sidebar-compact", compact);
+      root.dataset.madicAppearance =
+        theme === "system" ? (media.matches ? "dark" : "light") : theme;
+      const label = compact
+        ? en
+          ? "Expand"
+          : "Développer"
+        : en
+          ? "Collapse"
+          : "Réduire";
+      collapse.querySelector("span").textContent = label;
+      collapse.title = label;
+      collapse.setAttribute("aria-label", label);
+      collapse.setAttribute("aria-expanded", String(!compact));
+      trigger.title = en ? "Appearance" : "Apparence";
+      trigger.setAttribute("aria-label", trigger.title);
+      choices.forEach((b, i) => {
+        b.querySelector("span").textContent = (
+          en ? ["System", "Light", "Dark"] : ["Système", "Clair", "Sombre"]
+        )[i];
+        b.setAttribute("aria-pressed", String(b.dataset.themeChoice === theme));
+      });
+      trigger.querySelector("svg").replaceWith(
+        choices
+          .find((b) => b.dataset.themeChoice === theme)
+          .querySelector("svg")
+          .cloneNode(true),
+      );
+      document.querySelectorAll("#madicPhoneDrawer nav a").forEach((a) => {
+        a.title = a.textContent.trim();
+        a.setAttribute("aria-label", a.title);
+      });
+    };
+    const open = (v) => {
+      menu.hidden = !v;
+      trigger.setAttribute("aria-expanded", String(v));
+    };
+    collapse.addEventListener("click", () => {
+      compact = !compact;
+      save("madic-admin-sidebar", compact ? "collapsed" : "expanded");
+      render();
+    });
+    trigger.addEventListener("click", () => open(menu.hidden));
+    choices.forEach((b) =>
+      b.addEventListener("click", () => {
+        theme = b.dataset.themeChoice;
+        save("madic-admin-theme", theme);
+        render();
+        open(false);
+        trigger.focus();
+      }),
+    );
+    document.addEventListener("click", (e) => {
+      if (!tools.contains(e.target)) open(false);
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && !menu.hidden) {
+        open(false);
+        trigger.focus();
+      }
+    });
+    media.addEventListener("change", render);
+    new MutationObserver(render).observe(root, {
+      attributes: true,
+      attributeFilter: ["lang"],
+    });
+    window.addEventListener("storage", (e) => {
+      if (["madic-admin-sidebar", "madic-admin-theme"].includes(e.key)) {
+        compact = read("madic-admin-sidebar", "expanded") === "collapsed";
+        theme = read("madic-admin-theme", "light");
+        if (!["system", "light", "dark"].includes(theme)) theme = "light";
+        render();
+      }
+    });
+    render();
+  };
+  if (document.readyState === "loading")
+    document.addEventListener("DOMContentLoaded", init, { once: true });
+  else init();
+})();

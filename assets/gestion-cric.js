@@ -1,6 +1,5 @@
 const getGestionCricAdmin = (() => {
   let access;
-
   function loadScript(src, timeout) {
     return new Promise((resolve, reject) => {
       const script = document.createElement("script");
@@ -32,7 +31,10 @@ const getGestionCricAdmin = (() => {
   async function loadSupabase() {
     if (typeof window.supabase?.createClient === "function") return;
     const path = "/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js";
-    for (const cdn of ["https://cdn.jsdelivr.net", "https://fastly.jsdelivr.net"]) {
+    for (const cdn of [
+      "https://cdn.jsdelivr.net",
+      "https://fastly.jsdelivr.net",
+    ]) {
       try {
         await loadScript(cdn + path, 8000);
         if (typeof window.supabase?.createClient === "function") return;
@@ -52,13 +54,16 @@ const getGestionCricAdmin = (() => {
       await loadScript("assets/config.js", 8000);
     } catch (error) {
       console.error("Gestion CRIC – configuration", error);
-      throw new Error("Configuration Supabase manquante.", { cause: "configuration" });
+      throw new Error("Configuration Supabase manquante.", {
+        cause: "configuration",
+      });
     }
   }
 
   async function verify() {
     const message = document.getElementById("cricMessage");
-    if (message) message.textContent = "Vérification des droits du super administrateur…";
+    if (message)
+      message.textContent = "Vérification des droits du super administrateur…";
     const config = window.MADIC_CONFIG;
     if (
       !config?.url ||
@@ -73,12 +78,17 @@ const getGestionCricAdmin = (() => {
 
     const db = window.getMadicSupabase();
     const { data: auth, error: authError } = await db.auth.getUser();
-    if (authError?.name === "AuthSessionMissingError" || authError?.status === 401)
+    if (
+      authError?.name === "AuthSessionMissingError" ||
+      authError?.status === 401
+    )
       return null;
     if (authError) throw authError;
     if (!auth?.user) return null;
 
-    const { data: isOwner, error: ownerError } = await db.rpc("madic_is_super_admin");
+    const { data: isOwner, error: ownerError } = await db.rpc(
+      "madic_is_super_admin",
+    );
     if (ownerError) throw ownerError;
     return { db, isOwner };
   }
@@ -87,18 +97,28 @@ const getGestionCricAdmin = (() => {
     let timer;
     const deadline = new Promise((_, reject) => {
       timer = setTimeout(() => {
-        reject(new Error(
-          "La vérification des droits a expiré. Rechargez la page pour réessayer.",
-          { cause: "timeout" },
-        ));
+        reject(
+          new Error(
+            "La vérification des droits a expiré. Rechargez la page pour réessayer.",
+            { cause: "timeout" },
+          ),
+        );
       }, 15000);
     });
-    return Promise.race([verify(), deadline]).finally(() => clearTimeout(timer));
+    return Promise.race([verify(), deadline]).finally(() =>
+      clearTimeout(timer),
+    );
   }
 
   return () => {
     if (!access) {
-      access = loadSupabase().then(loadConfig).then(verifyBeforeDeadline).catch(error => { access = undefined; throw error; });
+      access = loadSupabase()
+        .then(loadConfig)
+        .then(verifyBeforeDeadline)
+        .catch((error) => {
+          access = undefined;
+          throw error;
+        });
     }
     return access;
   };
@@ -145,7 +165,8 @@ const getGestionCricAdmin = (() => {
       location.href = "connexion.html";
     });
     if (main) {
-      if (isOwner !== true) return fail("Accès réservé au super administrateur MADIC.");
+      if (isOwner !== true)
+        return fail("Accès réservé au super administrateur MADIC.");
       main.hidden = false;
       message.hidden = true;
       const labels = {
@@ -193,7 +214,9 @@ const getGestionCricAdmin = (() => {
       try {
         await load();
       } catch (error) {
-        fail("Impossible de charger les comptes CRIC. Rechargez la page pour réessayer.");
+        fail(
+          "Impossible de charger les comptes CRIC. Rechargez la page pour réessayer.",
+        );
         console.error("Gestion CRIC – comptes", error);
       }
       return;
@@ -546,9 +569,11 @@ const getGestionCricAdmin = (() => {
     const detail = error?.message || String(error);
     if (main) {
       console.error("Gestion CRIC – vérification des droits", error);
-      fail(["configuration", "startup", "timeout"].includes(error?.cause)
-        ? detail
-        : "Impossible de vérifier vos droits. Rechargez la page pour réessayer.");
+      fail(
+        ["configuration", "startup", "timeout"].includes(error?.cause)
+          ? detail
+          : "Impossible de vérifier vos droits. Rechargez la page pour réessayer.",
+      );
     } else {
       fail("Impossible de vérifier vos droits : " + detail);
     }
@@ -1077,7 +1102,10 @@ const getGestionCricAdmin = (() => {
     busy = true;
     observer.disconnect();
     try {
-      if (document.documentElement.lang !== (language === "en" ? "en" : "fr-CA")) document.documentElement.lang = language === "en" ? "en" : "fr-CA";
+      if (
+        document.documentElement.lang !== (language === "en" ? "en" : "fr-CA")
+      )
+        document.documentElement.lang = language === "en" ? "en" : "fr-CA";
       document.title =
         language === "en"
           ? "RCIC Management | MADIC"
@@ -1174,7 +1202,6 @@ const getGestionCricAdmin = (() => {
   });
 })();
 
-
 /* Phone navigation only; existing authentication and business logic unchanged. */
 (() => {
   const init = () => {
@@ -1224,4 +1251,145 @@ const getGestionCricAdmin = (() => {
   else init();
 })();
 
-(() => { const form=document.getElementById('madicHeaderSearchForm'); const field=document.getElementById('madicHeaderSearch'); const sync=()=>{const en=document.documentElement.lang.startsWith('en');const p=en?'Search your space...':'Rechercher dans votre espace...';if(field.placeholder!==p)field.placeholder=p;}; new MutationObserver(sync).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});sync();form.addEventListener('submit',e=>{e.preventDefault();const q=field.value.trim().toLowerCase();if(!q)return;const a=[...document.querySelectorAll('.madic-cric-new-nav a')].find(a=>a.textContent.toLowerCase().includes(q));if(a)location.href=a.href;else {field.setCustomValidity(document.documentElement.lang.startsWith('en')?'No matching section':'Aucune section correspondante');field.reportValidity();setTimeout(()=>field.setCustomValidity(''),1500);}});})();
+(() => {
+  const form = document.getElementById("madicHeaderSearchForm");
+  const field = document.getElementById("madicHeaderSearch");
+  const sync = () => {
+    const en = document.documentElement.lang.startsWith("en");
+    const p = en ? "Search your space..." : "Rechercher dans votre espace...";
+    if (field.placeholder !== p) field.placeholder = p;
+  };
+  new MutationObserver(sync).observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ["lang"],
+  });
+  sync();
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const q = field.value.trim().toLowerCase();
+    if (!q) return;
+    const a = [...document.querySelectorAll(".madic-cric-new-nav a")].find(
+      (a) => a.textContent.toLowerCase().includes(q),
+    );
+    if (a) location.href = a.href;
+    else {
+      field.setCustomValidity(
+        document.documentElement.lang.startsWith("en")
+          ? "No matching section"
+          : "Aucune section correspondante",
+      );
+      field.reportValidity();
+      setTimeout(() => field.setCustomValidity(""), 1500);
+    }
+  });
+})();
+
+/* MADIC display preferences - UI only */
+(() => {
+  const init = () => {
+    const root = document.documentElement,
+      body = document.body,
+      tools = document.querySelector(".madic-display-tools");
+    if (!tools) return;
+    const collapse = tools.querySelector(".madic-collapse"),
+      trigger = tools.querySelector(".madic-theme-trigger"),
+      menu = tools.querySelector("#madicThemeOptions"),
+      choices = [...menu.querySelectorAll("button")],
+      media = matchMedia("(prefers-color-scheme: dark)");
+    const read = (k, d) => {
+      try {
+        return localStorage.getItem(k) || d;
+      } catch {
+        return d;
+      }
+    };
+    const save = (k, v) => {
+      try {
+        localStorage.setItem(k, v);
+      } catch {}
+    };
+    let compact = read("madic-admin-sidebar", "expanded") === "collapsed",
+      theme = read("madic-admin-theme", "light");
+    if (!["system", "light", "dark"].includes(theme)) theme = "light";
+    const render = () => {
+      const en = root.lang.startsWith("en");
+      body.classList.toggle("madic-sidebar-compact", compact);
+      root.dataset.madicAppearance =
+        theme === "system" ? (media.matches ? "dark" : "light") : theme;
+      const label = compact
+        ? en
+          ? "Expand"
+          : "Développer"
+        : en
+          ? "Collapse"
+          : "Réduire";
+      collapse.querySelector("span").textContent = label;
+      collapse.title = label;
+      collapse.setAttribute("aria-label", label);
+      collapse.setAttribute("aria-expanded", String(!compact));
+      trigger.title = en ? "Appearance" : "Apparence";
+      trigger.setAttribute("aria-label", trigger.title);
+      choices.forEach((b, i) => {
+        b.querySelector("span").textContent = (
+          en ? ["System", "Light", "Dark"] : ["Système", "Clair", "Sombre"]
+        )[i];
+        b.setAttribute("aria-pressed", String(b.dataset.themeChoice === theme));
+      });
+      trigger.querySelector("svg").replaceWith(
+        choices
+          .find((b) => b.dataset.themeChoice === theme)
+          .querySelector("svg")
+          .cloneNode(true),
+      );
+      document.querySelectorAll("#madicPhoneDrawer nav a").forEach((a) => {
+        a.title = a.textContent.trim();
+        a.setAttribute("aria-label", a.title);
+      });
+    };
+    const open = (v) => {
+      menu.hidden = !v;
+      trigger.setAttribute("aria-expanded", String(v));
+    };
+    collapse.addEventListener("click", () => {
+      compact = !compact;
+      save("madic-admin-sidebar", compact ? "collapsed" : "expanded");
+      render();
+    });
+    trigger.addEventListener("click", () => open(menu.hidden));
+    choices.forEach((b) =>
+      b.addEventListener("click", () => {
+        theme = b.dataset.themeChoice;
+        save("madic-admin-theme", theme);
+        render();
+        open(false);
+        trigger.focus();
+      }),
+    );
+    document.addEventListener("click", (e) => {
+      if (!tools.contains(e.target)) open(false);
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && !menu.hidden) {
+        open(false);
+        trigger.focus();
+      }
+    });
+    media.addEventListener("change", render);
+    new MutationObserver(render).observe(root, {
+      attributes: true,
+      attributeFilter: ["lang"],
+    });
+    window.addEventListener("storage", (e) => {
+      if (["madic-admin-sidebar", "madic-admin-theme"].includes(e.key)) {
+        compact = read("madic-admin-sidebar", "expanded") === "collapsed";
+        theme = read("madic-admin-theme", "light");
+        if (!["system", "light", "dark"].includes(theme)) theme = "light";
+        render();
+      }
+    });
+    render();
+  };
+  if (document.readyState === "loading")
+    document.addEventListener("DOMContentLoaded", init, { once: true });
+  else init();
+})();
