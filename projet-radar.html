@@ -8,15 +8,68 @@
 <title data-en="MADIC Radar" data-fr="Radar MADIC">Radar MADIC</title>
 <link href="img/logo-madic.svg" rel="icon"/>
 <link href="assets/madic-footer.css" rel="stylesheet"/>
-
 <link href="assets/projet-radar.css" rel="stylesheet"/>
 <script defer="" src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <script defer="" src="assets/config.js"></script>
 <script defer="" src="assets/projet-radar.js"></script>
 </head>
 <body class="madic-unified" data-page="projet-radar">
-<div class="madic-unified-layout">
-<div class="madic-client-phone-shade" hidden=""></div><aside aria-label="Navigation administration MADIC" class="madic-unified-sidebar madic-side-nav" data-aria-label-en="MADIC administration navigation" data-aria-label-fr="Navigation administration MADIC" id="madicClientDrawer"><button aria-label="Fermer le menu" class="madic-client-phone-close" type="button">
+<div class="madic-unified-layout"><header class="madic-cric-standard-header">
+<div class="madic-header-title">
+<button aria-controls="madicPhoneDrawer" aria-expanded="false" aria-label="Menu" class="madic-phone-trigger" type="button">
+<svg aria-hidden="true" fill="none" height="24" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="24">
+<path d="M3 6h18M3 12h18M3 18h18"></path>
+</svg>
+</button>
+<a class="brand" href="administration.html">MADIC
+            <span data-en="PORTAL" data-fr="PORTAIL" data-madic-en="PORTAL" data-madic-fr="PORTAIL">PORTAIL
+</span>
+</a>
+</div>
+<div class="madic-header-right">
+<form class="madic-header-search" id="madicHeaderSearchForm" role="search">
+<svg aria-hidden="true" viewbox="0 0 24 24">
+<circle cx="11" cy="11" r="7"></circle>
+<path d="m16 16 5 5"></path>
+</svg>
+<input aria-label="Recherche dans les demandes de services" data-madic-en-placeholder="Search clients, cases, documents..." data-madic-fr-placeholder="Rechercher un client, un dossier, un document..." data-placeholder-en="Search your space..." data-placeholder-fr="Rechercher dans votre espace..." id="madicHeaderSearch" placeholder="Rechercher dans votre espace..." type="search"/><button data-en="Search" data-fr="Rechercher" data-madic-en="Search" data-madic-fr="Rechercher" type="submit">
+              Rechercher
+            </button>
+</form>
+<nav aria-label="Navigation du compte" class="toplinks">
+<div aria-label="Langue / Language" class="madic-lang-controls" id="madicHeroLanguage" role="group">
+<button aria-label="Français" aria-pressed="true" data-lang="fr" data-language="fr" title="Français" type="button">
+                FR
+              </button>
+<button aria-label="English" aria-pressed="false" data-lang="en" data-language="en" title="English" type="button">
+                EN
+              </button>
+</div>
+<a aria-label="Notifications" class="madic-top-notification" href="messagerie-client-cric.html" title="Notifications">
+<span aria-hidden="true"><svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="24">
+<path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"></path>
+<path d="M10 21h4"></path>
+</svg>
+
+</span>
+<span class="madic-top-notification-count" hidden="">
+</span>
+</a>
+</nav>
+<details class="madic-header-profile">
+<summary>
+<span aria-hidden="true" class="madic-header-profile-avatar">AD
+</span>
+<span class="madic-header-profile-copy"><strong data-en="My space" data-fr="Mon espace" id="madicHeaderProfileName">Mon espace</strong><small data-en="Super administration" data-fr="Super administration" id="madicHeaderProfileLicense">Super administration</small>
+</span>
+<span aria-hidden="true">⌄
+</span>
+</summary>
+<div class="madic-header-profile-menu"><a data-en="Sign out" data-fr="Déconnexion" href="connexion.html" id="radarLogout">Déconnexion</a><a data-en="My space" data-fr="Mon espace" href="dashboard-client-cric.html">Mon espace</a></div>
+</details>
+</div>
+</header>
+<div class="madic-phone-shade" hidden=""></div><aside aria-label="Navigation administration MADIC" class="madic-unified-sidebar" data-aria-label-en="MADIC administration navigation" data-aria-label-fr="Navigation administration MADIC" id="madicPhoneDrawer"><button aria-label="Fermer le menu" class="madic-phone-close" type="button">
           ×
         </button>
 <div class="madic-unified-brand madic-side-brand">
@@ -24,71 +77,59 @@
 </span>
 <span><strong data-en="MADIC PORTAL" data-fr="MADIC PORTAIL">MADIC PORTAIL</strong><small data-en="Super administration" data-fr="Super administration">Super administration</small>
 </span>
-
 </div>
 <div class="madic-unified-caption madic-side-caption" data-en="ADMINISTRATION" data-fr="ADMINISTRATION">
           ADMINISTRATION
         </div>
-<nav class="madic-side-links">
-<a data-en="MADIC dashboard" data-fr="Tableau de bord MADIC" href="administration.html">Tableau de bord MADIC</a><a data-en="RCIC verifications" data-fr="Vérifications CRIC" href="validation-cric.html">Vérifications CRIC</a><a data-en="Consultants and firms" data-fr="Consultants et cabinets" href="gestion-cric.html#consultants-management">Consultants et cabinets</a><a data-en="Subscriptions and access" data-fr="Abonnements et accès" href="gestion-cric.html#cabinet-management">Abonnements et accès</a><a data-en="Payment tracking" data-fr="Suivi des paiements" href="gestion-cric.html#payment-management">Suivi des paiements</a>
-<a aria-current="page" data-en="MADIC Radar" data-fr="Radar MADIC" href="projet-radar.html">Radar MADIC</a>
+<nav class="madic-cric-new-nav">
+<a href="administration.html"><svg aria-hidden="true" class="madic-nav-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24">
+<path d="m3 10 9-7 9 7v10H3zM9 20v-7h6v7"></path>
+</svg>
+<span data-en="MADIC dashboard" data-fr="Tableau de bord MADIC">Tableau de bord MADIC
+</span>
+</a><a href="validation-cric.html"><svg aria-hidden="true" class="madic-nav-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24">
+<circle cx="9" cy="8" r="3"></circle>
+<path d="M3 21v-2a6 6 0 0 1 12 0v2M17 5a3 3 0 0 1 0 6m1 4a5 5 0 0 1 3 5"></path>
+</svg>
+<span data-en="RCIC verifications" data-fr="Vérifications CRIC">Vérifications CRIC
+</span>
+</a><a href="gestion-cric.html#consultants-management"><svg aria-hidden="true" class="madic-nav-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24">
+<path d="M3 7h7l2 2h9v11H3z"></path>
+</svg>
+<span data-en="Consultants and firms" data-fr="Consultants et cabinets">Consultants et cabinets
+</span>
+</a><a href="gestion-cric.html#cabinet-management"><svg aria-hidden="true" class="madic-nav-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24">
+<rect height="16" rx="2" width="18" x="3" y="5"></rect>
+<path d="M7 3v4m10-4v4M3 10h18"></path>
+</svg>
+<span data-en="Subscriptions and access" data-fr="Abonnements et accès">Abonnements et accès
+</span>
+</a><a href="gestion-cric.html#payment-management"><svg aria-hidden="true" class="madic-nav-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24">
+<path d="M6 2h9l5 5v15H6zM15 2v5h5"></path>
+</svg>
+<span data-en="Payment tracking" data-fr="Suivi des paiements">Suivi des paiements
+</span>
+</a>
+<a aria-current="page" href="projet-radar.html"><svg aria-hidden="true" class="madic-nav-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24">
+<circle cx="12" cy="12" r="9"></circle>
+<path d="M12 7v5l3 2"></path>
+</svg>
+<span data-en="MADIC Radar" data-fr="Radar MADIC">Radar MADIC
+</span>
+</a>
 </nav>
 <div class="madic-unified-foot" data-en="Secure MADIC administration" data-fr="Administration sécurisée MADIC">
           Administration sécurisée MADIC
         </div>
 </aside>
 <div class="madic-unified-content">
-<header class="madic-client-header">
-<a class="brand" href="administration.html">MADI<span>C
-</span>
 
-<small data-en="PORTAL" data-fr="PORTAIL">PORTAIL</small></a>
-<nav class="toplinks">
-<a data-en="Sign out" data-fr="Déconnexion" href="connexion.html" id="radarLogout">Déconnexion</a><a data-en="My space" data-fr="Mon espace" href="dashboard-client-cric.html">Mon espace</a>
-</nav>
-<div aria-label="Outils du compte" class="madic-hero-tools" data-aria-label-en="Account tools" data-aria-label-fr="Outils du compte">
-<a aria-label="Notifications de messagerie" class="madic-hero-notifications" data-aria-label-en="Message notifications" data-aria-label-fr="Notifications de messagerie" data-title-en="Message notifications" data-title-fr="Notifications de messagerie" href="messagerie-client-cric.html" title="Notifications de messagerie"><svg aria-hidden="true" fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="22">
-<path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"></path>
-<path d="M10 21h4"></path>
-
-</svg>
-
-</a>
-<div aria-label="Langue du portail" class="madic-language-switch" data-aria-label-en="Portal language" data-aria-label-fr="Langue du portail" id="madicHeroLanguage">
-<button aria-pressed="true" data-language="fr" type="button">
-                FR</button><button aria-pressed="false" data-language="en" type="button">
-                EN
-              </button>
-</div>
-</div>
-<button aria-controls="madicClientDrawer" aria-expanded="false" aria-label="Menu" class="madic-client-phone-trigger" type="button">
-<svg fill="none" height="24" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="24">
-<path d="M3 6h18M3 12h18M3 18h18"></path>
-
-</svg>
-
-</button><button aria-expanded="false" class="madic-client-phone-account" type="button">
-<b>AD</b><span class="madic-client-account-label">Mon espace 
-</span>
-
-
-        ⌄
-      </button><form class="madic-client-phone-search" role="search">
-<svg fill="none" height="20" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="20">
-<circle cx="10" cy="10" r="7"></circle>
-<path d="m15 15 6 6"></path>
-
-</svg>
-
-<input aria-label="Recherche / Search" placeholder="Rechercher dans votre espace..." type="search"/><button type="submit">Rechercher</button>
-</form></header>
 <main class="madic-radar">
 <div class="title-row">
 <h1 data-en="MADIC Radar" data-fr="Radar MADIC">Radar MADIC</h1>
 <div class="filters" hidden="" id="radarFilters">
 <label><span data-en="Period" data-fr="Période">Période
 </span>
-
 <select id="radarDays">
 <option data-en="Last 7 days" data-fr="7 derniers jours" value="7">
                     7 derniers jours
@@ -106,7 +147,6 @@
 </label>
 <label><span data-en="Plan" data-fr="Formule">Formule
 </span>
-
 <select id="radarPlan">
 <option data-en="All" data-fr="Toutes" value="">
                     Toutes
@@ -137,7 +177,6 @@
 </span>
 <span class="client" data-en="Clients" data-fr="Clients">Clients
 </span>
-
 </p>
 <div class="chart" id="radarChart"></div>
 </section>
@@ -213,14 +252,12 @@
 <a data-en="Terms of use" data-fr="Conditions d'utilisation" href="conditions-utilisation.html">Conditions d'utilisation</a>
 <span class="madic-footer-unavailable" data-en="Contact" data-fr="Contact" title="Page à venir / Page coming soon">Contact
 </span>
-
 </nav>
 </div>
 <div class="madic-footer-bottom">
             © 2026 MAD Immigration Canadienne (MADIC) Inc.
             <span data-en="All rights reserved." data-fr="Tous droits réservés.">Tous droits réservés.
 </span>
-
 </div>
 </footer>
 </div>

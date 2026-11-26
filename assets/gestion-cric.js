@@ -98,7 +98,7 @@ const getGestionCricAdmin = (() => {
 
   return () => {
     if (!access) {
-      access = Promise.all([loadSupabase(), loadConfig()]).then(verifyBeforeDeadline);
+      access = loadSupabase().then(loadConfig).then(verifyBeforeDeadline).catch(error => { access = undefined; throw error; });
     }
     return access;
   };
@@ -139,7 +139,8 @@ const getGestionCricAdmin = (() => {
       if (ownerError) throw ownerError;
       isOwner = data;
     }
-    $("cricLogout")?.addEventListener("click", async () => {
+    $("cricLogout")?.addEventListener("click", async (event) => {
+      event.preventDefault();
       await db.auth.signOut();
       location.href = "connexion.html";
     });
@@ -1076,7 +1077,7 @@ const getGestionCricAdmin = (() => {
     busy = true;
     observer.disconnect();
     try {
-      document.documentElement.lang = language === "en" ? "en" : "fr-CA";
+      if (document.documentElement.lang !== (language === "en" ? "en" : "fr-CA")) document.documentElement.lang = language === "en" ? "en" : "fr-CA";
       document.title =
         language === "en"
           ? "RCIC Management | MADIC"
@@ -1173,79 +1174,54 @@ const getGestionCricAdmin = (() => {
   });
 })();
 
-/* Mobile client navigation; existing account and language handlers retained. */
-(function () {
+
+/* Phone navigation only; existing authentication and business logic unchanged. */
+(() => {
   const init = () => {
-    const header = document.querySelector(".madic-client-header"),
-      drawer = document.querySelector(".madic-side-nav"),
-      trigger = document.querySelector(".madic-client-phone-trigger"),
-      close = document.querySelector(".madic-client-phone-close"),
-      shade = document.querySelector(".madic-client-phone-shade"),
-      account = document.querySelector(".madic-client-phone-account"),
-      links = header?.querySelector(".toplinks"),
-      search = document.querySelector(".madic-client-phone-search");
-    if (!header || !drawer || !trigger || !close || !shade) return;
+    const drawer = document.getElementById("madicPhoneDrawer");
+    const trigger = document.querySelector(".madic-phone-trigger");
+    const close = drawer?.querySelector(".madic-phone-close");
+    const shade = document.querySelector(".madic-phone-shade");
+    if (!drawer || !trigger || !close || !shade) return;
     const mobile = matchMedia("(max-width:900px)");
-    function toggle(open) {
-      open = !!open && mobile.matches;
-      document.body.classList.toggle("madic-client-phone-open", open);
+    const set = (open, restore = false) => {
+      open = open && mobile.matches;
+      document.body.classList.toggle("madic-phone-open", open);
       trigger.setAttribute("aria-expanded", String(open));
       shade.hidden = !open;
       drawer.inert = mobile.matches && !open;
       if (open) close.focus();
-    }
-    trigger.addEventListener("click", () => toggle(true));
-    close.addEventListener("click", () => {
-      toggle(false);
-      trigger.focus();
-    });
-    shade.addEventListener("click", () => toggle(false));
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") {
-        toggle(false);
-        links?.classList.remove("madic-client-account-open");
-      }
-    });
-    mobile.addEventListener("change", () => toggle(false));
+      else if (restore && mobile.matches) trigger.focus();
+    };
+    trigger.addEventListener("click", () => set(true));
+    close.addEventListener("click", () => set(false, true));
+    shade.addEventListener("click", () => set(false, true));
     drawer.addEventListener("click", (e) => {
-      if (e.target.closest("a[href]")) toggle(false);
+      if (e.target.closest("a[href]")) set(false);
     });
-    account?.addEventListener("click", () => {
-      const open = links?.classList.toggle("madic-client-account-open");
-      account.setAttribute("aria-expanded", String(!!open));
+    document.addEventListener("keydown", (e) => {
+      if (
+        e.key === "Escape" &&
+        document.body.classList.contains("madic-phone-open")
+      )
+        set(false, true);
     });
-    function lang() {
+    mobile.addEventListener("change", () => set(false));
+    const lang = () => {
       const en = document.documentElement.lang.startsWith("en");
+      trigger.setAttribute("aria-label", en ? "Open menu" : "Ouvrir le menu");
       close.setAttribute("aria-label", en ? "Close menu" : "Fermer le menu");
-      search.querySelector("input").placeholder = en
-        ? "Search your space..."
-        : "Rechercher dans votre espace...";
-      search.querySelector("button").textContent = en ? "Search" : "Rechercher";
-      account.querySelector(".madic-client-account-label").textContent = en
-        ? "My space"
-        : "Mon espace";
-      drawer.querySelector(".madic-side-brand strong").textContent = en
-        ? "MADIC PORTAL"
-        : "MADIC PORTAIL";
-    }
+    };
     new MutationObserver(lang).observe(document.documentElement, {
       attributes: true,
       attributeFilter: ["lang"],
     });
     lang();
-    toggle(false);
-    search.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const q = search.querySelector("input").value.trim().toLowerCase();
-      if (!q) return;
-      const a = [...drawer.querySelectorAll(".madic-side-links a[href]")].find(
-        (a) => a.textContent.toLowerCase().includes(q),
-      );
-      if (a) location.href = a.href;
-      else toggle(true);
-    });
+    set(false);
   };
   if (document.readyState === "loading")
-    document.addEventListener("DOMContentLoaded", init);
+    document.addEventListener("DOMContentLoaded", init, { once: true });
   else init();
 })();
+
+(() => { const form=document.getElementById('madicHeaderSearchForm'); const field=document.getElementById('madicHeaderSearch'); const sync=()=>{const en=document.documentElement.lang.startsWith('en');const p=en?'Search your space...':'Rechercher dans votre espace...';if(field.placeholder!==p)field.placeholder=p;}; new MutationObserver(sync).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});sync();form.addEventListener('submit',e=>{e.preventDefault();const q=field.value.trim().toLowerCase();if(!q)return;const a=[...document.querySelectorAll('.madic-cric-new-nav a')].find(a=>a.textContent.toLowerCase().includes(q));if(a)location.href=a.href;else {field.setCustomValidity(document.documentElement.lang.startsWith('en')?'No matching section':'Aucune section correspondante');field.reportValidity();setTimeout(()=>field.setCustomValidity(''),1500);}});})();
