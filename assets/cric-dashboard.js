@@ -2225,6 +2225,7 @@
       body.classList.toggle("madic-sidebar-compact", compact);
       root.dataset.madicAppearance =
         theme === "system" ? (media.matches ? "dark" : "light") : theme;
+      root.dataset.madicTheme = root.dataset.madicAppearance;
       const label = compact
         ? en
           ? "Expand"

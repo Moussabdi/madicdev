@@ -1,8 +1,18 @@
-@layer madicSelection {
-#madicPhoneDrawer nav :is(a,summary) {background:transparent!important;border-color:transparent!important;box-shadow:none!important;filter:none!important;color:#fff!important;}
-#madicPhoneDrawer nav :is(a,summary):is([aria-current="page"],.active,.is-active,[aria-selected="true"]) {background:var(--madic-accent)!important;}
-#madicPhoneDrawer nav :is(a,summary)::before,#madicPhoneDrawer nav :is(a,summary)::after {content:none!important;display:none!important;}
+@layer madicPalette {
+body :is(.madic-v2-stat,.madic-dashboard-actions,.madic-service-create,.madic-service-overview > *, .madic-service-row,.madic-service-detail,.madic-service-details,.madic-service-list details,.madic-service-list details > *, .madic-service-list article,.madic-service-list article > div,.madic-service-list article section,.madic-clients-hero,.madic-stage-hero,.madic-stage-hero-mark,.madic-contract-card,.madic-contracts-status,.madic-import-file-picker,.madic-cric-notice,.madic-top-notification,.madic-v2-stat-icon) {background:var(--madic-surface)!important;color:var(--madic-text)!important;border-color:var(--madic-border)!important;box-shadow:none!important;}
+body :is(.madic-v2-stat-label,.madic-service-row-indicator,.madic-contract-type,.madic-contracts-eyebrow,.madic-stage-hero-copy p) {color:var(--madic-text-muted)!important;}
+body :is(.madic-contract-cta,.madic-dashboard-action-primary,.madic-import-file-button,.madic-clients-shortcuts a,.madic-clients-shortcuts button) {background:var(--madic-accent)!important;color:white!important;border-color:var(--madic-accent)!important;box-shadow:none!important;}
+body :is(.madic-dashboard-action-links a:not(.madic-dashboard-action-primary),.madic-contract-icon) {background:var(--madic-surface)!important;color:var(--madic-text)!important;border-color:var(--madic-border)!important;}
+body :is(.madic-v2-stat-icon,.madic-top-notification) svg {color:var(--madic-text)!important;}
+#madicPhoneDrawer nav :is(a,summary) {background:transparent!important;border-color:transparent!important;box-shadow:none!important;color:white!important;}
+#madicPhoneDrawer nav :is(a,summary):is(.active,.is-active,[aria-current="page"],[aria-selected="true"]) {background:var(--madic-accent)!important;}
+#madicPhoneDrawer nav :is(a,summary)::before,#madicPhoneDrawer nav :is(a,summary)::after {content:none!important;}
 #madicPhoneDrawer nav :is(a,summary) :is(span,svg) {background:transparent!important;box-shadow:none!important;color:inherit!important;}
+#madicPhoneDrawer #madicThemeOptions {background:var(--madic-sidebar)!important;z-index:9999!important;}
+#madicPhoneDrawer #madicThemeOptions[hidden] {display:none!important;}
+#madicPhoneDrawer #madicThemeOptions button {background:transparent!important;color:white!important;border-color:var(--madic-border)!important;box-shadow:none!important;}
+#madicPhoneDrawer #madicThemeOptions button[aria-pressed="true"] {background:var(--madic-accent)!important;}
+@media(min-width:901px){body.madic-sidebar-compact #madicPhoneDrawer:has(#madicThemeOptions:not([hidden])) {overflow:visible!important;} body.madic-sidebar-compact #madicThemeOptions {left:0!important;right:auto!important;}}
 }
 :root {
   font-family:
@@ -282,7 +292,7 @@ body {
   margin: 0;
   min-height: 100vh;
   background:
-    radial-gradient(ellipse at 85% 5%, #15385a 0, transparent 42%), #07101f;
+    var(--madic-surface);
 }
 a {
   color: #5ad5f2;
@@ -614,7 +624,7 @@ body.madic-unified[data-page="gestion-clients-cric"] .madic-unified-layout {
   grid-template-columns: 244px minmax(0, 1fr);
 }
 body.madic-unified[data-page="gestion-clients-cric"] .madic-unified-sidebar {
-  background: linear-gradient(175deg, #092342, #0b3152 60%, #08213d);
+  background: var(--madic-surface);
   padding: 22px 14px;
   gap: 16px;
   border-right: 1px solid #244867;
@@ -671,7 +681,7 @@ body.madic-unified[data-page="gestion-clients-cric"] .cric-shell {
   padding: 0;
 }
 body.madic-unified[data-page="gestion-clients-cric"] .madic-clients-hero {
-  background: linear-gradient(120deg, #102e50, #15547a);
+  background: var(--madic-surface);
   color: #fff;
   border-radius: 18px;
   padding: 25px 28px;
@@ -1430,8 +1440,7 @@ body.madic-unified[data-page="kanban-cric"] .madic-kb-hero {
   border: 1px solid #246477;
   border-radius: 22px;
   background:
-    radial-gradient(circle at 95% 0%, #1b6972 0%, transparent 38%),
-    linear-gradient(120deg, #102a42, #0b1c30);
+    var(--madic-surface);
   box-shadow: 0 16px 38px #0004;
   color: #eefaff;
 }
@@ -1811,7 +1820,7 @@ body.madic-unified .madic-unified-layout {
   grid-template-columns: 244px minmax(0, 1fr);
 }
 body.madic-unified .madic-unified-sidebar {
-  background: linear-gradient(175deg, #092342, #0b3152 60%, #08213d);
+  background: var(--madic-surface);
   border-right: 1px solid #244867;
   padding: 22px 14px;
   gap: 19px;
@@ -3428,7 +3437,7 @@ html
     gap: 0 !important;
     border: 0 !important;
     border-radius: 0 !important;
-    background: linear-gradient(180deg, #162b4d, #1b365b) !important;
+    background: var(--madic-surface) !important;
   }
 
   html
@@ -3538,7 +3547,7 @@ body.madic-unified .madic-unified-layout {
   grid-template-columns: 244px minmax(0, 1fr);
 }
 body.madic-unified .madic-unified-sidebar {
-  background: linear-gradient(175deg, #092342, #0b3152 60%, #08213d);
+  background: var(--madic-surface);
   border-right: 1px solid #244867;
   padding: 22px 14px;
   gap: 19px;
@@ -4622,7 +4631,7 @@ html
     gap: 0 !important;
     border: 0 !important;
     border-radius: 0 !important;
-    background: linear-gradient(180deg, #162b4d, #1b365b) !important;
+    background: var(--madic-surface) !important;
   }
   html
     body.madic-unified
@@ -4690,12 +4699,7 @@ html body.madic-unified .madic-unified-layout {
   min-height: 100vh !important;
 }
 html body.madic-unified .madic-unified-sidebar {
-  background: linear-gradient(
-    165deg,
-    #061b3c 0%,
-    #092956 65%,
-    #0b3979 100%
-  ) !important;
+  background: var(--madic-surface) !important;
   color: #fff !important;
   border-right: 0 !important;
   box-shadow: 3px 0 18px #0c254214 !important;
@@ -4731,7 +4735,7 @@ html body.madic-unified .madic-unified-sidebar nav > a:hover {
   background: #ffffff19 !important;
 }
 html body.madic-unified .madic-unified-sidebar nav > a[aria-current="page"] {
-  background: linear-gradient(100deg, #0095ad, #007e9d) !important;
+  background: var(--madic-surface) !important;
   color: #fff !important;
   border: 0 !important;
   box-shadow: 0 5px 15px #001e3455 !important;
@@ -4768,12 +4772,7 @@ html body.madic-unified .madic-unified-sidebar nav > a[aria-current="page"] {
   }
 }
 html body.madic-unified .madic-unified-sidebar {
-  background: linear-gradient(
-    165deg,
-    #061b3a 0%,
-    #0b2c5f 72%,
-    #10458c 100%
-  ) !important;
+  background: var(--madic-surface) !important;
   gap: 0 !important;
 }
 html body.madic-unified .madic-unified-sidebar > .madic-unified-brand {
@@ -4818,7 +4817,7 @@ html body.madic-unified .madic-nav-tools > summary {
   box-sizing: border-box !important;
 }
 html body.madic-unified .madic-cric-new-nav > a[aria-current="page"] {
-  background: linear-gradient(100deg, #008ba7, #087d9c) !important;
+  background: var(--madic-surface) !important;
   color: #fff !important;
   box-shadow: 0 5px 16px #001a3560 !important;
 }
@@ -5051,7 +5050,7 @@ html body.madic-unified .madic-header-title .brand span {
   color: #36a9c9 !important;
 }
 html body.madic-unified .madic-unified-layout > .madic-unified-sidebar {
-  background: linear-gradient(175deg, #092342, #0b3152 60%, #08213d) !important;
+  background: var(--madic-surface) !important;
 }
 html body.madic-unified .madic-unified-sidebar .madic-unified-brand small {
   font-size: 12px !important;
@@ -5527,7 +5526,7 @@ html[lang^="en"]
   }
 }
 html body.madic-unified .madic-unified-sidebar {
-  background: linear-gradient(175deg, #092342, #0b3152 60%, #08213d) !important;
+  background: var(--madic-surface) !important;
   border-right: 1px solid #244867 !important;
 }
 html body.madic-unified .madic-unified-brand {
@@ -6055,12 +6054,7 @@ html body.madic-unified .madic-cric-new-nav > a[aria-current="page"] {
 html
   body.madic-unified[data-page="gestion-dossiers-cric"]
   .madic-unified-sidebar {
-  background: linear-gradient(
-    165deg,
-    #061b3a 0%,
-    #0b2c5f 72%,
-    #10458c 100%
-  ) !important;
+  background: var(--madic-surface) !important;
   gap: 0 !important;
 }
 html
@@ -6128,7 +6122,7 @@ html
   body.madic-unified[data-page="gestion-dossiers-cric"]
   .madic-cric-new-nav
   > a[aria-current="page"] {
-  background: linear-gradient(100deg, #008ba7, #087d9c) !important;
+  background: var(--madic-surface) !important;
   color: #fff !important;
   box-shadow: 0 5px 16px #001a3560 !important;
 }
@@ -6571,7 +6565,7 @@ html
   body.madic-unified[data-page="gestion-dossiers-cric"]
   .madic-unified-layout
   > .madic-unified-sidebar {
-  background: linear-gradient(175deg, #092342, #0b3152 60%, #08213d) !important;
+  background: var(--madic-surface) !important;
 }
 html
   body.madic-unified[data-page="gestion-dossiers-cric"]
@@ -7407,7 +7401,7 @@ html body.madic-unified[data-page="gestion-dossiers-cric"] footer {
 html
   body.madic-unified[data-page="gestion-dossiers-cric"]
   .madic-unified-sidebar {
-  background: linear-gradient(175deg, #092342, #0b3152 60%, #08213d) !important;
+  background: var(--madic-surface) !important;
   border-right: 1px solid #244867 !important;
 }
 html
