@@ -1,3 +1,8 @@
+@layer madicSelection {
+#madicPhoneDrawer nav.madic-cric-new-nav > a[aria-current="page"] { background: #d5e7f8 !important; color: #173451 !important; border: 1px solid transparent !important; box-shadow: none !important; filter: none !important; transition: none !important; animation: none !important; }
+#madicPhoneDrawer nav.madic-cric-new-nav > a[aria-current="page"]::before, #madicPhoneDrawer nav.madic-cric-new-nav > a[aria-current="page"]::after { content: none !important; display: none !important; }
+#madicPhoneDrawer nav.madic-cric-new-nav > a[aria-current="page"] :is(span,svg) { color: #173451 !important; background: transparent !important; box-shadow: none !important; }
+}
 :root {
   font-family:
     Inter,
@@ -6236,4 +6241,5 @@ html
     font-size: 11px !important;
   }
 }
+
 
