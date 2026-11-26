@@ -4112,3 +4112,9 @@ html[lang] body[data-page="cric-client-dashboard"] main.madic-app-layout > aside
   content: none !important;
   box-shadow: none !important;
 }
+
+/* Active menu: identical solid fill at every viewport width. */
+html[lang] body[data-page="cric-client-dashboard"][data-madic-view="news"] .madic-side-nav .madic-side-links .madic-nav-entry > a:is(.madic-nav-active,[aria-current="page"]):not(#madic-unused-specificity) { background: #357f96 !important; background-image: none !important; border-color: transparent !important; box-shadow: none !important; color: #fff !important; }
+html[lang] body[data-page="cric-client-dashboard"][data-madic-view="news"] .madic-side-nav .madic-side-links .madic-nav-entry > a:is(.madic-nav-active,[aria-current="page"]):not(#madic-unused-specificity)::before,
+html[lang] body[data-page="cric-client-dashboard"][data-madic-view="news"] .madic-side-nav .madic-side-links .madic-nav-entry > a:is(.madic-nav-active,[aria-current="page"]):not(#madic-unused-specificity)::after { content: none !important; display: none !important; }
+html[lang] body[data-page="cric-client-dashboard"][data-madic-view="news"] .madic-side-nav .madic-side-links .madic-nav-entry > a:is(.madic-nav-active,[aria-current="page"]):not(#madic-unused-specificity) .madic-nav-icon { color: inherit !important; stroke: currentColor !important; }
