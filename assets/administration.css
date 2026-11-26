@@ -6558,163 +6558,345 @@ html
     display: none !important;
   }
 }
-html[data-madic-appearance="dark"]
-  body.madic-unified[data-page="administration"] {
+
+/* MADIC palette simplifiee */
+:root {
+  color-scheme: light;
+  --madic-bg: #f1f5f9;
+  --madic-surface: #ffffff;
+  --madic-sidebar: #142740;
+  --madic-text: #18324f;
+  --madic-text-muted: #52647a;
+  --madic-border: #dce4ee;
+  --madic-accent: #287c98;
+}
+:root[data-madic-appearance="dark"] {
   color-scheme: dark;
-  background: #111923 !important;
-  color: #e3edf8 !important;
+  --madic-bg: #111827;
+  --madic-surface: #1f2937;
+  --madic-sidebar: #0f172a;
+  --madic-text: #f1f5f9;
+  --madic-text-muted: #aab8ca;
+  --madic-border: #334155;
 }
-html[data-madic-appearance="dark"]
-  body.madic-unified[data-page="administration"]
+html
+  body.madic-unified[data-page="administration"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c),
+html
+  body.madic-unified[data-page="administration"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
   .madic-unified-layout,
-html[data-madic-appearance="dark"]
-  body.madic-unified[data-page="administration"]
-  .madic-unified-content {
-  background: #111923 !important;
-  color: #e3edf8 !important;
+html
+  body.madic-unified[data-page="administration"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  .madic-unified-content,
+html
+  body.madic-unified[data-page="administration"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  .madic-admin-home {
+  background: var(--madic-bg) !important;
+  color: var(--madic-text) !important;
 }
-html[data-madic-appearance="dark"]
-  body.madic-unified[data-page="administration"]
-  .madic-unified-content
-  :is(
-    main,
-    section,
-    article,
-    div,
-    table,
-    thead,
-    tbody,
-    tr,
-    td,
-    th,
-    p,
-    h1,
-    h2,
-    h3,
-    h4,
-    small,
-    label,
-    span,
-    strong,
-    footer
-  ),
-html[data-madic-appearance="dark"]
-  body.madic-unified[data-page="administration"]
-  .madic-cric-standard-header
-  :is(a, small, strong, summary, span) {
-  color: #e3edf8 !important;
-  border-color: #35465a !important;
-}
-html[data-madic-appearance="dark"]
-  body.madic-unified[data-page="administration"]
-  .madic-unified-content
-  :is(
-    .panel,
-    article,
-    dialog,
-    [class*="card"],
-    [class*="panel"],
-    .madic-footer,
-    thead,
-    th
-  ),
-html[data-madic-appearance="dark"]
-  body.madic-unified[data-page="administration"]
+html
+  body.madic-unified[data-page="administration"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
   .madic-cric-standard-header,
-html[data-madic-appearance="dark"]
-  body.madic-unified[data-page="administration"]
-  .madic-header-profile-menu {
-  background: #202c3a !important;
-  color: #e3edf8 !important;
-  border-color: #35465a !important;
+html
+  body.madic-unified[data-page="administration"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  .madic-unified-content
+  > footer.madic-footer,
+html
+  body.madic-unified[data-page="administration"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  .madic-unified-content
+  .madic-home-card,
+html
+  body.madic-unified[data-page="administration"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  .madic-header-profile-menu,
+html
+  body.madic-unified[data-page="administration"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  .madic-header-search,
+html
+  body.madic-unified[data-page="administration"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  input,
+html
+  body.madic-unified[data-page="administration"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  select,
+html
+  body.madic-unified[data-page="administration"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  textarea,
+html
+  body.madic-unified[data-page="administration"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  table,
+html
+  body.madic-unified[data-page="administration"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  th,
+html
+  body.madic-unified[data-page="administration"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  td {
+  background: var(--madic-surface) !important;
+  color: var(--madic-text) !important;
+  border-color: var(--madic-border) !important;
   box-shadow: none !important;
 }
-html[data-madic-appearance="dark"]
-  body.madic-unified[data-page="administration"]
+html
+  body.madic-unified[data-page="administration"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
   .madic-unified-content
-  :is(td, tr, tbody) {
+  :is(h1, h2, h3, strong, .madic-footer-name),
+html
+  body.madic-unified[data-page="administration"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  .madic-cric-standard-header
+  :is(.brand, summary, .madic-header-profile-copy, .madic-top-notification),
+html
+  body.madic-unified[data-page="administration"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  .madic-cric-standard-header
+  .madic-header-profile-copy
+  strong {
+  color: var(--madic-text) !important;
+}
+html
+  body.madic-unified[data-page="administration"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  .madic-unified-content
+  :is(
+    .muted,
+    .madic-eyebrow,
+    .madic-footer-desc,
+    .madic-footer-subtitle,
+    .madic-footer-bottom
+  ),
+html
+  body.madic-unified[data-page="administration"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  .madic-cric-standard-header
+  .madic-header-profile-copy
+  small,
+html
+  body.madic-unified[data-page="administration"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  input::placeholder {
+  color: var(--madic-text-muted) !important;
+}
+html
+  body.madic-unified[data-page="administration"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  #madicPhoneDrawer,
+html
+  body.madic-unified[data-page="administration"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  #madicPhoneDrawer
+  #madicThemeOptions {
+  background: var(--madic-sidebar) !important;
+  color: #ffffff !important;
+  border-color: var(--madic-border) !important;
+  box-shadow: none !important;
+}
+html
+  body.madic-unified[data-page="administration"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  #madicPhoneDrawer
+  :is(
+    .madic-unified-brand,
+    .madic-unified-brand span,
+    .madic-unified-brand small,
+    .madic-unified-caption,
+    .madic-unified-foot
+  ) {
+  color: #ffffff !important;
+}
+html
+  body.madic-unified[data-page="administration"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  #madicPhoneDrawer
+  .madic-cric-new-nav
+  > a,
+html
+  body.madic-unified[data-page="administration"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  #madicPhoneDrawer
+  .madic-cric-new-nav
+  > a:hover {
   background: transparent !important;
+  color: #ffffff !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
 }
-html[data-madic-appearance="dark"]
-  body.madic-unified[data-page="administration"]
-  :is(input, select, textarea, .madic-header-search) {
-  background: #152231 !important;
-  color: #e3edf8 !important;
-  border-color: #50647a !important;
+html
+  body.madic-unified[data-page="administration"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  #madicPhoneDrawer
+  .madic-cric-new-nav
+  > a[aria-current="page"],
+html
+  body.madic-unified[data-page="administration"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  #madicPhoneDrawer
+  .madic-cric-new-nav
+  > a[aria-current="page"]:hover {
+  background: var(--madic-accent) !important;
+  color: #ffffff !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
 }
-html[data-madic-appearance="dark"]
-  body.madic-unified[data-page="administration"]
-  :is(input, textarea)::placeholder {
-  color: #a8b9cb !important;
+html
+  body.madic-unified[data-page="administration"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  #madicPhoneDrawer
+  .madic-cric-new-nav
+  > a::before,
+html
+  body.madic-unified[data-page="administration"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  #madicPhoneDrawer
+  .madic-cric-new-nav
+  > a::after {
+  content: none !important;
+  box-shadow: none !important;
+  background: none !important;
 }
-html[data-madic-appearance="dark"]
-  body.madic-unified[data-page="administration"]
+html
+  body.madic-unified[data-page="administration"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  #madicPhoneDrawer
+  .madic-cric-new-nav
+  > a
+  :is(span, svg) {
+  color: inherit !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+html
+  body.madic-unified[data-page="administration"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
   .madic-unified-content
-  a:not(.btn),
-html[data-madic-appearance="dark"]
-  body.madic-unified[data-page="administration"]
-  .madic-footer
-  a {
-  color: #83d5f0 !important;
-}
-html[data-madic-appearance="dark"]
-  body.madic-unified[data-page="administration"]
-  .madic-unified-content
-  button:not(:disabled),
-html[data-madic-appearance="dark"]
-  body.madic-unified[data-page="administration"]
-  .madic-header-search
-  button {
-  color: #e3edf8 !important;
-  background: #29465d !important;
-  border-color: #50647a !important;
-}
-html[data-madic-appearance="dark"]
-  body.madic-unified[data-page="administration"]
-  .madic-cric-standard-header
-  .brand
-  span {
-  color: #55c5e2 !important;
-}
-html[data-madic-appearance="dark"]
-  body.madic-unified[data-page="administration"]
-  .madic-cric-standard-header
-  .madic-lang-controls
-  button {
-  background: #24384b !important;
-  color: #e3edf8 !important;
-}
-html[data-madic-appearance="dark"]
-  body.madic-unified[data-page="administration"]
+  .madic-home-link,
+html
+  body.madic-unified[data-page="administration"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
   .madic-cric-standard-header
   .madic-lang-controls
   button[aria-pressed="true"] {
-  background: #247c9d !important;
-  color: white !important;
+  background: var(--madic-accent) !important;
+  color: #ffffff !important;
+  border-color: var(--madic-accent) !important;
+  box-shadow: none !important;
 }
-html[data-madic-appearance="dark"]
-  body.madic-unified[data-page="administration"]
-  .madic-unified-content
-  :is(.muted, .madic-footer-desc) {
-  color: #b8c9db !important;
+html
+  body.madic-unified[data-page="administration"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  .madic-cric-standard-header
+  .madic-lang-controls
+  button:not([aria-pressed="true"]),
+html
+  body.madic-unified[data-page="administration"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  .madic-cric-standard-header
+  .madic-header-profile-avatar,
+html
+  body.madic-unified[data-page="administration"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  .madic-cric-standard-header
+  .madic-phone-trigger {
+  background: var(--madic-surface) !important;
+  color: var(--madic-text) !important;
+  border-color: var(--madic-border) !important;
 }
-html[data-madic-appearance="dark"]
-  body.madic-unified[data-page="administration"]
+html
+  body.madic-unified[data-page="administration"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  .madic-cric-standard-header
+  .brand
+  span,
+html
+  body.madic-unified[data-page="administration"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  .madic-header-search
+  button,
+html
+  body.madic-unified[data-page="administration"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
   .madic-unified-content
-  .madic-admin-section-nav
+  footer.madic-footer
   a {
-  background: #24384b !important;
-  border-color: #50647a !important;
+  color: var(--madic-accent) !important;
 }
-html[data-madic-appearance="dark"]
-  body.madic-unified[data-page="administration"]
-  .madic-unified-content
-  .madic-admin-section-nav
-  a[aria-current],
-html[data-madic-appearance="dark"]
-  body.madic-unified[data-page="administration"]
-  .madic-unified-content
-  .madic-admin-section-nav
-  a.active {
-  background: #246486 !important;
+html
+  body.madic-unified[data-page="administration"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  #madicPhoneDrawer
+  .madic-display-tools
+  button {
+  background: transparent !important;
+  color: #ffffff !important;
+  border-color: var(--madic-border) !important;
+  box-shadow: none !important;
+}
+html
+  body.madic-unified[data-page="administration"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  #madicPhoneDrawer
+  .madic-display-tools
+  button[aria-pressed="true"],
+html
+  body.madic-unified[data-page="administration"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  #madicPhoneDrawer
+  .madic-display-tools
+  button:hover {
+  background: var(--madic-accent) !important;
+  color: #ffffff !important;
 }
