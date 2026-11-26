@@ -5478,3 +5478,16 @@ body[data-page="cric-client-dashboard"]
     margin: 0 !important;
   }
 }
+
+/* Uniform active navigation, all viewport widths. */
+html[lang] body[data-page="cric-client-dashboard"] main.madic-app-layout > aside.madic-side-nav .madic-side-links .madic-nav-entry > a:is(.madic-nav-active, [aria-current="page"]):not(#madic-unused-specificity) {
+  background: #357f96 !important;
+  border: 1px solid transparent !important;
+  box-shadow: none !important;
+  color: #fff !important;
+}
+html[lang] body[data-page="cric-client-dashboard"] main.madic-app-layout > aside.madic-side-nav .madic-side-links .madic-nav-entry > a:is(.madic-nav-active, [aria-current="page"])::before,
+html[lang] body[data-page="cric-client-dashboard"] main.madic-app-layout > aside.madic-side-nav .madic-side-links .madic-nav-entry > a:is(.madic-nav-active, [aria-current="page"])::after {
+  content: none !important;
+  box-shadow: none !important;
+}
