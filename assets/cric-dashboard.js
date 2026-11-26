@@ -2220,7 +2220,10 @@
     let compact = read("madic-cric-sidebar", "expanded") === "collapsed",
       theme = read("madic-admin-theme", "light");
     if (!["system", "light", "dark"].includes(theme)) theme = "light";
+    let renderedLanguage;
+    let renderedTheme;
     const render = () => {
+      renderedLanguage = root.lang;
       const en = root.lang.startsWith("en");
       body.classList.toggle("madic-sidebar-compact", compact);
       root.dataset.madicAppearance =
@@ -2245,12 +2248,14 @@
         )[i];
         b.setAttribute("aria-pressed", String(b.dataset.themeChoice === theme));
       });
-      trigger.querySelector("svg").replaceWith(
-        choices
-          .find((b) => b.dataset.themeChoice === theme)
-          .querySelector("svg")
-          .cloneNode(true),
-      );
+      if (renderedTheme !== theme)
+        trigger.querySelector("svg").replaceWith(
+          choices
+            .find((b) => b.dataset.themeChoice === theme)
+            .querySelector("svg")
+            .cloneNode(true),
+        );
+      renderedTheme = theme;
       document
         .querySelectorAll(
           "#madicPhoneDrawer nav a, #madicPhoneDrawer nav summary",
@@ -2280,7 +2285,7 @@
       }),
     );
     document.addEventListener("click", (e) => {
-      if (!tools.contains(e.target)) open(false);
+      if (!e.composedPath().includes(tools)) open(false);
     });
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape" && !menu.hidden) {
@@ -2289,7 +2294,9 @@
       }
     });
     media.addEventListener("change", render);
-    new MutationObserver(render).observe(root, {
+    new MutationObserver(() => {
+      if (root.lang !== renderedLanguage) render();
+    }).observe(root, {
       attributes: true,
       attributeFilter: ["lang"],
     });
