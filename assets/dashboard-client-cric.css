@@ -4187,3 +4187,15 @@ body[data-page="cric-client-dashboard"]
     margin: 0 !important;
   }
 }
+
+/* Uniform selected navigation, desktop and mobile. */
+html[lang] body[data-page="cric-client-dashboard"] main.madic-app-layout > aside#madicClientDrawer.madic-side-nav .madic-side-links .madic-nav-entry > a:is(.madic-nav-active, [aria-current="page"]) {
+  transition: none !important;
+  background: #357f96 !important;
+  color: #fff !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
+html[lang] body[data-page="cric-client-dashboard"] main.madic-app-layout > aside#madicClientDrawer.madic-side-nav .madic-side-links .madic-nav-entry > a:is(.madic-nav-active, [aria-current="page"])::before,
+html[lang] body[data-page="cric-client-dashboard"] main.madic-app-layout > aside#madicClientDrawer.madic-side-nav .madic-side-links .madic-nav-entry > a:is(.madic-nav-active, [aria-current="page"])::after { content: none !important; display: none !important; }
+html[lang] body[data-page="cric-client-dashboard"] main.madic-app-layout > aside#madicClientDrawer.madic-side-nav .madic-side-links .madic-nav-entry > a:is(.madic-nav-active, [aria-current="page"]) .madic-nav-icon { color: inherit !important; stroke: currentColor !important; }
