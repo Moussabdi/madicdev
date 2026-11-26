@@ -1,3 +1,9 @@
+@layer madicSelection {
+#madicPhoneDrawer nav :is(a,summary) {background:transparent!important;border-color:transparent!important;box-shadow:none!important;filter:none!important;color:#fff!important;}
+#madicPhoneDrawer nav :is(a,summary):is([aria-current="page"],.active,.is-active,[aria-selected="true"]) {background:var(--madic-accent)!important;}
+#madicPhoneDrawer nav :is(a,summary)::before,#madicPhoneDrawer nav :is(a,summary)::after {content:none!important;display:none!important;}
+#madicPhoneDrawer nav :is(a,summary) :is(span,svg) {background:transparent!important;box-shadow:none!important;color:inherit!important;}
+}
 :root {
   font-family:
     Inter,

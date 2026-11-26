@@ -1822,7 +1822,7 @@
       } catch {}
     };
     let compact = read("madic-cric-sidebar", "expanded") === "collapsed",
-      theme = read("madic-cric-theme", "light");
+      theme = read("madic-admin-theme", "light");
     if (!["system", "light", "dark"].includes(theme)) theme = "light";
     const render = () => {
       const en = root.lang.startsWith("en");
@@ -1876,7 +1876,7 @@
     choices.forEach((b) =>
       b.addEventListener("click", () => {
         theme = b.dataset.themeChoice;
-        save("madic-cric-theme", theme);
+        save("madic-admin-theme", theme);
         render();
         open(false);
         trigger.focus();
@@ -1897,9 +1897,9 @@
       attributeFilter: ["lang"],
     });
     window.addEventListener("storage", (e) => {
-      if (["madic-cric-sidebar", "madic-cric-theme"].includes(e.key)) {
+      if (["madic-cric-sidebar", "madic-admin-theme"].includes(e.key)) {
         compact = read("madic-cric-sidebar", "expanded") === "collapsed";
-        theme = read("madic-cric-theme", "light");
+        theme = read("madic-admin-theme", "light");
         if (!["system", "light", "dark"].includes(theme)) theme = "light";
         render();
       }
