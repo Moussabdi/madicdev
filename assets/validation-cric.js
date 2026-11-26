@@ -416,7 +416,7 @@
           .getElementById("cricSignup")
           .addEventListener("submit", (e) => e.preventDefault());
       }
-      if (page === "cric-approval") {
+      if (page === "cric-approval" || page === "validation-cric") {
         (async () => {
           const {
             data: { user },

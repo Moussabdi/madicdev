@@ -6886,3 +6886,29 @@ html body.madic-unified[data-page="administration"] .madic-header-search svg {st
 html body.madic-unified[data-page="administration"] #madicPhoneDrawer .madic-cric-new-nav > a {border:0!important;}
 html body.madic-unified[data-page="administration"] .madic-phone-shade {background:rgba(15,23,42,.6)!important;}
 html body.madic-unified[data-page="administration"] .madic-header-profile-menu a {color:var(--madic-text)!important;}
+
+html body.madic-unified[data-page="administration"]:not(#madic-unused-a):not(#madic-unused-b):not(#madic-unused-c):not(#madic-unused-d) .madic-header-search button { background:var(--madic-accent) !important;color:#fff !important;border-color:transparent !important;box-shadow:none !important; }
+
+html body.madic-unified[data-page="administration"]:not(#madic-unused-a):not(#madic-unused-b):not(#madic-unused-c):not(#madic-unused-d) .madic-unified-content :is(.panel,.metric,.madic-cric-card,.madic-cric-table,.madic-admin-section-group) { background:var(--madic-surface) !important;color:var(--madic-text) !important;border-color:var(--madic-border) !important;box-shadow:none !important; }
+
+html body.madic-unified[data-page="administration"]:not(#madic-unused-a):not(#madic-unused-b):not(#madic-unused-c):not(#madic-unused-d) .madic-unified-content :is(h1,h2,h3,h4,strong,td,th,label) { color:var(--madic-text) !important; }
+
+html body.madic-unified[data-page="administration"]:not(#madic-unused-a):not(#madic-unused-b):not(#madic-unused-c):not(#madic-unused-d) .madic-unified-content :is(.muted,.metric span,small,.hint) { color:var(--madic-text-muted) !important; }
+
+html body.madic-unified[data-page="administration"]:not(#madic-unused-a):not(#madic-unused-b):not(#madic-unused-c):not(#madic-unused-d) .madic-header-search input { background:var(--madic-surface) !important;color:var(--madic-text) !important; }
+
+html body.madic-unified[data-page="administration"]:not(#madic-unused-a):not(#madic-unused-b):not(#madic-unused-c):not(#madic-unused-d) .madic-header-search svg { stroke:var(--madic-text) !important; }
+
+html body.madic-unified[data-page="administration"]:not(#madic-unused-a):not(#madic-unused-b):not(#madic-unused-c):not(#madic-unused-d) #madicPhoneDrawer .madic-cric-new-nav a { background:transparent !important;color:#fff !important;box-shadow:none !important;border-color:transparent !important; }
+
+html body.madic-unified[data-page="administration"]:not(#madic-unused-a):not(#madic-unused-b):not(#madic-unused-c):not(#madic-unused-d) #madicPhoneDrawer .madic-cric-new-nav a:is(.active,.is-active,[aria-current="page"],[aria-current="true"],[aria-selected="true"]) { background:var(--madic-accent) !important;color:#fff !important;box-shadow:none !important;border-color:transparent !important; }
+
+html body.madic-unified[data-page="administration"]:not(#madic-unused-a):not(#madic-unused-b):not(#madic-unused-c):not(#madic-unused-d) [data-admin-section] { background:var(--madic-surface) !important;color:var(--madic-text) !important;border-color:var(--madic-border) !important;box-shadow:none !important; }
+
+html body.madic-unified[data-page="administration"]:not(#madic-unused-a):not(#madic-unused-b):not(#madic-unused-c):not(#madic-unused-d) [data-admin-section]:is(.active,.is-active,[aria-current="page"],[aria-current="true"],[aria-selected="true"]) { background:var(--madic-accent) !important;color:#fff !important;border-color:transparent !important;box-shadow:none !important; }
+
+html body.madic-unified[data-page="administration"]:not(#madic-unused-a):not(#madic-unused-b):not(#madic-unused-c):not(#madic-unused-d) [data-admin-section]::before { content:none !important; }
+
+html body.madic-unified[data-page="administration"]:not(#madic-unused-a):not(#madic-unused-b):not(#madic-unused-c):not(#madic-unused-d) [data-admin-section]::after { content:none !important; }
+
+html body.madic-unified[data-page="administration"]:not(#madic-unused-a):not(#madic-unused-b):not(#madic-unused-c):not(#madic-unused-d) #madicPhoneDrawer { background:var(--madic-sidebar) !important;box-shadow:none !important; }

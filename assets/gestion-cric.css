@@ -6672,3 +6672,377 @@ html[data-madic-appearance="dark"]
   a.active {
   background: #246486 !important;
 }
+
+/* MADIC palette simplifiee */
+:root {
+  color-scheme: light;
+  --madic-bg: #f1f5f9;
+  --madic-surface: #ffffff;
+  --madic-sidebar: #142740;
+  --madic-text: #18324f;
+  --madic-text-muted: #52647a;
+  --madic-border: #dce4ee;
+  --madic-accent: #287c98;
+}
+:root[data-madic-appearance="dark"] {
+  color-scheme: dark;
+  --madic-bg: #111827;
+  --madic-surface: #1f2937;
+  --madic-sidebar: #0f172a;
+  --madic-text: #f1f5f9;
+  --madic-text-muted: #aab8ca;
+  --madic-border: #334155;
+}
+html
+  body.madic-unified[data-page="gestion-cric"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c),
+html
+  body.madic-unified[data-page="gestion-cric"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  .madic-unified-layout,
+html
+  body.madic-unified[data-page="gestion-cric"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  .madic-unified-content,
+html
+  body.madic-unified[data-page="gestion-cric"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  .madic-admin-home {
+  background: var(--madic-bg) !important;
+  color: var(--madic-text) !important;
+}
+html
+  body.madic-unified[data-page="gestion-cric"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  .madic-cric-standard-header,
+html
+  body.madic-unified[data-page="gestion-cric"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  .madic-unified-content
+  > footer.madic-footer,
+html
+  body.madic-unified[data-page="gestion-cric"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  .madic-unified-content
+  .madic-home-card,
+html
+  body.madic-unified[data-page="gestion-cric"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  .madic-header-profile-menu,
+html
+  body.madic-unified[data-page="gestion-cric"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  .madic-header-search,
+html
+  body.madic-unified[data-page="gestion-cric"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  input,
+html
+  body.madic-unified[data-page="gestion-cric"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  select,
+html
+  body.madic-unified[data-page="gestion-cric"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  textarea,
+html
+  body.madic-unified[data-page="gestion-cric"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  table,
+html
+  body.madic-unified[data-page="gestion-cric"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  th,
+html
+  body.madic-unified[data-page="gestion-cric"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  td {
+  background: var(--madic-surface) !important;
+  color: var(--madic-text) !important;
+  border-color: var(--madic-border) !important;
+  box-shadow: none !important;
+}
+html
+  body.madic-unified[data-page="gestion-cric"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  .madic-unified-content
+  :is(h1, h2, h3, strong, .madic-footer-name),
+html
+  body.madic-unified[data-page="gestion-cric"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  .madic-cric-standard-header
+  :is(.brand, summary, .madic-header-profile-copy, .madic-top-notification),
+html
+  body.madic-unified[data-page="gestion-cric"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  .madic-cric-standard-header
+  .madic-header-profile-copy
+  strong {
+  color: var(--madic-text) !important;
+}
+html
+  body.madic-unified[data-page="gestion-cric"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  .madic-unified-content
+  :is(
+    .muted,
+    .madic-eyebrow,
+    .madic-footer-desc,
+    .madic-footer-subtitle,
+    .madic-footer-bottom
+  ),
+html
+  body.madic-unified[data-page="gestion-cric"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  .madic-cric-standard-header
+  .madic-header-profile-copy
+  small,
+html
+  body.madic-unified[data-page="gestion-cric"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  input::placeholder {
+  color: var(--madic-text-muted) !important;
+}
+html
+  body.madic-unified[data-page="gestion-cric"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  #madicPhoneDrawer,
+html
+  body.madic-unified[data-page="gestion-cric"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  #madicPhoneDrawer
+  #madicThemeOptions {
+  background: var(--madic-sidebar) !important;
+  color: #ffffff !important;
+  border-color: var(--madic-border) !important;
+  box-shadow: none !important;
+}
+html
+  body.madic-unified[data-page="gestion-cric"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  #madicPhoneDrawer
+  :is(
+    .madic-unified-brand,
+    .madic-unified-brand span,
+    .madic-unified-brand small,
+    .madic-unified-caption,
+    .madic-unified-foot
+  ) {
+  color: #ffffff !important;
+}
+html
+  body.madic-unified[data-page="gestion-cric"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  #madicPhoneDrawer
+  .madic-cric-new-nav
+  > a,
+html
+  body.madic-unified[data-page="gestion-cric"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  #madicPhoneDrawer
+  .madic-cric-new-nav
+  > a:hover {
+  background: transparent !important;
+  color: #ffffff !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
+html
+  body.madic-unified[data-page="gestion-cric"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  #madicPhoneDrawer
+  .madic-cric-new-nav
+  > a[aria-current="page"],
+html
+  body.madic-unified[data-page="gestion-cric"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  #madicPhoneDrawer
+  .madic-cric-new-nav
+  > a[aria-current="page"]:hover {
+  background: var(--madic-accent) !important;
+  color: #ffffff !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
+html
+  body.madic-unified[data-page="gestion-cric"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  #madicPhoneDrawer
+  .madic-cric-new-nav
+  > a::before,
+html
+  body.madic-unified[data-page="gestion-cric"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  #madicPhoneDrawer
+  .madic-cric-new-nav
+  > a::after {
+  content: none !important;
+  box-shadow: none !important;
+  background: none !important;
+}
+html
+  body.madic-unified[data-page="gestion-cric"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  #madicPhoneDrawer
+  .madic-cric-new-nav
+  > a
+  :is(span, svg) {
+  color: inherit !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+html
+  body.madic-unified[data-page="gestion-cric"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  .madic-unified-content
+  .madic-home-link,
+html
+  body.madic-unified[data-page="gestion-cric"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  .madic-cric-standard-header
+  .madic-lang-controls
+  button[aria-pressed="true"] {
+  background: var(--madic-accent) !important;
+  color: #ffffff !important;
+  border-color: var(--madic-accent) !important;
+  box-shadow: none !important;
+}
+html
+  body.madic-unified[data-page="gestion-cric"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  .madic-cric-standard-header
+  .madic-lang-controls
+  button:not([aria-pressed="true"]),
+html
+  body.madic-unified[data-page="gestion-cric"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  .madic-cric-standard-header
+  .madic-header-profile-avatar,
+html
+  body.madic-unified[data-page="gestion-cric"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  .madic-cric-standard-header
+  .madic-phone-trigger {
+  background: var(--madic-surface) !important;
+  color: var(--madic-text) !important;
+  border-color: var(--madic-border) !important;
+}
+html
+  body.madic-unified[data-page="gestion-cric"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  .madic-cric-standard-header
+  .brand
+  span,
+html
+  body.madic-unified[data-page="gestion-cric"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  .madic-header-search
+  button,
+html
+  body.madic-unified[data-page="gestion-cric"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  .madic-unified-content
+  footer.madic-footer
+  a {
+  color: var(--madic-accent) !important;
+}
+html
+  body.madic-unified[data-page="gestion-cric"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  #madicPhoneDrawer
+  .madic-display-tools
+  button {
+  background: transparent !important;
+  color: #ffffff !important;
+  border-color: var(--madic-border) !important;
+  box-shadow: none !important;
+}
+html
+  body.madic-unified[data-page="gestion-cric"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  #madicPhoneDrawer
+  .madic-display-tools
+  button[aria-pressed="true"],
+html
+  body.madic-unified[data-page="gestion-cric"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  #madicPhoneDrawer
+  .madic-display-tools
+  button:hover {
+  background: var(--madic-accent) !important;
+  color: #ffffff !important;
+}
+
+html body.madic-unified[data-page="gestion-cric"] .madic-footer-bottom {border-color:var(--madic-border)!important;}
+html body.madic-unified[data-page="gestion-cric"] .madic-header-search svg {stroke:var(--madic-text)!important;fill:none!important;}
+html body.madic-unified[data-page="gestion-cric"] #madicPhoneDrawer .madic-cric-new-nav > a {border:0!important;}
+html body.madic-unified[data-page="gestion-cric"] .madic-phone-shade {background:rgba(15,23,42,.6)!important;}
+html body.madic-unified[data-page="gestion-cric"] .madic-header-profile-menu a {color:var(--madic-text)!important;}
+
+html body.madic-unified[data-page="gestion-cric"]:not(#madic-unused-a):not(#madic-unused-b):not(#madic-unused-c):not(#madic-unused-d) .madic-header-search button { background:var(--madic-accent) !important;color:#fff !important;border-color:transparent !important;box-shadow:none !important; }
+
+html body.madic-unified[data-page="gestion-cric"]:not(#madic-unused-a):not(#madic-unused-b):not(#madic-unused-c):not(#madic-unused-d) .madic-unified-content :is(.panel,.metric,.madic-cric-card,.madic-cric-table,.madic-admin-section-group) { background:var(--madic-surface) !important;color:var(--madic-text) !important;border-color:var(--madic-border) !important;box-shadow:none !important; }
+
+html body.madic-unified[data-page="gestion-cric"]:not(#madic-unused-a):not(#madic-unused-b):not(#madic-unused-c):not(#madic-unused-d) .madic-unified-content :is(h1,h2,h3,h4,strong,td,th,label) { color:var(--madic-text) !important; }
+
+html body.madic-unified[data-page="gestion-cric"]:not(#madic-unused-a):not(#madic-unused-b):not(#madic-unused-c):not(#madic-unused-d) .madic-unified-content :is(.muted,.metric span,small,.hint) { color:var(--madic-text-muted) !important; }
+
+html body.madic-unified[data-page="gestion-cric"]:not(#madic-unused-a):not(#madic-unused-b):not(#madic-unused-c):not(#madic-unused-d) .madic-header-search input { background:var(--madic-surface) !important;color:var(--madic-text) !important; }
+
+html body.madic-unified[data-page="gestion-cric"]:not(#madic-unused-a):not(#madic-unused-b):not(#madic-unused-c):not(#madic-unused-d) .madic-header-search svg { stroke:var(--madic-text) !important; }
+
+html body.madic-unified[data-page="gestion-cric"]:not(#madic-unused-a):not(#madic-unused-b):not(#madic-unused-c):not(#madic-unused-d) #madicPhoneDrawer .madic-cric-new-nav a { background:transparent !important;color:#fff !important;box-shadow:none !important;border-color:transparent !important; }
+
+html body.madic-unified[data-page="gestion-cric"]:not(#madic-unused-a):not(#madic-unused-b):not(#madic-unused-c):not(#madic-unused-d) #madicPhoneDrawer .madic-cric-new-nav a:is(.active,.is-active,[aria-current="page"],[aria-current="true"],[aria-selected="true"]) { background:var(--madic-accent) !important;color:#fff !important;box-shadow:none !important;border-color:transparent !important; }
+
+html body.madic-unified[data-page="gestion-cric"]:not(#madic-unused-a):not(#madic-unused-b):not(#madic-unused-c):not(#madic-unused-d) [data-admin-section] { background:var(--madic-surface) !important;color:var(--madic-text) !important;border-color:var(--madic-border) !important;box-shadow:none !important; }
+
+html body.madic-unified[data-page="gestion-cric"]:not(#madic-unused-a):not(#madic-unused-b):not(#madic-unused-c):not(#madic-unused-d) [data-admin-section]:is(.active,.is-active,[aria-current="page"],[aria-current="true"],[aria-selected="true"]) { background:var(--madic-accent) !important;color:#fff !important;border-color:transparent !important;box-shadow:none !important; }
+
+html body.madic-unified[data-page="gestion-cric"]:not(#madic-unused-a):not(#madic-unused-b):not(#madic-unused-c):not(#madic-unused-d) [data-admin-section]::before { content:none !important; }
+
+html body.madic-unified[data-page="gestion-cric"]:not(#madic-unused-a):not(#madic-unused-b):not(#madic-unused-c):not(#madic-unused-d) [data-admin-section]::after { content:none !important; }
+
+html body.madic-unified[data-page="gestion-cric"]:not(#madic-unused-a):not(#madic-unused-b):not(#madic-unused-c):not(#madic-unused-d) #madicPhoneDrawer { background:var(--madic-sidebar) !important;box-shadow:none !important; }
