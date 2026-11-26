@@ -4100,21 +4100,15 @@ body[data-page="cric-client-dashboard"]
   }
 }
 
-/* Uniform active navigation, all viewport widths. */
-html[lang] body[data-page="cric-client-dashboard"] main.madic-app-layout > aside.madic-side-nav .madic-side-links .madic-nav-entry > a:is(.madic-nav-active, [aria-current="page"]):not(#madic-unused-specificity) {
+
+/* Uniform active navigation at every viewport width. */
+html[lang] body[data-page="cric-client-dashboard"] #madicClientDrawer .madic-side-links .madic-nav-entry > a:is(.madic-nav-active, [aria-current="page"]) {
   background: #357f96 !important;
   border: 1px solid transparent !important;
   box-shadow: none !important;
   color: #fff !important;
 }
-html[lang] body[data-page="cric-client-dashboard"] main.madic-app-layout > aside.madic-side-nav .madic-side-links .madic-nav-entry > a:is(.madic-nav-active, [aria-current="page"])::before,
-html[lang] body[data-page="cric-client-dashboard"] main.madic-app-layout > aside.madic-side-nav .madic-side-links .madic-nav-entry > a:is(.madic-nav-active, [aria-current="page"])::after {
+html[lang] body[data-page="cric-client-dashboard"] #madicClientDrawer .madic-side-links .madic-nav-entry > a:is(.madic-nav-active, [aria-current="page"])::before,
+html[lang] body[data-page="cric-client-dashboard"] #madicClientDrawer .madic-side-links .madic-nav-entry > a:is(.madic-nav-active, [aria-current="page"])::after {
   content: none !important;
-  box-shadow: none !important;
 }
-
-/* Active menu: identical solid fill at every viewport width. */
-html[lang] body[data-page="cric-client-dashboard"][data-madic-view="news"] .madic-side-nav .madic-side-links .madic-nav-entry > a:is(.madic-nav-active,[aria-current="page"]):not(#madic-unused-specificity) { background: #357f96 !important; background-image: none !important; border-color: transparent !important; box-shadow: none !important; color: #fff !important; }
-html[lang] body[data-page="cric-client-dashboard"][data-madic-view="news"] .madic-side-nav .madic-side-links .madic-nav-entry > a:is(.madic-nav-active,[aria-current="page"]):not(#madic-unused-specificity)::before,
-html[lang] body[data-page="cric-client-dashboard"][data-madic-view="news"] .madic-side-nav .madic-side-links .madic-nav-entry > a:is(.madic-nav-active,[aria-current="page"]):not(#madic-unused-specificity)::after { content: none !important; display: none !important; }
-html[lang] body[data-page="cric-client-dashboard"][data-madic-view="news"] .madic-side-nav .madic-side-links .madic-nav-entry > a:is(.madic-nav-active,[aria-current="page"]):not(#madic-unused-specificity) .madic-nav-icon { color: inherit !important; stroke: currentColor !important; }
