@@ -2192,3 +2192,117 @@
     document.addEventListener("DOMContentLoaded", init, { once: true });
   else init();
 })();
+
+/* MADIC display preferences - UI only */
+(() => {
+  const init = () => {
+    const root = document.documentElement,
+      body = document.body,
+      tools = document.querySelector(".madic-display-tools");
+    if (!tools) return;
+    const collapse = tools.querySelector(".madic-collapse"),
+      trigger = tools.querySelector(".madic-theme-trigger"),
+      menu = tools.querySelector("#madicThemeOptions"),
+      choices = [...menu.querySelectorAll("button")],
+      media = matchMedia("(prefers-color-scheme: dark)");
+    const read = (k, d) => {
+      try {
+        return localStorage.getItem(k) || d;
+      } catch {
+        return d;
+      }
+    };
+    const save = (k, v) => {
+      try {
+        localStorage.setItem(k, v);
+      } catch {}
+    };
+    let compact = read("madic-cric-sidebar", "expanded") === "collapsed",
+      theme = read("madic-cric-theme", "light");
+    if (!["system", "light", "dark"].includes(theme)) theme = "light";
+    const render = () => {
+      const en = root.lang.startsWith("en");
+      body.classList.toggle("madic-sidebar-compact", compact);
+      root.dataset.madicAppearance =
+        theme === "system" ? (media.matches ? "dark" : "light") : theme;
+      const label = compact
+        ? en
+          ? "Expand"
+          : "Développer"
+        : en
+          ? "Collapse"
+          : "Réduire";
+      collapse.querySelector("span").textContent = label;
+      collapse.title = label;
+      collapse.setAttribute("aria-label", label);
+      collapse.setAttribute("aria-expanded", String(!compact));
+      trigger.title = en ? "Appearance" : "Apparence";
+      trigger.setAttribute("aria-label", trigger.title);
+      choices.forEach((b, i) => {
+        b.querySelector("span").textContent = (
+          en ? ["System", "Light", "Dark"] : ["Système", "Clair", "Sombre"]
+        )[i];
+        b.setAttribute("aria-pressed", String(b.dataset.themeChoice === theme));
+      });
+      trigger.querySelector("svg").replaceWith(
+        choices
+          .find((b) => b.dataset.themeChoice === theme)
+          .querySelector("svg")
+          .cloneNode(true),
+      );
+      document
+        .querySelectorAll(
+          "#madicPhoneDrawer nav a, #madicPhoneDrawer nav summary",
+        )
+        .forEach((a) => {
+          a.title = a.textContent.trim();
+          a.setAttribute("aria-label", a.title);
+        });
+    };
+    const open = (v) => {
+      menu.hidden = !v;
+      trigger.setAttribute("aria-expanded", String(v));
+    };
+    collapse.addEventListener("click", () => {
+      compact = !compact;
+      save("madic-cric-sidebar", compact ? "collapsed" : "expanded");
+      render();
+    });
+    trigger.addEventListener("click", () => open(menu.hidden));
+    choices.forEach((b) =>
+      b.addEventListener("click", () => {
+        theme = b.dataset.themeChoice;
+        save("madic-cric-theme", theme);
+        render();
+        open(false);
+        trigger.focus();
+      }),
+    );
+    document.addEventListener("click", (e) => {
+      if (!tools.contains(e.target)) open(false);
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && !menu.hidden) {
+        open(false);
+        trigger.focus();
+      }
+    });
+    media.addEventListener("change", render);
+    new MutationObserver(render).observe(root, {
+      attributes: true,
+      attributeFilter: ["lang"],
+    });
+    window.addEventListener("storage", (e) => {
+      if (["madic-cric-sidebar", "madic-cric-theme"].includes(e.key)) {
+        compact = read("madic-cric-sidebar", "expanded") === "collapsed";
+        theme = read("madic-cric-theme", "light");
+        if (!["system", "light", "dark"].includes(theme)) theme = "light";
+        render();
+      }
+    });
+    render();
+  };
+  if (document.readyState === "loading")
+    document.addEventListener("DOMContentLoaded", init, { once: true });
+  else init();
+})();
