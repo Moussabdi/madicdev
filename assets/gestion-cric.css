@@ -450,8 +450,8 @@ body.madic-unified:not([data-page="cric-dashboard"]) {
   --dh-card: #fff;
   --dh-line: #d9e5f1;
   --dh-text: #143453;
-  --madic-bg: #f1f6fc;
-  --madic-surface: #fff;
+
+
   --madic-line: #d9e5f1;
   --madic-ink: #143453;
   --madic-muted: #526b83;
@@ -1054,8 +1054,8 @@ body.madic-unified[data-page="gestion-dossiers-cric"]
 /* Source: madic-datahubz-modules(20261109-013945).css */
 /* MADIC DataHubz v15 - uniformisation visuelle; aucune logique metier */
 body.madic-unified {
-  --madic-bg: #071626;
-  --madic-surface: #10263b;
+
+
   --madic-line: #29475e;
   --madic-ink: #e8f3fa;
   --madic-muted: #a5b7cc;
