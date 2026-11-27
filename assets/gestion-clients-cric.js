@@ -272,9 +272,7 @@
           : "Accès du client au portail révoqué.",
       );
     } else {
-      msg(
-        "Espace chargé. Les données sont soumises aux autorisations Supabase.",
-      );
+      msg("");
     }
     if (page === "clients") {
       $("search")?.addEventListener("input", renderClients);

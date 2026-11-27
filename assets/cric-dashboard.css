@@ -7678,3 +7678,19 @@ html
 }
 
 html[data-madic-theme="dark"] body #madicDashboardSummary .madic-v2-stat-icon img {filter:brightness(0) invert(1)!important;opacity:1!important;}
+
+/* MADIC footer: full bilingual labels */
+@layer madicPalette {
+ body footer.madic-footer .madic-footer-right {display:flex!important;flex-wrap:wrap!important;min-width:0!important;max-width:100%!important;gap:12px 20px!important;}
+ body footer.madic-footer .madic-footer-right a {width:auto!important;max-width:none!important;white-space:normal!important;overflow:visible!important;text-overflow:clip!important;flex:0 0 auto!important;color:var(--madic-text)!important;}
+}
+
+@layer madicPalette {
+ body .madic-service-list .madic-service-workflow-block {background:var(--madic-surface)!important;color:var(--madic-text)!important;border-color:var(--madic-border)!important;box-shadow:none!important;}
+ body .madic-service-list .madic-service-workflow-block :is(h3,h4,strong,p) {color:var(--madic-text)!important;}
+ body .madic-service-list .madic-service-workflow-block .madic-service-workflow-note {color:var(--madic-text-muted)!important;}
+ body .madic-service-list .madic-service-workflow-block a {color:var(--madic-text)!important;text-decoration:underline!important;}
+ body #cricReminderHeading .madic-heroicon {filter:none!important;}
+ :root[data-madic-theme="dark"] body #cricReminderHeading .madic-heroicon {filter:brightness(0) invert(1)!important;}
+ body .madic-service-actions button {background:var(--madic-accent)!important;color:white!important;}
+}

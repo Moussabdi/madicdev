@@ -943,8 +943,8 @@
           return { available, perClient };
         }
 
-        async function load() {
-          if (busy || !spaceId || document.hidden) return;
+        async function load(automatic = false) {
+          if (busy || !spaceId || document.hidden || (automatic && list.querySelector("details[open]"))) return;
           busy = true;
           refresh.disabled = true;
           try {
@@ -953,6 +953,7 @@
               { p_space_id: spaceId },
             );
             if (error) throw error;
+            if (automatic && list.querySelector("details[open]")) return;
             list.replaceChildren();
             const requests = data || [];
             let appointmentData = null,
@@ -1323,9 +1324,11 @@
           console.warn("MADIC services:", err.message);
         }
         window.setInterval(() => {
-          if (!document.hidden) void load();
+          if (!document.hidden && !list.querySelector("details[open]")) void load(true);
         }, 15000);
-        window.addEventListener("focus", () => void load());
+        window.addEventListener("focus", () => {
+          if (!list.querySelector("details[open]")) void load(true);
+        });
       }
       const journey = $("madicJourneyPanel");
       if (journey) {

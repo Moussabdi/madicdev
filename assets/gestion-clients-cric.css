@@ -9288,3 +9288,9 @@ html
  html body.madic-unified[data-page="gestion-clients-cric"]:not(.madic-sidebar-compact) .madic-unified-layout {grid-template-columns:232px minmax(0,1fr)!important;}
  html body.madic-unified[data-page="gestion-clients-cric"]:not(.madic-sidebar-compact) #madicPhoneDrawer:not(#madic-unused-a):not(#madic-unused-b):not(#madic-unused-c):not(#madic-unused-d):not(#madic-unused-e):not(#madic-unused-f) {width:232px!important;min-width:232px!important;max-width:232px!important;}
 }
+
+/* MADIC footer: full bilingual labels */
+@layer madicPalette {
+ body footer.madic-footer .madic-footer-right {display:flex!important;flex-wrap:wrap!important;min-width:0!important;max-width:100%!important;gap:12px 20px!important;}
+ body footer.madic-footer .madic-footer-right a {width:auto!important;max-width:none!important;white-space:normal!important;overflow:visible!important;text-overflow:clip!important;flex:0 0 auto!important;color:var(--madic-text)!important;}
+}
