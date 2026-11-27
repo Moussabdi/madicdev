@@ -1,3 +1,8 @@
+@layer madicCompactAppearance {
+@media(max-width:900px){
+html body.madic-unified[data-page="gestion-dossiers-cric"].madic-sidebar-compact #madicPhoneDrawer:has(#madicThemeOptions:not([hidden])){overflow:visible!important;}
+html body.madic-unified[data-page="gestion-dossiers-cric"].madic-sidebar-compact #madicPhoneDrawer #madicThemeOptions:not([hidden]){position:absolute!important;left:48px!important;right:auto!important;bottom:0!important;min-width:132px!important;max-width:calc(100vw - 90px)!important;z-index:9999!important;}
+}}
 @layer madicTargetedFix {
 @media  (max-width: 850px) {body.madic-unified .madic-cric-standard-header {
     flex-wrap: wrap !important;
@@ -9912,7 +9917,7 @@ html
  html body.madic-unified[data-page="gestion-dossiers-cric"].madic-sidebar-compact #madicPhoneDrawer .madic-display-tools {flex-direction:column!important;align-items:center!important;}
  html body.madic-unified[data-page="gestion-dossiers-cric"].madic-sidebar-compact #madicPhoneDrawer .madic-theme-control {margin:0!important;}
  html body.madic-unified[data-page="gestion-dossiers-cric"].madic-sidebar-compact #madicPhoneDrawer .madic-collapse svg {transform:scaleX(-1);}
- html body.madic-unified[data-page="gestion-dossiers-cric"].madic-sidebar-compact #madicPhoneDrawer:not(#madic-unused-a):not(#madic-unused-b):not(#madic-unused-c):not(#madic-unused-d):not(#madic-unused-e):has(#madicThemeOptions:not([hidden])) {width:220px!important;max-width:220px!important;}
+
  html body.madic-unified[data-page="gestion-dossiers-cric"].madic-sidebar-compact #madicPhoneDrawer #madicThemeOptions {left:0!important;right:auto!important;}
  html body.madic-unified[data-page="gestion-dossiers-cric"].madic-sidebar-compact #madicPhoneDrawer .madic-phone-close {right:8px!important;}
 }
