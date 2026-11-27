@@ -1,8 +1,13 @@
 @layer madicCompactAppearance {
-@media(max-width:900px){
-html body.madic-unified[data-page="cric-dashboard"].madic-sidebar-compact #madicPhoneDrawer:has(#madicThemeOptions:not([hidden])){overflow:visible!important;}
-html body.madic-unified[data-page="cric-dashboard"].madic-sidebar-compact #madicPhoneDrawer #madicThemeOptions:not([hidden]){position:absolute!important;left:48px!important;right:auto!important;bottom:0!important;min-width:132px!important;max-width:calc(100vw - 90px)!important;z-index:9999!important;}
-}}
+@media (max-width:900px) {
+html body.madic-unified[data-page="cric-dashboard"].madic-sidebar-compact #madicPhoneDrawer #madicThemeOptions:popover-open {
+ position:fixed!important; inset:auto!important; left:var(--madic-popup-x)!important; top:var(--madic-popup-y)!important;
+ margin:0!important; width:156px!important; min-width:0!important; max-width:calc(100vw - 90px)!important;
+ max-height:calc(100dvh - 16px)!important; overflow-y:auto!important; box-sizing:border-box!important;
+}
+html body.madic-unified[data-page="cric-dashboard"].madic-sidebar-compact #madicPhoneDrawer #madicThemeOptions::backdrop {background:transparent!important;pointer-events:none!important;}
+}
+}
 @layer madicTargetedFix {
 
  body .madic-service-workflow-block .madic-service-state-line > span:first-child:not(.madic-service-state) {color:var(--madic-text-muted)!important;opacity:1!important;}
