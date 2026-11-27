@@ -1611,6 +1611,11 @@ document.getElementById("cricLogout")?.addEventListener("click", async () => {
     if (observer) observer.disconnect();
     const nextLang = lang === "en" ? "en-CA" : "fr-CA";
     if (document.documentElement.lang !== nextLang) document.documentElement.lang = nextLang;
+    const pageTitle = document.querySelector("title[data-fr][data-en]");
+    if (pageTitle)
+      document.title = pageTitle.getAttribute(
+        lang === "en" ? "data-en" : "data-fr",
+      );
     document
       .querySelectorAll(".madic-cric-standard-header, .madic-unified-sidebar")
       .forEach((shell) => {
