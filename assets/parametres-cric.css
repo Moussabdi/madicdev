@@ -1,3 +1,14 @@
+@layer madicNotificationPalette {
+  :root[data-madic-theme="dark"] body[data-page="parametres-cric"] .madic-cric-standard-header .madic-top-notification {
+    background: var(--madic-surface) !important;
+    color: var(--madic-text) !important;
+    border-color: var(--madic-border) !important;
+    box-shadow: none !important;
+  }
+  :root[data-madic-theme="dark"] body[data-page="parametres-cric"] .madic-cric-standard-header .madic-top-notification svg {
+    color: var(--madic-text) !important;
+  }
+}
 :root {
   font-family:
     Inter,
