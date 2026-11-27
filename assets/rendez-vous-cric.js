@@ -1671,6 +1671,11 @@ window.getMadicSupabase = function () {
   function render() {
     if (observer) observer.disconnect();
     document.documentElement.lang = lang === "en" ? "en-CA" : "fr-CA";
+    const pageTitle = document.querySelector("title[data-fr][data-en]");
+    if (pageTitle)
+      document.title = pageTitle.getAttribute(
+        lang === "en" ? "data-en" : "data-fr",
+      );
     const root = document.body;
     if (!root) return;
     const walker = document.createTreeWalker(

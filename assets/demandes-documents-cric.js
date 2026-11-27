@@ -1419,6 +1419,11 @@ window.getMadicSupabase = function () {
     if (observer) observer.disconnect();
     const nextLang = lang === "en" ? "en-CA" : "fr-CA";
     if (document.documentElement.lang !== nextLang) document.documentElement.lang = nextLang;
+    const pageTitle = document.querySelector("title[data-fr][data-en]");
+    if (pageTitle)
+      document.title = pageTitle.getAttribute(
+        lang === "en" ? "data-en" : "data-fr",
+      );
     const dateField = document.getElementById("docreqDue");
     if (dateField) dateField.lang = lang === "en" ? "en-CA" : "fr-CA";
     const root = document.body;
