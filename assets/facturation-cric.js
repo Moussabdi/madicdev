@@ -1609,7 +1609,8 @@ document.getElementById("cricLogout")?.addEventListener("click", async () => {
   let scheduled = false;
   function render() {
     if (observer) observer.disconnect();
-    document.documentElement.lang = lang === "en" ? "en-CA" : "fr-CA";
+    const nextLang = lang === "en" ? "en-CA" : "fr-CA";
+    if (document.documentElement.lang !== nextLang) document.documentElement.lang = nextLang;
     document
       .querySelectorAll(".madic-cric-standard-header, .madic-unified-sidebar")
       .forEach((shell) => {
@@ -2026,7 +2027,9 @@ document.getElementById("cricLogout")?.addEventListener("click", async () => {
     let compact = read("madic-admin-sidebar", "expanded") === "collapsed",
       theme = read("madic-admin-theme", "light");
     if (!["system", "light", "dark"].includes(theme)) theme = "light";
+    let renderedLanguage, renderedTheme;
     const render = () => {
+      renderedLanguage = root.lang;
       const en = root.lang.startsWith("en");
       body.classList.toggle("madic-sidebar-compact", compact);
       root.dataset.madicAppearance =
@@ -2038,24 +2041,28 @@ document.getElementById("cricLogout")?.addEventListener("click", async () => {
         : en
           ? "Collapse"
           : "Réduire";
-      collapse.querySelector("span").textContent = label;
+      if (collapse.querySelector("span").textContent !== label) collapse.querySelector("span").textContent = label;
       collapse.title = label;
       collapse.setAttribute("aria-label", label);
       collapse.setAttribute("aria-expanded", String(!compact));
       trigger.title = en ? "Appearance" : "Apparence";
       trigger.setAttribute("aria-label", trigger.title);
       choices.forEach((b, i) => {
-        b.querySelector("span").textContent = (
+        const text = (
           en ? ["System", "Light", "Dark"] : ["Système", "Clair", "Sombre"]
         )[i];
+        if (b.querySelector("span").textContent !== text) b.querySelector("span").textContent = text;
         b.setAttribute("aria-pressed", String(b.dataset.themeChoice === theme));
       });
+      if (renderedTheme !== theme) {
       trigger.querySelector("svg").replaceWith(
         choices
           .find((b) => b.dataset.themeChoice === theme)
           .querySelector("svg")
           .cloneNode(true),
       );
+      renderedTheme = theme;
+      }
       document.querySelectorAll("#madicPhoneDrawer nav a").forEach((a) => {
         a.title = a.textContent.trim();
         a.setAttribute("aria-label", a.title);
@@ -2081,7 +2088,7 @@ document.getElementById("cricLogout")?.addEventListener("click", async () => {
       }),
     );
     document.addEventListener("click", (e) => {
-      if (!tools.contains(e.target)) open(false);
+      if (!e.composedPath().includes(tools)) open(false);
     });
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape" && !menu.hidden) {
@@ -2090,7 +2097,9 @@ document.getElementById("cricLogout")?.addEventListener("click", async () => {
       }
     });
     media.addEventListener("change", render);
-    new MutationObserver(render).observe(root, {
+    new MutationObserver(() => {
+      if (root.lang !== renderedLanguage) render();
+    }).observe(root, {
       attributes: true,
       attributeFilter: ["lang"],
     });
