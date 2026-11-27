@@ -1,538 +1,511 @@
-:root {
+@layer madicPalette {#madicPhoneDrawer nav :is(a,summary){background:transparent!important;border-color:transparent!important;box-shadow:none!important;color:white!important;}
+#madicPhoneDrawer nav :is(a,summary):is(.active,.is-active,[aria-current="page"],[aria-selected="true"]){background:var(--madic-accent)!important;}
+#madicPhoneDrawer nav :is(a,summary)::before,
+#madicPhoneDrawer nav :is(a,summary)::after{content:none!important;}
+#madicPhoneDrawer nav :is(a,summary) :is(span,svg){background:transparent!important;box-shadow:none!important;color:inherit!important;}
+#madicPhoneDrawer #madicThemeOptions{background:var(--madic-sidebar)!important;z-index:9999!important;}
+#madicPhoneDrawer #madicThemeOptions[hidden]{display:none!important;}
+#madicPhoneDrawer #madicThemeOptions button{background:transparent!important;color:white!important;border-color:var(--madic-border)!important;box-shadow:none!important;}
+#madicPhoneDrawer #madicThemeOptions button[aria-pressed="true"]{background:var(--madic-accent)!important;}
+@media(min-width:901px){body.madic-sidebar-compact #madicPhoneDrawer:has(#madicThemeOptions:not([hidden])){overflow:visible!important;}
+body.madic-sidebar-compact #madicThemeOptions{left:0!important;right:auto!important;}}}
+:root{
   font-family:
     Inter,
     system-ui,
     -apple-system,
     Segoe UI,
     sans-serif;
-  color: #17324b;
-  background: #f4f7fb;
+  color: #e9f1ff;
+  background: #07101f;
 }
-*,
-*::before,
-*::after {
+*{
   box-sizing: border-box;
 }
-body.madic-unified {
+body{
   margin: 0;
   min-height: 100vh;
-  background: #f4f7fb;
-  color: #17324b;
+  background:
+    var(--madic-surface);
 }
-body.madic-unified .madic-unified-layout {
+.brand{
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: white;
+  letter-spacing: 0.05em;
+}
+.brand span{
+  color: #48d5ec;
+}
+.toplinks{
+  display: flex;
+  gap: 18px;
+  align-items: center;
+}
+@media (max-width: 620px) {.toplinks{
+    gap: 8px;
+    font-size: 0.85rem;
+  }}
+body.madic-unified .madic-unified-layout{
   display: grid;
-  grid-template-columns: 258px minmax(0, 1fr);
+
   min-height: 100vh;
+  width: 100%;
 }
-body.madic-unified .madic-unified-sidebar {
+body.madic-unified .madic-unified-content{
+  min-width: 0;
+  max-width: 100%;
+  padding: 22px 32px 48px;
+  box-sizing: border-box;
+}
+body.madic-unified .madic-unified-layout > header{
+  border-radius: 13px;
+  background: #10283b;
+  border: 1px solid #28465a;
+  padding: 14px 20px;
+  margin-bottom: 22px;
+}
+@media (max-width: 850px) {body.madic-unified .madic-unified-layout{
+  }
+body.madic-unified .madic-unified-content{
+    padding: 15px;
+  }}
+body.madic-unified:not([data-page="alberta"]) .madic-unified-content{
+  background: #f1f6fc;
+  color: #143453;
+  padding: 20px clamp(15px, 2.5vw, 36px) 48px;
+}
+body.madic-unified:not([data-page="alberta"])
+  .madic-unified-layout
+  > header{
+  background: #fff;
+  border: 1px solid #dbe7f2;
+  border-radius: 12px;
+  box-shadow: 0 4px 14px #153a5b0a;
+  color: #173b5c;
+}
+@media (max-width: 850px) {body.madic-unified:not([data-page="alberta"]) .madic-unified-content{
+    padding: 15px;
+  }}
+body.madic-unified .madic-unified-layout{
+  grid-template-columns: 244px minmax(0, 1fr);
+}
+body.madic-unified .madic-unified-sidebar{
+  background: var(--madic-surface);
+  border-right: 1px solid #244867;
+  padding: 22px 14px;
+  gap: 19px;
+  display: flex;
+  flex-direction: column;
   position: sticky;
   top: 0;
   height: 100vh;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  padding: 25px 14px;
-  background: #10283b;
-  color: #e8f3fb;
+  box-sizing: border-box;
   overflow-y: auto;
+  z-index: 3;
 }
-body.madic-unified .madic-unified-brand {
+body.madic-unified .madic-unified-brand{
   display: flex;
   align-items: center;
-  gap: 11px;
-  padding: 7px 9px 17px;
-  border-bottom: 1px solid #355166;
-}
-body.madic-unified .madic-unified-monogram {
-  width: 42px;
-  height: 42px;
-  display: grid;
-  place-items: center;
-  border-radius: 12px;
-  background: #fff;
-  padding: 5px;
-  flex-shrink: 0;
-}
-body.madic-unified .madic-unified-monogram img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-body.madic-unified .madic-unified-brand strong {
-  display: block;
-  font-size: 14px;
-  letter-spacing: 0.04em;
-  color: #fff;
-}
-body.madic-unified .madic-unified-brand small {
-  display: block;
-  font-size: 11px;
-  color: #b6cbd9;
-  margin-top: 3px;
-}
-body.madic-unified .madic-unified-caption {
-  font-size: 11px;
-  letter-spacing: 0.14em;
-  color: #9eb8c9;
-  padding: 0 12px;
-  font-weight: 700;
-}
-body.madic-unified .madic-unified-sidebar nav {
-  display: grid;
-  gap: 4px;
-}
-body.madic-unified .madic-unified-sidebar nav a {
-  display: flex;
-  align-items: center;
-  gap: 11px;
-  padding: 11px 12px;
-  border-radius: 10px;
-  text-decoration: none;
-  color: #dceaf3;
-  font-size: 13px;
-  font-weight: 600;
-  line-height: 1.3;
-}
-body.madic-unified .madic-unified-sidebar nav a:hover,
-body.madic-unified .madic-unified-sidebar nav a[aria-current="page"] {
-  background: #25475c;
-  color: #fff;
-}
-body.madic-unified .madic-unified-sidebar nav a.madic-v2-group-start {
-  margin-top: 8px;
-}
-body.madic-unified .madic-unified-sidebar nav a span {
-  display: inline-flex;
-  width: 19px;
-  height: 19px;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-body.madic-unified .madic-unified-sidebar nav .madic-heroicon {
-  width: 19px;
-  height: 19px;
-  filter: brightness(0) invert(1);
-  opacity: 0.86;
-}
-body.madic-unified .madic-unified-foot {
-  margin-top: auto;
-  padding: 15px 12px;
-  border-top: 1px solid #355166;
-  color: #9eb8c9;
-  font-size: 11px;
-}
-body.madic-unified .madic-unified-content {
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-body.madic-unified .madic-unified-content > header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  min-height: 76px;
-  padding: 16px clamp(20px, 3vw, 48px);
-  background: #fff;
-  border-bottom: 1px solid #e1e9f0;
-  flex-wrap: wrap;
-}
-body.madic-unified .madic-unified-content > header .brand {
-  font-size: 22px;
-  font-weight: 850;
-  color: #15374e;
-  letter-spacing: 0.04em;
-  text-decoration: none;
-}
-body.madic-unified .madic-unified-content > header .brand span {
-  color: #087f8b;
-}
-body.madic-unified .madic-unified-content > header .brand small {
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  margin-left: 6px;
-}
-body.madic-unified .toplinks {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  flex-wrap: wrap;
-}
-body.madic-unified .toplinks > a {
-  color: #15546a;
-  text-decoration: none;
-  font-weight: 650;
-  font-size: 13px;
-}
-body.madic-unified .madic-header-signout {
-  background: transparent;
-  border: 0;
-  color: #15546a;
-  cursor: pointer;
-  font-weight: 650;
-  font-size: 13px;
-  padding: 7px;
-}
-body.madic-unified .madic-lang-controls {
-  display: flex;
-  gap: 4px;
-  padding: 3px;
-  border: 1px solid #d8e5ed;
-  border-radius: 9px;
-  background: #f4f8fa;
-}
-body.madic-unified .madic-lang-controls button {
-  padding: 6px 10px;
-  border: 0;
-  border-radius: 6px;
-  background: transparent;
-  color: #31576b;
-  font-weight: 750;
-  cursor: pointer;
-}
-body.madic-unified .madic-lang-controls button[aria-pressed="true"] {
-  background: #15546a;
-  color: #fff;
-}
-body.madic-unified .madic-unified-content > main {
-  width: min(100% - 48px, 1200px);
-  max-width: 1200px;
-  margin: 30px auto 50px;
-  padding: 0;
-}
-body.madic-unified .madic-unified-content > footer {
-  margin-top: auto;
-}
-body.madic-unified .madic-skip-link {
-  position: absolute;
-  top: -100px;
-  left: 12px;
-  z-index: 100;
-  background: #fff;
-  padding: 10px 14px;
-}
-body.madic-unified .madic-skip-link:focus {
-  top: 12px;
-}
-body.madic-unified .madic-unified-content a:focus-visible,
-body.madic-unified button:focus-visible {
-  outline: 3px solid #15a9ba;
-  outline-offset: 3px;
-}
-@media (max-width: 950px) {
-  body.madic-unified .madic-unified-layout {
-    grid-template-columns: 1fr;
-  }
-  body.madic-unified .madic-unified-sidebar {
-    position: static;
-    height: auto;
-    gap: 10px;
-    padding: 14px;
-  }
-  body.madic-unified .madic-unified-sidebar nav {
-    display: flex;
-    flex-wrap: wrap;
-  }
-  body.madic-unified .madic-unified-sidebar nav a {
-    padding: 9px;
-  }
-  body.madic-unified .madic-unified-foot {
-    display: none;
-  }
-}
-@media (max-width: 600px) {
-  body.madic-unified .madic-unified-content > main {
-    width: calc(100% - 28px);
-    margin: 20px auto 36px;
-  }
-  body.madic-unified .madic-unified-content > header {
-    padding: 12px 15px;
-  }
-  body.madic-unified .madic-unified-sidebar nav a {
-    font-size: 12px;
-  }
-  body.madic-unified .madic-provincial-main section {
-    padding: 17px;
-  }
-}
-
-/* MADIC provincial tool: portal dashboard design */
-.madic-provincial-main {
-  max-width: 1300px !important;
-  margin: 0 auto !important;
-  padding: 12px 0 48px !important;
-  color: inherit;
-}
-.madic-provincial-main h1 {
-  font-size: clamp(1.65rem, 3vw, 2.4rem);
-  margin: 20px 0 12px;
-}
-.madic-provincial-main > p {
-  margin: 0 0 22px;
-  color: #587187;
-}
-.madic-provincial-main section {
-  background: #fff;
-  border: 1px solid #dce6ef;
-  border-radius: 16px;
-  padding: 26px;
-  margin: 20px 0;
-  box-shadow: 0 6px 22px rgba(10, 37, 64, 0.05);
-}
-.madic-provincial-main section h2 {
-  margin-top: 0;
-  color: #163954;
-}
-.madic-provincial-main section a,
-.madic-provincial-main .back {
-  color: #087f8b;
-  font-weight: 700;
-}
-.madic-provincial-toolbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 12px;
-  padding: 14px 18px;
-  border-radius: 12px;
-  background: #10283b;
-  color: #e9f7ff;
-}
-.madic-provincial-toolbar button {
-  border: 1px solid #5c8c9d;
-  background: #183d51;
-  color: #fff;
-  border-radius: 8px;
-  padding: 7px 12px;
-  cursor: pointer;
-  margin-left: 5px;
-}
-.madic-provincial-main .back {
-  display: inline-block;
-  margin-bottom: 16px;
-}
-.madic-provincial-main > small {
-  display: block;
-  margin-top: 20px;
-  color: #5c7184;
-}
-@media (max-width: 650px) {
-  .madic-provincial-main section {
-    padding: 17px;
-  }
-  .madic-provincial-toolbar {
-    flex-wrap: wrap;
-  }
-}
-
-/* Alberta : reproduction autonome de l'en-tete du tableau de bord CRIC. */
-body.madic-unified .madic-unified-layout {
-  grid-template-columns: 244px minmax(0, 1fr);
-}
-body.madic-unified .madic-unified-sidebar {
-  background: linear-gradient(175deg, #092342, #0b3152 60%, #08213d);
-  padding: 22px 14px;
-  gap: 19px;
-}
-body.madic-unified .madic-unified-brand {
   gap: 10px;
   padding: 7px 7px 18px;
   border-bottom: 1px solid #ffffff25;
+  color: #f2fbff;
 }
-body.madic-unified .madic-unified-monogram {
+body.madic-unified .madic-unified-monogram{
+  display: grid;
+  place-items: center;
   width: 53px;
   height: 53px;
   flex: 0 0 53px;
   background: transparent;
   border-radius: 0;
-  padding: 0;
 }
-body.madic-unified .madic-unified-caption {
+body.madic-unified .madic-unified-monogram img{
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+body.madic-unified .madic-unified-brand strong{
+  display: block;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  color: #f2fbff;
+}
+body.madic-unified .madic-unified-brand small{
+  display: block;
+  color: #d5e9f6;
+  font-size: 11px;
+  margin-top: 5px;
+}
+body.madic-unified .madic-unified-caption{
   font-size: 10px;
   color: #a7c9db;
   letter-spacing: 0.18em;
   margin: 5px 12px -12px;
-  padding: 0;
 }
-body.madic-unified .madic-unified-sidebar nav {
+body.madic-unified .madic-unified-sidebar nav{
   display: flex;
   flex-direction: column;
   gap: 5px;
 }
-body.madic-unified .madic-unified-sidebar nav a {
+body.madic-unified .madic-unified-sidebar nav a{
+  display: flex;
+  align-items: center;
   gap: 12px;
   min-height: 43px;
   padding: 10px 12px;
-  border: 1px solid transparent;
-  font-size: 0.83rem;
+  box-sizing: border-box;
   border-radius: 10px;
-  color: #c8dce9;
+  font-size: 0.83rem;
+  font-weight: 600;
+  color: #c8dce9 !important;
+  text-decoration: none !important;
+  border: 1px solid transparent;
+  transition:
+    background 0.16s ease,
+    transform 0.16s ease;
 }
-body.madic-unified .madic-unified-sidebar nav a[aria-current="page"] {
+body.madic-unified .madic-unified-sidebar nav a span{
+  display: grid;
+  place-items: center;
+  flex: 0 0 23px;
+  width: 23px;
+  text-align: center;
+}
+body.madic-unified .madic-unified-sidebar nav .madic-heroicon{
+  display: block;
+  width: 21px;
+  height: 21px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  opacity: 0.85;
+}
+body.madic-unified .madic-unified-sidebar nav a.madic-v2-group-start{
+  margin-top: 12px;
+  border-top: 1px solid #294a61;
+  padding-top: 15px;
+}
+body.madic-unified .madic-unified-sidebar nav a:hover{
+  background: #194e70;
+  transform: translateX(2px);
+}
+body.madic-unified .madic-unified-sidebar nav a[aria-current="page"]{
   background: #1a6482;
+  color: #fff !important;
   border: 1px solid #62cbd5;
-  box-shadow: inset 3px 0 #81e7e5;
-  color: #fff;
+  box-shadow:
+    inset 3px 0 #81e7e5,
+    0 4px 14px #001c3038;
 }
-body.madic-unified .madic-unified-foot {
+body.madic-unified .madic-unified-sidebar nav a:focus-visible{
+  outline: 3px solid #70e4e5;
+  outline-offset: 2px;
+}
+body.madic-unified .madic-unified-foot{
+  margin-top: auto;
   border: 1px solid #35638b;
   border-radius: 12px;
+  padding: 14px 12px;
   background: #143657;
   color: #dceefe;
+  font-size: 11px;
 }
-
-body.madic-unified .madic-unified-content > main.madic-cric-reference-main {
-  width: calc(100% - 80px);
-  max-width: 1450px;
-  margin: 28px auto 52px;
-  padding: 0 !important;
-}
-body.madic-unified .madic-unified-content > footer.madic-footer {
-  background: #eef3fa;
-  color: #143453;
-}
-@media (max-width: 950px) {
-  body.madic-unified .madic-unified-layout {
-    grid-template-columns: 1fr;
+@media (max-width: 850px) {body.madic-unified .madic-unified-layout{
+    grid-template-columns: minmax(0, 1fr);
   }
-  body.madic-unified .madic-unified-sidebar {
+body.madic-unified .madic-unified-sidebar{
     position: relative;
     height: auto;
+    padding: 13px;
+    gap: 10px;
   }
-  body.madic-unified .madic-unified-sidebar nav {
+body.madic-unified .madic-unified-sidebar nav{
     flex-direction: row;
     overflow-x: auto;
+    gap: 7px;
+    padding-bottom: 5px;
   }
-  body.madic-unified .madic-unified-content > main.madic-cric-reference-main {
-    width: calc(100% - 36px);
+body.madic-unified .madic-unified-sidebar nav a{
+    white-space: nowrap;
+    min-height: 36px;
   }
-}
-
-/* Header: exact dashboard CRIC reference values, independently maintained. */
-body.madic-unified[data-page="alberta"] .madic-unified-content {
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  background: #eef3f9;
-}
-body.madic-unified[data-page="alberta"] .madic-unified-content > header {
-  width: 100%;
-  min-height: 78px;
-  margin: 0;
-  padding: 12px 34px !important;
-  border-radius: 0;
-  border: 0;
-  border-bottom: 1px solid #dbe6f0;
+body.madic-unified .madic-unified-sidebar nav a:hover{
+    transform: none;
+  }
+body.madic-unified .madic-unified-caption,
+body.madic-unified .madic-unified-foot{
+    display: none;
+  }}
+@media (prefers-reduced-motion: reduce) {body.madic-unified .madic-unified-sidebar nav a{
+    transition: none;
+  }}
+@media (min-width: 851px) {body.madic-unified .madic-unified-layout{
+    grid-template-columns: 244px minmax(0, 1fr) !important;
+  }
+body.madic-unified .madic-unified-sidebar{
+    width: 244px !important;
+    min-width: 244px !important;
+    position: sticky !important;
+    top: 0 !important;
+    height: 100vh !important;
+    padding: 22px 14px !important;
+    gap: 19px !important;
+    box-sizing: border-box !important;
+  }
+body.madic-unified .madic-unified-sidebar nav{
+    gap: 5px !important;
+  }
+body.madic-unified .madic-unified-sidebar nav a{
+    min-height: 43px !important;
+    padding: 10px 12px !important;
+    font-size: 0.83rem !important;
+    line-height: 1.25 !important;
+  }
+body.madic-unified .madic-unified-brand{
+    padding: 7px 7px 18px !important;
+    gap: 10px !important;
+  }
+body.madic-unified .madic-unified-monogram{
+    width: 53px !important;
+    height: 53px !important;
+    flex: 0 0 53px !important;
+  }
+body.madic-unified .madic-unified-foot{
+    margin-top: auto !important;
+  }}
+body.madic-unified:not([data-page="alberta"])
+  .madic-unified-layout
+  > header.madic-cric-standard-header{
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 18px !important;
+  min-height: 62px !important;
+  box-sizing: border-box !important;
+  padding: 12px 20px !important;
   background: #fff !important;
-  box-shadow: none;
-  backdrop-filter: none;
+  border: 1px solid #dbe7f2 !important;
+  border-radius: 13px !important;
+  margin-bottom: 22px !important;
+  color: #123553 !important;
+}
+body.madic-unified .madic-cric-standard-header .brand{
+  font-size: 22px !important;
+  font-weight: 800 !important;
+  text-decoration: none !important;
+  color: #102d4c !important;
+  white-space: nowrap;
+}
+body.madic-unified .madic-cric-standard-header .brand span{
+  color: #50bfdf !important;
+}
+body.madic-unified .madic-cric-standard-header .brand small{
+  font-size: 0.75em !important;
+  color: #21618d !important;
+}
+body.madic-unified .madic-cric-standard-header .toplinks{
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  gap: 12px !important;
+  flex-wrap: wrap;
+}
+body.madic-unified .madic-cric-standard-header .toplinks > a{
+  font-weight: 700 !important;
+  text-decoration: none !important;
+  color: #123553 !important;
+}
+body.madic-unified .madic-cric-standard-header .madic-lang-controls{
+  display: flex !important;
+  align-items: center !important;
+  gap: 5px !important;
+}
+body.madic-unified .madic-cric-standard-header .madic-lang-controls button{
+  min-width: 44px !important;
+  min-height: 39px !important;
+  padding: 8px 11px !important;
+  border: 1px solid #54b7d9 !important;
+  border-radius: 10px !important;
+  background: #eef8fc !important;
+  color: #123553 !important;
+  font-weight: 700 !important;
+  cursor: default !important;
+  opacity: 1 !important;
+}
+body.madic-unified
+  .madic-cric-standard-header
+  .madic-lang-controls
+  button[data-lang="fr"]{
+  background: #389ec0 !important;
+  color: #fff !important;
+}
+@media (max-width: 850px) {body.madic-unified .madic-cric-standard-header{
+    flex-wrap: wrap !important;
+  }
+body.madic-unified .madic-cric-standard-header .brand{
+    font-size: 18px !important;
+  }}
+body.madic-unified .madic-unified-sidebar nav svg{
+  width: 19px;
+  height: 19px;
+  flex-shrink: 0;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+@media print {body.madic-unified .madic-unified-sidebar{
+    display: none !important;
+  }
+body.madic-unified .madic-unified-layout{
+    display: block;
+  }
+body.madic-unified .madic-unified-content{
+    padding: 0 !important;
+  }}
+.madic-lang-controls{
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-left: 18px;
+}
+.madic-lang-controls button{
+  min-width: 44px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid #5c90a2;
+  background: #193a50;
+  color: #e7faff;
+  font:
+    600 13px system-ui,
+    sans-serif;
+  cursor: pointer;
+}
+.madic-lang-controls button[aria-pressed="true"]{
+  background: #59cbd7;
+  color: #072332;
+  border-color: #59cbd7;
+}
+.madic-lang-controls button:focus-visible{
+  outline: 2px solid #8df3f2;
+  outline-offset: 3px;
+}
+@media (max-width: 650px) {.madic-lang-controls{
+    margin-left: 0;
+    gap: 10px;
+    flex-wrap: wrap;
+  }}
+body.madic-unified[data-page="alberta"] .madic-unified-content{
+  padding: 20px clamp(14px, 2.3vw, 34px) 45px;
+}
+body.madic-unified[data-page="alberta"] .madic-unified-layout > header{
+  background: #102a41;
+  border: 1px solid #31526b;
+  border-radius: 14px;
+  box-shadow: 0 8px 24px #00000018;
+}
+@media (max-width: 850px) {body.madic-unified[data-page="alberta"] .madic-unified-content{
+    padding: 14px;
+  }}
+body.madic-unified[data-page="alberta"] .madic-unified-content{
+  padding: 0 22px 45px;
+  background: #f2f6fc;
+}
+body.madic-unified[data-page="alberta"] .madic-unified-layout > header{
+  background: #fff;
+  border: 0;
+  border-bottom: 1px solid #dce6f1;
+  border-radius: 0;
+  box-shadow: 0 4px 14px #16345c10;
+  margin: 0 -22px 18px;
+  padding: 14px 24px;
+  min-height: 65px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  flex-wrap: nowrap;
 }
-body.madic-unified[data-page="alberta"] .madic-unified-content > header .brand {
+body.madic-unified[data-page="alberta"]
+  .madic-unified-layout
+  > header
+  .brand{
   color: #122a50 !important;
   font-weight: 800;
   letter-spacing: 0.015em;
   text-decoration: none;
   font-size: 1.35rem;
-  white-space: nowrap;
 }
 body.madic-unified[data-page="alberta"]
-  .madic-unified-content
+  .madic-unified-layout
   > header
   .brand
-  span {
-  color: #50bfdf !important;
-}
-body.madic-unified[data-page="alberta"]
-  .madic-unified-content
-  > header
-  .brand
-  small {
+  small{
   color: #155d87;
   font-size: 0.8em;
-  letter-spacing: inherit;
-  margin-left: 0;
 }
-body.madic-unified[data-page="alberta"] .toplinks {
+body.madic-unified[data-page="alberta"] .toplinks{
   display: flex;
   align-items: center;
   gap: 14px;
-  flex-wrap: nowrap;
-  font-size: inherit;
 }
-body.madic-unified[data-page="alberta"]
-  .toplinks
-  > a:not(.madic-top-notification),
-body.madic-unified[data-page="alberta"] .madic-header-signout {
-  color: #183759;
-  font-weight: 700;
-  font-size: inherit;
+body.madic-unified[data-page="alberta"] .toplinks > a{
+  color: #183759 !important;
   text-decoration: none;
-  white-space: nowrap;
-}
-body.madic-unified[data-page="alberta"] .madic-header-signout {
-  background: transparent;
-  border: 0;
-  padding: 11px 16px;
-  border-radius: 11px;
-  cursor: pointer;
-}
-body.madic-unified[data-page="alberta"] .madic-lang-controls {
-  display: flex;
-  gap: 5px;
-  align-items: center;
-  order: 1;
-  padding: 0;
-  background: transparent;
-  border: 0;
-  margin-left: 0;
-}
-body.madic-unified[data-page="alberta"] .madic-lang-controls button {
-  min-width: 40px;
-  min-height: 39px;
-  padding: 8px 11px;
-  border: 1px solid #54b7d9;
-  border-radius: 9px;
-  background: #e5f1fa !important;
-  color: #15415e !important;
   font-weight: 700;
-  cursor: pointer;
 }
-body.madic-unified[data-page="alberta"]
-  .madic-lang-controls
-  button[aria-pressed="true"],
-body.madic-unified[data-page="alberta"] .madic-lang-controls button.active {
-  background: #1b9fc0 !important;
-  color: #fff !important;
-}
-body.madic-unified[data-page="alberta"] .madic-top-notification {
-  position: relative;
-  order: 2;
+body.madic-unified[data-page="alberta"] .madic-top-notification{
   display: grid;
   place-items: center;
   width: 34px;
   height: 34px;
   border: 1px solid #dce6f1;
   border-radius: 50%;
+  font-size: 1.3rem;
+  order: 2;
+}
+body.madic-unified[data-page="alberta"] .madic-lang-controls{
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+body.madic-unified[data-page="alberta"] .madic-lang-controls button{
+  border-radius: 9px;
+  background: #e5f1fa !important;
+  color: #15415e !important;
+  min-width: 40px;
+}
+body.madic-unified[data-page="alberta"]
+  .madic-lang-controls
+  button[aria-pressed="true"]{
+  background: #1b9fc0 !important;
+  color: #fff !important;
+}
+@media (max-width: 720px) {body.madic-unified[data-page="alberta"]
+    .madic-unified-layout
+    > header{
+    padding: 12px 14px;
+    flex-wrap: wrap;
+  }}
+body.madic-unified[data-page="alberta"] .madic-top-notification{
+  font-size: 1rem;
+}
+@media (max-width: 600px) {body.madic-unified[data-page="alberta"] .madic-unified-content{
+    padding: 0 12px 30px;
+  }
+body.madic-unified[data-page="alberta"]
+    .madic-unified-layout
+    > header{
+    margin: 0 -12px 14px;
+  }}
+body.madic-unified[data-page="alberta"] .madic-top-notification{
+  position: relative;
   flex-shrink: 0;
 }
 body.madic-unified[data-page="alberta"]
-  .madic-top-notification
-  .madic-heroicon {
-  width: 21px;
-  height: 21px;
-  filter: none;
-  opacity: 1;
-}
-body.madic-unified[data-page="alberta"]
-  .madic-top-notification-count:not([hidden]) {
+  .madic-top-notification-count:not([hidden]){
   position: absolute;
   right: -7px;
   top: -7px;
@@ -548,189 +521,136 @@ body.madic-unified[data-page="alberta"]
   font-weight: 800;
   line-height: 1;
 }
+@media (max-width: 480px) {body.madic-unified[data-page="alberta"] .toplinks{
+    gap: 8px;
+  }
+body.madic-unified[data-page="alberta"] .madic-lang-controls button{
+    min-width: 35px;
+    padding: 7px;
+  }}
 body.madic-unified[data-page="alberta"]
-  .madic-unified-content
-  > main.madic-cric-reference-main {
-  width: 100%;
-  max-width: none;
-  margin: 0;
-  padding: 26px 34px 48px !important;
-  flex: 1 0 auto;
+  .madic-top-notification
+  .madic-heroicon{
+  width: 21px;
+  height: 21px;
 }
-@media (min-width: 801px) and (max-width: 1080px) {
-  body.madic-unified[data-page="alberta"] .madic-unified-content > header {
-    padding: 12px 18px !important;
-  }
+body.madic-unified[data-page="alberta"] .madic-unified-layout{
 }
-@media (max-width: 800px) {
-  body.madic-unified[data-page="alberta"] .madic-unified-content > header {
-    padding: 18px 22px !important;
-    flex-wrap: wrap;
-  }
-  body.madic-unified[data-page="alberta"]
-    .madic-unified-content
-    > main.madic-cric-reference-main {
-    padding: 20px 18px 36px !important;
-  }
+body.madic-unified[data-page="alberta"] .madic-unified-content{
+  background: var(--cric-canvas);
+  padding: 0 clamp(15px, 2.4vw, 38px) 48px;
 }
-
-/* Conteneurs des outils provinciaux alignés sur le tableau de bord CRIC. */
-@media screen {
-  html body.madic-unified[data-page="alberta"] > .madic-unified-layout {
-    min-height: 100vh;
-    gap: 0;
+body.madic-unified[data-page="alberta"] .madic-unified-layout > header{
+  position: relative;
+  background: #fff;
+  border-bottom: 1px solid var(--cric-stroke);
+  padding: 15px clamp(18px, 2.5vw, 35px);
+  min-height: 72px;
+  margin: 0 calc(-1 * clamp(15px, 2.4vw, 38px)) 22px;
+  box-shadow: 0 3px 16px #12304c0a;
+}
+@media (max-width: 850px) {body.madic-unified[data-page="alberta"] .madic-unified-layout{
   }
-
-  html
-    body.madic-unified[data-page="alberta"]
-    > .madic-unified-layout
-    > .madic-unified-content {
-    min-width: 0;
-    max-width: none;
-    width: 100%;
-    padding: 0 !important;
-    background: #eef3f9 !important;
+body.madic-unified[data-page="alberta"] .madic-unified-content{
+    padding: 0 15px 32px;
   }
-
-  html
-    body.madic-unified[data-page="alberta"]
-    > .madic-unified-layout
-    > .madic-unified-sidebar {
-    display: flex !important;
-    flex-direction: column;
-    position: sticky;
-    top: 0;
-    box-sizing: border-box;
-    height: 100vh;
-    margin: 0;
-    gap: 19px;
-    overflow-y: auto;
-    background: linear-gradient(175deg, #092342, #0b3152 60%, #08213d);
-    border-right: 1px solid #244867;
-  }
-
-  html
-    body.madic-unified[data-page="alberta"]
-    > .madic-unified-layout
-    > .madic-unified-sidebar
-    > .madic-unified-brand {
-    display: flex;
-    align-items: center;
+body.madic-unified[data-page="alberta"]
+    .madic-unified-layout
+    > header{
+    margin: 0 -15px 17px;
+  }}
+@media (max-width: 620px) {body.madic-unified[data-page="alberta"]
+    .madic-unified-layout
+    > header{
     gap: 10px;
-    padding: 7px 7px 18px;
-    border-bottom: 1px solid #ffffff25;
   }
-
-  html
-    body.madic-unified[data-page="alberta"]
-    .madic-unified-brand
-    .madic-unified-monogram {
-    display: grid;
-    place-items: center;
-    width: 53px;
-    height: 53px;
-    flex: 0 0 53px;
-    padding: 0 !important;
-    border: 0 !important;
-    background: transparent !important;
-  }
-
-  html
-    body.madic-unified[data-page="alberta"]
-    .madic-unified-brand
-    .madic-unified-monogram
-    img {
-    display: block;
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: contain;
-  }
-
-  html body.madic-unified[data-page="alberta"] .madic-unified-brand strong {
-    display: block;
-    color: #f2fbff;
-    font-size: 14px;
-    letter-spacing: 0.02em;
-  }
-
-  html body.madic-unified[data-page="alberta"] .madic-unified-brand small {
-    display: block;
-    margin-top: 5px;
-    color: #d5e9f6;
-    font-size: 11px;
-  }
-
-  html
-    body.madic-unified[data-page="alberta"]
-    > .madic-unified-layout
-    > .madic-unified-sidebar
-    > nav
-    > a {
-    display: flex;
-    align-items: center;
-    color: #c8dce9 !important;
-    gap: 12px;
-    border-radius: 10px;
-    text-decoration: none !important;
-  }
-
-  html
-    body.madic-unified[data-page="alberta"]
-    > .madic-unified-layout
-    > .madic-unified-sidebar
-    > nav
-    > a:is(:hover, :focus-visible) {
-    background: #194e70;
-    color: #fff !important;
-  }
-
-  html
-    body.madic-unified[data-page="alberta"]
-    > .madic-unified-layout
-    > .madic-unified-sidebar
-    > nav
-    > a[aria-current="page"] {
-    background: #1a6482 !important;
-    color: #fff !important;
-    box-shadow: inset 3px 0 #81e7e5;
-  }
-}
-
-body.madic-unified[data-page="alberta"] .madic-provincial-head {
-  display: block;
+body.madic-unified[data-page="alberta"] .toplinks{
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }}
+.madic-unified-content{
+  min-width: 0;
+  width: 100%;
   box-sizing: border-box;
-  padding: clamp(18px, 2.3vw, 30px);
-  margin: 0 0 18px;
-  border: 1px solid #b4cde0;
-  border-radius: 20px;
-  background:
-    linear-gradient(90deg, #0c2b4f 0%, #174a75dd 47%, #0c2b4f18 100%),
-    url("../img/MADIC_Header_4096x2304.png") center 52% / cover no-repeat !important;
-  background-position: center 48%;
-  box-shadow: 0 12px 28px #173b641b;
-  color: #fff;
 }
-
+.madic-unified-layout > header{
+  box-sizing: border-box;
+  width: 100%;
+}
+.madic-unified-layout > header{
+  padding-left: max(20px, calc((100% - 1120px) / 2 + 20px));
+  padding-right: max(20px, calc((100% - 1120px) / 2 + 20px));
+}
+@media (max-width: 768px) {.madic-unified-layout > header{
+    padding-left: 20px;
+    padding-right: 20px;
+  }}
+@media (max-width: 480px) {.madic-unified-layout > header{
+    padding-left: 16px;
+    padding-right: 16px;
+  }}
+body.madic-unified[data-page="alberta"] .madic-unified-content{
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: #eef3f9;
+}
+body.madic-unified[data-page="alberta"] .madic-unified-layout > header{
+  width: 100%;
+  min-height: 78px;
+  margin: 0;
+  padding: 12px 34px !important;
+  border-radius: 0;
+  border: 0;
+  border-bottom: 1px solid #dbe6f0;
+  background: #fff !important;
+  box-shadow: none;
+  backdrop-filter: none;
+}
+@media (min-width: 801px) and (max-width: 1080px) {body.madic-unified[data-page="alberta"]
+    .madic-unified-layout
+    > header{
+    padding: 12px 18px !important;
+  }}
+@media (max-width: 800px) {body.madic-unified[data-page="alberta"]
+    .madic-unified-layout
+    > header{
+    padding: 18px 22px !important;
+  }}
+body.madic-unified[data-page="alberta"] .toplinks #cricLogout{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 4px !important;
+  min-height: 38px;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: #123553 !important;
+  box-shadow: none !important;
+  font: inherit;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+}
+body.madic-unified[data-page="alberta"] .toplinks #cricLogout:hover{
+  text-decoration: underline;
+}
 body.madic-unified[data-page="alberta"]
-  .madic-provincial-head
-  :is(h1, p, .intro, .eyebrow, .brand, .brand span) {
-  color: #fff !important;
+  .toplinks
+  #cricLogout:focus-visible{
+  outline: 2px solid #178cb4;
+  outline-offset: 3px;
 }
-
-body.madic-unified[data-page="alberta"] .madic-provincial-head h1 {
-  margin: 4px 0 7px;
-}
-
-body.madic-unified[data-page="alberta"] .madic-provincial-head p:last-child {
-  margin-bottom: 0;
-}
-
-/* Navigation et en-tête communs de l’espace professionnel CRIC. */
+@media (max-width: 600px) {body.madic-unified[data-page="alberta"] .toplinks #cricLogout{
+    font-size: 0.83rem;
+  }}
 html
   body.madic-unified[data-page="alberta"]
   > .madic-unified-layout
   > .madic-unified-sidebar
-  > nav {
+  > nav{
   align-items: stretch;
   font-family:
     Inter,
@@ -739,24 +659,22 @@ html
     "Segoe UI",
     sans-serif;
 }
-
 html
   body.madic-unified[data-page="alberta"]
   > .madic-unified-layout
   > .madic-unified-sidebar
   > nav
   > a
-  > .madic-cric-menu-label {
+  > .madic-cric-menu-label{
   display: block !important;
   flex: 0 1 auto !important;
   width: auto !important;
   text-align: start !important;
 }
-
 html
   body.madic-unified[data-page="alberta"]
   > .madic-unified-layout
-  > header.madic-cric-standard-header {
+  > header.madic-cric-standard-header{
   display: flex !important;
   align-items: center !important;
   justify-content: space-between !important;
@@ -781,12 +699,11 @@ html
     "Segoe UI",
     sans-serif !important;
 }
-
 html
   body.madic-unified[data-page="alberta"]
   > .madic-unified-layout
   > header.madic-cric-standard-header
-  > .brand {
+  > .brand{
   display: block !important;
   flex: 0 0 auto;
   margin: 0 !important;
@@ -799,32 +716,29 @@ html
   text-decoration: none;
   white-space: nowrap;
 }
-
 html
   body.madic-unified[data-page="alberta"]
   > .madic-unified-layout
   > header.madic-cric-standard-header
   > .brand
-  > span {
+  > span{
   color: #48d5ec !important;
 }
-
 html
   body.madic-unified[data-page="alberta"]
   > .madic-unified-layout
   > header.madic-cric-standard-header
   > .brand
-  > small {
+  > small{
   color: #155d87 !important;
   font-size: 0.8em !important;
   letter-spacing: inherit !important;
 }
-
 html
   body.madic-unified[data-page="alberta"]
   > .madic-unified-layout
   > header.madic-cric-standard-header
-  > nav.toplinks {
+  > nav.toplinks{
   display: flex !important;
   align-items: center !important;
   justify-content: flex-end !important;
@@ -834,7 +748,6 @@ html
   gap: 8px !important;
   font: inherit !important;
 }
-
 html
   body.madic-unified[data-page="alberta"]
   > .madic-unified-layout
@@ -846,7 +759,7 @@ html
   > .madic-unified-layout
   > header.madic-cric-standard-header
   > nav.toplinks
-  > button.madic-header-signout[id] {
+  > button.madic-header-signout[id]{
   display: inline-flex !important;
   align-items: center !important;
   justify-content: flex-start !important;
@@ -863,22 +776,20 @@ html
   white-space: nowrap;
   text-decoration: none !important;
 }
-
 html
   body.madic-unified[data-page="alberta"]
   > .madic-unified-layout
   > header.madic-cric-standard-header
   > nav.toplinks
-  > :is(a:not(.madic-top-notification), button.madic-header-signout[id]):hover {
+  > :is(a:not(.madic-top-notification), button.madic-header-signout[id]):hover{
   text-decoration: underline !important;
 }
-
 html
   body.madic-unified[data-page="alberta"]
   > .madic-unified-layout
   > header.madic-cric-standard-header
   > nav.toplinks
-  > .madic-lang-controls {
+  > .madic-lang-controls{
   display: inline-flex !important;
   align-items: center !important;
   gap: 5px !important;
@@ -889,14 +800,13 @@ html
   background: none !important;
   box-shadow: none !important;
 }
-
 html
   body.madic-unified[data-page="alberta"]
   > .madic-unified-layout
   > header.madic-cric-standard-header
   > nav.toplinks
   > .madic-lang-controls
-  > button[data-lang] {
+  > button[data-lang]{
   box-sizing: border-box;
   height: 36px !important;
   min-height: 36px !important;
@@ -913,24 +823,22 @@ html
   box-shadow: none !important;
   cursor: pointer;
 }
-
 html
   body.madic-unified[data-page="alberta"]
   > .madic-unified-layout
   > header.madic-cric-standard-header
   > nav.toplinks
   > .madic-lang-controls
-  > button[data-lang][aria-pressed="true"] {
+  > button[data-lang][aria-pressed="true"]{
   background: #1683a1 !important;
   color: #fff !important;
 }
-
 html
   body.madic-unified[data-page="alberta"]
   > .madic-unified-layout
   > header.madic-cric-standard-header
   > nav.toplinks
-  > .madic-top-notification {
+  > .madic-top-notification{
   position: relative !important;
   display: inline-grid !important;
   place-items: center;
@@ -948,36 +856,33 @@ html
   color: #123553 !important;
   order: 0 !important;
 }
-
 html
   body.madic-unified[data-page="alberta"]
   > .madic-unified-layout
   > header.madic-cric-standard-header
   > nav.toplinks
   > .madic-top-notification
-  > span:first-child {
+  > span:first-child{
   display: grid;
   place-items: center;
 }
-
 html
   body.madic-unified[data-page="alberta"]
   > .madic-unified-layout
   > header.madic-cric-standard-header
   > nav.toplinks
   > .madic-top-notification
-  svg {
+  svg{
   display: block;
   width: 20px !important;
   height: 20px !important;
 }
-
 html
   body.madic-unified[data-page="alberta"]
   > .madic-unified-layout
   > header.madic-cric-standard-header
   > nav.toplinks
-  .madic-top-notification-count:not([hidden]) {
+  .madic-top-notification-count:not([hidden]){
   position: absolute;
   right: -6px;
   top: -6px;
@@ -994,13 +899,12 @@ html
     system-ui,
     sans-serif;
 }
-
 html
   body.madic-unified[data-page="alberta"]
   > .madic-unified-layout
   > header.madic-cric-standard-header
   > nav.toplinks
-  .madic-top-notification-count[hidden] {
+  .madic-top-notification-count[hidden]{
   display: none !important;
 }
 html
@@ -1008,29 +912,23 @@ html
   > .madic-unified-layout
   > header.madic-cric-standard-header
   > nav.toplinks
-  :is(a, button):focus-visible {
+  :is(a, button):focus-visible{
   outline: 2px solid #178cb4;
   outline-offset: 2px;
 }
-
-@media screen and (max-width: 1080px) {
-  html
+@media screen and (max-width: 1080px) {html
     body.madic-unified[data-page="alberta"]
     > .madic-unified-layout
-    > header.madic-cric-standard-header {
+    > header.madic-cric-standard-header{
     padding-inline: 18px !important;
-  }
-}
-
-@media screen and (max-width: 850px) {
-  html body.madic-unified[data-page="alberta"] > .madic-unified-layout {
+  }}
+@media screen and (max-width: 850px) {html body.madic-unified[data-page="alberta"] > .madic-unified-layout{
     grid-template-columns: minmax(0, 1fr) !important;
   }
-
-  html
+html
     body.madic-unified[data-page="alberta"]
     > .madic-unified-layout
-    > .madic-unified-sidebar {
+    > .madic-unified-sidebar{
     position: relative !important;
     inset: auto !important;
     display: flex !important;
@@ -1044,55 +942,50 @@ html
     gap: 10px !important;
     border-right: 0 !important;
   }
-
-  html
+html
     body.madic-unified[data-page="alberta"]
     > .madic-unified-layout
     > .madic-unified-sidebar
-    > .madic-unified-brand {
+    > .madic-unified-brand{
     display: flex !important;
     align-items: center !important;
     gap: 10px !important;
     padding: 4px 6px 14px !important;
   }
-
-  html
+html
     body.madic-unified[data-page="alberta"]
     > .madic-unified-layout
     > .madic-unified-sidebar
-    .madic-unified-monogram {
+    .madic-unified-monogram{
     display: grid !important;
     place-items: center;
     width: 53px !important;
     height: 53px !important;
     flex: 0 0 53px !important;
   }
-
-  html
+html
     body.madic-unified[data-page="alberta"]
     > .madic-unified-layout
     > .madic-unified-sidebar
     .madic-unified-monogram
-    img {
+    img{
     display: block;
     width: 100% !important;
     height: 100% !important;
     object-fit: contain;
   }
-
-  html
+html
     body.madic-unified[data-page="alberta"]
     > .madic-unified-layout
     > .madic-unified-sidebar
-    > :is(.madic-unified-caption, .madic-unified-foot) {
+    > :is(.madic-unified-caption, .madic-unified-foot){
     display: none !important;
   }
-
-  html
+html
     body.madic-unified[data-page="alberta"]
     > .madic-unified-layout
     > .madic-unified-sidebar
-    > nav {
+    > nav{
     display: flex !important;
     flex-flow: row nowrap !important;
     align-items: center !important;
@@ -1108,13 +1001,12 @@ html
     overflow-y: hidden;
     scroll-behavior: auto;
   }
-
-  html
+html
     body.madic-unified[data-page="alberta"]
     > .madic-unified-layout
     > .madic-unified-sidebar
     > nav
-    > a {
+    > a{
     display: flex !important;
     align-items: center !important;
     justify-content: flex-start !important;
@@ -1137,98 +1029,85 @@ html
     text-decoration: none !important;
     transform: none !important;
   }
-
-  html
+html
     body.madic-unified[data-page="alberta"]
     > .madic-unified-layout
     > .madic-unified-sidebar
     > nav
-    > a[aria-current="page"] {
+    > a[aria-current="page"]{
     border-color: #62cbd5 !important;
     background: #1a6482 !important;
     color: #fff !important;
     box-shadow: inset 3px 0 #81e7e5;
   }
-
-  html
+html
     body.madic-unified[data-page="alberta"]
     > .madic-unified-layout
     > .madic-unified-sidebar
     > nav
     > a
-    > span:first-child {
+    > span:first-child{
     display: grid !important;
     place-items: center;
     width: 22px !important;
     flex: 0 0 22px !important;
   }
-
-  html
+html
     body.madic-unified[data-page="alberta"]
     > .madic-unified-layout
     > .madic-unified-sidebar
     > nav
-    .madic-heroicon {
+    .madic-heroicon{
     display: block;
     width: 20px !important;
     height: 20px !important;
     object-fit: contain;
-  }
-}
-
-@media screen and (max-width: 650px) {
-  html
+  }}
+@media screen and (max-width: 650px) {html
     body.madic-unified[data-page="alberta"]
     > .madic-unified-layout
-    > header.madic-cric-standard-header {
+    > header.madic-cric-standard-header{
     flex-direction: column !important;
     align-items: flex-start !important;
     justify-content: center !important;
     padding: 14px 16px !important;
     gap: 8px !important;
   }
-
-  html
+html
     body.madic-unified[data-page="alberta"]
     > .madic-unified-layout
     > header.madic-cric-standard-header
-    > nav.toplinks {
+    > nav.toplinks{
     width: 100%;
     justify-content: flex-start !important;
-  }
-}
-
-@media screen and (min-width: 851px) {
-  html body.madic-unified[data-page="alberta"] > .madic-unified-layout {
+  }}
+@media screen and (min-width: 851px) {html body.madic-unified[data-page="alberta"] > .madic-unified-layout{
     grid-template-columns: 244px minmax(0, 1fr) !important;
   }
-
-  html
+html
     body.madic-unified[data-page="alberta"]
     > .madic-unified-layout
-    > .madic-unified-sidebar {
+    > .madic-unified-sidebar{
     box-sizing: border-box;
     width: 244px !important;
     min-width: 244px !important;
     padding: 22px 14px !important;
   }
-
-  html
+html
     body.madic-unified[data-page="alberta"]
     > .madic-unified-layout
     > .madic-unified-sidebar
-    > nav {
+    > nav{
     display: flex !important;
     flex-flow: column nowrap !important;
     gap: 5px !important;
   }
-
-  html
+html
     body.madic-unified[data-page="alberta"]
     > .madic-unified-layout
     > .madic-unified-sidebar
     > nav
-    > a {
+    > a{
     align-items: center !important;
     min-height: 43px !important;
     padding: 10px 12px !important;
@@ -1238,82 +1117,65 @@ html
       -apple-system,
       "Segoe UI",
       sans-serif !important;
-  }
-}
-
-/* En-tête avant le menu dans le flux, menu latéral sur ordinateur. */
-@media screen {
-  html body.madic-unified[data-page="alberta"] > .madic-unified-layout {
+  }}
+@media screen {html body.madic-unified[data-page="alberta"] > .madic-unified-layout{
     display: grid !important;
     grid-template-rows: auto minmax(0, 1fr);
   }
-
-  html
+html
     body.madic-unified[data-page="alberta"]
     > .madic-unified-layout
-    > .madic-unified-content {
+    > .madic-unified-content{
     min-height: 0;
-  }
-}
-
-@media screen and (min-width: 851px) {
-  html
+  }}
+@media screen and (min-width: 851px) {html
     body.madic-unified[data-page="alberta"]
     > .madic-unified-layout
-    > header {
+    > header{
     grid-area: 1 / 2;
   }
-
-  html
+html
     body.madic-unified[data-page="alberta"]
     > .madic-unified-layout
-    > .madic-unified-sidebar {
+    > .madic-unified-sidebar{
     grid-area: 1 / 1 / 3 / 2;
     align-self: start;
   }
-
-  html
+html
     body.madic-unified[data-page="alberta"]
     > .madic-unified-layout
-    > .madic-unified-content {
+    > .madic-unified-content{
     grid-area: 2 / 2;
-  }
-}
-
-/* Tracés, dimensions et couleur des pictogrammes du portail client. */
+  }}
 html
   body.madic-unified[data-page="alberta"]
   > .madic-unified-layout
   > .madic-unified-sidebar
   > nav
   > a
-  > span:first-child {
+  > span:first-child{
   width: 20px !important;
   flex: 0 0 20px !important;
 }
-
 html
   body.madic-unified[data-page="alberta"]
   > .madic-unified-layout
   > .madic-unified-sidebar
   > nav
-  .madic-nav-icon {
+  .madic-nav-icon{
   display: block;
   width: 20px;
   height: 20px;
   color: #77d6d0;
 }
-
-@media screen and (max-width: 850px) {
-  html body.madic-unified[data-page="alberta"] > .madic-unified-layout {
+@media screen and (max-width: 850px) {html body.madic-unified[data-page="alberta"] > .madic-unified-layout{
     grid-template-columns: minmax(0, 1fr) !important;
     grid-template-rows: auto auto minmax(0, 1fr);
   }
-
-  html
+html
     body.madic-unified[data-page="alberta"]
     > .madic-unified-layout
-    > header.madic-cric-standard-header {
+    > header.madic-cric-standard-header{
     display: grid !important;
     grid-template-columns: minmax(0, 1fr) auto;
     align-items: start !important;
@@ -1322,32 +1184,29 @@ html
     padding: 12px 16px !important;
     gap: 8px 10px !important;
   }
-
-  html
+html
     body.madic-unified[data-page="alberta"]
     > .madic-unified-layout
     > header.madic-cric-standard-header
-    > .brand {
+    > .brand{
     min-width: 0;
     align-self: start;
     font-size: clamp(16px, 4.8vw, 24px) !important;
     letter-spacing: 0.045em !important;
   }
-
-  html
+html
     body.madic-unified[data-page="alberta"]
     > .madic-unified-layout
     > header.madic-cric-standard-header
     > .brand
-    > small {
+    > small{
     color: #a5b9d0 !important;
   }
-
-  html
+html
     body.madic-unified[data-page="alberta"]
     > .madic-unified-layout
     > header.madic-cric-standard-header
-    > nav.toplinks {
+    > nav.toplinks{
     display: grid !important;
     grid-template-columns: auto auto;
     justify-content: end !important;
@@ -1357,42 +1216,38 @@ html
     font-size: clamp(12px, 2.65vw, 14px) !important;
     reading-flow: grid-rows;
   }
-
-  html
+html
     body.madic-unified[data-page="alberta"]
     > .madic-unified-layout
     > header.madic-cric-standard-header
     > nav.toplinks
-    > :is(a:not(.madic-top-notification), button.madic-header-signout[id]) {
+    > :is(a:not(.madic-top-notification), button.madic-header-signout[id]){
     min-height: 30px !important;
     font-weight: 400 !important;
     grid-row: 1;
   }
-
-  html
+html
     body.madic-unified[data-page="alberta"]
     > .madic-unified-layout
     > header.madic-cric-standard-header
     > nav.toplinks
-    > .madic-top-notification {
+    > .madic-top-notification{
     grid-area: 2 / 1;
     width: 40px !important;
     height: 40px !important;
   }
-
-  html
+html
     body.madic-unified[data-page="alberta"]
     > .madic-unified-layout
     > header.madic-cric-standard-header
     > nav.toplinks
-    > .madic-lang-controls {
+    > .madic-lang-controls{
     grid-area: 2 / 2;
   }
-
-  html
+html
     body.madic-unified[data-page="alberta"]
     > .madic-unified-layout
-    > .madic-unified-sidebar {
+    > .madic-unified-sidebar{
     width: auto !important;
     max-width: none !important;
     margin: 12px 16px 0 !important;
@@ -1400,46 +1255,42 @@ html
     gap: 0 !important;
     border: 0 !important;
     border-radius: 0 !important;
-    background: linear-gradient(180deg, #162b4d, #1b365b) !important;
+    background: var(--madic-surface) !important;
   }
-
-  html
+html
     body.madic-unified[data-page="alberta"]
     > .madic-unified-layout
     > .madic-unified-sidebar
-    > .madic-unified-brand {
+    > .madic-unified-brand{
     gap: 11px !important;
     padding: 17px 7px 12px !important;
     border-bottom-color: #2b4656;
   }
-
-  html
+html
     body.madic-unified[data-page="alberta"]
     > .madic-unified-layout
     > .madic-unified-sidebar
-    .madic-unified-monogram {
+    .madic-unified-monogram{
     width: 39px !important;
     height: 39px !important;
     flex-basis: 39px !important;
   }
-
-  html
+html
     body.madic-unified[data-page="alberta"]
     > .madic-unified-layout
     > .madic-unified-sidebar
-    > nav {
+    > nav{
     margin-top: 10px !important;
     padding: 12px 0 0 !important;
     gap: 5px !important;
     scrollbar-width: thin;
   }
-
-  html
+html
     body.madic-unified[data-page="alberta"]
     > .madic-unified-layout
     > .madic-unified-sidebar
     > nav
-    > a {
+    > a{
     height: auto !important;
     min-height: 38px !important;
     padding: 9px 12px !important;
@@ -1450,22 +1301,2860 @@ html
       system-ui,
       sans-serif !important;
   }
-
-  html
+html
     body.madic-unified[data-page="alberta"]
     > .madic-unified-layout
     > .madic-unified-sidebar
     > nav
-    > a[aria-current="page"] {
+    > a[aria-current="page"]{
     border-inline-start: 3px solid #62cbd5 !important;
-  }
-}
-
-@media screen and (max-width: 360px) {
-  html
+  }}
+@media screen and (max-width: 360px) {html
     body.madic-unified[data-page="alberta"]
     > .madic-unified-layout
-    > header.madic-cric-standard-header {
+    > header.madic-cric-standard-header{
     padding-inline: 12px !important;
-  }
+  }}
+html body.madic-unified[data-page="alberta"] .madic-unified-layout{
+  background: var(--madic-bg) !important;
+  min-height: 100vh !important;
 }
+html body.madic-unified[data-page="alberta"] .madic-unified-sidebar{
+  background: var(--madic-surface) !important;
+  color: #fff !important;
+  border-right: 0 !important;
+  box-shadow: 3px 0 18px #0c254214 !important;
+}
+html
+  body.madic-unified[data-page="alberta"]
+  .madic-unified-sidebar
+  .madic-unified-brand{
+  border-bottom: 0 !important;
+  padding-top: 24px !important;
+  padding-bottom: 23px !important;
+}
+html
+  body.madic-unified[data-page="alberta"]
+  .madic-unified-sidebar
+  .madic-unified-brand
+  strong{
+  color: #fff !important;
+  font-size: 1.08rem !important;
+  letter-spacing: 0.01em !important;
+}
+html
+  body.madic-unified[data-page="alberta"]
+  .madic-unified-sidebar
+  .madic-unified-brand
+  small{
+  color: #c9d9ef !important;
+}
+html
+  body.madic-unified[data-page="alberta"]
+  .madic-unified-sidebar
+  .madic-unified-caption{
+  font-size: 0.67rem !important;
+  letter-spacing: 0.13em !important;
+  color: #8caed1 !important;
+  padding-left: 18px !important;
+}
+html
+  body.madic-unified[data-page="alberta"]
+  .madic-unified-sidebar
+  nav
+  > a{
+  border-radius: 11px !important;
+  margin: 2px 12px !important;
+  color: #eef7ff !important;
+  min-height: 44px !important;
+  font-weight: 550 !important;
+  transition: background 0.18s ease !important;
+}
+html
+  body.madic-unified[data-page="alberta"]
+  .madic-unified-sidebar
+  nav
+  > a:hover{
+  background: #ffffff19 !important;
+}
+html
+  body.madic-unified[data-page="alberta"]
+  .madic-unified-sidebar
+  nav
+  > a[aria-current="page"]{
+  background: var(--madic-surface) !important;
+  color: #fff !important;
+  border: 0 !important;
+  box-shadow: 0 5px 15px #001e3455 !important;
+}
+html
+  body.madic-unified[data-page="alberta"]
+  .madic-cric-standard-header{
+  background: #fff !important;
+  border-bottom: 1px solid #e0e8f4 !important;
+  box-shadow: 0 2px 12px #12284d08 !important;
+}
+html
+  body.madic-unified[data-page="alberta"]
+  .madic-cric-standard-header
+  .brand{
+  font-weight: 800 !important;
+  letter-spacing: -0.035em !important;
+}
+html body.madic-unified[data-page="alberta"] .madic-unified-content{
+  background: transparent !important;
+  min-width: 0 !important;
+}
+@media (min-width: 901px) {html body.madic-unified[data-page="alberta"] .madic-unified-layout{
+    grid-template-columns: 260px minmax(0, 1fr) !important;
+    grid-template-rows: 72px minmax(0, 1fr) !important;
+  }
+html
+    body.madic-unified[data-page="alberta"]
+    .madic-unified-layout
+    > .madic-unified-sidebar{
+    grid-column: 1 !important;
+    grid-row: 1 / -1 !important;
+    position: sticky !important;
+    top: 0 !important;
+    height: 100vh !important;
+    margin: 0 !important;
+    width: 260px !important;
+    max-width: 260px !important;
+    padding: 18px 14px 25px !important;
+  }
+html
+    body.madic-unified[data-page="alberta"]
+    .madic-unified-layout
+    > header.madic-cric-standard-header{
+    grid-column: 2 !important;
+    grid-row: 1 !important;
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 10 !important;
+  }
+html
+    body.madic-unified[data-page="alberta"]
+    .madic-unified-layout
+    > .madic-unified-content{
+    grid-column: 2 !important;
+    grid-row: 2 !important;
+  }}
+html body.madic-unified[data-page="alberta"] .madic-unified-sidebar{
+  background: var(--madic-surface) !important;
+  gap: 0 !important;
+}
+html
+  body.madic-unified[data-page="alberta"]
+  .madic-unified-sidebar
+  > .madic-unified-brand{
+  padding: 5px 2px 28px !important;
+  gap: 12px !important;
+  margin: 0 0 12px !important;
+}
+html
+  body.madic-unified[data-page="alberta"]
+  .madic-unified-sidebar
+  .madic-unified-brand
+  strong{
+  font-size: 16px !important;
+  line-height: 1.2 !important;
+}
+html
+  body.madic-unified[data-page="alberta"]
+  .madic-unified-sidebar
+  .madic-unified-brand
+  small{
+  font-size: 12px !important;
+}
+html
+  body.madic-unified[data-page="alberta"]
+  .madic-unified-sidebar
+  .madic-unified-foot{
+  display: none !important;
+}
+html body.madic-unified[data-page="alberta"] .madic-cric-new-nav{
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 3px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow-y: auto !important;
+}
+html body.madic-unified[data-page="alberta"] .madic-cric-new-nav > a{
+  display: flex !important;
+  align-items: center !important;
+  gap: 16px !important;
+  min-height: 43px !important;
+  margin: 0 !important;
+  padding: 10px 14px !important;
+  border: 0 !important;
+  border-radius: 10px !important;
+  background: transparent !important;
+  color: #f0f5ff !important;
+  font-size: 14px !important;
+  font-weight: 550 !important;
+  text-decoration: none !important;
+  cursor: pointer !important;
+  box-sizing: border-box !important;
+}
+html
+  body.madic-unified[data-page="alberta"]
+  .madic-cric-new-nav
+  > a[aria-current="page"]{
+  background: var(--madic-surface) !important;
+  color: #fff !important;
+  box-shadow: 0 5px 16px #001a3560 !important;
+}
+html
+  body.madic-unified[data-page="alberta"]
+  .madic-cric-new-nav
+  > a:hover{
+  background: #ffffff18 !important;
+}
+html
+  body.madic-unified[data-page="alberta"]
+  .madic-cric-new-nav
+  .madic-nav-icon{
+  width: 23px !important;
+  height: 23px !important;
+  flex: 0 0 23px !important;
+  color: #e7f1ff !important;
+}
+html
+  body.madic-unified[data-page="alberta"]
+  .madic-nav-tools
+  > summary
+  > .madic-nav-icon:last-child{
+  margin-left: auto;
+  width: 16px !important;
+  height: 16px !important;
+  flex-basis: 16px !important;
+  transition: transform 0.15s;
+}
+html
+  body.madic-unified[data-page="alberta"]
+  .madic-nav-tools[open]
+  > summary
+  > .madic-nav-icon:last-child{
+  transform: rotate(90deg);
+}
+html body.madic-unified[data-page="alberta"] .madic-nav-submenu{
+  padding: 3px 0 8px 28px;
+  display: grid;
+  gap: 3px;
+}
+html body.madic-unified[data-page="alberta"] .madic-nav-submenu > a{
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: #d7e9ff;
+  text-decoration: none;
+  padding: 8px 10px;
+  font-size: 12px;
+  border-radius: 8px;
+}
+html
+  body.madic-unified[data-page="alberta"]
+  .madic-nav-submenu
+  .madic-nav-icon{
+  width: 16px !important;
+  height: 16px !important;
+  flex-basis: 16px !important;
+}
+html
+  body.madic-unified[data-page="alberta"]
+  header.madic-cric-standard-header{
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 18px !important;
+  margin: 0 !important;
+  padding: 10px 24px !important;
+  border-radius: 0 !important;
+  min-height: 72px !important;
+  background: #fff !important;
+  border: 0 !important;
+  border-bottom: 1px solid #dbe4f4 !important;
+  box-sizing: border-box !important;
+}
+html body.madic-unified[data-page="alberta"] .madic-header-title,
+html body.madic-unified[data-page="alberta"] .madic-header-right{
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  min-width: 0;
+}
+html body.madic-unified[data-page="alberta"] .madic-header-title .brand{
+  font-size: 22px !important;
+  color: #111932 !important;
+  white-space: nowrap;
+}
+html
+  body.madic-unified[data-page="alberta"]
+  .madic-header-title
+  .brand
+  span{
+  color: #2464f6 !important;
+}
+html body.madic-unified[data-page="alberta"] .madic-header-section{
+  padding-left: 20px;
+  border-left: 1px solid #b8c8de;
+  color: #121b35;
+  font-weight: 700;
+  font-size: 13px;
+  white-space: nowrap;
+}
+html body.madic-unified[data-page="alberta"] .madic-header-right{
+  margin-left: auto;
+  justify-content: flex-end;
+  gap: 14px;
+}
+html body.madic-unified[data-page="alberta"] .madic-header-search{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid #bdcde4;
+  background: #f1f5fc;
+  border-radius: 11px;
+  padding: 0 12px;
+  min-width: 190px;
+  width: clamp(220px, 29vw, 440px);
+  height: 41px;
+  margin: 0;
+}
+html body.madic-unified[data-page="alberta"] .madic-header-search svg{
+  width: 19px;
+  height: 19px;
+  flex: 0 0 19px;
+  fill: none;
+  stroke: #20395f;
+  stroke-width: 2;
+}
+html body.madic-unified[data-page="alberta"] .madic-header-search input{
+  border: 0 !important;
+  box-shadow: none !important;
+  outline: none !important;
+  background: transparent !important;
+  color: #1a2c49 !important;
+  font-size: 12px !important;
+  width: 100%;
+  min-width: 0;
+  padding: 0 !important;
+  height: 36px !important;
+}
+html
+  body.madic-unified[data-page="alberta"]
+  .madic-header-search
+  button{
+  border: 0;
+  background: transparent;
+  color: #087b98;
+  font-size: 11px;
+  padding: 4px;
+  cursor: pointer;
+}
+html
+  body.madic-unified[data-page="alberta"]
+  .madic-cric-standard-header
+  .toplinks{
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  flex-wrap: nowrap !important;
+}
+html body.madic-unified[data-page="alberta"] .madic-header-profile{
+  position: relative;
+  min-width: 0;
+}
+html
+  body.madic-unified[data-page="alberta"]
+  .madic-header-profile
+  > summary{
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  cursor: pointer;
+  list-style: none;
+  color: #121d38;
+  font-size: 12px;
+  white-space: nowrap;
+}
+html
+  body.madic-unified[data-page="alberta"]
+  .madic-header-profile
+  > summary::-webkit-details-marker{
+  display: none;
+}
+html
+  body.madic-unified[data-page="alberta"]
+  .madic-header-profile-avatar{
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: #d8edf7;
+  color: #087b98;
+  font-size: 11px;
+  font-weight: 800;
+}
+html body.madic-unified[data-page="alberta"] .madic-header-profile-copy{
+  display: grid;
+  gap: 2px;
+  max-width: 165px;
+}
+html
+  body.madic-unified[data-page="alberta"]
+  .madic-header-profile-copy
+  strong{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 12px;
+}
+html
+  body.madic-unified[data-page="alberta"]
+  .madic-header-profile-copy
+  small{
+  color: #536b8c;
+  font-size: 11px;
+}
+html body.madic-unified[data-page="alberta"] .madic-header-profile-menu{
+  position: absolute;
+  right: 0;
+  top: calc(100% + 13px);
+  background: #fff;
+  box-shadow: 0 12px 30px #122c4a30;
+  border: 1px solid #dbe5f3;
+  border-radius: 10px;
+  min-width: 210px;
+  z-index: 20;
+  padding: 8px;
+  display: grid;
+  gap: 3px;
+}
+html
+  body.madic-unified[data-page="alberta"]
+  .madic-header-profile-menu
+  > a,
+html
+  body.madic-unified[data-page="alberta"]
+  .madic-header-profile-menu
+  > button{
+  display: block !important;
+  background: transparent !important;
+  color: #172c4a !important;
+  text-align: left !important;
+  border: 0 !important;
+  border-radius: 6px !important;
+  padding: 10px !important;
+  font-size: 12px !important;
+  text-decoration: none !important;
+  cursor: pointer;
+}
+html
+  body.madic-unified[data-page="alberta"]
+  .madic-header-profile-menu
+  > *:hover{
+  background: #eef5fb !important;
+}
+@media (max-width: 1250px) {html body.madic-unified[data-page="alberta"] .madic-header-search{
+    width: 220px;
+  }
+html body.madic-unified[data-page="alberta"] .madic-header-section{
+    display: none;
+  }}
+@media (max-width: 900px) {html body.madic-unified[data-page="alberta"] .madic-header-search{
+    width: 100%;
+  }
+html
+    body.madic-unified[data-page="alberta"]
+    header.madic-cric-standard-header{
+    flex-wrap: wrap !important;
+  }
+html body.madic-unified[data-page="alberta"] .madic-header-right{
+    flex-wrap: wrap;
+    width: 100%;
+  }
+html body.madic-unified[data-page="alberta"] .madic-cric-new-nav{
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }}
+html
+  body.madic-unified[data-page="alberta"]
+  .madic-header-title
+  .brand
+  span{
+  color: #36a9c9 !important;
+}
+html
+  body.madic-unified[data-page="alberta"]
+  .madic-unified-layout
+  > .madic-unified-sidebar{
+  background: var(--madic-surface) !important;
+}
+html
+  body.madic-unified[data-page="alberta"]
+  .madic-unified-sidebar
+  .madic-unified-brand
+  small{
+  font-size: 12px !important;
+  color: #c8dce9 !important;
+}
+html body.madic-unified[data-page="alberta"] .madic-cric-new-nav > a{
+  gap: 12px !important;
+  min-height: 43px !important;
+  padding: 10px 12px !important;
+  font-size: 0.83rem !important;
+  font-weight: 600 !important;
+  border: 1px solid transparent !important;
+  border-radius: 10px !important;
+}
+html
+  body.madic-unified[data-page="alberta"]
+  .madic-cric-new-nav
+  > a[aria-current="page"]{
+  background: #1a6482 !important;
+  border-color: #62cbd5 !important;
+  box-shadow: inset 3px 0 #81e7e5 !important;
+}
+html
+  body.madic-unified[data-page="alberta"]
+  .madic-cric-new-nav
+  .madic-nav-icon{
+  width: 21px !important;
+  height: 21px !important;
+  flex-basis: 21px !important;
+}
+@media (min-width: 901px) and (max-width: 1300px) {html
+    body.madic-unified[data-page="alberta"]
+    header.madic-cric-standard-header{
+    gap: 10px !important;
+    padding-inline: 14px !important;
+  }
+html body.madic-unified[data-page="alberta"] .madic-header-right{
+    gap: 8px !important;
+  }
+html body.madic-unified[data-page="alberta"] .madic-header-search{
+    width: clamp(160px, 18vw, 260px) !important;
+    min-width: 0 !important;
+  }
+html
+    body.madic-unified[data-page="alberta"]
+    .madic-header-profile-copy{
+    max-width: 100px !important;
+  }}
+@media (max-width: 900px) {html body.madic-unified[data-page="alberta"] .madic-unified-layout{
+    display: flex !important;
+    flex-direction: column !important;
+    min-width: 0 !important;
+    width: 100% !important;
+  }
+html
+    body.madic-unified[data-page="alberta"]
+    header.madic-cric-standard-header{
+    order: 0 !important;
+    position: relative !important;
+    top: auto !important;
+    width: 100% !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 10px !important;
+    padding: 12px 15px !important;
+    min-width: 0 !important;
+  }
+html body.madic-unified[data-page="alberta"] .madic-header-title{
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+html body.madic-unified[data-page="alberta"] .madic-header-right{
+    width: 100% !important;
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 10px !important;
+    margin: 0 !important;
+    min-width: 0 !important;
+  }
+html body.madic-unified[data-page="alberta"] .madic-header-search{
+    grid-row: 1 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+  }
+html
+    body.madic-unified[data-page="alberta"]
+    .madic-cric-standard-header
+    .toplinks{
+    grid-row: 2 !important;
+    width: 100% !important;
+    justify-content: flex-end !important;
+    gap: 9px !important;
+    min-width: 0 !important;
+    flex-wrap: wrap !important;
+  }
+html
+    body.madic-unified[data-page="alberta"]
+    .madic-unified-layout
+    > .madic-unified-sidebar{
+    order: 1 !important;
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    grid-column: auto !important;
+    grid-row: auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    padding: 12px 15px !important;
+    box-sizing: border-box !important;
+    overflow: visible !important;
+  }
+html
+    body.madic-unified[data-page="alberta"]
+    .madic-unified-sidebar
+    > .madic-unified-brand{
+    padding: 0 0 10px !important;
+    margin: 0 !important;
+  }
+html body.madic-unified[data-page="alberta"] .madic-cric-new-nav{
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 6px !important;
+    width: 100% !important;
+    overflow: visible !important;
+    max-height: none !important;
+  }
+html body.madic-unified[data-page="alberta"] .madic-cric-new-nav > a{
+    width: 100% !important;
+    min-width: 0 !important;
+    white-space: normal !important;
+    overflow-wrap: break-word !important;
+    line-height: 1.3 !important;
+    padding: 9px 10px !important;
+    gap: 8px !important;
+  }
+html body.madic-unified[data-page="alberta"] .madic-nav-submenu{
+    padding-left: 0 !important;
+    min-width: 0 !important;
+  }
+html
+    body.madic-unified[data-page="alberta"]
+    .madic-unified-layout
+    > .madic-unified-content{
+    order: 2 !important;
+    grid-column: auto !important;
+    grid-row: auto !important;
+    min-width: 0 !important;
+    width: 100% !important;
+  }}
+@media (max-width: 480px) {html
+    body.madic-unified[data-page="alberta"]
+    .madic-header-title
+    .brand{
+    font-size: 20px !important;
+  }
+html
+    body.madic-unified[data-page="alberta"]
+    .madic-header-profile-copy{
+    max-width: 140px !important;
+  }
+html
+    body.madic-unified[data-page="alberta"]
+    .madic-cric-standard-header
+    .toplinks{
+    justify-content: flex-start !important;
+  }
+html body.madic-unified[data-page="alberta"] .madic-cric-new-nav{
+    grid-template-columns: minmax(0, 1fr) !important;
+  }}
+html body.madic-unified[data-page="alberta"] .madic-unified-layout{
+  min-width: 0 !important;
+}
+html
+  body.madic-unified[data-page="alberta"]
+  .madic-unified-layout
+  > .madic-unified-sidebar{
+  width: 244px !important;
+  max-width: 244px !important;
+  padding: 18px 13px !important;
+}
+html
+  body.madic-unified[data-page="alberta"]
+  .madic-unified-sidebar
+  .madic-unified-brand{
+  padding: 8px 4px 18px !important;
+  margin-bottom: 10px !important;
+}
+html body.madic-unified[data-page="alberta"] .madic-cric-new-nav{
+  gap: 2px !important;
+}
+html body.madic-unified[data-page="alberta"] .madic-cric-new-nav > a{
+  height: auto !important;
+  min-height: 41px !important;
+  padding: 8px 11px !important;
+  gap: 11px !important;
+  font-size: 13px !important;
+  line-height: 1.25 !important;
+  font-weight: 600 !important;
+}
+html
+  body.madic-unified[data-page="alberta"]
+  .madic-cric-new-nav
+  .madic-nav-icon{
+  width: 19px !important;
+  height: 19px !important;
+  flex-basis: 19px !important;
+}
+html
+  body.madic-unified[data-page="alberta"]
+  .madic-lang-controls
+  button{
+  background: #e8f3f9 !important;
+  color: #14516d !important;
+  border: 1px solid #b9d4e4 !important;
+}
+html
+  body.madic-unified[data-page="alberta"]
+  .madic-lang-controls
+  button[aria-pressed="true"]{
+  background: #258daf !important;
+  color: #fff !important;
+  border-color: #258daf !important;
+}
+@media (max-width: 900px) {html
+    body.madic-unified[data-page="alberta"]
+    .madic-unified-layout
+    > .madic-unified-sidebar{
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 10px 14px !important;
+    overflow: visible !important;
+  }
+html
+    body.madic-unified[data-page="alberta"]
+    .madic-unified-sidebar
+    .madic-unified-brand{
+    display: inline-flex !important;
+    align-items: center !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+html body.madic-unified[data-page="alberta"] .madic-cric-new-nav{
+    display: none !important;
+    clear: both !important;
+    width: 100% !important;
+    max-height: 65vh !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    padding-top: 12px !important;
+  }
+html
+    body.madic-unified[data-page="alberta"]
+    .madic-mobile-nav-open
+    .madic-cric-new-nav{
+    display: flex !important;
+    flex-direction: column !important;
+  }
+html body.madic-unified[data-page="alberta"] .madic-cric-new-nav > a{
+    width: 100% !important;
+    white-space: normal !important;
+    min-height: 42px !important;
+  }
+html body.madic-unified[data-page="alberta"] .madic-header-right{
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) auto !important;
+    align-items: center !important;
+    gap: 10px !important;
+  }
+html body.madic-unified[data-page="alberta"] .madic-header-search{
+    grid-column: 1/-1 !important;
+    grid-row: 1 !important;
+  }
+html
+    body.madic-unified[data-page="alberta"]
+    .madic-cric-standard-header
+    .toplinks{
+    grid-column: 1 !important;
+    grid-row: 2 !important;
+    width: auto !important;
+    justify-content: flex-start !important;
+    flex-wrap: nowrap !important;
+  }
+html body.madic-unified[data-page="alberta"] .madic-header-profile{
+    grid-column: 2 !important;
+    grid-row: 2 !important;
+    justify-self: end !important;
+  }
+html
+    body.madic-unified[data-page="alberta"]
+    .madic-header-profile-copy{
+    max-width: 115px !important;
+  }
+html
+    body.madic-unified[data-page="alberta"]
+    .madic-header-profile
+    > summary{
+    white-space: normal !important;
+  }
+html
+    body.madic-unified[data-page="alberta"]
+    .madic-header-profile-menu{
+    right: 0 !important;
+  }
+html body.madic-unified[data-page="alberta"] .madic-unified-content{
+    min-width: 0 !important;
+    max-width: 100% !important;
+    overflow-x: clip !important;
+  }}
+@media (max-width: 520px) {html body.madic-unified[data-page="alberta"] .madic-header-right{
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+html
+    body.madic-unified[data-page="alberta"]
+    .madic-cric-standard-header
+    .toplinks{
+    grid-column: 1 !important;
+    grid-row: 2 !important;
+    justify-content: flex-start !important;
+  }
+html body.madic-unified[data-page="alberta"] .madic-header-profile{
+    grid-column: 1 !important;
+    grid-row: 3 !important;
+    justify-self: start !important;
+  }
+html
+    body.madic-unified[data-page="alberta"]
+    .madic-header-profile-copy{
+    max-width: none !important;
+  }
+html body.madic-unified[data-page="alberta"] .madic-header-search{
+    grid-column: 1 !important;
+  }}
+@media (min-width: 901px) {html body.madic-unified[data-page="alberta"] > .madic-unified-layout{
+    display: grid !important;
+    grid-template-columns: 244px minmax(0, 1fr) !important;
+    grid-template-rows: 72px minmax(0, 1fr) !important;
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    gap: 0 !important;
+  }
+html
+    body.madic-unified[data-page="alberta"]
+    .madic-unified-layout
+    > .madic-unified-sidebar{
+    width: 244px !important;
+    max-width: 244px !important;
+    grid-column: 1 !important;
+    grid-row: 1/-1 !important;
+    margin: 0 !important;
+    padding: 12px 13px !important;
+  }
+html
+    body.madic-unified[data-page="alberta"]
+    .madic-unified-layout
+    > header.madic-cric-standard-header{
+    grid-column: 2 !important;
+    grid-row: 1 !important;
+    margin: 0 !important;
+    width: 100% !important;
+  }
+html
+    body.madic-unified[data-page="alberta"]
+    .madic-unified-layout
+    > .madic-unified-content{
+    grid-column: 2 !important;
+    grid-row: 2 !important;
+    margin: 0 !important;
+    min-width: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }}
+html
+  body.madic-unified[data-page="alberta"]
+  .madic-unified-sidebar
+  > .madic-unified-brand{
+  padding: 8px 3px 15px !important;
+  margin: 0 0 10px !important;
+  gap: 10px !important;
+}
+html body.madic-unified[data-page="alberta"] .madic-cric-new-nav{
+  gap: 1px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+html body.madic-unified[data-page="alberta"] .madic-cric-new-nav > a,
+html
+  body.madic-unified[data-page="alberta"]
+  .madic-cric-new-nav
+  .madic-nav-tools
+  > summary{
+  min-height: 38px !important;
+  height: auto !important;
+  padding: 8px 10px !important;
+  margin: 0 !important;
+  gap: 11px !important;
+  font-size: 13px !important;
+  line-height: 1.2 !important;
+  font-weight: 600 !important;
+}
+html
+  body.madic-unified[data-page="alberta"]
+  .madic-cric-new-nav
+  .madic-nav-icon{
+  width: 18px !important;
+  height: 18px !important;
+  flex: 0 0 18px !important;
+}
+html[lang^="fr"]
+  body.madic-unified[data-page="alberta"]
+  .madic-lang-controls
+  button[data-lang="en"],
+html[lang^="en"]
+  body.madic-unified[data-page="alberta"]
+  .madic-lang-controls
+  button[data-lang="fr"]{
+  background: #e8f3f9 !important;
+  color: #14516d !important;
+  border: 1px solid #b9d4e4 !important;
+  box-shadow: none !important;
+  opacity: 1 !important;
+}
+html[lang^="fr"]
+  body.madic-unified[data-page="alberta"]
+  .madic-lang-controls
+  button[data-lang="fr"],
+html[lang^="en"]
+  body.madic-unified[data-page="alberta"]
+  .madic-lang-controls
+  button[data-lang="en"]{
+  background: #258daf !important;
+  color: #fff !important;
+  border: 1px solid #258daf !important;
+  box-shadow: none !important;
+  opacity: 1 !important;
+}
+html body.madic-unified[data-page="alberta"] .madic-unified-content{
+  box-sizing: border-box !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
+}
+@media (max-width: 900px) {html body.madic-unified[data-page="alberta"] .madic-unified-layout{
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0 !important;
+  }
+html
+    body.madic-unified[data-page="alberta"]
+    .madic-unified-layout
+    > .madic-unified-sidebar{
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 9px 14px !important;
+  }
+html
+    body.madic-unified[data-page="alberta"]
+    .madic-unified-layout
+    > header.madic-cric-standard-header{
+    width: 100% !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+  }
+html
+    body.madic-unified[data-page="alberta"]
+    .madic-unified-layout
+    > .madic-unified-content{
+    width: 100% !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+  }
+html body.madic-unified[data-page="alberta"] .madic-cric-new-nav{
+    display: none !important;
+  }
+html
+    body.madic-unified[data-page="alberta"]
+    .madic-mobile-nav-open
+    .madic-cric-new-nav{
+    display: flex !important;
+    flex-direction: column !important;
+    max-height: 65vh !important;
+    overflow-y: auto !important;
+  }
+html body.madic-unified[data-page="alberta"] .madic-header-right{
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) auto !important;
+    gap: 8px !important;
+  }
+html body.madic-unified[data-page="alberta"] .madic-header-search{
+    grid-column: 1/-1 !important;
+    grid-row: 1 !important;
+  }
+html
+    body.madic-unified[data-page="alberta"]
+    .madic-cric-standard-header
+    .toplinks{
+    grid-column: 1 !important;
+    grid-row: 2 !important;
+    justify-content: flex-start !important;
+    width: auto !important;
+  }
+html body.madic-unified[data-page="alberta"] .madic-header-profile{
+    grid-column: 2 !important;
+    grid-row: 2 !important;
+    justify-self: end !important;
+  }}
+@media (max-width: 520px) {html body.madic-unified[data-page="alberta"] .madic-header-right{
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
+  }
+html
+    body.madic-unified[data-page="alberta"]
+    .madic-cric-standard-header
+    .toplinks{
+    grid-column: 1 !important;
+    grid-row: 2 !important;
+    white-space: nowrap !important;
+  }
+html body.madic-unified[data-page="alberta"] .madic-header-profile{
+    grid-column: 2 !important;
+    grid-row: 2 !important;
+    justify-self: end !important;
+    min-width: 0 !important;
+  }
+html
+    body.madic-unified[data-page="alberta"]
+    .madic-header-profile-copy{
+    max-width: 110px !important;
+  }}
+@media (min-width: 851px) {html body.madic-unified[data-page="alberta"] .madic-unified-layout{
+    display: grid !important;
+    grid-template-columns: 244px minmax(0, 1fr) !important;
+    grid-template-rows: 72px minmax(0, 1fr) !important;
+  }
+html
+    body.madic-unified[data-page="alberta"]
+    .madic-unified-layout
+    > .madic-unified-sidebar{
+    grid-column: 1 !important;
+    grid-row: 1 / -1 !important;
+    position: sticky !important;
+    top: 0 !important;
+    width: 244px !important;
+    min-width: 244px !important;
+    max-width: 244px !important;
+    height: 100vh !important;
+    padding: 22px 14px !important;
+    gap: 19px !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+  }
+html
+    body.madic-unified[data-page="alberta"]
+    .madic-unified-layout
+    > header.madic-cric-standard-header{
+    grid-column: 2 !important;
+    grid-row: 1 !important;
+  }
+html
+    body.madic-unified[data-page="alberta"]
+    .madic-unified-layout
+    > .madic-unified-content{
+    grid-column: 2 !important;
+    grid-row: 2 !important;
+    min-width: 0 !important;
+  }}
+html body.madic-unified[data-page="alberta"] .madic-unified-sidebar{
+  background: var(--madic-surface) !important;
+  border-right: 1px solid #244867 !important;
+}
+html body.madic-unified[data-page="alberta"] .madic-unified-brand{
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  padding: 7px 7px 18px !important;
+  margin: 0 !important;
+}
+html
+  body.madic-unified[data-page="alberta"]
+  .madic-unified-brand
+  strong{
+  font-size: 14px !important;
+  white-space: nowrap !important;
+}
+html body.madic-unified[data-page="alberta"] .madic-unified-brand small{
+  font-size: 11px !important;
+}
+html body.madic-unified[data-page="alberta"] .madic-cric-new-nav{
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0 !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: visible !important;
+}
+html body.madic-unified[data-page="alberta"] .madic-cric-new-nav > a,
+html
+  body.madic-unified[data-page="alberta"]
+  .madic-cric-new-nav
+  > .madic-nav-tools
+  > summary{
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  height: auto !important;
+  min-height: 43px !important;
+  max-height: none !important;
+  padding: 10px 9px !important;
+  margin: 0 !important;
+  gap: 5px !important;
+  border-radius: 10px !important;
+  font-size: 0.83rem !important;
+  font-weight: 600 !important;
+  line-height: 1.25 !important;
+  white-space: normal !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
+}
+html
+  body.madic-unified[data-page="alberta"]
+  .madic-cric-new-nav
+  > a
+  > span,
+html
+  body.madic-unified[data-page="alberta"]
+  .madic-cric-new-nav
+  > .madic-nav-tools
+  > summary
+  > span{
+  display: block !important;
+  flex: 1 1 auto !important;
+  width: auto !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  white-space: normal !important;
+  overflow: visible !important;
+  text-overflow: clip !important;
+}
+html
+  body.madic-unified[data-page="alberta"]
+  .madic-cric-new-nav
+  .madic-nav-icon{
+  display: block !important;
+  flex: 0 0 21px !important;
+  width: 21px !important;
+  height: 21px !important;
+  min-width: 21px !important;
+  max-width: 21px !important;
+}
+html
+  body.madic-unified[data-page="alberta"]
+  .madic-cric-new-nav
+  > a[aria-current="page"]{
+  background: #1a6482 !important;
+  border: 1px solid #62cbd5 !important;
+  box-shadow: inset 3px 0 #81e7e5 !important;
+  color: #fff !important;
+}
+html
+  body.madic-unified[data-page="alberta"]
+  .madic-cric-new-nav
+  > .madic-nav-tools{
+  width: 100% !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+html
+  body.madic-unified[data-page="alberta"]
+  .madic-cric-new-nav
+  .madic-nav-divider{
+  width: 100% !important;
+  height: 1px !important;
+  min-height: 1px !important;
+  margin: 8px 0 !important;
+}
+html body.madic-unified[data-page="alberta"] .madic-nav-submenu > a{
+  min-height: 37px !important;
+  padding: 7px 9px !important;
+  font-size: 12px !important;
+  white-space: normal !important;
+}
+@media (max-width: 850px) {html body.madic-unified[data-page="alberta"] .madic-unified-layout{
+    display: flex !important;
+    flex-direction: column !important;
+  }
+html
+    body.madic-unified[data-page="alberta"]
+    .madic-unified-layout
+    > .madic-unified-sidebar{
+    position: relative !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    height: auto !important;
+    padding: 12px 13px !important;
+  }
+html body.madic-unified[data-page="alberta"] .madic-cric-new-nav{
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+  }
+html body.madic-unified[data-page="alberta"] .madic-cric-new-nav > a,
+html
+    body.madic-unified[data-page="alberta"]
+    .madic-cric-new-nav
+    > .madic-nav-tools
+    > summary{
+    flex: 0 0 auto !important;
+    width: auto !important;
+    max-width: none !important;
+    min-width: max-content !important;
+    min-height: 40px !important;
+    padding: 8px 12px !important;
+  }
+html
+    body.madic-unified[data-page="alberta"]
+    .madic-cric-new-nav
+    > .madic-nav-tools{
+    flex: 0 0 auto !important;
+    width: auto !important;
+  }}
+html
+  body.madic-unified[data-page="alberta"]
+  .madic-unified-sidebar
+  .madic-cric-new-nav{
+  display: flex !important;
+  flex-direction: column !important;
+  flex-wrap: nowrap !important;
+  justify-content: flex-start !important;
+  align-items: stretch !important;
+  align-content: flex-start !important;
+  flex: 0 0 auto !important;
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  gap: 0 !important;
+  row-gap: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+html
+  body.madic-unified[data-page="alberta"]
+  .madic-unified-sidebar
+  .madic-cric-new-nav
+  > a,
+html
+  body.madic-unified[data-page="alberta"]
+  .madic-unified-sidebar
+  .madic-cric-new-nav
+  > details
+  > summary{
+  display: flex !important;
+  flex: 0 0 36px !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  justify-content: flex-start !important;
+  align-items: center !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  height: 36px !important;
+  min-height: 36px !important;
+  max-height: 36px !important;
+  box-sizing: border-box !important;
+  padding: 0 10px !important;
+  margin: 0 !important;
+  gap: 8px !important;
+  column-gap: 8px !important;
+  line-height: 1.1 !important;
+  font-size: 13px !important;
+  text-align: left !important;
+}
+html
+  body.madic-unified[data-page="alberta"]
+  .madic-cric-new-nav
+  > details{
+  flex: 0 0 auto !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+html
+  body.madic-unified[data-page="alberta"]
+  .madic-cric-new-nav
+  > a
+  > span,
+html
+  body.madic-unified[data-page="alberta"]
+  .madic-cric-new-nav
+  > details
+  > summary
+  > span{
+  display: block !important;
+  flex: 1 1 auto !important;
+  width: auto !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  text-align: left !important;
+}
+html
+  body.madic-unified[data-page="alberta"]
+  .madic-cric-new-nav
+  > a
+  > svg.madic-nav-icon,
+html
+  body.madic-unified[data-page="alberta"]
+  .madic-cric-new-nav
+  > details
+  > summary
+  > svg.madic-nav-icon:first-child{
+  display: block !important;
+  flex: 0 0 19px !important;
+  width: 19px !important;
+  height: 19px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  align-self: center !important;
+}
+html
+  body.madic-unified[data-page="alberta"]
+  .madic-cric-new-nav
+  > details
+  > summary
+  > svg.madic-nav-icon:last-child{
+  flex: 0 0 14px !important;
+  width: 14px !important;
+  height: 14px !important;
+  margin-left: auto !important;
+}
+html
+  body.madic-unified[data-page="alberta"]
+  .madic-cric-new-nav
+  > .madic-nav-divider{
+  flex: 0 0 1px !important;
+  height: 1px !important;
+  min-height: 1px !important;
+  margin: 3px 0 !important;
+}
+html
+  body.madic-unified[data-page="alberta"]
+  .madic-cric-new-nav
+  > a[aria-current="page"]{
+  background: #1a6482 !important;
+  color: #fff !important;
+  border: 1px solid #62cbd5 !important;
+  border-left: 1px solid #62cbd5 !important;
+  box-shadow: none !important;
+}
+@media (max-width: 900px) {html
+    body.madic-unified[data-page="alberta"]
+    .madic-unified-sidebar
+    .madic-cric-new-nav{
+    display: none !important;
+  }
+html
+    body.madic-unified[data-page="alberta"]
+    .madic-unified-sidebar.madic-mobile-nav-open
+    .madic-cric-new-nav,
+html
+    body.madic-unified[data-page="alberta"]
+    .madic-mobile-nav-open
+    .madic-cric-new-nav{
+    display: flex !important;
+    flex-direction: column !important;
+    flex-wrap: nowrap !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+  }
+html body.madic-unified[data-page="alberta"] .madic-cric-new-nav > a,
+html
+    body.madic-unified[data-page="alberta"]
+    .madic-cric-new-nav
+    > details
+    > summary{
+    flex: 0 0 36px !important;
+    width: 100% !important;
+    min-width: 0 !important;
+  }}
+html body.madic-unified[data-page="alberta"] .madic-phone-trigger,
+html body.madic-unified[data-page="alberta"] .madic-phone-close,
+html body.madic-unified[data-page="alberta"] .madic-phone-shade{
+  display: none !important;
+}
+@media (max-width: 900px) {html body.madic-unified[data-page="alberta"] .madic-unified-layout{
+    display: block !important;
+  }
+html
+    body.madic-unified[data-page="alberta"]
+    header.madic-cric-standard-header{
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    position: relative !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 12px 16px !important;
+    gap: 10px !important;
+  }
+html
+    body.madic-unified[data-page="alberta"]
+    header.madic-cric-standard-header
+    .madic-header-title{
+    display: flex !important;
+    width: 100% !important;
+    gap: 12px !important;
+    align-items: center !important;
+  }
+html
+    body.madic-unified[data-page="alberta"]
+    header.madic-cric-standard-header
+    .madic-header-right{
+    display: flex !important;
+    flex-wrap: wrap !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    gap: 8px !important;
+    justify-content: space-between !important;
+  }
+html
+    body.madic-unified[data-page="alberta"]
+    header.madic-cric-standard-header
+    .madic-header-search{
+    flex: 0 0 100% !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
+html
+    body.madic-unified[data-page="alberta"]
+    header.madic-cric-standard-header
+    .madic-header-search
+    input{
+    min-width: 0 !important;
+  }
+html body.madic-unified[data-page="alberta"] .madic-phone-trigger,
+html body.madic-unified[data-page="alberta"] .madic-phone-close{
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 44px !important;
+    height: 44px !important;
+    min-width: 44px !important;
+    padding: 0 !important;
+    background: transparent !important;
+    color: inherit !important;
+    border: 0 !important;
+    cursor: pointer !important;
+  }
+html body.madic-unified[data-page="alberta"] .madic-phone-close{
+    align-self: flex-end !important;
+    color: white !important;
+    font-size: 32px !important;
+  }
+html
+    body.madic-unified[data-page="alberta"]
+    .madic-unified-layout
+    > .madic-unified-sidebar#madicPhoneDrawer{
+    display: flex !important;
+    position: fixed !important;
+    inset: 0 auto 0 0 !important;
+    width: min(340px, 88vw) !important;
+    max-width: 88vw !important;
+    height: 100dvh !important;
+    max-height: 100dvh !important;
+    z-index: 10002 !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    justify-content: flex-start !important;
+    gap: 12px !important;
+    padding: 12px 16px !important;
+    margin: 0 !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    background: #102b49 !important;
+    transform: translateX(-105%);
+    visibility: hidden;
+    transition:
+      transform 0.2s ease,
+      visibility 0.2s;
+  }
+html
+    body.madic-unified[data-page="alberta"].madic-phone-open
+    .madic-unified-layout
+    > .madic-unified-sidebar#madicPhoneDrawer{
+    transform: translateX(0);
+    visibility: visible;
+  }
+html
+    body.madic-unified[data-page="alberta"]
+    .madic-unified-sidebar#madicPhoneDrawer
+    .madic-cric-new-nav{
+    display: flex !important;
+    flex-direction: column !important;
+    flex-wrap: nowrap !important;
+    overflow: visible !important;
+    width: 100% !important;
+    max-height: none !important;
+    height: auto !important;
+    gap: 4px !important;
+    flex: 0 0 auto !important;
+  }
+html
+    body.madic-unified[data-page="alberta"]
+    .madic-unified-sidebar#madicPhoneDrawer
+    .madic-cric-new-nav
+    > a,
+html
+    body.madic-unified[data-page="alberta"]
+    .madic-unified-sidebar#madicPhoneDrawer
+    .madic-cric-new-nav
+    > details
+    > summary{
+    width: 100% !important;
+    min-width: 0 !important;
+    min-height: 46px !important;
+    height: auto !important;
+    max-height: none !important;
+    flex: 0 0 auto !important;
+    padding: 10px !important;
+  }
+html
+    body.madic-unified[data-page="alberta"]
+    .madic-unified-sidebar#madicPhoneDrawer
+    .madic-nav-tools:not([open])
+    > .madic-nav-submenu{
+    display: none !important;
+  }
+html
+    body.madic-unified[data-page="alberta"]
+    .madic-unified-sidebar#madicPhoneDrawer
+    .madic-nav-tools[open]
+    > .madic-nav-submenu{
+    display: flex !important;
+    flex-direction: column !important;
+    position: static !important;
+  }
+html
+    body.madic-unified[data-page="alberta"].madic-phone-open
+    .madic-phone-shade:not([hidden]){
+    display: block !important;
+    position: fixed !important;
+    inset: 0 !important;
+    background: #0009 !important;
+    z-index: 10001 !important;
+  }
+html body.madic-unified[data-page="alberta"].madic-phone-open{
+    overflow: hidden !important;
+  }
+html body.madic-unified[data-page="alberta"] .madic-unified-content{
+    min-width: 0 !important;
+    width: 100% !important;
+  }}
+@media (prefers-reduced-motion: reduce) {html body.madic-unified[data-page="alberta"] #madicPhoneDrawer{
+    transition: none !important;
+  }}
+@media screen and (max-width: 900px) {html
+    body.madic-unified[data-page="alberta"]
+    .madic-unified-layout
+    > header.madic-cric-standard-header
+    > .madic-header-title{
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    height: auto !important;
+    min-height: 48px !important;
+    max-height: none !important;
+    overflow: visible !important;
+    position: relative !important;
+    clip: auto !important;
+    clip-path: none !important;
+    flex: 0 0 auto !important;
+  }
+html
+    body.madic-unified[data-page="alberta"]
+    .madic-unified-layout
+    > header.madic-cric-standard-header
+    > .madic-header-title
+    > .madic-phone-trigger{
+    display: inline-flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    color: #173451 !important;
+    background: #edf4fb !important;
+    border-radius: 8px !important;
+    flex: 0 0 44px !important;
+  }
+html
+    body.madic-unified[data-page="alberta"]
+    .madic-header-title
+    > .brand{
+    display: inline-flex !important;
+    visibility: visible !important;
+    align-items: center;
+    gap: 5px;
+    color: #173451 !important;
+  }
+html body.madic-unified[data-page="alberta"] #madicPhoneDrawer{
+    background: #edf4fb !important;
+    color: #173451 !important;
+  }
+html
+    body.madic-unified[data-page="alberta"]
+    #madicPhoneDrawer
+    .madic-phone-close{
+    color: #173451 !important;
+  }
+html
+    body.madic-unified[data-page="alberta"]
+    #madicPhoneDrawer
+    nav
+    :is(a, summary){
+    color: #173451 !important;
+  }
+html
+    body.madic-unified[data-page="alberta"]
+    #madicPhoneDrawer
+    nav
+    a[aria-current="page"]{
+    background: #d5e7f8 !important;
+    color: #173451 !important;
+  }}
+@media (max-width: 900px) {html
+    body.madic-unified[data-page="alberta"]
+    .madic-unified-layout
+    > .madic-unified-sidebar#madicPhoneDrawer{
+    background: #102b49 !important;
+  }
+html
+    body.madic-unified[data-page="alberta"]
+    .madic-unified-layout
+    > .madic-unified-sidebar#madicPhoneDrawer
+    .madic-phone-close,
+html
+    body.madic-unified[data-page="alberta"]
+    .madic-unified-layout
+    > .madic-unified-sidebar#madicPhoneDrawer
+    nav
+    :is(a, summary, span, svg){
+    color: #fff !important;
+  }
+html
+    body.madic-unified[data-page="alberta"]
+    .madic-unified-layout
+    > .madic-unified-sidebar#madicPhoneDrawer
+    nav
+    a[aria-current="page"],
+html
+    body.madic-unified[data-page="alberta"]
+    .madic-unified-layout
+    > .madic-unified-sidebar#madicPhoneDrawer
+    nav
+    a[aria-current="page"]
+    :is(span, svg){
+    color: #173451 !important;
+  }
+html
+    body.madic-unified[data-page="alberta"]
+    .madic-unified-layout
+    > .madic-unified-sidebar#madicPhoneDrawer
+    nav
+    > details,
+html
+    body.madic-unified[data-page="alberta"]
+    .madic-unified-layout
+    > .madic-unified-sidebar#madicPhoneDrawer
+    nav
+    > details
+    > summary,
+html
+    body.madic-unified[data-page="alberta"]
+    .madic-unified-layout
+    > .madic-unified-sidebar#madicPhoneDrawer
+    nav
+    .madic-nav-submenu
+    > a{
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    justify-content: flex-start !important;
+  }}
+@media (max-width: 900px) {html
+    body.madic-unified[data-page="alberta"]
+    .madic-unified-layout
+    > header.madic-cric-standard-header{
+    display: grid !important;
+    grid-template-columns: auto minmax(0, 1fr) auto !important;
+    grid-template-rows: auto auto !important;
+    align-items: center !important;
+    gap: 8px 6px !important;
+    padding: 8px !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    position: relative !important;
+    inset: auto !important;
+    overflow: visible !important;
+    z-index: 30 !important;
+  }
+html
+    body.madic-unified[data-page="alberta"]
+    .madic-unified-layout
+    > header.madic-cric-standard-header
+    > .madic-header-title{
+    grid-area: 1/1/2/2 !important;
+    width: auto !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    gap: 5px !important;
+  }
+html
+    body.madic-unified[data-page="alberta"]
+    .madic-unified-layout
+    > header.madic-cric-standard-header
+    > .madic-header-right{
+    display: contents !important;
+  }
+html
+    body.madic-unified[data-page="alberta"]
+    .madic-unified-layout
+    > header.madic-cric-standard-header
+    .madic-header-search{
+    grid-area: 2/1/3/4 !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    margin: 0 !important;
+    position: relative !important;
+    inset: auto !important;
+    height: 42px !important;
+  }
+html
+    body.madic-unified[data-page="alberta"]
+    .madic-unified-layout
+    > header.madic-cric-standard-header
+    .toplinks{
+    grid-area: 1/2/2/3 !important;
+    display: flex !important;
+    justify-content: flex-end !important;
+    align-items: center !important;
+    gap: 4px !important;
+    width: auto !important;
+    min-width: 0 !important;
+    margin: 0 !important;
+    position: static !important;
+  }
+html
+    body.madic-unified[data-page="alberta"]
+    .madic-unified-layout
+    > header.madic-cric-standard-header
+    .madic-header-profile{
+    grid-area: 1/3/2/4 !important;
+    display: block !important;
+    position: relative !important;
+    width: auto !important;
+    min-width: 0 !important;
+    max-width: 180px !important;
+    margin: 0 !important;
+  }
+html
+    body.madic-unified[data-page="alberta"]
+    .madic-unified-layout
+    > header.madic-cric-standard-header
+    .madic-header-profile
+    > summary{
+    display: flex !important;
+    align-items: center !important;
+    gap: 4px !important;
+    padding: 0 !important;
+    min-width: 0 !important;
+  }
+html
+    body.madic-unified[data-page="alberta"]
+    .madic-unified-layout
+    > header.madic-cric-standard-header
+    .madic-header-profile-copy{
+    display: grid !important;
+    min-width: 0 !important;
+    max-width: 130px !important;
+  }
+html
+    body.madic-unified[data-page="alberta"]
+    .madic-unified-layout
+    > header.madic-cric-standard-header
+    .madic-header-profile-avatar{
+    flex: 0 0 32px !important;
+    width: 32px !important;
+    height: 32px !important;
+  }
+html
+    body.madic-unified[data-page="alberta"]
+    .madic-unified-layout
+    > header.madic-cric-standard-header
+    .madic-header-profile-menu{
+    right: 0 !important;
+    left: auto !important;
+    top: 100% !important;
+    z-index: 50 !important;
+  }
+html
+    body.madic-unified[data-page="alberta"]
+    .madic-unified-layout
+    > header.madic-cric-standard-header
+    .madic-header-title
+    > .brand{
+    font-size: clamp(12px, 2.7vw, 18px) !important;
+    white-space: nowrap !important;
+    gap: 3px !important;
+    margin: 0 !important;
+  }
+html
+    body.madic-unified[data-page="alberta"]
+    .madic-unified-layout
+    > header.madic-cric-standard-header
+    .madic-header-title
+    > .madic-phone-trigger{
+    width: 36px !important;
+    min-width: 36px !important;
+    height: 38px !important;
+    flex: 0 0 36px !important;
+    margin: 0 !important;
+  }
+html
+    body.madic-unified[data-page="alberta"]
+    .madic-unified-layout
+    > header.madic-cric-standard-header
+    .madic-lang-controls{
+    display: flex !important;
+    gap: 3px !important;
+    margin: 0 !important;
+  }
+html
+    body.madic-unified[data-page="alberta"]
+    .madic-unified-layout
+    > header.madic-cric-standard-header
+    .madic-lang-controls
+    button{
+    width: 32px !important;
+    min-width: 32px !important;
+    height: 38px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+html
+    body.madic-unified[data-page="alberta"]
+    .madic-unified-layout
+    > header.madic-cric-standard-header
+    .madic-top-notification{
+    width: 28px !important;
+    min-width: 28px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+html
+    body.madic-unified[data-page="alberta"]
+    .madic-unified-layout
+    > .madic-unified-content{
+    margin-top: 0 !important;
+    padding-top: 12px !important;
+    position: relative !important;
+    inset: auto !important;
+  }}
+@media (max-width: 480px) {html
+    body.madic-unified[data-page="alberta"]
+    .madic-unified-layout
+    > header.madic-cric-standard-header{
+    grid-template-columns: auto minmax(0, 1fr) auto !important;
+    gap: 6px 3px !important;
+    padding: 6px !important;
+  }
+html
+    body.madic-unified[data-page="alberta"]
+    .madic-unified-layout
+    > header.madic-cric-standard-header
+    .madic-header-profile-copy{
+    max-width: 70px !important;
+  }
+html
+    body.madic-unified[data-page="alberta"]
+    .madic-unified-layout
+    > header.madic-cric-standard-header
+    .madic-header-profile-copy
+    strong,
+html
+    body.madic-unified[data-page="alberta"]
+    .madic-unified-layout
+    > header.madic-cric-standard-header
+    .madic-header-profile-copy
+    small{
+    font-size: 10px !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+  }
+html
+    body.madic-unified[data-page="alberta"]
+    .madic-unified-layout
+    > header.madic-cric-standard-header
+    .madic-header-title
+    > .brand{
+    font-size: 12px !important;
+  }
+html
+    body.madic-unified[data-page="alberta"]
+    .madic-unified-layout
+    > header.madic-cric-standard-header
+    .madic-header-title
+    > .madic-phone-trigger{
+    width: 30px !important;
+    min-width: 30px !important;
+    flex-basis: 30px !important;
+  }
+html
+    body.madic-unified[data-page="alberta"]
+    .madic-unified-layout
+    > header.madic-cric-standard-header
+    .madic-lang-controls
+    button{
+    width: 26px !important;
+    min-width: 26px !important;
+    font-size: 11px !important;
+  }
+html
+    body.madic-unified[data-page="alberta"]
+    .madic-unified-layout
+    > header.madic-cric-standard-header
+    .madic-header-profile-avatar{
+    width: 26px !important;
+    height: 26px !important;
+    flex-basis: 26px !important;
+  }}
+@media (max-width: 360px) {html
+    body.madic-unified[data-page="alberta"]
+    .madic-unified-layout
+    > header.madic-cric-standard-header
+    .madic-header-profile-copy{
+    max-width: 46px !important;
+  }
+html
+    body.madic-unified[data-page="alberta"]
+    .madic-unified-layout
+    > header.madic-cric-standard-header
+    .madic-header-title
+    > .brand{
+    font-size: 11px !important;
+  }}
+html
+  body.madic-unified[data-page="alberta"]
+  #madicPhoneDrawer
+  .madic-display-tools{
+  margin-top: auto !important;
+  display: flex !important;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+  position: relative;
+  padding: 8px 0;
+  flex-shrink: 0;
+}
+html
+  body.madic-unified[data-page="alberta"]
+  #madicPhoneDrawer
+  .madic-display-tools
+  button{
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+
+  border: 1px solid var(--madic-border) !important;
+  border-radius: 7px !important;
+  padding: 8px !important;
+  min-height: 36px;
+  cursor: pointer;
+
+  font-size: 13px !important;
+}
+html
+  body.madic-unified[data-page="alberta"]
+  #madicPhoneDrawer
+  .madic-display-tools
+  button:hover,
+html
+  body.madic-unified[data-page="alberta"]
+  #madicPhoneDrawer
+  .madic-display-tools
+  button[aria-pressed="true"]{
+}
+html
+  body.madic-unified[data-page="alberta"]
+  #madicPhoneDrawer
+  .madic-display-tools
+  svg{
+  flex: none;
+}
+html
+  body.madic-unified[data-page="alberta"]
+  #madicPhoneDrawer
+  .madic-theme-control{
+  margin-left: auto;
+}
+html
+  body.madic-unified[data-page="alberta"]
+  #madicPhoneDrawer
+  #madicThemeOptions{
+  position: absolute;
+  bottom: 52px;
+  right: 0;
+  z-index: 100;
+  min-width: 132px;
+  padding: 5px;
+
+  border: 1px solid var(--madic-border);
+  border-radius: 9px;
+}
+html
+  body.madic-unified[data-page="alberta"]
+  #madicPhoneDrawer
+  #madicThemeOptions
+  button{
+  width: 100%;
+  justify-content: flex-start;
+  margin: 3px 0;
+}
+html
+  body.madic-unified[data-page="alberta"]
+  #madicPhoneDrawer
+  #madicThemeOptions[hidden]{
+  display: none !important;
+}
+@media (min-width: 901px) {html
+    body.madic-unified[data-page="alberta"].madic-sidebar-compact
+    .madic-unified-layout{
+    grid-template-columns: 64px minmax(0, 1fr) !important;
+  }
+html
+    body.madic-unified[data-page="alberta"].madic-sidebar-compact
+    .madic-unified-layout
+    > #madicPhoneDrawer{
+    width: 64px !important;
+    min-width: 64px !important;
+    max-width: 64px !important;
+    padding: 12px 6px !important;
+    overflow: visible !important;
+    gap: 12px !important;
+  }
+html
+    body.madic-unified[data-page="alberta"].madic-sidebar-compact
+    #madicPhoneDrawer
+    .madic-unified-brand{
+    justify-content: center !important;
+    padding: 0 !important;
+  }
+html
+    body.madic-unified[data-page="alberta"].madic-sidebar-compact
+    #madicPhoneDrawer
+    .madic-unified-brand
+    > span:not(.madic-unified-monogram),
+html
+    body.madic-unified[data-page="alberta"].madic-sidebar-compact
+    #madicPhoneDrawer
+    .madic-unified-caption,
+html
+    body.madic-unified[data-page="alberta"].madic-sidebar-compact
+    #madicPhoneDrawer
+    .madic-unified-foot,
+html
+    body.madic-unified[data-page="alberta"].madic-sidebar-compact
+    #madicPhoneDrawer
+    nav
+    a
+    > span,
+html
+    body.madic-unified[data-page="alberta"].madic-sidebar-compact
+    #madicPhoneDrawer
+    .madic-collapse
+    span{
+    display: none !important;
+  }
+html
+    body.madic-unified[data-page="alberta"].madic-sidebar-compact
+    #madicPhoneDrawer
+    nav
+    a{
+    justify-content: center !important;
+    padding: 10px 0 !important;
+    min-height: 44px !important;
+    gap: 0 !important;
+  }
+html
+    body.madic-unified[data-page="alberta"].madic-sidebar-compact
+    #madicPhoneDrawer
+    .madic-display-tools{
+    flex-direction: column;
+    align-items: center;
+  }
+html
+    body.madic-unified[data-page="alberta"].madic-sidebar-compact
+    #madicPhoneDrawer
+    .madic-theme-control{
+    margin: 0;
+  }
+html
+    body.madic-unified[data-page="alberta"].madic-sidebar-compact
+    #madicPhoneDrawer
+    #madicThemeOptions{
+    left: 48px;
+    right: auto;
+    bottom: 0;
+  }
+html
+    body.madic-unified[data-page="alberta"].madic-sidebar-compact
+    #madicPhoneDrawer
+    .madic-collapse
+    svg{
+    transform: scaleX(-1);
+  }}
+@media (max-width: 900px) {html
+    body.madic-unified[data-page="alberta"]
+    #madicPhoneDrawer
+    .madic-display-tools
+    .madic-collapse{
+    display: none !important;
+  }}
+:root{
+  color-scheme: light;
+  --madic-bg: #f1f5f9;
+  --madic-surface: #ffffff;
+  --madic-sidebar: #142740;
+  --madic-text: #18324f;
+  --madic-text-muted: #52647a;
+  --madic-border: #dce4ee;
+  --madic-accent: #287c98;
+}
+:root[data-madic-appearance="dark"]{
+  color-scheme: dark;
+  --madic-bg: #111827;
+  --madic-surface: #1f2937;
+  --madic-sidebar: #0f172a;
+  --madic-text: #f1f5f9;
+  --madic-text-muted: #aab8ca;
+  --madic-border: #334155;
+}
+html
+  body.madic-unified[data-page="alberta"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  .madic-unified-layout,
+html
+  body.madic-unified[data-page="alberta"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  .madic-unified-content{
+  background: var(--madic-bg) !important;
+  color: var(--madic-text) !important;
+}
+html
+  body.madic-unified[data-page="alberta"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  .madic-cric-standard-header,
+html
+  body.madic-unified[data-page="alberta"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  .madic-header-profile-menu,
+html
+  body.madic-unified[data-page="alberta"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  .madic-header-search{
+  background: var(--madic-surface) !important;
+  color: var(--madic-text) !important;
+  border-color: var(--madic-border) !important;
+  box-shadow: none !important;
+}
+html
+  body.madic-unified[data-page="alberta"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  .madic-cric-standard-header
+  :is(.brand, summary, .madic-header-profile-copy, .madic-top-notification),
+html
+  body.madic-unified[data-page="alberta"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  .madic-cric-standard-header
+  .madic-header-profile-copy
+  strong{
+  color: var(--madic-text) !important;
+}
+html
+  body.madic-unified[data-page="alberta"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  .madic-cric-standard-header
+  .madic-header-profile-copy
+  small{
+  color: var(--madic-text-muted) !important;
+}
+html
+  body.madic-unified[data-page="alberta"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  #madicPhoneDrawer,
+html
+  body.madic-unified[data-page="alberta"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  #madicPhoneDrawer
+  #madicThemeOptions{
+  background: var(--madic-sidebar) !important;
+  color: #ffffff !important;
+  border-color: var(--madic-border) !important;
+  box-shadow: none !important;
+}
+html
+  body.madic-unified[data-page="alberta"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  #madicPhoneDrawer
+  :is(
+    .madic-unified-brand,
+    .madic-unified-brand span,
+    .madic-unified-brand small,
+    .madic-unified-caption,
+    .madic-unified-foot
+  ){
+  color: #ffffff !important;
+}
+html
+  body.madic-unified[data-page="alberta"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  #madicPhoneDrawer
+  .madic-cric-new-nav
+  > a,
+html
+  body.madic-unified[data-page="alberta"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  #madicPhoneDrawer
+  .madic-cric-new-nav
+  > a:hover{
+  background: transparent !important;
+  color: #ffffff !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
+html
+  body.madic-unified[data-page="alberta"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  #madicPhoneDrawer
+  .madic-cric-new-nav
+  > a[aria-current="page"],
+html
+  body.madic-unified[data-page="alberta"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  #madicPhoneDrawer
+  .madic-cric-new-nav
+  > a[aria-current="page"]:hover{
+  background: var(--madic-accent) !important;
+  color: #ffffff !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
+html
+  body.madic-unified[data-page="alberta"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  #madicPhoneDrawer
+  .madic-cric-new-nav
+  > a::before,
+html
+  body.madic-unified[data-page="alberta"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  #madicPhoneDrawer
+  .madic-cric-new-nav
+  > a::after{
+  content: none !important;
+  box-shadow: none !important;
+  background: none !important;
+}
+html
+  body.madic-unified[data-page="alberta"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  #madicPhoneDrawer
+  .madic-cric-new-nav
+  > a
+  :is(span, svg){
+  color: inherit !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+html
+  body.madic-unified[data-page="alberta"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  .madic-cric-standard-header
+  .madic-lang-controls
+  button[aria-pressed="true"]{
+  background: var(--madic-accent) !important;
+  color: #ffffff !important;
+  border-color: var(--madic-accent) !important;
+  box-shadow: none !important;
+}
+html
+  body.madic-unified[data-page="alberta"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  .madic-cric-standard-header
+  .madic-lang-controls
+  button:not([aria-pressed="true"]),
+html
+  body.madic-unified[data-page="alberta"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  .madic-cric-standard-header
+  .madic-header-profile-avatar,
+html
+  body.madic-unified[data-page="alberta"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  .madic-cric-standard-header
+  .madic-phone-trigger{
+  background: var(--madic-surface) !important;
+  color: var(--madic-text) !important;
+  border-color: var(--madic-border) !important;
+}
+html
+  body.madic-unified[data-page="alberta"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  .madic-cric-standard-header
+  .brand
+  span,
+html
+  body.madic-unified[data-page="alberta"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  .madic-header-search
+  button{
+  color: var(--madic-accent) !important;
+}
+html
+  body.madic-unified[data-page="alberta"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  #madicPhoneDrawer
+  .madic-display-tools
+  button{
+  background: transparent !important;
+  color: #ffffff !important;
+  border-color: var(--madic-border) !important;
+  box-shadow: none !important;
+}
+html
+  body.madic-unified[data-page="alberta"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  #madicPhoneDrawer
+  .madic-display-tools
+  button[aria-pressed="true"],
+html
+  body.madic-unified[data-page="alberta"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c)
+  #madicPhoneDrawer
+  .madic-display-tools
+  button:hover{
+  background: var(--madic-accent) !important;
+  color: #ffffff !important;
+}
+html body.madic-unified[data-page="alberta"] .madic-header-search svg{
+  stroke: var(--madic-text) !important;
+  fill: none !important;
+}
+html
+  body.madic-unified[data-page="alberta"]
+  #madicPhoneDrawer
+  .madic-cric-new-nav
+  > a{
+  border: 0 !important;
+}
+html body.madic-unified[data-page="alberta"] .madic-phone-shade{
+  background: rgba(15, 23, 42, 0.6) !important;
+}
+html
+  body.madic-unified[data-page="alberta"]
+  .madic-header-profile-menu
+  a{
+  color: var(--madic-text) !important;
+}
+html
+  body.madic-unified[data-page="alberta"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c):not(#madic-unused-d)
+  .madic-header-search
+  button{
+  background: var(--madic-accent) !important;
+  color: #fff !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
+html
+  body.madic-unified[data-page="alberta"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c):not(#madic-unused-d)
+  .madic-header-search
+  input{
+  background: var(--madic-surface) !important;
+  color: var(--madic-text) !important;
+}
+html
+  body.madic-unified[data-page="alberta"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c):not(#madic-unused-d)
+  .madic-header-search
+  svg{
+  stroke: var(--madic-text) !important;
+}
+html
+  body.madic-unified[data-page="alberta"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c):not(#madic-unused-d)
+  #madicPhoneDrawer
+  .madic-cric-new-nav
+  a{
+  background: transparent !important;
+  color: #fff !important;
+  box-shadow: none !important;
+  border-color: transparent !important;
+}
+html
+  body.madic-unified[data-page="alberta"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c):not(#madic-unused-d)
+  #madicPhoneDrawer
+  .madic-cric-new-nav
+  a:is(
+    .active,
+    .is-active,
+    [aria-current="page"],
+    [aria-current="true"],
+    [aria-selected="true"]
+  ){
+  background: var(--madic-accent) !important;
+  color: #fff !important;
+  box-shadow: none !important;
+  border-color: transparent !important;
+}
+html
+  body.madic-unified[data-page="alberta"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c):not(#madic-unused-d)
+  #madicPhoneDrawer{
+  background: var(--madic-sidebar) !important;
+  box-shadow: none !important;
+}
+html
+  body.madic-unified[data-page="alberta"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c):not(#madic-unused-d)
+  #madicPhoneDrawer
+  :is(nav a, nav summary){
+  background: transparent !important;
+  color: white !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+html
+  body.madic-unified[data-page="alberta"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c):not(#madic-unused-d)
+  #madicPhoneDrawer
+  :is(nav a, nav summary):is(
+    .active,
+    .is-active,
+    [aria-current="page"],
+    [aria-selected="true"]
+  ){
+  background: var(--madic-accent) !important;
+  color: white !important;
+}
+html
+  body.madic-unified[data-page="alberta"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c):not(#madic-unused-d)
+  #madicPhoneDrawer
+  :is(nav a, nav summary)::before,
+html
+  body.madic-unified[data-page="alberta"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c):not(#madic-unused-d)
+  #madicPhoneDrawer
+  :is(nav a, nav summary)::after{
+  content: none !important;
+}
+html
+  body.madic-unified[data-page="alberta"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c):not(#madic-unused-d)
+  #madicPhoneDrawer
+  :is(nav a, nav summary)
+  :is(span, svg){
+  background: transparent !important;
+  box-shadow: none !important;
+  color: inherit !important;
+}
+html
+  body.madic-unified[data-page="alberta"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c):not(#madic-unused-d)
+  #madicPhoneDrawer
+  .madic-nav-submenu{
+  background: var(--madic-sidebar) !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+html
+  body.madic-unified[data-page="alberta"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c):not(#madic-unused-d)
+  #madicPhoneDrawer
+  .madic-unified-foot{
+  display: none !important;
+}
+html
+  body.madic-unified[data-page="alberta"]:not(#madic-unused-a):not(
+    #madic-unused-b
+  ):not(#madic-unused-c):not(#madic-unused-d)
+  #madicPhoneDrawer
+  #madicThemeOptions{
+  background: var(--madic-sidebar) !important;
+}
+@media (min-width: 901px) {html
+    body.madic-unified[data-page="alberta"]:not(#madic-unused-a):not(
+      #madic-unused-b
+    ):not(#madic-unused-c):not(#madic-unused-d).madic-sidebar-compact
+    #madicPhoneDrawer
+    nav
+    summary
+    > span,
+html
+    body.madic-unified[data-page="alberta"]:not(#madic-unused-a):not(
+      #madic-unused-b
+    ):not(#madic-unused-c):not(#madic-unused-d).madic-sidebar-compact
+    #madicPhoneDrawer
+    nav
+    summary
+    > svg:last-child{
+    display: none !important;
+  }
+html
+    body.madic-unified[data-page="alberta"]:not(#madic-unused-a):not(
+      #madic-unused-b
+    ):not(#madic-unused-c):not(#madic-unused-d).madic-sidebar-compact
+    #madicPhoneDrawer
+    nav
+    summary{
+    justify-content: center !important;
+    padding: 10px 0 !important;
+    gap: 0 !important;
+  }
+html
+    body.madic-unified[data-page="alberta"]:not(#madic-unused-a):not(
+      #madic-unused-b
+    ):not(#madic-unused-c):not(#madic-unused-d).madic-sidebar-compact
+    #madicPhoneDrawer
+    .madic-nav-submenu{
+    padding: 0 !important;
+    margin: 0 !important;
+  }}
+@media (max-width: 900px) {html body.madic-unified[data-page="alberta"] #madicPhoneDrawer .madic-display-tools .madic-collapse{display:flex!important;}
+html body.madic-unified[data-page="alberta"].madic-sidebar-compact #madicPhoneDrawer:not(#madic-unused-a):not(#madic-unused-b):not(#madic-unused-c):not(#madic-unused-d):not(#madic-unused-e){width:76px!important;min-width:76px!important;max-width:76px!important;padding-inline:8px!important;}
+html body.madic-unified[data-page="alberta"].madic-sidebar-compact #madicPhoneDrawer .madic-unified-brand{justify-content:center!important;padding-inline:0!important;}
+html body.madic-unified[data-page="alberta"].madic-sidebar-compact #madicPhoneDrawer .madic-unified-brand > span:not(.madic-unified-monogram),
+html body.madic-unified[data-page="alberta"].madic-sidebar-compact #madicPhoneDrawer nav a > span,
+html body.madic-unified[data-page="alberta"].madic-sidebar-compact #madicPhoneDrawer .madic-collapse span{display:none!important;}
+html body.madic-unified[data-page="alberta"].madic-sidebar-compact #madicPhoneDrawer nav a{justify-content:center!important;padding-inline:0!important;gap:0!important;}
+html body.madic-unified[data-page="alberta"].madic-sidebar-compact #madicPhoneDrawer .madic-display-tools{flex-direction:column!important;align-items:center!important;}
+html body.madic-unified[data-page="alberta"].madic-sidebar-compact #madicPhoneDrawer .madic-theme-control{margin:0!important;}
+html body.madic-unified[data-page="alberta"].madic-sidebar-compact #madicPhoneDrawer .madic-collapse svg{transform:scaleX(-1);}
+html body.madic-unified[data-page="alberta"].madic-sidebar-compact #madicPhoneDrawer:not(#madic-unused-a):not(#madic-unused-b):not(#madic-unused-c):not(#madic-unused-d):not(#madic-unused-e):has(#madicThemeOptions:not([hidden])){width:220px!important;max-width:220px!important;}
+html body.madic-unified[data-page="alberta"].madic-sidebar-compact #madicPhoneDrawer #madicThemeOptions{left:0!important;right:auto!important;}
+html body.madic-unified[data-page="alberta"].madic-sidebar-compact #madicPhoneDrawer .madic-phone-close{right:8px!important;}}
+@media(max-width:900px) {html body.madic-unified[data-page="alberta"] .madic-unified-layout > header.madic-cric-standard-header .toplinks{display:flex!important;flex-wrap:nowrap!important;min-width:max-content!important;gap:4px!important;}
+html body.madic-unified[data-page="alberta"] .madic-unified-layout > header.madic-cric-standard-header .madic-lang-controls{display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;width:auto!important;min-width:max-content!important;flex:0 0 auto!important;gap:4px!important;padding:0!important;}
+html body.madic-unified[data-page="alberta"] .madic-unified-layout > header.madic-cric-standard-header .madic-lang-controls button{width:44px!important;min-width:44px!important;height:40px!important;flex:0 0 44px!important;padding:0!important;margin:0!important;}
+html body.madic-unified[data-page="alberta"] .madic-unified-layout > header.madic-cric-standard-header .madic-top-notification{width:40px!important;min-width:40px!important;height:40px!important;flex:0 0 40px!important;padding:0!important;}
+html body.madic-unified[data-page="alberta"] .madic-unified-layout > header.madic-cric-standard-header .madic-top-notification svg{width:24px!important;height:24px!important;}
+html body.madic-unified[data-page="alberta"]:not(.madic-sidebar-compact) #madicPhoneDrawer:not(#madic-unused-a):not(#madic-unused-b):not(#madic-unused-c):not(#madic-unused-d):not(#madic-unused-e):not(#madic-unused-f){width:min(280px,85vw)!important;min-width:0!important;max-width:min(280px,85vw)!important;}}
+@media(max-width:480px) {html body.madic-unified[data-page="alberta"] .madic-unified-layout > header.madic-cric-standard-header{grid-template-columns:minmax(0,1fr) auto!important;grid-template-rows:auto auto auto!important;}
+html body.madic-unified[data-page="alberta"] .madic-unified-layout > header.madic-cric-standard-header > .madic-header-title{grid-area:1/1/2/2!important;}
+html body.madic-unified[data-page="alberta"] .madic-unified-layout > header.madic-cric-standard-header .toplinks{grid-area:1/2/2/3!important;}
+html body.madic-unified[data-page="alberta"] .madic-unified-layout > header.madic-cric-standard-header .madic-header-profile{grid-area:2/1/3/3!important;justify-self:end!important;max-width:100%!important;}
+html body.madic-unified[data-page="alberta"] .madic-unified-layout > header.madic-cric-standard-header .madic-header-search{grid-area:3/1/4/3!important;}}
+@media(min-width:901px) {html body.madic-unified[data-page="alberta"]:not(.madic-sidebar-compact) .madic-unified-layout{grid-template-columns:232px minmax(0,1fr)!important;}
+html body.madic-unified[data-page="alberta"]:not(.madic-sidebar-compact) #madicPhoneDrawer:not(#madic-unused-a):not(#madic-unused-b):not(#madic-unused-c):not(#madic-unused-d):not(#madic-unused-e):not(#madic-unused-f){width:232px!important;min-width:232px!important;max-width:232px!important;}}
+:root{
+  font-family:
+    Inter,
+    system-ui,
+    -apple-system,
+    Segoe UI,
+    sans-serif;
+  color: #17324b;
+  background: #f4f7fb;
+}
+*,
+*::before,
+*::after{
+  box-sizing: border-box;
+}
+body.madic-unified{
+  margin: 0;
+  min-height: 100vh;
+  background: #f4f7fb;
+  color: #17324b;
+}
+body.madic-unified .madic-unified-content{
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+body.madic-unified .madic-unified-content > header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 76px;
+  padding: 16px clamp(20px, 3vw, 48px);
+  background: #fff;
+  border-bottom: 1px solid #e1e9f0;
+  flex-wrap: wrap;
+}
+body.madic-unified .madic-unified-content > main{
+  width: min(100% - 48px, 1200px);
+  max-width: 1200px;
+  margin: 30px auto 50px;
+  padding: 0;
+}
+body.madic-unified .madic-unified-content > footer{
+  margin-top: auto;
+}
+body.madic-unified .madic-skip-link{
+  position: absolute;
+  top: -100px;
+  left: 12px;
+  z-index: 100;
+  background: #fff;
+  padding: 10px 14px;
+}
+body.madic-unified .madic-skip-link:focus{
+  top: 12px;
+}
+body.madic-unified .madic-unified-content a:focus-visible,
+body.madic-unified button:focus-visible{
+  outline: 3px solid #15a9ba;
+  outline-offset: 3px;
+}
+@media (max-width: 600px) {body.madic-unified .madic-unified-content > main{
+    width: calc(100% - 28px);
+    margin: 20px auto 36px;
+  }
+body.madic-unified .madic-unified-content > header{
+    padding: 12px 15px;
+  }
+body.madic-unified .madic-provincial-main section{
+    padding: 17px;
+  }}
+.madic-provincial-main{
+  max-width: 1300px !important;
+  margin: 0 auto !important;
+  padding: 12px 0 48px !important;
+  color: inherit;
+}
+.madic-provincial-main h1{
+  font-size: clamp(1.65rem, 3vw, 2.4rem);
+  margin: 20px 0 12px;
+}
+.madic-provincial-main > p{
+  margin: 0 0 22px;
+  color: #587187;
+}
+.madic-provincial-main section{
+  background: #fff;
+  border: 1px solid #dce6ef;
+  border-radius: 16px;
+  padding: 26px;
+  margin: 20px 0;
+  box-shadow: 0 6px 22px rgba(10, 37, 64, 0.05);
+}
+.madic-provincial-main section h2{
+  margin-top: 0;
+  color: #163954;
+}
+.madic-provincial-main section a,
+.madic-provincial-main .back{
+  color: #087f8b;
+  font-weight: 700;
+}
+.madic-provincial-toolbar{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  border-radius: 12px;
+  background: #10283b;
+  color: #e9f7ff;
+}
+.madic-provincial-toolbar button{
+  border: 1px solid #5c8c9d;
+  background: #183d51;
+  color: #fff;
+  border-radius: 8px;
+  padding: 7px 12px;
+  cursor: pointer;
+  margin-left: 5px;
+}
+.madic-provincial-main .back{
+  display: inline-block;
+  margin-bottom: 16px;
+}
+.madic-provincial-main > small{
+  display: block;
+  margin-top: 20px;
+  color: #5c7184;
+}
+@media (max-width: 650px) {.madic-provincial-main section{
+    padding: 17px;
+  }
+.madic-provincial-toolbar{
+    flex-wrap: wrap;
+  }}
+body.madic-unified .madic-unified-content > main.madic-cric-reference-main{
+  width: calc(100% - 80px);
+  max-width: 1450px;
+  margin: 28px auto 52px;
+  padding: 0 !important;
+}
+body.madic-unified .madic-unified-content > footer.madic-footer{
+  background: #eef3fa;
+  color: #143453;
+}
+@media (max-width: 950px) {body.madic-unified .madic-unified-content > main.madic-cric-reference-main{
+    width: calc(100% - 36px);
+  }}
+body.madic-unified[data-page="alberta"] .madic-unified-content{
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: #eef3f9;
+}
+body.madic-unified[data-page="alberta"] .madic-unified-content > header{
+  width: 100%;
+  min-height: 78px;
+  margin: 0;
+  padding: 12px 34px !important;
+  border-radius: 0;
+  border: 0;
+  border-bottom: 1px solid #dbe6f0;
+  background: #fff !important;
+  box-shadow: none;
+  backdrop-filter: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: nowrap;
+}
+body.madic-unified[data-page="alberta"]
+  .madic-unified-content
+  > header
+  .brand
+  span{
+  color: #50bfdf !important;
+}
+body.madic-unified[data-page="alberta"]
+  .madic-unified-content
+  > header
+  .brand
+  small{
+  color: #155d87;
+  font-size: 0.8em;
+  letter-spacing: inherit;
+  margin-left: 0;
+}
+body.madic-unified[data-page="alberta"]
+  .madic-unified-content
+  > main.madic-cric-reference-main{
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 26px 34px 48px !important;
+  flex: 1 0 auto;
+}
+@media (min-width: 801px) and (max-width: 1080px) {body.madic-unified[data-page="alberta"] .madic-unified-content > header{
+    padding: 12px 18px !important;
+  }}
+@media (max-width: 800px) {body.madic-unified[data-page="alberta"] .madic-unified-content > header{
+    padding: 18px 22px !important;
+    flex-wrap: wrap;
+  }
+body.madic-unified[data-page="alberta"]
+    .madic-unified-content
+    > main.madic-cric-reference-main{
+    padding: 20px 18px 36px !important;
+  }}
+body.madic-unified[data-page="alberta"] .madic-provincial-head{
+  display: block;
+  box-sizing: border-box;
+  padding: clamp(18px, 2.3vw, 30px);
+  margin: 0 0 18px;
+  border: 1px solid #b4cde0;
+  border-radius: 20px;
+  background:
+    linear-gradient(90deg, #0c2b4f 0%, #174a75dd 47%, #0c2b4f18 100%),
+    url("../img/MADIC_Header_4096x2304.png") center 52% / cover no-repeat !important;
+  background-position: center 48%;
+  box-shadow: 0 12px 28px #173b641b;
+  color: #fff;
+}
+body.madic-unified[data-page="alberta"] .madic-provincial-head h1{
+  margin: 4px 0 7px;
+}
+body.madic-unified[data-page="alberta"] .madic-provincial-head p:last-child{
+  margin-bottom: 0;
+}
+:root{color-scheme:light;--madic-bg:#F1F5F9;--madic-surface:#FFFFFF;--madic-sidebar:#142740;--madic-text:#18324F;--madic-text-muted:#52647A;--madic-border:#DCE4EE;--madic-accent:#287C98;}
+:root[data-madic-theme="dark"]{color-scheme:dark;--madic-bg:#111827;--madic-surface:#1F2937;--madic-sidebar:#0F172A;--madic-text:#F1F5F9;--madic-text-muted:#AAB8CA;--madic-border:#334155;}
+
+html body[data-page="alberta"] .madic-unified-content{background:var(--madic-bg)!important;color:var(--madic-text)!important;}
+html body[data-page="alberta"] main :is(section,.madic-provincial-head,.result-card,fieldset,table,th,td,input,select,textarea){background:var(--madic-surface)!important;color:var(--madic-text)!important;border-color:var(--madic-border)!important;box-shadow:none!important;}
+html body[data-page="alberta"] main :is(h1,h2,h3,h4,label,p,small){color:var(--madic-text)!important;}
+html body[data-page="alberta"] main .madic-provincial-head :is(h1,p){color:var(--madic-text)!important;}
+html body[data-page="alberta"] main :is(button:not([aria-pressed="false"])){background:var(--madic-accent);color:white;}
+html body[data-page="alberta"] main a{color:var(--madic-text);}
+html body[data-page="alberta"] footer.madic-footer{background:var(--madic-surface)!important;color:var(--madic-text)!important;border-color:var(--madic-border)!important;}
