@@ -1,3 +1,14 @@
+@layer madicProvincialCorrections {
+:root[data-madic-theme="dark"] body.madic-unified[data-page="nouvelle-ecosse"] .madic-provincial-head {background:var(--madic-surface)!important;color:var(--madic-text)!important;border-color:var(--madic-border)!important;box-shadow:none!important;}
+:root[data-madic-theme="dark"] body.madic-unified[data-page="nouvelle-ecosse"] .madic-provincial-head :is(h1,p) {color:var(--madic-text)!important;}
+body.madic-unified[data-page="nouvelle-ecosse"] .madic-header-profile-menu > :is(a,button.madic-header-signout):not([hidden]) {display:block!important;width:100%!important;text-align:left!important;padding:10px 12px!important;margin:0!important;font-size:13px!important;font-weight:600!important;line-height:1.4!important;color:var(--madic-text)!important;background:transparent!important;border:0!important;box-shadow:none!important;opacity:1!important;}
+body.madic-unified[data-page="nouvelle-ecosse"] .madic-header-profile-menu > :is(a,button):hover {background:var(--madic-accent)!important;color:white!important;}
+body.madic-unified[data-page="nouvelle-ecosse"] .madic-top-notification {border:0!important;box-shadow:none!important;background:transparent!important;color:var(--madic-text)!important;}
+body.madic-unified[data-page="nouvelle-ecosse"] .madic-top-notification > span:not(.madic-top-notification-count) {border:0!important;box-shadow:none!important;background:transparent!important;color:inherit!important;}
+body.madic-unified[data-page="nouvelle-ecosse"] footer.madic-footer, body.madic-unified[data-page="nouvelle-ecosse"] footer.madic-footer :is(.madic-footer-inner,.madic-footer-bottom) {background:var(--madic-surface)!important;border-color:var(--madic-border)!important;color:var(--madic-text-muted)!important;}
+body.madic-unified[data-page="nouvelle-ecosse"] footer.madic-footer :is(.madic-footer-name,a) {color:var(--madic-text)!important;}
+body.madic-unified[data-page="nouvelle-ecosse"] footer.madic-footer :is(.madic-footer-subtitle,.madic-footer-desc,.madic-footer-unavailable) {color:var(--madic-text-muted)!important;}
+}
 @layer madicPalette {#madicPhoneDrawer nav :is(a,summary){background:transparent!important;border-color:transparent!important;box-shadow:none!important;color:white!important;}
 #madicPhoneDrawer nav :is(a,summary):is(.active,.is-active,[aria-current="page"],[aria-selected="true"]){background:var(--madic-accent)!important;}
 #madicPhoneDrawer nav :is(a,summary)::before,

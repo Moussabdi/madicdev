@@ -203,3 +203,34 @@
 })();
 
  document.getElementById('logout').addEventListener('click',async()=>{try{if(!window.supabase)await new Promise((resolve,reject)=>{const s=document.createElement('script');s.src='https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js';s.onload=resolve;s.onerror=reject;document.head.append(s);});const db=await window.getMadicSupabase();const {error}=await db.auth.signOut();if(error)throw error;location.assign('connexion.html');}catch(e){console.error(e);alert(document.documentElement.lang.startsWith('en')?'Sign out failed.':'La déconnexion a échoué.');}});
+
+/* Header identity: read-only, using the existing authenticated Supabase client. */
+(async () => {
+  const name = document.getElementById('madicHeaderProfileName');
+  const license = document.getElementById('madicHeaderProfileLicense');
+  if (!name || !license) return;
+  try {
+    if (!window.supabase) await new Promise((resolve, reject) => {
+      const script = document.createElement('script');
+      script.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js';
+      script.onload = resolve; script.onerror = reject;
+      document.head.append(script);
+    });
+    const db = await window.getMadicSupabase();
+    const {data: auth, error} = await db.auth.getUser();
+    if (error || !auth?.user) return;
+    const uid = auth.user.id;
+    const {data: application, error: appError} = await db.from('madic_cric_applications').select('full_name,license_number,status').eq('user_id',uid).maybeSingle();
+    if (appError) throw appError;
+    const {data: profile} = await db.from('profiles').select('first_name,last_name').eq('id',uid).maybeSingle();
+    const fullName = (application?.full_name || [profile?.first_name,profile?.last_name].filter(Boolean).join(' ') || auth.user.email || '').trim();
+    if (!fullName) return;
+    const render = () => {
+      name.textContent = fullName;
+      license.textContent = (document.documentElement.lang.startsWith('en') ? 'RCIC' : 'CRIC') + (application?.license_number ? ' ' + application.license_number : '');
+    };
+    for (const el of [name,license]) { el.removeAttribute('data-fr'); el.removeAttribute('data-en'); }
+    new MutationObserver(render).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
+    render();
+  } catch (error) { console.warn('MADIC header identity:',error); }
+})();

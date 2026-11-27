@@ -2002,3 +2002,28 @@ if ($("quebec-intake-client")) void connectQuebecIntake();
  new MutationObserver(sync).observe(root,{attributes:true,attributeFilter:['lang']}); sync();
  document.getElementById('madicHeaderSearchForm').addEventListener('submit',e=>{e.preventDefault();const q=field.value.trim().toLocaleLowerCase(); if(!q)return; const target=[...document.querySelectorAll('main h1,main h2,main h3,main label,main p')].find(el=>el.textContent.toLocaleLowerCase().includes(q)); if(target){target.scrollIntoView({block:'center'});}else{field.setCustomValidity(root.lang.startsWith('en')?'No result on this page.':'Aucun résultat dans cette page.');field.reportValidity();setTimeout(()=>field.setCustomValidity(''),1500);}});
 })();
+
+/* Header identity: read-only, using the existing authenticated Supabase client. */
+(async () => {
+  const name = document.getElementById('madicHeaderProfileName');
+  const license = document.getElementById('madicHeaderProfileLicense');
+  if (!name || !license) return;
+  try {
+    const db = await getQuebecSupabase();
+    const {data: auth, error} = await db.auth.getUser();
+    if (error || !auth?.user) return;
+    const uid = auth.user.id;
+    const {data: application, error: appError} = await db.from('madic_cric_applications').select('full_name,license_number,status').eq('user_id',uid).maybeSingle();
+    if (appError) throw appError;
+    const {data: profile} = await db.from('profiles').select('first_name,last_name').eq('id',uid).maybeSingle();
+    const fullName = (application?.full_name || [profile?.first_name,profile?.last_name].filter(Boolean).join(' ') || auth.user.email || '').trim();
+    if (!fullName) return;
+    const render = () => {
+      name.textContent = fullName;
+      license.textContent = (document.documentElement.lang.startsWith('en') ? 'RCIC' : 'CRIC') + (application?.license_number ? ' ' + application.license_number : '');
+    };
+    for (const el of [name,license]) { el.removeAttribute('data-fr'); el.removeAttribute('data-en'); }
+    new MutationObserver(render).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
+    render();
+  } catch (error) { console.warn('MADIC header identity:',error); }
+})();

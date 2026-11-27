@@ -311,7 +311,7 @@ const englishLabels = new Map(
     "Important :": "Important:",
     "Cet outil indépendant n'est ni un service gouvernemental ni une décision d'admissibilité. Le sélecteur officiel de programmes a été archivé le 2 janvier 2026. Les critères, quotas et périodes de réception peuvent changer. Les réponses et pièces justificatives doivent être vérifiées avant toute demande.":
       "This independent tool is neither a government service nor an eligibility decision. The official program selector was archived on January 2, 2026. Criteria, quotas and intake periods may change. Check your answers and supporting documents before applying.",
-    "1. Votre situation": "1. Your situation",
+    "Votre situation": "Your situation",
     Âge: "Age",
     "Lieu de résidence": "Place of residence",
     "Sélectionner...": "Select…",
@@ -342,7 +342,7 @@ const englishLabels = new Map(
     "À déterminer": "Undecided",
     "Si ma demande d'asile a été refusée : tous les membres accompagnants et moi avons quitté le Canada et je possède les documents requis (IMM 0056B ou ARC, selon le cas).":
       "If my refugee claim was refused, all accompanying family members and I have left Canada, and I have the required documents (IMM 0056B or ARC, as applicable).",
-    "2. Offre d'emploi et profession": "2. Job offer and occupation",
+    "Offre d'emploi et profession": "Job offer and occupation",
     "Offre d'emploi permanente à temps plein d'un employeur en Saskatchewan":
       "Full-time permanent job offer from an employer in Saskatchewan",
     "Employer Position Assessment (EPA) valide / approuvée":
@@ -365,7 +365,7 @@ const englishLabels = new Map(
     "Profession réglementée / permis professionnel requis":
       "Regulated occupation / professional licence required",
     "À vérifier": "To be verified",
-    "3. Formation et expérience": "3. Education and experience",
+    "Formation et expérience": "Education and experience",
     "Plus haut diplôme reconnu / équivalence canadienne":
       "Highest recognized qualification / Canadian equivalency",
     "Maîtrise ou doctorat - 23 points":
@@ -402,7 +402,7 @@ const englishLabels = new Map(
       "Eligible work experience in Saskatchewan (12 months in the past 5 years)",
     "Études antérieures en Saskatchewan (une année à temps plein)":
       "Previous studies in Saskatchewan (one year of full-time study)",
-    "4. Langues officielles": "4. Official languages",
+    "Langues officielles": "Official languages",
     "Indiquez le niveau le plus faible parmi les quatre compétences d'un test reconnu. Le niveau doit provenir d'un test valide, et non d'une autoévaluation.":
       "Enter the lowest level across all four skills on an approved language test. Use a valid test result rather than a self-assessment.",
     "Tableaux officiels de conversion IRCC":
@@ -418,8 +418,8 @@ const englishLabels = new Map(
     "Plus faible CLB/NCLC - deuxième langue":
       "Lowest CLB/NCLC level - second language",
     "Sans objet / moins de 4": "Not applicable / below 4",
-    "5. Liens avec la Saskatchewan et autres critères":
-      "5. Ties to Saskatchewan and other criteria",
+    "Liens avec la Saskatchewan et autres critères":
+      "Ties to Saskatchewan and other criteria",
     "Parent proche admissible résidant en Saskatchewan":
       "Eligible close relative living in Saskatchewan",
     "Oui, et les conditions de soutien sont satisfaites":
@@ -845,4 +845,29 @@ $("logout").addEventListener("click", async (event) => {
  const sync=()=>{const en=root.lang.startsWith('en'); field.placeholder=en?'Search this page...':'Rechercher dans cette page...'; field.setAttribute('aria-label',field.placeholder);};
  new MutationObserver(sync).observe(root,{attributes:true,attributeFilter:['lang']}); sync();
  document.getElementById('madicHeaderSearchForm').addEventListener('submit',e=>{e.preventDefault();const q=field.value.trim().toLocaleLowerCase(); if(!q)return; const target=[...document.querySelectorAll('main h1,main h2,main h3,main label,main p')].find(el=>el.textContent.toLocaleLowerCase().includes(q)); if(target){target.scrollIntoView({block:'center'});}else{field.setCustomValidity(root.lang.startsWith('en')?'No result on this page.':'Aucun résultat dans cette page.');field.reportValidity();setTimeout(()=>field.setCustomValidity(''),1500);}});
+})();
+
+/* Header identity: read-only, using the existing authenticated Supabase client. */
+(async () => {
+  const name = document.getElementById('madicHeaderProfileName');
+  const license = document.getElementById('madicHeaderProfileLicense');
+  if (!name || !license) return;
+  try {
+    const db = await signOutClient();
+    const {data: auth, error} = await db.auth.getUser();
+    if (error || !auth?.user) return;
+    const uid = auth.user.id;
+    const {data: application, error: appError} = await db.from('madic_cric_applications').select('full_name,license_number,status').eq('user_id',uid).maybeSingle();
+    if (appError) throw appError;
+    const {data: profile} = await db.from('profiles').select('first_name,last_name').eq('id',uid).maybeSingle();
+    const fullName = (application?.full_name || [profile?.first_name,profile?.last_name].filter(Boolean).join(' ') || auth.user.email || '').trim();
+    if (!fullName) return;
+    const render = () => {
+      name.textContent = fullName;
+      license.textContent = (document.documentElement.lang.startsWith('en') ? 'RCIC' : 'CRIC') + (application?.license_number ? ' ' + application.license_number : '');
+    };
+    for (const el of [name,license]) { el.removeAttribute('data-fr'); el.removeAttribute('data-en'); }
+    new MutationObserver(render).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
+    render();
+  } catch (error) { console.warn('MADIC header identity:',error); }
 })();
