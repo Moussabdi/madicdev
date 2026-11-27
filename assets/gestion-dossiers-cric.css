@@ -1,3 +1,28 @@
+@layer madicTargetedFix {
+
+ body .madic-cric-standard-header .madic-header-profile-menu button.madic-header-signout:not([hidden]) {color:var(--madic-text)!important;background:transparent!important;opacity:1!important;visibility:visible!important;box-shadow:none!important;}
+ body .madic-cric-standard-header .madic-header-profile-menu button.madic-header-signout:not([hidden]):hover {background:var(--madic-accent)!important;color:#fff!important;}
+ 
+ @media(max-width:900px){
+ body .madic-unified-layout > header.madic-cric-standard-header {display:grid!important;grid-template-columns:minmax(0,1fr) max-content minmax(0,180px)!important;column-gap:8px!important;align-items:center!important;}
+ body .madic-cric-standard-header > .madic-header-right {display:contents!important;}
+ body .madic-cric-standard-header .madic-header-title {grid-area:1/1/2/2!important;min-width:0!important;}
+ body .madic-cric-standard-header .toplinks {grid-area:1/2/2/3!important;position:static!important;width:max-content!important;min-width:max-content!important;margin:0!important;gap:4px!important;}
+ body .madic-cric-standard-header .madic-lang-controls {margin:0!important;}
+ body .madic-cric-standard-header .madic-header-profile {grid-area:1/3/2/4!important;position:relative!important;min-width:0!important;width:100%!important;margin:0!important;}
+ body .madic-cric-standard-header .madic-header-profile > summary {display:flex!important;gap:4px!important;min-width:0!important;}
+ body .madic-cric-standard-header .madic-header-profile-avatar {flex:0 0 32px!important;width:32px!important;}
+ body .madic-cric-standard-header .madic-header-profile-copy {min-width:0!important;overflow:hidden!important;}
+ body .madic-cric-standard-header .madic-header-profile-copy strong {overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important;}
+ body .madic-cric-standard-header .madic-header-search {grid-area:2/1/3/4!important;width:100%!important;min-width:0!important;}
+ }
+ @media(max-width:520px){
+ body .madic-unified-layout > header.madic-cric-standard-header {grid-template-columns:minmax(0,1fr) max-content!important;grid-template-rows:auto auto auto!important;}
+ body .madic-cric-standard-header .madic-header-profile {grid-area:2/1/3/3!important;justify-self:end!important;width:auto!important;max-width:100%!important;}
+ body .madic-cric-standard-header .madic-header-search {grid-area:3/1/4/3!important;}
+ }
+ 
+}
 @layer madicPalette {
 body :is(.madic-v2-stat,.madic-dashboard-actions,.madic-service-create,.madic-service-overview > *, .madic-service-row,.madic-service-detail,.madic-service-details,.madic-service-list details,.madic-service-list details > *, .madic-service-list article,.madic-service-list article > div,.madic-service-list article section,.madic-clients-hero,.madic-stage-hero,.madic-stage-hero-mark,.madic-contract-card,.madic-contracts-status,.madic-import-file-picker,.madic-cric-notice,.madic-top-notification,.madic-v2-stat-icon) {background:var(--madic-surface)!important;color:var(--madic-text)!important;border-color:var(--madic-border)!important;box-shadow:none!important;}
 body :is(.madic-v2-stat-label,.madic-service-row-indicator,.madic-contract-type,.madic-contracts-eyebrow,.madic-stage-hero-copy p) {color:var(--madic-text-muted)!important;}

@@ -1,3 +1,8 @@
+@layer madicTargetedFix {
+
+ body .madic-service-workflow-block .madic-service-state-line > span:first-child:not(.madic-service-state) {color:var(--madic-text-muted)!important;opacity:1!important;}
+ 
+}
 @layer madicPalette {
 body :is(.madic-v2-stat,.madic-dashboard-actions,.madic-service-create,.madic-service-overview > *, .madic-service-row,.madic-service-detail,.madic-service-details,.madic-service-list details,.madic-service-list details > *, .madic-service-list article,.madic-service-list article > div,.madic-service-list article section,.madic-clients-hero,.madic-stage-hero,.madic-stage-hero-mark,.madic-contract-card,.madic-contracts-status,.madic-import-file-picker,.madic-cric-notice,.madic-top-notification,.madic-v2-stat-icon) {background:var(--madic-surface)!important;color:var(--madic-text)!important;border-color:var(--madic-border)!important;box-shadow:none!important;}
 body :is(.madic-v2-stat-label,.madic-service-row-indicator,.madic-contract-type,.madic-contracts-eyebrow,.madic-stage-hero-copy p) {color:var(--madic-text-muted)!important;}
