@@ -1198,6 +1198,15 @@ for (const [buttonId, contentId, hintId, openText] of [
       .eq("id", user.id)
       .single();
     if (profileError) throw profileError;
+    const accountLabel = document.querySelector('.madic-client-account-label');
+    if (accountLabel) {
+      const name = [profile.first_name, profile.last_name].filter(Boolean).join(' ');
+      if (name) { accountLabel.dataset.clientName = name; accountLabel.textContent = name; accountLabel.title = name; }
+    }
+    const accountNumber = document.querySelector('.madic-account-number');
+    const number = profile.client_number ?? profile.client_code;
+    if (accountNumber && number) { accountNumber.textContent = String(number); accountNumber.hidden = false; }
+
     // Avatars locaux selon le genre declare dans le profil. Aucune donnee envoyee a Gravatar.
     const updateClientAvatar = (gender) => {
       const avatar = $("madicClientAvatarImage");
@@ -3802,9 +3811,8 @@ for (const [buttonId, contentId, hintId, openText] of [
         ? "Search your space..."
         : "Rechercher dans votre espace...";
       search.querySelector("button").textContent = en ? "Search" : "Rechercher";
-      account.querySelector(".madic-client-account-label").textContent = en
-        ? "My space"
-        : "Mon espace";
+      const accountLabel = account.querySelector(".madic-client-account-label");
+      accountLabel.textContent = accountLabel.dataset.clientName || (en ? "Client" : "Client");
       drawer.querySelector(".madic-side-brand strong").textContent = en
         ? "MADIC PORTAL"
         : "MADIC PORTAIL";
