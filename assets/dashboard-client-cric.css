@@ -1,3 +1,21 @@
+@layer madicClientFinal {
+#madicClientDrawer .madic-nav-entry>a svg {background:transparent!important;color:inherit!important;box-shadow:none!important;}
+#madicClientDrawer .madic-display-tools {width:100%!important;align-items:center!important;padding:2px 0!important;gap:3px!important;}
+#madicClientDrawer .madic-theme-control {width:100%!important;margin:0!important;padding:0!important;}
+#madicThemeOptions::backdrop {background:transparent!important;pointer-events:none!important;}
+#madicThemeOptions:popover-open {max-height:calc(100dvh - 8px)!important;overflow-y:auto!important;}
+body.madic-client-compact #madicClientDrawer .madic-side-links {justify-content:space-evenly!important;}
+body.madic-client-compact #madicClientDrawer :is(.madic-collapse,.madic-theme-trigger) {width:40px!important;margin:0 auto!important;padding:0!important;}
+body.madic-client-compact #madicClientDrawer .madic-nav-entry {max-height:52px!important;min-height:0!important;}
+@media(max-width:900px){
+body.madic-client-compact #madicClientDrawer {box-sizing:border-box!important;position:fixed!important;inset:0 auto 0 0!important;height:100dvh!important;max-height:100dvh!important;min-height:0!important;width:76px!important;min-width:76px!important;max-width:76px!important;padding:4px 8px!important;gap:0!important;overflow:hidden!important;}
+body.madic-client-compact #madicClientDrawer .madic-client-phone-close {position:static!important;flex:0 0 28px!important;width:40px!important;padding:0!important;}
+body.madic-client-compact #madicClientDrawer .madic-side-brand {height:clamp(24px,6dvh,40px)!important;min-height:0!important;}
+body.madic-client-compact #madicClientDrawer .madic-side-links {height:auto!important;max-height:none!important;flex:1 1 0!important;}
+body.madic-client-compact #madicClientDrawer .madic-nav-entry>a {height:100%!important;min-height:0!important;}
+body.madic-client-compact #madicClientDrawer :is(.madic-collapse,.madic-theme-trigger) {height:clamp(24px,5dvh,40px)!important;}
+}
+}
 @layer madicClientContrast {
 :root {background:var(--madic-bg)!important;color:var(--madic-text)!important;}
 body[data-page] {background:var(--madic-bg)!important;background-image:none!important;}
