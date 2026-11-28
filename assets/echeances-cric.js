@@ -1723,16 +1723,18 @@ window.getMadicSupabase = function () {
         localStorage.setItem(k, v);
       } catch {}
     };
-    let compact = read("madic-admin-sidebar", "expanded") === "collapsed",
+    let compact = read("madic-cric-sidebar", "expanded") === "collapsed",
       theme = read("madic-admin-theme", "light");
     if (!["system", "light", "dark"].includes(theme)) theme = "light";
-    let renderedLanguage, renderedTheme;
+    let renderedLanguage;
+    let renderedTheme;
     const render = () => {
       renderedLanguage = root.lang;
       const en = root.lang.startsWith("en");
       body.classList.toggle("madic-sidebar-compact", compact);
       root.dataset.madicAppearance =
         theme === "system" ? (media.matches ? "dark" : "light") : theme;
+      root.dataset.madicTheme = root.dataset.madicAppearance;
       const label = compact
         ? en
           ? "Expand"
@@ -1740,32 +1742,34 @@ window.getMadicSupabase = function () {
         : en
           ? "Collapse"
           : "Réduire";
-      if (collapse.querySelector("span").textContent !== label) collapse.querySelector("span").textContent = label;
+      collapse.querySelector("span").textContent = label;
       collapse.title = label;
       collapse.setAttribute("aria-label", label);
       collapse.setAttribute("aria-expanded", String(!compact));
       trigger.title = en ? "Appearance" : "Apparence";
       trigger.setAttribute("aria-label", trigger.title);
       choices.forEach((b, i) => {
-        const text = (
+        b.querySelector("span").textContent = (
           en ? ["System", "Light", "Dark"] : ["Système", "Clair", "Sombre"]
         )[i];
-        if (b.querySelector("span").textContent !== text) b.querySelector("span").textContent = text;
         b.setAttribute("aria-pressed", String(b.dataset.themeChoice === theme));
       });
-      if (renderedTheme !== theme) {
-      trigger.querySelector("svg").replaceWith(
-        choices
-          .find((b) => b.dataset.themeChoice === theme)
-          .querySelector("svg")
-          .cloneNode(true),
-      );
+      if (renderedTheme !== theme)
+        trigger.querySelector("svg").replaceWith(
+          choices
+            .find((b) => b.dataset.themeChoice === theme)
+            .querySelector("svg")
+            .cloneNode(true),
+        );
       renderedTheme = theme;
-      }
-      document.querySelectorAll("#madicPhoneDrawer nav a").forEach((a) => {
-        a.title = a.textContent.trim();
-        a.setAttribute("aria-label", a.title);
-      });
+      document
+        .querySelectorAll(
+          "#madicPhoneDrawer nav a, #madicPhoneDrawer nav summary",
+        )
+        .forEach((a) => {
+          a.title = a.textContent.trim();
+          a.setAttribute("aria-label", a.title);
+        });
     };
     const phone = matchMedia("(max-width:900px)");
     const floating = () => phone.matches && compact && typeof menu.showPopover === "function";
@@ -1800,7 +1804,7 @@ window.getMadicSupabase = function () {
     collapse.addEventListener("click", () => {
       if (phone.matches) open(false);
       compact = !compact;
-      save("madic-admin-sidebar", compact ? "collapsed" : "expanded");
+      save("madic-cric-sidebar", compact ? "collapsed" : "expanded");
       render();
     });
     trigger.addEventListener("click", () => open(menu.hidden));
@@ -1830,8 +1834,8 @@ window.getMadicSupabase = function () {
       attributeFilter: ["lang"],
     });
     window.addEventListener("storage", (e) => {
-      if (["madic-admin-sidebar", "madic-admin-theme"].includes(e.key)) {
-        compact = read("madic-admin-sidebar", "expanded") === "collapsed";
+      if (["madic-cric-sidebar", "madic-admin-theme"].includes(e.key)) {
+        compact = read("madic-cric-sidebar", "expanded") === "collapsed";
         theme = read("madic-admin-theme", "light");
         if (!["system", "light", "dark"].includes(theme)) theme = "light";
         render();

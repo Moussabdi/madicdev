@@ -1,3 +1,13 @@
+@layer madicDrawerRepair { @media(max-width:900px) {
+html body.madic-unified[data-page="demandes-documents-cric"] #madicPhoneDrawer {position:fixed!important; inset:0 auto 0 0!important; z-index:10002!important; transform:translateX(-105%)!important; visibility:hidden!important; background:var(--madic-sidebar)!important;}
+html body.madic-unified[data-page="demandes-documents-cric"].madic-phone-open #madicPhoneDrawer {transform:translateX(0)!important;visibility:visible!important;}
+html body.madic-unified[data-page="demandes-documents-cric"] .madic-phone-shade {display:none!important;}
+html body.madic-unified[data-page="demandes-documents-cric"].madic-phone-open .madic-phone-shade:not([hidden]) {display:block!important;position:fixed!important;inset:0!important;background:rgba(15,23,42,.6)!important;z-index:10001!important;}
+html body.madic-unified[data-page="demandes-documents-cric"] .madic-unified-layout {transform:none!important;filter:none!important;contain:none!important;}
+html body.madic-unified[data-page="demandes-documents-cric"].madic-sidebar-compact #madicPhoneDrawer {width:76px!important;min-width:76px!important;max-width:76px!important;overflow:hidden!important;}
+html body.madic-unified[data-page="demandes-documents-cric"] #madicPhoneDrawer .madic-phone-close {color:white!important;}
+html body.madic-unified[data-page="demandes-documents-cric"].madic-sidebar-compact #madicPhoneDrawer #madicThemeOptions:popover-open {position:fixed!important;inset:auto!important;left:var(--madic-popup-x)!important;top:var(--madic-popup-y)!important;margin:0!important;width:156px!important;}
+} }
 
 /* MADIC: compact mobile drawer, fit all controls within viewport. */
 @layer madicMobileFit {
