@@ -1,3 +1,13 @@
+@layer madicTarget0833 {
+:root[data-madic-theme=dark] .madic-app-content .madic-client-messages-history {background:#111827!important;color:#F1F5F9!important;border:1px solid #334155!important;}
+:root[data-madic-theme=dark] .madic-app-content .madic-client-messages-list button {background:#1F2937!important;color:#F1F5F9!important;border:1px solid #334155!important;}
+:root[data-madic-theme=dark] .madic-app-content .madic-client-messages-list button:is(:hover,[aria-current=true]) {background:#334155!important;border-color:#287C98!important;}
+:root[data-madic-theme=dark] .madic-app-content .madic-client-messages-list :is(small,.madic-client-msg-preview) {color:#AAB8CA!important;opacity:1!important;}
+:root[data-madic-theme=dark] .madic-app-content .madic-client-messages-list li+li {border-color:#334155!important;}
+:root[data-madic-theme=dark] .madic-app-content .madic-client-msg-own {background:#334155!important;}
+:root[data-madic-theme=dark] .madic-app-content :is(.madic-message-attachments,.madic-attachment-item,.madic-attachment-icon) {background:#1F2937!important;border-color:#334155!important;color:#F1F5F9!important;}
+:root[data-madic-theme=dark] .madic-app-content :is(.madic-attachment-count,.madic-attachment-meta,.madic-attachment-size) {color:#AAB8CA!important;}
+}
 @layer madicContrast0817 {
 :root[data-madic-theme=dark] .madic-app-content {color:#F1F5F9!important;background:#111827!important;}
 :root[data-madic-theme=dark] .madic-app-content :is(section,article,fieldset,table,thead,tbody,tr,td,th,details,summary,.panel,[class$="-card"],[class$="-panel"],[class$="-bubble"]) {background-color:#1F2937!important;background-image:none!important;color:#F1F5F9!important;border-color:#334155!important;box-shadow:none!important;}

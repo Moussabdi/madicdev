@@ -1,3 +1,12 @@
+@layer madicTarget0833 {
+:root[data-madic-theme=dark] .madic-app-content :is(.madic-rdv-hero,.madic-rdv-notice,.madic-rdv-notifications,.madic-rdv-notification,.madic-rdv-calendar-controls,.madic-rdv-day) {background:#1F2937!important;background-image:none!important;color:#F1F5F9!important;border-color:#334155!important;box-shadow:none!important;}
+:root[data-madic-theme=dark] .madic-app-content :is(#rdvWeekLabel,.madic-rdv-notification span,.madic-rdv-hero-icon) {color:#F1F5F9!important;opacity:1!important;}
+:root[data-madic-theme=dark] .madic-app-content :is(.madic-rdv-section-desc,.madic-rdv-notice) {color:#AAB8CA!important;}
+:root[data-madic-theme=dark] .madic-app-content .madic-rdv-notification-unread {border-left:3px solid #287C98!important;}
+.madic-app-content .madic-rdv-calendar {display:flex!important;flex-wrap:wrap!important;align-items:flex-start!important;justify-content:flex-start!important;gap:10px!important;}
+.madic-app-content .madic-rdv-calendar .madic-rdv-day {flex:0 1 auto!important;width:max-content!important;max-width:100%!important;min-width:0!important;min-height:0!important;height:auto!important;box-sizing:border-box!important;}
+.madic-app-content .madic-rdv-day .madic-rdv-slot-button {width:auto!important;max-width:100%!important;}
+}
 @layer madicContrast0817 {
 :root[data-madic-theme=dark] .madic-app-content {color:#F1F5F9!important;background:#111827!important;}
 :root[data-madic-theme=dark] .madic-app-content :is(section,article,fieldset,table,thead,tbody,tr,td,th,details,summary,.panel,[class$="-card"],[class$="-panel"],[class$="-bubble"]) {background-color:#1F2937!important;background-image:none!important;color:#F1F5F9!important;border-color:#334155!important;box-shadow:none!important;}
