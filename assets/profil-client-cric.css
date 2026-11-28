@@ -1,3 +1,7 @@
+@layer madicTargetedContrast {
+:root[data-madic-theme="dark"] body .madic-localized-file-picker .madic-file-picker-button {color:#F1F5F9!important;background:#1F2937!important;border:1px solid #334155!important;}
+:root[data-madic-theme="dark"] body .madic-localized-file-picker .madic-file-picker-name {color:#AAB8CA!important;}
+}
 @layer madicReadability {
 @media(min-width:901px){body[data-page]>header.madic-client-header{padding-inline:26px!important;}}
 body[data-page] .madic-app-content {font-size:16px!important;color:var(--madic-text)!important;background:var(--madic-bg)!important;}

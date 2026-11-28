@@ -1,3 +1,9 @@
+@layer madicTargetedContrast {
+:root:not([data-madic-theme="dark"]) body #page-formulaire .form_info_facultatif .info_importante {background:#FFFFFF!important;color:#18324F!important;}
+:root[data-madic-theme="dark"] body #page-formulaire .form_info_facultatif fieldset {background:#1F2937!important;color:#F1F5F9!important;border-color:#334155!important;}
+:root[data-madic-theme="dark"] body #page-formulaire .form_info_facultatif fieldset legend {background:#1F2937!important;color:#F1F5F9!important;}
+:root[data-madic-theme="dark"] body #page-formulaire .form_info_facultatif .info_importante {background:#1F2937!important;color:#F1F5F9!important;}
+}
 @layer madicReadability {
 @media(min-width:901px){body[data-page]>header.madic-client-header{padding-inline:26px!important;}}
 body[data-page] .madic-app-content {font-size:16px!important;color:var(--madic-text)!important;background:var(--madic-bg)!important;}
