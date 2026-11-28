@@ -1676,7 +1676,7 @@
           );
         Object.assign(profile, payload);
         if (!photoPath) updateClientAvatar(profile.gender);
-        $("welcome").textContent = "Bienvenue, " + profile.first_name;
+        $("welcome").textContent = (document.documentElement.lang.startsWith("en") ? "Welcome, " : "Bienvenue, ") + profile.first_name;
         status("Profil enregistré.");
       });
       const cabinet = $("cabinet");

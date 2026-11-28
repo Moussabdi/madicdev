@@ -1,3 +1,24 @@
+@layer madicReferenceFit {
+#madicClientDrawer {box-sizing:border-box!important;gap:4px!important;}
+#madicClientDrawer .madic-side-bottom {display:none!important;}
+#madicClientDrawer .madic-side-links {width:100%!important;min-width:0!important;min-height:0!important;flex:1 1 0!important;display:flex!important;flex-direction:column!important;gap:2px!important;overflow-x:hidden!important;overflow-y:auto!important;}
+#madicClientDrawer .madic-nav-entry {min-width:0!important;min-height:0!important;width:100%!important;flex:1 1 0!important;max-height:44px!important;}
+#madicClientDrawer .madic-nav-entry>a {box-sizing:border-box!important;width:100%!important;min-width:0!important;min-height:0!important;height:100%!important;padding:4px 8px!important;}
+#madicClientDrawer .madic-nav-icon {width:20px!important;height:20px!important;flex:none!important;}
+#madicClientDrawer .madic-display-tools {display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;justify-content:space-between!important;gap:6px!important;padding:8px 0!important;flex:0 0 auto!important;}
+#madicClientDrawer .madic-collapse {width:auto!important;min-height:36px!important;flex:0 1 auto!important;padding:8px!important;}
+#madicClientDrawer .madic-theme-control {width:auto!important;flex:0 0 auto!important;margin-left:auto!important;}
+#madicClientDrawer .madic-theme-trigger {width:36px!important;height:36px!important;padding:8px!important;}
+body.madic-client-compact #madicClientDrawer .madic-display-tools {flex-direction:column!important;padding:2px 0!important;gap:3px!important;}
+body.madic-client-compact #madicClientDrawer .madic-theme-control {margin:0!important;}
+body.madic-client-compact #madicClientDrawer :is(.madic-collapse,.madic-theme-trigger) {width:40px!important;min-height:0!important;}
+body .madic-app-content :is(time,.madic-news-date, .madic-publication-date) {color:var(--madic-text-muted)!important;opacity:1!important;}
+body .madic-app-content :is(a.btn,button.btn,.madic-welcome-shell .actions a,.madic-welcome-shell .actions button) {color:white!important;background:var(--madic-accent)!important;}
+body .madic-app-content :is(a.btn,button.btn,.madic-welcome-shell .actions a,.madic-welcome-shell .actions button) * {color:inherit!important;}
+body > header .madic-client-phone-account {font-size:13px!important;min-width:0!important;gap:6px!important;}
+@media(min-width:901px){body:not(.madic-client-compact) #madicClientDrawer {width:244px!important;min-width:244px!important;max-width:244px!important;} #madicClientDrawer .madic-side-links {flex:1 1 0!important;} }
+@media(max-width:900px){body:not(.madic-client-compact) #madicClientDrawer {width:min(280px,85vw)!important;min-width:0!important;max-width:280px!important;} body.madic-client-compact #madicClientDrawer .madic-side-brand {margin:0 0 8px!important;} body.madic-client-compact #madicClientDrawer .madic-nav-entry {max-height:52px!important;} body.madic-client-compact #madicClientDrawer .madic-nav-icon {width:clamp(16px,3.5dvh,22px)!important;height:clamp(16px,3.5dvh,22px)!important;} body.madic-client-compact #madicClientDrawer :is(.madic-collapse,.madic-theme-trigger) {height:clamp(26px,6dvh,40px)!important;padding:0!important;} body > header .madic-hero-tools {gap:3px!important;} body > header .madic-hero-tools :is(button,a) {min-width:0!important;width:30px!important;height:32px!important;padding:3px!important;font-size:11px!important;} body > header .madic-client-phone-account {max-width:150px!important;} body > header .madic-client-account-label {max-width:clamp(40px,19vw,130px)!important;} }
+}
 @layer madicClientSixRepair {
 body[data-page] .madic-app-content :is(.madic-feature-card,.madic-publication-card,.madic-detail-card,.madic-journey-panel,.madic-service-panel,.madic-welcome-shell) {background:var(--madic-surface)!important;color:var(--madic-text)!important;border-color:var(--madic-border)!important;box-shadow:none!important;}
 body[data-page] .madic-app-content :is(h1,h2,h3,h4,strong,th,td) {color:var(--madic-text)!important;}
