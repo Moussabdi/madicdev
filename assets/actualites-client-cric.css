@@ -1,3 +1,42 @@
+@layer madicClientContrast {
+:root {background:var(--madic-bg)!important;color:var(--madic-text)!important;}
+body[data-page] {background:var(--madic-bg)!important;background-image:none!important;}
+body[data-page] .madic-app-content {background:var(--madic-bg)!important;color:var(--madic-text)!important;}
+body[data-page] > header.madic-client-header {position:sticky!important;top:0!important;z-index:90!important;background:var(--madic-surface)!important;background-image:none!important;color:var(--madic-text)!important;}
+body[data-page] > header .brand,body[data-page] > header .brand span,body[data-page] > header .madic-client-phone-account {color:var(--madic-text)!important;}
+body[data-page] > header .brand small {color:var(--madic-accent)!important;}
+body[data-page] > header :is(.madic-client-phone-search,.madic-hero-notifications,.madic-language-switch button,.madic-client-phone-account b,.madic-client-phone-trigger,.toplinks) {background:var(--madic-surface)!important;color:var(--madic-text)!important;border:1px solid var(--madic-border)!important;box-shadow:none!important;}
+body[data-page] > header .madic-language-switch button[aria-pressed=true],body[data-page] > header .madic-client-phone-search button {background:var(--madic-accent)!important;color:white!important;}
+body[data-page] > header .madic-client-phone-search input {background:transparent!important;color:var(--madic-text)!important;border:0!important;box-shadow:none!important;}
+body[data-page] > header input::placeholder {color:var(--madic-text-muted)!important;opacity:1!important;}
+body[data-page] > header .madic-client-phone-search button {border-radius:20px!important;padding:4px 8px!important;}
+body[data-page] > header .toplinks a {color:var(--madic-text)!important;}
+body[data-page] .madic-app-content :is(h1,h2,h3,h4,strong,label) {color:var(--madic-text)!important;}
+body[data-page] .madic-app-content :is(p,small,.muted,.eyebrow,.madic-kicker,.madic-journey-steps) {color:var(--madic-text-muted)!important;}
+body[data-page] .madic-app-content :is(.panel,.madic-welcome-shell) {background:var(--madic-surface)!important;background-image:none!important;border-color:var(--madic-border)!important;box-shadow:none!important;}
+body[data-page] .madic-welcome-shell::before,body[data-page] .madic-welcome-shell::after {content:none!important;}
+body[data-page] .madic-app-content a:not(.madic-primary-action):not(.madic-secondary-action):not(.btn) {color:var(--madic-accent)!important;}
+:root[data-madic-theme=dark] body[data-page] .madic-app-content a:not(.madic-primary-action):not(.madic-secondary-action):not(.btn) {color:#AAB8CA!important;}
+body[data-page] .madic-hero-actions a {background:var(--madic-accent)!important;color:white!important;box-shadow:none!important;}
+body[data-page] > footer,body[data-page] > footer :is(a,strong,h2,h3) {color:var(--madic-text)!important;}
+body[data-page] > footer :is(p,small) {color:var(--madic-text-muted)!important;}
+body[data-page] #madicClientDrawer .madic-nav-entry>a {border-radius:10px!important;min-height:0!important;}
+body[data-page] #madicClientDrawer .madic-nav-entry>a svg {width:20px!important;height:20px!important;stroke-width:1.8!important;flex:none!important;}
+body.madic-client-compact #madicClientDrawer .madic-side-bottom {display:none!important;}
+body.madic-client-compact #madicClientDrawer .madic-nav-entry>a {height:100%!important;max-height:52px!important;}
+body.madic-client-compact #madicClientDrawer .madic-side-links {justify-content:flex-start!important;}
+@media(max-width:900px){
+body[data-page] > header.madic-client-header {grid-template-columns:minmax(0,1fr) auto auto!important;gap:8px 4px!important;padding:8px!important;}
+body[data-page] > header .brand {min-width:0!important;margin-left:32px!important;font-size:clamp(10px,2.7vw,16px)!important;white-space:nowrap!important;}
+body[data-page] > header .madic-client-phone-trigger {width:28px!important;height:36px!important;}
+body[data-page] > header .madic-hero-tools {gap:4px!important;flex-shrink:0!important;}
+body[data-page] > header .madic-language-switch button {width:clamp(30px,8vw,44px)!important;min-width:clamp(30px,8vw,44px)!important;height:40px!important;border-radius:10px!important;padding:0!important;}
+body[data-page] > header .madic-hero-notifications {width:36px!important;min-width:36px!important;flex-basis:36px!important;height:40px!important;}
+body[data-page] > header .madic-client-phone-account b {width:32px!important;height:32px!important;}
+body.madic-client-compact #madicClientDrawer .madic-nav-entry>a svg {width:clamp(16px,3.5dvh,20px)!important;height:clamp(16px,3.5dvh,20px)!important;}
+}
+@media(max-width:480px){body[data-page] > header .madic-client-account-label {display:none!important;}body[data-page] > header .madic-client-phone-account {gap:0!important;font-size:0!important;}}
+}
 @layer madicClientRepair {
 :root {--madic-bg:#F1F5F9;--madic-surface:#FFFFFF;--madic-sidebar:#142740;--madic-text:#18324F;--madic-text-muted:#52647A;--madic-border:#DCE4EE;--madic-accent:#287C98;color-scheme:light!important;}
 :root[data-madic-theme="dark"] {--madic-bg:#111827;--madic-surface:#1F2937;--madic-sidebar:#0F172A;--madic-text:#F1F5F9;--madic-text-muted:#AAB8CA;--madic-border:#334155;color-scheme:dark!important;}
