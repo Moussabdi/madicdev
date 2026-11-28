@@ -1,3 +1,52 @@
+@layer madicShadeFix { @media(max-width:900px) { html body.madic-unified[data-page="finances-cric"] .madic-phone-shade {display:none!important;pointer-events:none!important;} html body.madic-unified[data-page="finances-cric"].madic-phone-open:not(.madic-sidebar-compact) .madic-phone-shade:not([hidden]) {display:block!important;pointer-events:auto!important;position:fixed!important;inset:0!important;z-index:10001!important;background:rgba(15,23,42,.6)!important;} } }
+@layer madicFinalNav {
+body.madic-unified[data-page="finances-cric"] #madicPhoneDrawer .madic-display-tools {display:flex!important;visibility:visible!important;flex-shrink:0!important;}
+body.madic-unified[data-page="finances-cric"] #madicPhoneDrawer .madic-collapse {display:flex!important;visibility:visible!important;}
+body.madic-unified[data-page="finances-cric"].madic-sidebar-compact #madicPhoneDrawer :is(nav a > span,.madic-unified-brand > span:not(.madic-unified-monogram),.madic-collapse span) {display:none!important;}
+body.madic-unified[data-page="finances-cric"].madic-sidebar-compact #madicPhoneDrawer .madic-unified-monogram {display:flex!important;}
+body.madic-unified[data-page="finances-cric"].madic-sidebar-compact #madicPhoneDrawer nav a {gap:0!important;justify-content:center!important;}
+body.madic-unified[data-page="finances-cric"] #madicPhoneDrawer nav a {background:transparent!important;box-shadow:none!important;border-color:transparent!important;}
+body.madic-unified[data-page="finances-cric"] #madicPhoneDrawer nav a[aria-current="page"] {background:var(--madic-accent)!important;}
+body.madic-unified[data-page="finances-cric"] #madicPhoneDrawer nav a::before,body.madic-unified[data-page="finances-cric"] #madicPhoneDrawer nav a::after {content:none!important;}
+@media(max-width:900px) {
+body.madic-unified[data-page="finances-cric"] #madicPhoneDrawer {display:flex!important;flex-direction:column!important;position:fixed!important;inset:0 auto 0 0!important;height:100dvh!important;width:min(280px,85vw)!important;min-width:0!important;max-width:min(280px,85vw)!important;overflow-y:auto!important;transform:translateX(-105%)!important;visibility:hidden!important;z-index:10002!important;}
+body.madic-unified[data-page="finances-cric"].madic-phone-open #madicPhoneDrawer {transform:none!important;visibility:visible!important;}
+body.madic-unified[data-page="finances-cric"].madic-sidebar-compact #madicPhoneDrawer {width:76px!important;min-width:76px!important;max-width:76px!important;overflow:hidden!important;}
+body.madic-unified[data-page="finances-cric"] #madicPhoneDrawer > nav {flex:1 1 0!important;min-height:0!important;overflow-y:auto!important;}
+body.madic-unified[data-page="finances-cric"].madic-sidebar-compact #madicPhoneDrawer > nav {overflow:hidden!important;flex-direction:column!important;}
+body.madic-unified[data-page="finances-cric"] #madicPhoneDrawer > .madic-unified-foot {display:none!important;}
+body.madic-unified[data-page="finances-cric"] #madicPhoneDrawer > .madic-display-tools {position:static!important;margin-top:auto!important;}
+body.madic-unified[data-page="finances-cric"].madic-sidebar-compact .madic-phone-shade {display:none!important;}
+}
+}
+
+/* MADIC: compact mobile drawer, fit all controls within viewport. */
+@layer madicMobileFit {
+@media(max-width:900px){
+html body.madic-unified[data-page="finances-cric"].madic-sidebar-compact #madicPhoneDrawer {box-sizing:border-box !important; height:100dvh !important; max-height:100dvh !important; min-height:0 !important; overflow:hidden !important; scrollbar-width:none !important; padding:4px 8px !important; gap:0 !important; display:flex !important; flex-direction:column !important; justify-content:flex-start !important; align-items:center !important;} 
+html body.madic-unified[data-page="finances-cric"].madic-sidebar-compact #madicPhoneDrawer::-webkit-scrollbar {display:none !important;} 
+html body.madic-unified[data-page="finances-cric"].madic-sidebar-compact #madicPhoneDrawer > .madic-phone-close {position:static !important; flex:0 0 32px !important; width:40px !important; height:32px !important; min-height:0 !important; margin:0 !important; padding:0 !important; align-self:center !important;} 
+html body.madic-unified[data-page="finances-cric"].madic-sidebar-compact #madicPhoneDrawer > .madic-unified-brand {flex:0 0 auto !important; height:clamp(30px,7dvh,54px) !important; min-height:0 !important; margin:0 !important; padding:0 !important; width:100% !important; align-items:center !important; justify-content:center !important;} 
+html body.madic-unified[data-page="finances-cric"].madic-sidebar-compact #madicPhoneDrawer .madic-unified-monogram {width:32px !important; height:32px !important; min-height:0 !important; margin:0 !important; padding:0 !important;} 
+html body.madic-unified[data-page="finances-cric"].madic-sidebar-compact #madicPhoneDrawer > .madic-cric-new-nav {display:flex !important; flex:1 1 0 !important; min-height:0 !important; height:auto !important; max-height:none !important; width:100% !important; margin:0 !important; padding:0 !important; gap:0 !important; justify-content:space-evenly !important; overflow:hidden !important;} 
+html body.madic-unified[data-page="finances-cric"].madic-sidebar-compact #madicPhoneDrawer > .madic-cric-new-nav > a {flex:1 1 0 !important; min-height:0 !important; height:auto !important; max-height:52px !important; margin:0 !important; padding:0 !important; width:100% !important; align-items:center !important; justify-content:center !important;} 
+html body.madic-unified[data-page="finances-cric"].madic-sidebar-compact #madicPhoneDrawer > .madic-cric-new-nav > .madic-nav-divider {flex:0 0 1px !important; height:1px !important; min-height:0 !important; margin:2px 0 !important; padding:0 !important; width:100% !important;} 
+html body.madic-unified[data-page="finances-cric"].madic-sidebar-compact #madicPhoneDrawer > .madic-unified-foot {display:none !important;} 
+html body.madic-unified[data-page="finances-cric"].madic-sidebar-compact #madicPhoneDrawer > .madic-display-tools {flex:0 0 auto !important; margin:0 !important; padding:2px 0 !important; gap:3px !important; width:100% !important; min-height:0 !important; flex-direction:column !important; align-items:center !important;} 
+html body.madic-unified[data-page="finances-cric"].madic-sidebar-compact #madicPhoneDrawer .madic-display-tools :is(.madic-collapse,.madic-theme-trigger) {height:clamp(26px,6dvh,40px) !important; min-height:0 !important; width:40px !important; padding:0 !important; margin:0 !important;} 
+html body.madic-unified[data-page="finances-cric"].madic-sidebar-compact #madicPhoneDrawer .madic-theme-control {margin:0 !important; padding:0 !important;} 
+html body.madic-unified[data-page="finances-cric"].madic-sidebar-compact #madicPhoneDrawer .madic-cric-new-nav > a svg {width:clamp(16px,3.5dvh,22px) !important; height:clamp(16px,3.5dvh,22px) !important; flex:none !important;} 
+}}
+@layer madicCompactAppearance {
+@media (max-width:900px) {
+html body.madic-unified[data-page="finances-cric"].madic-sidebar-compact #madicPhoneDrawer #madicThemeOptions:popover-open {
+ position:fixed!important; inset:auto!important; left:var(--madic-popup-x)!important; top:var(--madic-popup-y)!important;
+ margin:0!important; width:156px!important; min-width:0!important; max-width:calc(100vw - 90px)!important;
+ max-height:calc(100dvh - 16px)!important; overflow-y:auto!important; box-sizing:border-box!important;
+}
+html body.madic-unified[data-page="finances-cric"].madic-sidebar-compact #madicPhoneDrawer #madicThemeOptions::backdrop {background:transparent!important;pointer-events:none!important;}
+}
+}
 
 /* MADIC: compact mobile drawer, fit all controls within viewport. */
 @layer madicMobileFit {
