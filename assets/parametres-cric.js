@@ -267,7 +267,7 @@
         });
     };
     const phone = matchMedia("(max-width:900px)");
-    const floating = () => phone.matches && compact && typeof menu.showPopover === "function";
+    const floating = () => compact && typeof menu.showPopover === "function";
     const positionMenu = () => {
       if (!menu.matches(":popover-open")) return;
       const drawer = document.getElementById("madicPhoneDrawer");
@@ -296,7 +296,7 @@
       if (phone.matches && !body.classList.contains("madic-phone-open")) open(false);
     }).observe(body, {attributes:true, attributeFilter:["class"]});
     collapse.addEventListener("click", () => {
-      if (phone.matches) open(false);
+      open(false);
       compact = !compact;
       save("madic-cric-sidebar", compact ? "collapsed" : "expanded");
       render();

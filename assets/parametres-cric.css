@@ -1,3 +1,10 @@
+@layer madicDesktopAppearance {
+@media(min-width:901px){
+html body.madic-sidebar-compact #madicPhoneDrawer #madicThemeOptions:popover-open {
+position:fixed!important; inset:auto!important; left:var(--madic-popup-x)!important; top:var(--madic-popup-y)!important; margin:0!important; width:156px!important; min-width:0!important; max-width:calc(100vw - 90px)!important; max-height:calc(100dvh - 16px)!important; overflow-y:auto!important; box-sizing:border-box!important;
+}
+#madicThemeOptions::backdrop {background:transparent!important;pointer-events:none!important;}
+}}
 @layer madicShadeFix { @media(max-width:900px) { html body.madic-unified[data-page="parametres-cric"] .madic-phone-shade {display:none!important;pointer-events:none!important;} html body.madic-unified[data-page="parametres-cric"].madic-phone-open:not(.madic-sidebar-compact) .madic-phone-shade:not([hidden]) {display:block!important;pointer-events:auto!important;position:fixed!important;inset:0!important;z-index:10001!important;background:rgba(15,23,42,.6)!important;} } }
 @layer madicFinalNav {
 body.madic-unified[data-page="parametres-cric"] #madicPhoneDrawer .madic-display-tools {display:flex!important;visibility:visible!important;flex-shrink:0!important;}
