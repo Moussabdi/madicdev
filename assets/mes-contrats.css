@@ -1,3 +1,13 @@
+@layer madicContractsNavigation {
+#madicClientDrawer .madic-nav-entry > a {font-size:14px!important;font-weight:600!important;line-height:1.4!important;color:#FFFFFF!important;white-space:nowrap!important;gap:8px!important;box-shadow:none!important;border:0!important;background:transparent!important;}
+#madicClientDrawer .madic-nav-entry > a > span {font:inherit!important;color:inherit!important;width:auto!important;min-width:0!important;text-align:left!important;white-space:nowrap!important;}
+#madicClientDrawer .madic-nav-entry > a:is(.madic-nav-active,[aria-current=page]) {background:#287C98!important;color:white!important;}
+#madicClientDrawer .madic-nav-entry > a::before,#madicClientDrawer .madic-nav-entry > a::after {content:none!important;display:none!important;}
+#madicClientDrawer .madic-nav-entry > a > svg {width:20px!important;height:20px!important;flex:none!important;color:white!important;}
+body.madic-client-compact #madicClientDrawer .madic-nav-entry > a {font-size:0!important;gap:0!important;}
+body.madic-client-compact #madicClientDrawer .madic-nav-entry > a > span {display:none!important;}
+@media(max-width:900px){body.madic-client-compact #madicClientDrawer .madic-nav-entry > a > svg {width:clamp(16px,3.5dvh,20px)!important;height:clamp(16px,3.5dvh,20px)!important;}}
+}
 @layer madicContrast0817 {
 :root[data-madic-theme=dark] .madic-app-content {color:#F1F5F9!important;background:#111827!important;}
 :root[data-madic-theme=dark] .madic-app-content :is(section,article,fieldset,table,thead,tbody,tr,td,th,details,summary,.panel,[class$="-card"],[class$="-panel"],[class$="-bubble"]) {background-color:#1F2937!important;background-image:none!important;color:#F1F5F9!important;border-color:#334155!important;box-shadow:none!important;}

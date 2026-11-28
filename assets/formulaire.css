@@ -1,3 +1,16 @@
+@layer madicFlatSections0844 {
+ :root {--madic-bg:#F1F5F9;--madic-surface:#FFFFFF;--madic-sidebar:#142740;--madic-text:#18324F;--madic-text-muted:#52647A;--madic-border:#DCE4EE;--madic-accent:#287C98;}
+:root[data-madic-theme="dark"] {--madic-bg:#111827;--madic-surface:#1F2937;--madic-sidebar:#0F172A;--madic-text:#F1F5F9;--madic-text-muted:#AAB8CA;--madic-border:#334155;}
+#page-formulaire :is(fieldset.form_info_client,.form_info_facultatif fieldset,.declaration_importante.form-notice){background:var(--madic-surface)!important;color:var(--madic-text)!important;border:1px solid var(--madic-border)!important;box-shadow:none!important;}
+#page-formulaire fieldset legend {background:var(--madic-surface)!important;color:var(--madic-text)!important;border:0!important;box-shadow:none!important;}
+#page-formulaire fieldset :is(label,p,strong,h2,h3,h4){color:var(--madic-text)!important;}
+#page-formulaire fieldset :is(input:not([type=checkbox]):not([type=radio]):not([type=button]):not([type=submit]),select,textarea,option){background:var(--madic-surface)!important;color:var(--madic-text)!important;border-color:var(--madic-border)!important;box-shadow:none!important;}
+#page-formulaire :is(.form-notice-section,.form-notice-section>.container,.form-notice__content,.form-notice__icon){background:transparent!important;border:0!important;box-shadow:none!important;}
+#page-formulaire .form-notice :is(strong,span,i){color:var(--madic-text)!important;}
+#page-formulaire .form-notice p{color:var(--madic-text-muted)!important;}
+#page-formulaire :is(.form-notice,.form-notice-section,fieldset.form_info_client)::before,#page-formulaire :is(.form-notice,.form-notice-section,fieldset.form_info_client)::after{content:none!important;}
+
+}
 @layer madicTargetedContrast {
 :root:not([data-madic-theme="dark"]) body #page-formulaire .form_info_facultatif .info_importante {background:#FFFFFF!important;color:#18324F!important;}
 :root[data-madic-theme="dark"] body #page-formulaire .form_info_facultatif fieldset {background:#1F2937!important;color:#F1F5F9!important;border-color:#334155!important;}

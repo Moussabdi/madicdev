@@ -1,3 +1,15 @@
+@layer madicFlatSections0844 {
+ :root {--madic-bg:#F1F5F9;--madic-surface:#FFFFFF;--madic-sidebar:#142740;--madic-text:#18324F;--madic-text-muted:#52647A;--madic-border:#DCE4EE;--madic-accent:#287C98;}
+:root[data-madic-theme="dark"] {--madic-bg:#111827;--madic-surface:#1F2937;--madic-sidebar:#0F172A;--madic-text:#F1F5F9;--madic-text-muted:#AAB8CA;--madic-border:#334155;}
+ .madic-app-content .panel.madic-rdv-notifications{background:var(--madic-surface)!important;color:var(--madic-text)!important;border:1px solid var(--madic-border)!important;box-shadow:none!important;}
+.madic-app-content .madic-rdv-notifications :is(#rdvNotificationList,.madic-rdv-notification,.madic-rdv-notification-unread){background:transparent!important;border:0!important;box-shadow:none!important;color:var(--madic-text)!important;border-radius:0!important;}
+.madic-app-content .madic-rdv-notifications .madic-rdv-notification + .madic-rdv-notification{border-top:1px solid var(--madic-border)!important;}
+.madic-app-content .madic-rdv-notifications .madic-rdv-notification span{color:var(--madic-text)!important;min-width:0!important;overflow-wrap:anywhere;}
+.madic-app-content .madic-rdv-notifications #rdvNotificationSummary{color:var(--madic-text-muted)!important;}
+.madic-app-content .madic-rdv-notifications .madic-rdv-notification button{background:var(--madic-accent)!important;color:#fff!important;border:0!important;box-shadow:none!important;}
+.madic-app-content :is(.madic-rdv-notifications,.madic-rdv-notification)::before,.madic-app-content :is(.madic-rdv-notifications,.madic-rdv-notification)::after{content:none!important;}
+
+}
 @layer madicTarget0833 {
 :root[data-madic-theme=dark] .madic-app-content :is(.madic-rdv-hero,.madic-rdv-notice,.madic-rdv-notifications,.madic-rdv-notification,.madic-rdv-calendar-controls,.madic-rdv-day) {background:#1F2937!important;background-image:none!important;color:#F1F5F9!important;border-color:#334155!important;box-shadow:none!important;}
 :root[data-madic-theme=dark] .madic-app-content :is(#rdvWeekLabel,.madic-rdv-notification span,.madic-rdv-hero-icon) {color:#F1F5F9!important;opacity:1!important;}
