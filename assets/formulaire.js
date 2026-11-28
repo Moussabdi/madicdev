@@ -1019,6 +1019,18 @@ const profileIrccEnglish = Object.freeze({
       : await db.from("profiles").select("*").eq("id", user.id).single();
     if (result.error) throw result.error;
     profile = result.data;
+    if (profile) {
+    const accountLabel = document.querySelector('.madic-client-account-label');
+    if (accountLabel) {
+      const name = [profile.first_name, profile.last_name].filter(Boolean).join(' ');
+      if (name) { accountLabel.dataset.clientName = name; accountLabel.textContent = name; accountLabel.title = name; }
+    }
+    const accountNumber = document.querySelector('.madic-account-number');
+    const number = profile.client_number ?? profile.client_code;
+    if (accountNumber && number) { accountNumber.textContent = String(number); accountNumber.hidden = false; }
+
+
+    }
   } catch (e) {
     message("Profil indisponible : " + e.message, true);
   }
@@ -2425,9 +2437,7 @@ const profileIrccEnglish = Object.freeze({
         ? "Search your space..."
         : "Rechercher dans votre espace...";
       search.querySelector("button").textContent = en ? "Search" : "Rechercher";
-      account.querySelector(".madic-client-account-label").textContent = en
-        ? "My space"
-        : "Mon espace";
+      const accountLabel=account.querySelector('.madic-client-account-label'); accountLabel.textContent=accountLabel.dataset.clientName || 'Client';
       drawer.querySelector(".madic-side-brand strong").textContent = en
         ? "MADIC PORTAL"
         : "MADIC PORTAIL";

@@ -1,3 +1,14 @@
+@layer madicPFCurrent {
+#madicClientDrawer .madic-side-links {overflow:hidden!important;min-height:0!important;flex:1 1 0!important;}
+#madicClientDrawer .madic-nav-entry {min-height:0!important;flex:1 1 0!important;}
+#madicClientDrawer .madic-nav-entry>a {min-height:0!important;box-sizing:border-box!important;}
+#madicClientDrawer .madic-display-tools {flex:none!important;}
+#madicClientDrawer .madic-side-bottom {display:none!important;}
+body[data-page] > header .madic-client-account-label {display:block!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;min-width:0!important;}
+body[data-page] > header .toplinks .madic-account-number {color:var(--madic-text-muted)!important;padding:8px!important;}
+body[data-page] .madic-app-content :is(input,select,textarea)::placeholder {color:var(--madic-text-muted)!important;opacity:1!important;}
+@media(max-width:900px){body[data-page] > header .madic-client-phone-account {max-width:150px!important;min-width:0!important;}body[data-page] > header .madic-client-account-label {max-width:clamp(36px,18vw,120px)!important;}body[data-page] > main.madic-app-layout > .madic-app-content {padding:16px 12px!important;min-width:0!important;box-sizing:border-box!important;}body.madic-client-compact #madicClientDrawer .madic-side-links {justify-content:space-evenly!important;} }
+}
 @layer madicProfileFit {
 :root {background:var(--madic-bg)!important;color:var(--madic-text)!important;}
 body[data-page] {background:var(--madic-bg)!important;color:var(--madic-text)!important;}
