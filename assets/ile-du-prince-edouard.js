@@ -51,6 +51,7 @@
     document.addEventListener("keydown", (e) => {
       if (
         e.key === "Escape" &&
+        document.getElementById("madicThemeOptions")?.hidden !== false &&
         document.body.classList.contains("madic-phone-open")
       )
         set(false, true);
@@ -145,11 +146,37 @@
           a.setAttribute("aria-label", a.title);
         });
     };
+    const phone = matchMedia("(max-width:900px)");
+    const floating = () => compact && typeof menu.showPopover === "function";
+    const positionMenu = () => {
+      if (!menu.matches(":popover-open")) return;
+      const drawer = document.getElementById("madicPhoneDrawer");
+      const anchor = trigger.getBoundingClientRect();
+      const edge = phone.matches ? drawer.offsetWidth : drawer.getBoundingClientRect().right;
+      menu.style.setProperty("--madic-popup-x", Math.max(8, Math.min(edge + 4, innerWidth - menu.offsetWidth - 8)) + "px");
+      menu.style.setProperty("--madic-popup-y", Math.max(8, Math.min(anchor.bottom - menu.offsetHeight, innerHeight - menu.offsetHeight - 8)) + "px");
+    };
     const open = (v) => {
+      if (menu.hasAttribute("popover")) {
+        if (menu.matches(":popover-open")) menu.hidePopover();
+        menu.removeAttribute("popover");
+      }
       menu.hidden = !v;
+      if (v && floating()) {
+        menu.setAttribute("popover", "manual");
+        menu.showPopover();
+        positionMenu();
+      }
       trigger.setAttribute("aria-expanded", String(v));
     };
+    phone.addEventListener("change", () => open(false));
+    window.addEventListener("resize", positionMenu);
+    document.getElementById("madicPhoneDrawer").addEventListener("scroll", positionMenu);
+    new MutationObserver(() => {
+      if (phone.matches && !body.classList.contains("madic-phone-open")) open(false);
+    }).observe(body, {attributes:true, attributeFilter:["class"]});
     collapse.addEventListener("click", () => {
+      open(false);
       compact = !compact;
       save("madic-cric-sidebar", compact ? "collapsed" : "expanded");
       render();
