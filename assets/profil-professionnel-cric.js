@@ -1587,6 +1587,7 @@ window.getMadicSupabase = function () {
     document.addEventListener("keydown", (e) => {
       if (
         e.key === "Escape" &&
+        document.getElementById("madicThemeOptions")?.hidden !== false &&
         document.body.classList.contains("madic-phone-open")
       )
         set(false, true);
@@ -1633,16 +1634,18 @@ window.getMadicSupabase = function () {
         localStorage.setItem(k, v);
       } catch {}
     };
-    let compact = read("madic-admin-sidebar", "expanded") === "collapsed",
+    let compact = read("madic-cric-sidebar", "expanded") === "collapsed",
       theme = read("madic-admin-theme", "light");
     if (!["system", "light", "dark"].includes(theme)) theme = "light";
-    let renderedLanguage, renderedTheme;
+    let renderedLanguage;
+    let renderedTheme;
     const render = () => {
       renderedLanguage = root.lang;
       const en = root.lang.startsWith("en");
       body.classList.toggle("madic-sidebar-compact", compact);
       root.dataset.madicAppearance =
         theme === "system" ? (media.matches ? "dark" : "light") : theme;
+      root.dataset.madicTheme = root.dataset.madicAppearance;
       const label = compact
         ? en
           ? "Expand"
@@ -1650,40 +1653,68 @@ window.getMadicSupabase = function () {
         : en
           ? "Collapse"
           : "Réduire";
-      if (collapse.querySelector("span").textContent !== label) collapse.querySelector("span").textContent = label;
+      collapse.querySelector("span").textContent = label;
       collapse.title = label;
       collapse.setAttribute("aria-label", label);
       collapse.setAttribute("aria-expanded", String(!compact));
       trigger.title = en ? "Appearance" : "Apparence";
       trigger.setAttribute("aria-label", trigger.title);
       choices.forEach((b, i) => {
-        const text = (
+        b.querySelector("span").textContent = (
           en ? ["System", "Light", "Dark"] : ["Système", "Clair", "Sombre"]
         )[i];
-        if (b.querySelector("span").textContent !== text) b.querySelector("span").textContent = text;
         b.setAttribute("aria-pressed", String(b.dataset.themeChoice === theme));
       });
-      if (renderedTheme !== theme) {
-      trigger.querySelector("svg").replaceWith(
-        choices
-          .find((b) => b.dataset.themeChoice === theme)
-          .querySelector("svg")
-          .cloneNode(true),
-      );
+      if (renderedTheme !== theme)
+        trigger.querySelector("svg").replaceWith(
+          choices
+            .find((b) => b.dataset.themeChoice === theme)
+            .querySelector("svg")
+            .cloneNode(true),
+        );
       renderedTheme = theme;
-      }
-      document.querySelectorAll("#madicPhoneDrawer nav a").forEach((a) => {
-        a.title = a.textContent.trim();
-        a.setAttribute("aria-label", a.title);
-      });
+      document
+        .querySelectorAll(
+          "#madicPhoneDrawer nav a, #madicPhoneDrawer nav summary",
+        )
+        .forEach((a) => {
+          a.title = a.textContent.trim();
+          a.setAttribute("aria-label", a.title);
+        });
+    };
+    const phone = matchMedia("(max-width:900px)");
+    const floating = () => phone.matches && compact && typeof menu.showPopover === "function";
+    const positionMenu = () => {
+      if (!menu.matches(":popover-open")) return;
+      const drawer = document.getElementById("madicPhoneDrawer");
+      const anchor = trigger.getBoundingClientRect();
+      const edge = drawer.getBoundingClientRect().right;
+      menu.style.setProperty("--madic-popup-x", Math.max(8, Math.min(edge + 4, innerWidth - menu.offsetWidth - 8)) + "px");
+      menu.style.setProperty("--madic-popup-y", Math.max(8, Math.min(anchor.bottom - menu.offsetHeight, innerHeight - menu.offsetHeight - 8)) + "px");
     };
     const open = (v) => {
+      if (menu.hasAttribute("popover")) {
+        if (menu.matches(":popover-open")) menu.hidePopover();
+        menu.removeAttribute("popover");
+      }
       menu.hidden = !v;
+      if (v && floating()) {
+        menu.setAttribute("popover", "manual");
+        menu.showPopover();
+        positionMenu();
+      }
       trigger.setAttribute("aria-expanded", String(v));
     };
+    phone.addEventListener("change", () => open(false));
+    window.addEventListener("resize", positionMenu);
+    document.getElementById("madicPhoneDrawer").addEventListener("scroll", positionMenu);
+    new MutationObserver(() => {
+      if (phone.matches && !body.classList.contains("madic-phone-open")) open(false);
+    }).observe(body, {attributes:true, attributeFilter:["class"]});
     collapse.addEventListener("click", () => {
+      if (phone.matches) open(false);
       compact = !compact;
-      save("madic-admin-sidebar", compact ? "collapsed" : "expanded");
+      save("madic-cric-sidebar", compact ? "collapsed" : "expanded");
       render();
     });
     trigger.addEventListener("click", () => open(menu.hidden));
@@ -1713,8 +1744,8 @@ window.getMadicSupabase = function () {
       attributeFilter: ["lang"],
     });
     window.addEventListener("storage", (e) => {
-      if (["madic-admin-sidebar", "madic-admin-theme"].includes(e.key)) {
-        compact = read("madic-admin-sidebar", "expanded") === "collapsed";
+      if (["madic-cric-sidebar", "madic-admin-theme"].includes(e.key)) {
+        compact = read("madic-cric-sidebar", "expanded") === "collapsed";
         theme = read("madic-admin-theme", "light");
         if (!["system", "light", "dark"].includes(theme)) theme = "light";
         render();
